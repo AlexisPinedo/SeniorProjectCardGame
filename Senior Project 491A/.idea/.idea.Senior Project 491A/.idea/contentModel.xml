@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\pined\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\pined\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_Senior Project 491A.1398288423.00" t="ExcludeRecursive" />
+    <e p="C:\Users\pined\OneDrive\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="_Scripts" t="Include">
+          <e p="Card Effects" t="Include">
+            <e p="CardEffect.cs" t="Include" />
+            <e p="UpdateCurrency.cs" t="Include" />
+          </e>
+          <e p="Enemy" t="Include">
+            <e p="EnemyCard.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Senior Project 491A.sln" t="IncludeFlat" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
