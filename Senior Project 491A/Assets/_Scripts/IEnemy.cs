@@ -10,6 +10,6 @@
  */
 public interface IEnemy
 {
-    int health {get; set;}
-    int rewardValue {get; set;}
+    int health { get; set; }
+    int rewardValue { get; set; }
 }
