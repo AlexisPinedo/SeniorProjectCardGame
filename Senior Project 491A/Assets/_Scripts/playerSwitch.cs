@@ -23,7 +23,7 @@ public class playerSwitch : MonoBehaviour
                 p2HandSpacePanel.SetActive(true);
             }
 
-            if (p2HandSpacePanel.activeSelf)
+            else if (p2HandSpacePanel.activeSelf)
             {
                 p2HandSpacePanel.SetActive(false);
                 p1HandSpacePanel.SetActive(true);
