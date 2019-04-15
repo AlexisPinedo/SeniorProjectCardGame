@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Graveyard : ScriptableObject
 {
-    static List<Card> graveYard = new List<Card>();
+    private List<Card> graveYard = new List<Card>();
 
 
     public List<Card> GetGraveYard()

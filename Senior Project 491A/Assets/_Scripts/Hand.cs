@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Hand : ScriptableObject
 {
-    static List<Card> playerCards = new List<Card>();
-    private static Deck deck = ScriptableObject.CreateInstance<Deck>();
+    private List<Card> playerCards = new List<Card>();
+    private Deck deck = ScriptableObject.CreateInstance<Deck>();
     
     //public Card playCard()
     //{

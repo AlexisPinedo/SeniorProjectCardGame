@@ -7,15 +7,15 @@ using UnityEngine;
 public class Deck : ScriptableObject
 {
     //Singleton pattern to ensure only one deck is created globally.
-    private static Deck instance = null;  
+    private Deck instance = null;  
     void Awake()
     {
-    if (instance == null)
-      instance = this;
+        if (instance == null)
+          instance = this;
     }
     
-    static Stack<Card> deck = new Stack<Card>();
-    static Graveyard gradeyard = ScriptableObject.CreateInstance<Graveyard>();
+    Stack<Card> deck = new Stack<Card>();
+    Graveyard gradeyard = ScriptableObject.CreateInstance<Graveyard>();
 
     public Card RevealTopCard()
     {
