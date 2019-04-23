@@ -14,9 +14,33 @@ using UnityEngine;
  */
 public class Minion : MonoBehaviour, IEnemy
 {
+    /* Minion's health and reward values */
+    private int _health;
+    private int _rewardValue;
+
     // from IEnemy
-    public int health { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public int rewardValue { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public int health
+    {
+            get { return _health; }
+            set {
+                if (value < 1) {
+                    _health = 5;  // Default health
+                } else {
+                    _health = value;
+                }
+            }
+    }
+    public int rewardValue
+    {
+            get { return _rewardValue;}
+            set {
+                if (value < 1) {
+                    _rewardValue = 2;  // Default reward value for Minions
+                } else {
+                    _rewardValue = value;
+                }
+            }
+    }
 
     // Start is called before the first frame update
     void Start()
