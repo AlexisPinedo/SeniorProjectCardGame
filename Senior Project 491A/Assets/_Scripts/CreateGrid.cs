@@ -7,9 +7,15 @@ public class CreateGrid : MonoBehaviour
     [SerializeField]
     private float size = 1f;
 
-    [SerializeField] private int xValUnits = 1;
+    [SerializeField]
+    private int xValUnits = 1;
     
-    [SerializeField] private int yValUnits = 1;
+    [SerializeField]
+    private int yValUnits = 1;
+
+    [SerializeField]
+    private Color GizmoColor; 
+
     
     
     public Vector2 GetNearestPointOnGrid(Vector2 position)
@@ -26,12 +32,15 @@ public class CreateGrid : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
+        int xTotal = (int)size * xValUnits;
+        int yTotal = (int)size * yValUnits;
+
+        Gizmos.color = GizmoColor;
         if (size > .99)
         {
-            for (float x = 0; x < xValUnits; x += size)
+            for (float x = 0; x < xTotal; x += size)
             {
-                for( float y = 0; y < yValUnits; y += size)
+                for( float y = 0; y < yTotal; y += size)
                 {
                     var point = GetNearestPointOnGrid(new Vector3(x, y));
                     Gizmos.DrawSphere(point, 0.1f);
