@@ -40,9 +40,9 @@ public class CreateGrid : MonoBehaviour
         {
             for (float x = 0; x < xTotal; x += size)
             {
-                for( float y = 0; y < yTotal; y += size)
+                for( float  y = 0; y < yTotal; y += size)
                 {
-                    var point = GetNearestPointOnGrid(new Vector3(x, y));
+                    var point = GetNearestPointOnGrid(new Vector2(x, y));
                     Gizmos.DrawSphere(point, 0.1f);
                 }
             }
