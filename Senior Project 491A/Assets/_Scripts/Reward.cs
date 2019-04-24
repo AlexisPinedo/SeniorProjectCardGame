@@ -9,8 +9,8 @@ public class Reward : ScriptableObject
 
     public void getPoints()
     {
-        foreach (Card rewardCard in rewardPile)
-            rewardPoints = rewardPoints + rewardCard.cardCurrency;
+        //foreach (Card rewardCard in rewardPile)
+            //rewardPoints = rewardPoints + rewardCard.cardCurrency;
     }
 
 }

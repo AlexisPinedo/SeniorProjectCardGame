@@ -1,21 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Deck : ScriptableObject
 {
     //Singleton pattern to ensure only one deck is created globally.
     private Deck instance = null;  
-    void Awake()
+/*    void Awake()
     {
         if (instance == null)
           instance = this;
-    }
+    }*/
     
     Stack<Card> deck = new Stack<Card>();
-    Graveyard gradeyard = ScriptableObject.CreateInstance<Graveyard>();
+    private Graveyard gradeyard; //= ScriptableObject.CreateInstance<Graveyard>();
 
     public Card RevealTopCard()
     {
