@@ -320,6 +320,7 @@ MonoBehaviour:
   xValUnits: 5
   yValUnits: 1
   GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  player2: {fileID: 0}
 --- !u!1 &324832094
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +463,7 @@ MonoBehaviour:
   xValUnits: 5
   yValUnits: 1
   GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  player2: {fileID: 417830804}
 --- !u!1 &643660909
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +622,7 @@ MonoBehaviour:
   xValUnits: 7
   yValUnits: 2
   GizmoColor: {r: 1, g: 0.008412459, b: 0, a: 1}
+  player2: {fileID: 0}
 --- !u!224 &718689245
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1183,12 +1186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b812c0f83fe2a06891f1e8884da9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards:
-  - {fileID: 4813211115199307393, guid: e7eb578cb70324b20a0fd652fcd2b616, type: 3}
-  - {fileID: 8711275564848472104, guid: 36068f93be919c239b93db0ac6edfc78, type: 3}
-  - {fileID: 8711275564848472104, guid: 36068f93be919c239b93db0ac6edfc78, type: 3}
-  - {fileID: 8711275564848472104, guid: 36068f93be919c239b93db0ac6edfc78, type: 3}
-  - {fileID: 4813211115199307393, guid: e7eb578cb70324b20a0fd652fcd2b616, type: 3}
+  handGrid: {fileID: 0}
+  deck: []
 --- !u!212 &1145435541
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2158,6 +2157,7 @@ MonoBehaviour:
   xValUnits: 5
   yValUnits: 1
   GizmoColor: {r: 1, g: 0, b: 0.7849541, a: 1}
+  player2: {fileID: 0}
 --- !u!4 &1968618939
 Transform:
   m_ObjectHideFlags: 0
