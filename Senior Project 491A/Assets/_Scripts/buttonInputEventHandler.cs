@@ -4,31 +4,39 @@ using UnityEngine;
 
 public class buttonInputEventHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public delegate void settingsButtonAction();
+    public static event settingsButtonAction SettingsClicked;
+
+    public delegate void StartBattleButtonAction();
+    public static event StartBattleButtonAction StartClicked;
+
+    public delegate void GraveyardButtonAction();
+    public static event GraveyardButtonAction GraveyardClicked;
+
+    public void SettingsButtonClick()
     {
-        
+        if(SettingsClicked != null)
+        {
+            Debug.Log("clicked");
+            SettingsClicked();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartBattleButtonClick()
     {
-        
+        if (StartClicked != null)
+        {
+            Debug.Log("clicked");
+            StartClicked();
+        }
     }
 
-
-    public void settingsButtonClick()
+    public void GraveyardButtonClick()
     {
-        Debug.Log("clicked");
-    }
-
-    public void startBattleButtonClick()
-    {
-        Debug.Log("clicked");
-    }
-
-    public void graveyardButtonClick()
-    {
-        Debug.Log("clicked");
+        if (GraveyardClicked != null)
+        {
+            Debug.Log("clicked");
+            GraveyardClicked();
+        }
     }
 }
