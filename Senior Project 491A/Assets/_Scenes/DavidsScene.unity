@@ -380,10 +380,7 @@ Transform:
   m_Children:
   - {fileID: 57440921}
   - {fileID: 286105643}
-  - {fileID: 1602485901}
   - {fileID: 1185834759}
-  - {fileID: 1531956017}
-  - {fileID: 1486279740}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1147,9 +1144,12 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -3.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1602485901}
+  - {fileID: 1531956017}
+  - {fileID: 1486279740}
   m_Father: {fileID: 405819867}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1185834760
 MonoBehaviour:
@@ -1418,11 +1418,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486279739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.81, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 405819867}
-  m_RootOrder: 5
+  m_Father: {fileID: 1185834759}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1486279741
 MonoBehaviour:
@@ -1660,11 +1660,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531956016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07415548, y: -3.808922, z: 0.0022261264}
+  m_LocalPosition: {x: 0.07415548, y: 0.0010778904, z: 0.0022261264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 405819867}
-  m_RootOrder: 4
+  m_Father: {fileID: 1185834759}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1531956018
 MonoBehaviour:
@@ -1784,12 +1784,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602485900}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 405819867}
-  m_RootOrder: 2
+  m_Father: {fileID: 1185834759}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1602485902
 MonoBehaviour:
@@ -1804,6 +1804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
+  deck: {fileID: 0}
 --- !u!1 &1608593736
 GameObject:
   m_ObjectHideFlags: 0
