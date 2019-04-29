@@ -18,7 +18,6 @@ public class ButtonInputEventHandler : MonoBehaviour
         //Debug.Log("clicked");
         if (SettingsClicked != null)
         {
-            Debug.Log("clicked");
             SettingsClicked();
         }
     }
@@ -27,7 +26,6 @@ public class ButtonInputEventHandler : MonoBehaviour
     {
         if (StartClicked != null)
         {
-            Debug.Log("clicked");
             StartClicked();
         }
     }
@@ -36,22 +34,26 @@ public class ButtonInputEventHandler : MonoBehaviour
     {
         if (GraveyardClicked != null)
         {
-            Debug.Log("clicked");
             GraveyardClicked();
         }
     }
 
+    public void test()
+    {
+        Debug.Log("clicked");
+    }
+
     public void OnEnable()
     {
-        ButtonInputEventHandler.SettingsClicked += SettingsButtonOnClick;
-        ButtonInputEventHandler.StartClicked += StartBattleButtonOnClick;
-        ButtonInputEventHandler.GraveyardClicked += GraveyardButtonOnClick;
+        ButtonInputEventHandler.SettingsClicked += test;
+        ButtonInputEventHandler.StartClicked += test;
+        ButtonInputEventHandler.GraveyardClicked += test;
     }
 
     public void OnDisable()
     {
-        ButtonInputEventHandler.SettingsClicked -= SettingsButtonOnClick;
-        ButtonInputEventHandler.StartClicked -= StartBattleButtonOnClick;
-        ButtonInputEventHandler.GraveyardClicked -= GraveyardButtonOnClick;
+        ButtonInputEventHandler.SettingsClicked -= test;
+        ButtonInputEventHandler.StartClicked -= test;
+        ButtonInputEventHandler.GraveyardClicked -= test;
     }
 }
