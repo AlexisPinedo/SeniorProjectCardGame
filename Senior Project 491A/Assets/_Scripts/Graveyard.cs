@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Graveyard : ScriptableObject
+public class Graveyard : MonoBehaviour
 {
     private List<Card> graveYard = new List<Card>();
-
 
     public List<Card> GetGraveYard()
     {

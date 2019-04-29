@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class DrawCard : MonoBehaviour
 {
+    /* References the grid space for cards played during the turn */
     [SerializeField]
-    private List<GameObject> cards = new List<GameObject>(10);
+    private CreateGrid handGrid;
+    
+    /* References the player's Deck */
+    [SerializeField]
+    private List<GameObject> deck = new List<GameObject>(10);
 
-    private float tempSpot = 0.0f;
+    /* Spawn point for car */
+    private Vector2 spot = new Vector2();
 
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -20,20 +27,18 @@ public class DrawCard : MonoBehaviour
         // Check if the player has pressed the "draw" button
         if (Input.GetKeyDown("space"))
         {
-            GameObject cardDrawn;
-
-            // Get a random index and "draw" the card at that index
-            int index = (int)Random.Range(0, cards.Count);
-            cardDrawn = Instantiate(cards[index]);
+            // Get card from deck
+            GameObject cardDrawn = Instantiate(deck[0]);
 
             print(cardDrawn);   // DEBUGGING PURPOSES
 
-            // Show card on the field
-            cardDrawn.transform.position = new Vector3(-1.0f, tempSpot, 0.0f);
+            // Show card on the field and shift x-pos
+            Vector2 spawnPoint = handGrid.GetComponent<CreateGrid>().GetNearestPointOnGrid(spot);
+            cardDrawn.transform.position = spawnPoint;
+            spot.x += 2.0f;
 
-            // Remove card from deck and shift the y-axis for the next card
-            cards.RemoveAt(index);
-            tempSpot -= 0.5f;
+            // Remove card from deck
+            deck.RemoveAt(0);
         }
     }
 }
