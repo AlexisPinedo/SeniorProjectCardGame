@@ -14,12 +14,11 @@ public class CreateGrid : MonoBehaviour
     private int yValUnits = 1;
 
     [SerializeField]
-    private Color GizmoColor; 
+    private Color GizmoColor;
 
-    
-    
     public Vector2 GetNearestPointOnGrid(Vector2 position)
     {
+
         int xCount = Mathf.RoundToInt(position.x / size);
         int yCount = Mathf.RoundToInt(position.y / size);
         
