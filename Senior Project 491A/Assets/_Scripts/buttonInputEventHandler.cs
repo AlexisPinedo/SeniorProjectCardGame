@@ -13,6 +13,9 @@ public class ButtonInputEventHandler : MonoBehaviour
     public delegate void GraveyardButtonAction();
     public static event GraveyardButtonAction GraveyardClicked;
 
+    public delegate void HeroPowerButtonAction();
+    public static event HeroPowerButtonAction HeroPowerClicked;
+
     public void SettingsButtonOnClick()
     {
         //Debug.Log("clicked");
@@ -38,6 +41,14 @@ public class ButtonInputEventHandler : MonoBehaviour
         }
     }
 
+    public void HeroPowerButtonOnClick()
+    {
+        if (HeroPowerClicked != null)
+        {
+            HeroPowerClicked();
+        }
+    }
+
     public void test()
     {
         Debug.Log("clicked");
@@ -48,6 +59,7 @@ public class ButtonInputEventHandler : MonoBehaviour
         ButtonInputEventHandler.SettingsClicked += test;
         ButtonInputEventHandler.StartClicked += test;
         ButtonInputEventHandler.GraveyardClicked += test;
+        ButtonInputEventHandler.HeroPowerClicked += test;
     }
 
     public void OnDisable()
@@ -55,5 +67,6 @@ public class ButtonInputEventHandler : MonoBehaviour
         ButtonInputEventHandler.SettingsClicked -= test;
         ButtonInputEventHandler.StartClicked -= test;
         ButtonInputEventHandler.GraveyardClicked -= test;
+        ButtonInputEventHandler.HeroPowerClicked -= test;
     }
 }
