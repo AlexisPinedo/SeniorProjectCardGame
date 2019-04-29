@@ -8,6 +8,18 @@ public class playerSwitch : MonoBehaviour
     public GameObject p1HandSpacePanel;
     public GameObject p2HandSpacePanel;
 
+    //private void OnEnable()
+    //{
+    //    ButtonInputEventHandler.StartClicked += test;
+    //}
+
+    //void test() {
+
+    //    Debug.Log("Button pressed");
+    
+    //}
+
+
     void Start()
     {
         p2HandSpacePanel.SetActive(false);

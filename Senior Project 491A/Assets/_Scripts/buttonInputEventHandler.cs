@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buttonInputEventHandler : MonoBehaviour
+public class ButtonInputEventHandler : MonoBehaviour
 {
     public delegate void settingsButtonAction();
     public static event settingsButtonAction SettingsClicked;
@@ -13,16 +13,17 @@ public class buttonInputEventHandler : MonoBehaviour
     public delegate void GraveyardButtonAction();
     public static event GraveyardButtonAction GraveyardClicked;
 
-    public void SettingsButtonClick()
+    public void SettingsButtonOnClick()
     {
-        if(SettingsClicked != null)
+        //Debug.Log("clicked");
+        if (SettingsClicked != null)
         {
             Debug.Log("clicked");
             SettingsClicked();
         }
     }
 
-    public void StartBattleButtonClick()
+    public void StartBattleButtonOnClick()
     {
         if (StartClicked != null)
         {
@@ -31,12 +32,26 @@ public class buttonInputEventHandler : MonoBehaviour
         }
     }
 
-    public void GraveyardButtonClick()
+    public void GraveyardButtonOnClick()
     {
         if (GraveyardClicked != null)
         {
             Debug.Log("clicked");
             GraveyardClicked();
         }
+    }
+
+    public void OnEnable()
+    {
+        ButtonInputEventHandler.SettingsClicked += SettingsButtonOnClick;
+        ButtonInputEventHandler.StartClicked += StartBattleButtonOnClick;
+        ButtonInputEventHandler.GraveyardClicked += GraveyardButtonOnClick;
+    }
+
+    public void OnDisable()
+    {
+        ButtonInputEventHandler.SettingsClicked -= SettingsButtonOnClick;
+        ButtonInputEventHandler.StartClicked -= StartBattleButtonOnClick;
+        ButtonInputEventHandler.GraveyardClicked -= GraveyardButtonOnClick;
     }
 }
