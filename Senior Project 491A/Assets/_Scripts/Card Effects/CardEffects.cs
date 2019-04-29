@@ -5,52 +5,55 @@ using UnityEngine;
 
 public class CardEffects : MonoBehaviour
 {
-    //[NonSerialized] public int cost;
-    //[NonSerialized] public int currency;
-    //[NonSerialized] public int power;
+    [NonSerialized] public int cost;
+    [NonSerialized] public int currency;
+    [NonSerialized] public int power;
 
-    //public Card card;
+    public Card card;
+    private Player turnPlayer;
 
-    //// Start is called before the first frame update
-    //public CardEffects()
-    //{
-    //    cost = card.cardCost;
-    //    currency = card.cardCurrency;
-    //    power = card.cardAttack;
-    //}
+    void Start()
+    {
+        turnPlayer = FindObjectOfType<Player>();
+    }
 
-    ////Does this add the power on the card itself or the Game Session
-    //public void addPower(int pwr)
-    //{
-    //    power += pwr;
-    //}
+    // Start is called before the first frame update
+    public CardEffects()
+    {
+        cost = card.cardCost;
+        currency = card.cardCurrency;
+        power = card.cardAttack;
+    }
 
-    //public void subtractPower(int pwr)
-    //{
-    //    power -= pwr;
-    //}
+    //Does this add the power on the card itself or the Game Session
+    public void addPower(int pwr)
+    {
+        turnPlayer.addPower(pwr);
+    }
 
-    //public void setPower()
-    //{
+    public void subtractPower(int pwr)
+    {
+        turnPlayer.subtractPower(pwr);
+    }
 
-    //}
+    public void setPower(int pwr)
+    {
+        turnPlayer.setPower(pwr);
+    }
 
-    //public void addCurrency(int curr)
-    //{
-    //    currency += curr;
-    //}
+    public void addCurrency(int curr)
+    {
+        turnPlayer.addCurrency(curr);
+    }
 
-    //public void subtractCurrency(int curr)
-    //{
-    //    currency -= currency;
-    //}
+    public void subtractCurrency(int curr)
+    {
+        turnPlayer.subtractCurrency(curr);
+    }
 
-    ////TODO: Need to access Player's currency and set it????
-    //public void setCurrency()
-    //{
-
-    //}
-
-
-    
+    //TODO: Need to access Player's currency and set it????
+    public void setCurrency(int curr)
+    {
+        turnPlayer.setCurrency(curr);
+    }
 }
