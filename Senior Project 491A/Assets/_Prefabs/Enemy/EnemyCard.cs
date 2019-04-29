@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCard
+public class EnemyCard : Card
 {
     private int rewardValue;
     private int healthValue;
-    
     
 }
