@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShopTransaction : MonoBehaviour
 {
     [SerializeField]
-    private List<Card> shop = new List<Card>();
+    private List<PlayerCard> shop = new List<PlayerCard>();
     [SerializeField]
     private int shopItems;
     [SerializeField]
@@ -22,7 +22,7 @@ public class ShopTransaction : MonoBehaviour
         for(shopItems = 0; shopItems < maxShopItems; shopItems++)
         {
             shopDeck.Shuffle();
-            Card shopCard = shopDeck.DrawCard();
+            PlayerCard shopCard = shopDeck.DrawCard();
             Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
             shopCard.transform.position = cardPosition;
             spot.x += 2.0f;
@@ -33,14 +33,14 @@ public class ShopTransaction : MonoBehaviour
     void Update()
     {
         if(shopItems < maxShopItems){
-            Card shopCard = shopDeck.DrawCard();
+            PlayerCard shopCard = shopDeck.DrawCard();
             Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(new Vector2());
             shopCard.transform.position = cardPosition;
         }
         
     }
 
-    public void PurchaseItem(Card card)
+    public void PurchaseItem(PlayerCard card)
     {
         if (shop.Contains(card))
         {

@@ -12,7 +12,7 @@ using UnityEngine;
 
     TODO: Extend Card class
  */
-public class Minion : MonoBehaviour, IEnemy
+public class Minion : EnemyCard, IEnemy
 {
     /* Minion's health and reward values */
     private int _health;

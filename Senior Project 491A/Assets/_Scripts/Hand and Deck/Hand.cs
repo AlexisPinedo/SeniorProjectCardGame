@@ -8,7 +8,7 @@ public class Hand : MonoBehaviour
 
     [SerializeField]
     // private List<Card> hand = new List<Card>(handSize);
-    private List<Card> hand;
+    private List<PlayerCard> hand;
 
     private int cardsInHand = 0;
 
@@ -43,7 +43,7 @@ public class Hand : MonoBehaviour
     public void AddCard()
     {
         // Draw card from deck and add it to the Hand's list
-        Card cardDrawn;
+        PlayerCard cardDrawn;
         Vector2 spawnPoint;
 
         cardDrawn = deck.DrawCard();
@@ -57,12 +57,12 @@ public class Hand : MonoBehaviour
         cardsInHand += 1;
     }
 
-    public List<Card> GetHand()
+    public List<PlayerCard> GetHand()
     {
         return hand;
     }
 
-    public void DiscardCard(Card card)
+    public void DiscardCard(PlayerCard card)
     {
         if (hand.Contains(card))
         {

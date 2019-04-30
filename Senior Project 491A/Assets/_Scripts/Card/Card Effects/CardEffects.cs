@@ -9,7 +9,7 @@ public class CardEffects : MonoBehaviour
     [NonSerialized] public int currency;
     [NonSerialized] public int power;
 
-    public Card card;
+    public PlayerCard card;
     private Player turnPlayer;
 
     void Start()

@@ -8,13 +8,13 @@ public class Deck : MonoBehaviour
     // private Deck instance = null;
 
     [SerializeField]
-    public Stack<Card> cardsInDeck = new Stack<Card>();
+    public Stack<PlayerCard> cardsInDeck = new Stack<PlayerCard>();
 
     // Reference for the player's graveyard
     public Graveyard playersGraveyard;
     
     [SerializeField]
-    public Card gameCard;
+    public PlayerCard gameCard;
 
     void Awake()
     {
@@ -24,7 +24,7 @@ public class Deck : MonoBehaviour
         playersGraveyard = this.GetComponentInParent<Graveyard>();
         for (int i =0; i < 20; i++)
         {
-            Card copy = Instantiate(gameCard);
+            PlayerCard copy = Instantiate(gameCard);
             AddCard(copy);
         }
         // fillDeck();
@@ -35,27 +35,27 @@ public class Deck : MonoBehaviour
         cardsInDeck.Push(gameCard);
     }
 
-    public Stack<Card> getDeck()
+    public Stack<PlayerCard> getDeck()
     {
         return this.cardsInDeck;
     }
 
-    public Card RevealTopCard()
+    public PlayerCard RevealTopCard()
     {
         return cardsInDeck.Peek();
     }
 
-    public Card DrawCard()
+    public PlayerCard DrawCard()
     {
         return cardsInDeck.Pop();
     }
 
-    public void AddCard(Card card)
+    public void AddCard(PlayerCard card)
     {
         cardsInDeck.Push(card);
     }
 
-    public void AddToGraveYard(Card card)
+    public void AddToGraveYard(PlayerCard card)
     {
         playersGraveyard.AddToGrave(card);
     }
@@ -69,10 +69,10 @@ public class Deck : MonoBehaviour
         {
             n--;
             int k = random.Next(n + 1);
-            Card value = deckList[k];
+            PlayerCard value = deckList[k];
             deckList[k] = deckList[n];
             deckList[n] = value;
         }
-        cardsInDeck = new Stack<Card>(deckList);
+        cardsInDeck = new Stack<PlayerCard>(deckList);
     }
 }

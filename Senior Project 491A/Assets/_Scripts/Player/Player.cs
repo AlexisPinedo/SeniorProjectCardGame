@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private Graveyard graveyard;
 
     [SerializeField]
-    private List<Card> rewardPile;
+    private List<PlayerCard> rewardPile;
 
     /* References the grid space for cards played during the turn */
     [SerializeField]
