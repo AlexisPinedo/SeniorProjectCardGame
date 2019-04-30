@@ -8,31 +8,39 @@ public class Deck : MonoBehaviour
     // private Deck instance = null;
 
     [SerializeField]
-    public Stack<PlayerCard> cardsInDeck = new Stack<PlayerCard>();
+    private Stack<PlayerCard> cardsInDeck = new Stack<PlayerCard>();
 
-    // Reference for the player's graveyard
-    public Graveyard playersGraveyard;
-    
+    // DEBUG: Change later to grab cards from a single-source?
     [SerializeField]
-    public PlayerCard gameCard;
+    private PlayerCard gameCard;
+
+    public List<Card> testCards = new List<Card>(10);
+
+    /* Reference to the Player whose Deck this is */
+    [SerializeField]
+    private GameObject playerObj;
+    
+    // Reference for the player's graveyard
+    private Graveyard playersGraveyard;
 
     void Awake()
     {
-        print("Deck.cs, Start()");
-        
         // Reference player's components
-        playersGraveyard = this.GetComponentInParent<Graveyard>();
-        for (int i =0; i < 20; i++)
-        {
-            PlayerCard copy = Instantiate(gameCard);
-            AddCard(copy);
-        }
-        // fillDeck();
+        playersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
+
+        fillDeck();
     }
 
+    /// TODO
+    // Temp fix until we get more cards in the system
     private void fillDeck()
     {
-        cardsInDeck.Push(gameCard);
+        for (int i = 0; i < testCards.Count; i++)
+        {
+            Card copy = Instantiate(testCards[i]);
+            copy.transform.parent = this.transform;
+            AddCard((PlayerCard)copy);
+        }
     }
 
     public Stack<PlayerCard> getDeck()
