@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public abstract class Card : MonoBehaviour
 {
     public string cardName;
     public string cardDescription;
@@ -11,7 +11,4 @@ public class Card : MonoBehaviour
     public Sprite cardArtwork;
     public Sprite cardElement;
 
-    public int cardCost;
-    public int cardCurrency;
-    public int cardAttack;
 }

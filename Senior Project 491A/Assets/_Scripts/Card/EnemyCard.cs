@@ -6,5 +6,4 @@ public class EnemyCard : Card
 {
     private int rewardValue;
     private int healthValue;
-    
 }

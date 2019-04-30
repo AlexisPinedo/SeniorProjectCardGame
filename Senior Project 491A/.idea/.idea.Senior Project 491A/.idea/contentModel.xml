@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\pined\.Rider2018.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\pined\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_Senior Project 491A.1398288423.00" t="ExcludeRecursive" />
-    <e p="C:\Users\pined\OneDrive\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Prefabs" t="Include">
@@ -17,6 +15,7 @@
         </e>
         <e p="_Scripts" t="Include">
           <e p="Boss.cs" t="Include" />
+          <e p="buttonInputEventHandler.cs" t="Include" />
           <e p="Card Effects" t="Include">
             <e p="CardEffects.cs" t="Include" />
             <e p="OnDeath.cs" t="Include" />
@@ -49,7 +48,9 @@
             <e p="ElementInt.cs" t="Include" />
             <e p="ElementText.cs" t="Include" />
           </e>
+          <e p="ShopTransaction.cs" t="Include" />
         </e>
+        <e p="CardExample.cs" t="Include" />
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
@@ -59,5 +60,7 @@
         <e p="bin" t="ExcludeRecursive" />
       </e>
     </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2018.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.3/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_Senior Project 491A.1191439163.00" t="ExcludeRecursive" />
   </component>
 </project>

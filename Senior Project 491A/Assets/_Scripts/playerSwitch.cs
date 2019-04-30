@@ -5,20 +5,14 @@ using UnityEngine.UI;
 
 public class playerSwitch : MonoBehaviour
 {
-    public GameObject p1HandSpacePanel;
-    public GameObject p2HandSpacePanel;
-
-    //private void OnEnable()
-    //{
-    //    ButtonInputEventHandler.StartClicked += test;
-    //}
-
-    //void test() {
-
-    //    Debug.Log("Button pressed");
+    [SerializeField]
+    private GameObject p1HandSpacePanel;
     
-    //}
+    [SerializeField]
+    private GameObject p2HandSpacePanel;
 
+    [SerializeField]
+    private TurnManager turnManager;
 
     void Start()
     {
@@ -29,16 +23,19 @@ public class playerSwitch : MonoBehaviour
     {
         if (p1HandSpacePanel != null && p2HandSpacePanel != null)
         {
+            // Switch to Player Two
             if (p1HandSpacePanel.activeSelf)
             {
                 p1HandSpacePanel.SetActive(false);
                 p2HandSpacePanel.SetActive(true);
+                turnManager.SetPlayerTwosTurn();
             }
-
+            // Switch to Player One
             else if (p2HandSpacePanel.activeSelf)
             {
                 p2HandSpacePanel.SetActive(false);
                 p1HandSpacePanel.SetActive(true);
+                turnManager.SetPlayerOnesTurn();
             }
         }
     }

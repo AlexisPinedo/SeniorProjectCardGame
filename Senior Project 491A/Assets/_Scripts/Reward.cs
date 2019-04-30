@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Reward : ScriptableObject
 {
-    private List<Card> rewardPile = new List<Card>();
+    private List<PlayerCard> rewardPile = new List<PlayerCard>();
     private int rewardPoints;
 
     public void getPoints()

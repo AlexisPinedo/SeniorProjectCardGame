@@ -2,64 +2,74 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+    Defines the Player's Hand
+ */
 public class Hand : MonoBehaviour
 {
+    /* Max size of the Player's Hand */
     private static int handSize = 6;
 
+    /* List of Cards currently in the Hand - order not necessary */
     [SerializeField]
-    // private List<Card> hand = new List<Card>(handSize);
     private List<Card> hand;
 
+    /* CURRENT number of cards in the Player's Hand */
     private int cardsInHand = 0;
 
-    [SerializeField]
+    /* Reference for the Player's Deck - set in Start() */
     private Deck deck;
 
+    /* Player's Grid for the cards in their Hand - set in Start()*/
     private CreateGrid handGrid;
 
-    /* Spawn point for car */
+    /* Spawn point for card */
     private Vector2 spot = new Vector2();
+
+    /* Reference to the Player whose Hand it is */
+    [SerializeField]
+    private GameObject playerObj;
+    [SerializeField]
+    private GameObject playerSpace;
 
     void Start()
     {
-        // TODO: Verify if this fix is suitable
-        // Create GameObjects to find them by their name
-        GameObject goDeck = GameObject.Find("Player1Deck");
-        GameObject goHandGrid = GameObject.Find("Player1CardGrid");
-        
-        // Reference the player's components
-        if (goDeck != null)
-        {
-            deck = goDeck.GetComponent<Deck>();
-            print("Deck: " + deck);
-        }
-        if (goHandGrid != null)
-        {
-            handGrid = goHandGrid.GetComponent<CreateGrid>();
-            print("Grid: " + handGrid);
-        }
+        // Set references for Deck and Hand Grid
+        deck = playerObj.GetComponentInChildren<Deck>();
+        handGrid = playerSpace.GetComponentInChildren<CreateGrid>();
     }
 
+    /* Adds a card to the Hand from the Deck */
     public void AddCard()
     {
-        // Draw card from deck and add it to the Hand's list
         Card cardDrawn;
         Vector2 spawnPoint;
 
+        // Draw card & add it to the Hand
         cardDrawn = deck.DrawCard();
-        Debug.Log(cardDrawn.ToString());  // DEBUG
         hand.Add(cardDrawn);
 
+        // Figure out where to display the Card
         spawnPoint = handGrid.GetNearestPointOnGrid(spot);
         cardDrawn.transform.position = spawnPoint;
+
+        // Move to the next spot on the grid
         spot.x += 2.0f;
 
         cardsInHand += 1;
+        Debug.Log("Cards in hand = " + cardsInHand);
     }
 
+    //-------------------//
+    //----- GETTERS -----//
+    //-------------------//
     public List<Card> GetHand()
     {
-        return hand;
+        return this.hand;
+    }
+    public int GetHandCount()
+    {
+        return this.cardsInHand;
     }
 
     public void DiscardCard(Card card)
@@ -69,10 +79,5 @@ public class Hand : MonoBehaviour
             hand.Remove(card);
             cardsInHand -= 1;
         }
-    }
-
-    public int getHandCount()
-    {
-        return this.cardsInHand;
     }
 }
