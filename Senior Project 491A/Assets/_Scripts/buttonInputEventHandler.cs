@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buttonInputEventHandler : MonoBehaviour
+public class ButtonInputEventHandler : MonoBehaviour
 {
     public delegate void settingsButtonAction();
     public static event settingsButtonAction SettingsClicked;
@@ -13,30 +13,60 @@ public class buttonInputEventHandler : MonoBehaviour
     public delegate void GraveyardButtonAction();
     public static event GraveyardButtonAction GraveyardClicked;
 
-    public void SettingsButtonClick()
+    public delegate void HeroPowerButtonAction();
+    public static event HeroPowerButtonAction HeroPowerClicked;
+
+    public void SettingsButtonOnClick()
     {
-        if(SettingsClicked != null)
+        //Debug.Log("clicked");
+        if (SettingsClicked != null)
         {
-            Debug.Log("clicked");
             SettingsClicked();
         }
     }
 
-    public void StartBattleButtonClick()
+    public void StartBattleButtonOnClick()
     {
         if (StartClicked != null)
         {
-            Debug.Log("clicked");
             StartClicked();
         }
     }
 
-    public void GraveyardButtonClick()
+    public void GraveyardButtonOnClick()
     {
         if (GraveyardClicked != null)
         {
-            Debug.Log("clicked");
             GraveyardClicked();
         }
+    }
+
+    public void HeroPowerButtonOnClick()
+    {
+        if (HeroPowerClicked != null)
+        {
+            HeroPowerClicked();
+        }
+    }
+
+    public void test()
+    {
+        Debug.Log("clicked");
+    }
+
+    public void OnEnable()
+    {
+        ButtonInputEventHandler.SettingsClicked += test;
+        ButtonInputEventHandler.StartClicked += test;
+        ButtonInputEventHandler.GraveyardClicked += test;
+        ButtonInputEventHandler.HeroPowerClicked += test;
+    }
+
+    public void OnDisable()
+    {
+        ButtonInputEventHandler.SettingsClicked -= test;
+        ButtonInputEventHandler.StartClicked -= test;
+        ButtonInputEventHandler.GraveyardClicked -= test;
+        ButtonInputEventHandler.HeroPowerClicked -= test;
     }
 }
