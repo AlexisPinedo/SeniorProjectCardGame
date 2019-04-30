@@ -3,36 +3,47 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
+/**
+    Defines the Player class, i.e, everything that the Player can do and
+    has access to during a match.
+ */
 public class Player : MonoBehaviour
 {
+    /* Player's Hand */
     [SerializeField]
     private Hand hand;
 
+    /* Player's Deck */
     [SerializeField]
     private Deck deck;
 
+    /* Player's currency count */
     [SerializeField]
     private int currency;
 
+    /* Player's power count */
     [SerializeField]
     private int power;
 
+    /* Player's Graveyard */
     [SerializeField]
     private Graveyard graveyard;
 
+    /* Player's Reward Pile, i.e., defeated enemies */
     [SerializeField]
     private List<PlayerCard> rewardPile;
 
-    /* References the grid space for cards played during the turn */
     [SerializeField]
-    private CreateGrid handGrid;
+    private TurnManager turnManager;
 
     void Start()
     {
-        // Set private fields if they aren't already set
+        // TODO
     }
 
-    //Getters
+    //-------------------//
+    //----- GETTERS -----//
+    //-------------------//
     public int getCurrency()
     {
         return this.currency;
@@ -42,7 +53,10 @@ public class Player : MonoBehaviour
         return this.power;
     }
 
-    // Setters...
+    //-------------------//
+    //----- SETTERS -----//
+    //-------------------//
+
     // ...for Currency
     public void setCurrency(int newCurrency)
     {
@@ -60,7 +74,9 @@ public class Player : MonoBehaviour
         if (this.currency - currency <= 0)
         {
             this.currency = 0;
-        } else {
+        }
+        else
+        {
             this.currency -= currency;
         }
     }
@@ -85,7 +101,9 @@ public class Player : MonoBehaviour
         if (this.power - power <= 0)
         {
             this.power = 0;
-        } else {
+        }
+        else
+        {
             this.power -= power;
         }
     }
@@ -93,7 +111,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Check if the player has pressed the "draw" button
-        if (Input.GetKeyDown("space") && hand.getHandCount() < 6)
+        if (turnManager.IsPlayerOnesTurn() && Input.GetKeyDown("space") && hand.GetHandCount() < 6)
         {
             // Get card from deck
             hand.AddCard();
