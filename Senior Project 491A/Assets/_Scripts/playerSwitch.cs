@@ -11,6 +11,13 @@ public class playerSwitch : MonoBehaviour
     [SerializeField]
     private GameObject p2HandSpacePanel;
 
+    public TurnManager turnPlayer;
+
+    public Player player1;
+
+    public Player player2;
+
+
     //[SerializeField]
     //private TurnManager turnManager;
 
@@ -29,6 +36,7 @@ public class playerSwitch : MonoBehaviour
                 p1HandSpacePanel.SetActive(false);
                 p2HandSpacePanel.SetActive(true);
                 //turnManager.SetPlayerTwosTurn();
+                turnPlayer.turnPlayer = player2;
             }
             // Switch to Player One
             else if (p2HandSpacePanel.activeSelf)
@@ -36,6 +44,8 @@ public class playerSwitch : MonoBehaviour
                 p2HandSpacePanel.SetActive(false);
                 p1HandSpacePanel.SetActive(true);
                 //turnManager.SetPlayerOnesTurn();
+
+                turnPlayer.turnPlayer = player1;
             }
         }
     }
