@@ -53,6 +53,9 @@ public class Player : MonoBehaviour
         return this.power;
     }
 
+    public void addToPlayerGraveyard(Card purchasedCard){
+        graveyard.addCard(purchasedCard);
+    }
     //-------------------//
     //----- SETTERS -----//
     //-------------------//

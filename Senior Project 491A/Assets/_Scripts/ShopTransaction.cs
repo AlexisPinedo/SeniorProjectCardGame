@@ -13,8 +13,6 @@ public class ShopTransaction : MonoBehaviour
     [SerializeField]
     public Deck shopDeck;
 
-
-
     [SerializeField]
     private Vector2 spot = new Vector2();
     private bool cardsDelt = false;
@@ -35,7 +33,6 @@ public class ShopTransaction : MonoBehaviour
         cardsDelt = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(cardsDelt && shopItems < MAX_SHOP_ITEMS)
@@ -48,14 +45,16 @@ public class ShopTransaction : MonoBehaviour
         
     }
 
-    void PurchaseItem(Card card)
+    /**
+    TODO: Get card gameobject from shop zone
+    */
+    void PurchaseItem(Card card, Player currentPlayer)
     {
         if (shop.Contains(card))
         {
-            
+            currentPlayer.addToPlayerGraveyard(card);
             shopItems--;
             shop.Remove(card);
-
         }
     }
 }

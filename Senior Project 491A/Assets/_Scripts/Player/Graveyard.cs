@@ -6,17 +6,17 @@ public class Graveyard : MonoBehaviour
 {
     private List<Card> graveYard = new List<Card>();
 
-    public List<Card> GetGraveYard()
+    public List<Card> getGraveYard()
     {
         return graveYard;
     }
 
-    public void AddToGrave(Card card)
+    public void addToGrave(Card card)
     {
         graveYard.Add(card);
     }
 
-    public void RemoveCard(Card card)
+    public void removeCard(Card card)
     {
         if (graveYard.Contains(card))
             graveYard.Remove(card);
