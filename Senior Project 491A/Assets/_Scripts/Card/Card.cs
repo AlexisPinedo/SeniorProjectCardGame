@@ -24,8 +24,8 @@ public abstract class Card : MonoBehaviour
 
     //When purchasing card from shop call this method from an event trigger
     public void purchaseCard()
-    {    
-        Player player = new Player();
+    {
+        Player player = FindObjectOfType<TurnManager>().turnPlayer;
         if (cardCurrency < player.getCurrency())
         {
             player.subtractCurrency(cardCurrency);

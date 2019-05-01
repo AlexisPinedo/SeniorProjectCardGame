@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
     public void addCurrency(int currency)
     {
         this.currency += currency;
+        FindObjectOfType<currencyDisplay>().UpdateCurrencyDisplay();
     }
     public void subtractCurrency(int currency)
     {
@@ -82,6 +83,8 @@ public class Player : MonoBehaviour
         {
             this.currency -= currency;
         }
+
+        FindObjectOfType<currencyDisplay>().UpdateCurrencyDisplay();
     }
 
     // ...for Power
