@@ -17,6 +17,8 @@ public class ShopTransaction : MonoBehaviour
     private Vector2 spot = new Vector2();
     private bool cardsDelt = false;
     
+
+    //Make sure to separate this script into a Player Card component not Card, still need to implement a proper deck class for Player and for Enemy
     void Start()
     {
         if (!cardsDelt)
@@ -27,6 +29,7 @@ public class ShopTransaction : MonoBehaviour
                 Card shopCard = shopDeck.DrawCard();
                 Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
                 shopCard.transform.position = cardPosition;
+                shopCard.inShop = true;
                 Instantiate(shopCard);
                 spot.x += 2.0f;
             }
@@ -57,7 +60,5 @@ public class ShopTransaction : MonoBehaviour
         //    shopItems--;
         //    shop.Remove(card);
         //}
-
-        
     }
 }
