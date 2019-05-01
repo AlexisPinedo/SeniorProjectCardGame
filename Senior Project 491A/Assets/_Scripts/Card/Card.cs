@@ -24,16 +24,14 @@ public abstract class Card : MonoBehaviour
 
     //When purchasing card from shop call this method from an event trigger
     public void purchaseCard()
-    {
-        if (inShop)
+    {    
+        Player player = new Player();
+        if (cardCurrency < player.getCurrency())
         {
-            Player player = new Player();
-            if (cardCurrency < player.getCurrency())
-            {
-                player.subtractCurrency(cardCurrency);
-                player.addToPlayerGraveyard(this);
-            }
+            player.subtractCurrency(cardCurrency);
+            player.addToPlayerGraveyard(this);
         }
+       
 
 
         inShop = false;
