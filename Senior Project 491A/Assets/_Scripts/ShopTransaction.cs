@@ -50,11 +50,11 @@ public class ShopTransaction : MonoBehaviour
     */
     void PurchaseItem(Card card, Player currentPlayer)
     {
-        if (shop.Contains(card))
-        {
-            currentPlayer.addToPlayerGraveyard(card);
-            shopItems--;
-            shop.Remove(card);
-        }
+        // if (shop.Contains(card))
+        // {
+        //     currentPlayer.addToPlayerGraveyard(card);
+        //     shopItems--;
+        //     shop.Remove(card);
+        // }
     }
 }

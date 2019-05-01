@@ -73,7 +73,7 @@ public class Deck : MonoBehaviour
 
     public void AddToGraveYard(Card card)
     {
-        playersGraveyard.AddToGrave(card);
+        playersGraveyard.addToGrave(card);
     }
 
     public void Shuffle()
