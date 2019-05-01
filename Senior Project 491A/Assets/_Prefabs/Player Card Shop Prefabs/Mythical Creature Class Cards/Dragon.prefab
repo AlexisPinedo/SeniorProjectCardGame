@@ -99,6 +99,8 @@ MonoBehaviour:
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
+  manager: {fileID: 0}
+  bossZones: {fileID: 0}
   cardCost: 2
   cardCurrency: 1
   cardAttack: 1

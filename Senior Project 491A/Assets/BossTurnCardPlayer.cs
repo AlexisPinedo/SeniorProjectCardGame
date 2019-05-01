@@ -12,7 +12,9 @@ public class BossTurnCardPlayer : MonoBehaviour
 
     Vector2 spawnPoint = new Vector2(4, 2);
 
-    int filledCardZones = 0;
+    public int filledCardZones = 0;
+
+    public GameObject parentObject;
 
     private void Update()
     {
@@ -22,7 +24,7 @@ public class BossTurnCardPlayer : MonoBehaviour
         }
     }
 
-    void PlayCard()
+    public void PlayCard()
     {
         var location = enemyGrid.GetNearestPointOnGrid(spawnPoint);
 
@@ -38,35 +40,14 @@ public class BossTurnCardPlayer : MonoBehaviour
             cardToPlay = enemyDeck.DrawCard();
             cardToPlay.gameObject.transform.position = location;
 
-            Instantiate(cardToPlay);
+            Card theCardObject = Instantiate(cardToPlay, parentObject.transform);
+
+            theCardObject.manager = this;
+            theCardObject.bossZones = enemyGrid;
+
             filledCardZones++;
             enemyGrid.SetObjectPlacement(location);
 
-            if (spawnPoint.y == 2f)
-            {
-                if (spawnPoint.x > 0f)
-                    spawnPoint.x -= enemyGrid.size;
-                else if (spawnPoint.x <= 0f)
-                {
-                    spawnPoint.x = 0f;
-                    spawnPoint.y -= enemyGrid.size;
-                }
-            }
-            else if(spawnPoint.y == 0f)
-            {
-                if (spawnPoint.x >= 0f && spawnPoint.x < (enemyGrid.size * enemyGrid.xValUnits) - 2)
-                    spawnPoint.x += enemyGrid.size;
-                else if (spawnPoint.x >= (enemyGrid.size * enemyGrid.xValUnits) -2 )
-                {
-                    spawnPoint.x = ((enemyGrid.size * enemyGrid.xValUnits) - 2);
-                    spawnPoint.y += enemyGrid.size;
-                }
-            }
-            if (spawnPoint.x == 6f && spawnPoint.y == 2f)
-            {
-                spawnPoint.x -= enemyGrid.size;
-                Debug.Log("In boss zone");
-            }
             Debug.Log("Next position to spwan will be: " + spawnPoint);
 
         }
@@ -77,6 +58,32 @@ public class BossTurnCardPlayer : MonoBehaviour
             {
                 Debug.Log("You Lose the board is full");
             }
+        }
+
+        if (spawnPoint.y == 2f)
+        {
+            if (spawnPoint.x > 0f)
+                spawnPoint.x -= enemyGrid.size;
+            else if (spawnPoint.x <= 0f)
+            {
+                spawnPoint.x = 0f;
+                spawnPoint.y -= enemyGrid.size;
+            }
+        }
+        else if (spawnPoint.y == 0f)
+        {
+            if (spawnPoint.x >= 0f && spawnPoint.x < (enemyGrid.size * enemyGrid.xValUnits) - 2)
+                spawnPoint.x += enemyGrid.size;
+            else if (spawnPoint.x >= (enemyGrid.size * enemyGrid.xValUnits) - 2)
+            {
+                spawnPoint.x = ((enemyGrid.size * enemyGrid.xValUnits) - 2);
+                spawnPoint.y += enemyGrid.size;
+            }
+        }
+        if (spawnPoint.x == 6f && spawnPoint.y == 2f)
+        {
+            spawnPoint.x -= enemyGrid.size;
+            Debug.Log("In boss zone");
         }
 
     }

@@ -11,4 +11,6 @@ public abstract class Card : MonoBehaviour
     public Sprite cardArtwork;
     public Sprite cardElement;
 
+    public BossTurnCardPlayer manager;
+    public CreateGrid bossZones;
 }
