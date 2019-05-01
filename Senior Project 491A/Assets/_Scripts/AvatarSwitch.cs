@@ -28,14 +28,12 @@ public class AvatarSwitch : MonoBehaviour
             {
                 p1Avatar.SetActive(false);
                 p2Avatar.SetActive(true);
-                turnManager.SetPlayerTwosTurn();
             }
             // Switch to Player One
             else if (p2Avatar.activeSelf)
             {
                 p2Avatar.SetActive(false);
                 p1Avatar.SetActive(true);
-                turnManager.SetPlayerOnesTurn();
             }
         }
     }
