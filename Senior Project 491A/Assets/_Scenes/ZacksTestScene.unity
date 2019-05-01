@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 10
+    serializedVersion: 12
     m_Resolution: 2
     m_BakeResolution: 40
     m_AtlasSize: 1024
@@ -62,6 +62,7 @@ LightmapSettings:
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -76,10 +77,16 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 2
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVRFilteringMode: 1
+    m_PVREnvironmentMIS: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -88,6 +95,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
+    m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -268,6 +276,8 @@ MonoBehaviour:
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
+  manager: {fileID: 0}
+  bossZones: {fileID: 0}
   cardCost: 0
   cardCurrency: 0
   cardAttack: 0
@@ -410,9 +420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ebbde6aa7026444a11b1e8b7346d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
-  xValUnits: 7
-  yValUnits: 2
+  _size: 1
+  _xValUnits: 1
+  _yValUnits: 1
   GizmoColor: {r: 1, g: 0.008412459, b: 0, a: 1}
 --- !u!1 &306552473
 GameObject:
@@ -444,7 +454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
-  deck: {fileID: 0}
+  playerObj: {fileID: 0}
+  playerSpace: {fileID: 0}
 --- !u!4 &306552475
 Transform:
   m_ObjectHideFlags: 0
@@ -602,17 +613,20 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 366630526}
@@ -780,9 +794,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ebbde6aa7026444a11b1e8b7346d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
-  xValUnits: 6
-  yValUnits: 1
+  _size: 1
+  _xValUnits: 1
+  _yValUnits: 1
   GizmoColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &570198858
 Transform:
@@ -1012,8 +1026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9cd2a52faf2c4d3aa75a3980605dfea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1HandSpacePanel: {fileID: 2015032685}
-  p2HandSpacePanel: {fileID: 19041986}
 --- !u!114 &769747429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1037,17 +1049,20 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 769747430}
@@ -1147,9 +1162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ebbde6aa7026444a11b1e8b7346d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
-  xValUnits: 5
-  yValUnits: 1
+  _size: 1
+  _xValUnits: 1
+  _yValUnits: 1
   GizmoColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &991311614
 GameObject:
@@ -1387,7 +1402,7 @@ Animator:
   m_GameObject: {fileID: 1081289707}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1dc53eb968600ed4db4393b3975b0a51, type: 2}
+  m_Controller: {fileID: 9100000, guid: 00bbe7cfd1ac82142885972f7aea7896, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1518,9 +1533,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ebbde6aa7026444a11b1e8b7346d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 3
-  xValUnits: 5
-  yValUnits: 1
+  _size: 1
+  _xValUnits: 1
+  _yValUnits: 1
   GizmoColor: {r: 1, g: 0, b: 0.7849541, a: 1}
 --- !u!1 &1278856814
 GameObject:
@@ -1571,7 +1586,7 @@ MonoBehaviour:
   power: 0
   graveyard: {fileID: 51465867}
   rewardPile: []
-  handGrid: {fileID: 570198857}
+  turnManager: {fileID: 0}
 --- !u!1 &1448932996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1676,7 +1691,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1503064587}
-  - component: {fileID: 1503064588}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -1700,25 +1714,6 @@ Transform:
   m_Father: {fileID: 98877308}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1503064588
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503064586}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ad6cc8abfc7ed9443a982141227ae22a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1540750131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,17 +1776,20 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1540750134}
@@ -1875,9 +1873,10 @@ Camera:
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -1963,6 +1962,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameCard: {fileID: 312663793}
+  cardCopies: 0
+  testCards: []
+  playerObj: {fileID: 0}
 --- !u!1 &1783565194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1972,7 +1974,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1783565195}
-  - component: {fileID: 1783565196}
   m_Layer: 0
   m_Name: Player 1 Space
   m_TagString: Untagged
@@ -1988,7 +1989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783565194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.88, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2015032686}
@@ -2000,25 +2001,6 @@ Transform:
   m_Father: {fileID: 98877308}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1783565196
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783565194}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a99af4c91155c7847bd864c4a9291b1d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1838483750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2239,17 +2221,20 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2060378773}
