@@ -289,8 +289,8 @@ MonoBehaviour:
   gameCard: {fileID: 0}
   cardCopies: 5
   testCards:
-  - {fileID: 6130187465402888856, guid: 499172ee72ae899439524dcbc2d7165f, type: 3}
-  - {fileID: 6130187465402888856, guid: fc9957b586eb96d46bcfa60790abf996, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 6130187465402888856, guid: 3bff1b5b5431f4f7f9f7b024b2ba3f82, type: 3}
   - {fileID: 6130187465402888856, guid: 118eb46c7f2407c41b47f56e695ab0ae, type: 3}
   - {fileID: 6130187465402888856, guid: 5a211545bb2496440ba782ec7a9b3718, type: 3}
@@ -1352,19 +1352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123189c74fe5744a9b459db7ef391eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shop:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   shopItems: 0
-  maxShopItems: 6
+  MAX_SHOP_ITEMS: 6
   shopGrid: {fileID: 1968618938}
   shopDeck: {fileID: 140288137}
   spot: {x: 0, y: 0}
@@ -1721,6 +1710,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p1HandSpacePanel: {fileID: 405819866}
   p2HandSpacePanel: {fileID: 1200769564}
+  turnPlayer: {fileID: 2017897502}
+  player1: {fileID: 1185834760}
+  player2: {fileID: 588335415}
 --- !u!1 &1173389875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3601,6 +3593,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 934872671}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2017897501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2017897503}
+  - component: {fileID: 2017897502}
+  m_Layer: 0
+  m_Name: TurnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2017897502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017897501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7e90af0b3811eac8cec531e4b94592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnPlayer: {fileID: 1185834760}
+--- !u!4 &2017897503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017897501}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5102671, y: -3.6342652, z: 0.041078784}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2019385386
 GameObject:
