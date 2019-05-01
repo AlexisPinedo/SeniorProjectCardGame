@@ -25,6 +25,7 @@ public class ShopTransaction : MonoBehaviour
             Card shopCard = shopDeck.DrawCard();
             Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
             shopCard.transform.position = cardPosition;
+            Instantiate(shopCard);
             spot.x += 2.0f;
         }
     }
