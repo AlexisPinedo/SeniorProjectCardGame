@@ -21,4 +21,9 @@ public class EnemyCard : Card
         manager.filledCardZones--;
         Debug.Log("Set location to false");
     }
+
+    private void CheckIfDead()
+    {
+
+    }
 }
