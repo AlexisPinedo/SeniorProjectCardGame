@@ -47,7 +47,8 @@ public class Hand : MonoBehaviour
 
         // Draw card & add it to the Hand
         cardDrawn = deck.DrawCard();
-        hand.Add(cardDrawn);
+        //cardDrawn.transform.SetParent(this.transform);
+        //hand.Add(cardDrawn);
 
         // Figure out where to display the Card
         spawnPoint = handGrid.GetNearestPointOnGrid(spot);
@@ -56,8 +57,16 @@ public class Hand : MonoBehaviour
         // Move to the next spot on the grid
         spot.x += 2.0f;
 
+        Instantiate(cardDrawn, this.transform);
+        
+
         cardsInHand += 1;
         Debug.Log("Cards in hand = " + cardsInHand);
+    }
+
+    void UpdateHandDisplay()
+    {
+
     }
 
     //-------------------//

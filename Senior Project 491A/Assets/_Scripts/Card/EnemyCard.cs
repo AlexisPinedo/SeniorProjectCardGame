@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class EnemyCard : Card
 {
-    private int rewardValue;
-    private int healthValue;
+    [SerializeField]
+    private int rewardValue, healthValue;
 }

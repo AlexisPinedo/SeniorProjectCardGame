@@ -4,17 +4,60 @@ using UnityEngine;
 
 public class CreateGrid : MonoBehaviour
 {
+    //When incrementing by a value in other scripts reference the size value here for the increment
     [SerializeField]
-    private float size = 1f;
+    private float _size = 1f;
+
+    public float size
+    {
+        get { return _size; }
+    }
 
     [SerializeField]
-    private int xValUnits = 1;
+    private int _xValUnits = 1;
+
+    public int xValUnits
+    {
+        get { return _xValUnits; }
+    }
     
     [SerializeField]
-    private int yValUnits = 1;
+    private int _yValUnits = 1;
+
+    public int yValUnits
+    {
+        get { return _yValUnits; }
+    }
+
 
     [SerializeField]
     private Color GizmoColor;
+
+    public Dictionary<Vector2, bool> objectPlacements = new Dictionary<Vector2, bool>();
+
+    private void Awake()
+    {
+        int xTotal = (int)size * _xValUnits;
+        int yTotal = (int)size * _yValUnits;
+
+        Gizmos.color = GizmoColor;
+        if (size > .99)
+        {
+            for (float x = 0; x < xTotal; x += size)
+            {
+                for (float y = 0; y < yTotal; y += size)
+                {
+                    Vector2 point = GetNearestPointOnGrid(new Vector2(x, y));
+                    objectPlacements.Add(point, false);
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Size Cannot be less then 1");
+        }
+    }
+
 
     public Vector2 GetNearestPointOnGrid(Vector2 position)
     {
@@ -31,8 +74,8 @@ public class CreateGrid : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        int xTotal = (int)size * xValUnits;
-        int yTotal = (int)size * yValUnits;
+        int xTotal = (int)size * _xValUnits;
+        int yTotal = (int)size * _yValUnits;
 
         Gizmos.color = GizmoColor;
         if (size > .99)
@@ -50,6 +93,20 @@ public class CreateGrid : MonoBehaviour
         {
             Debug.Log("Size Cannot be less then 1");
         }
+    }
 
+    public void SetObjectPlacement(Vector2 position, bool value = true)
+    {
+        objectPlacements[position] = value;
+    }
+
+    public bool isPlaceable(Vector2 location)
+    {
+        if (objectPlacements[location] == false)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 }

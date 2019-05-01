@@ -22,7 +22,7 @@ public class ShopTransaction : MonoBehaviour
         for(shopItems = 0; shopItems < maxShopItems; shopItems++)
         {
             shopDeck.Shuffle();
-            PlayerCard shopCard = shopDeck.DrawCard();
+            Card shopCard = shopDeck.DrawCard();
             Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
             shopCard.transform.position = cardPosition;
             spot.x += 2.0f;
@@ -33,7 +33,7 @@ public class ShopTransaction : MonoBehaviour
     void Update()
     {
         if(shopItems < maxShopItems){
-            PlayerCard shopCard = shopDeck.DrawCard();
+            Card shopCard = shopDeck.DrawCard();
             Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(new Vector2());
             shopCard.transform.position = cardPosition;
         }

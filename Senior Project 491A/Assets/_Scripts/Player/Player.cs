@@ -111,9 +111,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Check if the player has pressed the "draw" button
-        if (turnManager.IsPlayerOnesTurn() && Input.GetKeyDown("space") && hand.GetHandCount() < 6)
+        if (Input.GetKeyDown("space"))
         {
             // Get card from deck
+            Debug.Log("Attempting to draw card");
             hand.AddCard();
         }
     }
