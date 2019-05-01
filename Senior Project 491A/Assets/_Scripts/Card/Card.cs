@@ -23,7 +23,7 @@ public abstract class Card : MonoBehaviour
     public int cardAttack;
 
     //When purchasing card from shop call this method from an event trigger
-    void purchaseCard()
+    public void purchaseCard()
     {
         if (inShop)
         {

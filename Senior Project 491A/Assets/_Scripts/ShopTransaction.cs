@@ -29,11 +29,9 @@ public class ShopTransaction : MonoBehaviour
                 Card shopCard = shopDeck.DrawCard();
                 Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
                 shopCard.transform.position = cardPosition;
-<<<<<<< HEAD
                 shopCard.inShop = true;
                 Instantiate(shopCard);
-=======
->>>>>>> 686a34bf960c1bb40c5567f1f6ae14569fd8e055
+
                 spot.x += 2.0f;
             }
         }
@@ -57,20 +55,12 @@ public class ShopTransaction : MonoBehaviour
     */
     void PurchaseItem(Card card, Player currentPlayer)
     {
-<<<<<<< HEAD
         //if (shop.Contains(card))
         //{
         //    currentPlayer.addToPlayerGraveyard(card);
         //    shopItems--;
         //    shop.Remove(card);
         //}
-=======
-        // if (shop.Contains(card))
-        // {
-        //     currentPlayer.addToPlayerGraveyard(card);
-        //     shopItems--;
-        //     shop.Remove(card);
-        // }
->>>>>>> 686a34bf960c1bb40c5567f1f6ae14569fd8e055
+
     }
 }
