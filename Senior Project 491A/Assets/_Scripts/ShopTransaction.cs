@@ -5,46 +5,55 @@ using UnityEngine;
 public class ShopTransaction : MonoBehaviour
 {
     [SerializeField]
-    private List<PlayerCard> shop = new List<PlayerCard>();
-    [SerializeField]
     private int shopItems;
     [SerializeField]
-    private int maxShopItems = 6;
+    private int MAX_SHOP_ITEMS = 6;
     [SerializeField]
     private CreateGrid shopGrid;
     [SerializeField]
     public Deck shopDeck;
+
     [SerializeField]
     private Vector2 spot = new Vector2();
+    private bool cardsDelt = false;
     
     void Start()
     {
-        for(shopItems = 0; shopItems < maxShopItems; shopItems++)
+        if (!cardsDelt)
         {
-            shopDeck.Shuffle();
-            Card shopCard = shopDeck.DrawCard();
-            Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
-            shopCard.transform.position = cardPosition;
-            Instantiate(shopCard);
-            spot.x += 2.0f;
+            for(shopItems = 0; shopItems < MAX_SHOP_ITEMS; shopItems++)
+            {
+                shopDeck.Shuffle();
+                Card shopCard = shopDeck.DrawCard();
+                Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
+                shopCard.transform.position = cardPosition;
+                spot.x += 2.0f;
+            }
         }
+        cardsDelt = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(shopItems < maxShopItems){
+        if(cardsDelt && shopItems < MAX_SHOP_ITEMS)
+        {
             Card shopCard = shopDeck.DrawCard();
             Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(new Vector2());
             shopCard.transform.position = cardPosition;
+            shopItems++;
         }
         
     }
 
-    public void PurchaseItem(PlayerCard card)
+    /**
+    TODO: Get card gameobject from shop zone
+    */
+    void PurchaseItem(Card card, Player currentPlayer)
     {
         if (shop.Contains(card))
         {
+            currentPlayer.addToPlayerGraveyard(card);
+            shopItems--;
             shop.Remove(card);
         }
     }
