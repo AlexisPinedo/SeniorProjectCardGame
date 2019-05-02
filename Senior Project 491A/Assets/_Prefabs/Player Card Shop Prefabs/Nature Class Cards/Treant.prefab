@@ -25,6 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88599130160594479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 0.757, y: 0.833, z: 0}
   m_LocalScale: {x: 0.08837277, y: 0.08837277, z: 0.08837277}
   m_Children:
@@ -106,6 +107,9 @@ Transform:
   m_GameObject: {fileID: 1386017748295339128}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.3598, y: -0.365, z: 0}
+=======
+  m_LocalPosition: {x: 3.1220002, y: 8.47, z: 0}
+>>>>>>> 341ae840ff1fa8918b6efc5fb9cf454efdbd9582
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6130187465402888862}
@@ -263,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -457,6 +462,20 @@ CanvasRenderer:
   m_GameObject: {fileID: 4203371668623671241}
   m_CullTransparentMesh: 0
 --- !u!114 &7961746042580429217
+=======
+  cardName: Treant
+  cardDescription: 
+  cardEffect: 
+  cardArtwork: {fileID: 0}
+  cardElement: {fileID: 0}
+  manager: {fileID: 0}
+  bossZones: {fileID: 0}
+  inShop: 1
+  cardCost: 1
+  cardCurrency: 1
+  cardAttack: 0
+--- !u!114 &6130187465402888861
+>>>>>>> 341ae840ff1fa8918b6efc5fb9cf454efdbd9582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

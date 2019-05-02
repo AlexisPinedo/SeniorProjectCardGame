@@ -14,4 +14,26 @@ public abstract class Card : MonoBehaviour
     //Enemy Card components
     public BossTurnCardPlayer manager;
     public CreateGrid bossZones;
+
+    //All this stuff below belongs in Player Card Class
+    //========================================================
+    public bool inShop = false;
+    public int cardCost;
+    public int cardCurrency;
+    public int cardAttack;
+
+    //When purchasing card from shop call this method from an event trigger
+    public void purchaseCard()
+    {
+        Player player = FindObjectOfType<TurnManager>().turnPlayer;
+        if (cardCurrency < player.getCurrency())
+        {
+            player.subtractCurrency(cardCurrency);
+            player.addToPlayerGraveyard(this);
+        }
+       
+
+
+        inShop = false;
+    }
 }

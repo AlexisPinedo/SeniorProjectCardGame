@@ -518,7 +518,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6130187465402888857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 3.91, y: 2.46, z: 0}
+=======
+  m_LocalPosition: {x: -2.8779998, y: 8.47, z: 0}
+>>>>>>> 341ae840ff1fa8918b6efc5fb9cf454efdbd9582
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4963511080852559981}
@@ -597,6 +601,10 @@ MonoBehaviour:
   cardElement: {fileID: 0}
   manager: {fileID: 0}
   bossZones: {fileID: 0}
+<<<<<<< HEAD
+=======
+  inShop: 1
+>>>>>>> 341ae840ff1fa8918b6efc5fb9cf454efdbd9582
   cardCost: 1
   cardCurrency: 1
   cardAttack: 1

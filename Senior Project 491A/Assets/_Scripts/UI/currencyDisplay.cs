@@ -5,16 +5,26 @@ using UnityEngine.UI;
 
 public class currencyDisplay : MonoBehaviour
 {
-    private int currency = 0;
+    //private int currency = 0;
     public Text currencyStatusText;
+
+    private Player player;
+
+    void Awake()
+    {
+        player = FindObjectOfType<TurnManager>().turnPlayer;
+        currencyStatusText.text = "CURRENCY: " + player.getCurrency();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        currencyStatusText.text = "CURRENCY: " + currency;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            currency+=5;
-        }
+        
+    }
+
+    public void UpdateCurrencyDisplay()
+    {
+        player = FindObjectOfType<TurnManager>().turnPlayer;
+        currencyStatusText.text = "CURRENCY: " + player.getCurrency();
     }
 }
