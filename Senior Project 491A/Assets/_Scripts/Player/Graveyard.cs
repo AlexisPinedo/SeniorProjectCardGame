@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Graveyard : MonoBehaviour
 {
-    private List<Card> graveYard = new List<Card>();
+    private List<PlayerCard> graveyard = new List<PlayerCard>();
 
-    public List<Card> getGraveYard()
+    public List<PlayerCard> getGraveyard()
     {
-        return graveYard;
+        return graveyard;
     }
 
-    public void addToGrave(Card card)
+    public void addToGrave(PlayerCard card)
     {
-        graveYard.Add(card);
+        graveyard.Add(card);
     }
 
-    public void removeCard(Card card)
+    public void removeCard(PlayerCard card)
     {
-        if (graveYard.Contains(card))
-            graveYard.Remove(card);
+        if (graveyard.Contains(card))
+            graveyard.Remove(card);
     }
 }

@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     /* Player's Deck */
     [SerializeField]
-    private Deck deck;
+    private PlayerDeck deck;
 
     /* Player's currency count */
     [SerializeField]
@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private TurnManager turnManager;
 
+    private bool drawn = false;
+
     void Start()
     {
         // TODO
@@ -53,7 +55,7 @@ public class Player : MonoBehaviour
         return this.power;
     }
 
-    public void addToPlayerGraveyard(Card purchasedCard){
+    public void addToPlayerGraveyard(PlayerCard purchasedCard){
         graveyard.addToGrave(purchasedCard);
     }
     //-------------------//
@@ -117,11 +119,22 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Check if the player has pressed the "draw" button
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && !drawn)
         {
-            // Get card from deck
-            Debug.Log("Attempting to draw card");
-            hand.AddCard();
+            Debug.Log("initial draw");
+            initialDraw();
+            drawn = true;
         }
+    }
+
+    /* Adds a card to your hand */
+    void drawCard()
+    {
+        hand.AddCard();
+    }
+
+    private void initialDraw()
+    {
+        hand.turnStartDraw();
     }
 }

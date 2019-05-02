@@ -7,11 +7,18 @@ public class EnemyCard : Card
     [SerializeField]
     private int rewardValue, healthValue;
 
+    public TurnManager turnPlayer;
+
+
+    //Enemy Card components
+    public BossTurnCardPlayer manager;
+    public CreateGrid bossZones;
 
     private void Awake()
     {
         bossZones = this.GetComponent<CreateGrid>();
         manager = this.GetComponent<BossTurnCardPlayer>();
+        turnPlayer = GameObject.FindObjectOfType<TurnManager>();
         Debug.Log("This method ran");
     }
 
@@ -22,8 +29,19 @@ public class EnemyCard : Card
         Debug.Log("Set location to false");
     }
 
-    private void CheckIfDead()
+    public void OnMouseDown()
     {
-
+        Debug.Log("I have been clicked");
+        if (turnPlayer.turnPlayer.getPower() >= healthValue)
+        {
+            Debug.Log("I can kill the enemy");
+            turnPlayer.turnPlayer.subtractPower(healthValue);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Debug.Log("Cannot kill not enough power");
+        }
     }
+
 }
