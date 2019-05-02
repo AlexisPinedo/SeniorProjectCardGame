@@ -30,8 +30,10 @@ public class EnemyCard : Card
         Debug.Log("I have been clicked");
         if (turnPlayer.turnPlayer.getPower() >= healthValue)
         {
+            Debug.Log("I can kill the enemy");
+            turnPlayer.turnPlayer.subtractPower(healthValue);
             turnPlayer.turnPlayer.addToPlayerGraveyard(this);
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
@@ -39,17 +41,4 @@ public class EnemyCard : Card
         }
     }
 
-    public void CheckIfDead()
-    {
-        Debug.Log("I have been clicked");
-        if(turnPlayer.turnPlayer.getPower() >= healthValue)
-        {
-            turnPlayer.turnPlayer.addToPlayerGraveyard(this);
-            Destroy(this);
-        }
-        else
-        {
-            Debug.Log("Cannot kill not enough power");
-        }
-    }
 }

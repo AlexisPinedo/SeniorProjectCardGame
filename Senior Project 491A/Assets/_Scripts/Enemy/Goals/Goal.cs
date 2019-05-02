@@ -33,5 +33,6 @@ public class Goal : MonoBehaviour
     {
         // TODO: Change from a debug log to an end state
         Debug.Log("Goal was reached. Boss has won. Sorry bud");
+        
     }
 }

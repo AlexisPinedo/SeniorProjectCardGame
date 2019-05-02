@@ -8,6 +8,9 @@ public class Deck : MonoBehaviour
     //Singleton pattern to ensure only one deck is created globally.
     // private Deck instance = null;
 
+    public delegate void _cardDrawn(Card aCard);
+    public static event _cardDrawn CardDrawn;
+
     [SerializeField]
     private Stack<Card> cardsInDeck = new Stack<Card>();
 
@@ -63,11 +66,18 @@ public class Deck : MonoBehaviour
 
     public Card DrawCard()
     {
-        return cardsInDeck.Pop();
+        Card cardPopped = cardsInDeck.Pop();
+        if (CardDrawn != null)
+        {
+            CardDrawn(cardPopped);
+        }
+        return cardPopped;
+
     }
 
     public void AddCard(Card card)
     {
+        Debug.Log("Card: " + card.cardName + " has been pushed onto the stack");
         cardsInDeck.Push(card);
     }
 
