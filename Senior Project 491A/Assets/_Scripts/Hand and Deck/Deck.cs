@@ -14,10 +14,6 @@ public class Deck : MonoBehaviour
     [SerializeField]
     private Stack<Card> cardsInDeck = new Stack<Card>();
 
-    // DEBUG: Change later to grab cards from a single-source?
-    [SerializeField]
-    private Card gameCard;
-
     [SerializeField]
     private int cardCopies;
 
@@ -26,6 +22,8 @@ public class Deck : MonoBehaviour
     /* Reference to the Player whose Deck this is */
     [SerializeField]
     private GameObject playerObj;
+
+    public Card phantomCard;
     
     // Reference for the player's graveyard
     private Graveyard playersGraveyard;
@@ -35,7 +33,13 @@ public class Deck : MonoBehaviour
         // Reference player's components
         //SplayersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
 
-        fillDeck();
+        // fillDeck();
+        playersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
+        foreach(var card in testCards)
+        {
+            Debug.Log("Adding " + card + " to graveyard");
+            playersGraveyard.addToGrave(card);
+        }
     }
 
     /// TODO
@@ -48,6 +52,7 @@ public class Deck : MonoBehaviour
             {
                 Card copy = card;
                 //copy.transform.parent = this.transform;
+                Debug.Log("copy: " + copy);
                 AddCard((Card)copy);
             }
         }
