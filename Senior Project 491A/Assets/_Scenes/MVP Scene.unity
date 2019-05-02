@@ -3828,5 +3828,10 @@ PrefabInstance:
       propertyPath: enemyDeck
       value: 
       objectReference: {fileID: 9443348}
+    - target: {fileID: 6649302327181998268, guid: bfd262ab2270da74f8b56afdd3276867,
+        type: 3}
+      propertyPath: bombsToShuffle
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfd262ab2270da74f8b56afdd3276867, type: 3}
