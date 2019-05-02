@@ -16,6 +16,9 @@ public class ButtonInputEventHandler : MonoBehaviour
     public delegate void HeroPowerButtonAction();
     public static event HeroPowerButtonAction HeroPowerClicked;
 
+    public delegate void EndTurnButtonAction();
+    public static event EndTurnButtonAction EndTurnClicked;
+
     public void SettingsButtonOnClick()
     {
         //Debug.Log("clicked");
@@ -49,6 +52,14 @@ public class ButtonInputEventHandler : MonoBehaviour
         }
     }
 
+    public void EndTurnButtonOnClick()
+    {
+        if (HeroPowerClicked != null)
+        {
+            EndTurnClicked();
+        }
+    }
+
     public void test()
     {
         Debug.Log("clicked");
@@ -56,17 +67,19 @@ public class ButtonInputEventHandler : MonoBehaviour
 
     public void OnEnable()
     {
-        ButtonInputEventHandler.SettingsClicked += test;
-        ButtonInputEventHandler.StartClicked += test;
-        ButtonInputEventHandler.GraveyardClicked += test;
-        ButtonInputEventHandler.HeroPowerClicked += test;
+        SettingsClicked += test;
+        StartClicked += test;
+        GraveyardClicked += test;
+        HeroPowerClicked += test;
+        EndTurnClicked += test;
     }
 
     public void OnDisable()
     {
-        ButtonInputEventHandler.SettingsClicked -= test;
-        ButtonInputEventHandler.StartClicked -= test;
-        ButtonInputEventHandler.GraveyardClicked -= test;
-        ButtonInputEventHandler.HeroPowerClicked -= test;
+        SettingsClicked -= test;
+        StartClicked -= test;
+        GraveyardClicked -= test;
+        HeroPowerClicked -= test;
+        EndTurnClicked -= test;
     }
 }

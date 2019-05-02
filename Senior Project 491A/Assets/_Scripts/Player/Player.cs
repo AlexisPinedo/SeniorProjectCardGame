@@ -53,6 +53,9 @@ public class Player : MonoBehaviour
         return this.power;
     }
 
+    public void addToPlayerGraveyard(Card purchasedCard){
+        graveyard.addToGrave(purchasedCard);
+    }
     //-------------------//
     //----- SETTERS -----//
     //-------------------//
@@ -68,6 +71,7 @@ public class Player : MonoBehaviour
     public void addCurrency(int currency)
     {
         this.currency += currency;
+        FindObjectOfType<currencyDisplay>().UpdateCurrencyDisplay();
     }
     public void subtractCurrency(int currency)
     {
@@ -79,6 +83,8 @@ public class Player : MonoBehaviour
         {
             this.currency -= currency;
         }
+
+        FindObjectOfType<currencyDisplay>().UpdateCurrencyDisplay();
     }
 
     // ...for Power
@@ -111,9 +117,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Check if the player has pressed the "draw" button
-        if (turnManager.IsPlayerOnesTurn() && Input.GetKeyDown("space") && hand.GetHandCount() < 6)
+        if (Input.GetKeyDown("space"))
         {
             // Get card from deck
+            Debug.Log("Attempting to draw card");
             hand.AddCard();
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCard : Card
 {
-    public int cardCost;
-    public int cardCurrency;
-    public int cardAttack;
+    //public int cardCost;
+    //public int cardCurrency;
+    //public int cardAttack;
 }

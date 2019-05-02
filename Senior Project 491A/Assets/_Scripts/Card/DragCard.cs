@@ -9,13 +9,28 @@ public class DragCard : MonoBehaviour
     private Vector3 screenPoint;
     private Vector3 offset;
 
+    private PlayerCard card;
+
+    public void Awake()
+    {
+        card = GetComponent<PlayerCard>();
+    }
+
     void OnMouseDown()
     {
-        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
+        if (card.inShop)
+        {
+            card.purchaseCard();
+        }
+        else
+        {
+            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
 
-        offset = gameObject.transform.position -
-                 Camera.main.ScreenToWorldPoint(
-                     new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+            offset = gameObject.transform.position -
+                     Camera.main.ScreenToWorldPoint(
+                         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        }
+        
     }
 
     void OnMouseDrag()
