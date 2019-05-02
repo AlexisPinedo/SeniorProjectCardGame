@@ -10,6 +10,10 @@ public class EnemyCard : Card
     public TurnManager turnPlayer;
 
 
+    //Enemy Card components
+    public BossTurnCardPlayer manager;
+    public CreateGrid bossZones;
+
     private void Awake()
     {
         bossZones = this.GetComponent<CreateGrid>();
@@ -30,8 +34,9 @@ public class EnemyCard : Card
         Debug.Log("I have been clicked");
         if (turnPlayer.turnPlayer.getPower() >= healthValue)
         {
-            turnPlayer.turnPlayer.addToPlayerGraveyard(this);
-            Destroy(this);
+            Debug.Log("I can kill the enemy");
+            turnPlayer.turnPlayer.subtractPower(healthValue);
+            Destroy(this.gameObject);
         }
         else
         {
@@ -39,17 +44,4 @@ public class EnemyCard : Card
         }
     }
 
-    public void CheckIfDead()
-    {
-        Debug.Log("I have been clicked");
-        if(turnPlayer.turnPlayer.getPower() >= healthValue)
-        {
-            turnPlayer.turnPlayer.addToPlayerGraveyard(this);
-            Destroy(this);
-        }
-        else
-        {
-            Debug.Log("Cannot kill not enough power");
-        }
-    }
 }
