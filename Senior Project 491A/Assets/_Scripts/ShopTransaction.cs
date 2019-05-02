@@ -13,6 +13,8 @@ public class ShopTransaction : MonoBehaviour
     [SerializeField]
     public Deck shopDeck;
 
+    public GameObject parentObject;
+
     [SerializeField]
     private Vector2 spot = new Vector2();
     private bool cardsDelt = false;
@@ -30,7 +32,7 @@ public class ShopTransaction : MonoBehaviour
                 Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
                 shopCard.transform.position = cardPosition;
                 shopCard.inShop = true;
-                Instantiate(shopCard);
+                Instantiate(shopCard, parentObject.transform);
 
                 spot.x += 2.0f;
             }

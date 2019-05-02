@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7114663724019943614}
   - component: {fileID: 7114663724019943613}
   - component: {fileID: 7114663724019943612}
-  - component: {fileID: -7767546300904488679}
+  - component: {fileID: 1640977415944639342}
   m_Layer: 0
   m_Name: Minion 0
   m_TagString: Untagged
@@ -100,18 +100,36 @@ MonoBehaviour:
   cardElement: {fileID: 0}
   manager: {fileID: 0}
   bossZones: {fileID: 0}
+  inShop: 0
+  cardCost: 0
+  cardCurrency: 0
+  cardAttack: 0
   rewardValue: 1
   healthValue: 3
---- !u!114 &-7767546300904488679
-MonoBehaviour:
+  turnPlayer: {fileID: 0}
+--- !u!61 &1640977415944639342
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7114663724019943615}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.3333334, y: 1.6670737}
+    newSize: {x: 1.3333334, y: 1.6666666}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.3333334, y: 1.6670737}
+  m_EdgeRadius: 0

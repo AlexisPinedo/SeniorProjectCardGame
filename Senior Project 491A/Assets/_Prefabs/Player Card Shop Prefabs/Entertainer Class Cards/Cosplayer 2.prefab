@@ -101,6 +101,7 @@ MonoBehaviour:
   cardElement: {fileID: 0}
   manager: {fileID: 0}
   bossZones: {fileID: 0}
+  inShop: 1
   cardCost: 4
   cardCurrency: 2
   cardAttack: 2
