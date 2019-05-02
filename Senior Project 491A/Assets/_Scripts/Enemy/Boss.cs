@@ -34,7 +34,7 @@ public class Boss : MonoBehaviour, IEnemy
     public Goal goal;
 
     /* The Boss' Deck */
-    public Deck bossDeck;
+    public EnemyDeck bossDeck;
 
     public CreateGrid EnemyGrid;
 

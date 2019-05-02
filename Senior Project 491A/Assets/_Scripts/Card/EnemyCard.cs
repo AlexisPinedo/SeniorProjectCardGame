@@ -10,6 +10,10 @@ public class EnemyCard : Card
     public TurnManager turnPlayer;
 
 
+    //Enemy Card components
+    public BossTurnCardPlayer manager;
+    public CreateGrid bossZones;
+
     private void Awake()
     {
         bossZones = this.GetComponent<CreateGrid>();
@@ -32,7 +36,6 @@ public class EnemyCard : Card
         {
             Debug.Log("I can kill the enemy");
             turnPlayer.turnPlayer.subtractPower(healthValue);
-            turnPlayer.turnPlayer.addToPlayerGraveyard(this);
             Destroy(this.gameObject);
         }
         else

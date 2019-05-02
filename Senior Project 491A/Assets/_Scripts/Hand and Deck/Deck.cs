@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Deck : MonoBehaviour
+public abstract class Deck : MonoBehaviour
 {
     //Singleton pattern to ensure only one deck is created globally.
     // private Deck instance = null;
 
     public delegate void _cardDrawn(Card aCard);
     public static event _cardDrawn CardDrawn;
+
 
     [SerializeField]
     private Stack<Card> cardsInDeck = new Stack<Card>();
@@ -19,32 +20,9 @@ public class Deck : MonoBehaviour
 
     public List<Card> testCards = new List<Card>(10);
 
-    /* Reference to the Player whose Deck this is */
-    [SerializeField]
-    private GameObject playerObj;
-
-    public Card phantomCard;
-    
-    // Reference for the player's graveyard
-    private Graveyard playersGraveyard;
-
-    void Awake()
-    {
-        // Reference player's components
-        //SplayersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
-
-        // fillDeck();
-        playersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
-        foreach(var card in testCards)
-        {
-            Debug.Log("Adding " + card + " to graveyard");
-            playersGraveyard.addToGrave(card);
-        }
-    }
-
     /// TODO
     // Temp fix until we get more cards in the system
-    private void fillDeck()
+    protected void fillDeck()
     {
         foreach (var card in testCards)
         {
@@ -86,11 +64,6 @@ public class Deck : MonoBehaviour
         cardsInDeck.Push(card);
     }
 
-    public void AddToGraveYard(Card card)
-    {
-        playersGraveyard.addToGrave(card);
-    }
-
     public void Shuffle()
     {
         System.Random random = new System.Random();
@@ -108,33 +81,4 @@ public class Deck : MonoBehaviour
     }
 
 }
-
-
-//// This class is inside the TestClass so it could access its private fields
-//// this custom editor will show up on any object with TestScript attached to it
-//// you don't need (and can't) attach this class to a gameobject
-//[CustomEditor(typeof(Deck))]
-//public class StackPreview : Editor
-//{
-//    public new void OnInspectorGUI()
-//    {
-
-//        // get the target script as TestScript and get the stack from it
-//        var ts = (Deck)target;
-//        var stack = ts.getDeck();
-
-//        // some styling for the header, this is optional
-//        var bold = new GUIStyle();
-//        bold.fontStyle = FontStyle.Bold;
-//        GUILayout.Label("Items in my stack", bold);
-
-//        // add a label for each item, you can add more properties
-//        // you can even access components inside each item and display them
-//        // for example if every item had a sprite we could easily show it 
-//        foreach (var item in stack)
-//        {
-//            GUILayout.Label(item.name);
-//        }
-//    }
-//}
 

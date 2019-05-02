@@ -160,23 +160,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9443346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056a92b0d7f014edeb431bf437a562b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 20101d8deb0f403469b734a1c5dd6fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameCard: {fileID: 0}
-  cardCopies: 4
-  testCards:
-  - {fileID: 7114663724019943612, guid: dcea999a3a439094094886811e3f2a2b, type: 3}
-  - {fileID: 7114663724019943612, guid: d7cc113ef97f8b4409144b2d57b863ea, type: 3}
-  - {fileID: 7114663724019943612, guid: 0426a66cd210e7641b35d79b4f6418b7, type: 3}
-  - {fileID: 7114663724019943612, guid: 7e09610b0df244a48a4cbf198a0a83be, type: 3}
-  - {fileID: 7114663724019943612, guid: fbb7d20385ba76042b412197efcc365a, type: 3}
-  - {fileID: 7114663724019943612, guid: d63b12521d628414d847937966b8d378, type: 3}
-  - {fileID: 7114663724019943612, guid: 1a1602f5fc52496409aeae8ff78fa420, type: 3}
-  - {fileID: 7114663724019943612, guid: 8951e7a4f7226bb44b7486db66f287c3, type: 3}
-  - {fileID: 7114663724019943612, guid: 4101fcecb5a202d44b3bf5256565ec32, type: 3}
-  - {fileID: 7114663724019943612, guid: e54fc1bd343b49747b8eb5981735b5a3, type: 3}
-  playerObj: {fileID: 0}
+  cardCopies: 0
+  testCards: []
 --- !u!1 &57440919
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,19 +271,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 140288136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056a92b0d7f014edeb431bf437a562b1, type: 3}
+  m_Script: {fileID: 11500000, guid: b93421ccf3969ff46829900d1e3df751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameCard: {fileID: 0}
-  cardCopies: 5
-  testCards:
-  - {fileID: 6130187465402888856, guid: 715b6e48ae974e244909cd354e7c1962, type: 3}
-  - {fileID: 6130187465402888856, guid: 056318c723153db499fa2d0744e8134b, type: 3}
-  - {fileID: 6130187465402888856, guid: 715b6e48ae974e244909cd354e7c1962, type: 3}
-  - {fileID: 6130187465402888856, guid: 118eb46c7f2407c41b47f56e695ab0ae, type: 3}
-  - {fileID: 6130187465402888856, guid: 5a211545bb2496440ba782ec7a9b3718, type: 3}
-  - {fileID: 6130187465402888856, guid: 43aae0e60dd8e4d4ea68926faab974f1, type: 3}
-  playerObj: {fileID: 0}
+  cardCopies: 0
+  testCards: []
 --- !u!4 &140288138
 Transform:
   m_ObjectHideFlags: 0
@@ -1355,7 +1335,7 @@ MonoBehaviour:
   shopItems: 0
   MAX_SHOP_ITEMS: 6
   shopGrid: {fileID: 1968618938}
-  shopDeck: {fileID: 140288137}
+  shopDeck: {fileID: 0}
   parentObject: {fileID: 2102585785}
   spot: {x: 0, y: 0}
 --- !u!1 &936756653
@@ -1758,7 +1738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardToPlay: {fileID: 0}
-  enemyDeck: {fileID: 9443348}
+  enemyDeck: {fileID: 0}
   enemyGrid: {fileID: 718689244}
   filledCardZones: 0
   parentObject: {fileID: 324832094}
@@ -2798,17 +2778,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1531956016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056a92b0d7f014edeb431bf437a562b1, type: 3}
+  m_Script: {fileID: 11500000, guid: e736b16899c598542ad54faf2bd42547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameCard: {fileID: 0}
-  cardCopies: 5
-  testCards:
-  - {fileID: 6130187465402888856, guid: d70d86ccd55f8a947a012d7bf89cc44f, type: 3}
-  - {fileID: 6130187465402888856, guid: a01cac603a097bc47b2b5eeddf71c624, type: 3}
-  - {fileID: 6130187465402888856, guid: 8e5931a89b0df0f47a182bffe874870f, type: 3}
-  - {fileID: 6130187465402888856, guid: 2de15551240da0c41bff7285ddca67bd, type: 3}
+  cardCopies: 0
+  testCards: []
   playerObj: {fileID: 0}
+  phantomCard: {fileID: 0}
 --- !u!1 &1568177357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,16 +2825,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568177357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056a92b0d7f014edeb431bf437a562b1, type: 3}
+  m_Script: {fileID: 11500000, guid: e736b16899c598542ad54faf2bd42547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameCard: {fileID: 0}
-  cardCopies: 5
-  testCards:
-  - {fileID: 6130187465402888856, guid: b2174c3292d841b48976a92302b60f31, type: 3}
-  - {fileID: 6130187465402888856, guid: 9162dd2d58dee4b44b6c5f28d25a523a, type: 3}
-  - {fileID: 6130187465402888856, guid: 43aae0e60dd8e4d4ea68926faab974f1, type: 3}
+  cardCopies: 0
+  testCards: []
   playerObj: {fileID: 0}
+  phantomCard: {fileID: 0}
 --- !u!1 &1578277351
 GameObject:
   m_ObjectHideFlags: 0
@@ -3827,7 +3800,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyDeck
       value: 
-      objectReference: {fileID: 9443348}
+      objectReference: {fileID: 0}
     - target: {fileID: 6649302327181998268, guid: bfd262ab2270da74f8b56afdd3276867,
         type: 3}
       propertyPath: bombsToShuffle

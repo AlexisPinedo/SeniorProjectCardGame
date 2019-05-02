@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     /* Player's Deck */
     [SerializeField]
-    private Deck deck;
+    private PlayerDeck deck;
 
     /* Player's currency count */
     [SerializeField]
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         return this.power;
     }
 
-    public void addToPlayerGraveyard(Card purchasedCard){
+    public void addToPlayerGraveyard(PlayerCard purchasedCard){
         graveyard.addToGrave(purchasedCard);
     }
     //-------------------//

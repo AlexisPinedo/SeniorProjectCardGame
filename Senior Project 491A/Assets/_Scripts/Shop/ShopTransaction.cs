@@ -11,7 +11,7 @@ public class ShopTransaction : MonoBehaviour
     [SerializeField]
     private CreateGrid shopGrid;
     [SerializeField]
-    public Deck shopDeck;
+    public ShopDeck shopDeck;
 
     public GameObject parentObject;
 
@@ -28,7 +28,7 @@ public class ShopTransaction : MonoBehaviour
             for(shopItems = 0; shopItems < MAX_SHOP_ITEMS; shopItems++)
             {
                 shopDeck.Shuffle();
-                Card shopCard = shopDeck.DrawCard();
+                PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
                 Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
                 shopCard.transform.position = cardPosition;
                 shopCard.inShop = true;
@@ -44,7 +44,7 @@ public class ShopTransaction : MonoBehaviour
     {
         if(cardsDelt && shopItems < MAX_SHOP_ITEMS)
         {
-            Card shopCard = shopDeck.DrawCard();
+            PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
             Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(new Vector2());
             shopCard.transform.position = cardPosition;
             shopItems++;
@@ -55,7 +55,7 @@ public class ShopTransaction : MonoBehaviour
     /**
     TODO: Get card gameobject from shop zone
     */
-    void PurchaseItem(Card card, Player currentPlayer)
+    void PurchaseItem(PlayerCard card, Player currentPlayer)
     {
         //if (shop.Contains(card))
         //{

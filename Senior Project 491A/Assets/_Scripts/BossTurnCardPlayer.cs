@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BossTurnCardPlayer : MonoBehaviour
 {
-    public Card cardToPlay;
+    public EnemyCard cardToPlay;
 
-    public Deck enemyDeck;
+    public EnemyDeck enemyDeck;
 
     public CreateGrid enemyGrid;
 
@@ -37,10 +37,10 @@ public class BossTurnCardPlayer : MonoBehaviour
                 return;
             }
             
-            cardToPlay = enemyDeck.DrawCard();
+            cardToPlay = (EnemyCard)enemyDeck.DrawCard();
             cardToPlay.gameObject.transform.position = location;
 
-            Card theCardObject = Instantiate(cardToPlay, parentObject.transform);
+            EnemyCard theCardObject = Instantiate(cardToPlay, parentObject.transform);
 
             theCardObject.manager = this;
             theCardObject.bossZones = enemyGrid;

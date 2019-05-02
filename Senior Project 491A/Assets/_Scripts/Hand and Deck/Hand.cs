@@ -12,13 +12,13 @@ public class Hand : MonoBehaviour
 
     /* List of Cards currently in the Hand - order not necessary */
     [SerializeField]
-    private List<Card> hand;
+    private List<PlayerCard> hand;
 
     /* CURRENT number of cards in the Player's Hand */
     private int cardsInHand = 0;
 
     /* Reference for the Player's Deck - set in Start() */
-    private Deck deck;
+    private PlayerDeck deck;
 
     private Graveyard graveyard;
 
@@ -37,7 +37,7 @@ public class Hand : MonoBehaviour
     void Start()
     {
         // Set references for Deck and Hand Grid
-        deck = playerObj.GetComponentInChildren<Deck>();
+        deck = playerObj.GetComponentInChildren<PlayerDeck>();
         graveyard = playerObj.GetComponentInChildren<Graveyard>();
         handGrid = playerSpace.GetComponentInChildren<CreateGrid>();
     }
@@ -65,7 +65,7 @@ public class Hand : MonoBehaviour
             Debug.Log("Deck is empty but the graveyard has " +
             graveyard.getGraveyard().Count + " cards");
             // Add graveyard to Deck and shuffle
-            List<Card> gyard = graveyard.getGraveyard();
+            List<PlayerCard> gyard = graveyard.getGraveyard();
             foreach (var card in gyard)
             {
                 deck.AddCard(card);
@@ -116,7 +116,7 @@ public class Hand : MonoBehaviour
                     Debug.Log("Deck is empty but the graveyard has " +
                     graveyard.getGraveyard().Count + " cards");
                     // Add graveyard to Deck and shuffle
-                    List<Card> gyard = graveyard.getGraveyard();
+                    List<PlayerCard> gyard = graveyard.getGraveyard();
                     foreach (var card in gyard)
                     {
                         deck.AddCard(card);
@@ -156,7 +156,7 @@ public class Hand : MonoBehaviour
     //-------------------//
     //----- GETTERS -----//
     //-------------------//
-    public List<Card> GetHand()
+    public List<PlayerCard> GetHand()
     {
         return this.hand;
     }
@@ -165,7 +165,7 @@ public class Hand : MonoBehaviour
         return this.cardsInHand;
     }
 
-    public void DiscardCard(Card card)
+    public void DiscardCard(PlayerCard card)
     {
         if (hand.Contains(card))
         {

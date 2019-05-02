@@ -8,9 +8,9 @@ public class BombGoal : Goal
 
     public int bombsToShuffle;
 
-    public Card bombCard;
+    public EnemyCard bombCard;
 
-    public Deck enemyDeck;
+    public EnemyDeck enemyDeck;
 
 
 
