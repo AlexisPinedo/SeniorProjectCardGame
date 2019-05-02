@@ -247,6 +247,47 @@ Transform:
   m_Father: {fileID: 405819867}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &101411215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4813211115199307393, guid: e7eb578cb70324b20a0fd652fcd2b616,
+    type: 3}
+  m_PrefabInstance: {fileID: 1671144263}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &101411216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101411215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1ab4ade3d1e8e4397ddd87f04e6bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: Phantom Points
+  cardDescription: Because you don't have any cards
+  cardEffect: 
+  cardArtwork: {fileID: 0}
+  cardElement: {fileID: 0}
+  manager: {fileID: 0}
+  bossZones: {fileID: 0}
+  inShop: 0
+  cardCost: 0
+  cardCurrency: 100
+  cardAttack: 0
+--- !u!114 &170583905 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7931254641057969423, guid: d168d516de07ff2e680ace77ee3c27bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1400827022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1ab4ade3d1e8e4397ddd87f04e6bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &222213154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,7 +1221,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p1HandSpacePanel: {fileID: 405819866}
   p2HandSpacePanel: {fileID: 1200769564}
-  turnManager: {fileID: 2017897502}
+  turnPlayer: {fileID: 0}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!1 &1170254162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,6 +1258,9 @@ MonoBehaviour:
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
+  manager: {fileID: 0}
+  bossZones: {fileID: 0}
+  inShop: 0
   cardCost: 0
   cardCurrency: 0
   cardAttack: 0
@@ -1279,7 +1325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1602485902}
-  deck: {fileID: 0}
+  deck: {fileID: 1531956018}
   currency: 0
   power: 0
   graveyard: {fileID: 1486279741}
@@ -1518,6 +1564,18 @@ Transform:
   m_Father: {fileID: 1200769565}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1362529393 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5469047896742893552, guid: f0ae5b1392db18d78919c0b8902d763f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5302590777392213690}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1ab4ade3d1e8e4397ddd87f04e6bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1386046799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,12 +2115,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameCard: {fileID: 0}
-  cardCopies: 5
+  cardCopies: 1
   testCards:
-  - {fileID: 6130187465402888856, guid: d70d86ccd55f8a947a012d7bf89cc44f, type: 3}
-  - {fileID: 6130187465402888856, guid: a01cac603a097bc47b2b5eeddf71c624, type: 3}
-  - {fileID: 6130187465402888856, guid: 8e5931a89b0df0f47a182bffe874870f, type: 3}
-  - {fileID: 6130187465402888856, guid: 2de15551240da0c41bff7285ddca67bd, type: 3}
+  - {fileID: 170583905}
+  - {fileID: 1362529393}
+  - {fileID: 170583905}
+  - {fileID: 1362529393}
   playerObj: {fileID: 0}
 --- !u!1 &1568177357
 GameObject:
@@ -2110,9 +2168,9 @@ MonoBehaviour:
   gameCard: {fileID: 0}
   cardCopies: 5
   testCards:
-  - {fileID: 6130187465402888856, guid: b2174c3292d841b48976a92302b60f31, type: 3}
-  - {fileID: 6130187465402888856, guid: 9162dd2d58dee4b44b6c5f28d25a523a, type: 3}
-  - {fileID: 6130187465402888856, guid: 43aae0e60dd8e4d4ea68926faab974f1, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerObj: {fileID: 0}
 --- !u!1 &1578277351
 GameObject:
@@ -2338,6 +2396,75 @@ MonoBehaviour:
   hand: []
   playerObj: {fileID: 1185834758}
   playerSpace: {fileID: 57440919}
+--- !u!1001 &1671144263
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4813211115199307393, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerCardBrute
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307286735683026340, guid: e7eb578cb70324b20a0fd652fcd2b616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e7eb578cb70324b20a0fd652fcd2b616, type: 3}
 --- !u!1 &1680180978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2709,8 +2836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7e90af0b3811eac8cec531e4b94592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  turnPlayer: {fileID: 1185834760}
 --- !u!4 &2017897503
 Transform:
   m_ObjectHideFlags: 0
