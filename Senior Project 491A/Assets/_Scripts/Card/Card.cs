@@ -32,8 +32,6 @@ public abstract class Card : MonoBehaviour
             player.addToPlayerGraveyard(this);
         }
        
-
-
         inShop = false;
     }
 }
