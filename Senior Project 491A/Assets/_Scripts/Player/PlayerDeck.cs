@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerDeck : Deck
 {
     /* Reference to the Player whose Deck this is */
-    [SerializeField]
-    private GameObject playerObj;
+    [SerializeField] private GameObject playerObj;
 
     // TODO: Find a better way to generate this
     public PlayerCard phantomCard;
@@ -18,7 +17,7 @@ public class PlayerDeck : Deck
     {
         // Set Graveyard from parent Player
         playersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
-        
+
         // TODO: Can delete later
         foreach (var card in testCards)
         {

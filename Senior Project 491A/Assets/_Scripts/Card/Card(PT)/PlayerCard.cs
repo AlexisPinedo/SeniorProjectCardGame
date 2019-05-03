@@ -21,18 +21,16 @@ public class PlayerCard : Card
     public void purchaseCard()
     {
         Player player = FindObjectOfType<TurnManager>().turnPlayer;
-        if (cardCurrency < player.getCurrency())
+
+        if (cardCurrency <= player.getCurrency())
         {
             player.subtractCurrency(cardCurrency);
             player.addToPlayerGraveyard(this);
         }
 
         effect?.Trigger(this);
-
-
         inShop = false;
-
-
+        
     }
 
     private void Awake()

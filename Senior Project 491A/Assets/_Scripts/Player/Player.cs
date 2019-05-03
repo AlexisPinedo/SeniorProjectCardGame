@@ -10,31 +10,24 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     /* Player's Hand */
-    [SerializeField]
-    private Hand hand;
+    [SerializeField] private Hand hand;
 
     /* Player's Deck */
-    [SerializeField]
-    private PlayerDeck deck;
+    [SerializeField] private PlayerDeck deck;
 
     /* Player's currency count */
-    [SerializeField]
-    private int currency;
+    [SerializeField] private int currency;
 
     /* Player's power count */
-    [SerializeField]
-    private int power;
+    [SerializeField] private int power;
 
     /* Player's Graveyard */
-    [SerializeField]
-    private Graveyard graveyard;
+    [SerializeField] private Graveyard graveyard;
 
     /* Player's Reward Pile, i.e., defeated enemies */
-    [SerializeField]
-    private List<PlayerCard> rewardPile;
+    [SerializeField] private List<PlayerCard> rewardPile;
 
-    [SerializeField]
-    private TurnManager turnManager;
+    [SerializeField] private TurnManager turnManager;
 
     private bool drawn = false;
 
@@ -55,7 +48,8 @@ public class Player : MonoBehaviour
         return this.power;
     }
 
-    public void addToPlayerGraveyard(PlayerCard purchasedCard){
+    public void addToPlayerGraveyard(PlayerCard purchasedCard)
+    {
         graveyard.addToGrave(purchasedCard);
     }
     //-------------------//

@@ -7,32 +7,20 @@ using UnityEngine;
  */
 public class Hand : MonoBehaviour
 {
-    /* Max size of the Player's Hand */
-    private static int handSize = 6;
-
-    /* List of Cards currently in the Hand - order not necessary */
-    [SerializeField]
-    private List<PlayerCard> hand;
-
-    /* CURRENT number of cards in the Player's Hand */
+    /* Hand-specific refereneces*/
+    [SerializeField] private List<PlayerCard> hand;
+    private static int handCapacity = 6;
     private int cardsInHand = 0;
 
-    /* Reference for the Player's Deck - set in Start() */
+    /* Player references */
+    [SerializeField] private GameObject playerObj;
+    [SerializeField] private GameObject playerSpace;
     private PlayerDeck deck;
-
     private Graveyard graveyard;
-
-    /* Player's Grid for the cards in their Hand - set in Start()*/
     private CreateGrid handGrid;
 
     /* Spawn point for card */
     private Vector2 spot = new Vector2();
-
-    /* Reference to the Player whose Hand it is */
-    [SerializeField]
-    private GameObject playerObj;
-    [SerializeField]
-    private GameObject playerSpace;
 
     void Start()
     {
@@ -57,13 +45,11 @@ public class Hand : MonoBehaviour
         {
             Debug.Log("Deck has " + deck.getDeck().Count + " cards");
             cardDrawn = deck.DrawCard();
-            //cardDrawn.transform.SetParent(this.transform);
-            //hand.Add(cardDrawn);
         }
         else
         {
-            Debug.Log("Deck is empty but the graveyard has " +
-            graveyard.getGraveyard().Count + " cards");
+            Debug.Log("Deck is empty but the graveyard has " + graveyard.getGraveyard().Count + " cards");
+
             // Add graveyard to Deck and shuffle
             List<PlayerCard> gyard = graveyard.getGraveyard();
             foreach (var card in gyard)
@@ -76,6 +62,7 @@ public class Hand : MonoBehaviour
         }
 
         // Figure out where to display the Card
+        /// TODO: Adjust size accordingly
         spawnPoint = handGrid.GetNearestPointOnGrid(spot);
         cardDrawn.transform.position = spawnPoint;
 
