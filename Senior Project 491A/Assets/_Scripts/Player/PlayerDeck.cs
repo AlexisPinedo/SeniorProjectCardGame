@@ -8,18 +8,18 @@ public class PlayerDeck : Deck
     [SerializeField]
     private GameObject playerObj;
 
+    // TODO: Find a better way to generate this
     public PlayerCard phantomCard;
 
-    // Reference for the player's graveyard
+    /* Reference for the Player's Graveyard */
     private Graveyard playersGraveyard;
 
     private void Awake()
     {
-        // Reference player's components
-        //SplayersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
-
-        // fillDeck();
+        // Set Graveyard from parent Player
         playersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
+        
+        // TODO: Can delete later
         foreach (var card in testCards)
         {
             Debug.Log("Adding " + card + " to graveyard");
@@ -27,6 +27,7 @@ public class PlayerDeck : Deck
         }
     }
 
+    /* Adds the PlayerCard to the Player's Graveyard */
     public void AddToGraveYard(PlayerCard card)
     {
         playersGraveyard.addToGrave(card);
