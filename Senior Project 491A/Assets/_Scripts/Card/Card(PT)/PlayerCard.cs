@@ -30,7 +30,6 @@ public class PlayerCard : Card
 
         effect?.Trigger(this);
         inShop = false;
-        
     }
 
     private void Awake()

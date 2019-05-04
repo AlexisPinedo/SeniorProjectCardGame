@@ -9,6 +9,7 @@ public class PlayerDeck : Deck
 
     // TODO: Find a better way to generate this
     public PlayerCard phantomCard;
+    public PlayerCard testCard;
 
     /* Reference for the Player's Graveyard */
     private Graveyard playersGraveyard;
@@ -18,7 +19,7 @@ public class PlayerDeck : Deck
         // Set Graveyard from parent Player
         playersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
 
-        // TODO: Can delete later
+        /// TODO: Can delete later
         foreach (var card in testCards)
         {
             Debug.Log("Adding " + card + " to graveyard");
