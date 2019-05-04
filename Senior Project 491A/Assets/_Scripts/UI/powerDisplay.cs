@@ -5,16 +5,28 @@ using UnityEngine.UI;
 
 public class powerDisplay : MonoBehaviour
 {
-    private int power = 0;
+    private int power;
     public Text powerStatusText;
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        powerStatusText.text = "POWER: " + power;
+        power = 0;
+        UpdatePower();
+    }
+
+    public void AddPower(int newPowerValue)
+    {
+        power += newPowerValue;
+        UpdatePower();
+    }
+
+    public void UpdatePower()
+    {
+        powerStatusText.text = "Power: " + power;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            power += 100;
+            AddPower(100);
         }
     }
 }
