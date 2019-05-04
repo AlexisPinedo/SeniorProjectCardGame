@@ -23,13 +23,13 @@ public class PlayerDeck : Deck
         foreach (var card in testCards)
         {
             Debug.Log("Adding " + card + " to graveyard");
-            playersGraveyard.addToGrave((PlayerCard)card);
+            playersGraveyard.AddToGrave((PlayerCard)card);
         }
     }
 
     /* Adds the PlayerCard to the Player's Graveyard */
     public void AddToGraveYard(PlayerCard card)
     {
-        playersGraveyard.addToGrave(card);
+        playersGraveyard.AddToGrave(card);
     }
 }

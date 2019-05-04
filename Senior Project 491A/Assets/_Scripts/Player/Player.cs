@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
     public void AddToPlayerGraveyard(PlayerCard purchasedCard)
     {
-        graveyard.addToGrave(purchasedCard);
+        graveyard.AddToGrave(purchasedCard);
     }
     //-------------------//
     //----- SETTERS -----//
