@@ -16,7 +16,8 @@ public class CreateGrid : MonoBehaviour
 
     [SerializeField] private Color GizmoColor;
 
-    public Dictionary<Vector2, bool> objectPlacements = new Dictionary<Vector2, bool>();
+    // public Dictionary<Vector2, bool> objectPlacements = new Dictionary<Vector2, bool>();
+    public Dictionary<Vector2, bool> objectPlacements;
 
     private void Awake()
     {
@@ -69,8 +70,12 @@ public class CreateGrid : MonoBehaviour
     /* Initialize the Vector2 spaces as false, i.e., the spaces are empty */
     private void InitializePlacements()
     {
-        int xTotal = (int)size * _xValUnits;
+        objectPlacements = new Dictionary<Vector2, bool>();
+        float xTotal = size * _xValUnits;   // Keep as float to allow grid resizing
         int yTotal = (int)size * _yValUnits;
+
+        Debug.Log("size:\t" + size);
+        Debug.Log("xTotal:\t" + xTotal);
 
         for (float x = 0; x < xTotal; x += size)
         {
@@ -89,18 +94,27 @@ public class CreateGrid : MonoBehaviour
 
     public bool IsPlaceable(Vector2 location)
     {
-        if (objectPlacements[location] == false)
+        if (objectPlacements.ContainsKey(location))
         {
-            return true;
+            if (objectPlacements[location] == false)
+            {
+                return true;
+            }
+            return false;
         }
 
+        Debug.Log("objectPlacements does not contain location: " + location);
         return false;
     }
 
-    public bool ResizeGrid(float newSize, int newX)
+    public void ResizeGrid(float newSize, int newX)
     {
         Debug.Log("Resizing grid");
 
-        return true;
+        string parsed = newSize.ToString("0.000");    // Truncate at thousandths
+        _size = float.Parse(parsed);
+        _xValUnits = newX;
+
+        InitializePlacements();
     }
 }

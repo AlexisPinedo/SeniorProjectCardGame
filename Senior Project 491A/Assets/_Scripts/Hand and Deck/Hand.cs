@@ -9,7 +9,6 @@ public class Hand : MonoBehaviour
 {
     /* Hand-specific refereneces*/
     [SerializeField] private List<PlayerCard> hand;
-    private static int handCapacity = 6;
     private int cardsInHand = 0;
 
     /* Player references */
@@ -20,7 +19,7 @@ public class Hand : MonoBehaviour
     private CreateGrid handGrid;
 
     /* Spawn point for card */
-    private Vector2 spot = new Vector2();
+    private Vector2 cardSpot;
 
     void Start()
     {
@@ -28,6 +27,7 @@ public class Hand : MonoBehaviour
         deck = playerObj.GetComponentInChildren<PlayerDeck>();
         graveyard = playerObj.GetComponentInChildren<Graveyard>();
         handGrid = playerSpace.GetComponentInChildren<CreateGrid>();
+        cardSpot = new Vector2();
     }
 
     /* Adds a card to the Hand from the Deck.
@@ -37,42 +37,67 @@ public class Hand : MonoBehaviour
      */
     public void AddCard()
     {
-        Card cardDrawn;
-        Vector2 spawnPoint;
+        PlayerCard cardDrawn;
+
+        if (cardsInHand > 5)
+        {
+            /// RESIZE CREATE GRID COORDS
+            /// MOVE CARDS ALREADY IN HAND TO THEIR RESPECTIVE LOCATION
+            /// THIS DOESN'T WORK CORRECTLY YET
+            handGrid.ResizeGrid(handGrid.size * 0.88f, handGrid.xValUnits + 1);
+            cardSpot = new Vector2();
+
+            foreach (PlayerCard card in hand)
+            {
+                Debug.Log("Card is:\t" + card);
+                Debug.Log("Card at:\t" + card.transform.position);
+
+                // Change their coordinates
+                Vector2 spawnPoint = handGrid.GetNearestPointOnGrid(cardSpot);
+                card.SetCoord(spawnPoint);
+
+                Debug.Log("Card now at:\t" + card.transform.position);
+                cardSpot.x += handGrid.size;
+            }
+        }
 
         // Draw cards from the deck if there are cards in the Deck
-        if (deck.getDeck().Count > 0)
+        if (deck.GetDeck().Count > 0)
         {
-            Debug.Log("Deck has " + deck.getDeck().Count + " cards");
-            cardDrawn = deck.DrawCard();
+            cardDrawn = (PlayerCard)deck.DrawCard();
         }
+        // Otherwise, make the Graveyard your Deck now
+        else if (graveyard.GetGraveyard().Count > 0)
+        {
+            graveyard.MoveToDeck(deck);    // Move cards from Graveyard to the Deck
+            cardDrawn = (PlayerCard)deck.DrawCard();
+        }
+        // DEBUGGING PURPOSES
         else
         {
-            Debug.Log("Deck is empty but the graveyard has " + graveyard.getGraveyard().Count + " cards");
-
-            // Add graveyard to Deck and shuffle
-            List<PlayerCard> gyard = graveyard.getGraveyard();
-            foreach (var card in gyard)
-            {
-                deck.AddCard(card);
-            }
-            deck.Shuffle();
-
-            cardDrawn = deck.DrawCard();
+            cardDrawn = deck.testCard;
         }
 
-        // Figure out where to display the Card
-        /// TODO: Adjust size accordingly
-        spawnPoint = handGrid.GetNearestPointOnGrid(spot);
-        cardDrawn.transform.position = spawnPoint;
+        PlaceCard(cardDrawn);
+    }
 
-        // Move to the next spot on the grid
-        spot.x += 2.0f;
-
-        Instantiate(cardDrawn, this.transform);
-
-        cardsInHand += 1;
-        Debug.Log("Cards in hand = " + cardsInHand);
+    /* Removes a PlayerCard if it exists in the Hand */
+    public void RemoveCard(PlayerCard cardAffected)
+    {
+        if (cardAffected != null && hand.Contains(cardAffected))
+        {
+            if (cardsInHand > 6)
+            {
+                /// TODO: Resize to normal
+                /// ???
+                Debug.Log("RemoveCard, cardsInHand > 6 not finished");
+            }
+            else
+            {
+                hand.Remove(cardAffected);
+                cardsInHand -= 1;
+            }
+        }
     }
 
     /* A unique draw that is only done at the beginning of the Player's turn 
@@ -81,57 +106,52 @@ public class Hand : MonoBehaviour
         If there are no cards in the Deck and no graveyard, then draw
         a phantom card.
     */
-    public void turnStartDraw()
+    public void TurnStartDraw()
     {
-        Card cardDrawn;
-        Vector2 spawnPoint;
+        PlayerCard cardDrawn;
         cardsInHand = 0;
         bool graveyardAdded = false;
 
         while (cardsInHand != 6)
         {
             // Draw cards from the deck if there are cards in the Deck
-            if (deck.getDeck().Count > 0)
+            if (deck.GetDeck().Count > 0)
             {
-                Debug.Log("Deck has " + deck.getDeck().Count + " cards");
-                cardDrawn = deck.DrawCard();
+                cardDrawn = (PlayerCard)deck.DrawCard();
             }
             else
             {
-                if (graveyard.getGraveyard().Count > 0 && !graveyardAdded)
+                if (graveyard.GetGraveyard().Count > 0 && !graveyardAdded)
                 {
-                    Debug.Log("Deck is empty but the graveyard has " +
-                    graveyard.getGraveyard().Count + " cards");
-                    // Add graveyard to Deck and shuffle
-                    List<PlayerCard> gyard = graveyard.getGraveyard();
-                    foreach (var card in gyard)
-                    {
-                        deck.AddCard(card);
-                    }
+                    graveyard.MoveToDeck(deck);
                     graveyardAdded = true;
-                    deck.Shuffle();
 
-                    cardDrawn = deck.DrawCard();
+                    cardDrawn = (PlayerCard)deck.DrawCard();
                 }
                 else
                 {
                     // Draw a phantom card
-                    Debug.Log("Deck is empty and graveyard is empty");
-                    cardDrawn = deck.phantomCard;
+                    cardDrawn = (PlayerCard)deck.phantomCard;
                 }
             }
 
-            // Figure out where to display the Card
-            spawnPoint = handGrid.GetNearestPointOnGrid(spot);
-            cardDrawn.transform.position = spawnPoint;
+            PlaceCard(cardDrawn);
+        }
+    }
 
-            // Move to the next spot on the grid
-            spot.x += 2.0f;
-
-            Instantiate(cardDrawn, this.transform);
+    private void PlaceCard(PlayerCard card)
+    {
+        Vector2 spawnPoint;
+        spawnPoint = handGrid.GetNearestPointOnGrid(cardSpot);
+        
+        if (handGrid.IsPlaceable(spawnPoint))
+        {
+            card.SetCoord(spawnPoint);
+            hand.Add(card);
+            Instantiate(card, this.transform);
 
             cardsInHand += 1;
-            Debug.Log("Cards in hand = " + cardsInHand);
+            cardSpot.x += handGrid.size;
         }
     }
 
@@ -150,14 +170,5 @@ public class Hand : MonoBehaviour
     public int GetHandCount()
     {
         return this.cardsInHand;
-    }
-
-    public void DiscardCard(PlayerCard card)
-    {
-        if (hand.Contains(card))
-        {
-            hand.Remove(card);
-            cardsInHand -= 1;
-        }
     }
 }
