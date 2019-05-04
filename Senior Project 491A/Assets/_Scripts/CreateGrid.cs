@@ -20,27 +20,16 @@ public class CreateGrid : MonoBehaviour
 
     private void Awake()
     {
-        int xTotal = (int)size * _xValUnits;
-        int yTotal = (int)size * _yValUnits;
-
         Gizmos.color = GizmoColor;
         if (size > .99)
         {
-            for (float x = 0; x < xTotal; x += size)
-            {
-                for (float y = 0; y < yTotal; y += size)
-                {
-                    Vector2 point = GetNearestPointOnGrid(new Vector2(x, y));
-                    objectPlacements.Add(point, false);
-                }
-            }
+            InitializePlacements();
         }
         else
         {
             Debug.Log("Size Cannot be less then 1");
         }
     }
-
 
     public Vector2 GetNearestPointOnGrid(Vector2 position)
     {
@@ -56,7 +45,7 @@ public class CreateGrid : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        int xTotal = (int)size * _xValUnits;
+        float xTotal = size * _xValUnits;
         int yTotal = (int)size * _yValUnits;
 
         Gizmos.color = GizmoColor;
@@ -77,18 +66,41 @@ public class CreateGrid : MonoBehaviour
         }
     }
 
+    /* Initialize the Vector2 spaces as false, i.e., the spaces are empty */
+    private void InitializePlacements()
+    {
+        int xTotal = (int)size * _xValUnits;
+        int yTotal = (int)size * _yValUnits;
+
+        for (float x = 0; x < xTotal; x += size)
+        {
+            for (float y = 0; y < yTotal; y += size)
+            {
+                Vector2 point = GetNearestPointOnGrid(new Vector2(x, y));
+                objectPlacements.Add(point, false);
+            }
+        }
+    }
+
     public void SetObjectPlacement(Vector2 position, bool value = true)
     {
         objectPlacements[position] = value;
     }
 
-    public bool isPlaceable(Vector2 location)
+    public bool IsPlaceable(Vector2 location)
     {
         if (objectPlacements[location] == false)
         {
             return true;
         }
-        else
-            return false;
+
+        return false;
+    }
+
+    public bool ResizeGrid(float newSize, int newX)
+    {
+        Debug.Log("Resizing grid");
+
+        return true;
     }
 }
