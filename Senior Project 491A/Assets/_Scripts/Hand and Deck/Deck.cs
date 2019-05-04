@@ -18,7 +18,7 @@ public abstract class Deck : MonoBehaviour
 
     /// TODO
     // Temp fix until we get more cards in the system
-    protected void fillDeck()
+    protected void FillDeck()
     {
         foreach (var card in testCards)
         {
@@ -33,7 +33,7 @@ public abstract class Deck : MonoBehaviour
         Shuffle();
     }
 
-    public Stack<Card> getDeck()
+    public Stack<Card> GetDeck()
     {
         return this.cardsInDeck;
     }

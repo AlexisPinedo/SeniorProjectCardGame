@@ -13,7 +13,7 @@ public class currencyDisplay : MonoBehaviour
     void Awake()
     {
         player = FindObjectOfType<TurnManager>().turnPlayer;
-        currencyStatusText.text = "CURRENCY: " + player.getCurrency();
+        currencyStatusText.text = "CURRENCY: " + player.GetCurrency();
     }
 
     // Update is called once per frame
@@ -25,6 +25,6 @@ public class currencyDisplay : MonoBehaviour
     public void UpdateCurrencyDisplay()
     {
         player = FindObjectOfType<TurnManager>().turnPlayer;
-        currencyStatusText.text = "CURRENCY: " + player.getCurrency();
+        currencyStatusText.text = "CURRENCY: " + player.GetCurrency();
     }
 }

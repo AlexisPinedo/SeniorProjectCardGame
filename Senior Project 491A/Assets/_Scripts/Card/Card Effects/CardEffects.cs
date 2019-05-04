@@ -26,34 +26,34 @@ public class CardEffects : MonoBehaviour
     }
 
     //Does this add the power on the card itself or the Game Session
-    public void addPower(int pwr)
+    public void AddPower(int pwr)
     {
-        turnPlayer.addPower(pwr);
+        turnPlayer.AddPower(pwr);
     }
 
-    public void subtractPower(int pwr)
+    public void SubtractPower(int pwr)
     {
-        turnPlayer.subtractPower(pwr);
+        turnPlayer.SubtractPower(pwr);
     }
 
-    public void setPower(int pwr)
+    public void SetPower(int pwr)
     {
-        turnPlayer.setPower(pwr);
+        turnPlayer.SetPower(pwr);
     }
 
-    public void addCurrency(int curr)
+    public void AddCurrency(int curr)
     {
-        turnPlayer.addCurrency(curr);
+        turnPlayer.AddCurrency(curr);
     }
 
-    public void subtractCurrency(int curr)
+    public void SubtractCurrency(int curr)
     {
-        turnPlayer.subtractCurrency(curr);
+        turnPlayer.SubtractCurrency(curr);
     }
 
     //TODO: Need to access Player's currency and set it????
-    public void setCurrency(int curr)
+    public void SetCurrency(int curr)
     {
-        turnPlayer.setCurrency(curr);
+        turnPlayer.SetCurrency(curr);
     }
 }

@@ -30,16 +30,16 @@ public class Player : MonoBehaviour
     //-------------------//
     //----- GETTERS -----//
     //-------------------//
-    public int getCurrency()
+    public int GetCurrency()
     {
         return this.currency;
     }
-    public int getPower()
+    public int GetPower()
     {
         return this.power;
     }
 
-    public void addToPlayerGraveyard(PlayerCard purchasedCard)
+    public void AddToPlayerGraveyard(PlayerCard purchasedCard)
     {
         graveyard.addToGrave(purchasedCard);
     }
@@ -48,19 +48,19 @@ public class Player : MonoBehaviour
     //-------------------//
 
     // ...for Currency
-    public void setCurrency(int newCurrency)
+    public void SetCurrency(int newCurrency)
     {
         if (newCurrency >= 0)
         {
             this.currency = newCurrency;
         }
     }
-    public void addCurrency(int currency)
+    public void AddCurrency(int currency)
     {
         this.currency += currency;
         FindObjectOfType<currencyDisplay>().UpdateCurrencyDisplay();
     }
-    public void subtractCurrency(int currency)
+    public void SubtractCurrency(int currency)
     {
         if (this.currency - currency <= 0)
         {
@@ -75,21 +75,21 @@ public class Player : MonoBehaviour
     }
 
     // ...for Power
-    public void setPower(int newPower)
+    public void SetPower(int newPower)
     {
         if (newPower >= 0)
         {
             this.power = newPower;
         }
     }
-    public void addPower(int power)
+    public void AddPower(int power)
     {
         if (power > 0)
         {
             this.power += power;
         }
     }
-    public void subtractPower(int power)
+    public void SubtractPower(int power)
     {
         if (this.power - power <= 0)
         {
@@ -107,23 +107,23 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown("space") && !drawn)
         {
             Debug.Log("initial draw");
-            initialDraw();
+            InitialDraw();
             drawn = true;
         }
         else if (Input.GetKeyDown("space") && drawn)
         {
-            drawCard();
+            DrawCard();
         }
     }
 
     /* Adds a card to your hand */
-    private void drawCard()
+    private void DrawCard()
     {
         hand.AddCard();
     }
 
-    private void initialDraw()
+    private void InitialDraw()
     {
-        hand.turnStartDraw();
+        hand.TurnStartDraw();
     }
 }

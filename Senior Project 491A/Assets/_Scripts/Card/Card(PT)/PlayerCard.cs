@@ -18,14 +18,14 @@ public class PlayerCard : Card
     public OnPurchaseEffectBase effect;
 
     //When purchasing card from shop call this method from an event trigger
-    public void purchaseCard()
+    public void PurchaseCard()
     {
         Player player = FindObjectOfType<TurnManager>().turnPlayer;
 
-        if (cardCurrency <= player.getCurrency())
+        if (cardCurrency <= player.GetCurrency())
         {
-            player.subtractCurrency(cardCurrency);
-            player.addToPlayerGraveyard(this);
+            player.SubtractCurrency(cardCurrency);
+            player.AddToPlayerGraveyard(this);
         }
 
         effect?.Trigger(this);

@@ -32,10 +32,10 @@ public class EnemyCard : Card
     public void OnMouseDown()
     {
         Debug.Log("I have been clicked");
-        if (turnPlayer.turnPlayer.getPower() >= healthValue)
+        if (turnPlayer.turnPlayer.GetPower() >= healthValue)
         {
             Debug.Log("I can kill the enemy");
-            turnPlayer.turnPlayer.subtractPower(healthValue);
+            turnPlayer.turnPlayer.SubtractPower(healthValue);
             Destroy(this.gameObject);
         }
         else

@@ -20,7 +20,7 @@ public class DragCard : MonoBehaviour
     {
         if (card.inShop)
         {
-            card.purchaseCard();
+            card.PurchaseCard();
         }
         else
         {
