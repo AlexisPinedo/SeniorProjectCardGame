@@ -14,6 +14,7 @@ public class PlayerCard : Card
     public int cardCost;
     public int cardCurrency;
     public int cardAttack;
+    private Vector2 spotOnGrid;
 
     public OnPurchaseEffectBase effect;
 
@@ -36,5 +37,10 @@ public class PlayerCard : Card
     {
         Debug.Log("Purchasing Card with Effect.");
         effect?.Trigger(this);
+    }
+
+    public void SetCoord(Vector2 newSpot)
+    {
+        this.transform.position = newSpot;
     }
 }
