@@ -9,24 +9,15 @@ using UnityEngine;
  */
 public class Player : MonoBehaviour
 {
-    /* Player's Hand */
+    /* Player specific data  */
     [SerializeField] private Hand hand;
-
-    /* Player's Deck */
     [SerializeField] private PlayerDeck deck;
-
-    /* Player's currency count */
     [SerializeField] private int currency;
-
-    /* Player's power count */
     [SerializeField] private int power;
-
-    /* Player's Graveyard */
     [SerializeField] private Graveyard graveyard;
-
-    /* Player's Reward Pile, i.e., defeated enemies */
     [SerializeField] private List<PlayerCard> rewardPile;
 
+    /* Reference to the game's Turn Manager */
     [SerializeField] private TurnManager turnManager;
 
     private bool drawn = false;
@@ -119,10 +110,14 @@ public class Player : MonoBehaviour
             initialDraw();
             drawn = true;
         }
+        else if (Input.GetKeyDown("space") && drawn)
+        {
+            drawCard();
+        }
     }
 
     /* Adds a card to your hand */
-    void drawCard()
+    private void drawCard()
     {
         hand.AddCard();
     }
