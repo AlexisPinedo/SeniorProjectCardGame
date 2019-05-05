@@ -32,6 +32,7 @@ public class ShopTransaction : MonoBehaviour
             PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
             Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
             shopCard.transform.position = cardPosition;
+            shopCard.spotOnGrid = cardPosition;
             shopCard.inShop = true;
             cardsInShop.Add(shopCard);
             cardPositionMap.Add(cardPosition, shopCard);
@@ -53,25 +54,35 @@ public class ShopTransaction : MonoBehaviour
 
     void ManagePurchase(PlayerCard cardBought)
     {
-        Debug.Log("Event launched" + shopDeck.GetDeckSize());
+        Debug.Log("Deck cards remaining: " + shopDeck.GetDeckSize());
 
         PlayerCard found = cardsInShop.Find(i => i.spotOnGrid == cardBought.spotOnGrid);
 
-        Debug.Log("Dealing new card to shop");
-        PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
-
-        nextShopCard.gameObject.transform.position = found.gameObject.transform.position;
-        Instantiate(nextShopCard, parentObject.transform);
-        nextShopCard.inShop = true;
-        cardsInShop.Add(nextShopCard);
-
-        cardsInShop.Remove(found);
-        
-        //cardsInShop.Remove(cardBought);
         Destroy(cardBought.gameObject);
         Debug.Log("Destroyed card bought");
 
-
+        foreach(var pair in cardPositionMap){
+            Debug.Log("Searching for card in cardPositionMap...");
+            if(pair.Value == found)
+            {
+                Debug.Log("MATCH" + found + " == " + pair.Value);
+                PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
+                Debug.Log("DEALING" + nextShopCard + "IN SPOT OF" + found);
+                Vector2 availablePosition = pair.Key;
+                nextShopCard.gameObject.transform.position = availablePosition;
+                cardPositionMap.Remove(pair.Key);
+                cardPositionMap.Add(availablePosition, nextShopCard);
+                Instantiate(nextShopCard, parentObject.transform);
+                nextShopCard.inShop = true;
+                cardsInShop.Add(nextShopCard);
+                cardsInShop.Remove(found);
+                break;
+            }
+            else
+            {
+                Debug.Log("NOT A MATCH.");
+            }
+        }
 
         //If cards are delt
         //if(!initialDeal)

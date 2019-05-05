@@ -15,7 +15,6 @@ public class PlayerCard : Card
     public int cardCurrency;
     public int cardAttack;
     public Vector2 spotOnGrid;
-
     public OnPurchaseEffectBase effect;
 
 
@@ -34,7 +33,7 @@ public class PlayerCard : Card
         inShop = false;
         Debug.Log("CARD IN SHOP: " + inShop);
     }
-
+    
     private void Awake()
     {
         Debug.Log("Purchasing Card with Effect.");
