@@ -37,9 +37,6 @@ public class Boss : MonoBehaviour, IEnemy
     public EnemyDeck bossDeck;
 
     public CreateGrid EnemyGrid;
-
-    public GameObject bossGameObject;
-    public GameObject enemyComponentsGameObject;
     public BossTurnCardPlayer cardPlayer;
 
     // Start is called before the first frame update
@@ -54,9 +51,14 @@ public class Boss : MonoBehaviour, IEnemy
 
     private void OnMouseDown()
     {
-        bossGameObject = this.GetComponent<GameObject>();
-        //enemyComponentsGameObject = bossGameObject.GetComponentInParent<GameObject>();
-        //cardPlayer = enemyComponentsGameObject.GetComponentInChildren<BossTurnCardPlayer>();
-        //Debug.Log(cardPlayer.filledCardZones);
+        if(cardPlayer.filledCardZones == 0)
+        {
+            Debug.Log("can attack boss");
+        }
+        else
+        {
+            Debug.Log("Cannot attack boss there are other minions");
+
+        }
     }
 }

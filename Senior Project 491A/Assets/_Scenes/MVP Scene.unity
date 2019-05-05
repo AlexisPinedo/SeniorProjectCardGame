@@ -163,8 +163,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20101d8deb0f403469b734a1c5dd6fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCopies: 0
-  testCards: []
+  cardCopies: 3
+  testCards:
+  - {fileID: 7114663724019943612, guid: dcea999a3a439094094886811e3f2a2b, type: 3}
+  - {fileID: 7114663724019943612, guid: d7cc113ef97f8b4409144b2d57b863ea, type: 3}
+  - {fileID: 7114663724019943612, guid: 0426a66cd210e7641b35d79b4f6418b7, type: 3}
+  - {fileID: 7114663724019943612, guid: 7e09610b0df244a48a4cbf198a0a83be, type: 3}
+  - {fileID: 7114663724019943612, guid: fbb7d20385ba76042b412197efcc365a, type: 3}
+  - {fileID: 7114663724019943612, guid: d63b12521d628414d847937966b8d378, type: 3}
+  - {fileID: 7114663724019943612, guid: 1a1602f5fc52496409aeae8ff78fa420, type: 3}
+  - {fileID: 7114663724019943612, guid: 8951e7a4f7226bb44b7486db66f287c3, type: 3}
+  - {fileID: 7114663724019943612, guid: e54fc1bd343b49747b8eb5981735b5a3, type: 3}
 --- !u!1 &57440919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,8 +1330,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 140288138}
-  - {fileID: 1680180980}
   - {fileID: 2102585786}
+  - {fileID: 1680180980}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1344,6 +1353,7 @@ MonoBehaviour:
   shopDeck: {fileID: 140288137}
   parentObject: {fileID: 2102585785}
   spot: {x: 0, y: 0}
+  cardsInShop: []
 --- !u!1 &936756653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardToPlay: {fileID: 0}
-  enemyDeck: {fileID: 0}
+  enemyDeck: {fileID: 9443348}
   enemyGrid: {fileID: 718689244}
   filledCardZones: 0
   parentObject: {fileID: 324832094}
@@ -2795,7 +2805,6 @@ MonoBehaviour:
   playerObj: {fileID: 1185834758}
   phantomCard: {fileID: 7931254641057969423, guid: d168d516de07ff2e680ace77ee3c27bf,
     type: 3}
-  testCard: {fileID: 0}
 --- !u!1 &1568177357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,7 +2855,6 @@ MonoBehaviour:
   - {fileID: 6130187465402888856, guid: e13d98172a354416ea71ca35730b097a, type: 3}
   playerObj: {fileID: 588335413}
   phantomCard: {fileID: 0}
-  testCard: {fileID: 0}
 --- !u!1 &1578277351
 GameObject:
   m_ObjectHideFlags: 0
@@ -3026,9 +3034,7 @@ MonoBehaviour:
   goal: {fileID: 0}
   bossDeck: {fileID: 0}
   EnemyGrid: {fileID: 718689244}
-  bossGameObject: {fileID: 0}
-  enemyComponentsGameObject: {fileID: 0}
-  cardPlayer: {fileID: 0}
+  cardPlayer: {fileID: 1173389877}
 --- !u!61 &1580885167
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3155,7 +3161,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: a708db7f8b2ba3146918118a0128a493, type: 3}
   m_Color: {r: 0, g: 1, b: 0.058049917, a: 1}
   m_FlipX: 0
@@ -3175,12 +3181,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680180978}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 8.47, z: 0}
+  m_LocalPosition: {x: 0, y: 3.08, z: 0}
   m_LocalScale: {x: 13, y: 2, z: 1}
   m_Children:
   - {fileID: 1968618939}
   m_Father: {fileID: 934872671}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1690655416
 GameObject:
@@ -3571,8 +3577,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968618937}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.396, y: 0, z: 0}
-  m_LocalScale: {x: 0.07692307, y: 0.5, z: 1}
+  m_LocalPosition: {x: -0.39599997, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1680180980}
   m_RootOrder: 0
@@ -3768,12 +3774,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102585785}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 934872671}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6649302328480439789
 PrefabInstance:
@@ -3846,7 +3852,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyDeck
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9443348}
     - target: {fileID: 6649302327181998268, guid: bfd262ab2270da74f8b56afdd3276867,
         type: 3}
       propertyPath: bombsToShuffle

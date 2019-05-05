@@ -14,23 +14,25 @@ public class PlayerCard : Card
     public int cardCost;
     public int cardCurrency;
     public int cardAttack;
-    private Vector2 spotOnGrid;
+    public Vector2 spotOnGrid;
 
     public OnPurchaseEffectBase effect;
+
 
     //When purchasing card from shop call this method from an event trigger
     public void PurchaseCard()
     {
         Player player = FindObjectOfType<TurnManager>().turnPlayer;
 
-        if (cardCurrency <= player.GetCurrency())
+        if (cardCost <= player.GetCurrency())
         {
-            player.SubtractCurrency(cardCurrency);
+            player.SubtractCurrency(cardCost);
             player.AddToPlayerGraveyard(this);
         }
 
         effect?.Trigger(this);
         inShop = false;
+        Debug.Log("CARD IN SHOP: " + inShop);
     }
 
     private void Awake()
@@ -43,4 +45,5 @@ public class PlayerCard : Card
     {
         this.transform.position = newSpot;
     }
+
 }

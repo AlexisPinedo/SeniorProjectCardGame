@@ -39,52 +39,42 @@ public class Hand : MonoBehaviour
     public void AddCard()
     {
         PlayerCard cardDrawn;
+        bool deckIsEmpty = deck.GetDeck().Count == 0;
+        bool graveIsEmpty = graveyard.GetGraveyard().Count == 0;
 
-        if (cardsInHand > 5)
+        if (deckIsEmpty && graveIsEmpty)
         {
-            /// RESIZE CREATE GRID COORDS
-            /// MOVE CARDS ALREADY IN HAND TO THEIR RESPECTIVE LOCATION
-            /// THIS DOESN'T WORK CORRECTLY YET
-            handGrid.ResizeGrid(handGrid.size * 0.88f, handGrid.xValUnits + 1);
-            cardSpot = new Vector2();
-
-            foreach (GameObject card in inHandObjects)
-            {
-                Debug.Log("Card is:\t" + card);
-                Debug.Log("Card at:\t" + card.transform.position);
-
-                // Change their coordinates
-                Vector2 spawnPoint = handGrid.GetNearestPointOnGrid(cardSpot);
-                //card.SetCoord(spawnPoint);
-
-
-                card.transform.position = spawnPoint;
-
-
-
-                Debug.Log("Card now at:\t" + card.transform.position);
-                cardSpot.x += handGrid.size;
-            }
+            Debug.Log("No cards to draw");
+            cardDrawn = null;
         }
-
-        // Draw cards from the deck if there are cards in the Deck
-        if (deck.GetDeck().Count > 0)
-        {
-            cardDrawn = (PlayerCard)deck.DrawCard();
-        }
-        // Otherwise, make the Graveyard your Deck now
-        else if (graveyard.GetGraveyard().Count > 0)
-        {
-            graveyard.MoveToDeck(deck);    // Move cards from Graveyard to the Deck
-            cardDrawn = (PlayerCard)deck.DrawCard();
-        }
-        // DEBUGGING PURPOSES
         else
         {
-            cardDrawn = deck.testCard;
-        }
+            if (deckIsEmpty && !graveIsEmpty)
+            {
+                graveyard.MoveToDeck(deck);
+            }
 
-        PlaceCard(cardDrawn);
+            cardDrawn = (PlayerCard)deck.DrawCard();
+        }
+        
+        if (cardDrawn != null)
+        {
+            if (cardsInHand > 5)
+            {
+                handGrid.ResizeGrid(handGrid.size * 0.88f, handGrid.xValUnits + 1);
+                cardSpot = new Vector2();
+
+                foreach (GameObject card in inHandObjects)
+                {
+                    // Change their coordinates
+                    Vector2 spawnPoint = handGrid.GetNearestPointOnGrid(cardSpot);
+                    card.transform.position = spawnPoint;
+                    cardSpot.x += handGrid.size;
+                }
+            }
+            
+            PlaceCard(cardDrawn);
+        }
     }
 
     /* Removes a PlayerCard if it exists in the Hand */
@@ -149,12 +139,12 @@ public class Hand : MonoBehaviour
     {
         Vector2 spawnPoint;
         spawnPoint = handGrid.GetNearestPointOnGrid(cardSpot);
-        
+
         if (handGrid.IsPlaceable(spawnPoint))
         {
             card.SetCoord(spawnPoint);
             hand.Add(card);
-            
+
             inHandObjects.Add(Instantiate(card, this.transform).gameObject);
             cardsInHand += 1;
             cardSpot.x += handGrid.size;

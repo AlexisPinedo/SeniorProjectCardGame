@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7114663724019943615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.05, y: 2.37, z: 0}
+  m_LocalPosition: {x: 4.05, y: 4.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8da9d290ace6b6842854dac7280bc157, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 036649ce69bd94ff88906df4ed417280, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,15 +98,11 @@ MonoBehaviour:
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
-  manager: {fileID: 0}
-  bossZones: {fileID: 0}
-  inShop: 0
-  cardCost: 0
-  cardCurrency: 0
-  cardAttack: 0
   rewardValue: 1
   healthValue: 3
   turnPlayer: {fileID: 0}
+  manager: {fileID: 0}
+  bossZones: {fileID: 0}
 --- !u!61 &1640977415944639342
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124,7 +120,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3333334, y: 1.6670737}
+    oldSize: {x: 1.25, y: 1.75}
     newSize: {x: 1.3333334, y: 1.6666666}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

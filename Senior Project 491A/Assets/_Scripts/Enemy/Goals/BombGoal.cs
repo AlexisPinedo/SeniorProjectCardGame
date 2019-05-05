@@ -15,12 +15,12 @@ public class BombGoal : Goal
 
     private void Awake()
     {
-        //for(int i = 0; i < bombsToShuffle; i++)
-        //{
-        //    Debug.Log("Adding bomb card");
-        //    enemyDeck.AddCard(bombCard);
-        //}
-        //enemyDeck.Shuffle();
+        for (int i = 0; i < bombsToShuffle; i++)
+        {
+            Debug.Log("Adding bomb card");
+            enemyDeck.AddCard(bombCard);
+        }
+        enemyDeck.Shuffle();
     }
 
     private void OnEnable()

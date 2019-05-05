@@ -6,10 +6,16 @@ using Vector3 = UnityEngine.Vector3;
 
 public class DragCard : MonoBehaviour
 {
+    public delegate void _onCardPurschased(PlayerCard cardBought);
+    public static event _onCardPurschased CardPurchased;
+
+
     private Vector3 screenPoint;
     private Vector3 offset;
 
     private PlayerCard card;
+
+
 
     public void Awake()
     {
@@ -20,7 +26,12 @@ public class DragCard : MonoBehaviour
     {
         if (card.inShop)
         {
-            card.PurchaseCard();
+            //Debug.Log("MOUSE DOWN");
+            //card.PurchaseCard();
+            if(CardPurchased != null)
+            {
+                CardPurchased.Invoke(card);
+            }
         }
         else
         {
@@ -30,14 +41,14 @@ public class DragCard : MonoBehaviour
                      Camera.main.ScreenToWorldPoint(
                          new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         }
-        
     }
 
-    void OnMouseDrag()
-    {
-        Vector3 cursorScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z); //stores position of cursor in screen space
-        Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
+    //void OnMouseDrag()
+    //{
+    //    //Debug.Log("MOUSE DRAG");
+    //    Vector3 cursorScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z); //stores position of cursor in screen space
+    //    Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
 
-        transform.position = cursorPosition; //updates position of game object
-    }
+    //    transform.position = cursorPosition; //updates position of game object
+    //}
 }
