@@ -5,9 +5,11 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Prefabs" t="Include">
-          <e p="Card Effects" t="Include">
-            <e p="CardEffect.cs" t="Include" />
-            <e p="UpdateCurrency.cs" t="Include" />
+          <e p="Player Card Shop Prefabs" t="Include">
+            <e p="Card Effects" t="Include">
+              <e p="CardEffect.cs" t="Include" />
+              <e p="UpdateCurrency.cs" t="Include" />
+            </e>
           </e>
         </e>
         <e p="_Scripts" t="Include">
@@ -58,6 +60,7 @@
             <e p="PlayerDeck.cs" t="Include" />
             <e p="playerSwitch.cs" t="Include" />
           </e>
+          <e p="PlayZone.cs" t="Include" />
           <e p="SceneRestarter.cs" t="Include" />
           <e p="Sharp Accent Card Game" t="Include">
             <e p="Card.cs" t="Include" />

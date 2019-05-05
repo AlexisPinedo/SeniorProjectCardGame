@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="892375cf-62fa-4d33-afad-b6728836578f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Card/Card(PT)/PlayerCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Card/Card(PT)/PlayerCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Card/DragCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Card/DragCard.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Shop/ShopTransaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Shop/ShopTransaction.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,20 +27,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/_Scripts/Shop/ShopTransaction.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
+            <state relative-caret-position="288">
               <caret line="21" selection-start-line="21" selection-end-line="21" />
               <folding>
-                <marker date="1557030907515" expanded="true" signature="124:2520" ph="{...}" />
-                <marker date="1557030907515" expanded="true" signature="781:1405" ph="{...}" />
-                <marker date="1557030907515" expanded="true" signature="903:1370" ph="{...}" />
-                <marker date="1557030907515" expanded="true" signature="1424:2517" ph="{...}" />
-                <marker date="1557030907515" expanded="true" signature="1483:2178" ph="{...}" />
-                <marker date="1557030907515" expanded="true" signature="1604:2168" ph="{...}" />
-                <marker date="1557030907515" expanded="true" signature="1730:2154" ph="{...}" />
-                <marker date="1557030907515" expanded="true" signature="2187:2501" ph="/* if(cardsDelt &amp;&amp; shopItems &lt; MAX_SHOP_ITEMS) ... */" />
+                <marker date="1557034020296" expanded="false" signature="6:78" ph="..." />
+                <marker date="1557034020296" expanded="true" signature="124:2310" ph="{...}" />
+                <marker date="1557034020296" expanded="true" signature="778:1444" ph="{...}" />
+                <marker date="1557034020296" expanded="true" signature="900:1409" ph="{...}" />
+                <marker date="1557034020296" expanded="true" signature="1463:2308" ph="{...}" />
+                <marker date="1557034020296" expanded="true" signature="1522:2302" ph="{...}" />
+                <marker date="1557034020296" expanded="true" signature="1643:2292" ph="{...}" />
+                <marker date="1557034020296" expanded="true" signature="1769:2278" ph="{...}" />
+                <marker date="1557034020296" expanded="true" signature="1844:2259" ph="{...}" />
+                <marker date="1557034020296" expanded="true" signature="1927:2237" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/_Scripts/Card/DragCard.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <marker date="1557034327787" expanded="false" signature="6:101" ph="..." />
+                <marker date="1557034327787" expanded="true" signature="140:1221" ph="{...}" />
+                <marker date="1557034327787" expanded="true" signature="257:312" ph="{...}" />
+                <marker date="1557034327787" expanded="true" signature="335:791" ph="{...}" />
+                <marker date="1557034327787" expanded="true" signature="366:419" ph="{...}" />
+                <marker date="1557034327787" expanded="true" signature="432:785" ph="{...}" />
+                <marker date="1557034327787" expanded="true" signature="814:1219" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -59,6 +78,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Sharp Accent Card Game/Card.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Shop/ShopTransaction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Player/Graveyard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Card/DragCard.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -91,6 +111,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="SolutionExplorer">
+        <option name="show-all-files" value="false" />
+      </pane>
+      <pane id="FileSystemExplorer" />
+      <pane id="AssemblyExplorer" />
       <pane id="UnityExplorer">
         <subPane>
           <expand>
@@ -124,11 +149,6 @@
         </subPane>
         <option name="show-hidden-items" value="false" />
         <option name="show-project-names" value="true" />
-      </pane>
-      <pane id="AssemblyExplorer" />
-      <pane id="FileSystemExplorer" />
-      <pane id="SolutionExplorer">
-        <option name="show-all-files" value="false" />
       </pane>
     </panes>
   </component>
@@ -196,11 +216,12 @@
       <workItem from="1556746177195" duration="24000" />
       <workItem from="1557030968363" duration="33000" />
       <workItem from="1557031070853" duration="15000" />
+      <workItem from="1557034329648" duration="596000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16972000" />
+    <option name="totallyTimeSpent" value="17568000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -213,6 +234,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="250" y="39" width="1135" height="968" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18414097" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -420,17 +442,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/_Scripts/Shop/ShopTransaction.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
+        <state relative-caret-position="288">
           <caret line="21" selection-start-line="21" selection-end-line="21" />
           <folding>
-            <marker date="1557030907515" expanded="true" signature="124:2520" ph="{...}" />
-            <marker date="1557030907515" expanded="true" signature="781:1405" ph="{...}" />
-            <marker date="1557030907515" expanded="true" signature="903:1370" ph="{...}" />
-            <marker date="1557030907515" expanded="true" signature="1424:2517" ph="{...}" />
-            <marker date="1557030907515" expanded="true" signature="1483:2178" ph="{...}" />
-            <marker date="1557030907515" expanded="true" signature="1604:2168" ph="{...}" />
-            <marker date="1557030907515" expanded="true" signature="1730:2154" ph="{...}" />
-            <marker date="1557030907515" expanded="true" signature="2187:2501" ph="/* if(cardsDelt &amp;&amp; shopItems &lt; MAX_SHOP_ITEMS) ... */" />
+            <marker date="1557034020296" expanded="false" signature="6:78" ph="..." />
+            <marker date="1557034020296" expanded="true" signature="124:2310" ph="{...}" />
+            <marker date="1557034020296" expanded="true" signature="778:1444" ph="{...}" />
+            <marker date="1557034020296" expanded="true" signature="900:1409" ph="{...}" />
+            <marker date="1557034020296" expanded="true" signature="1463:2308" ph="{...}" />
+            <marker date="1557034020296" expanded="true" signature="1522:2302" ph="{...}" />
+            <marker date="1557034020296" expanded="true" signature="1643:2292" ph="{...}" />
+            <marker date="1557034020296" expanded="true" signature="1769:2278" ph="{...}" />
+            <marker date="1557034020296" expanded="true" signature="1844:2259" ph="{...}" />
+            <marker date="1557034020296" expanded="true" signature="1927:2237" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/_Scripts/Card/DragCard.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <marker date="1557034327787" expanded="false" signature="6:101" ph="..." />
+            <marker date="1557034327787" expanded="true" signature="140:1221" ph="{...}" />
+            <marker date="1557034327787" expanded="true" signature="257:312" ph="{...}" />
+            <marker date="1557034327787" expanded="true" signature="335:791" ph="{...}" />
+            <marker date="1557034327787" expanded="true" signature="366:419" ph="{...}" />
+            <marker date="1557034327787" expanded="true" signature="432:785" ph="{...}" />
+            <marker date="1557034327787" expanded="true" signature="814:1219" ph="{...}" />
           </folding>
         </state>
       </provider>
