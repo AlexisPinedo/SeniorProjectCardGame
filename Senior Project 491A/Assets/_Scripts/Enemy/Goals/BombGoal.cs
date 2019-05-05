@@ -13,10 +13,9 @@ public class BombGoal : Goal
     public EnemyDeck enemyDeck;
 
 
-
     private void Awake()
     {
-        for(int i = 0; i < bombsToShuffle; i++)
+        for (int i = 0; i < bombsToShuffle; i++)
         {
             Debug.Log("Adding bomb card");
             enemyDeck.AddCard(bombCard);

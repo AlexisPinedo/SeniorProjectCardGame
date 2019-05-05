@@ -37,6 +37,7 @@ public class Boss : MonoBehaviour, IEnemy
     public EnemyDeck bossDeck;
 
     public CreateGrid EnemyGrid;
+    public BossTurnCardPlayer cardPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -48,9 +49,16 @@ public class Boss : MonoBehaviour, IEnemy
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
+        if(cardPlayer.filledCardZones == 0)
+        {
+            Debug.Log("can attack boss");
+        }
+        else
+        {
+            Debug.Log("Cannot attack boss there are other minions");
 
+        }
     }
 }

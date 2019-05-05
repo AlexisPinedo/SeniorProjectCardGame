@@ -10,13 +10,14 @@ public class PlayerCard : Card
 
     //All this stuff below belongs in Player Card Class
     //========================================================
-    public bool inShop = false;
+    public bool inShop = true;
     public int cardCost;
     public int cardCurrency;
     public int cardAttack;
-    private Vector2 spotOnGrid;
+    public Vector2 spotOnGrid;
 
     public OnPurchaseEffectBase effect;
+
 
     //When purchasing card from shop call this method from an event trigger
     public void PurchaseCard()
@@ -31,6 +32,7 @@ public class PlayerCard : Card
 
         effect?.Trigger(this);
         inShop = false;
+        Debug.Log("CARD IN SHOP: " + inShop);
     }
 
     private void Awake()
@@ -43,4 +45,5 @@ public class PlayerCard : Card
     {
         this.transform.position = newSpot;
     }
+
 }

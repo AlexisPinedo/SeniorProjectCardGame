@@ -98,15 +98,11 @@ MonoBehaviour:
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
-  manager: {fileID: 0}
-  bossZones: {fileID: 0}
-  inShop: 0
-  cardCost: 0
-  cardCurrency: 0
-  cardAttack: 0
   rewardValue: 2
   healthValue: 10
   turnPlayer: {fileID: 0}
+  manager: {fileID: 0}
+  bossZones: {fileID: 0}
 --- !u!61 &3777293621994436727
 BoxCollider2D:
   m_ObjectHideFlags: 0
