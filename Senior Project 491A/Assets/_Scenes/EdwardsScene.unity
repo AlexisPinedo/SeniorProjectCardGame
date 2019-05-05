@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 10
+    serializedVersion: 12
     m_Resolution: 2
     m_BakeResolution: 40
     m_AtlasSize: 1024
@@ -62,6 +62,7 @@ LightmapSettings:
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -76,10 +77,16 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 2
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVRFilteringMode: 1
+    m_PVREnvironmentMIS: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -88,6 +95,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
+    m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -217,11 +225,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 140288136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056a92b0d7f014edeb431bf437a562b1, type: 3}
+  m_Script: {fileID: 11500000, guid: b93421ccf3969ff46829900d1e3df751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersGraveyard: {fileID: 0}
-  gameCard: {fileID: 845225707}
+  cardCopies: 0
+  testCards: []
 --- !u!4 &140288138
 Transform:
   m_ObjectHideFlags: 0
@@ -274,9 +282,10 @@ Camera:
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -361,9 +370,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ebbde6aa7026444a11b1e8b7346d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
-  xValUnits: 6
-  yValUnits: 1
+  _size: 1
+  _xValUnits: 1
+  _yValUnits: 1
   GizmoColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &324832094
 GameObject:
@@ -507,9 +516,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ebbde6aa7026444a11b1e8b7346d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
-  xValUnits: 5
-  yValUnits: 1
+  _size: 1
+  _xValUnits: 1
+  _yValUnits: 1
   GizmoColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &643660909
 GameObject:
@@ -665,9 +674,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ebbde6aa7026444a11b1e8b7346d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
-  xValUnits: 7
-  yValUnits: 2
+  _size: 1
+  _xValUnits: 1
+  _yValUnits: 1
   GizmoColor: {r: 1, g: 0.008412459, b: 0, a: 1}
 --- !u!224 &718689245
 RectTransform:
@@ -825,21 +834,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123189c74fe5744a9b459db7ef391eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shop:
-  - {fileID: 845225707}
-  - {fileID: 845225707}
-  - {fileID: 845225707}
-  - {fileID: 845225707}
-  - {fileID: 845225707}
-  - {fileID: 845225707}
-  - {fileID: 845225707}
-  - {fileID: 845225707}
-  - {fileID: 845225707}
-  - {fileID: 845225707}
   shopItems: 0
-  maxShopItems: 5
+  MAX_SHOP_ITEMS: 6
   shopGrid: {fileID: 1968618938}
-  shopDeck: {fileID: 140288137}
+  shopDeck: {fileID: 0}
+  parentObject: {fileID: 0}
   spot: {x: 0, y: 0}
 --- !u!1 &936756653
 GameObject:
@@ -1063,17 +1062,20 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1120834522}
@@ -1178,9 +1180,13 @@ MonoBehaviour:
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
+  manager: {fileID: 0}
+  bossZones: {fileID: 0}
+  inShop: 0
   cardCost: 0
   cardCurrency: 0
   cardAttack: 0
+  effect: {fileID: 0}
 --- !u!4 &1170254164
 Transform:
   m_ObjectHideFlags: 0
@@ -1244,7 +1250,7 @@ MonoBehaviour:
   power: 0
   graveyard: {fileID: 1486279741}
   rewardPile: []
-  handGrid: {fileID: 286105644}
+  turnManager: {fileID: 0}
 --- !u!1 &1194804835
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,17 +1313,20 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1194804838}
@@ -1654,17 +1663,20 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1526216804}
@@ -1880,7 +1892,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
-  deck: {fileID: 0}
+  playerObj: {fileID: 0}
+  playerSpace: {fileID: 0}
 --- !u!1 &1608593736
 GameObject:
   m_ObjectHideFlags: 0
@@ -2196,17 +2209,20 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1793028595}
@@ -2281,9 +2297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ebbde6aa7026444a11b1e8b7346d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 3
-  xValUnits: 5
-  yValUnits: 1
+  _size: 1
+  _xValUnits: 1
+  _yValUnits: 1
   GizmoColor: {r: 1, g: 0, b: 0.7849541, a: 1}
 --- !u!4 &1968618939
 Transform:

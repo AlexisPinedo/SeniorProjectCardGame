@@ -9,34 +9,43 @@
             <e p="CardEffect.cs" t="Include" />
             <e p="UpdateCurrency.cs" t="Include" />
           </e>
-          <e p="Enemy" t="Include">
-            <e p="EnemyCard.cs" t="Include" />
-          </e>
         </e>
         <e p="_Scripts" t="Include">
-          <e p="Boss.cs" t="Include" />
+          <e p="AvatarSwitch.cs" t="Include" />
           <e p="buttonInputEventHandler.cs" t="Include" />
-          <e p="Card Effects" t="Include">
-            <e p="CardEffects.cs" t="Include" />
-            <e p="OnDeath.cs" t="Include" />
-            <e p="OnPlay.cs" t="Include" />
-            <e p="PassiveEffect.cs" t="Include" />
-          </e>
-          <e p="Card(PT)" t="Include">
+          <e p="Card" t="Include">
+            <e p="Card Effects" t="Include">
+              <e p="CardEffects.cs" t="Include" />
+              <e p="OnDeath.cs" t="Include" />
+              <e p="OnPlay.cs" t="Include" />
+              <e p="PassiveEffect.cs" t="Include" />
+            </e>
+            <e p="Card(PT)" t="Include">
+              <e p="PlayerCard.cs" t="Include" />
+            </e>
             <e p="Card.cs" t="Include" />
+            <e p="CardExample.cs" t="Include" />
+            <e p="DragCard.cs" t="Include" />
+            <e p="DrawCard.cs" t="Include" />
+            <e p="EnemyCard.cs" t="Include" />
           </e>
+          <e p="ConsoleTest.cs" t="Include" />
           <e p="CreateGrid.cs" t="Include" />
-          <e p="currencyDisplay.cs" t="Include" />
-          <e p="Deck.cs" t="Include" />
-          <e p="DrawCard.cs" t="Include" />
-          <e p="Goal.cs" t="Include" />
-          <e p="Graveyard.cs" t="Include" />
-          <e p="Hand.cs" t="Include" />
-          <e p="IEnemy.cs" t="Include" />
-          <e p="Minion.cs" t="Include" />
-          <e p="Player.cs" t="Include" />
+          <e p="Enemy" t="Include">
+            <e p="Boss.cs" t="Include" />
+            <e p="Goal.cs" t="Include" />
+            <e p="IEnemy.cs" t="Include" />
+            <e p="Minion.cs" t="Include" />
+          </e>
+          <e p="Hand and Deck" t="Include">
+            <e p="Deck.cs" t="Include" />
+            <e p="Hand.cs" t="Include" />
+          </e>
+          <e p="Player" t="Include">
+            <e p="Graveyard.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
+          </e>
           <e p="playerSwitch.cs" t="Include" />
-          <e p="powerDisplay.cs" t="Include" />
           <e p="Reward.cs" t="Include" />
           <e p="Sharp Accent Card Game" t="Include">
             <e p="Card.cs" t="Include" />
@@ -49,8 +58,49 @@
             <e p="ElementText.cs" t="Include" />
           </e>
           <e p="ShopTransaction.cs" t="Include" />
+          <e p="UI" t="Include">
+            <e p="buttonInputEventHandler.cs" t="Include" />
+            <e p="currencyDisplay.cs" t="Include" />
+            <e p="powerDisplay.cs" t="Include" />
+          </e>
         </e>
-        <e p="CardExample.cs" t="Include" />
+        <e p="BossTurnCardPlayer.cs" t="Include" />
+        <e p="TextMesh Pro" t="Include">
+          <e p="Fonts" t="Include">
+            <e p="LiberationSans - OFL.txt" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="LineBreaking Following Characters.txt" t="Include" />
+            <e p="LineBreaking Leading Characters.txt" t="Include" />
+            <e p="Shaders" t="Include">
+              <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+              <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+              <e p="TMP_Bitmap.shader" t="Include" />
+              <e p="TMP_SDF 2.shader" t="Include" />
+              <e p="TMP_SDF Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Overlay 2.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface 2.shader" t="Include" />
+              <e p="TMP_SDF-Surface-Mobile 2.shader" t="Include" />
+              <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface.shader" t="Include" />
+              <e p="TMP_SDF.shader" t="Include" />
+              <e p="TMP_Sprite 2.shader" t="Include" />
+              <e p="TMP_Sprite.shader" t="Include" />
+              <e p="TMPro.cginc" t="Include" />
+              <e p="TMPro_Properties.cginc" t="Include" />
+              <e p="TMPro_Surface 2.cginc" t="Include" />
+              <e p="TMPro_Surface.cginc" t="Include" />
+            </e>
+          </e>
+          <e p="Sprites" t="Include">
+            <e p="EmojiOne Attribution 2.txt" t="Include" />
+            <e p="EmojiOne Attribution.txt" t="Include" />
+          </e>
+        </e>
+        <e p="TurnManager.cs" t="Include" />
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />

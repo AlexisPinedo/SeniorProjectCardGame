@@ -2,33 +2,84 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buttonInputEventHandler : MonoBehaviour
+public class ButtonInputEventHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public delegate void settingsButtonAction();
+    public static event settingsButtonAction SettingsClicked;
+
+    public delegate void StartBattleButtonAction();
+    public static event StartBattleButtonAction StartClicked;
+
+    public delegate void GraveyardButtonAction();
+    public static event GraveyardButtonAction GraveyardClicked;
+
+    public delegate void HeroPowerButtonAction();
+    public static event HeroPowerButtonAction HeroPowerClicked;
+
+    public delegate void EndTurnButtonAction();
+    public static event EndTurnButtonAction EndTurnClicked;
+
+    public void SettingsButtonOnClick()
     {
-        
+        //Debug.Log("clicked");
+        if (SettingsClicked != null)
+        {
+            SettingsClicked();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartBattleButtonOnClick()
     {
-        
+        if (StartClicked != null)
+        {
+            StartClicked();
+        }
     }
 
+    public void GraveyardButtonOnClick()
+    {
+        if (GraveyardClicked != null)
+        {
+            GraveyardClicked();
+        }
+    }
 
-    public void settingsButtonClick()
+    public void HeroPowerButtonOnClick()
+    {
+        if (HeroPowerClicked != null)
+        {
+            HeroPowerClicked();
+        }
+    }
+
+    public void EndTurnButtonOnClick()
+    {
+        if (HeroPowerClicked != null)
+        {
+            EndTurnClicked();
+        }
+    }
+
+    public void test()
     {
         Debug.Log("clicked");
     }
 
-    public void startBattleButtonClick()
+    public void OnEnable()
     {
-        Debug.Log("clicked");
+        SettingsClicked += test;
+        StartClicked += test;
+        GraveyardClicked += test;
+        HeroPowerClicked += test;
+        EndTurnClicked += test;
     }
 
-    public void graveyardButtonClick()
+    public void OnDisable()
     {
-        Debug.Log("clicked");
+        SettingsClicked -= test;
+        StartClicked -= test;
+        GraveyardClicked -= test;
+        HeroPowerClicked -= test;
+        EndTurnClicked -= test;
     }
 }
