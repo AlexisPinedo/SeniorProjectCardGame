@@ -41,35 +41,51 @@ public class ShopTransaction : MonoBehaviour
         initialDeal = false;
     }
 
-    void Update()
+    private void OnEnable()
     {
-        //If cards are delt
-        if(!initialDeal)
-        {
-            //Cycle though all cards in the shop
-            foreach (PlayerCard availableCard in cardsInShop)
-            {
-                //Debug.Log(availableCard.inShop);
-                //If a card is no longer in the shop, it is purchased
-                if(!availableCard.inShop)
-                {
-                    Debug.Log(availableCard.inShop);
-                    Debug.Log("Found purchased card");
-                    foreach(var pair in cardPositionMap)
-                    {
-                        Debug.Log("Searching for card pair");
-                        if(pair.Value.Equals(availableCard))
-                        {
-                            Debug.Log("Dealt new card to shop");
-                            PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
-                            shopCard.transform.position = pair.Key;
-                            shopCard.inShop = true;
-                            cardsInShop.Add(shopCard);
-                        }
-                    }
+        DragCard.CardPurchased += ManagePurchase;
+    }
 
-                }
-            }
-        }
+    private void OnDisable()
+    {
+        DragCard.CardPurchased -= ManagePurchase;
+    }
+
+    void ManagePurchase(PlayerCard cardBought)
+    {
+        Debug.Log("Event launched");
+        //PlayerCard found = FindObjectOfType<>(typeof(PlayerCard));
+        
+        cardsInShop.Remove(cardBought);
+        Destroy(cardBought.gameObject);
+        Debug.Log("Destroyed card bought");
+        //If cards are delt
+        //if(!initialDeal)
+        //{
+            ////Cycle though all cards in the shop
+            //foreach (PlayerCard availableCard in cardsInShop)
+            //{
+            //    //Debug.Log(availableCard.inShop);
+            //    //If a card is no longer in the shop, it is purchased
+            //    if(!availableCard.inShop)
+            //    {
+            //        Debug.Log(availableCard.inShop);
+            //        Debug.Log("Found purchased card");
+                    //foreach(var pair in cardPositionMap)
+                    //{
+                    //    Debug.Log("Searching for card pair");
+                    //    if(pair.Value == cardBought)
+                    //    {
+                    //        Debug.Log("Dealt new card to shop");
+                    //        PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
+                    //        shopCard.transform.position = pair.Key;
+                    //        shopCard.inShop = true;
+                    //        cardsInShop.Add(shopCard);
+                    //    }
+                    //}
+
+               // }
+            //}
+       //}
     }
 }
