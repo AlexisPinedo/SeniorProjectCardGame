@@ -16,6 +16,11 @@ public abstract class Deck : MonoBehaviour
 
     public List<Card> testCards = new List<Card>(10);
 
+    private void Awake()
+    {
+        FillDeck();
+    }
+
     /// TODO
     // Temp fix until we get more cards in the system
     protected void FillDeck()

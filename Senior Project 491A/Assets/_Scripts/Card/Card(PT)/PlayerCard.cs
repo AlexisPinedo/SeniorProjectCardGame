@@ -10,7 +10,7 @@ public class PlayerCard : Card
 
     //All this stuff below belongs in Player Card Class
     //========================================================
-    public bool inShop = false;
+    public bool inShop = true;
     public int cardCost;
     public int cardCurrency;
     public int cardAttack;

@@ -18,7 +18,7 @@ public class PlayerDeck : Deck
     {
         // Set Graveyard from parent Player
         playersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
-
+        
         /// TODO: Can delete later
         foreach (var card in testCards)
         {
