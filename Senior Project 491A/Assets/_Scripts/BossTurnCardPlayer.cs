@@ -28,7 +28,7 @@ public class BossTurnCardPlayer : MonoBehaviour
     {
         var location = enemyGrid.GetNearestPointOnGrid(spawnPoint);
 
-        if (enemyGrid.isPlaceable(location))
+        if (enemyGrid.IsPlaceable(location))
         {
             if (location.x == 6f && location.y == 2f)
             {

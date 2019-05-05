@@ -163,10 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 056a92b0d7f014edeb431bf437a562b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCopies: 0
-  testCards: []
-  playerObj: {fileID: 1580885163}
-  phantomCard: {fileID: 0}
 --- !u!1 &57440919
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +216,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: a708db7f8b2ba3146918118a0128a493, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1217,12 +1213,11 @@ MonoBehaviour:
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
-  manager: {fileID: 0}
-  bossZones: {fileID: 0}
   inShop: 0
   cardCost: 0
   cardCurrency: 0
   cardAttack: 0
+  effect: {fileID: 0}
 --- !u!4 &1170254164
 Transform:
   m_ObjectHideFlags: 0
@@ -1989,15 +1984,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1531956016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056a92b0d7f014edeb431bf437a562b1, type: 3}
+  m_Script: {fileID: 11500000, guid: e736b16899c598542ad54faf2bd42547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCopies: 1
+  cardCopies: 0
   testCards:
-  - {fileID: 6130187465402888856, guid: 067d89b97aa4a42aca26c9ea9f525bcc, type: 3}
-  - {fileID: 6130187465402888856, guid: 88e1c2850455c4783a0d77fd09e490f5, type: 3}
+  - {fileID: 7931254641057969423, guid: d168d516de07ff2e680ace77ee3c27bf, type: 3}
   playerObj: {fileID: 1185834758}
   phantomCard: {fileID: 101411216, guid: e7eb578cb70324b20a0fd652fcd2b616, type: 3}
+  testCard: {fileID: 5469047896742893552, guid: f0ae5b1392db18d78919c0b8902d763f,
+    type: 3}
 --- !u!1 &1568177357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2038,13 +2034,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568177357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056a92b0d7f014edeb431bf437a562b1, type: 3}
+  m_Script: {fileID: 11500000, guid: e736b16899c598542ad54faf2bd42547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCopies: 1
+  cardCopies: 0
   testCards: []
   playerObj: {fileID: 588335413}
-  phantomCard: {fileID: 0}
+  phantomCard: {fileID: 101411216, guid: e7eb578cb70324b20a0fd652fcd2b616, type: 3}
+  testCard: {fileID: 0}
 --- !u!1 &1578277351
 GameObject:
   m_ObjectHideFlags: 0

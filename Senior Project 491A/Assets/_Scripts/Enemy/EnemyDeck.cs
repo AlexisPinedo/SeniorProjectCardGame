@@ -6,7 +6,7 @@ public class EnemyDeck : Deck
 {
     private void Awake()
     {
-        fillDeck();
+        FillDeck();
     }
 
 }

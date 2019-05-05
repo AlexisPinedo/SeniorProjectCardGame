@@ -5,12 +5,8 @@ using UnityEngine;
 
 public abstract class Deck : MonoBehaviour
 {
-    //Singleton pattern to ensure only one deck is created globally.
-    // private Deck instance = null;
-
     public delegate void _cardDrawn(Card aCard);
     public static event _cardDrawn CardDrawn;
-
 
     [SerializeField]
     private Stack<Card> cardsInDeck = new Stack<Card>();
@@ -22,7 +18,7 @@ public abstract class Deck : MonoBehaviour
 
     /// TODO
     // Temp fix until we get more cards in the system
-    protected void fillDeck()
+    protected void FillDeck()
     {
         foreach (var card in testCards)
         {
@@ -37,7 +33,7 @@ public abstract class Deck : MonoBehaviour
         Shuffle();
     }
 
-    public Stack<Card> getDeck()
+    public Stack<Card> GetDeck()
     {
         return this.cardsInDeck;
     }
@@ -47,15 +43,19 @@ public abstract class Deck : MonoBehaviour
         return cardsInDeck.Peek();
     }
 
+    /* Draws a card from the deck and publishes the event for subscribers */
     public Card DrawCard()
     {
         Card cardPopped = cardsInDeck.Pop();
+
+        // Notify subscribers, if any
         if (CardDrawn != null)
         {
+            Debug.Log("Notifying subscribers");
             CardDrawn(cardPopped);
         }
-        return cardPopped;
 
+        return cardPopped;
     }
 
     public void AddCard(Card card)
@@ -81,4 +81,3 @@ public abstract class Deck : MonoBehaviour
     }
 
 }
-

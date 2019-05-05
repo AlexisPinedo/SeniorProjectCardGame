@@ -9,32 +9,16 @@ using UnityEngine;
  */
 public class Player : MonoBehaviour
 {
-    /* Player's Hand */
-    [SerializeField]
-    private Hand hand;
+    /* Player specific data  */
+    [SerializeField] private Hand hand;
+    [SerializeField] private PlayerDeck deck;
+    [SerializeField] private int currency;
+    [SerializeField] private int power;
+    [SerializeField] private Graveyard graveyard;
+    [SerializeField] private List<PlayerCard> rewardPile;
 
-    /* Player's Deck */
-    [SerializeField]
-    private PlayerDeck deck;
-
-    /* Player's currency count */
-    [SerializeField]
-    private int currency;
-
-    /* Player's power count */
-    [SerializeField]
-    private int power;
-
-    /* Player's Graveyard */
-    [SerializeField]
-    private Graveyard graveyard;
-
-    /* Player's Reward Pile, i.e., defeated enemies */
-    [SerializeField]
-    private List<PlayerCard> rewardPile;
-
-    [SerializeField]
-    private TurnManager turnManager;
+    /* Reference to the game's Turn Manager */
+    [SerializeField] private TurnManager turnManager;
 
     private bool drawn = false;
 
@@ -46,36 +30,37 @@ public class Player : MonoBehaviour
     //-------------------//
     //----- GETTERS -----//
     //-------------------//
-    public int getCurrency()
+    public int GetCurrency()
     {
         return this.currency;
     }
-    public int getPower()
+    public int GetPower()
     {
         return this.power;
     }
 
-    public void addToPlayerGraveyard(PlayerCard purchasedCard){
-        graveyard.addToGrave(purchasedCard);
+    public void AddToPlayerGraveyard(PlayerCard purchasedCard)
+    {
+        graveyard.AddToGrave(purchasedCard);
     }
     //-------------------//
     //----- SETTERS -----//
     //-------------------//
 
     // ...for Currency
-    public void setCurrency(int newCurrency)
+    public void SetCurrency(int newCurrency)
     {
         if (newCurrency >= 0)
         {
             this.currency = newCurrency;
         }
     }
-    public void addCurrency(int currency)
+    public void AddCurrency(int currency)
     {
         this.currency += currency;
         FindObjectOfType<currencyDisplay>().UpdateCurrencyDisplay();
     }
-    public void subtractCurrency(int currency)
+    public void SubtractCurrency(int currency)
     {
         if (this.currency - currency <= 0)
         {
@@ -90,21 +75,21 @@ public class Player : MonoBehaviour
     }
 
     // ...for Power
-    public void setPower(int newPower)
+    public void SetPower(int newPower)
     {
         if (newPower >= 0)
         {
             this.power = newPower;
         }
     }
-    public void addPower(int power)
+    public void AddPower(int power)
     {
         if (power > 0)
         {
             this.power += power;
         }
     }
-    public void subtractPower(int power)
+    public void SubtractPower(int power)
     {
         if (this.power - power <= 0)
         {
@@ -122,19 +107,23 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown("space") && !drawn)
         {
             Debug.Log("initial draw");
-            initialDraw();
+            InitialDraw();
             drawn = true;
+        }
+        else if (Input.GetKeyDown("space") && drawn)
+        {
+            DrawCard();
         }
     }
 
     /* Adds a card to your hand */
-    void drawCard()
+    private void DrawCard()
     {
         hand.AddCard();
     }
 
-    private void initialDraw()
+    private void InitialDraw()
     {
-        hand.turnStartDraw();
+        hand.TurnStartDraw();
     }
 }
