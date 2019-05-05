@@ -7,20 +7,16 @@ public class PlayZone : MonoBehaviour
     /* References the Match's TurnManager */
     public TurnManager manager;
 
+    /* Triggers when a PlayerCard is dragged into the Play Zone */
     void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log(col.gameObject.name + " has entered the scene");
 
-        Hand tpHand = manager.turnPlayer.GetComponentInChildren<Hand>();
-
         // Card stuff
+        Hand tpHand = manager.turnPlayer.GetComponentInChildren<Hand>();
         PlayerCard card = col.gameObject.GetComponent<PlayerCard>();
-        Debug.Log("Card Name: " + card.cardName);
-        
-        int currency = card.cardCurrency;
-        int atk = card.cardAttack;
-        Debug.Log("Currency: " + currency);
-        Debug.Log("Attack: " + atk);
+        manager.turnPlayer.AddCurrency(card.cardCurrency);
+        manager.turnPlayer.AddPower(card.cardAttack);
 
         tpHand.SendToGraveyard(card);
         GameObject.Destroy(card.gameObject);

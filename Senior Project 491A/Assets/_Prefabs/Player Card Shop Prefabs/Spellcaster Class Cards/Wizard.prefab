@@ -520,6 +520,7 @@ MonoBehaviour:
   cardCost: 9
   cardCurrency: 5
   cardAttack: 5
+  spotOnGrid: {x: 0, y: 0}
   effect: {fileID: 0}
 --- !u!114 &6130187465402888861
 MonoBehaviour:
