@@ -19,12 +19,12 @@ public class currencyDisplay : MonoBehaviour
     void Awake()
     {
         player = FindObjectOfType<TurnManager>().turnPlayer;
-        currencyStatusText.text = "CURRENCY: " + player.getCurrency();
+        currencyStatusText.text = "CURRENCY: " + player.GetCurrency();
     }
 
     public void UpdateCurrencyDisplay()
     {
         player = FindObjectOfType<TurnManager>().turnPlayer;
-        currencyStatusText.text = "CURRENCY: " + player.getCurrency();
+        currencyStatusText.text = "CURRENCY: " + player.GetCurrency();
     }
 }

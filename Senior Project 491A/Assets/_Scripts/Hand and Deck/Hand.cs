@@ -9,6 +9,7 @@ public class Hand : MonoBehaviour
 {
     /* Hand-specific refereneces*/
     [SerializeField] private List<PlayerCard> hand;
+    public List<GameObject> inHandObjects;
     private int cardsInHand = 0;
 
     /* Player references */
@@ -47,14 +48,19 @@ public class Hand : MonoBehaviour
             handGrid.ResizeGrid(handGrid.size * 0.88f, handGrid.xValUnits + 1);
             cardSpot = new Vector2();
 
-            foreach (PlayerCard card in hand)
+            foreach (GameObject card in inHandObjects)
             {
                 Debug.Log("Card is:\t" + card);
                 Debug.Log("Card at:\t" + card.transform.position);
 
                 // Change their coordinates
                 Vector2 spawnPoint = handGrid.GetNearestPointOnGrid(cardSpot);
-                card.SetCoord(spawnPoint);
+                //card.SetCoord(spawnPoint);
+
+
+                card.transform.position = spawnPoint;
+
+
 
                 Debug.Log("Card now at:\t" + card.transform.position);
                 cardSpot.x += handGrid.size;
@@ -148,8 +154,8 @@ public class Hand : MonoBehaviour
         {
             card.SetCoord(spawnPoint);
             hand.Add(card);
-            Instantiate(card, this.transform);
-
+            
+            inHandObjects.Add(Instantiate(card, this.transform).gameObject);
             cardsInHand += 1;
             cardSpot.x += handGrid.size;
         }

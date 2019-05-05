@@ -866,6 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
+  inHandObjects: []
   playerObj: {fileID: 588335413}
   playerSpace: {fileID: 1273032544}
 --- !u!1 &696593178
@@ -2781,10 +2782,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e736b16899c598542ad54faf2bd42547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCopies: 0
-  testCards: []
+  cardCopies: 2
+  testCards:
+  - {fileID: 0}
+  - {fileID: 0}
   playerObj: {fileID: 0}
   phantomCard: {fileID: 0}
+  testCard: {fileID: 0}
 --- !u!1 &1568177357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2832,6 +2836,7 @@ MonoBehaviour:
   testCards: []
   playerObj: {fileID: 0}
   phantomCard: {fileID: 0}
+  testCard: {fileID: 0}
 --- !u!1 &1578277351
 GameObject:
   m_ObjectHideFlags: 0
@@ -3053,7 +3058,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9437f05b764824c4b8cf7be7229bab7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: []
+  hand:
+  - {fileID: 0}
+  - {fileID: 0}
+  inHandObjects:
+  - {fileID: 0}
+  - {fileID: 0}
   playerObj: {fileID: 1185834758}
   playerSpace: {fileID: 57440919}
 --- !u!1 &1680180978
