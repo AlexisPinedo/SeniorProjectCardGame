@@ -19,7 +19,7 @@ public class ShopTransaction : MonoBehaviour
     private bool initialDeal = true;
     
     public List<PlayerCard> cardsInShop;
-    Dictionary<PlayerCard, Vector2> cardPositionMap = new Dictionary<PlayerCard, Vector2>();
+    Dictionary<Vector2, PlayerCard> cardPositionMap = new Dictionary<Vector2, PlayerCard>();
 
     //Make sure to separate this script into a Player Card component not Card, still need to implement a proper deck class for Player and for Enemy
     void Awake()
@@ -33,7 +33,7 @@ public class ShopTransaction : MonoBehaviour
             shopCard.transform.position = cardPosition;
             shopCard.inShop = true;
             cardsInShop.Add(shopCard);
-            cardPositionMap.Add(shopCard, cardPosition);
+            cardPositionMap.Add(cardPosition, shopCard);
             Instantiate(shopCard, parentObject.transform);
             spot.x += 2.0f;
         }
@@ -51,25 +51,19 @@ public class ShopTransaction : MonoBehaviour
                 //If a card is no longer in the shop, it is purchased
                 if(!availableCard.inShop)
                 {
-                    Vector2 availablePosition = cardPositionMap[availableCard];
-                    PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
-                    shopCard.transform.position = availablePosition;
-                    shopCard.inShop = true;
-                    cardsInShop.Add(shopCard);
-                    Instantiate(shopCard, parentObject.transform);
+                    foreach(var pair in cardPositionMap)
+                    {
+                        if(pair.Value.Equals(availableCard))
+                        {
+                            PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
+                            shopCard.transform.position = pair.Key;
+                            shopCard.inShop = true;
+                            cardsInShop.Add(shopCard);
+                        }
+                    }
+
                 }
             }
         }
-
-        // if(cardsDelt && shopItems < MAX_SHOP_ITEMS)
-        // {
-        //     PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
-        //     Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(new Vector2());
-        //     shopCard.transform.position = cardPosition;
-        //     shopItems++;
-        // }
-
-        
     }
-
 }
