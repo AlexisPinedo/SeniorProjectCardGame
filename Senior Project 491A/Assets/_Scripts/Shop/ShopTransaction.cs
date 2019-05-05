@@ -15,7 +15,7 @@ public class ShopTransaction : MonoBehaviour
     public GameObject parentObject;
 
     [SerializeField]
-    private Vector2 spot = new Vector2();
+    private Vector2 spawnPoint = new Vector2();
     private bool initialDeal = true;
     
     public List<PlayerCard> cardsInShop;
@@ -30,14 +30,15 @@ public class ShopTransaction : MonoBehaviour
             Debug.Log("Init cards delt");
             shopDeck.Shuffle();
             PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
-            Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
+            Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spawnPoint);
             shopCard.transform.position = cardPosition;
             shopCard.spotOnGrid = cardPosition;
             shopCard.inShop = true;
             cardsInShop.Add(shopCard);
+            shopGrid.SetObjectPlacement(cardPosition, true);
             cardPositionMap.Add(cardPosition, shopCard);
             Instantiate(shopCard, parentObject.transform);
-            spot.x += 2.0f;
+            spawnPoint.x += 2.0f;
         }
         initialDeal = false;
     }
@@ -54,6 +55,7 @@ public class ShopTransaction : MonoBehaviour
 
     void ManagePurchase(PlayerCard cardBought)
     {
+
         Debug.Log("Deck cards remaining: " + shopDeck.GetDeckSize());
 
         PlayerCard found = cardsInShop.Find(i => i.spotOnGrid == cardBought.spotOnGrid);
@@ -61,28 +63,46 @@ public class ShopTransaction : MonoBehaviour
         Destroy(cardBought.gameObject);
         Debug.Log("Destroyed card bought");
 
-        foreach(var pair in cardPositionMap){
-            Debug.Log("Searching for card in cardPositionMap...");
-            if(pair.Value == found)
-            {
-                Debug.Log("MATCH" + found + " == " + pair.Value);
-                PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
-                Debug.Log("DEALING" + nextShopCard + "IN SPOT OF" + found);
-                Vector2 availablePosition = pair.Key;
-                nextShopCard.gameObject.transform.position = availablePosition;
-                cardPositionMap.Remove(pair.Key);
-                cardPositionMap.Add(availablePosition, nextShopCard);
-                Instantiate(nextShopCard, parentObject.transform);
-                nextShopCard.inShop = true;
-                cardsInShop.Add(nextShopCard);
-                cardsInShop.Remove(found);
-                break;
-            }
-            else
-            {
-                Debug.Log("NOT A MATCH.");
-            }
+        var location = shopGrid.GetNearestPointOnGrid(spawnPoint);
+
+        if (shopGrid.IsPlaceable(location))
+        {
+            PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
+            nextShopCard.gameObject.transform.position = location;
+            nextShopCard.spotOnGrid = location;
+            nextShopCard.inShop = true;
+            cardsInShop.Add(nextShopCard);
         }
+
+        cardsInShop.Remove(found);
+
+
+        //Debug.Log("Deck cards remaining: " + shopDeck.GetDeckSize());
+
+      
+        //foreach(var pair in cardPositionMap){
+        //    Debug.Log("Searching for card in cardPositionMap...");
+        //    if(pair.Value == found)
+        //    {
+        //        Debug.Log("MATCH" + found + " == " + pair.Value);
+        //        PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
+        //        Debug.Log("DEALING" + nextShopCard + "IN SPOT OF" + found);
+        //        Vector2 availablePosition = pair.Key;
+        //        nextShopCard.gameObject.transform.position = availablePosition;
+        //        cardPositionMap.Remove(pair.Key);
+        //        cardPositionMap.Add(availablePosition, nextShopCard);
+        //        Instantiate(nextShopCard, parentObject.transform);
+        //        nextShopCard.inShop = true;
+        //        cardsInShop.Add(nextShopCard);
+        //        cardsInShop.Remove(found);
+        //        break;
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("NOT A MATCH.");
+        //    }
+        //}
+
 
         //If cards are delt
         //if(!initialDeal)
