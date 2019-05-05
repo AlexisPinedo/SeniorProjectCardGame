@@ -19,7 +19,7 @@ public class ShopTransaction : MonoBehaviour
     private bool initialDeal = true;
     
     public List<PlayerCard> cardsInShop;
-    Dictionary<Vector2, PlayerCard> cardPositionMap = new Dictionary<Vector2, PlayerCard>();
+   //Dictionary<Vector2, PlayerCard> cardPositionMap = new Dictionary<Vector2, PlayerCard>();
 
     //Make sure to separate this script into a Player Card component not Card, still need to implement a proper deck class for Player and for Enemy
     void Start()
@@ -36,7 +36,6 @@ public class ShopTransaction : MonoBehaviour
             shopCard.inShop = true;
             cardsInShop.Add(shopCard);
             shopGrid.SetObjectPlacement(cardPosition, true);
-            cardPositionMap.Add(cardPosition, shopCard);
             Instantiate(shopCard, parentObject.transform);
             spawnPoint.x += 2.0f;
         }
