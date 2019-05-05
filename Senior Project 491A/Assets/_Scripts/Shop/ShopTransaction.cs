@@ -22,11 +22,12 @@ public class ShopTransaction : MonoBehaviour
     Dictionary<Vector2, PlayerCard> cardPositionMap = new Dictionary<Vector2, PlayerCard>();
 
     //Make sure to separate this script into a Player Card component not Card, still need to implement a proper deck class for Player and for Enemy
-    void Awake()
+    void Start()
     {
         //Deal 5 cards and save their locations
         for(shopItems = 0; shopItems < MAX_SHOP_ITEMS; shopItems++)
         {
+            Debug.Log("Init cards delt");
             shopDeck.Shuffle();
             PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
             Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spot);
@@ -48,13 +49,18 @@ public class ShopTransaction : MonoBehaviour
             //Cycle though all cards in the shop
             foreach (PlayerCard availableCard in cardsInShop)
             {
+                //Debug.Log(availableCard.inShop);
                 //If a card is no longer in the shop, it is purchased
                 if(!availableCard.inShop)
                 {
+                    Debug.Log(availableCard.inShop);
+                    Debug.Log("Found purchased card");
                     foreach(var pair in cardPositionMap)
                     {
+                        Debug.Log("Searching for card pair");
                         if(pair.Value.Equals(availableCard))
                         {
+                            Debug.Log("Dealt new card to shop");
                             PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
                             shopCard.transform.position = pair.Key;
                             shopCard.inShop = true;

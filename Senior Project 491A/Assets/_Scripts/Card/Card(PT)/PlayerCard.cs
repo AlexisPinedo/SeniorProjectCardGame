@@ -32,7 +32,7 @@ public class PlayerCard : Card
 
         effect?.Trigger(this);
         inShop = false;
-        
+        Debug.Log("CARD IN SHOP: " + inShop);
     }
 
     private void Awake()
