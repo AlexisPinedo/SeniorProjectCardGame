@@ -56,7 +56,7 @@ public class Hand : MonoBehaviour
 
             cardDrawn = (PlayerCard)deck.DrawCard();
         }
-        
+
         if (cardDrawn != null)
         {
             if (cardsInHand > 5)
@@ -72,7 +72,7 @@ public class Hand : MonoBehaviour
                     cardSpot.x += handGrid.size;
                 }
             }
-            
+
             PlaceCard(cardDrawn);
         }
     }
@@ -87,6 +87,7 @@ public class Hand : MonoBehaviour
                 /// TODO: Resize to normal
                 /// ???
                 Debug.Log("RemoveCard, cardsInHand > 6 not finished");
+                cardsInHand -= 1;
             }
             else
             {
@@ -135,6 +136,7 @@ public class Hand : MonoBehaviour
         }
     }
 
+    /* Places a PlayerCard onto the Hand grid */
     private void PlaceCard(PlayerCard card)
     {
         Vector2 spawnPoint;
@@ -148,6 +150,43 @@ public class Hand : MonoBehaviour
             inHandObjects.Add(Instantiate(card, this.transform).gameObject);
             cardsInHand += 1;
             cardSpot.x += handGrid.size;
+        }
+    }
+
+    /* Sends a card from the Hand to the Graveyard */
+    public void SendToGraveyard(PlayerCard cardPlayed)
+    {
+        if (cardPlayed != null)
+        {
+            // Find the index of the card within the Hand
+            int i;
+            for (i = 0; i < hand.Count; i++)
+            {
+                if (cardPlayed.cardName == hand[i].cardName)
+                {
+                    Debug.Log("Found at index: " + i);
+                    break;
+                }
+            }
+
+            if (i < hand.Count)
+            {
+                // Card was found -> Add to Graveyard
+                graveyard.AddToGrave(hand[i]);
+                hand.RemoveAt(i);
+
+                if (cardsInHand > 6)
+                {
+                    // Resize
+                    Debug.Log("Card -> Graveyard && Resizing");
+                }
+
+                cardsInHand -= 1;
+            }
+            else
+            {
+                Debug.Log("Card not found in hand");
+            }
         }
     }
 

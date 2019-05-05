@@ -43,12 +43,12 @@ public class DragCard : MonoBehaviour
         }
     }
 
-    //void OnMouseDrag()
-    //{
-    //    //Debug.Log("MOUSE DRAG");
-    //    Vector3 cursorScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z); //stores position of cursor in screen space
-    //    Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
+    void OnMouseDrag()
+    {
+       //Debug.Log("MOUSE DRAG");
+       Vector3 cursorScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z); //stores position of cursor in screen space
+       Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
 
-    //    transform.position = cursorPosition; //updates position of game object
-    //}
+       transform.position = cursorPosition; //updates position of game object
+    }
 }

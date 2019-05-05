@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Graveyard : MonoBehaviour
 {
-    private List<PlayerCard> graveyard = new List<PlayerCard>();
+    public List<PlayerCard> graveyard = new List<PlayerCard>();
 
     public List<PlayerCard> GetGraveyard()
     {
