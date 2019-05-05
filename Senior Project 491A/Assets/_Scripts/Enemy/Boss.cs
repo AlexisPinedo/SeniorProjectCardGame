@@ -38,6 +38,10 @@ public class Boss : MonoBehaviour, IEnemy
 
     public CreateGrid EnemyGrid;
 
+    public GameObject bossGameObject;
+    public GameObject enemyComponentsGameObject;
+    public BossTurnCardPlayer cardPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,9 +52,11 @@ public class Boss : MonoBehaviour, IEnemy
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
-
+        bossGameObject = this.GetComponent<GameObject>();
+        //enemyComponentsGameObject = bossGameObject.GetComponentInParent<GameObject>();
+        //cardPlayer = enemyComponentsGameObject.GetComponentInChildren<BossTurnCardPlayer>();
+        //Debug.Log(cardPlayer.filledCardZones);
     }
 }

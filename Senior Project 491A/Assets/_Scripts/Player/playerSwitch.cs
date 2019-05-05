@@ -17,7 +17,6 @@ public class playerSwitch : MonoBehaviour
 
     public Player player2;
 
-
     //[SerializeField]
     //private TurnManager turnManager;
 

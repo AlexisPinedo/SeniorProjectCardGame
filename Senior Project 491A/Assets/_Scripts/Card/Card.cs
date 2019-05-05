@@ -5,10 +5,12 @@ using UnityEngine;
 public abstract class Card : MonoBehaviour
 {
     public string cardName;
+    
     public string cardDescription;
+
     public string cardEffect;
 
     public Sprite cardArtwork;
+    
     public Sprite cardElement;
-
 }
