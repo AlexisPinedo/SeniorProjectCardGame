@@ -14,7 +14,7 @@ public class PlayerCard : Card
     public int cardCost;
     public int cardCurrency;
     public int cardAttack;
-    private Vector2 spotOnGrid;
+    public Vector2 spotOnGrid;
 
     public OnPurchaseEffectBase effect;
 

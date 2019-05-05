@@ -43,6 +43,11 @@ public abstract class Deck : MonoBehaviour
         return this.cardsInDeck;
     }
 
+    public int GetDeckSize()
+    {
+        return this.cardsInDeck.Count;
+    }
+
     public Card RevealTopCard()
     {
         return cardsInDeck.Peek();
