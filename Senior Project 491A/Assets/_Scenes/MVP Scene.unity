@@ -3852,7 +3852,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyDeck
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9443348}
     - target: {fileID: 6649302327181998268, guid: bfd262ab2270da74f8b56afdd3276867,
         type: 3}
       propertyPath: bombsToShuffle
