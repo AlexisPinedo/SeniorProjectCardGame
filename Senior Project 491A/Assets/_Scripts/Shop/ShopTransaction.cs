@@ -13,33 +13,38 @@ public class ShopTransaction : MonoBehaviour
     [SerializeField]
     public ShopDeck shopDeck;
     public GameObject parentObject;
-
     [SerializeField]
     private Vector2 spawnPoint = new Vector2();
-    private bool initialDeal = true;
-    
     public List<PlayerCard> cardsInShop;
-   //Dictionary<Vector2, PlayerCard> cardPositionMap = new Dictionary<Vector2, PlayerCard>();
-
-    //Make sure to separate this script into a Player Card component not Card, still need to implement a proper deck class for Player and for Enemy
-    void Start()
+  
+   
+     void Start()
     {
         //Deal 5 cards and save their locations
         for(shopItems = 0; shopItems < MAX_SHOP_ITEMS; shopItems++)
         {
             Debug.Log("Init cards delt");
             shopDeck.Shuffle();
+            //Draw a card
             PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
-            Vector2 cardPosition = shopGrid.GetNearestPointOnGrid(spawnPoint);
-            shopCard.transform.position = cardPosition;
-            shopCard.spotOnGrid = cardPosition;
+            //Find nearest avaliable spot and move it there
+            shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
+            shopCard.spotOnGrid = shopCard.transform.position;
+            //Add to shop
             shopCard.inShop = true;
             cardsInShop.Add(shopCard);
-            shopGrid.SetObjectPlacement(cardPosition, true);
+            //Set spot map boolean
+            shopGrid.SetObjectPlacement(shopCard.transform.position, true);
             Instantiate(shopCard, parentObject.transform);
+            //Increment next spot position.
             spawnPoint.x += 2.0f;
         }
-        initialDeal = false;
+
+        foreach (var pair in shopGrid.objectPlacements)
+        {
+            Debug.Log(pair.Key + " = " + pair.Value);
+        }
+
     }
 
     private void OnEnable()
@@ -57,79 +62,27 @@ public class ShopTransaction : MonoBehaviour
 
         Debug.Log("Deck cards remaining: " + shopDeck.GetDeckSize());
 
+        //Find clicked on card with the cardsInShop
         PlayerCard found = cardsInShop.Find(i => i.spotOnGrid == cardBought.spotOnGrid);
 
+        shopGrid.SetObjectPlacement(cardBought.spotOnGrid, false);
+        Debug.Log("Setting false at purchased card " + cardBought + " at location " + cardBought.spotOnGrid);
         Destroy(cardBought.gameObject);
+        cardsInShop.Remove(found);
         Debug.Log("Destroyed card bought");
 
-        var location = shopGrid.GetNearestPointOnGrid(spawnPoint);
+        ////Find nearest point on the grid.
+        //var location = shopGrid.GetNearestPointOnGrid(cardBought.spotOnGrid);
+        PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
 
-        if (shopGrid.IsPlaceable(location))
+        if (shopGrid.IsPlaceable(cardBought.spotOnGrid))
         {
-            PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
-            nextShopCard.gameObject.transform.position = location;
-            nextShopCard.spotOnGrid = location;
+            nextShopCard.transform.position = cardBought.spotOnGrid;
+            nextShopCard.spotOnGrid = cardBought.spotOnGrid;
             nextShopCard.inShop = true;
             cardsInShop.Add(nextShopCard);
+            shopGrid.SetObjectPlacement(nextShopCard.transform.position, true);
+            Instantiate(nextShopCard, parentObject.transform);
         }
-
-        cardsInShop.Remove(found);
-
-
-        //Debug.Log("Deck cards remaining: " + shopDeck.GetDeckSize());
-
-      
-        //foreach(var pair in cardPositionMap){
-        //    Debug.Log("Searching for card in cardPositionMap...");
-        //    if(pair.Value == found)
-        //    {
-        //        Debug.Log("MATCH" + found + " == " + pair.Value);
-        //        PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
-        //        Debug.Log("DEALING" + nextShopCard + "IN SPOT OF" + found);
-        //        Vector2 availablePosition = pair.Key;
-        //        nextShopCard.gameObject.transform.position = availablePosition;
-        //        cardPositionMap.Remove(pair.Key);
-        //        cardPositionMap.Add(availablePosition, nextShopCard);
-        //        Instantiate(nextShopCard, parentObject.transform);
-        //        nextShopCard.inShop = true;
-        //        cardsInShop.Add(nextShopCard);
-        //        cardsInShop.Remove(found);
-        //        break;
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("NOT A MATCH.");
-        //    }
-        //}
-
-
-        //If cards are delt
-        //if(!initialDeal)
-        //{
-        ////Cycle though all cards in the shop
-        //foreach (PlayerCard availableCard in cardsInShop)
-        //{
-        //    //Debug.Log(availableCard.inShop);
-        //    //If a card is no longer in the shop, it is purchased
-        //    if(!availableCard.inShop)
-        //    {
-        //        Debug.Log(availableCard.inShop);
-        //        Debug.Log("Found purchased card");
-        //foreach(var pair in cardPositionMap)
-        //{
-        //    Debug.Log("Searching for card pair");
-        //    if(pair.Value == cardBought)
-        //    {
-        //        Debug.Log("Dealt new card to shop");
-        //        PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
-        //        shopCard.transform.position = pair.Key;
-        //        shopCard.inShop = true;
-        //        cardsInShop.Add(shopCard);
-        //    }
-        //}
-
-        // }
-        //}
-        //}
     }
 }

@@ -33,7 +33,7 @@ public class PlayerCard : Card
         inShop = false;
         Debug.Log("CARD IN SHOP: " + inShop);
     }
-    
+
     private void Awake()
     {
         Debug.Log("Purchasing Card with Effect.");
