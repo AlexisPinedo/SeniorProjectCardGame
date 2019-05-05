@@ -1711,6 +1711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e9a49f022f94ba4bee1892869679ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graveyard: []
 --- !u!1 &1521124386
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,6 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9cf00c622ea147b720ca9f7d06361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 2017897502}
 --- !u!50 &1967859812
 Rigidbody2D:
   serializedVersion: 4
@@ -2837,6 +2839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e9a49f022f94ba4bee1892869679ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graveyard: []
 --- !u!1 &2090628132
 GameObject:
   m_ObjectHideFlags: 0
