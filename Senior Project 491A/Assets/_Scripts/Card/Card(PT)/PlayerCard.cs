@@ -18,6 +18,7 @@ public class PlayerCard : Card
 
     public OnPurchaseEffectBase effect;
 
+
     //When purchasing card from shop call this method from an event trigger
     public void PurchaseCard()
     {
@@ -31,6 +32,7 @@ public class PlayerCard : Card
 
         effect?.Trigger(this);
         inShop = false;
+        
     }
 
     private void Awake()
