@@ -9,7 +9,6 @@ public class PlayerDeck : Deck
 
     // TODO: Find a better way to generate this
     public PlayerCard phantomCard;
-    public PlayerCard testCard;
 
     /* Reference for the Player's Graveyard */
     private Graveyard playersGraveyard;
