@@ -23,9 +23,9 @@ public class PlayerCard : Card
     {
         Player player = FindObjectOfType<TurnManager>().turnPlayer;
 
-        if (cardCurrency <= player.GetCurrency())
+        if (cardCost <= player.GetCurrency())
         {
-            player.SubtractCurrency(cardCurrency);
+            player.SubtractCurrency(cardCost);
             player.AddToPlayerGraveyard(this);
         }
 
