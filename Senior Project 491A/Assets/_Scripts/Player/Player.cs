@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerDeck deck;
     [SerializeField] private int currency;
     [SerializeField] private int power;
-    [SerializeField] private Graveyard graveyard;
+    [SerializeField] public Graveyard graveyard;
     [SerializeField] private List<PlayerCard> rewardPile;
 
     /* Reference to the game's Turn Manager */
