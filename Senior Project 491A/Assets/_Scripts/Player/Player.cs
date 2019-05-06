@@ -10,7 +10,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     /* Player specific data  */
-    [SerializeField] private Hand hand;
+    [SerializeField] public Hand hand;
     [SerializeField] private PlayerDeck deck;
     [SerializeField] private int currency;
     [SerializeField] private int power;
@@ -58,7 +58,6 @@ public class Player : MonoBehaviour
     public void AddCurrency(int currency)
     {
         this.currency += currency;
-        FindObjectOfType<currencyDisplay>().UpdateCurrencyDisplay();
     }
     public void SubtractCurrency(int currency)
     {
