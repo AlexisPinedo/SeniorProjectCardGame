@@ -53,9 +53,12 @@ public class ShopTransaction : MonoBehaviour
     }
 
     void ManagePurchase(PlayerCard cardBought)
-    { 
+    {
+        currentPlayer = turnPlayer.turnPlayer;
         //Find the card in cardsInShop in the list that matches cardBought on the grid
         PlayerCard found = cardsInShop.Find(i => i.spotOnGrid == cardBought.spotOnGrid);
+        //Add purchase to player graveyard
+        currentPlayer.AddToPlayerGraveyard(found);
         //This spot is now open
         shopGrid.SetObjectPlacement(cardBought.spotOnGrid, false);
         //Destroy and remove the purchased card
@@ -76,7 +79,5 @@ public class ShopTransaction : MonoBehaviour
             shopGrid.SetObjectPlacement(nextShopCard.transform.position, true);
             Instantiate(nextShopCard, parentObject.transform);
         }
-        //Add purchase to player graveyard
-        currentPlayer.AddToPlayerGraveyard(found);
     }
 }

@@ -19,11 +19,11 @@ public class PlayerDeck : Deck
         playersGraveyard = playerObj.GetComponentInChildren<Graveyard>();
         
         /// TODO: Can delete later
-        foreach (var card in testCards)
-        {
-            Debug.Log("Adding " + card + " to graveyard");
-            playersGraveyard.AddToGrave((PlayerCard)card);
-        }
+        //foreach (var card in testCards)
+        //{
+        //    Debug.Log("Adding " + card + " to graveyard");
+        //    playersGraveyard.AddToGrave((PlayerCard)card);
+        //}
     }
 
     /* Adds the PlayerCard to the Player's Graveyard */
