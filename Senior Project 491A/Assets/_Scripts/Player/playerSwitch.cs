@@ -20,7 +20,12 @@ public class playerSwitch : MonoBehaviour
     //[SerializeField]
     //private TurnManager turnManager;
 
-    public void SwapPlayers()
+    void Start()
+    {
+        p2HandSpacePanel.SetActive(false);
+    }
+
+    public void ShowHidePanel()
     {
         if (p1HandSpacePanel != null && p2HandSpacePanel != null)
         {
@@ -29,16 +34,17 @@ public class playerSwitch : MonoBehaviour
             {
                 p1HandSpacePanel.SetActive(false);
                 p2HandSpacePanel.SetActive(true);
+                //turnManager.SetPlayerTwosTurn();
                 turnPlayer.turnPlayer = player2;
-                turnPlayer.turnPlayer.hand.TurnStartDraw();
             }
             // Switch to Player One
             else if (p2HandSpacePanel.activeSelf)
             {
                 p2HandSpacePanel.SetActive(false);
                 p1HandSpacePanel.SetActive(true);
+                //turnManager.SetPlayerOnesTurn();
+
                 turnPlayer.turnPlayer = player1;
-                turnPlayer.turnPlayer.hand.TurnStartDraw();
             }
         }
     }
