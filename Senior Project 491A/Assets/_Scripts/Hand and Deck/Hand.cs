@@ -172,8 +172,11 @@ public class Hand : MonoBehaviour
             if (i < hand.Count)
             {
                 // Card was found -> Add to Graveyard
-                graveyard.AddToGrave(hand[i]);
+                if(!hand[i] == (PlayerCard)deck.phantomCard)
+                    graveyard.AddToGrave(hand[i]);
+                
                 hand.RemoveAt(i);
+                
 
                 if (cardsInHand > 6)
                 {
@@ -190,21 +193,30 @@ public class Hand : MonoBehaviour
         }
     }
 
+    //Don't allow Phantom cards to be sent to the graveyard
     public void SendHandToGraveyard()
     {
         while(hand.Count != 0)
         {
-            Debug.Log("Moving " + hand[0].cardName+ " to graveyard");
-            graveyard.AddToGrave(hand[0]);
-            Debug.Log("Removing " + hand[0].cardName + " from hand");
-            hand.RemoveAt(0);
+            if (!hand[0] == (PlayerCard) deck.phantomCard)
+            {
+                Debug.Log("Moving " + hand[0].cardName + " to graveyard");
+                graveyard.AddToGrave(hand[0]);
+                Debug.Log("Removing " + hand[0].cardName + " from hand");
+                hand.RemoveAt(0);
+            }
+            
             cardsInHand -= 1;
         }
 
         for (int i = inHandObjects.Count - 1; i >= 0; i--)
         {
-            Debug.Log("GameObject: " + inHandObjects[i]);
-            GameObject.Destroy(inHandObjects[i]);
+            if (!inHandObjects[i].GetComponent<PlayerCard>().cardName.Equals("Phantom"))
+            {
+                Debug.Log("GameObject: " + inHandObjects[i]);
+                GameObject.Destroy(inHandObjects[i]);
+            }
+           
         }
 
         handGrid.ResizeGrid(2, 6);
