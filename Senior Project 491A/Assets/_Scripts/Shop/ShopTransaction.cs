@@ -63,6 +63,7 @@ public class ShopTransaction : MonoBehaviour
         shopGrid.SetObjectPlacement(cardBought.spotOnGrid, false);
         //Destroy and remove the purchased card
         Destroy(cardBought.gameObject);
+        
         cardsInShop.Remove(found);
         //Draw a new card from the shopDeck
         PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
