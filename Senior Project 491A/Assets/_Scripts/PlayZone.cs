@@ -18,7 +18,10 @@ public class PlayZone : MonoBehaviour
         manager.turnPlayer.AddCurrency(card.cardCurrency);
         manager.turnPlayer.AddPower(card.cardAttack);
 
-        tpHand.SendToGraveyard(card);
-        GameObject.Destroy(card.gameObject);
+        if (!card.cardName.Equals("Phantom"))
+        {
+            tpHand.SendToGraveyard(card);
+            GameObject.Destroy(card.gameObject);
+        }
     }
 }
