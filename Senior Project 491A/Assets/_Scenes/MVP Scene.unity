@@ -1352,8 +1352,10 @@ MonoBehaviour:
   shopGrid: {fileID: 1968618938}
   shopDeck: {fileID: 140288137}
   parentObject: {fileID: 2102585785}
-  spot: {x: 0, y: 0}
+  spawnPoint: {x: 0, y: 0}
   cardsInShop: []
+  turnPlayer: {fileID: 2017897502}
+  currentPlayer: {fileID: 0}
 --- !u!1 &936756653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,6 +2511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e9a49f022f94ba4bee1892869679ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graveyard: []
 --- !u!1 &1521124386
 GameObject:
   m_ObjectHideFlags: 0
@@ -3620,7 +3623,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017897501}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.5102671, y: -3.6342652, z: 0.041078784}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3670,6 +3673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e9a49f022f94ba4bee1892869679ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graveyard: []
 --- !u!1 &2090628132
 GameObject:
   m_ObjectHideFlags: 0
