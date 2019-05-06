@@ -19,7 +19,7 @@ public class PlayerCard : Card
 
 
     //When purchasing card from shop call this method from an event trigger
-    public void PurchaseCard()
+    public bool PurchaseCard()
     {
         Player player = FindObjectOfType<TurnManager>().turnPlayer;
 
@@ -27,11 +27,17 @@ public class PlayerCard : Card
         {
             player.SubtractCurrency(cardCost);
             player.AddToPlayerGraveyard(this);
-        }
+            inShop = false;
 
+            return true;
+        }
+        else
+        {
+            Debug.Log("Cannot buy too broke");
+
+        }
         effect?.Trigger(this);
-        inShop = false;
-        Debug.Log("CARD IN SHOP: " + inShop);
+        return false;
     }
 
     private void Awake()

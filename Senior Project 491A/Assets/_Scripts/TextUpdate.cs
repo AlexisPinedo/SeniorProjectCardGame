@@ -5,29 +5,39 @@ using UnityEngine.UI;
 
 public class TextUpdate : MonoBehaviour
 {
-    [SerializeField] private Player currency;
-    [SerializeField] private Player power;
-
     public Text playerPower;
     public Text playerCurrency;
 
-    public TurnManager turnManager;
-    //do the samething for power
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        //UpdatePowerDisplay();
-        //UpdateCurrencyDisplay();
+        Player.CurrencyChanged += UpdateCurrency;
+        Player.PowerChanged += UpdatePower;
     }
 
-    private void UpdatePowerDisplay()
+    private void OnDisable()
     {
-        playerPower.text = "POWER: " + turnManager.turnPlayer.GetPower();
+        Player.CurrencyChanged -= UpdateCurrency;
+        Player.PowerChanged -= UpdatePower;
     }
 
-    private void UpdateCurrencyDisplay()
+    public void ResetPower()
     {
-        playerCurrency.text = "CURRENCY: " + turnManager.turnPlayer.GetCurrency();
+        playerPower.text = "Power: + " + 0;
+    }
+
+    public void ResetCurrency()
+    {
+        playerCurrency.text = "Currency: + " + 0;
+    }
+
+    private void UpdatePower(int value)
+    {
+        playerPower.text = "Power: + " + value;
+    }
+
+    private void UpdateCurrency(int value)
+    {
+        playerCurrency.text = "Currency: + " + value;
+
     }
 }

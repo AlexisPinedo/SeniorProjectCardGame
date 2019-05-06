@@ -16,12 +16,18 @@ public class BossTurnCardPlayer : MonoBehaviour
 
     public GameObject parentObject;
 
-    private void Update()
+    public bool cardPlaced = false;
+
+    public void PlayHandler()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+
+        cardPlaced = false;
+        while(cardPlaced == false && filledCardZones != 13)
         {
             PlayCard();
+
         }
+        
     }
 
     public void PlayCard()
@@ -49,6 +55,7 @@ public class BossTurnCardPlayer : MonoBehaviour
             enemyGrid.SetObjectPlacement(location);
 
             Debug.Log("Next position to spwan will be: " + spawnPoint);
+            cardPlaced = true;
 
         }
         else

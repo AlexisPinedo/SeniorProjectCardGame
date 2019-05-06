@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 6130187465402888863}
   - component: {fileID: 6130187465402888860}
   - component: {fileID: 3860552944629103443}
+  - component: {fileID: -2311649112572328422}
   m_Layer: 0
   m_Name: Phantom
   m_TagString: Untagged
@@ -232,7 +233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6130187465402888857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.91, y: 2.46, z: 0}
+  m_LocalPosition: {x: 4.7999997, y: -3.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6863974079102277820}
@@ -333,12 +334,25 @@ MonoBehaviour:
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
-  inShop: 1
+  inShop: 0
   cardCost: 0
   cardCurrency: 1
   cardAttack: 0
   spotOnGrid: {x: 0, y: 0}
   effect: {fileID: 0}
+--- !u!114 &-2311649112572328422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130187465402888857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c3787a03d785c4c8dbcae5a0c744f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  draggable: 1
 --- !u!1 &6232124759135343526
 GameObject:
   m_ObjectHideFlags: 0

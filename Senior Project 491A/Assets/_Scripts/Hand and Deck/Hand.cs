@@ -22,7 +22,7 @@ public class Hand : MonoBehaviour
     /* Spawn point for card */
     private Vector2 cardSpot;
 
-    void Start()
+    void Awake()
     {
         // Set references for Deck and Hand Grid
         deck = playerObj.GetComponentInChildren<PlayerDeck>();
@@ -172,11 +172,11 @@ public class Hand : MonoBehaviour
             if (i < hand.Count)
             {
                 // Card was found -> Add to Graveyard
-                if(!hand[i] == (PlayerCard)deck.phantomCard)
+                if (!hand[i] == (PlayerCard)deck.phantomCard)
                     graveyard.AddToGrave(hand[i]);
-                
+
                 hand.RemoveAt(i);
-                
+
 
                 if (cardsInHand > 6)
                 {
@@ -196,28 +196,45 @@ public class Hand : MonoBehaviour
     //Don't allow Phantom cards to be sent to the graveyard
     public void SendHandToGraveyard()
     {
-        while(hand.Count != 0)
+        foreach (var card in hand)
         {
-            if (!hand[0] == (PlayerCard) deck.phantomCard)
+            if (card != (PlayerCard)deck.phantomCard)
             {
-                Debug.Log("Moving " + hand[0].cardName + " to graveyard");
-                graveyard.AddToGrave(hand[0]);
-                Debug.Log("Removing " + hand[0].cardName + " from hand");
-                hand.RemoveAt(0);
+                Debug.Log("Moving " + card.cardName + " to graveyard");
+                graveyard.AddToGrave(card);
             }
-            
-            cardsInHand -= 1;
         }
+        hand.Clear();
+        //while(hand.Count > 0)
+        //{
+        //    if (!hand[0] == (PlayerCard) deck.phantomCard)
+        //    {
+        //        Debug.Log("Moving " + hand[0].cardName + " to graveyard");
+        //        graveyard.AddToGrave(hand[0]);
+        //        Debug.Log("Removing " + hand[0].cardName + " from hand");
+        //        hand.RemoveAt(0);
+        //    }
 
-        for (int i = inHandObjects.Count - 1; i >= 0; i--)
+        //    cardsInHand -= 1;
+        //}
+        foreach (var card in inHandObjects)
         {
-            if (!inHandObjects[i].GetComponent<PlayerCard>().cardName.Equals("Phantom"))
-            {
-                Debug.Log("GameObject: " + inHandObjects[i]);
-                GameObject.Destroy(inHandObjects[i]);
-            }
-           
+
+            Debug.Log("GameObject: " + card);
+            GameObject.Destroy(card);
+
         }
+        inHandObjects.Clear();
+
+        //for (int i = inHandObjects.Count - 1; i >= 0; i--)
+        //{
+        //    if (!inHandObjects[i].GetComponent<PlayerCard>().cardName.Equals("Phantom"))
+        //    {
+        //        Debug.Log("GameObject: " + inHandObjects[i]);
+        //        GameObject.Destroy(inHandObjects[i]);
+        //    }
+
+        //}
 
         handGrid.ResizeGrid(2, 6);
         cardSpot = new Vector2();

@@ -12,6 +12,7 @@ public class BombGoal : Goal
 
     public EnemyDeck enemyDeck;
 
+    public BossTurnCardPlayer enemyCardPlayer;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class BombGoal : Goal
         {
             Debug.Log("Bomb revealved");
             bombCounter++;
+            enemyCardPlayer.PlayHandler();
             if(bombCounter == 5)
             {
                 Debug.Log("You Lose!");

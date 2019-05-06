@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonInputEventHandler : MonoBehaviour
+public class UIHandler : MonoBehaviour
 {
     public delegate void settingsButtonAction();
     public static event settingsButtonAction SettingsClicked;
 
     public delegate void StartBattleButtonAction();
     public static event StartBattleButtonAction StartClicked;
+
 
     public delegate void GraveyardButtonAction();
     public static event GraveyardButtonAction GraveyardClicked;
@@ -54,32 +55,7 @@ public class ButtonInputEventHandler : MonoBehaviour
 
     public void EndTurnButtonOnClick()
     {
-        if (HeroPowerClicked != null)
-        {
-            EndTurnClicked();
-        }
+        EndTurnClicked?.Invoke();
     }
 
-    public void test()
-    {
-        Debug.Log("clicked");
-    }
-
-    public void OnEnable()
-    {
-        SettingsClicked += test;
-        StartClicked += test;
-        GraveyardClicked += test;
-        HeroPowerClicked += test;
-        EndTurnClicked += test;
-    }
-
-    public void OnDisable()
-    {
-        SettingsClicked -= test;
-        StartClicked -= test;
-        GraveyardClicked -= test;
-        HeroPowerClicked -= test;
-        EndTurnClicked -= test;
-    }
 }

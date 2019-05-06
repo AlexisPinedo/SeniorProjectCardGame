@@ -15,7 +15,7 @@ public class DragCard : MonoBehaviour
 
     private PlayerCard card;
 
-
+    public bool draggable = false;
 
     public void Awake()
     {
@@ -27,14 +27,18 @@ public class DragCard : MonoBehaviour
         if (card.inShop)
         {
             //Debug.Log("MOUSE DOWN");
-            //card.PurchaseCard();
-            if(CardPurchased != null)
+            
+            if (card.PurchaseCard())
             {
-                CardPurchased.Invoke(card);
+                if (CardPurchased != null)
+                {
+                    CardPurchased.Invoke(card);
+                }
             }
         }
         else
         {
+            draggable = true;
             screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
 
             offset = gameObject.transform.position -
@@ -45,10 +49,13 @@ public class DragCard : MonoBehaviour
 
     void OnMouseDrag()
     {
-       //Debug.Log("MOUSE DRAG");
-       Vector3 cursorScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z); //stores position of cursor in screen space
-       Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
+        if (draggable)
+        {
+            //Debug.Log("MOUSE DRAG");
+            UnityEngine.Vector2 cursorScreenPoint = new UnityEngine.Vector2(Input.mousePosition.x, Input.mousePosition.y); //stores position of cursor in screen space
+            UnityEngine.Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
 
-       transform.position = cursorPosition; //updates position of game object
+            transform.position = cursorPosition; //updates position of game object
+        }
     }
 }
