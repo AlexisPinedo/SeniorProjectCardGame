@@ -26,7 +26,7 @@ public class PlayerCard : Card
         if (cardCost <= player.GetCurrency())
         {
             player.SubtractCurrency(cardCost);
-            player.AddToPlayerGraveyard(this);
+            //player.AddToPlayerGraveyard(this);
             inShop = false;
 
             return true;
@@ -36,15 +36,15 @@ public class PlayerCard : Card
             Debug.Log("Cannot buy too broke");
 
         }
-        effect?.Trigger(this);
+        //effect?.Trigger(this);
         return false;
     }
 
-    private void Awake()
-    {
-        Debug.Log("Purchasing Card with Effect.");
-        effect?.Trigger(this);
-    }
+    //private void Awake()
+    //{
+    //    Debug.Log("Purchasing Card with Effect.");
+    //    effect?.Trigger(this);
+    //}
 
     public void SetCoord(Vector2 newSpot)
     {

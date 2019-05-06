@@ -134,6 +134,14 @@ public class Hand : MonoBehaviour
 
             PlaceCard(cardDrawn);
         }
+
+        foreach(var card in inHandObjects)
+        {
+            PlayerCard cardComponent = card.GetComponent<PlayerCard>();
+            cardComponent.inShop = false;
+            DragCard component = card.GetComponent<DragCard>();
+            component.draggable = true;
+        }
     }
 
     /* Places a PlayerCard onto the Hand grid */
@@ -172,8 +180,11 @@ public class Hand : MonoBehaviour
             if (i < hand.Count)
             {
                 // Card was found -> Add to Graveyard
-                if (!hand[i] == (PlayerCard)deck.phantomCard)
+                if (hand[i] != (PlayerCard)deck.phantomCard)
+                {
+                    Debug.Log("Card found and is being added to grave");
                     graveyard.AddToGrave(hand[i]);
+                }
 
                 hand.RemoveAt(i);
 
