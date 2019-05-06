@@ -112,9 +112,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Phantom
-
-'
+  m_text: Bomb
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 87d2973ad117a2c47bfe6c3b9d105f42, type: 2}
   m_sharedMaterial: {fileID: -7876339290849976810, guid: 87d2973ad117a2c47bfe6c3b9d105f42,
@@ -124,8 +122,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -184,9 +182,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 7961746042580429217}
-    characterCount: 8
+    characterCount: 4
     spriteCount: 0
-    spaceCount: 1
+    spaceCount: 0
     wordCount: 1
     linkCount: 0
     lineCount: 1
@@ -218,9 +216,9 @@ GameObject:
   - component: {fileID: 6130187465402888862}
   - component: {fileID: 6130187465402888863}
   - component: {fileID: 6130187465402888860}
-  - component: {fileID: 4009940474976193645}
+  - component: {fileID: 8908624133493255576}
   m_Layer: 0
-  m_Name: Phantom
+  m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +279,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 943fb332e7a0547e7821e6d86f329e60, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d374c2604352e45b5baa17110c254952, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -309,7 +307,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2482759, y: 1.7482759}
+    oldSize: {x: 1.2384615, y: 1.7307693}
     newSize: {x: 20.500002, y: 26.500002}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -318,7 +316,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3666667, y: 1.7666667}
   m_EdgeRadius: 0
---- !u!114 &4009940474976193645
+--- !u!114 &8908624133493255576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,24 +325,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6130187465402888857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e1ab4ade3d1e8e4397ddd87f04e6bd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 407f65cd6d7638a4b9d6afadc1d328dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  cardName: Phantom
-=======
-  cardName: 
->>>>>>> parent of 14941e5... Revert "Merge branch 'master' of https://github.com/AlexisPinedo/SeniorProjectCardGame"
+  cardName: Bomb
   cardDescription: 
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
-  inShop: 1
-  cardCost: 0
-  cardCurrency: 1
-  cardAttack: 0
-  spotOnGrid: {x: 0, y: 0}
-  effect: {fileID: 0}
+  rewardValue: 0
+  healthValue: 0
+  turnPlayer: {fileID: 0}
+  manager: {fileID: 0}
+  bossZones: {fileID: 0}
 --- !u!1 &6232124759135343526
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +450,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 
+  m_text: 'On Play: Play the top card of your opponents deck.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 87d2973ad117a2c47bfe6c3b9d105f42, type: 2}
   m_sharedMaterial: {fileID: -7876339290849976810, guid: 87d2973ad117a2c47bfe6c3b9d105f42,
@@ -527,13 +520,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 6673175549325630787}
-    characterCount: 0
+    characterCount: 50
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 0
+    spaceCount: 9
+    wordCount: 10
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 3
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -564,7 +557,7 @@ GameObject:
   - component: {fileID: 3636566361157259801}
   - component: {fileID: 2843250461822845110}
   m_Layer: 0
-  m_Name: Currency
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -662,9 +655,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '1
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 87d2973ad117a2c47bfe6c3b9d105f42, type: 2}
   m_sharedMaterial: {fileID: -7876339290849976810, guid: 87d2973ad117a2c47bfe6c3b9d105f42,
@@ -734,9 +725,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2843250461822845110}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
-    spaceCount: 1
+    spaceCount: 0
     wordCount: 1
     linkCount: 0
     lineCount: 1
@@ -771,7 +762,7 @@ GameObject:
   - component: {fileID: 1399861352647448138}
   - component: {fileID: 1773186245142494366}
   m_Layer: 0
-  m_Name: Power
+  m_Name: Reward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,9 +860,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '0
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 87d2973ad117a2c47bfe6c3b9d105f42, type: 2}
   m_sharedMaterial: {fileID: -7876339290849976810, guid: 87d2973ad117a2c47bfe6c3b9d105f42,
@@ -941,9 +930,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1773186245142494366}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
-    spaceCount: 1
+    spaceCount: 0
     wordCount: 1
     linkCount: 0
     lineCount: 1
