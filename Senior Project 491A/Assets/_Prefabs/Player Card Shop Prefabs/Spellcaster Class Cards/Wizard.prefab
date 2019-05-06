@@ -511,15 +511,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1ab4ade3d1e8e4397ddd87f04e6bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Star
+  cardName: Wizard
   cardDescription: 
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
   inShop: 1
-  cardCost: 9
-  cardCurrency: 5
-  cardAttack: 5
+  cardCost: 3
+  cardCurrency: 2
+  cardAttack: 4
   spotOnGrid: {x: 4.852, y: 3.08}
   effect: {fileID: 0}
 --- !u!114 &6130187465402888861
