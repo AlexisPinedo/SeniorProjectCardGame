@@ -1218,6 +1218,7 @@ MonoBehaviour:
   cardCost: 0
   cardCurrency: 0
   cardAttack: 0
+  spotOnGrid: {x: 0, y: 0}
   effect: {fileID: 0}
 --- !u!4 &1170254164
 Transform:
@@ -1995,7 +1996,8 @@ MonoBehaviour:
   - {fileID: 6130187465402888856, guid: c839d66a8e3b64d1895ec10635c90ad3, type: 3}
   - {fileID: 6130187465402888856, guid: fd1647793a6b142c6917c96b2fa13210, type: 3}
   playerObj: {fileID: 1185834758}
-  phantomCard: {fileID: 101411216, guid: e7eb578cb70324b20a0fd652fcd2b616, type: 3}
+  phantomCard: {fileID: 7931254641057969423, guid: d168d516de07ff2e680ace77ee3c27bf,
+    type: 3}
 --- !u!1 &1568177357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,7 +2044,8 @@ MonoBehaviour:
   cardCopies: 0
   testCards: []
   playerObj: {fileID: 588335413}
-  phantomCard: {fileID: 101411216, guid: e7eb578cb70324b20a0fd652fcd2b616, type: 3}
+  phantomCard: {fileID: 7931254641057969423, guid: d168d516de07ff2e680ace77ee3c27bf,
+    type: 3}
 --- !u!1 &1578277351
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,6 +2224,7 @@ MonoBehaviour:
   goal: {fileID: 0}
   bossDeck: {fileID: 0}
   EnemyGrid: {fileID: 718689244}
+  cardPlayer: {fileID: 0}
 --- !u!1 &1602485900
 GameObject:
   m_ObjectHideFlags: 0
