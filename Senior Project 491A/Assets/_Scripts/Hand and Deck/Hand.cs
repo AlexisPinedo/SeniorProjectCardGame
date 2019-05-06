@@ -190,6 +190,27 @@ public class Hand : MonoBehaviour
         }
     }
 
+    public void SendHandToGraveyard()
+    {
+        while(hand.Count != 0)
+        {
+            Debug.Log("Moving " + hand[0].cardName+ " to graveyard");
+            graveyard.AddToGrave(hand[0]);
+            Debug.Log("Removing " + hand[0].cardName + " from hand");
+            hand.RemoveAt(0);
+            cardsInHand -= 1;
+        }
+
+        for (int i = inHandObjects.Count - 1; i >= 0; i--)
+        {
+            Debug.Log("GameObject: " + inHandObjects[i]);
+            GameObject.Destroy(inHandObjects[i]);
+        }
+
+        handGrid.ResizeGrid(2, 6);
+        cardSpot = new Vector2();
+    }
+
     void UpdateHandDisplay()
     {
 

@@ -114,6 +114,10 @@ public class Player : MonoBehaviour
         {
             DrawCard();
         }
+        else if (Input.GetKeyDown("left ctrl"))
+        {
+            hand.SendHandToGraveyard();
+        }
     }
 
     /* Adds a card to your hand */
