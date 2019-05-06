@@ -35,11 +35,11 @@ public class DragCard : MonoBehaviour
         }
         else
         {
-            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
+            //screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
 
-            offset = gameObject.transform.position -
-                     Camera.main.ScreenToWorldPoint(
-                         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+            //offset = gameObject.transform.position -
+                     //Camera.main.ScreenToWorldPoint(
+                         //new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         }
     }
 
