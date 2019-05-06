@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCard : Card
 {
+
+
     //public int cardCost;
     //public int cardCurrency;
     //public int cardAttack;
@@ -15,8 +17,8 @@ public class PlayerCard : Card
     public int cardCurrency;
     public int cardAttack;
     public Vector2 spotOnGrid;
-
     public OnPurchaseEffectBase effect;
+
 
 
     //When purchasing card from shop call this method from an event trigger
@@ -28,6 +30,11 @@ public class PlayerCard : Card
         {
             player.SubtractCurrency(cardCost);
             player.AddToPlayerGraveyard(this);
+
+        }
+        else
+        {
+            Debug.Log("Cannot buy card");
         }
 
         effect?.Trigger(this);

@@ -10,11 +10,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     /* Player specific data  */
-    [SerializeField] private Hand hand;
+    [SerializeField] public Hand hand;
     [SerializeField] private PlayerDeck deck;
     [SerializeField] private int currency;
     [SerializeField] private int power;
-    [SerializeField] private Graveyard graveyard;
+    [SerializeField] public Graveyard graveyard;
     [SerializeField] private List<PlayerCard> rewardPile;
 
     /* Reference to the game's Turn Manager */
@@ -58,7 +58,6 @@ public class Player : MonoBehaviour
     public void AddCurrency(int currency)
     {
         this.currency += currency;
-        FindObjectOfType<currencyDisplay>().UpdateCurrencyDisplay();
     }
     public void SubtractCurrency(int currency)
     {
@@ -113,6 +112,10 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown("space") && drawn)
         {
             DrawCard();
+        }
+        else if (Input.GetKeyDown("left ctrl"))
+        {
+            hand.SendHandToGraveyard();
         }
     }
 

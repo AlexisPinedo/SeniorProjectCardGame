@@ -438,7 +438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6130187465402888857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1479998, y: 3.08, z: 0}
+  m_LocalPosition: {x: 0.85200024, y: 3.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1701432448049937670}
@@ -519,7 +519,7 @@ MonoBehaviour:
   cardCost: 2
   cardCurrency: 2
   cardAttack: 1
-  spotOnGrid: {x: 0, y: 0}
+  spotOnGrid: {x: 0.85200024, y: 3.08}
   effect: {fileID: 0}
 --- !u!114 &6130187465402888861
 MonoBehaviour:

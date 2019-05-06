@@ -22,7 +22,7 @@ public class Hand : MonoBehaviour
     /* Spawn point for card */
     private Vector2 cardSpot;
 
-    void Start()
+    void Awake()
     {
         // Set references for Deck and Hand Grid
         deck = playerObj.GetComponentInChildren<PlayerDeck>();
@@ -56,7 +56,7 @@ public class Hand : MonoBehaviour
 
             cardDrawn = (PlayerCard)deck.DrawCard();
         }
-        
+
         if (cardDrawn != null)
         {
             if (cardsInHand > 5)
@@ -72,7 +72,7 @@ public class Hand : MonoBehaviour
                     cardSpot.x += handGrid.size;
                 }
             }
-            
+
             PlaceCard(cardDrawn);
         }
     }
@@ -87,6 +87,7 @@ public class Hand : MonoBehaviour
                 /// TODO: Resize to normal
                 /// ???
                 Debug.Log("RemoveCard, cardsInHand > 6 not finished");
+                cardsInHand -= 1;
             }
             else
             {
@@ -135,6 +136,7 @@ public class Hand : MonoBehaviour
         }
     }
 
+    /* Places a PlayerCard onto the Hand grid */
     private void PlaceCard(PlayerCard card)
     {
         Vector2 spawnPoint;
@@ -149,6 +151,64 @@ public class Hand : MonoBehaviour
             cardsInHand += 1;
             cardSpot.x += handGrid.size;
         }
+    }
+
+    /* Sends a card from the Hand to the Graveyard */
+    public void SendToGraveyard(PlayerCard cardPlayed)
+    {
+        if (cardPlayed != null)
+        {
+            // Find the index of the card within the Hand
+            int i;
+            for (i = 0; i < hand.Count; i++)
+            {
+                if (cardPlayed.cardName == hand[i].cardName)
+                {
+                    Debug.Log("Found at index: " + i);
+                    break;
+                }
+            }
+
+            if (i < hand.Count)
+            {
+                // Card was found -> Add to Graveyard
+                graveyard.AddToGrave(hand[i]);
+                hand.RemoveAt(i);
+
+                if (cardsInHand > 6)
+                {
+                    // Resize
+                    Debug.Log("Card -> Graveyard && Resizing");
+                }
+
+                cardsInHand -= 1;
+            }
+            else
+            {
+                Debug.Log("Card not found in hand");
+            }
+        }
+    }
+
+    public void SendHandToGraveyard()
+    {
+        while(hand.Count != 0)
+        {
+            Debug.Log("Moving " + hand[0].cardName+ " to graveyard");
+            graveyard.AddToGrave(hand[0]);
+            Debug.Log("Removing " + hand[0].cardName + " from hand");
+            hand.RemoveAt(0);
+            cardsInHand -= 1;
+        }
+
+        for (int i = inHandObjects.Count - 1; i >= 0; i--)
+        {
+            Debug.Log("GameObject: " + inHandObjects[i]);
+            GameObject.Destroy(inHandObjects[i]);
+        }
+
+        handGrid.ResizeGrid(2, 6);
+        cardSpot = new Vector2();
     }
 
     void UpdateHandDisplay()
