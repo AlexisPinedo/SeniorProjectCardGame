@@ -22,7 +22,7 @@ public class Hand : MonoBehaviour
     /* Spawn point for card */
     private Vector2 cardSpot;
 
-    void Awake()
+    void Start()
     {
         // Set references for Deck and Hand Grid
         deck = playerObj.GetComponentInChildren<PlayerDeck>();

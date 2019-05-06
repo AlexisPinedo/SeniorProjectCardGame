@@ -16,19 +16,11 @@ public class BossTurnCardPlayer : MonoBehaviour
 
     public GameObject parentObject;
 
-    bool cardPlayed = false;
-
-    public void HandlePlayEnemyCard()
+    private void Update()
     {
-        cardPlayed = false;
-
-        while (cardPlayed == false && filledCardZones < 13)
+        if (Input.GetKeyDown(KeyCode.P))
         {
             PlayCard();
-        }
-        if (filledCardZones == 13)
-        {
-            Debug.Log("You Lose the board is full");
         }
     }
 
@@ -38,7 +30,6 @@ public class BossTurnCardPlayer : MonoBehaviour
 
         if (enemyGrid.IsPlaceable(location))
         {
-            //This is the location of the boss zone
             if (location.x == 6f && location.y == 2f)
             {
                 spawnPoint.x -= enemyGrid.size;
@@ -56,7 +47,7 @@ public class BossTurnCardPlayer : MonoBehaviour
 
             filledCardZones++;
             enemyGrid.SetObjectPlacement(location);
-            cardPlayed = true;
+
             Debug.Log("Next position to spwan will be: " + spawnPoint);
 
         }
