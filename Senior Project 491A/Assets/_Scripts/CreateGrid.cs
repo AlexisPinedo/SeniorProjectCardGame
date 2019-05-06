@@ -96,10 +96,14 @@ public class CreateGrid : MonoBehaviour
     {
         if (objectPlacements.ContainsKey(location))
         {
+            Debug.Log("Found key");
             if (objectPlacements[location] == false)
             {
+                Debug.Log("Key location is open");
                 return true;
             }
+            else
+                Debug.Log("Key location is taken");
             return false;
         }
 

@@ -10,12 +10,12 @@ public class SceneRestarter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadSceneAsync("RainScene (Duplicate)");
+            SceneManager.LoadScene(0);
         }
     }
 
     public void RestartScene()
     {
-        SceneManager.LoadSceneAsync("RainScene (Duplicate)");
+        SceneManager.LoadScene(0);
     }
 }

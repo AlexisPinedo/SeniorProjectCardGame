@@ -21,6 +21,12 @@ public class TextUpdate : MonoBehaviour
         //UpdateCurrencyDisplay();
     }
 
+    private void Update()
+    {
+        UpdatePowerDisplay();
+        UpdateCurrencyDisplay();
+    }
+
     private void UpdatePowerDisplay()
     {
         playerPower.text = "POWER: " + turnManager.turnPlayer.GetPower();

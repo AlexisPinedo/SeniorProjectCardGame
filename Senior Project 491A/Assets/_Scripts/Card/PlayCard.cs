@@ -15,7 +15,7 @@ public class PlayCard : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         //Add currency to player
-        card.cardCurrency 
+        //card.cardCurrency; 
         //Add card types played?
     }
 
