@@ -15,8 +15,10 @@ using UnityEngine;
 public class Boss : MonoBehaviour, IEnemy
 {
     /* Boss' health and reward value */
-    private int _health;
-    private int _rewardValue;
+    public int _health;
+    public int _rewardValue;
+
+    public TurnManager turnManager;
 
     // from IEnemy
     public int health
@@ -54,6 +56,16 @@ public class Boss : MonoBehaviour, IEnemy
         if(cardPlayer.filledCardZones == 0)
         {
             Debug.Log("can attack boss");
+            if(turnManager.turnPlayer.GetPower() >= _health)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                Debug.Log("not enough power");
+
+            }
+
         }
         else
         {

@@ -9,12 +9,18 @@ using UnityEngine;
  */
 public class Player : MonoBehaviour
 {
+    public delegate void _CurrencyUpdated(int value);
+    public static event _CurrencyUpdated CurrencyChanged;
+
+    public delegate void _PowerUpdated(int value);
+    public static event _PowerUpdated PowerChanged;
+
     /* Player specific data  */
-    [SerializeField] private Hand hand;
+    [SerializeField] public Hand hand;
     [SerializeField] private PlayerDeck deck;
     [SerializeField] private int currency;
     [SerializeField] private int power;
-    [SerializeField] private Graveyard graveyard;
+    [SerializeField] public Graveyard graveyard;
     [SerializeField] private List<PlayerCard> rewardPile;
 
     /* Reference to the game's Turn Manager */
@@ -54,11 +60,14 @@ public class Player : MonoBehaviour
         {
             this.currency = newCurrency;
         }
+
+        CurrencyChanged?.Invoke(currency);
     }
     public void AddCurrency(int currency)
     {
         this.currency += currency;
-        FindObjectOfType<currencyDisplay>().UpdateCurrencyDisplay();
+        CurrencyChanged?.Invoke(this.currency);
+
     }
     public void SubtractCurrency(int currency)
     {
@@ -70,8 +79,7 @@ public class Player : MonoBehaviour
         {
             this.currency -= currency;
         }
-
-        FindObjectOfType<currencyDisplay>().UpdateCurrencyDisplay();
+        CurrencyChanged?.Invoke(this.currency);
     }
 
     // ...for Power
@@ -81,6 +89,7 @@ public class Player : MonoBehaviour
         {
             this.power = newPower;
         }
+        PowerChanged?.Invoke(power);
     }
     public void AddPower(int power)
     {
@@ -88,6 +97,7 @@ public class Player : MonoBehaviour
         {
             this.power += power;
         }
+        PowerChanged?.Invoke(this.power);
     }
     public void SubtractPower(int power)
     {
@@ -99,6 +109,7 @@ public class Player : MonoBehaviour
         {
             this.power -= power;
         }
+        PowerChanged?.Invoke(this.power);
     }
 
     void Update()

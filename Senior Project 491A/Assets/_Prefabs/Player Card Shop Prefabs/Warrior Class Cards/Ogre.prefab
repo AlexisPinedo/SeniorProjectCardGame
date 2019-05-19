@@ -721,10 +721,11 @@ MonoBehaviour:
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
-  inShop: 0
+  inShop: 1
   cardCost: 7
   cardCurrency: 1
   cardAttack: 3
+  spotOnGrid: {x: 4.852, y: 3.08}
   effect: {fileID: 0}
 --- !u!114 &6130187465402888861
 MonoBehaviour:
@@ -738,6 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c3787a03d785c4c8dbcae5a0c744f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggable: 0
 --- !u!61 &6130187465402888860
 BoxCollider2D:
   m_ObjectHideFlags: 0

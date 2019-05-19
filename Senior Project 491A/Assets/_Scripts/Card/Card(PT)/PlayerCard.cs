@@ -15,35 +15,39 @@ public class PlayerCard : Card
     public int cardCurrency;
     public int cardAttack;
     public Vector2 spotOnGrid;
-
     public OnPurchaseEffectBase effect;
 
 
     //When purchasing card from shop call this method from an event trigger
-    public void PurchaseCard()
+    public bool PurchaseCard()
     {
         Player player = FindObjectOfType<TurnManager>().turnPlayer;
 
         if (cardCost <= player.GetCurrency())
         {
             player.SubtractCurrency(cardCost);
-            player.AddToPlayerGraveyard(this);
+            //player.AddToPlayerGraveyard(this);
+            inShop = false;
+
+            return true;
         }
+        else
+        {
+            Debug.Log("Cannot buy too broke");
 
-        effect?.Trigger(this);
-        inShop = false;
-        Debug.Log("CARD IN SHOP: " + inShop);
+        }
+        //effect?.Trigger(this);
+        return false;
     }
 
-    private void Awake()
-    {
-        Debug.Log("Purchasing Card with Effect.");
-        effect?.Trigger(this);
-    }
+    //private void Awake()
+    //{
+    //    Debug.Log("Purchasing Card with Effect.");
+    //    effect?.Trigger(this);
+    //}
 
     public void SetCoord(Vector2 newSpot)
     {
         this.transform.position = newSpot;
     }
-
 }
