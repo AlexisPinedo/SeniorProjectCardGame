@@ -8,8 +8,7 @@ public class DragCard : MonoBehaviour
 {
     public delegate void _onCardPurschased(PlayerCard cardBought);
     public static event _onCardPurschased CardPurchased;
-
-
+    
     private Vector3 screenPoint;
     private Vector3 offset;
 
@@ -25,9 +24,7 @@ public class DragCard : MonoBehaviour
     void OnMouseDown()
     {
         if (card.inShop)
-        {
-            //Debug.Log("MOUSE DOWN");
-            
+        {      
             if (card.PurchaseCard())
             {
                 if (CardPurchased != null)
@@ -51,7 +48,6 @@ public class DragCard : MonoBehaviour
     {
         if (draggable)
         {
-            //Debug.Log("MOUSE DRAG");
             UnityEngine.Vector2 cursorScreenPoint = new UnityEngine.Vector2(Input.mousePosition.x, Input.mousePosition.y); //stores position of cursor in screen space
             UnityEngine.Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
 

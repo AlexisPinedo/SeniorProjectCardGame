@@ -6,17 +6,25 @@ public class ShopTransaction : MonoBehaviour
 {
     [SerializeField]
     private int shopItems;
+
     [SerializeField]
     private int MAX_SHOP_ITEMS = 6;
+
     [SerializeField]
     private CreateGrid shopGrid;
+
     [SerializeField]
     public ShopDeck shopDeck;
+
     public GameObject parentObject;
+
     [SerializeField]
     private Vector2 spawnPoint = new Vector2();
+
     public List<PlayerCard> cardsInShop;
+
     public TurnManager turnPlayer;
+
     public Player currentPlayer;
 
     void Start()
@@ -26,17 +34,22 @@ public class ShopTransaction : MonoBehaviour
         {
             Debug.Log("Init cards delt");
             shopDeck.Shuffle();
+            
             //Draw a card
             PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
+            
             //Find nearest avaliable spot and move it there
             shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
             shopCard.spotOnGrid = shopCard.transform.position;
+            
             //Add to shop
             shopCard.inShop = true;
             cardsInShop.Add(shopCard);
+            
             //Set spot map boolean
             shopGrid.SetObjectPlacement(shopCard.transform.position, true);
             Instantiate(shopCard, parentObject.transform);
+            
             //Increment next spot position
             spawnPoint.x += 2.0f;
         }
