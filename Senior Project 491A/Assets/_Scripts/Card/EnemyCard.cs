@@ -6,6 +6,10 @@ public class EnemyCard : Card
 {
     public delegate void _EnemyDestroyed(Vector2 cardPosition, bool cardRemoved);
     public static event _EnemyDestroyed EnemyDestroyed;
+
+    //Create delegate event like the one above for the enemycardclicked
+    // Delegate will be type void and take a gameobject as a parameter
+
     [SerializeField]
     private int rewardValue, healthValue;
 
@@ -34,6 +38,8 @@ public class EnemyCard : Card
 
     public void OnMouseDown()
     {
+        //invoke your event like in the ondestroy method and pass in this.gameObject
+
         Debug.Log("I have been clicked");
         if (turnPlayer.turnPlayer.GetPower() >= healthValue)
         {
