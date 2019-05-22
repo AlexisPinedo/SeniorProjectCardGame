@@ -25,12 +25,6 @@ public class EnemyCard : Card
         }
     }
 
-
-    //Should the enemy card know about the turn player
-    /*Should not be here. What we can do instead: 
-    create a delegate event that triggers when this object is destroyed
-    and when the object is clicked on then have the bossturncardplayer and turnplayer handle the data
-    */
     public BossTurnCardPlayer manager;
 
     private void Awake()

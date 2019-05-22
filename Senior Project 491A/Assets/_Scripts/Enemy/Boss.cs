@@ -53,10 +53,10 @@ public class Boss : EnemyCard
 
     public override void OnMouseDown()
     {
-        if(cardPlayer.filledCardZones == 0)
+        if (cardPlayer.filledCardZones == 0)
         {
             Debug.Log("can attack boss");
-            if(turnManager.turnPlayer.GetPower() >= _health)
+            if (turnManager.turnPlayer.GetPower() >= _health)
             {
                 Destroy(this.gameObject);
             }
@@ -65,11 +65,6 @@ public class Boss : EnemyCard
                 Debug.Log("not enough power");
 
             }
-
-        }
-        else
-        {
-            Debug.Log("Cannot attack boss there are other minions");
 
         }
     }

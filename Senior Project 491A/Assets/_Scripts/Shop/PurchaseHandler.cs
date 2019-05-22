@@ -27,7 +27,8 @@ public class PurchaseHandler : MonoBehaviour
 
     public void PurchaseCard(Card cardBuying)
     {
-        // ?? Invoke ??
+
+        CardBought?.Invoke(cardBuying);
     }
 
 }
