@@ -335,9 +335,8 @@ MonoBehaviour:
   cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
-  rewardValue: 1
-  healthValue: 5
-  turnPlayer: {fileID: 0}
+  _rewardValue: 1
+  _healthValue: 5
   manager: {fileID: 0}
 --- !u!1 &6232124759135343526
 GameObject:
