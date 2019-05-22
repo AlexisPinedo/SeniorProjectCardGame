@@ -12,7 +12,7 @@ using UnityEngine;
 /*
     This class represents a match's Boss
  */
-public class Boss : MonoBehaviour, IEnemy
+public class Boss : EnemyCard
 {
     /* Boss' health and reward value */
     public int _health;
@@ -20,17 +20,17 @@ public class Boss : MonoBehaviour, IEnemy
 
     public TurnManager turnManager;
 
-    // from IEnemy
-    public int health
-    {
-        get { return _health; }
-        set { _health = value; }
-    }
-    public int rewardValue
-    {
-        get { return _rewardValue;}
-        set { _rewardValue = value;}
-    }
+    //// from IEnemy
+    //public int health
+    //{
+    //    get { return _health; }
+    //    set { _health = value; }
+    //}
+    //public int rewardValue
+    //{
+    //    get { return _rewardValue;}
+    //    set { _rewardValue = value;}
+    //}
 
     /* The Boss' Goal */
     public Goal goal;
@@ -51,7 +51,7 @@ public class Boss : MonoBehaviour, IEnemy
 
     }
 
-    private void OnMouseDown()
+    public override void OnMouseDown()
     {
         if(cardPlayer.filledCardZones == 0)
         {

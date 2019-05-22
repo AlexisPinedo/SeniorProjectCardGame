@@ -48,7 +48,7 @@ public class EnemyCard : Card
         Debug.Log("Set location to false");
     }
 
-    public void OnMouseDown()
+    public virtual void OnMouseDown()
     {
         //invoke your event like in the ondestroy method and pass in this.gameObject
         if (EnemyClicked != null)
