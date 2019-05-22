@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int MAX_SHOP_ITEMS = 6;
+    public ShopDeck shopDeck;
+    public List<PlayerCard> cardsInShop;
+
+    public void OnEnable()
     {
-        
+        PurchaseHandler.CardBought += HandleCardPurchased;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnDisable()
     {
-        
+        PurchaseHandler.CardBought -= HandleCardPurchased;
     }
+
+    private void HandleCardPurchased(Card cardPurchased)
+    {
+        // TODO
+        cardsInShop.Remove((PlayerCard)cardPurchased);
+    }
+
 }
