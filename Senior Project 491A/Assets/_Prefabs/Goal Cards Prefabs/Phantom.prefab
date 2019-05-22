@@ -339,7 +339,6 @@ MonoBehaviour:
   cardCurrency: 1
   cardAttack: 0
   spotOnGrid: {x: 0, y: 0}
-  effect: {fileID: 0}
 --- !u!114 &-2311649112572328422
 MonoBehaviour:
   m_ObjectHideFlags: 0

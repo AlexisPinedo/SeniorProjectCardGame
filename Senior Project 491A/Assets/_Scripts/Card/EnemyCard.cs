@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class EnemyCard : Card
 {
+    public delegate void _EnemyDestroyed(Vector2 cardPosition, bool cardRemoved);
+    public static event _EnemyDestroyed EnemyDestroyed;
     [SerializeField]
     private int rewardValue, healthValue;
 
+    //Should the enemy card know about the turn player
     public TurnManager turnPlayer;
-
-
-    //Enemy Card components
+    /*Should not be here. What we can do instead: 
+    create a delegate event that triggers when this object is destroyed
+    and when the object is clicked on then have the bossturncardplayer and turnplayer handle the data
+    */
     public BossTurnCardPlayer manager;
-    public CreateGrid bossZones;
 
     private void Awake()
     {
-        bossZones = this.GetComponent<CreateGrid>();
         manager = this.GetComponent<BossTurnCardPlayer>();
         turnPlayer = GameObject.FindObjectOfType<TurnManager>();
         Debug.Log("This method ran");
@@ -24,7 +26,8 @@ public class EnemyCard : Card
 
     private void OnDestroy()
     {
-        bossZones.SetObjectPlacement(this.transform.position, false);
+        if (EnemyDestroyed != null)
+            EnemyDestroyed.Invoke(this.transform.position, false);
         manager.filledCardZones--;
         Debug.Log("Set location to false");
     }
