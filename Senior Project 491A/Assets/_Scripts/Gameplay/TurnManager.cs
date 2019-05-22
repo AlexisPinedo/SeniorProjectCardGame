@@ -7,8 +7,6 @@ public class TurnManager : MonoBehaviour
     // Player References
     public Player turnPlayer;
 
-    [SerializeField] private int healthValue;
-
     //create a method that handles the card that was clicked
     // this method needs to have the same signature as your delegate
     // subscribe to onenable and ondisable methods
@@ -22,16 +20,14 @@ public class TurnManager : MonoBehaviour
         EnemyCard.EnemyClicked -= HandleEnemyCardClick;
     }
 
-    
-
-    void HandleEnemyCardClick(GameObject enemyCard)
+    void HandleEnemyCardClick(EnemyCard enemyCard)
     {
         Debug.Log("I have been clicked");
-        if (turnPlayer.GetPower() >= healthValue)
+        if (turnPlayer.GetPower() >= enemyCard.healthValue)
         {
             Debug.Log("I can kill the enemy");
-            turnPlayer.SubtractPower(healthValue);
-            Destroy(this.gameObject);
+            turnPlayer.SubtractPower(enemyCard.healthValue);
+            Destroy(enemyCard.gameObject);
         }
         else
         {
