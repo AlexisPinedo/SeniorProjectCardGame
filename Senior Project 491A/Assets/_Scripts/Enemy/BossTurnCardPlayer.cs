@@ -49,7 +49,7 @@ public class BossTurnCardPlayer : MonoBehaviour
             EnemyCard theCardObject = Instantiate(cardToPlay, parentObject.transform);
 
             theCardObject.manager = this;
-            theCardObject.bossZones = enemyGrid;
+            //theCardObject.bossZones = enemyGrid;
 
             filledCardZones++;
             enemyGrid.SetObjectPlacement(location);

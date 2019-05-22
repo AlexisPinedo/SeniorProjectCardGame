@@ -4,43 +4,56 @@ using UnityEngine;
 
 public class EnemyCard : Card
 {
+    public delegate void _EnemyDestroyed(Vector2 cardPosition, bool cardRemoved);
+    public static event _EnemyDestroyed EnemyDestroyed;
+
+    //Create delegate event like the one above for the enemycardclicked
+    // Delegate will be type void and take a gameobject as a parameter
+    public delegate void _EnemyCardClicked(EnemyCard enemyCard);
+    public static event _EnemyCardClicked EnemyClicked;
+
     [SerializeField]
-    private int rewardValue, healthValue;
+    private int _rewardValue, _healthValue;
 
-    public TurnManager turnPlayer;
+    public int healthValue
+    {
+        get { return _healthValue; }
+
+        set
+        {
+            _healthValue = value;
+        }
+    }
 
 
-    //Enemy Card components
+    //Should the enemy card know about the turn player
+    /*Should not be here. What we can do instead: 
+    create a delegate event that triggers when this object is destroyed
+    and when the object is clicked on then have the bossturncardplayer and turnplayer handle the data
+    */
     public BossTurnCardPlayer manager;
-    public CreateGrid bossZones;
 
     private void Awake()
     {
-        bossZones = this.GetComponent<CreateGrid>();
         manager = this.GetComponent<BossTurnCardPlayer>();
-        turnPlayer = GameObject.FindObjectOfType<TurnManager>();
+        
         Debug.Log("This method ran");
     }
 
     private void OnDestroy()
     {
-        bossZones.SetObjectPlacement(this.transform.position, false);
+        if (EnemyDestroyed != null)
+            EnemyDestroyed.Invoke(this.transform.position, false);
         manager.filledCardZones--;
         Debug.Log("Set location to false");
     }
 
-    public void OnMouseDown()
+    public virtual void OnMouseDown()
     {
-        Debug.Log("I have been clicked");
-        if (turnPlayer.turnPlayer.GetPower() >= healthValue)
+        //invoke your event like in the ondestroy method and pass in this.gameObject
+        if (EnemyClicked != null)
         {
-            Debug.Log("I can kill the enemy");
-            turnPlayer.turnPlayer.SubtractPower(healthValue);
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Debug.Log("Cannot kill not enough power");
+            EnemyClicked.Invoke(this);
         }
     }
 

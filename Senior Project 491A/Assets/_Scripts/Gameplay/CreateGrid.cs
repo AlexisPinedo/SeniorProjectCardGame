@@ -19,6 +19,17 @@ public class CreateGrid : MonoBehaviour
     // public Dictionary<Vector2, bool> objectPlacements = new Dictionary<Vector2, bool>();
     public Dictionary<Vector2, bool> objectPlacements;
 
+    private void OnEnable()
+    {
+        EnemyCard.EnemyDestroyed += SetObjectPlacement;
+
+    }
+
+    private void OnDisable()
+    {
+        EnemyCard.EnemyDestroyed -= SetObjectPlacement;
+    }
+
     private void Awake()
     {
         Gizmos.color = GizmoColor;
