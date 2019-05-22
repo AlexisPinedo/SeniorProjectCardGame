@@ -9,6 +9,8 @@ public class EnemyCard : Card
 
     //Create delegate event like the one above for the enemycardclicked
     // Delegate will be type void and take a gameobject as a parameter
+    public delegate void _EnemyCardClicked(GameObject enemyCard);
+    public static event _EnemyCardClicked EnemyClicked;
 
     [SerializeField]
     private int rewardValue, healthValue;
@@ -24,7 +26,7 @@ public class EnemyCard : Card
     private void Awake()
     {
         manager = this.GetComponent<BossTurnCardPlayer>();
-        turnPlayer = GameObject.FindObjectOfType<TurnManager>();
+        
         Debug.Log("This method ran");
     }
 
@@ -39,18 +41,12 @@ public class EnemyCard : Card
     public void OnMouseDown()
     {
         //invoke your event like in the ondestroy method and pass in this.gameObject
+        if (EnemyClicked != null)
+        {
+            EnemyClicked.Invoke(gameObject);
+        }
 
-        Debug.Log("I have been clicked");
-        if (turnPlayer.turnPlayer.GetPower() >= healthValue)
-        {
-            Debug.Log("I can kill the enemy");
-            turnPlayer.turnPlayer.SubtractPower(healthValue);
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Debug.Log("Cannot kill not enough power");
-        }
+        
     }
 
 }
