@@ -23,6 +23,7 @@ public class ShopTransaction : MonoBehaviour
 
     public List<PlayerCard> cardsInShop;
 
+    //ToDo: Make turn manager a singleton
     public TurnManager turnPlayer;
 
     public Player currentPlayer;
