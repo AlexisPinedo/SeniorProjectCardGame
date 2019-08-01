@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     // Player References
-    public Player turnPlayer;
+    public static Player turnPlayer;
 
     //create a method that handles the card that was clicked
     // this method needs to have the same signature as your delegate

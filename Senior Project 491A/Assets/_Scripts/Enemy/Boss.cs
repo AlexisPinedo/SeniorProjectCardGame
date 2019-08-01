@@ -16,9 +16,6 @@ public class Boss : EnemyCard
 {
     /* Boss' health and reward value */
     public int _health;
-    public int _rewardValue;
-
-    public TurnManager turnManager;
 
     //// from IEnemy
     //public int health
@@ -56,7 +53,7 @@ public class Boss : EnemyCard
         if (cardPlayer.filledCardZones == 0)
         {
             Debug.Log("can attack boss");
-            if (turnManager.turnPlayer.GetPower() >= _health)
+            if (TurnManager.turnPlayer.GetPower() >= _health)
             {
                 Destroy(this.gameObject);
             }

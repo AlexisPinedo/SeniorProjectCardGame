@@ -6,7 +6,7 @@ public class Shop : MonoBehaviour
 {
     private int MAX_SHOP_ITEMS = 6;
     public ShopDeck shopDeck;
-    public List<PlayerCard> cardsInShop;
+    public List<PlayerCard> cardsToPlaceInShopDeck;
 
     public void OnEnable()
     {
@@ -21,7 +21,38 @@ public class Shop : MonoBehaviour
     private void HandleCardPurchased(Card cardPurchased)
     {
         // TODO
-        cardsInShop.Remove((PlayerCard)cardPurchased);
+        cardsToPlaceInShopDeck.Remove((PlayerCard)cardPurchased);
     }
+    
+    void PlayShopCard()
+    {
+        shopDeck.Shuffle();
+        PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
+        
+       //shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
+    }
+
+    /*
+        //Deal 5 cards and save their locations
+        for (shopItems = 0; shopItems < MAX_SHOP_ITEMS; shopItems++)
+        {
+            Debug.Log("Init cards delt");
+            shopDeck.Shuffle();
+            //Draw a card
+            PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
+            //Find nearest avaliable spot and move it there
+            shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
+            shopCard.spotOnGrid = shopCard.transform.position;
+            //Add to shop
+            shopCard.inShop = true;
+            cardsInShop.Add(shopCard);
+            //Set spot map boolean
+            shopGrid.SetObjectPlacement(shopCard.transform.position, true);
+            Instantiate(shopCard, parentObject.transform);
+            //Increment next spot position
+            spawnPoint.x += 2.0f;
+        }
+     * 
+     */
 
 }
