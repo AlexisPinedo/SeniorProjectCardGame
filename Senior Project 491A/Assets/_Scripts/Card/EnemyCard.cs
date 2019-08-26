@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCard : Card
+public abstract class EnemyCard : Card
 {
     public delegate void _EnemyDestroyed(Vector2 cardPosition, bool cardRemoved);
     public static event _EnemyDestroyed EnemyDestroyed;
@@ -34,12 +34,11 @@ public class EnemyCard : Card
         Debug.Log("This method ran");
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         if (EnemyDestroyed != null)
             EnemyDestroyed.Invoke(this.transform.position, false);
-        manager.filledCardZones--;
-        Debug.Log("Set location to false");
+       
     }
 
     public virtual void OnMouseDown()
