@@ -16,7 +16,9 @@ public class Minion : EnemyCard
 {
     /* Minion's health and reward values */
     private int _health;
-    private int _rewardValue;
+    //private int _rewardValue;
+    public CardEffect effect;
+
 
     // from IEnemy
     public int health
@@ -30,6 +32,7 @@ public class Minion : EnemyCard
                 }
             }
     }
+
     public int rewardValue
     {
             get { return _rewardValue;}
@@ -42,17 +45,10 @@ public class Minion : EnemyCard
             }
     }
 
-    public CardEffect effect;
-
-    // Start is called before the first frame update
-    void Start()
+    protected override void OnDestroy()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        base.OnDestroy();
+        manager.filledCardZones--;
+        Debug.Log("Set location to false");
     }
 }

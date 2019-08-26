@@ -64,6 +64,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -216,7 +217,7 @@ GameObject:
   - component: {fileID: 6130187465402888862}
   - component: {fileID: 6130187465402888863}
   - component: {fileID: 6130187465402888860}
-  - component: {fileID: 8908624133493255576}
+  - component: {fileID: 6075538339668338658}
   m_Layer: 0
   m_Name: Minion 9
   m_TagString: Untagged
@@ -267,6 +268,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -316,7 +318,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3666667, y: 1.7666667}
   m_EdgeRadius: 0
---- !u!114 &8908624133493255576
+--- !u!114 &6075538339668338658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,7 +327,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6130187465402888857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 407f65cd6d7638a4b9d6afadc1d328dc, type: 3}
+  m_Script: {fileID: 11500000, guid: b25d3e11518055a4c9ed616fce780621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardName: Minion 9
@@ -336,6 +338,7 @@ MonoBehaviour:
   _rewardValue: 2
   _healthValue: 12
   manager: {fileID: 0}
+  effect: {fileID: 0}
 --- !u!1 &6232124759135343526
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +403,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -605,6 +609,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -810,6 +815,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

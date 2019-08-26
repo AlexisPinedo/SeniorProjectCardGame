@@ -23,36 +23,11 @@ public class ShopTransaction : MonoBehaviour
 
     public List<PlayerCard> cardsInShop;
 
-    public TurnManager turnPlayer;
-
     public Player currentPlayer;
 
     void Start()
     {
-        //Deal 5 cards and save their locations
-        for (shopItems = 0; shopItems < MAX_SHOP_ITEMS; shopItems++)
-        {
-            Debug.Log("Init cards delt");
-            shopDeck.Shuffle();
-            
-            //Draw a card
-            PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
-            
-            //Find nearest avaliable spot and move it there
-            shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
-            shopCard.spotOnGrid = shopCard.transform.position;
-            
-            //Add to shop
-            shopCard.inShop = true;
-            cardsInShop.Add(shopCard);
-            
-            //Set spot map boolean
-            shopGrid.SetObjectPlacement(shopCard.transform.position, true);
-            Instantiate(shopCard, parentObject.transform);
-            
-            //Increment next spot position
-            spawnPoint.x += 2.0f;
-        }
+        DisplayStartingCards();
     }
 
     private void OnEnable()
@@ -65,9 +40,33 @@ public class ShopTransaction : MonoBehaviour
         DragCard.CardPurchased -= ManagePurchase;
     }
 
+    private void DisplayStartingCards()
+    {
+        //Deal 5 cards and save their locations
+        for (shopItems = 0; shopItems < MAX_SHOP_ITEMS; shopItems++)
+        {
+            Debug.Log("Init cards delt");
+            shopDeck.Shuffle();
+            //Draw a card
+            PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
+            //Find nearest avaliable spot and move it there
+            shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
+            shopCard.spotOnGrid = shopCard.transform.position;
+            //Add to shop
+            shopCard.inShop = true;
+            cardsInShop.Add(shopCard);
+            //Set spot map boolean
+            shopGrid.SetObjectPlacement(shopCard.transform.position, true);
+            Instantiate(shopCard, parentObject.transform);
+            //Increment next spot position
+            spawnPoint.x += 2.0f;
+        }
+    }
+
+
     void ManagePurchase(PlayerCard cardBought)
     {
-        currentPlayer = turnPlayer.turnPlayer;
+        currentPlayer = TurnManager.turnPlayer;
         //Find the card in cardsInShop in the list that matches cardBought on the grid
         PlayerCard found = cardsInShop.Find(i => i.spotOnGrid == cardBought.spotOnGrid);
         //Add purchase to player graveyard

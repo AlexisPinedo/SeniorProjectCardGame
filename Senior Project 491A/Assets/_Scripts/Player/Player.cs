@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] private List<PlayerCard> rewardPile;
 
     /* Reference to the game's Turn Manager */
-    [SerializeField] private TurnManager turnManager;
+    //[SerializeField] private TurnManager turnManager;
 
     private bool drawn = false;
 
