@@ -62,7 +62,6 @@ public class Boss : EnemyCard
                 Debug.Log("not enough power");
 
             }
-
         }
     }
 }

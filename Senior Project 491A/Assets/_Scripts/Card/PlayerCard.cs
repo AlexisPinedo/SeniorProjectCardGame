@@ -12,6 +12,20 @@ public class PlayerCard : Card
     public int cardCurrency;
     public int cardAttack;
 
+    //This Enum has a reference for which attribute the card is. 
+    public enum CardTypes
+    {
+        MythicalCreature = 0,
+        Entertainer = 1,
+        Magic = 2,
+        Nature = 3,
+        Warrior = 4,
+        None = 5
+    }
+
+    //Saves the type the card is
+    public CardTypes cardType;
+
     //Should this be on Player card???
     public Vector2 spotOnGrid;
 
