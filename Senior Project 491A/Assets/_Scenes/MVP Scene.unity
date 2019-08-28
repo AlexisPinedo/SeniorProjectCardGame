@@ -165,16 +165,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardCopies: 3
   cardsToPlaceInDeck:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -7484544737801671048, guid: 88b3aae3e0aee4391aaa16acb8772b3d, type: 3}
+  - {fileID: 1714864844547843062, guid: 85ca295fc19c34bf18dc67ab652980e7, type: 3}
+  - {fileID: 2349519125053485446, guid: 52cafcdbfef504cc5b56d6970fb9538f, type: 3}
+  - {fileID: 2714234815958851715, guid: b1df1b1cae7ba41d8b04baf4622e4990, type: 3}
+  - {fileID: 3628424932265025047, guid: 35b1bc9acf46447e09c5700d329ec316, type: 3}
+  - {fileID: 6935210232276990321, guid: 138613d63644644bab4d610d1e6a48c9, type: 3}
+  - {fileID: 3597235098686272942, guid: 082ee49aa34c34edeb86947d4dc4765a, type: 3}
+  - {fileID: 9014787917156006905, guid: 79ed62823e15b436ca85c70bb377f427, type: 3}
+  - {fileID: 6469940053942120432, guid: 3d62181e623da4c268409f4678734237, type: 3}
+  - {fileID: 6075538339668338658, guid: a2619adb8daca47c5b762920270423e0, type: 3}
 --- !u!1 &57440919
 GameObject:
   m_ObjectHideFlags: 0
