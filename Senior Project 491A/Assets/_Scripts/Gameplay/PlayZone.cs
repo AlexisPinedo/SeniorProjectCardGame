@@ -21,6 +21,8 @@ public class PlayZone : MonoBehaviour
 
             tpHand.SendToGraveyard(card);
         }
+
+
         GameObject.Destroy(card.gameObject);
 
     }
