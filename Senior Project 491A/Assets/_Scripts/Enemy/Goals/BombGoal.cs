@@ -18,7 +18,6 @@ public class BombGoal : Goal
     {
         for (int i = 0; i < bombsToShuffle; i++)
         {
-            Debug.Log("Adding bomb card");
             enemyDeck.AddCard(bombCard);
         }
         enemyDeck.Shuffle();

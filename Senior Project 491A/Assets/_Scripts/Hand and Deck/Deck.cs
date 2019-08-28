@@ -30,7 +30,6 @@ public abstract class Deck : MonoBehaviour
             for (int i = 0; i < cardCopies; i++)
             {
                 Card copy = card;
-                Debug.Log("copy: " + copy);
                 AddCard((Card)copy);
             }
         }
@@ -69,7 +68,6 @@ public abstract class Deck : MonoBehaviour
 
     public void AddCard(Card card)
     {
-        Debug.Log("Card: " + card.cardName + " has been pushed onto the stack");
         cardsInDeck.Push(card);
     }
 

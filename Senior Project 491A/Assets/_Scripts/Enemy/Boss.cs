@@ -49,15 +49,18 @@ public class Boss : EnemyCard
         if (cardPlayer.filledCardZones == 0)
         {
             Debug.Log("Player can attack the Boss");
-            if (TurnManager.turnPlayer.GetPower() >= this._health)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                Debug.Log("Player lacks the power to defeat the Boss!");
-            }
 
+            if (this._health > 0)
+            {
+                if (TurnManager.turnPlayer.GetPower() >= this._health)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    Debug.Log("Player lacks the power to defeat the Boss!");
+                }
+            }
         }
     }
 }

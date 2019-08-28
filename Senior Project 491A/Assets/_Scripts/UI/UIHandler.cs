@@ -23,34 +23,22 @@ public class UIHandler : MonoBehaviour
     public void SettingsButtonOnClick()
     {
         //Debug.Log("clicked");
-        if (SettingsClicked != null)
-        {
-            SettingsClicked();
-        }
+        SettingsClicked?.Invoke();
     }
 
     public void StartBattleButtonOnClick()
     {
-        if (StartClicked != null)
-        {
-            StartClicked();
-        }
+        StartClicked?.Invoke();
     }
 
     public void GraveyardButtonOnClick()
     {
-        if (GraveyardClicked != null)
-        {
-            GraveyardClicked();
-        }
+        GraveyardClicked?.Invoke();
     }
 
     public void HeroPowerButtonOnClick()
     {
-        if (HeroPowerClicked != null)
-        {
-            HeroPowerClicked();
-        }
+        HeroPowerClicked?.Invoke();
     }
 
     public void EndTurnButtonOnClick()

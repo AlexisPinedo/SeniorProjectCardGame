@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// TODO
+/// </summary>
 public class CreateGrid : MonoBehaviour
 {
     //When incrementing by a value in other scripts reference the size value here for the increment
@@ -43,6 +46,11 @@ public class CreateGrid : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets the nearest Vector2 position on the grid.
+    /// </summary>
+    /// <param name="position">Reference position</param>
+    /// <returns></returns>
     public Vector2 GetNearestPointOnGrid(Vector2 position)
     {
         int xCount = Mathf.RoundToInt(position.x / size);
@@ -55,6 +63,9 @@ public class CreateGrid : MonoBehaviour
         return result;
     }
 
+    /// <summary>
+    /// TODO
+    /// </summary>
     private void OnDrawGizmos()
     {
         float xTotal = size * _xValUnits;
@@ -78,15 +89,15 @@ public class CreateGrid : MonoBehaviour
         }
     }
 
-    /* Initialize the Vector2 spaces as false, i.e., the spaces are empty */
+    /// <summary>
+    /// Initializes the Vector2 spaces as false, i.e., the spaces are empty.
+    /// </summary>
     private void InitializePlacements()
     {
         objectPlacements = new Dictionary<Vector2, bool>();
+
         float xTotal = size * _xValUnits;   // Keep as float to allow grid resizing
         int yTotal = (int)size * _yValUnits;
-
-        Debug.Log("size:\t" + size);
-        Debug.Log("xTotal:\t" + xTotal);
 
         for (float x = 0; x < xTotal; x += size)
         {
@@ -98,19 +109,27 @@ public class CreateGrid : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// TODO
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="value"></param>
     public void SetObjectPlacement(Vector2 position, bool value = true)
     {
         objectPlacements[position] = value;
     }
 
+    /// <summary>
+    /// TODO
+    /// </summary>
+    /// <param name="location"></param>
+    /// <returns></returns>
     public bool IsPlaceable(Vector2 location)
     {
         if (objectPlacements.ContainsKey(location))
         {
-            Debug.Log("Found key");
             if (objectPlacements[location] == false)
             {
-                Debug.Log("Key location is open");
                 return true;
             }
             else
@@ -122,6 +141,11 @@ public class CreateGrid : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// TODO
+    /// </summary>
+    /// <param name="newSize"></param>
+    /// <param name="newX"></param>
     public void ResizeGrid(float newSize, int newX)
     {
         Debug.Log("Resizing grid");

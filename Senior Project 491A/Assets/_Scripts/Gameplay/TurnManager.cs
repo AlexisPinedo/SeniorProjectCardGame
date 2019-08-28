@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// NOTE: We should rename this. It doesn't "manage turns" really.
+/// 
+/// Other classes change Player's by calling the static instance of this, but really this class should have some function called "SwitchPlayers" or something.
+/// </summary>
 public class TurnManager : MonoBehaviour
 {
     // Player References

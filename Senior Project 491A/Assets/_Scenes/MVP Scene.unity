@@ -165,16 +165,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardCopies: 3
   cardsToPlaceInDeck:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -7484544737801671048, guid: 88b3aae3e0aee4391aaa16acb8772b3d, type: 3}
+  - {fileID: 1714864844547843062, guid: 85ca295fc19c34bf18dc67ab652980e7, type: 3}
+  - {fileID: 2349519125053485446, guid: 52cafcdbfef504cc5b56d6970fb9538f, type: 3}
+  - {fileID: 2714234815958851715, guid: b1df1b1cae7ba41d8b04baf4622e4990, type: 3}
+  - {fileID: 3628424932265025047, guid: 35b1bc9acf46447e09c5700d329ec316, type: 3}
+  - {fileID: 6935210232276990321, guid: 138613d63644644bab4d610d1e6a48c9, type: 3}
+  - {fileID: 3597235098686272942, guid: 082ee49aa34c34edeb86947d4dc4765a, type: 3}
+  - {fileID: 9014787917156006905, guid: 79ed62823e15b436ca85c70bb377f427, type: 3}
+  - {fileID: 6469940053942120432, guid: 3d62181e623da4c268409f4678734237, type: 3}
+  - {fileID: 6075538339668338658, guid: a2619adb8daca47c5b762920270423e0, type: 3}
 --- !u!1 &57440919
 GameObject:
   m_ObjectHideFlags: 0
@@ -3733,7 +3733,6 @@ MonoBehaviour:
   _rewardValue: 0
   _healthValue: 0
   manager: {fileID: 0}
-  _health: 10
   goal: {fileID: 0}
   bossDeck: {fileID: 0}
   EnemyGrid: {fileID: 718689244}
@@ -4469,7 +4468,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2017897503}
   - component: {fileID: 2017897502}
-  - component: {fileID: 2017897504}
   m_Layer: 0
   m_Name: TurnManager
   m_TagString: Untagged
@@ -4503,22 +4501,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2017897504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017897501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0bacec8f14bc004eb5b1aececfce264, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  p1HandSpacePanel: {fileID: 57440919}
-  p2HandSpacePanel: {fileID: 1273032544}
-  player1: {fileID: 1185834760}
-  player2: {fileID: 588335415}
 --- !u!1 &2019385386
 GameObject:
   m_ObjectHideFlags: 0
@@ -4831,7 +4813,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bombCard
       value: 
-      objectReference: {fileID: 8908624133493255576, guid: c45d246a7cd094b2bbd18ea37d311ca0,
+      objectReference: {fileID: 188733611463760357, guid: c45d246a7cd094b2bbd18ea37d311ca0,
         type: 3}
     - target: {fileID: 6649302327181998268, guid: bfd262ab2270da74f8b56afdd3276867,
         type: 3}

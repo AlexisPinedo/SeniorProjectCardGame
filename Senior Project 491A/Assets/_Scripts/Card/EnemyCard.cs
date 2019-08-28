@@ -26,8 +26,6 @@ public abstract class EnemyCard : Card
     private void Awake()
     {
         manager = this.GetComponent<BossTurnCardPlayer>();
-
-        Debug.Log("This method ran");
     }
 
     protected virtual void OnDestroy()
