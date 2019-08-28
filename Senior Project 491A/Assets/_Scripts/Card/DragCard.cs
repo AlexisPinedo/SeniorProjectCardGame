@@ -8,7 +8,7 @@ public class DragCard : MonoBehaviour
 {
     public delegate void _onCardPurschased(PlayerCard cardBought);
     public static event _onCardPurschased CardPurchased;
-    
+
     private Vector3 screenPoint;
     private Vector3 offset;
 
@@ -24,7 +24,7 @@ public class DragCard : MonoBehaviour
     void OnMouseDown()
     {
         if (card.inShop)
-        {      
+        {
             if (card.PurchaseCard())
             {
                 if (CardPurchased != null)

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The entity that deals cards for the Boss, but that you can't hurt.
+/// </summary>
 public class BossTurnCardPlayer : MonoBehaviour
 {
     public EnemyCard cardToPlay;
@@ -20,14 +23,11 @@ public class BossTurnCardPlayer : MonoBehaviour
 
     public void PlayHandler()
     {
-
         cardPlaced = false;
-        while(cardPlaced == false && filledCardZones != 13)
+        while (cardPlaced == false && filledCardZones != 13)
         {
             PlayCard();
-
         }
-        
     }
 
     public void PlayCard()
@@ -42,7 +42,7 @@ public class BossTurnCardPlayer : MonoBehaviour
                 Debug.Log("In boss zone");
                 return;
             }
-            
+
             cardToPlay = (EnemyCard)enemyDeck.DrawCard();
             cardToPlay.gameObject.transform.position = location;
 
@@ -61,7 +61,7 @@ public class BossTurnCardPlayer : MonoBehaviour
         else
         {
             Debug.Log("Cannot play card");
-            if(filledCardZones == 13)
+            if (filledCardZones == 13)
             {
                 Debug.Log("You Lose the board is full");
             }
@@ -92,7 +92,5 @@ public class BossTurnCardPlayer : MonoBehaviour
             spawnPoint.x -= enemyGrid.size;
             Debug.Log("In boss zone");
         }
-
     }
-
 }

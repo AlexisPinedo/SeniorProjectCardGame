@@ -7,7 +7,7 @@ public abstract class EnemyCard : Card
     public delegate void _EnemyDestroyed(Vector2 cardPosition, bool cardRemoved);
     public static event _EnemyDestroyed EnemyDestroyed;
 
-    //Create delegate event like the one above for the enemycardclicked
+    // Create delegate event like the one above for the enemycardclicked
     // Delegate will be type void and take a gameobject as a parameter
     public delegate void _EnemyCardClicked(EnemyCard enemyCard);
     public static event _EnemyCardClicked EnemyClicked;
@@ -15,14 +15,10 @@ public abstract class EnemyCard : Card
     [SerializeField]
     protected int _rewardValue, _healthValue;
 
-    public int healthValue
+    public int HealthValue
     {
         get { return _healthValue; }
-
-        set
-        {
-            _healthValue = value;
-        }
+        set { _healthValue = value; }
     }
 
     public BossTurnCardPlayer manager;
@@ -30,7 +26,7 @@ public abstract class EnemyCard : Card
     private void Awake()
     {
         manager = this.GetComponent<BossTurnCardPlayer>();
-        
+
         Debug.Log("This method ran");
     }
 
@@ -38,7 +34,6 @@ public abstract class EnemyCard : Card
     {
         if (EnemyDestroyed != null)
             EnemyDestroyed.Invoke(this.transform.position, false);
-       
     }
 
     public virtual void OnMouseDown()
@@ -49,5 +44,4 @@ public abstract class EnemyCard : Card
             EnemyClicked.Invoke(this);
         }
     }
-
 }
