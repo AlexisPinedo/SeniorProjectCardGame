@@ -20,14 +20,12 @@ public class BossTurnCardPlayer : MonoBehaviour
 
     public void PlayHandler()
     {
-
         cardPlaced = false;
         while(cardPlaced == false && filledCardZones != 13)
         {
             PlayCard();
 
         }
-        
     }
 
     public void PlayCard()
@@ -87,6 +85,7 @@ public class BossTurnCardPlayer : MonoBehaviour
                 spawnPoint.y += enemyGrid.size;
             }
         }
+
         if (spawnPoint.x == 6f && spawnPoint.y == 2f)
         {
             spawnPoint.x -= enemyGrid.size;
