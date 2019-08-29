@@ -13,7 +13,7 @@ public class EnemyCard : Card
     public static event _EnemyCardClicked EnemyClicked;
 
     [SerializeField]
-    private int _rewardValue, _healthValue;
+    protected int _rewardValue, _healthValue;
 
     public int healthValue
     {

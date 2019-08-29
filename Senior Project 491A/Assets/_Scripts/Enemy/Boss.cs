@@ -16,7 +16,7 @@ public class Boss : EnemyCard
 {
     /* Boss' health and reward value */
     public int _health;
-    public int _rewardValue;
+    //public int _rewardValue;
 
     public TurnManager turnManager;
 

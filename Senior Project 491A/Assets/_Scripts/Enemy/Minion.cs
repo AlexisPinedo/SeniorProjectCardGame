@@ -16,7 +16,7 @@ public class Minion : EnemyCard
 {
     /* Minion's health and reward values */
     private int _health;
-    private int _rewardValue;
+    //private int _rewardValue;
 
     // from IEnemy
     public int health
