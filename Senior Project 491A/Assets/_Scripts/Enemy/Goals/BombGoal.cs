@@ -37,12 +37,12 @@ public class BombGoal : Goal
     {
         if (cardDrawn.Equals(bombCard))
         {
-            Debug.Log("Bomb revealved");
+            //Debug.Log("Bomb revealved");
             bombCounter++;
             enemyCardPlayer.PlayHandler();
             if(bombCounter == 5)
             {
-                Debug.Log("You Lose!");
+                //Debug.Log("You Lose!");
             }
         }
     }

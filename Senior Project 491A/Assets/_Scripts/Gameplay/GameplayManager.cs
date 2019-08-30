@@ -73,7 +73,7 @@ public class GameplayManager : MonoBehaviour
         bossCardPlayer.PlayHandler();
 
         // Switch players
-        Debug.Log("Starting next player turn");
+        //Debug.Log("Starting next player turn");
         playerSwitcher.ShowHidePanel();
         yield return new WaitForSeconds(1f);
     

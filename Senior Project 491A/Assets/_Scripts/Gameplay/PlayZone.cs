@@ -7,7 +7,7 @@ public class PlayZone : MonoBehaviour
     /* Triggers when a PlayerCard is dragged into the Play Zone */
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name + " has entered the scene");
+        //Debug.Log(col.gameObject.name + " has entered the scene");
 
         // Card stuff
         Hand tpHand = TurnManager.turnPlayer.GetComponentInChildren<Hand>();
@@ -17,7 +17,7 @@ public class PlayZone : MonoBehaviour
 
         if (!card.cardName.Equals("Phantom"))
         {
-            Debug.Log("Sending played card to grave");
+            //Debug.Log("Sending played card to grave");
 
             tpHand.SendToGraveyard(card);
         }

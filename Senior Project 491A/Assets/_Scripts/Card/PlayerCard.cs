@@ -30,7 +30,7 @@ public class PlayerCard : Card
         }
         else
         {
-            Debug.Log("Cannot buy too broke");
+            //Debug.Log("Cannot buy too broke");
 
         }
         return false;

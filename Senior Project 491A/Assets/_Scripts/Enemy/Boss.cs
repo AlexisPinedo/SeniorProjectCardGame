@@ -49,7 +49,7 @@ public class Boss : EnemyCard
     {
         if (cardPlayer.filledCardZones == 0)
         {
-            Debug.Log("Player can attack the Boss");
+            //Debug.Log("Player can attack the Boss");
 
             int playerPower = TurnManager.turnPlayer.GetPower();
 
@@ -59,7 +59,7 @@ public class Boss : EnemyCard
             }
             else
             {
-                Debug.Log("Player lacks the power to defeat the Boss!");
+                //Debug.Log("Player lacks the power to defeat the Boss!");
             }
 
         }

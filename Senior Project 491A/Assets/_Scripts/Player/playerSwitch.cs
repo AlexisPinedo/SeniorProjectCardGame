@@ -22,7 +22,7 @@ public class playerSwitch : MonoBehaviour
     {
         p2HandSpacePanel.SetActive(false);
         TurnManager.turnPlayer = player1;
-        Debug.Log("playerSwitch awake");
+        //Debug.Log("playerSwitch awake");
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ public class playerSwitch : MonoBehaviour
                 //turnManager.SetPlayerOnesTurn();
 
                 TurnManager.turnPlayer = player1;
-                Debug.Log("Player 1 Turn");
+                //Debug.Log("Player 1 Turn");
             }
             // Switch to Player Two
             else if (p1HandSpacePanel.activeSelf)
@@ -49,7 +49,7 @@ public class playerSwitch : MonoBehaviour
                 p2HandSpacePanel.SetActive(true);
                 //turnManager.SetPlayerTwosTurn();
                 TurnManager.turnPlayer = player2;
-                Debug.Log("Player 2 Turn");
+                //Debug.Log("Player 2 Turn");
             }
         }
     }

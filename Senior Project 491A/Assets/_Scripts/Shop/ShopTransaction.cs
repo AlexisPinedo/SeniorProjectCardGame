@@ -65,7 +65,7 @@ public class ShopTransaction : MonoBehaviour
             //Increment next spot position
             spawnPoint.x += 2.0f;
         }
-        Debug.Log("Init cards delt");
+        //Debug.Log("Init cards delt");
     }
 
 

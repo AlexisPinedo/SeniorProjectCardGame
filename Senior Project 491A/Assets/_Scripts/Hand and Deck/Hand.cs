@@ -48,7 +48,7 @@ public class Hand : MonoBehaviour
 
         if (deckIsEmpty && graveIsEmpty)
         {
-            Debug.Log("No cards to draw");
+            //Debug.Log("No cards to draw");
             cardDrawn = null;
         }
         else
@@ -93,7 +93,7 @@ public class Hand : MonoBehaviour
             {
                 /// TODO: Resize to normal
                 /// ???
-                Debug.Log("RemoveCard, cardsInHand > 6 not finished");
+                //Debug.Log("RemoveCard, cardsInHand > 6 not finished");
                 cardsInHand -= 1;
             }
             else
@@ -140,7 +140,7 @@ public class Hand : MonoBehaviour
 
             if (cardDrawn == null)
             {
-                Debug.Log("null card");
+                //Debug.Log("null card");
             }
 
             PlaceCard(cardDrawn);
@@ -189,7 +189,7 @@ public class Hand : MonoBehaviour
             {
                 if (cardPlayed.cardName == hand[i].cardName)
                 {
-                    Debug.Log("Found at index: " + i);
+                    //Debug.Log("Found at index: " + i);
                     break;
                 }
             }
@@ -207,14 +207,14 @@ public class Hand : MonoBehaviour
 
                 if (cardsInHand > 6)
                 {
-                    Debug.Log("Card -> Graveyard && Resizing");
+                    //Debug.Log("Card -> Graveyard && Resizing");
                 }
 
                 cardsInHand -= 1;
             }
             else
             {
-                Debug.Log("Card not found in hand");
+                //Debug.Log("Card not found in hand");
             }
         }
     }

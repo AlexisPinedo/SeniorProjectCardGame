@@ -32,7 +32,7 @@ public class Goal : MonoBehaviour
     public void EndGame()
     {
         // TODO: Change from a debug log to an end state
-        Debug.Log("Goal was reached. Boss has won. Sorry bud");
+        //Debug.Log("Goal was reached. Boss has won. Sorry bud");
         
     }
 }

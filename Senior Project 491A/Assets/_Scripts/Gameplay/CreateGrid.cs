@@ -42,7 +42,7 @@ public class CreateGrid : MonoBehaviour
         }
         else
         {
-            Debug.Log("Size Cannot be less then 1");
+            //Debug.Log("Size Cannot be less then 1");
         }
     }
 
@@ -85,7 +85,7 @@ public class CreateGrid : MonoBehaviour
         }
         else
         {
-            Debug.Log("Size Cannot be less then 1");
+            //Debug.Log("Size Cannot be less then 1");
         }
     }
 
@@ -133,11 +133,11 @@ public class CreateGrid : MonoBehaviour
                 return true;
             }
             else
-                Debug.Log("Key location is taken");
+                //Debug.Log("Key location is taken");
             return false;
         }
 
-        Debug.Log("objectPlacements does not contain location: " + location);
+        //Debug.Log("objectPlacements does not contain location: " + location);
         return false;
     }
 
@@ -148,7 +148,7 @@ public class CreateGrid : MonoBehaviour
     /// <param name="newX"></param>
     public void ResizeGrid(float newSize, int newX)
     {
-        Debug.Log("Resizing grid");
+        //Debug.Log("Resizing grid");
 
         string parsed = newSize.ToString("0.000");    // Truncate at thousandths
         _size = float.Parse(parsed);

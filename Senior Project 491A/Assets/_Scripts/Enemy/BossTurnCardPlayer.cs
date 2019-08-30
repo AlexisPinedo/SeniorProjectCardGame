@@ -39,7 +39,7 @@ public class BossTurnCardPlayer : MonoBehaviour
             if (location.x == 6f && location.y == 2f)
             {
                 spawnPoint.x -= enemyGrid.size;
-                Debug.Log("In boss zone");
+                //Debug.Log("In boss zone");
                 return;
             }
 
@@ -54,16 +54,16 @@ public class BossTurnCardPlayer : MonoBehaviour
             filledCardZones++;
             enemyGrid.SetObjectPlacement(location);
 
-            Debug.Log("Next position to spwan will be: " + spawnPoint);
+            //Debug.Log("Next position to spwan will be: " + spawnPoint);
             cardPlaced = true;
 
         }
         else
         {
-            Debug.Log("Cannot play card");
+            //Debug.Log("Cannot play card");
             if (filledCardZones == 13)
             {
-                Debug.Log("You Lose the board is full");
+                //Debug.Log("You Lose the board is full");
             }
         }
 
@@ -91,7 +91,7 @@ public class BossTurnCardPlayer : MonoBehaviour
         if (spawnPoint.x == 6f && spawnPoint.y == 2f)
         {
             spawnPoint.x -= enemyGrid.size;
-            Debug.Log("In boss zone");
+            //Debug.Log("In boss zone");
         }
     }
 }

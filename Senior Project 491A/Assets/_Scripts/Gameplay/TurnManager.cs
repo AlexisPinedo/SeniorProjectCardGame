@@ -27,16 +27,16 @@ public class TurnManager : MonoBehaviour
 
     void HandleEnemyCardClick(EnemyCard enemyCard)
     {
-        Debug.Log("I have been clicked");
+        //Debug.Log("I have been clicked");
         if (turnPlayer.GetPower() >= enemyCard.HealthValue)
         {
-            Debug.Log("I can kill the enemy");
+            //Debug.Log("I can kill the enemy");
             turnPlayer.SubtractPower(enemyCard.HealthValue);
             Destroy(enemyCard.gameObject);
         }
         else
         {
-            Debug.Log("Cannot kill not enough power");
+            //Debug.Log("Cannot kill not enough power");
         }
     }
 
