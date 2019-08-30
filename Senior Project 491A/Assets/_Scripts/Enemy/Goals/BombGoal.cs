@@ -8,7 +8,7 @@ public class BombGoal : Goal
 
     public int bombsToShuffle;
 
-    public EnemyCard bombCard;
+    public EnemyCard bombCard;  // TODO
 
     public EnemyDeck enemyDeck;
 
@@ -18,7 +18,6 @@ public class BombGoal : Goal
     {
         for (int i = 0; i < bombsToShuffle; i++)
         {
-            Debug.Log("Adding bomb card");
             enemyDeck.AddCard(bombCard);
         }
         enemyDeck.Shuffle();
@@ -38,12 +37,12 @@ public class BombGoal : Goal
     {
         if (cardDrawn.Equals(bombCard))
         {
-            Debug.Log("Bomb revealved");
+            //Debug.Log("Bomb revealved");
             bombCounter++;
             enemyCardPlayer.PlayHandler();
             if(bombCounter == 5)
             {
-                Debug.Log("You Lose!");
+                //Debug.Log("You Lose!");
             }
         }
     }
