@@ -14,7 +14,7 @@ public class History : MonoBehaviour
             return _instance;
         }
     }
-
+    [SerializeField]
     private  List<PlayerCard> playerCardHistory = new List<PlayerCard>();
 
     private  PlayerCard LastCardPlayed;
@@ -24,6 +24,10 @@ public class History : MonoBehaviour
         playerCardHistory.Add(cardToAdd);
     }
 
+    public void ClearHistory()
+    {
+        playerCardHistory.Clear();
+    }
     /*
      * This method will return the last element in the list if it is not empty
      */

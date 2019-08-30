@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnPlay : CardEffects
+public class OnPlayEffects : CardEffect
 {
     
 }

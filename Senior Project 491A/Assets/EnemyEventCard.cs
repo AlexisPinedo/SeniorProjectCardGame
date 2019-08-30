@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyEventCard : MonoBehaviour
+public class EnemyEventCard : EnemyCard
 {
     // Start is called before the first frame update
     void Start()

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
-    public playerSwitch playerSwitcher;
     public BossTurnCardPlayer bossCardPlayer;
     public TextUpdate textManger;
     public GameObject shop;
@@ -12,7 +11,7 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
-        TurnManager.turnPlayer.hand.TurnStartDraw();
+        TurnManager.Instance.turnPlayer.hand.TurnStartDraw();
         bossArea.SetActive(false);
     }
 
@@ -48,13 +47,13 @@ public class GameplayManager : MonoBehaviour
         Debug.Log("Starting next player turn");
         shop.SetActive(false);
         bossArea.SetActive(true);
-        TurnManager.turnPlayer.hand.SendHandToGraveyard();
-        TurnManager.turnPlayer.SetCurrency(0);
-        TurnManager.turnPlayer.SetPower(0);
+        TurnManager.Instance.turnPlayer.hand.SendHandToGraveyard();
+        TurnManager.Instance.turnPlayer.SetCurrency(0);
+        TurnManager.Instance.turnPlayer.SetPower(0);
         bossCardPlayer.PlayHandler();
-        playerSwitcher.ShowHidePanel();
+        TurnManager.Instance.ShowHidePanel();
         yield return new WaitForSeconds(1f);
-        TurnManager.turnPlayer.hand.TurnStartDraw();
+        TurnManager.Instance.turnPlayer.hand.TurnStartDraw();
         textManger.ResetCurrency();
         textManger.ResetPower();
         shop.SetActive(true);

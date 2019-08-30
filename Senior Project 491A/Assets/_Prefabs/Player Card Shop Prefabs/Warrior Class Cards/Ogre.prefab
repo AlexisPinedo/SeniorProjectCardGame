@@ -722,7 +722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Ogre
   cardDescription: 
-  cardEffect: 
+  cardEffect: {fileID: 0}
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
   inShop: 1

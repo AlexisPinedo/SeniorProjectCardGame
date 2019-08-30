@@ -53,7 +53,7 @@ public class Boss : EnemyCard
         if (cardPlayer.filledCardZones == 0)
         {
             Debug.Log("can attack boss");
-            if (TurnManager.turnPlayer.GetPower() >= _health)
+            if (TurnManager.Instance.turnPlayer.GetPower() >= _health)
             {
                 Destroy(this.gameObject);
             }

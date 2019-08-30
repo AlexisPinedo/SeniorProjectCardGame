@@ -5,33 +5,62 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     // Player References
-    public static Player turnPlayer;
+    public Player turnPlayer;
 
-    //create a method that handles the card that was clicked
-    // this method needs to have the same signature as your delegate
-    // subscribe to onenable and ondisable methods
-    void OnEnable()
+    [SerializeField]
+    private GameObject p1HandSpacePanel;
+
+    [SerializeField]
+    private GameObject p2HandSpacePanel;
+
+    public Player player1;
+
+    public Player player2;
+
+    private static TurnManager _instance;
+
+    public static TurnManager Instance
     {
-        EnemyCard.EnemyClicked += HandleEnemyCardClick;
+        get { return _instance; }
     }
 
-    void OnDisable()
-    {
-        EnemyCard.EnemyClicked -= HandleEnemyCardClick;
-    }
 
-    void HandleEnemyCardClick(EnemyCard enemyCard)
+    void Awake()
     {
-        Debug.Log("I have been clicked");
-        if (turnPlayer.GetPower() >= enemyCard.healthValue)
+        if (_instance != null && _instance != this)
         {
-            Debug.Log("I can kill the enemy");
-            turnPlayer.SubtractPower(enemyCard.healthValue);
-            Destroy(enemyCard.gameObject);
+            Destroy(this.gameObject);
         }
         else
         {
-            Debug.Log("Cannot kill not enough power");
+            _instance = this;
+        }
+
+        p2HandSpacePanel.SetActive(false);
+        turnPlayer = player1;
+    }
+
+    public void ShowHidePanel()
+    {
+        if (p1HandSpacePanel != null && p2HandSpacePanel != null)
+        {
+            // Switch to Player Two
+            if (p1HandSpacePanel.activeSelf)
+            {
+                p1HandSpacePanel.SetActive(false);
+                p2HandSpacePanel.SetActive(true);
+                //turnManager.SetPlayerTwosTurn();
+                turnPlayer = player2;
+            }
+            // Switch to Player One
+            else if (p2HandSpacePanel.activeSelf)
+            {
+                p2HandSpacePanel.SetActive(false);
+                p1HandSpacePanel.SetActive(true);
+                //turnManager.SetPlayerOnesTurn();
+
+                turnPlayer = player1;
+            }
         }
     }
 

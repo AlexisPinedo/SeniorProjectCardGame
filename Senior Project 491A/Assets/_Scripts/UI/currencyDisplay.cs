@@ -18,13 +18,13 @@ public class currencyDisplay : MonoBehaviour
 
     void Awake()
     {
-        player = TurnManager.turnPlayer;
+        player = TurnManager.Instance.turnPlayer;
         currencyStatusText.text = "CURRENCY: " + player.GetCurrency();
     }
 
     public void UpdateCurrencyDisplay()
     {
-        player = TurnManager.turnPlayer;
+        player = TurnManager.Instance.turnPlayer;
         currencyStatusText.text = "CURRENCY: " + player.GetCurrency();
     }
 }

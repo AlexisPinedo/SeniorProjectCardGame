@@ -10,10 +10,10 @@ public class PlayZone : MonoBehaviour
         Debug.Log(col.gameObject.name + " has entered the scene");
 
         // Card stuff
-        Hand tpHand = TurnManager.turnPlayer.GetComponentInChildren<Hand>();
+        Hand tpHand = TurnManager.Instance.turnPlayer.GetComponentInChildren<Hand>();
         PlayerCard card = col.gameObject.GetComponent<PlayerCard>();
-        TurnManager.turnPlayer.AddCurrency(card.cardCurrency);
-        TurnManager.turnPlayer.AddPower(card.cardAttack);
+        TurnManager.Instance.turnPlayer.AddCurrency(card.cardCurrency);
+        TurnManager.Instance.turnPlayer.AddPower(card.cardAttack);
 
         if (!card.cardName.Equals("Phantom"))
         {
@@ -23,7 +23,7 @@ public class PlayZone : MonoBehaviour
         }
 
         History.Instance.AddCardToHistory(card);
-
+        
         GameObject.Destroy(card.gameObject);
 
     }

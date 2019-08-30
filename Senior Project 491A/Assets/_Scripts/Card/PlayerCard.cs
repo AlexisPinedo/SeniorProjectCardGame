@@ -12,6 +12,11 @@ public class PlayerCard : Card
     public int cardCurrency;
     public int cardAttack;
 
+    private void Awake()
+    {
+        cardEffect = GetComponent<CardEffect>();
+    }
+
     //This Enum has a reference for which attribute the card is. 
     public enum CardTypes
     {
@@ -33,7 +38,7 @@ public class PlayerCard : Card
     //When purchasing card from shop call this method from an event trigger
     public bool PurchaseCard()
     {
-        Player player = TurnManager.turnPlayer;
+        Player player = TurnManager.Instance.turnPlayer;
 
         if (cardCost <= player.GetCurrency())
         {

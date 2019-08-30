@@ -5,5 +5,5 @@ using UnityEngine;
 
 public abstract class CardEffect : MonoBehaviour
 {
-    
+    protected int effectRequirement;
 }

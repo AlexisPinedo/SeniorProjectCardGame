@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnDeath : CardEffects
+public class OnDeath : CardEffect
 {
    /*
     *If the card dies,

@@ -827,7 +827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &560238251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1049,7 +1049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66eb12e0b7d55f48b6d9d31f8f52fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSwitcher: {fileID: 815000618}
   bossCardPlayer: {fileID: 1173389877}
   textManger: {fileID: 815000617}
   shop: {fileID: 934872670}
@@ -1510,7 +1509,6 @@ GameObject:
   m_Component:
   - component: {fileID: 815000619}
   - component: {fileID: 815000616}
-  - component: {fileID: 815000618}
   - component: {fileID: 815000617}
   m_Layer: 0
   m_Name: UI Handler
@@ -1545,22 +1543,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPower: {fileID: 1014222953}
   playerCurrency: {fileID: 1694429697}
---- !u!114 &815000618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815000615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0bacec8f14bc004eb5b1aececfce264, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  p1HandSpacePanel: {fileID: 405819866}
-  p2HandSpacePanel: {fileID: 1200769564}
-  player1: {fileID: 1185834760}
-  player2: {fileID: 588335415}
 --- !u!224 &815000619
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2264,6 +2246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c857ef2bfa66a438ef270559f0964d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCardHistory: []
 --- !u!4 &1175103966
 Transform:
   m_ObjectHideFlags: 0
@@ -3770,7 +3753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 
   cardDescription: 
-  cardEffect: 
+  cardEffect: {fileID: 0}
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
   _rewardValue: 0
@@ -4512,7 +4495,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2017897503}
   - component: {fileID: 2017897502}
-  - component: {fileID: 2017897504}
   m_Layer: 0
   m_Name: TurnManager
   m_TagString: Untagged
@@ -4532,6 +4514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7e90af0b3811eac8cec531e4b94592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnPlayer: {fileID: 0}
+  p1HandSpacePanel: {fileID: 57440919}
+  p2HandSpacePanel: {fileID: 1273032544}
+  player1: {fileID: 1185834760}
+  player2: {fileID: 588335415}
 --- !u!4 &2017897503
 Transform:
   m_ObjectHideFlags: 0
@@ -4546,22 +4533,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2017897504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017897501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0bacec8f14bc004eb5b1aececfce264, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  p1HandSpacePanel: {fileID: 57440919}
-  p2HandSpacePanel: {fileID: 1273032544}
-  player1: {fileID: 1185834760}
-  player2: {fileID: 588335415}
 --- !u!1 &2019385386
 GameObject:
   m_ObjectHideFlags: 0

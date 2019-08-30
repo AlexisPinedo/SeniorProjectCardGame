@@ -66,7 +66,7 @@ public class ShopTransaction : MonoBehaviour
 
     void ManagePurchase(PlayerCard cardBought)
     {
-        currentPlayer = TurnManager.turnPlayer;
+        currentPlayer = TurnManager.Instance.turnPlayer;
         //Find the card in cardsInShop in the list that matches cardBought on the grid
         PlayerCard found = cardsInShop.Find(i => i.spotOnGrid == cardBought.spotOnGrid);
         //Add purchase to player graveyard

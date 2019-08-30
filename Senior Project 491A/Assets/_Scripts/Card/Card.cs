@@ -8,7 +8,7 @@ public abstract class Card : MonoBehaviour
     
     public string cardDescription;
 
-    public string cardEffect;
+    public CardEffect cardEffect;
 
     public Sprite cardArtwork;
     
