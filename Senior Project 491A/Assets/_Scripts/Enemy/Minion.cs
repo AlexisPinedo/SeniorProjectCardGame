@@ -18,7 +18,6 @@ public class Minion : EnemyCard
     private int _health;
 
     //private int _rewardValue;
-    public CardEffect effect;
 
     /// <summary>
     /// The Minion's Health. Defaults to 5 if value being set is too low.
@@ -58,10 +57,17 @@ public class Minion : EnemyCard
         }
     }
 
-    protected override void OnDestroy()
+    public CardEffect effect;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        base.OnDestroy();
-        manager.filledCardZones--;
-        Debug.Log("Set location to false");
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 }

@@ -19,6 +19,7 @@ public class Boss : EnemyCard
     /// </summary>
     private readonly int _health;
 
+    public TurnManager turnManager;
     /// <summary>
     /// What the Boss needs to have happen in the game in order for him/her/it to win!
     /// </summary>
@@ -50,17 +51,17 @@ public class Boss : EnemyCard
         {
             Debug.Log("Player can attack the Boss");
 
-            if (this._health > 0)
+            int playerPower = TurnManager.turnPlayer.GetPower();
+
+            if (playerPower > 0 && playerPower >= this._health)
             {
-                if (TurnManager.turnPlayer.GetPower() >= this._health)
-                {
-                    Destroy(this.gameObject);
-                }
-                else
-                {
-                    Debug.Log("Player lacks the power to defeat the Boss!");
-                }
+                Destroy(this.gameObject);
             }
+            else
+            {
+                Debug.Log("Player lacks the power to defeat the Boss!");
+            }
+
         }
     }
 }

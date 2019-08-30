@@ -87,6 +87,7 @@ public class BossTurnCardPlayer : MonoBehaviour
                 spawnPoint.y += enemyGrid.size;
             }
         }
+
         if (spawnPoint.x == 6f && spawnPoint.y == 2f)
         {
             spawnPoint.x -= enemyGrid.size;
