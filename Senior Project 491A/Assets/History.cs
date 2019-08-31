@@ -13,14 +13,28 @@ public class History : MonoBehaviour
             if (_instance == null) _instance = new History();
             return _instance;
         }
+        set
+        {
+            _instance = value;
+        }
     }
+
     [SerializeField]
-    private  List<PlayerCard> playerCardHistory = new List<PlayerCard>();
+    private List<PlayerCard> playerCardHistory = new List<PlayerCard>();
 
     private  PlayerCard LastCardPlayed;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+    }
+
     public void AddCardToHistory(PlayerCard cardToAdd)
     {
+        Debug.Log("Card Added");
         playerCardHistory.Add(cardToAdd);
     }
 

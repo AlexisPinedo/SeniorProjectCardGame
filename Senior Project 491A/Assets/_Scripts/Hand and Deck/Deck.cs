@@ -59,7 +59,7 @@ public abstract class Deck : MonoBehaviour
         // Notify subscribers, if any
         if (CardDrawn != null)
         {
-            Debug.Log("Notifying subscribers");
+            //Debug.Log("Notifying subscribers");
             CardDrawn(cardPopped);
         }
 

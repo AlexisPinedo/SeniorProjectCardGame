@@ -44,7 +44,7 @@ public class GameplayManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        Debug.Log("Starting next player turn");
+        //Debug.Log("Starting next player turn");
         shop.SetActive(false);
         bossArea.SetActive(true);
         TurnManager.Instance.turnPlayer.hand.SendHandToGraveyard();

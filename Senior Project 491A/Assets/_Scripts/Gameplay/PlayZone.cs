@@ -20,9 +20,9 @@ public class PlayZone : MonoBehaviour
             //Debug.Log("Sending played card to grave");
 
             tpHand.SendToGraveyard(card);
-        }
+        }        
 
-        History.Instance.AddCardToHistory(card);
+        History.Instance.AddCardToHistory(cardClone);
         
         GameObject.Destroy(card.gameObject);
 

@@ -440,7 +440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6130187465402888857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2000003, y: -3.96, z: 0}
+  m_LocalPosition: {x: 2.8520002, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1701432448049937670}
@@ -515,14 +515,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Mermaid
   cardDescription: 
-  cardEffect: 
+  cardEffect: {fileID: 0}
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
   inShop: 1
   cardCost: 4
   cardCurrency: 3
   cardAttack: 3
-  spotOnGrid: {x: -3.1479998, y: 3}
+  cardType: 0
+  spotOnGrid: {x: 2.8520002, y: 3}
 --- !u!114 &6130187465402888861
 MonoBehaviour:
   m_ObjectHideFlags: 0

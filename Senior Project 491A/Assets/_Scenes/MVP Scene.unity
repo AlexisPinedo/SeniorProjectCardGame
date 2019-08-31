@@ -3759,6 +3759,7 @@ MonoBehaviour:
   _rewardValue: 0
   _healthValue: 0
   manager: {fileID: 0}
+  _health: 0
   goal: {fileID: 0}
   bossDeck: {fileID: 0}
   EnemyGrid: {fileID: 718689244}

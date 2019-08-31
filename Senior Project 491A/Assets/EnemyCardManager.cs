@@ -31,10 +31,10 @@ public class EnemyCardManager : MonoBehaviour
     void HandleEnemyCardClick(EnemyCard enemyCard)
     {
         Debug.Log("I have been clicked");
-        if (TurnManager.Instance.turnPlayer.GetPower() >= enemyCard.healthValue)
+        if (TurnManager.Instance.turnPlayer.GetPower() >= enemyCard.HealthValue)
         {
             Debug.Log("I can kill the enemy");
-            TurnManager.Instance.turnPlayer.SubtractPower(enemyCard.healthValue);
+            TurnManager.Instance.turnPlayer.SubtractPower(enemyCard.HealthValue);
             Destroy(enemyCard.gameObject);
         }
         else
