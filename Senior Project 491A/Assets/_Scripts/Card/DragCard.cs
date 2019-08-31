@@ -14,7 +14,7 @@ public class DragCard : MonoBehaviour
 
     private PlayerCard card;
 
-    public bool draggable = false;
+    public bool draggable = true;
 
     public void Awake()
     {
@@ -25,13 +25,14 @@ public class DragCard : MonoBehaviour
     {
         if (card.inShop)
         {
-            if (card.PurchaseCard())
-            {
-                if (CardPurchased != null)
-                {
-                    CardPurchased.Invoke(card);
-                }
-            }
+            draggable = true;
+            //if (card.PurchaseCard())
+            //{
+            //    if (CardPurchased != null)
+            //    {
+            //        CardPurchased.Invoke(card);
+            //    }
+            //}
         }
         else
         {
