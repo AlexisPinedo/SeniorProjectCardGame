@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The entity that deals cards for the Boss, but that you can't hurt.
+/// </summary>
 public class BossTurnCardPlayer : MonoBehaviour
 {
     public EnemyCard cardToPlay;
@@ -20,14 +23,11 @@ public class BossTurnCardPlayer : MonoBehaviour
 
     public void PlayHandler()
     {
-
         cardPlaced = false;
-        while(cardPlaced == false && filledCardZones != 13)
+        while (cardPlaced == false && filledCardZones != 13)
         {
             PlayCard();
-
         }
-        
     }
 
     public void PlayCard()
@@ -39,10 +39,10 @@ public class BossTurnCardPlayer : MonoBehaviour
             if (location.x == 6f && location.y == 2f)
             {
                 spawnPoint.x -= enemyGrid.size;
-                Debug.Log("In boss zone");
+                //Debug.Log("In boss zone");
                 return;
             }
-            
+
             cardToPlay = (EnemyCard)enemyDeck.DrawCard();
             cardToPlay.gameObject.transform.position = location;
 
@@ -54,16 +54,16 @@ public class BossTurnCardPlayer : MonoBehaviour
             filledCardZones++;
             enemyGrid.SetObjectPlacement(location);
 
-            Debug.Log("Next position to spwan will be: " + spawnPoint);
+            //Debug.Log("Next position to spwan will be: " + spawnPoint);
             cardPlaced = true;
 
         }
         else
         {
-            Debug.Log("Cannot play card");
-            if(filledCardZones == 13)
+            //Debug.Log("Cannot play card");
+            if (filledCardZones == 13)
             {
-                Debug.Log("You Lose the board is full");
+                //Debug.Log("You Lose the board is full");
             }
         }
 
@@ -87,12 +87,11 @@ public class BossTurnCardPlayer : MonoBehaviour
                 spawnPoint.y += enemyGrid.size;
             }
         }
+
         if (spawnPoint.x == 6f && spawnPoint.y == 2f)
         {
             spawnPoint.x -= enemyGrid.size;
-            Debug.Log("In boss zone");
+            //Debug.Log("In boss zone");
         }
-
     }
-
 }

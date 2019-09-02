@@ -14,7 +14,7 @@ public abstract class Deck : MonoBehaviour
     [SerializeField]
     private int cardCopies;
 
-    public List<Card> testCards = new List<Card>(10);
+    public List<Card> cardsToPlaceInDeck = new List<Card>(10);
 
     private void Awake()
     {
@@ -25,13 +25,11 @@ public abstract class Deck : MonoBehaviour
     // Temp fix until we get more cards in the system
     protected void FillDeck()
     {
-        foreach (var card in testCards)
+        foreach (var card in cardsToPlaceInDeck)
         {
             for (int i = 0; i < cardCopies; i++)
             {
                 Card copy = card;
-                //copy.transform.parent = this.transform;
-                Debug.Log("copy: " + copy);
                 AddCard((Card)copy);
             }
         }
@@ -70,7 +68,6 @@ public abstract class Deck : MonoBehaviour
 
     public void AddCard(Card card)
     {
-        Debug.Log("Card: " + card.cardName + " has been pushed onto the stack");
         cardsInDeck.Push(card);
     }
 

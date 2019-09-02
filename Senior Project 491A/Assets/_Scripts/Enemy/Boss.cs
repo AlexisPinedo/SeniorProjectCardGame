@@ -9,67 +9,58 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-/*
-    This class represents a match's Boss
- */
-public class Boss : MonoBehaviour, IEnemy
+/// <summary>
+/// A Boss card represents ...well... the boss of a level.
+/// </summary>
+public class Boss : EnemyCard
 {
-    /* Boss' health and reward value */
-    public int _health;
-    public int _rewardValue;
+    /// <summary>
+    /// The Boss' health. Can't be lowered, only obliterated!
+    /// </summary>
+    private readonly int _health;
 
     public TurnManager turnManager;
-
-    // from IEnemy
-    public int health
-    {
-        get { return _health; }
-        set { _health = value; }
-    }
-    public int rewardValue
-    {
-        get { return _rewardValue;}
-        set { _rewardValue = value;}
-    }
-
-    /* The Boss' Goal */
+    /// <summary>
+    /// What the Boss needs to have happen in the game in order for him/her/it to win!
+    /// </summary>
     public Goal goal;
 
-    /* The Boss' Deck */
+    /// <summary>
+    /// The Boss' deck of cards (they are indeed different than yours).
+    /// </summary>
     public EnemyDeck bossDeck;
 
+    /// <summary>
+    /// A reference to the Enemy's grid.
+    /// </summary>
     public CreateGrid EnemyGrid;
+
     public BossTurnCardPlayer cardPlayer;
 
-    // Start is called before the first frame update
     void Start()
     {
         // TODO: Set the goal?
         // TODO: Populate the Boss' deck?
 
         this.transform.position = EnemyGrid.GetNearestPointOnGrid(new Vector2(6, 2));
-
     }
 
-    private void OnMouseDown()
+    public override void OnMouseDown()
     {
-        if(cardPlayer.filledCardZones == 0)
+        if (cardPlayer.filledCardZones == 0)
         {
-            Debug.Log("can attack boss");
-            if(turnManager.turnPlayer.GetPower() >= _health)
+            //Debug.Log("Player can attack the Boss");
+
+            int playerPower = TurnManager.turnPlayer.GetPower();
+
+            if (playerPower > 0 && playerPower >= this._health)
             {
                 Destroy(this.gameObject);
             }
             else
             {
-                Debug.Log("not enough power");
-
+                //Debug.Log("Player lacks the power to defeat the Boss!");
             }
-
-        }
-        else
-        {
-            Debug.Log("Cannot attack boss there are other minions");
 
         }
     }

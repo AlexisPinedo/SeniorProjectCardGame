@@ -7,39 +7,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-    This class represents a Boss's Minion
-
-    TODO: Extend Card class
- */
-public class Minion : EnemyCard, IEnemy
+/// <summary>
+/// A lackey for the Boss.
+/// </summary>
+public class Minion : EnemyCard
 {
-    /* Minion's health and reward values */
+    /// <summary>
+    /// The Minion's health, hidden public prying eyes.
+    /// </summary>
     private int _health;
-    private int _rewardValue;
 
-    // from IEnemy
-    public int health
+    //private int _rewardValue;
+
+    /// <summary>
+    /// The Minion's Health. Defaults to 5 if value being set is too low.
+    /// </summary>
+    public int Health
     {
-            get { return _health; }
-            set {
-                if (value < 1) {
-                    _health = 5;  // Default health
-                } else {
-                    _health = value;
-                }
+        get { return _health; }
+        set
+        {
+            if (value < 1)
+            {
+                _health = 5;  // Default health
             }
+            else
+            {
+                _health = value;
+            }
+        }
     }
-    public int rewardValue
+
+    /// <summary>
+    /// The reward value for defeating this Minion. Defaults to 2 if the value being set is too low.
+    /// </summary>
+    public int RewardValue
     {
-            get { return _rewardValue;}
-            set {
-                if (value < 1) {
-                    _rewardValue = 2;  // Default reward value for Minions
-                } else {
-                    _rewardValue = value;
-                }
+        get { return _rewardValue; }
+        set
+        {
+            if (value < 1)
+            {
+                _rewardValue = 2;  // Default reward value for Minions
             }
+            else
+            {
+                _rewardValue = value;
+            }
+        }
     }
 
     public CardEffect effect;

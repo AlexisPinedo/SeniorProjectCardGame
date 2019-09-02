@@ -19,7 +19,7 @@ public class PlayerCard : Card
     //When purchasing card from shop call this method from an event trigger
     public bool PurchaseCard()
     {
-        Player player = FindObjectOfType<TurnManager>().turnPlayer;
+        Player player = TurnManager.turnPlayer;
 
         if (cardCost <= player.GetCurrency())
         {
@@ -30,7 +30,7 @@ public class PlayerCard : Card
         }
         else
         {
-            Debug.Log("Cannot buy too broke");
+            //Debug.Log("Cannot buy too broke");
 
         }
         return false;

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/**
-    Defines the Player's Hand
- */
+/// <summary>
+/// Defines what is part of a Player's Hand.
+/// </summary>
 public class Hand : MonoBehaviour
 {
     /* Hand-specific refereneces*/
@@ -36,6 +36,10 @@ public class Hand : MonoBehaviour
         shuffle the graveyard and put it into the deck.
         NOTE: No phantom cards are drawn using this technique
      */
+    /// <summary>
+    /// Adds a card to the Hand from the Deck. If there are no cards in the Deck but there is a graveyard then
+    /// we shuffle the graveyard and put it into the deck.
+    /// </summary>
     public void AddCard()
     {
         PlayerCard cardDrawn;
@@ -44,7 +48,7 @@ public class Hand : MonoBehaviour
 
         if (deckIsEmpty && graveIsEmpty)
         {
-            Debug.Log("No cards to draw");
+            //Debug.Log("No cards to draw");
             cardDrawn = null;
         }
         else
@@ -77,7 +81,10 @@ public class Hand : MonoBehaviour
         }
     }
 
-    /* Removes a PlayerCard if it exists in the Hand */
+    /// <summary>
+    /// Removes a player card if it exists in the Player's Hand
+    /// </summary>
+    /// <param name="cardAffected"></param>
     public void RemoveCard(PlayerCard cardAffected)
     {
         if (cardAffected != null && hand.Contains(cardAffected))
@@ -86,7 +93,7 @@ public class Hand : MonoBehaviour
             {
                 /// TODO: Resize to normal
                 /// ???
-                Debug.Log("RemoveCard, cardsInHand > 6 not finished");
+                //Debug.Log("RemoveCard, cardsInHand > 6 not finished");
                 cardsInHand -= 1;
             }
             else
@@ -97,12 +104,11 @@ public class Hand : MonoBehaviour
         }
     }
 
-    /* A unique draw that is only done at the beginning of the Player's turn 
-        If there are no cards in the Deck but there is a graveyard then
-        shuffle the graveyard and put it into the deck.
-        If there are no cards in the Deck and no graveyard, then draw
-        a phantom card.
-    */
+    /// <summary>
+    /// A unique draw that is only done at the beginning of the Player's turn.
+    /// It functions similar to AddCard(), except this function initializes 
+    /// phantom cards.
+    /// </summary>
     public void TurnStartDraw()
     {
         PlayerCard cardDrawn;
@@ -132,10 +138,15 @@ public class Hand : MonoBehaviour
                 }
             }
 
+            if (cardDrawn == null)
+            {
+                //Debug.Log("null card");
+            }
+
             PlaceCard(cardDrawn);
         }
 
-        foreach(var card in inHandObjects)
+        foreach (var card in inHandObjects)
         {
             PlayerCard cardComponent = card.GetComponent<PlayerCard>();
             cardComponent.inShop = false;
@@ -144,7 +155,10 @@ public class Hand : MonoBehaviour
         }
     }
 
-    /* Places a PlayerCard onto the Hand grid */
+    /// <summary>
+    /// Places a player's card onto the hand grid.
+    /// </summary>
+    /// <param name="card"></param>
     private void PlaceCard(PlayerCard card)
     {
         Vector2 spawnPoint;
@@ -161,7 +175,10 @@ public class Hand : MonoBehaviour
         }
     }
 
-    /* Sends a card from the Hand to the Graveyard */
+    /// <summary>
+    /// Sends a card to the player's graveyard from that player's hand.
+    /// </summary>
+    /// <param name="cardPlayed"></param>
     public void SendToGraveyard(PlayerCard cardPlayed)
     {
         if (cardPlayed != null)
@@ -172,7 +189,7 @@ public class Hand : MonoBehaviour
             {
                 if (cardPlayed.cardName == hand[i].cardName)
                 {
-                    Debug.Log("Found at index: " + i);
+                    //Debug.Log("Found at index: " + i);
                     break;
                 }
             }
@@ -182,7 +199,6 @@ public class Hand : MonoBehaviour
                 // Card was found -> Add to Graveyard
                 if (hand[i] != (PlayerCard)deck.phantomCard)
                 {
-                    Debug.Log("Card found and is being added to grave");
                     graveyard.AddToGrave(hand[i]);
                 }
 
@@ -191,61 +207,40 @@ public class Hand : MonoBehaviour
 
                 if (cardsInHand > 6)
                 {
-                    // Resize
-                    Debug.Log("Card -> Graveyard && Resizing");
+                    //Debug.Log("Card -> Graveyard && Resizing");
                 }
 
                 cardsInHand -= 1;
             }
             else
             {
-                Debug.Log("Card not found in hand");
+                //Debug.Log("Card not found in hand");
             }
         }
     }
 
-    //Don't allow Phantom cards to be sent to the graveyard
+    /// <summary>
+    /// Sends the player's hand to the graveyard and resizes the hand grid.
+    /// </summary>
     public void SendHandToGraveyard()
     {
         foreach (var card in hand)
         {
             if (card != (PlayerCard)deck.phantomCard)
             {
-                Debug.Log("Moving " + card.cardName + " to graveyard");
                 graveyard.AddToGrave(card);
             }
         }
         hand.Clear();
-        //while(hand.Count > 0)
-        //{
-        //    if (!hand[0] == (PlayerCard) deck.phantomCard)
-        //    {
-        //        Debug.Log("Moving " + hand[0].cardName + " to graveyard");
-        //        graveyard.AddToGrave(hand[0]);
-        //        Debug.Log("Removing " + hand[0].cardName + " from hand");
-        //        hand.RemoveAt(0);
-        //    }
 
-        //    cardsInHand -= 1;
-        //}
         foreach (var card in inHandObjects)
         {
-
-            Debug.Log("GameObject: " + card);
-            GameObject.Destroy(card);
-
+            if (card != null)
+            {
+                GameObject.Destroy(card);
+            }
         }
         inHandObjects.Clear();
-
-        //for (int i = inHandObjects.Count - 1; i >= 0; i--)
-        //{
-        //    if (!inHandObjects[i].GetComponent<PlayerCard>().cardName.Equals("Phantom"))
-        //    {
-        //        Debug.Log("GameObject: " + inHandObjects[i]);
-        //        GameObject.Destroy(inHandObjects[i]);
-        //    }
-
-        //}
 
         handGrid.ResizeGrid(2, 6);
         cardSpot = new Vector2();
