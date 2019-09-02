@@ -3834,7 +3834,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
-  inHandObjects: []
+  inHandObjects:
+  - {fileID: 6130187465402888857, guid: ab3eae9d5c90045feaf50686fe06bc16, type: 3}
   playerObj: {fileID: 1185834758}
   playerSpace: {fileID: 57440919}
 --- !u!1 &1680180978

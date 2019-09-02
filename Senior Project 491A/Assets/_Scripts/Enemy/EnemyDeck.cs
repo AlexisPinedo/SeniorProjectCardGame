@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyDeck : Deck
 {
-    private void Awake()
-    {
-        FillDeck();
-    }
+    //private void Awake()
+    //{
+    //    FillDeck();
+    //}
 
 }

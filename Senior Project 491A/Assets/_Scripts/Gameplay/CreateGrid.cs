@@ -8,30 +8,59 @@ using UnityEngine;
 public class CreateGrid : MonoBehaviour
 {
     //When incrementing by a value in other scripts reference the size value here for the increment
-    [SerializeField] private float _size = 1f;
-    public float size { get { return _size; } }
+    [SerializeField, Range(1f, 100f)]
+    private float _size = 1f;
+
+    public float size
+    {
+        get => _size;
+        set
+        {
+            _size = Mathf.Clamp(value, 0, 100); 
+            InitializePlacements();
+        }
+    }
 
     [SerializeField] private int _xValUnits = 1;
-    public int xValUnits { get { return _xValUnits; } }
+
+    public int xValUnits
+    {
+        get => _xValUnits;
+        set
+        {
+            _xValUnits = value;
+            InitializePlacements();
+        }
+    }
 
     [SerializeField] private int _yValUnits = 1;
-    public int yValUnits { get { return _yValUnits; } }
+
+    public int yValUnits
+    {
+        get => _yValUnits;
+        set
+        {
+            _yValUnits = value;
+            InitializePlacements();
+        }
+    }
 
     [SerializeField] private Color GizmoColor;
 
     // public Dictionary<Vector2, bool> objectPlacements = new Dictionary<Vector2, bool>();
-    public Dictionary<Vector2, bool> objectPlacements;
+    //public Dictionary<Vector2, bool> objectPlacements;
+    public HashSet<Vector2> LocationsInSpace;
 
-    private void OnEnable()
-    {
-        EnemyCard.EnemyDestroyed += SetObjectPlacement;
+    //private void OnEnable()
+    //{
+    //    EnemyCard.EnemyDestroyed += SetObjectPlacement;
 
-    }
+    //}
 
-    private void OnDisable()
-    {
-        EnemyCard.EnemyDestroyed -= SetObjectPlacement;
-    }
+    //private void OnDisable()
+    //{
+    //    EnemyCard.EnemyDestroyed -= SetObjectPlacement;
+    //}
 
     private void Awake()
     {
@@ -94,7 +123,7 @@ public class CreateGrid : MonoBehaviour
     /// </summary>
     private void InitializePlacements()
     {
-        objectPlacements = new Dictionary<Vector2, bool>();
+        LocationsInSpace = new HashSet<Vector2>();
 
         float xTotal = size * _xValUnits;   // Keep as float to allow grid resizing
         int yTotal = (int)size * _yValUnits;
@@ -104,7 +133,7 @@ public class CreateGrid : MonoBehaviour
             for (float y = 0; y < yTotal; y += size)
             {
                 Vector2 point = GetNearestPointOnGrid(new Vector2(x, y));
-                objectPlacements.Add(point, false);
+                LocationsInSpace.Add(point);
             }
         }
     }
@@ -114,9 +143,9 @@ public class CreateGrid : MonoBehaviour
     /// </summary>
     /// <param name="position"></param>
     /// <param name="value"></param>
-    public void SetObjectPlacement(Vector2 position, bool value = true)
+    public void SetObjectPlacement(Vector2 position)
     {
-        objectPlacements[position] = value;
+        LocationsInSpace.Add(position);
     }
 
     /// <summary>
@@ -124,22 +153,21 @@ public class CreateGrid : MonoBehaviour
     /// </summary>
     /// <param name="location"></param>
     /// <returns></returns>
-    public bool IsPlaceable(Vector2 location)
-    {
-        if (objectPlacements.ContainsKey(location))
-        {
-            if (objectPlacements[location] == false)
-            {
-                return true;
-            }
-            else
-                //Debug.Log("Key location is taken");
-            return false;
-        }
+    //public bool IsPlaceable(Vector2 location)
+    //{
+    //    if (LocationsInSpace.Contains(location))
+    //    {
 
-        //Debug.Log("objectPlacements does not contain location: " + location);
-        return false;
-    }
+    //        return true;
+
+            
+    //    }
+    //    else
+    //    {
+    //        //Debug.Log("Key location is taken");
+    //        return false;
+    //    }
+    //}
 
     /// <summary>
     /// TODO

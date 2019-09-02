@@ -524,7 +524,7 @@ MonoBehaviour:
   cardCost: 7
   cardCurrency: 2
   cardAttack: 4
-  cardType: 0
+  cardType: 1
   spotOnGrid: {x: -1.1479998, y: 3}
 --- !u!114 &6130187465402888861
 MonoBehaviour:

@@ -5,26 +5,26 @@ using UnityEngine.UI;
 
 public class currencyDisplay : MonoBehaviour
 {
-    private int currency;
-    public Text currencyStatusText;
+    //private int currency;
+    //public Text currencyStatusText;
 
-    private Player player;
+    //private Player player;
 
-    public void Start()
-    {
-        currency = 0;
-        UpdateCurrencyDisplay();
-    }
+    //public void Start()
+    //{
+    //    currency = 0;
+    //    UpdateCurrencyDisplay();
+    //}
 
-    void Awake()
-    {
-        player = TurnManager.Instance.turnPlayer;
-        currencyStatusText.text = "CURRENCY: " + player.GetCurrency();
-    }
+    //void Awake()
+    //{
+    //    player = TurnManager.Instance.turnPlayer;
+    //    currencyStatusText.text = "CURRENCY: " + player.GetCurrency();
+    //}
 
-    public void UpdateCurrencyDisplay()
-    {
-        player = TurnManager.Instance.turnPlayer;
-        currencyStatusText.text = "CURRENCY: " + player.GetCurrency();
-    }
+    //public void UpdateCurrencyDisplay()
+    //{
+    //    player = TurnManager.Instance.turnPlayer;
+    //    currencyStatusText.text = "CURRENCY: " + player.GetCurrency();
+    //}
 }

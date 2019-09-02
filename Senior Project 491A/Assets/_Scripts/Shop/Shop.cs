@@ -4,33 +4,33 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    private int MAX_SHOP_ITEMS = 6;
-    public ShopDeck shopDeck;
-    public List<PlayerCard> cardsToPlaceInShopDeck;
+    //private int MAX_SHOP_ITEMS = 6;
+    //public ShopDeck shopDeck;
+    //public List<PlayerCard> cardsToPlaceInShopDeck;
 
-    public void OnEnable()
-    {
-        PurchaseHandler.CardBought += HandleCardPurchased;
-    }
+    //public void OnEnable()
+    //{
+    //    PurchaseHandler.CardBought += HandleCardPurchased;
+    //}
 
-    public void OnDisable()
-    {
-        PurchaseHandler.CardBought -= HandleCardPurchased;
-    }
+    //public void OnDisable()
+    //{
+    //    PurchaseHandler.CardBought -= HandleCardPurchased;
+    //}
 
-    private void HandleCardPurchased(Card cardPurchased)
-    {
-        // TODO
-        cardsToPlaceInShopDeck.Remove((PlayerCard)cardPurchased);
-    }
+    //private void HandleCardPurchased(Card cardPurchased)
+    //{
+    //    // TODO
+    //    cardsToPlaceInShopDeck.Remove((PlayerCard)cardPurchased);
+    //}
     
-    void PlayShopCard()
-    {
-        shopDeck.Shuffle();
-        PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
+    //void PlayShopCard()
+    //{
+    //    shopDeck.Shuffle();
+    //    PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
         
-       //shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
-    }
+    //   //shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
+    //}
 
     /*
         //Deal 5 cards and save their locations

@@ -2,61 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class PlayerCard : Card
 {
-
     //All this stuff below belongs in Player Card Class
     //========================================================
-    public bool inShop = true;
-    public int cardCost;
-    public int cardCurrency;
-    public int cardAttack;
+    //public bool inShop = true;
+    [SerializeField] private int _cardCost;
 
-    //This Enum has a reference for which attribute the card is. 
-    public enum CardTypes
+    public int CardCost
     {
-        MythicalCreature = 0,
-        Entertainer = 1,
-        Magic = 2,
-        Nature = 3,
-        Warrior = 4,
-        None = 5
+        get { return _cardCost; }
     }
 
-    //Saves the type the card is
-    public CardTypes cardType;
+    [SerializeField] private int _cardAttack;
 
+    public int CardAttack
+    {
+        get { return _cardAttack; }
+    }
+
+    [SerializeField] private int _cardCurrency;
+
+    public int CardCurrency
+    {
+        get { return _cardCurrency; }
+    }
+
+    public List<CardType.CardTypes> CardEffectRequirement = new List<CardType.CardTypes>();
+
+    public List<Sprite> cardCostsIcons = new List<Sprite>();
+}
+
+
+//public class PlayerCard : Card
+//{
     //Should this be on Player card???
-    public Vector2 spotOnGrid;
-
-    private void Awake()
-    {
-        cardEffect = GetComponent<CardEffect>();
-    }
+    //public Vector2 spotOnGrid;
 
     //When purchasing card from shop call this method from an event trigger
-    public bool PurchaseCard()
-    {
-        Player player = TurnManager.Instance.turnPlayer;
+    //public bool PurchaseCard()
+    //{
+    //    Player player = TurnManager.Instance.turnPlayer;
 
-        if (cardCost <= player.GetCurrency())
-        {
-            player.SubtractCurrency(cardCost);
-            inShop = false;
+    //    if (cardCost <= player.GetCurrency())
+    //    {
+    //        player.SubtractCurrency(cardCost);
+    //        inShop = false;
 
-            return true;
-        }
-        else
-        {
-            //Debug.Log("Cannot buy too broke");
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        //Debug.Log("Cannot buy too broke");
 
-        }
-        return false;
-    }
-
-    public void SetCoord(Vector2 newSpot)
-    {
-        this.transform.position = newSpot;
-    }
-
-}
+    //    }
+    //    return false;
+    //}
+//}
