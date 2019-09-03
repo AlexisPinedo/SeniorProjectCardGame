@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class HandContainer : MonoBehaviour
@@ -10,23 +12,19 @@ public class HandContainer : MonoBehaviour
     public Graveyard playerGrave;
     public PlayerCardContainer container;
     public PlayerCard phantomCard;
-    public CreateGrid handGrid;
 
     [SerializeField]
     private int DefaultHandSize = 5;
-    
 
-    // Start is called before the first frame update
-    void Start()
+    public delegate void _cardDrawn(PlayerCardContainer cardDrawn);
+
+    public static event _cardDrawn CardDrawn;
+
+    private void Start()
     {
-        
+        TurnStartDraw();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void TurnStartDraw()
     {
@@ -49,6 +47,7 @@ public class HandContainer : MonoBehaviour
                 else
                 {
                     //Draw a phantom card
+                    Debug.Log("Drawing Phantom Card");
                     cardDrawn = phantomCard;
                 }
             }
@@ -56,8 +55,15 @@ public class HandContainer : MonoBehaviour
             if (cardDrawn == null)
             {
                 //Debug.Log("null card");
+                return;
             }
-            PlaceCard(cardDrawn);
+
+            container.card = cardDrawn;
+            Instantiate(container, this.transform);
+            hand.hand.Add(cardDrawn);
+
+            if (CardDrawn != null)
+                CardDrawn.Invoke(container);
         }
     }
 
@@ -67,9 +73,6 @@ public class HandContainer : MonoBehaviour
     /// <param name="card"></param>
     private void PlaceCard(PlayerCard cardToPlace)
     {
-        container.card = cardToPlace;
-        Instantiate(container);
-
         //Vector2 spawnPoint;
         //spawnPoint = handGrid.GetNearestPointOnGrid(cardSpot);
 

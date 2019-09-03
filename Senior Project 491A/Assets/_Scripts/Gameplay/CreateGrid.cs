@@ -47,23 +47,13 @@ public class CreateGrid : MonoBehaviour
 
     [SerializeField] private Color GizmoColor;
 
-    // public Dictionary<Vector2, bool> objectPlacements = new Dictionary<Vector2, bool>();
-    //public Dictionary<Vector2, bool> objectPlacements;
-    public HashSet<Vector2> LocationsInSpace;
-
-    //private void OnEnable()
-    //{
-    //    EnemyCard.EnemyDestroyed += SetObjectPlacement;
-
-    //}
-
-    //private void OnDisable()
-    //{
-    //    EnemyCard.EnemyDestroyed -= SetObjectPlacement;
-    //}
+    public Stack<Vector2> freeLocations = new Stack<Vector2>();
+    public Dictionary<Vector2, PlayerCardContainer> cardLocationReference = new Dictionary<Vector2, PlayerCardContainer>();
 
     private void Awake()
     {
+        cardLocationReference.Clear();
+
         Gizmos.color = GizmoColor;
         if (size > .99)
         {
@@ -73,6 +63,17 @@ public class CreateGrid : MonoBehaviour
         {
             //Debug.Log("Size Cannot be less then 1");
         }
+    }
+
+    private void OnEnable()
+    {
+        HandContainer.CardDrawn += SetCardPlacement;
+    }
+
+    private void OnDisable()
+    {
+        HandContainer.CardDrawn -= SetCardPlacement;
+
     }
 
     /// <summary>
@@ -123,8 +124,6 @@ public class CreateGrid : MonoBehaviour
     /// </summary>
     private void InitializePlacements()
     {
-        LocationsInSpace = new HashSet<Vector2>();
-
         float xTotal = size * _xValUnits;   // Keep as float to allow grid resizing
         int yTotal = (int)size * _yValUnits;
 
@@ -133,7 +132,7 @@ public class CreateGrid : MonoBehaviour
             for (float y = 0; y < yTotal; y += size)
             {
                 Vector2 point = GetNearestPointOnGrid(new Vector2(x, y));
-                LocationsInSpace.Add(point);
+                freeLocations.Push(point);
             }
         }
     }
@@ -143,31 +142,12 @@ public class CreateGrid : MonoBehaviour
     /// </summary>
     /// <param name="position"></param>
     /// <param name="value"></param>
-    public void SetObjectPlacement(Vector2 position)
+    public void SetCardPlacement(PlayerCardContainer cardContainer)
     {
-        LocationsInSpace.Add(position);
+        Vector2 freeLocation = freeLocations.Pop();
+        cardLocationReference.Add(freeLocation, cardContainer);
+        cardContainer.gameObject.transform.position = freeLocation;
     }
-
-    /// <summary>
-    /// TODO
-    /// </summary>
-    /// <param name="location"></param>
-    /// <returns></returns>
-    //public bool IsPlaceable(Vector2 location)
-    //{
-    //    if (LocationsInSpace.Contains(location))
-    //    {
-
-    //        return true;
-
-            
-    //    }
-    //    else
-    //    {
-    //        //Debug.Log("Key location is taken");
-    //        return false;
-    //    }
-    //}
 
     /// <summary>
     /// TODO
@@ -184,4 +164,5 @@ public class CreateGrid : MonoBehaviour
 
         InitializePlacements();
     }
+
 }

@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ebbde6aa7026444a11b1e8b7346d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _size: 1
+  _size: 2
   _xValUnits: 5
   _yValUnits: 1
   GizmoColor: {r: 0, g: 0, b: 0, a: 1}
@@ -416,6 +416,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 11400000, guid: 7473ef4c36860c2479a050f88a746ac7, type: 2}
+  playerDeck: {fileID: 11400000, guid: 9a5eec11a96d3f44e88cd3bd254f306a, type: 2}
+  playerGrave: {fileID: 11400000, guid: b7077001044931a40b33d83873f50253, type: 2}
   container: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37,
     type: 3}
+  phantomCard: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
   DefaultHandSize: 5

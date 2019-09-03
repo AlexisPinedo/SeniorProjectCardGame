@@ -29,7 +29,7 @@ public abstract class Card : ScriptableObject
     private string cardEffectDisplay;
     public string CardEffectDisplay
     {
-        get { return CardEffectDisplay; }
+        get { return cardEffectDisplay; }
     }
 
     [SerializeField]
