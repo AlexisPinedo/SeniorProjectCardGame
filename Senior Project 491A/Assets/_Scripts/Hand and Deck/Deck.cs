@@ -8,9 +8,11 @@ public class Deck : ScriptableObject
 { 
     [SerializeField] public Stack<Card> cardsInDeck = new Stack<Card>();
 
-    private void Awake()
+
+    protected virtual void Awake()
     {
         cardsInDeck.Clear();
+        Debug.Log("Card have been cleared from the deck");
     }
 
     public void Shuffle()

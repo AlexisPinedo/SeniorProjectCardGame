@@ -4,29 +4,24 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class HandContainer : MonoBehaviour
+public class HandContainer : Container
 {
 
     public Hand hand;
     public Deck playerDeck;
     public Graveyard playerGrave;
-    public PlayerCardContainer container;
     public PlayerCard phantomCard;
 
     [SerializeField]
     private int DefaultHandSize = 5;
 
-    public delegate void _cardDrawn(PlayerCardContainer cardDrawn);
-
-    public static event _cardDrawn CardDrawn;
-
     private void Start()
     {
-        TurnStartDraw();
+        InitialCardDisplay();
     }
 
 
-    private void TurnStartDraw()
+    protected override void InitialCardDisplay()
     {
         PlayerCard cardDrawn = null;
         for (int i = 0; i < DefaultHandSize; i++)
@@ -47,7 +42,7 @@ public class HandContainer : MonoBehaviour
                 else
                 {
                     //Draw a phantom card
-                    Debug.Log("Drawing Phantom Card");
+                    //Debug.Log("Drawing Phantom Card");
                     cardDrawn = phantomCard;
                 }
             }
@@ -62,8 +57,7 @@ public class HandContainer : MonoBehaviour
             Instantiate(container, this.transform);
             hand.hand.Add(cardDrawn);
 
-            if (CardDrawn != null)
-                CardDrawn.Invoke(container);
+            base.InitialCardDisplay();
         }
     }
 

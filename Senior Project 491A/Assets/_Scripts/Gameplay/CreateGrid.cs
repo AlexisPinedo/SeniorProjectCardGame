@@ -8,7 +8,7 @@ using UnityEngine;
 public class CreateGrid : MonoBehaviour
 {
     //When incrementing by a value in other scripts reference the size value here for the increment
-    [SerializeField, Range(1f, 100f)]
+    [SerializeField, Range(1f, 5f)]
     private float _size = 1f;
 
     public float size

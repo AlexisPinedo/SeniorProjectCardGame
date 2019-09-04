@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
+    //public ShopDeck shopDeck;
+
     //private int MAX_SHOP_ITEMS = 6;
     //public ShopDeck shopDeck;
     //public List<PlayerCard> cardsToPlaceInShopDeck;
@@ -23,12 +25,12 @@ public class Shop : MonoBehaviour
     //    // TODO
     //    cardsToPlaceInShopDeck.Remove((PlayerCard)cardPurchased);
     //}
-    
+
     //void PlayShopCard()
     //{
     //    shopDeck.Shuffle();
     //    PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
-        
+
     //   //shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
     //}
 

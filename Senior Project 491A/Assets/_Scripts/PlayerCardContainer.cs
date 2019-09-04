@@ -116,7 +116,7 @@ public class PlayerCardContainer : MonoBehaviour
 
     private void RemoveCardEffectCostIcons()
     {
-        Debug.Log(cardIcons.Count);
+        //Debug.Log(cardIcons.Count);
         for (int i = 0; i < cardIcons.Count; i++)
         {
             
