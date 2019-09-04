@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using Amazon;
 using Amazon.CognitoIdentity;
@@ -78,37 +81,80 @@ public class AWSConfig : MonoBehaviour
         playerInfo.OnDatasetDeleted = this.HandleDatasetDeleted;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     #region Synchronize Callbacks
 
     void HandleSyncSuccess(object sender, SyncSuccessEventArgs e)
     {
+        var dataset = sender as Dataset;
 
+        if (dataset.Metadata != null)
+        {
+            Debug.Log("Successfully synced for dataset: " + dataset.Metadata);
+        }
+        else
+        {
+            Debug.Log("Successfully synced for dataset");
+        }
+
+        if (dataset == playerInfo)
+        {
+            alias = string.IsNullOrEmpty(playerInfo.Get("alias")) ? "Enter your alias" : dataset.Get("alias");
+            playerName = string.IsNullOrEmpty(playerInfo.Get("playerName")) ? "Enter your name" : dataset.Get("playerName");
+            password = string.IsNullOrEmpty(playerInfo.Get("password")) ? "Enter your password" : dataset.Get("password");
+        }
     }
 
     void HandleSyncFailure(object sender, SyncFailureEventArgs e)
     {
-
+        var dataset = sender as Dataset;
+        Debug.Log("Sync failed for dataset : " + dataset.Metadata.DatasetName);
+        Debug.LogException(e.Exception);
     }
 
+    // Conflicts may arise if the same key has been modified on the local store and in the sync store. The OnSyncConflict callback handles conflict resolution.
     private bool HandleSyncConflict(Dataset dataset, List<SyncConflict> conflicts)
     {
+        if (dataset.Metadata != null)
+            Debug.LogWarning("Sync conflict " + dataset.Metadata.DatasetName);
+        else
+            Debug.LogWarning("Sync conflict");
 
+
+        List<Record> resolvedRecords = new List<Record>();
+
+        foreach (SyncConflict conflictRecord in conflicts)
+        {
+            //ResolveWithRemoteRecord - overwrites the local with remote records
+            resolvedRecords.Add(conflictRecord.ResolveWithRemoteRecord());
+        }
+
+        // resolves the conflicts in the local storage
+        dataset.Resolve(resolvedRecords);
+
+        // on return true the synchronize operation continues where it left,
+        //      returning false cancels the synchronize operation
         return true;
     }
 
     private bool HandleDatasetDeleted(Dataset dataset)
     {
+        Debug.Log(dataset.Metadata.DatasetName + " Dataset has been deleted");
+
+        // Clean up if necessary 
+
+        // returning true informs the corresponding dataset can be purged in the local storage and return false retains the local dataset
+
         return true;
     }
 
+    // When two previously unconnected identities are linked together, all of their datasets are merged
     private bool HandleDatasetMerged(Dataset dataset, List<string> datasetNames)
     {
+        Debug.Log(dataset + " Dataset needs merge");
+
+        // returning true allows the Synchronize to resume and false cancels it
         return true;
     }
 
