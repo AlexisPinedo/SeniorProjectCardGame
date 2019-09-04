@@ -220,6 +220,7 @@ namespace AWSSDK.Examples
             return true;
         }
 
+
         private bool HandleSyncConflict(Amazon.CognitoSync.SyncManager.Dataset dataset, List<SyncConflict> conflicts)
         {
 
