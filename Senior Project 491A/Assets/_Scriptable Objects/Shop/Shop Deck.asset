@@ -43,4 +43,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 26efa0295f30625438479bc43369cbce, type: 2}
   - {fileID: 11400000, guid: 803f8c7427603604db021059ebd9fd9a, type: 2}
   - {fileID: 11400000, guid: c8e857aee19f9bc4b8a1cf7e5d76d26f, type: 2}
-  cardCopies: 0
+  cardCopies: 5

@@ -4,16 +4,7 @@ using UnityEngine;
 
 public abstract class EnemyCard : Card
 {
-    //public delegate void _EnemyDestroyed(Vector2 cardPosition, bool cardRemoved);
-    //public static event _EnemyDestroyed EnemyDestroyed;
-
-    // Create delegate event like the one above for the enemycardclicked
-    // Delegate will be type void and take a gameobject as a parameter
-    //public delegate void _EnemyCardClicked(EnemyCard enemyCard);
-    //public static event _EnemyCardClicked EnemyClicked;
-
-    [SerializeField]
-    protected int _rewardValue, _healthValue;
+    [SerializeField] protected int _rewardValue, _healthValue;
 
     public int HealthValue
     {
@@ -21,7 +12,43 @@ public abstract class EnemyCard : Card
         set { _healthValue = value; }
     }
 
-    //public BossTurnCardPlayer manager;
+    public int RewardValue
+    {
+        get => _rewardValue;
+        set => _rewardValue = value;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//public abstract class EnemyCard : Card
+//{
+//    //public delegate void _EnemyDestroyed(Vector2 cardPosition, bool cardRemoved);
+//    //public static event _EnemyDestroyed EnemyDestroyed;
+//
+//    // Create delegate event like the one above for the enemycardclicked
+//    // Delegate will be type void and take a gameobject as a parameter
+//    //public delegate void _EnemyCardClicked(EnemyCard enemyCard);
+//    //public static event _EnemyCardClicked EnemyClicked;
+//
+//    [SerializeField]
+//    protected int _rewardValue, _healthValue;
+//
+//    public int HealthValue
+//    {
+//        get { return _healthValue; }
+//        set { _healthValue = value; }
+//    }
+//public BossTurnCardPlayer manager;
 
     //private void Awake()
     //{
@@ -42,4 +69,4 @@ public abstract class EnemyCard : Card
     //        EnemyClicked.Invoke(this);
     //    }
     //}
-}
+//}

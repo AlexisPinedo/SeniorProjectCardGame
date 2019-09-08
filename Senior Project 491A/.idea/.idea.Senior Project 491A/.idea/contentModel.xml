@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+    <e p="C:\Users\Alex and Abby's\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Alex and Abby's\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.501270672.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Alex and Abby's\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Prefabs" t="Include">
@@ -13,55 +15,60 @@
           </e>
         </e>
         <e p="_Scripts" t="Include">
-          <e p="BossTurnCardPlayer.cs" t="Include" />
-          <e p="buttonInputEventHandler.cs" t="Include" />
+          <e p="BossCardHolder.cs" t="Include" />
           <e p="Card" t="Include">
             <e p="Card Effects" t="Include">
-              <e p="CardEffects.cs" t="Include" />
               <e p="OnDeath.cs" t="Include" />
-              <e p="OnPlay.cs" t="Include" />
+              <e p="OnPlayEffects.cs" t="Include" />
               <e p="PassiveEffect.cs" t="Include" />
             </e>
-            <e p="Card(PT)" t="Include">
-              <e p="PlayerCard.cs" t="Include" />
-            </e>
             <e p="Card.cs" t="Include" />
-            <e p="CardExample.cs" t="Include" />
             <e p="DragCard.cs" t="Include" />
             <e p="DrawCard.cs" t="Include" />
             <e p="EnemyCard.cs" t="Include" />
+            <e p="PlayerCard.cs" t="Include" />
           </e>
           <e p="Card Log" t="Include">
             <e p="CardLog.cs" t="Include" />
           </e>
-          <e p="CardEffect" t="Include">
-            <e p="GainPower.cs" t="Include" />
-            <e p="OnPurchaseEffectBase.cs" t="Include" />
-          </e>
-          <e p="CreateGrid.cs" t="Include" />
+          <e p="CardHolder.cs" t="Include" />
+          <e p="CardType.cs" t="Include" />
+          <e p="Container.cs" t="Include" />
+          <e p="DeckContainer.cs" t="Include" />
           <e p="Enemy" t="Include">
             <e p="Boss.cs" t="Include" />
+            <e p="BossTurnCardPlayer.cs" t="Include" />
             <e p="EnemyDeck.cs" t="Include" />
             <e p="Goals" t="Include">
               <e p="BombGoal.cs" t="Include" />
               <e p="Goal.cs" t="Include" />
             </e>
-            <e p="IEnemy.cs" t="Include" />
             <e p="Minion.cs" t="Include" />
             <e p="Reward.cs" t="Include" />
           </e>
+          <e p="EnemyCardHolder.cs" t="Include" />
+          <e p="EnemyCardManager.cs" t="Include" />
+          <e p="EnemyEventCard.cs" t="Include" />
+          <e p="Gameplay" t="Include">
+            <e p="GameplayManager.cs" t="Include" />
+            <e p="Grid.cs" t="Include" />
+            <e p="PlayZone.cs" t="Include" />
+            <e p="TurnManager.cs" t="Include" />
+          </e>
+          <e p="GraveContainer.cs" t="Include" />
           <e p="Hand and Deck" t="Include">
             <e p="Deck.cs" t="Include" />
             <e p="Hand.cs" t="Include" />
           </e>
+          <e p="HandContainer.cs" t="Include" />
+          <e p="History.cs" t="Include" />
+          <e p="MinionCardHolder.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="Graveyard.cs" t="Include" />
             <e p="Player.cs" t="Include" />
             <e p="PlayerDeck.cs" t="Include" />
-            <e p="playerSwitch.cs" t="Include" />
           </e>
-          <e p="PlayZone.cs" t="Include" />
-          <e p="SceneRestarter.cs" t="Include" />
+          <e p="PlayerCardHolder.cs" t="Include" />
           <e p="Sharp Accent Card Game" t="Include">
             <e p="Card.cs" t="Include" />
             <e p="CardDisplay.cs" t="Include" />
@@ -73,16 +80,19 @@
             <e p="ElementText.cs" t="Include" />
           </e>
           <e p="Shop" t="Include">
+            <e p="PurchaseHandler.cs" t="Include" />
+            <e p="Shop.cs" t="Include" />
             <e p="ShopDeck.cs" t="Include" />
             <e p="ShopTransaction.cs" t="Include" />
           </e>
-          <e p="TurnManager.cs" t="Include" />
+          <e p="ShopContainer.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
-            <e p="buttonInputEventHandler.cs" t="Include" />
-            <e p="ConsoleTest.cs" t="Include" />
             <e p="currencyDisplay.cs" t="Include" />
             <e p="powerDisplay.cs" t="Include" />
+            <e p="SceneRestarter.cs" t="Include" />
+            <e p="TextUpdate.cs" t="Include" />
+            <e p="UIHandler.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
@@ -121,15 +131,10 @@
           </e>
         </e>
       </e>
-      <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Senior Project 491A.sln" t="IncludeFlat" />
-      <e p="Temp" t="ExcludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-      </e>
+      <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2018.3/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.3/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_Senior Project 491A.1191439163.00" t="ExcludeRecursive" />
   </component>
 </project>

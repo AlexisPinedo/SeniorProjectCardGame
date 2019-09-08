@@ -12,8 +12,20 @@ using UnityEngine;
 /*
     This class represents a match's Boss
  */
+[CreateAssetMenu]
 public class Boss : EnemyCard
 {
+    [SerializeField]
+    private Goal goal;
+    [SerializeField]
+    private EnemyDeck bossDeck;
+}
+
+//public class Boss : EnemyCard
+//   {
+/* The Boss' Goal */
+    //public Goal goal;
+    
     /* Boss' health and reward value */
     //public int _health;
 
@@ -28,9 +40,6 @@ public class Boss : EnemyCard
     //    get { return _rewardValue;}
     //    set { _rewardValue = value;}
     //}
-
-    /* The Boss' Goal */
-    public Goal goal;
 
     /* The Boss' Deck */
     //public EnemyDeck bossDeck;
@@ -64,4 +73,4 @@ public class Boss : EnemyCard
     //        }
     //    }
     //}
-}
+//}

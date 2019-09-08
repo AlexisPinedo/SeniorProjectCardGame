@@ -7,11 +7,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [ExecuteInEditMode]
-public class PlayerCardContainer : MonoBehaviour
+public class PlayerCardHolder : CardHolder
 {
     public PlayerCard card;
-    [SerializeField]
-    private SpriteRenderer cardArtDisplay;
     [SerializeField]
     private TextMeshPro attackText;
     [SerializeField]
@@ -19,86 +17,48 @@ public class PlayerCardContainer : MonoBehaviour
     [SerializeField]
     private TextMeshPro currencyText;
     [SerializeField]
-    private SpriteRenderer typeIcon;
-    [SerializeField]
-    private SpriteRenderer cardBorder;
-    [SerializeField]
-    private SpriteRenderer cardEffectTextBox;
-    [SerializeField]
-    private SpriteRenderer cardNameTextBox;
-    [SerializeField]
-    private TextMeshPro nameText;
-    [SerializeField]
-    private TextMeshPro cardEffectText;
-    [SerializeField]
     private SpriteRenderer cardEffectCostsIcons;
     [SerializeField]
     private SpriteRenderer costIcon;
+    
 
     [SerializeField]
     private List<GameObject> cardIcons = new List<GameObject>();
 
-    private void Awake()
+    protected override void LoadCardIntoContainer()
     {
-        LoadCardIntoContainer();
-    }
-
-    private void OnDestroy()
-    {
-        ClearCardFromContainer();
-    }
-
-    private void OnEnable()
-    {
-        
-
-        LoadCardIntoContainer();
-    }
-
-    private void OnDisable()
-    {
-
-        ClearCardFromContainer();
-    }
-
-    private void LoadCardIntoContainer()
-    {
-        if(card == null)
-            return;
-        
         cardArtDisplay.sprite = card.CardArtwork;
-        attackText.text = card.CardAttack.ToString();
-        costText.text = card.CardCost.ToString();
-        currencyText.text = card.CardCurrency.ToString();
         typeIcon.sprite = card.CardTypeArt;
         cardBorder.sprite = card.BorderArt;
         cardEffectTextBox.sprite = card.CardEffectBoxArt;
         cardNameTextBox.sprite = card.NameBoxArt;
         nameText.text = card.CardName;
         cardEffectText.text = card.CardEffectDisplay;
+        attackText.text = card.CardAttack.ToString();
+        costText.text = card.CardCost.ToString();
+        currencyText.text = card.CardCurrency.ToString();
+
         LoadCostEffectIcons();
-
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() != null)
-        {
-            costIcon.gameObject.SetActive(false);
-        }
-
     }
 
-    private void ClearCardFromContainer()
+    protected override void ClearCardFromContainer()
     {
         card = null;
         cardArtDisplay.sprite = null;
-        attackText.text = null;
-        costText.text = null;
-        currencyText.text = null;
         typeIcon.sprite = null;
         cardBorder.sprite = null;
         cardEffectTextBox.sprite = null;
         cardNameTextBox.sprite = null;
         nameText.text = null;
         cardEffectText.text = null;
+        attackText.text = null;
+        costText.text = null;
+        currencyText.text = null;
         RemoveCardEffectCostIcons();
+        if (this.transform.parent.gameObject.GetComponent<HandContainer>() != null)
+        {
+            costIcon.gameObject.SetActive(false);
+        }
     }
 
     private void LoadCostEffectIcons()

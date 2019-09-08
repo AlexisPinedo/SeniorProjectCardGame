@@ -6,7 +6,7 @@ public class ShopContainer : Container
 {
     public ShopDeck shopDeck;
     [SerializeField]
-    //public PlayerCardContainer playerCardContainer;
+    //public PlayerCardHolder playerCardContainer;
     
     private int shopCardCount = 6;
     // Start is called before the first frame update
@@ -23,18 +23,21 @@ public class ShopContainer : Container
 
     protected override void InitialCardDisplay()
     {
-        if(shopDeck.cardsInDeck.Count <= 0)
+        for (int i = 0; i < shopCardCount; i++)
         {
-            Debug.Log("Shop deck is empty");
-            return;
+            if(shopDeck.cardsInDeck.Count <= 0)
+            {
+                Debug.Log("Shop deck is " + shopDeck.cardsInDeck.Count);
+                return;
+            }
+
+            PlayerCard cardDrawn = null;
+            cardDrawn = (PlayerCard)shopDeck.cardsInDeck.Pop();
+
+            holder.card = cardDrawn;
+            PlayerCardHolder cardHolder = Instantiate(holder, containerGrid.freeLocations.Dequeue(), Quaternion.identity, this.transform);
+            containerGrid.cardLocationReference.Add(new Vector2(cardHolder.gameObject.transform.position.x, 
+                cardHolder.gameObject.transform.position.y), cardHolder);
         }
-
-        PlayerCard cardDrawn = null;
-        cardDrawn = (PlayerCard)shopDeck.cardsInDeck.Pop();
-
-        container.card = cardDrawn;
-        Instantiate(container, this.transform);
-
-        base.InitialCardDisplay();
     }
 }

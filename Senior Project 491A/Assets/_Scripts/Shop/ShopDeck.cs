@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ public class ShopDeck : Deck
     {
         base.Awake();
 
+    }
+
+    private void OnEnable()
+    {
+        
         foreach (Card card in cardsToAdd)
         {
             for (int i = 0; i < cardCopies; i++)
@@ -20,6 +26,8 @@ public class ShopDeck : Deck
 
             }
         }
-        Debug.Log("cards added");
+        
+        Shuffle();
+        //Debug.Log("cards added");
     }
 }
