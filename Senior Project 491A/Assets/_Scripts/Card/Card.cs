@@ -1,35 +1,77 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-/// <summary>
-/// Represents the basic foundation of all Cards in the game, e.g., Player, Enemy, Boss, etc...
-/// </summary>
-public abstract class Card : MonoBehaviourPun
+public abstract class Card : ScriptableObject
 {
-    /// <summary>
-    /// The specific name of the card.
-    /// </summary>
-    public string cardName;
-    
-    /// <summary>
-    /// Short description about the card, but not it's effect(s) in game.
-    /// </summary>
-    public string cardDescription;
+    [SerializeField]
+    private string cardName;
+    public string CardName
+    {
+        get { return cardName; }
+    }
 
-    /// <summary>
-    /// The Card's effect in game.
-    /// </summary>
-    public string cardEffect;
+    [SerializeField]
+    private string cardDescription;
+    public string CardDescription
+    {
+        get { return cardDescription; }
+    }
 
-    /// <summary>
-    /// The artwork for the card, stored as a ???
-    /// </summary>
-    public Sprite cardArtwork;
-    
-    /// <summary>
-    /// The element, i.e. type, of the card.
-    /// </summary>
-    public Sprite cardElement;
+    [SerializeField]
+    private CardEffect cardEffect;
+    public CardEffect CardEffect
+    {
+        get { return cardEffect; }
+    }
+
+    [SerializeField]
+    private string cardEffectDisplay;
+    public string CardEffectDisplay
+    {
+        get { return cardEffectDisplay; }
+    }
+
+    [SerializeField]
+    private Sprite cardArtwork;
+    public Sprite CardArtwork
+    {
+        get { return cardArtwork; }
+    }
+
+
+    [SerializeField]
+    private Sprite cardTypeArt;
+    public Sprite CardTypeArt
+    {
+        get { return cardTypeArt; }
+    }
+
+    [SerializeField]
+    private CardType.CardTypes cardType;
+    public CardType.CardTypes CardType
+    {
+        get { return cardType; }
+    }
+
+    [SerializeField]
+    private Sprite nameBoxArt;
+    public Sprite NameBoxArt
+    {
+        get { return nameBoxArt; }
+    }
+
+    [SerializeField]
+    private Sprite cardEffectBoxArt;
+    public Sprite CardEffectBoxArt
+    {
+        get { return cardEffectBoxArt; }
+    }
+
+    [SerializeField]
+    private Sprite borderArt;
+    public Sprite BorderArt
+    {
+        get { return borderArt; }
+    }
 }

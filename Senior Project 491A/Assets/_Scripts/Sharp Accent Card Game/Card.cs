@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SA
 {
-    [CreateAssetMenu(menuName = "Card")]
+    //[CreateAssetMenu(menuName = "Card")]
     public class Card : ScriptableObject
     {
         //public string cardName;

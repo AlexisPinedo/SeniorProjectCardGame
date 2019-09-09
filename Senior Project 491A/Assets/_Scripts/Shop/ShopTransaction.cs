@@ -5,98 +5,98 @@ using Photon.Pun;
 
 public class ShopTransaction : MonoBehaviourPun
 {
-    [SerializeField]
-    private int shopItems;
+    //[SerializeField]
+    //private int shopItems;
 
-    [SerializeField]
-    private int MAX_SHOP_ITEMS = 6;
+    //[SerializeField]
+    //private int MAX_SHOP_ITEMS = 6;
 
-    [SerializeField]
-    private CreateGrid shopGrid;
+    //[SerializeField]
+    //private CreateGrid shopGrid;
 
-    [SerializeField]
-    public ShopDeck shopDeck;
+    //[SerializeField]
+    //public ShopDeck shopDeck;
 
-    public GameObject parentObject;
+    //public GameObject parentObject;
 
-    [SerializeField]
-    private Vector2 spawnPoint = new Vector2();
+    //[SerializeField]
+    //private Vector2 spawnPoint = new Vector2();
 
-    public List<PlayerCard> cardsInShop;
+    //public List<PlayerCard> cardsInShop;
 
-    public Player currentPlayer;
+    //public Player currentPlayer;
 
-    void Start()
-    {
-        DisplayStartingCards();
-    }
+    //void Start()
+    //{
+    //    DisplayStartingCards();
+    //}
 
-    private void OnEnable()
-    {
-        DragCard.CardPurchased += ManagePurchase;
-    }
+    //private void OnEnable()
+    //{
+    //    DragCard.CardPurchased += ManagePurchase;
+    //}
 
-    private void OnDisable()
-    {
-        DragCard.CardPurchased -= ManagePurchase;
-    }
+    //private void OnDisable()
+    //{
+    //    DragCard.CardPurchased -= ManagePurchase;
+    //}
 
-    private void DisplayStartingCards()
-    {
-        //Deal 5 cards and save their locations
-        for (shopItems = 0; shopItems < MAX_SHOP_ITEMS; shopItems++)
-        { 
-            shopDeck.Shuffle();
+    //private void DisplayStartingCards()
+    //{
+    //    //Deal 5 cards and save their locations
+    //    for (shopItems = 0; shopItems < MAX_SHOP_ITEMS; shopItems++)
+    //    { 
+    //        shopDeck.Shuffle();
 
-            //Draw a card
-            PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
+    //        //Draw a card
+    //        PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
             
-            //Find nearest avaliable spot and move it there
-            shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
-            shopCard.spotOnGrid = shopCard.transform.position;
+    //        //Find nearest avaliable spot and move it there
+    //        shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
+    //        shopCard.spotOnGrid = shopCard.transform.position;
             
-            //Add to shop
-            shopCard.inShop = true;
-            cardsInShop.Add(shopCard);
+    //        //Add to shop
+    //        shopCard.inShop = true;
+    //        cardsInShop.Add(shopCard);
             
-            //Set spot map boolean
-            shopGrid.SetObjectPlacement(shopCard.transform.position, true);
-            Instantiate(shopCard, parentObject.transform);
+    //        //Set spot in Hash
+    //        shopGrid.SetObjectPlacement(shopCard.transform.position);
+    //        Instantiate(shopCard, parentObject.transform);
             
-            //Increment next spot position
-            spawnPoint.x += 2.0f;
-        }
-        Debug.Log("Init cards delt");
-    }
+    //        //Increment next spot position
+    //        spawnPoint.x += 2.0f;
+    //    }
+    //    //Debug.Log("Init cards delt");
+    //}
 
 
-    void ManagePurchase(PlayerCard cardBought)
-    {
-        currentPlayer = TurnManager.turnPlayer;
-        //Find the card in cardsInShop in the list that matches cardBought on the grid
-        PlayerCard found = cardsInShop.Find(i => i.spotOnGrid == cardBought.spotOnGrid);
-        //Add purchase to player graveyard
-        currentPlayer.AddToPlayerGraveyard(found);
-        //This spot is now open
-        shopGrid.SetObjectPlacement(cardBought.spotOnGrid, false);
-        //Destroy and remove the purchased card
-        Destroy(cardBought.gameObject);
+    //void ManagePurchase(PlayerCard cardBought)
+    //{
+    //    currentPlayer = TurnManager.Instance.turnPlayer;
+    //    //Find the card in cardsInShop in the list that matches cardBought on the grid
+    //    PlayerCard found = cardsInShop.Find(i => i.spotOnGrid == cardBought.spotOnGrid);
+    //    //Add purchase to player graveyard
+    //    currentPlayer.AddToPlayerGraveyard(found);
+    //    //This spot is now open
+    //    shopGrid.SetObjectPlacement(cardBought.spotOnGrid);
+    //    //Destroy and remove the purchased card
+    //    Destroy(cardBought.gameObject);
         
-        cardsInShop.Remove(found);
-        //Draw a new card from the shopDeck
-        PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
-        //Check if the position is avaliable
-        if (shopGrid.IsPlaceable(cardBought.spotOnGrid))
-        {
-            //Find the nearest avaliable spot and move it there
-            nextShopCard.transform.position = cardBought.spotOnGrid;
-            nextShopCard.spotOnGrid = cardBought.spotOnGrid;
-            //Add to shop
-            nextShopCard.inShop = true;
-            cardsInShop.Add(nextShopCard);
-            //Set map boolean
-            shopGrid.SetObjectPlacement(nextShopCard.transform.position, true);
-            Instantiate(nextShopCard, parentObject.transform);
-        }
-    }
+    //    cardsInShop.Remove(found);
+    //    //Draw a new card from the shopDeck
+    //    PlayerCard nextShopCard = (PlayerCard)shopDeck.DrawCard();
+    //    //Check if the position is avaliable
+    //    if (shopGrid.IsPlaceable(cardBought.spotOnGrid))
+    //    {
+    //        //Find the nearest avaliable spot and move it there
+    //        nextShopCard.transform.position = cardBought.spotOnGrid;
+    //        nextShopCard.spotOnGrid = cardBought.spotOnGrid;
+    //        //Add to shop
+    //        nextShopCard.inShop = true;
+    //        cardsInShop.Add(nextShopCard);
+    //        //Set map boolean
+    //        shopGrid.SetObjectPlacement(nextShopCard.transform.position);
+    //        Instantiate(nextShopCard, parentObject.transform);
+    //    }
+    //}
 }

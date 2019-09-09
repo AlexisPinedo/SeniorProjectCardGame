@@ -1,40 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class Shop : MonoBehaviourPun
+public class Shop : MonoBehaviour
 {
-    private int MAX_SHOP_ITEMS = 6;
-    public ShopDeck shopDeck;
-    public List<PlayerCard> cardsToPlaceInShopDeck;
+    //public ShopDeck shopDeck;
 
-    [SerializeField]
-    private readonly PhotonView camPhotonView;
+    //private int MAX_SHOP_ITEMS = 6;
+    //public ShopDeck shopDeck;
+    //public List<PlayerCard> cardsToPlaceInShopDeck;
 
-    public void OnEnable()
-    {
-        PurchaseHandler.CardBought += HandleCardPurchased;
-    }
+    //public void OnEnable()
+    //{
+    //    PurchaseHandler.CardBought += HandleCardPurchased;
+    //}
 
-    public void OnDisable()
-    {
-        PurchaseHandler.CardBought -= HandleCardPurchased;
-    }
+    //public void OnDisable()
+    //{
+    //    PurchaseHandler.CardBought -= HandleCardPurchased;
+    //}
 
-    private void HandleCardPurchased(Card cardPurchased)
-    {
-        // TODO
-        cardsToPlaceInShopDeck.Remove((PlayerCard)cardPurchased);
-    }
-    
-    void PlayShopCard()
-    {
-        shopDeck.Shuffle();
-        PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
-        
-       //shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
-    }
+    //private void HandleCardPurchased(Card cardPurchased)
+    //{
+    //    // TODO
+    //    cardsToPlaceInShopDeck.Remove((PlayerCard)cardPurchased);
+    //}
+
+    //void PlayShopCard()
+    //{
+    //    shopDeck.Shuffle();
+    //    PlayerCard shopCard = (PlayerCard)shopDeck.DrawCard();
+
+    //   //shopCard.transform.position = shopGrid.GetNearestPointOnGrid(spawnPoint);
+    //}
 
     /*
         //Deal 5 cards and save their locations

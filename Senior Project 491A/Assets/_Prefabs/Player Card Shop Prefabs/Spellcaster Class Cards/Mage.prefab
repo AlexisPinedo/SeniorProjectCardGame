@@ -515,13 +515,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Mage
   cardDescription: 
-  cardEffect: 
+  cardEffect: {fileID: 0}
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
   inShop: 1
   cardCost: 4
   cardCurrency: 1
   cardAttack: 1
+  cardType: 0
   spotOnGrid: {x: -5.148, y: 3}
 --- !u!114 &6130187465402888861
 MonoBehaviour:

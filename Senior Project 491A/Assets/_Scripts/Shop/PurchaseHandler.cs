@@ -11,7 +11,7 @@ public class PurchaseHandler : MonoBehaviour
 
     public void Start()
     {
-        turnPlayer = TurnManager.turnPlayer;
+        turnPlayer = TurnManager.Instance.turnPlayer;
     }
 
     public bool isPurchasable(Card cardClicked)

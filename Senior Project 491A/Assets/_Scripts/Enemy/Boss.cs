@@ -9,59 +9,68 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-/// <summary>
-/// A Boss card represents ...well... the boss of a level.
-/// </summary>
+/*
+    This class represents a match's Boss
+ */
+[CreateAssetMenu]
 public class Boss : EnemyCard
 {
-    /// <summary>
-    /// The Boss' health. Can't be lowered, only obliterated!
-    /// </summary>
-    private readonly int _health;
-
-    public TurnManager turnManager;
-    /// <summary>
-    /// What the Boss needs to have happen in the game in order for him/her/it to win!
-    /// </summary>
-    public Goal goal;
-
-    /// <summary>
-    /// The Boss' deck of cards (they are indeed different than yours).
-    /// </summary>
-    public EnemyDeck bossDeck;
-
-    /// <summary>
-    /// A reference to the Enemy's grid.
-    /// </summary>
-    public CreateGrid EnemyGrid;
-
-    public BossTurnCardPlayer cardPlayer;
-
-    void Start()
-    {
-        // TODO: Set the goal?
-        // TODO: Populate the Boss' deck?
-
-        this.transform.position = EnemyGrid.GetNearestPointOnGrid(new Vector2(6, 2));
-    }
-
-    public override void OnMouseDown()
-    {
-        if (cardPlayer.filledCardZones == 0)
-        {
-            Debug.Log("Player can attack the Boss");
-
-            int playerPower = TurnManager.turnPlayer.GetPower();
-
-            if (playerPower > 0 && playerPower >= this._health)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                Debug.Log("Player lacks the power to defeat the Boss!");
-            }
-
-        }
-    }
+    [SerializeField]
+    private Goal goal;
+    [SerializeField]
+    private EnemyDeck bossDeck;
 }
+
+//public class Boss : EnemyCard
+//   {
+/* The Boss' Goal */
+    //public Goal goal;
+    
+    /* Boss' health and reward value */
+    //public int _health;
+
+    //// from IEnemy
+    //public int health
+    //{
+    //    get { return _health; }
+    //    set { _health = value; }
+    //}
+    //public int rewardValue
+    //{
+    //    get { return _rewardValue;}
+    //    set { _rewardValue = value;}
+    //}
+
+    /* The Boss' Deck */
+    //public EnemyDeck bossDeck;
+
+    //public CreateGrid EnemyGrid;
+    //public BossTurnCardPlayer cardPlayer;
+
+    // Start is called before the first frame update
+    //void Start()
+    //{
+    //    // TODO: Set the goal?
+    //    // TODO: Populate the Boss' deck?
+
+    //    this.transform.position = EnemyGrid.GetNearestPointOnGrid(new Vector2(6, 2));
+
+    //}
+
+    //public override void OnMouseDown()
+    //{
+    //    if (cardPlayer.filledCardZones == 0)
+    //    {
+    //        Debug.Log("can attack boss");
+    //        if (TurnManager.Instance.turnPlayer.GetPower() >= _health)
+    //        {
+    //            Destroy(this.gameObject);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("not enough power");
+
+    //        }
+    //    }
+    //}
+//}
