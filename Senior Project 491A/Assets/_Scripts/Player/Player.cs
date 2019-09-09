@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using Photon.Pun;
 
 /**
     Defines the Player class, i.e, everything that the Player can do and
     has access to during a match.
  */
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPun
 {
     public delegate void _CurrencyUpdated(int value);
     public static event _CurrencyUpdated CurrencyChanged;

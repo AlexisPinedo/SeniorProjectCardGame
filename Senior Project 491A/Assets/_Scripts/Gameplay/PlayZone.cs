@@ -17,13 +17,9 @@ public class PlayZone : MonoBehaviour
 
         if (!card.cardName.Equals("Phantom"))
         {
-            Debug.Log("Sending played card to grave");
-
             tpHand.SendToGraveyard(card);
         }
 
-
         GameObject.Destroy(card.gameObject);
-
     }
 }

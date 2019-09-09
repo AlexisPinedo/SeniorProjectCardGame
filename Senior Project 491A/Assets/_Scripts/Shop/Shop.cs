@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Shop : MonoBehaviour
+public class Shop : MonoBehaviourPun
 {
     private int MAX_SHOP_ITEMS = 6;
     public ShopDeck shopDeck;
     public List<PlayerCard> cardsToPlaceInShopDeck;
+
+    [SerializeField]
+    private readonly PhotonView camPhotonView;
 
     public void OnEnable()
     {

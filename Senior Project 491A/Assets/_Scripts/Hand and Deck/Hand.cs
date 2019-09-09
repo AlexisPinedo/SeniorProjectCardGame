@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 /// <summary>
 /// Defines what is part of a Player's Hand.
 /// </summary>
-public class Hand : MonoBehaviour
+public class Hand : MonoBehaviourPun
 {
     /* Hand-specific refereneces*/
     [SerializeField] private List<PlayerCard> hand;
@@ -31,11 +32,6 @@ public class Hand : MonoBehaviour
         cardSpot = new Vector2();
     }
 
-    /* Adds a card to the Hand from the Deck.
-        If there are no cards in the Deck but there is a graveyard then
-        shuffle the graveyard and put it into the deck.
-        NOTE: No phantom cards are drawn using this technique
-     */
     /// <summary>
     /// Adds a card to the Hand from the Deck. If there are no cards in the Deck but there is a graveyard then
     /// we shuffle the graveyard and put it into the deck.

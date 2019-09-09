@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 /// <summary>
 /// TODO
 /// </summary>
-public class GameplayManager : MonoBehaviour
+public class GameplayManager : MonoBehaviourPun
 {
     public playerSwitch playerSwitcher;
     public BossTurnCardPlayer bossCardPlayer;
@@ -16,8 +17,15 @@ public class GameplayManager : MonoBehaviour
     private Player turnPlayer;
     private Hand tpHand;
 
+    private void Awake()
+    {
+        //PhotonNetwork.ConnectUsingSettings();
+    }
+
     private void Start()
     {
+        Debug.Log("Room: " + PhotonNetwork.CurrentRoom.Name);
+        Debug.Log("Players in room: " + PhotonNetwork.CurrentRoom.PlayerCount);
         turnPlayer = TurnManager.turnPlayer;
         tpHand = turnPlayer.hand;
 

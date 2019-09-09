@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 /// <summary>
 /// Represents the basic foundation of all Cards in the game, e.g., Player, Enemy, Boss, etc...
 /// </summary>
-public abstract class Card : MonoBehaviour
+public abstract class Card : MonoBehaviourPun
 {
     /// <summary>
     /// The specific name of the card.

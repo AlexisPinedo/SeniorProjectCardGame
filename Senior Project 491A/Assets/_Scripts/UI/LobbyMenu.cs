@@ -10,6 +10,7 @@ using Photon.Realtime;
 /// </summary>
 public class LobbyMenu : MonoBehaviourPunCallbacks
 {
+    #region UI references
     [SerializeField]
     private GameObject nameScreen, connectScreen;
 
@@ -22,10 +23,11 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     [SerializeField]
     private GameObject createRoomBtn, createRoomBtnBack, createRoomBtnAccept, createInpObj;
 
-
     [SerializeField]
     private InputField nameInp, createRoomInp, joinRoomInp;
+    #endregion
 
+    #region Private Fields
     /// <summary>
     /// Minimum number of characters required for a Player's nickname.
     /// </summary>
@@ -35,13 +37,15 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     /// Minimum number of characters required for a Room name.
     /// </summary>
     private readonly int minRoomNameLen = 4;
+    #endregion
 
     private void Awake()
     {
-        // Connect to server
+        // Connect to Photon server
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    #region Pun Overrides
     /// <summary>
     /// Called after connection to server is established.
     /// </summary>
@@ -55,6 +59,7 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnJoinedLobby()
     {
+        Debug.Log("Joined lobby: " + PhotonNetwork.CurrentLobby.ToString());
         nameScreen.SetActive(true);
         createNameBtn.SetActive(false);
     }
@@ -67,6 +72,13 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
         // Go to game - in our case, the MVP scene *for now*
         PhotonNetwork.LoadLevel(1); // 1 = build index!
     }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        Debug.LogError("<Color=Red><a>Join Room Failed</a></Color>", this);
+        OnClick_JoinRoomBack();
+    }
+    #endregion
 
     #region UI Methods
     /// <summary>
@@ -132,13 +144,8 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
         // (i.e., room names need a minimum length?)
         if (joinRoomInp.text.Length >= minRoomNameLen)
         {
-            RoomOptions roomOpt = new RoomOptions
-            {
-                MaxPlayers = 2
-            };
             Debug.Log("Joining room: " + joinRoomInp.text);
-
-            PhotonNetwork.JoinOrCreateRoom(joinRoomInp.text, roomOpt, TypedLobby.Default);
+            PhotonNetwork.JoinRoom(joinRoomInp.text, null);
         }
         else
         {
@@ -153,7 +160,36 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnClick_CreateRoom()
     {
-        Debug.Log("Not implemented yet");
+        createRoomBtn.SetActive(false);
+        createInpObj.SetActive(true);
+        createRoomBtnAccept.SetActive(true);
+        createRoomBtnBack.SetActive(true);
+    }
+
+    public void OnClick_CreateRoomAccept()
+    {
+        if (createRoomInp.text.Length >= minRoomNameLen)
+        {
+            RoomOptions roomOpt = new RoomOptions
+            {
+                MaxPlayers = 2
+            };
+
+            PhotonNetwork.CreateRoom(createRoomInp.text, new RoomOptions { MaxPlayers = 2 }, TypedLobby.Default, null);
+            Debug.Log("New room created called " + createRoomInp.text);
+        }
+        else
+        {
+            Debug.LogError("Room name needs more characters");
+        }
+    }
+
+    public void OnClick_CreateRoomBack()
+    {
+        createRoomBtn.SetActive(true);
+        createInpObj.SetActive(false);
+        createRoomBtnAccept.SetActive(false);
+        createRoomBtnBack.SetActive(false);
     }
     #endregion
 }
