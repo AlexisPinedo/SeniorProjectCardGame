@@ -514,14 +514,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Dragon
   cardDescription: 
-  cardEffect: {fileID: 0}
+  cardEffect: 
   cardArtwork: {fileID: 0}
   cardElement: {fileID: 0}
   inShop: 1
   cardCost: 2
   cardCurrency: 1
   cardAttack: 1
-  cardType: 0
   spotOnGrid: {x: 2.8520002, y: 3}
 --- !u!114 &6130187465402888861
 MonoBehaviour:
