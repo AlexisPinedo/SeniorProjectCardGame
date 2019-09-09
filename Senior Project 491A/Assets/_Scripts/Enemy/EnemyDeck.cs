@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDeck : Deck
-{
-    //private void Awake()
-    //{
-    //    FillDeck();
-    //}
-
-}
+[CreateAssetMenu]
+ public class EnemyDeck : PrefillableDeck
+ {
+  
+ }

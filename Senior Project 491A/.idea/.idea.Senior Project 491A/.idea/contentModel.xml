@@ -49,6 +49,7 @@
           <e p="EnemyCardHolder.cs" t="Include" />
           <e p="EnemyCardManager.cs" t="Include" />
           <e p="EnemyEventCard.cs" t="Include" />
+          <e p="FieldContainer.cs" t="Include" />
           <e p="Gameplay" t="Include">
             <e p="GameplayManager.cs" t="Include" />
             <e p="Grid.cs" t="Include" />
@@ -68,7 +69,9 @@
             <e p="Player.cs" t="Include" />
             <e p="PlayerDeck.cs" t="Include" />
           </e>
+          <e p="PlayerCardContainer.cs" t="Include" />
           <e p="PlayerCardHolder.cs" t="Include" />
+          <e p="Prefillable Deck.cs" t="Include" />
           <e p="Sharp Accent Card Game" t="Include">
             <e p="Card.cs" t="Include" />
             <e p="CardDisplay.cs" t="Include" />

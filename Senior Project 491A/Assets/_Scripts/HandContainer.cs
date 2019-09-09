@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class HandContainer : Container
+public class HandContainer : PlayerCardContainer
 {
 
     public Hand hand;

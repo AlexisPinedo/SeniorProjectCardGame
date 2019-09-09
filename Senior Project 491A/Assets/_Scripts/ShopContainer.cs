@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopContainer : Container
+public class ShopContainer : PlayerCardContainer
 {
     public ShopDeck shopDeck;
-    [SerializeField]
+    //[SerializeField]
     //public PlayerCardHolder playerCardContainer;
     
     private int shopCardCount = 6;

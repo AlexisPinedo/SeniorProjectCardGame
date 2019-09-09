@@ -13,13 +13,10 @@ public class Grid : MonoBehaviour
     [SerializeField, Range(1f, 5f)]
     private float size = 1f;
 
-    [SerializeField]
-    private Container spawnContainer;
-    
     [SerializeField] private Color GizmoColor;
 
     public Queue<Vector2> freeLocations = new Queue<Vector2>();
-    public Dictionary<Vector2, PlayerCardHolder> cardLocationReference = new Dictionary<Vector2, PlayerCardHolder>();
+    public Dictionary<Vector2, CardHolder> cardLocationReference = new Dictionary<Vector2, CardHolder>();
     
     [SerializeField] private int _xValUnits = 1;
     [SerializeField] private int _yValUnits = 1;

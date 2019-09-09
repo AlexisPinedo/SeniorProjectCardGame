@@ -32,13 +32,13 @@ public abstract class CardHolder : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        Debug.Log("card had been enabled ");
+        //Debug.Log("card had been enabled ");
         LoadCardIntoContainer();
     }
 
     protected virtual void OnDisable()
     {
-        Debug.Log("card had been enabled ");
+        //Debug.Log("card had been enabled ");
         ClearCardFromContainer();
     }
     
