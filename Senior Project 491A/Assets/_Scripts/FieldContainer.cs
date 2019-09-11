@@ -15,12 +15,12 @@ public class FieldContainer : Container
 
     private void OnEnable()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     private void OnDisable()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     public void DisplayACard()
