@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 522489324146028442}
   - component: {fileID: 304121539440660337}
   - component: {fileID: 6452798937650027219}
+  - component: {fileID: 7000129078703534630}
   m_Layer: 0
   m_Name: Minoin Card Container
   m_TagString: Untagged
@@ -661,6 +662,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.624723, y: 2.4536524}
   m_EdgeRadius: 0
+--- !u!114 &7000129078703534630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522489324146028420}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8269dc984b00cb14c95db7527bb4644f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardArtDisplay: {fileID: 0}
+  typeIcon: {fileID: 0}
+  cardBorder: {fileID: 0}
+  cardEffectTextBox: {fileID: 0}
+  cardNameTextBox: {fileID: 0}
+  nameText: {fileID: 0}
+  cardEffectText: {fileID: 0}
+  card: {fileID: 0}
+  healthText: {fileID: 0}
+  rewardText: {fileID: 0}
 --- !u!1 &522489324211365295
 GameObject:
   m_ObjectHideFlags: 0

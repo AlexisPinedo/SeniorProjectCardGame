@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class EnemyCardHolder : CardHolder
 {
     public delegate void _cardDestroyed(EnemyCardHolder destroytedCard);
@@ -27,12 +28,13 @@ public class EnemyCardHolder : CardHolder
         healthText.text = card.HealthValue.ToString();
         rewardText.text = card.RewardValue.ToString();
     }
-
-
+    
     protected override void OnDisable()
     {
-        if (CardDestroyed == null)
+        base.OnDisable();
+        if (CardDestroyed != null)
         {
+            Debug.Log("This method is trying to run");
             CardDestroyed.Invoke(this);
         }
     }
