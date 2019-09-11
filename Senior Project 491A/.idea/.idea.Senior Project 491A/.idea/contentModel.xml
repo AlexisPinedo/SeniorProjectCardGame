@@ -33,6 +33,7 @@
           </e>
           <e p="CardHolder.cs" t="Include" />
           <e p="CardType.cs" t="Include" />
+          <e p="CardZoomer.cs" t="Include" />
           <e p="Container.cs" t="Include" />
           <e p="DeckContainer.cs" t="Include" />
           <e p="Enemy" t="Include">
