@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="892375cf-62fa-4d33-afad-b6728836578f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/Boss Card Container.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Prefabs/Boss Card Container.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/Minoin Card Container.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Prefabs/Minoin Card Container.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/Player Card Container.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Prefabs/Player Card Container.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/BossCardHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/BossCardHolder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/CardHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/CardHolder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scripts/EnemyCardHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/EnemyCardHolder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/FieldContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/FieldContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/ShopContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/ShopContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/MinionCardHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/MinionCardHolder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,6 +64,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Player/Graveyard.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/FieldContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Gameplay/Grid.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Prefabs/Minoin Card Container.prefab" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -89,8 +88,6 @@
         <option value="$PROJECT_DIR$/Assets/_Scripts/Enemy/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/PlayerCardHolder.cs" />
         <option value="$PROJECT_DIR$/Assets/BossCardHolderTest.cs" />
-        <option value="$PROJECT_DIR$/Assets/_Scripts/BossCardHolder.cs" />
-        <option value="$PROJECT_DIR$/Assets/_Scripts/MinionCardHolder.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/Enemy/Minion.cs" />
         <option value="$PROJECT_DIR$/Assets/FieldContainer.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/PlayerCardContainer.cs" />
@@ -102,9 +99,11 @@
         <option value="$PROJECT_DIR$/Assets/_Scripts/Shop/ShopDeck.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/ShopContainer.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/Gameplay/Grid.cs" />
-        <option value="$PROJECT_DIR$/Assets/_Scripts/CardHolder.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/FieldContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/_Scripts/CardHolder.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/EnemyCardHolder.cs" />
+        <option value="$PROJECT_DIR$/Assets/_Scripts/BossCardHolder.cs" />
+        <option value="$PROJECT_DIR$/Assets/_Scripts/MinionCardHolder.cs" />
       </list>
     </option>
   </component>
@@ -192,6 +191,7 @@
       <workItem from="1567915924944" duration="8364000" />
       <workItem from="1567965460695" duration="9832000" />
       <workItem from="1568217811113" duration="1645000" />
+      <workItem from="1568221332878" duration="3274000" />
     </task>
     <servers />
   </component>

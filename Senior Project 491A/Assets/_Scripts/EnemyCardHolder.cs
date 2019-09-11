@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class EnemyCardHolder : CardHolder
+public abstract class EnemyCardHolder : CardHolder
 {
     public delegate void _cardDestroyed(EnemyCardHolder destroytedCard);
 
@@ -28,13 +28,18 @@ public class EnemyCardHolder : CardHolder
         healthText.text = card.HealthValue.ToString();
         rewardText.text = card.RewardValue.ToString();
     }
-    
+
     protected override void OnDisable()
     {
-        base.OnDisable();
+        card = null;
+        cardArtDisplay.sprite = null;
+        nameText.text = null;
+        cardEffectText.text = null;
+        healthText.text = null;
+        rewardText.text = null;
+        
         if (CardDestroyed != null)
         {
-            Debug.Log("This method is trying to run");
             CardDestroyed.Invoke(this);
         }
     }
