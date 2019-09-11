@@ -9,21 +9,17 @@ public class PlayZone : MonoBehaviour
     {
         //Debug.Log(col.gameObject.name + " has entered the scene");
 
-        // Card stuff
-        Hand tpHand = TurnManager.turnPlayer.GetComponentInChildren<Hand>();
-        PlayerCard card = col.gameObject.GetComponent<PlayerCard>();
-        TurnManager.turnPlayer.AddCurrency(card.cardCurrency);
-        TurnManager.turnPlayer.AddPower(card.cardAttack);
+        //// Card stuff
+        //Hand tpHand = TurnManager.turnPlayer.GetComponentInChildren<Hand>();
+        //PlayerCard card = col.gameObject.GetComponent<PlayerCard>();
+        //TurnManager.turnPlayer.AddCurrency(card.cardCurrency);
+        //TurnManager.turnPlayer.AddPower(card.cardAttack);
 
-        if (!card.cardName.Equals("Phantom"))
-        {
-            //Debug.Log("Sending played card to grave");
+        //if (!card.cardName.Equals("Phantom"))
+        //{
+        //    tpHand.SendToGraveyard(card);
+        //}
 
-            tpHand.SendToGraveyard(card);
-        }
-
-
-        GameObject.Destroy(card.gameObject);
-
+        //GameObject.Destroy(card.gameObject);
     }
 }

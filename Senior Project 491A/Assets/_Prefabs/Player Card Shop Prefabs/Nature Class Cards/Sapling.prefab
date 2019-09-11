@@ -440,11 +440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6130187465402888857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
-  m_LocalPosition: {x: -1.2000003, y: -3.96, z: 0}
-=======
-  m_LocalPosition: {x: -5.148, y: 3, z: 0}
->>>>>>> ea085fb8838b81faa07123a59742db1d69de6b38
+  m_LocalPosition: {x: 2.8520002, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1701432448049937670}
@@ -526,11 +522,7 @@ MonoBehaviour:
   cardCost: 4
   cardCurrency: 1
   cardAttack: 1
-<<<<<<< HEAD
-  spotOnGrid: {x: -3.1479998, y: 3.08}
-=======
-  spotOnGrid: {x: -5.148, y: 3}
->>>>>>> ea085fb8838b81faa07123a59742db1d69de6b38
+  spotOnGrid: {x: 2.8520002, y: 3}
 --- !u!114 &6130187465402888861
 MonoBehaviour:
   m_ObjectHideFlags: 0
