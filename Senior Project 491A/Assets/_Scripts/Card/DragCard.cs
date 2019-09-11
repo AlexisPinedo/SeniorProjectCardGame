@@ -36,7 +36,7 @@ public class DragCard : MonoBehaviour
     {
         if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
-            //.Log("Attempted to drag and the object is not in the hand container");
+            //Debug.Log("Attempted to drag and the object is not in the hand container");
 
             return;
         }
