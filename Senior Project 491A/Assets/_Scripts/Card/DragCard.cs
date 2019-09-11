@@ -14,10 +14,8 @@ public class DragCard : MonoBehaviour
         OriginalPosition = this.transform.position;
     }
 
-
     public void OnMouseDown()
     {
-
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
 
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(

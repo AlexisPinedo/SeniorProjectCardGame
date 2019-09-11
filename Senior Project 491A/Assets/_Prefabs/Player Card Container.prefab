@@ -586,6 +586,7 @@ GameObject:
   - component: {fileID: 522489324146028421}
   - component: {fileID: 8993356684577127615}
   - component: {fileID: 6452798937650027219}
+  - component: {fileID: 3749782130279420571}
   m_Layer: 0
   m_Name: Player Card Container
   m_TagString: Untagged
@@ -634,7 +635,7 @@ MonoBehaviour:
   cardNameTextBox: {fileID: 522489323761172444}
   nameText: {fileID: 522489325007569006}
   cardEffectText: {fileID: 522489323694313994}
-  card: {fileID: 0}
+  card: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
   attackText: {fileID: 522489324534388793}
   costText: {fileID: 522489324681891626}
   currencyText: {fileID: 522489323609107175}
@@ -681,6 +682,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.624723, y: 2.4536524}
   m_EdgeRadius: 0
+--- !u!114 &3749782130279420571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522489324146028420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebea8fab9720b496f8d1b17db4a788ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &522489324211365295
 GameObject:
   m_ObjectHideFlags: 0
