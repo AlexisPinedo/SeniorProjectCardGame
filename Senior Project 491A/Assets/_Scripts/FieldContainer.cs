@@ -28,21 +28,28 @@ public class FieldContainer : Container
         if(enemyDeck.cardsInDeck.Count <= 0)
         {
             //Debug.Log("Enemy deck is " + enemyDeck.cardsInDeck.Count);
+            Debug.Log("Enemy Deck is empty");
+            return;
+        }
+        
+        if (containerGrid.freeLocations.Count == 0)
+        {
+            Debug.Log("Field Zone is full");
             return;
         }
 
-        Vector2 freeLocation = containerGrid.freeLocations.Dequeue();
+        Vector2 freeLocation = containerGrid.freeLocations.Pop();
+        //Debug.Log(containerGrid.GetNearestPointOnGrid(new Vector2(0, 3.5f)));
+        if (freeLocation == containerGrid.GetNearestPointOnGrid(new Vector2(8, 2)))
+        {
+            Debug.Log("Card is in boss zone");
+            DisplayACard();
+            return;
+        }
+        
         if (containerGrid.cardLocationReference.ContainsKey(freeLocation))
         {
-            //Handle code for checking if the spot is free
-            if (containerGrid.cardLocationReference[freeLocation] == null)
-            {
-                CreateInstanceOfCard(freeLocation);
-            }
-            else
-            {
-                DisplayACard();
-            }
+            CreateInstanceOfCard(freeLocation);
         }
         else
         {
@@ -52,11 +59,14 @@ public class FieldContainer : Container
 
     public void CreateInstanceOfCard(Vector2 freeLocation)
     {
+
+
         EnemyCard cardDrawn = null;
         cardDrawn = (EnemyCard)enemyDeck.cardsInDeck.Pop();
 
         holder.card = cardDrawn;
         EnemyCardHolder cardHolder = Instantiate(holder, freeLocation, Quaternion.identity, this.transform);
+        
         if (!containerGrid.cardLocationReference.ContainsKey(freeLocation))
         {
             containerGrid.cardLocationReference.Add(new Vector2(cardHolder.gameObject.transform.position.x, 
@@ -74,8 +84,10 @@ public class FieldContainer : Container
     {
         Vector2 cardLocation = cardDestroyed.gameObject.transform.position;
         Debug.Log("Card destroyed adding free location");
-        containerGrid.freeLocations.Enqueue(cardLocation);
+        containerGrid.freeLocations.Push(cardLocation);
+        
         //containerGrid.cardLocationReference[cardLocation] = null;
+        
     }
     
     

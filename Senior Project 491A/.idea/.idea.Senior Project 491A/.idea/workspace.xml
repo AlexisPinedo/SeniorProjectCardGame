@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="892375cf-62fa-4d33-afad-b6728836578f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Senior Project 491A/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/Boss Card Container.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Prefabs/Boss Card Container.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/Minoin Card Container.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Prefabs/Minoin Card Container.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/AlexPinedoScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/AlexPinedoScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/EnemyCardHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/EnemyCardHolder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scriptable Objects/EnemyComponents/Deck/Boss Deck.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scriptable Objects/EnemyComponents/Deck/Boss Deck.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scripts/FieldContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/FieldContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/MinionCardHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/MinionCardHolder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Gameplay/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Gameplay/Grid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/HandContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/HandContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/ShopContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/ShopContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,18 +37,23 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Hand and Deck/Deck.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F58CDE91-96FF-4D57-AE94-5F019534AF41/bc/ec73ff25/NativeInputSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/CardHolder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3F37B2CA-7BC0-4094-93C9-29A81891A481/f7/340cb541/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Sharp Accent Card Game/Card.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3F37B2CA-7BC0-4094-93C9-29A81891A481/6b/9f2a0bc5/InvokableCall.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/DeckContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Card/Card.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/ShopContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Card/PlayerCard.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/EnemyCardHolder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3F37B2CA-7BC0-4094-93C9-29A81891A481/be/ae7c036b/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Card/EnemyCard.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/CardZoomer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/BossCardHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/HandContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Card/DragCard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://D:/Program Files/Unity Versions/2019.2.0f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.0.8/Rider/Editor/RiderInitializer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/MinionCardHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/PlayerCardHolder.cs" root0="FORCE_HIGHLIGHTING" />
@@ -56,7 +61,9 @@
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Shop/ShopTransaction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Container.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Enemy/Minion.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://D:/Program Files/Unity Versions/2019.2.0f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/UIBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Enemy/Boss.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://D:/Program Files/Unity Versions/2019.2.0f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Enemy/EnemyDeck.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/PlayerCardContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Prefillable Deck.cs" root0="FORCE_HIGHLIGHTING" />
@@ -92,18 +99,18 @@
         <option value="$PROJECT_DIR$/Assets/_Scripts/Enemy/Minion.cs" />
         <option value="$PROJECT_DIR$/Assets/FieldContainer.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/PlayerCardContainer.cs" />
-        <option value="$PROJECT_DIR$/Assets/_Scripts/HandContainer.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/Container.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/EnemyDeck.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/Enemy/EnemyDeck.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/Prefillable Deck.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/Shop/ShopDeck.cs" />
-        <option value="$PROJECT_DIR$/Assets/_Scripts/ShopContainer.cs" />
-        <option value="$PROJECT_DIR$/Assets/_Scripts/Gameplay/Grid.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/CardHolder.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/BossCardHolder.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/EnemyCardHolder.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/MinionCardHolder.cs" />
+        <option value="$PROJECT_DIR$/Assets/_Scripts/HandContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/_Scripts/ShopContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/_Scripts/Gameplay/Grid.cs" />
         <option value="$PROJECT_DIR$/Assets/_Scripts/FieldContainer.cs" />
       </list>
     </option>
@@ -145,10 +152,10 @@
       <option name="userSelectedPid" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="7884">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="12388">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="7884" />
+      <option name="pid" value="12388" />
       <option name="userSelectedPid" value="false" />
       <method v="2" />
     </configuration>
@@ -193,6 +200,7 @@
       <workItem from="1567965460695" duration="9832000" />
       <workItem from="1568217811113" duration="1645000" />
       <workItem from="1568221332878" duration="7245000" />
+      <workItem from="1568321364707" duration="4204000" />
     </task>
     <servers />
   </component>
