@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class EnemyCardHolder : CardHolder
+[ExecuteInEditMode]
+public abstract class EnemyCardHolder : CardHolder
 {
-    public delegate void _cardDestroyed(EnemyCardHolder destroytedCard);
-
-    public static event _cardDestroyed CardDestroyed;
-
     public EnemyCard card;
     [SerializeField]
     private TextMeshPro healthText;
@@ -28,12 +25,13 @@ public class EnemyCardHolder : CardHolder
         rewardText.text = card.RewardValue.ToString();
     }
 
-
     protected override void OnDisable()
     {
-        if (CardDestroyed == null)
-        {
-            CardDestroyed.Invoke(this);
-        }
+        card = null;
+        cardArtDisplay.sprite = null;
+        nameText.text = null;
+        cardEffectText.text = null;
+        healthText.text = null;
+        rewardText.text = null;
     }
 }

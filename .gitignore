@@ -36,3 +36,7 @@ sysinfo.txt
 *.unitypackage
 
 Senior Project 491A/\.vscode/settings\.json
+
+# Photon Engine PUN
+**/Demos/
+**/PhotonUnityNetworking/Resources/PhotonServerSettings.asset

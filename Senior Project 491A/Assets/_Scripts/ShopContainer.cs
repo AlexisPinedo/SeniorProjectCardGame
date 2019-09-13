@@ -15,6 +15,7 @@ public class ShopContainer : PlayerCardContainer
         InitialCardDisplay();
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -35,7 +36,7 @@ public class ShopContainer : PlayerCardContainer
             cardDrawn = (PlayerCard)shopDeck.cardsInDeck.Pop();
 
             holder.card = cardDrawn;
-            PlayerCardHolder cardHolder = Instantiate(holder, containerGrid.freeLocations.Dequeue(), Quaternion.identity, this.transform);
+            PlayerCardHolder cardHolder = Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
             containerGrid.cardLocationReference.Add(new Vector2(cardHolder.gameObject.transform.position.x, 
                 cardHolder.gameObject.transform.position.y), cardHolder);
         }

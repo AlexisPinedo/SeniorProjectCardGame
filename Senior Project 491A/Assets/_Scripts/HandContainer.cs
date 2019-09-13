@@ -54,7 +54,7 @@ public class HandContainer : PlayerCardContainer
             }
 
             holder.card = cardDrawn;
-            Instantiate(holder, containerGrid.freeLocations.Dequeue(), Quaternion.identity, this.transform);
+            Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
             hand.hand.Add(cardDrawn);
 
             base.InitialCardDisplay();

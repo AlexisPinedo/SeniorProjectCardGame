@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class ShopTransaction : MonoBehaviour
+public class ShopTransaction : MonoBehaviourPun
 {
     //[SerializeField]
     //private int shopItems;
