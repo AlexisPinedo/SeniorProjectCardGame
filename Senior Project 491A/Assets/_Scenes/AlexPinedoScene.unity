@@ -342,6 +342,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss Card Container
       objectReference: {fileID: 0}
+    - target: {fileID: 522489324146028420, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 522489324146028442, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -411,41 +416,45 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 7a09aa9da641d4a4bab2974a4bc78874,
+        type: 3}
     - target: {fileID: 522489324599465695, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 522489324667172571, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 4a795863df57edd45815b9405fb20466,
+        type: 3}
     - target: {fileID: 522489324667172571, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 522489323547367173, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 147df2d7cfc917c4fbc1aca85aed8b56,
+        type: 3}
     - target: {fileID: 522489323547367173, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 522489323761172444, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: a8cc807b531bb8e49b625e58bf248853,
+        type: 3}
     - target: {fileID: 522489323761172444, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 522489325007569006, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
@@ -590,8 +599,14 @@ PrefabInstance:
     - target: {fileID: 304121539440660337, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 304121539440660337, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: da1e8b677b7a00a43b7f66374c834683,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca9d4b072acf4164588d35a26d1bddd4, type: 3}
 --- !u!1 &607427540
@@ -1126,6 +1141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+  m_IsActive: 1
   m_IsActive: 0
 --- !u!4 &1999649730
 Transform:

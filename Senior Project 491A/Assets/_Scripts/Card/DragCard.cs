@@ -14,10 +14,8 @@ public class DragCard : MonoBehaviour
         OriginalPosition = this.transform.position;
     }
 
-
     public void OnMouseDown()
     {
-
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
 
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
@@ -38,7 +36,7 @@ public class DragCard : MonoBehaviour
     {
         if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
-            //.Log("Attempted to drag and the object is not in the hand container");
+            //Debug.Log("Attempted to drag and the object is not in the hand container");
 
             return;
         }
