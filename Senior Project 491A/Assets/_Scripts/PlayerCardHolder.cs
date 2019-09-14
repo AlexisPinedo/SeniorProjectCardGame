@@ -10,20 +10,15 @@ using UnityEngine.UI;
 public class PlayerCardHolder : CardHolder
 {
     public PlayerCard card;
-    [SerializeField]
-    private TextMeshPro attackText;
-    [SerializeField]
-    private TextMeshPro costText;
-    [SerializeField]
-    private TextMeshPro currencyText;
-    [SerializeField]
-    private SpriteRenderer cardEffectCostsIcons;
-    [SerializeField]
-    private SpriteRenderer costIcon;
-    
 
-    [SerializeField]
-    private List<GameObject> cardIcons = new List<GameObject>();
+    [SerializeField] private TextMeshPro attackText;
+    [SerializeField] private TextMeshPro costText;
+    [SerializeField] private TextMeshPro currencyText;
+
+    [SerializeField] private SpriteRenderer cardEffectCostsIcons;
+    [SerializeField] private SpriteRenderer costIcon;
+    
+    [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
 
     protected override void LoadCardIntoContainer()
     {
@@ -63,7 +58,9 @@ public class PlayerCardHolder : CardHolder
 
     private void LoadCostEffectIcons()
     {
+        // Initial spawn point that changes with each card added
         Vector3 spawnPoint = new Vector3(-.55f, .23f, 0f);
+
         foreach (var cardIconSprite in card.cardCostsIcons)
         {
             SpriteRenderer cardIcon = Instantiate(cardEffectCostsIcons, cardEffectTextBox.transform.position, Quaternion.identity, cardEffectTextBox.transform);
@@ -76,16 +73,13 @@ public class PlayerCardHolder : CardHolder
 
     private void RemoveCardEffectCostIcons()
     {
-        //Debug.Log(cardIcons.Count);
+        // Debug.Log(cardIcons.Count);
         for (int i = 0; i < cardIcons.Count; i++)
         {
-            
             DestroyImmediate(cardIcons[i].gameObject);
-            //Debug.Log("Object Destroyed " + i);
+            // Debug.Log("Object Destroyed " + i);
         }
 
         cardIcons.Clear();
     }
-
-
 }

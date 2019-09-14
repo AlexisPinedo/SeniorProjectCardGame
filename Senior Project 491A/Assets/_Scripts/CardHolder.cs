@@ -5,20 +5,13 @@ using UnityEngine;
 
 public abstract class CardHolder : MonoBehaviour
 {
-    [SerializeField]
-    protected SpriteRenderer cardArtDisplay;
-    [SerializeField]
-    protected SpriteRenderer typeIcon;
-    [SerializeField]
-    protected SpriteRenderer cardBorder;
-    [SerializeField]
-    protected SpriteRenderer cardEffectTextBox;
-    [SerializeField]
-    protected SpriteRenderer cardNameTextBox;
-    [SerializeField]
-    protected TextMeshPro nameText;
-    [SerializeField]
-    protected TextMeshPro cardEffectText;
+    [SerializeField] protected SpriteRenderer cardArtDisplay;
+    [SerializeField] protected SpriteRenderer typeIcon;
+    [SerializeField] protected SpriteRenderer cardBorder;
+    [SerializeField] protected SpriteRenderer cardEffectTextBox;
+    [SerializeField] protected SpriteRenderer cardNameTextBox;
+    [SerializeField] protected TextMeshPro nameText;
+    [SerializeField] protected TextMeshPro cardEffectText;
 
     protected virtual void Awake()
     {
@@ -38,7 +31,7 @@ public abstract class CardHolder : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        //Debug.Log("card had been enabled ");
+        // Debug.Log("card had been enabled ");
         ClearCardFromContainer();
     }
     
@@ -47,11 +40,8 @@ public abstract class CardHolder : MonoBehaviour
 
     }
     
-    
     protected virtual void ClearCardFromContainer()
     {
 
     }
-    
-
 }

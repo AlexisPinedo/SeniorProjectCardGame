@@ -8,10 +8,9 @@ using UnityEngine.Serialization;
 /// </summary>
 public class Grid : MonoBehaviour
 {
-    //When incrementing by a value in other scripts reference the Size value here for the increment
+    // When incrementing by a value in other scripts reference the Size value here for the increment
 
-    [SerializeField, Range(1f, 5f)]
-    private float size = 1f;
+    [SerializeField, Range(1f, 5f)] private float size = 1f;
 
     [SerializeField] private Color GizmoColor;
 
@@ -41,7 +40,6 @@ public class Grid : MonoBehaviour
         }
     }
 
-
     public int yValUnits
     {
         get => _yValUnits;
@@ -64,7 +62,7 @@ public class Grid : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Size Cannot be less then 1");
+            // Debug.Log("Size Cannot be less then 1");
         }
     }
 
@@ -137,7 +135,6 @@ public class Grid : MonoBehaviour
     public void ResizeGrid()
     {
         Debug.Log("Resizing grid");
-        
     }
 
 }

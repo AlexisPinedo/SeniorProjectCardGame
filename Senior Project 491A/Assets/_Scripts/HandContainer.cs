@@ -6,28 +6,28 @@ using UnityEngine;
 
 public class HandContainer : PlayerCardContainer
 {
-
     public Hand hand;
     public Deck playerDeck;
     public Graveyard playerGrave;
     public PlayerCard phantomCard;
 
-    [SerializeField]
-    private int DefaultHandSize = 5;
+    [SerializeField] private int DefaultHandSize = 5;
 
     private void Start()
     {
         InitialCardDisplay();
     }
-
-
+    
     protected override void InitialCardDisplay()
     {
         PlayerCard cardDrawn = null;
+
         for (int i = 0; i < DefaultHandSize; i++)
         {
             if (playerDeck.cardsInDeck.Count > 0)
+            {
                 cardDrawn = (PlayerCard)playerDeck.cardsInDeck.Pop();
+            }
             else
             {
                 if (playerGrave.graveyard.Count > 0)
@@ -49,7 +49,7 @@ public class HandContainer : PlayerCardContainer
 
             if (cardDrawn == null)
             {
-                //Debug.Log("null card");
+                // Debug.Log("null card");
                 return;
             }
 
@@ -57,7 +57,7 @@ public class HandContainer : PlayerCardContainer
             Instantiate(holder, containerGrid.freeLocations.Dequeue(), Quaternion.identity, this.transform);
             hand.hand.Add(cardDrawn);
 
-            base.InitialCardDisplay();
+            //base.InitialCardDisplay();
         }
     }
 
