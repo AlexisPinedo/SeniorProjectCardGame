@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// A Container specific for PlayerCards.
+/// An abstract class that defines a Container specific for PlayerCards.
 /// </summary>
 public abstract class PlayerCardContainer : Container
 {

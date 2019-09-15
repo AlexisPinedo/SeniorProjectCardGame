@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Holds information pertinent to all types of Cards in the game.
+/// </summary>
 public abstract class CardHolder : MonoBehaviour
 {
     [SerializeField] protected SpriteRenderer cardArtDisplay;

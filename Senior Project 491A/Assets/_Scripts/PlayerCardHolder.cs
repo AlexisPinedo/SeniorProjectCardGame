@@ -6,6 +6,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Extends CardHolder. Holds pertinent information specific to PlayerCards.
+/// </summary>
 [ExecuteInEditMode]
 public class PlayerCardHolder : CardHolder
 {
@@ -20,6 +23,9 @@ public class PlayerCardHolder : CardHolder
     
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
 
+    /// <summary>
+    /// Loads all of the Card's pertinent information into the holder.
+    /// </summary>
     protected override void LoadCardIntoContainer()
     {
         cardArtDisplay.sprite = card.CardArtwork;
@@ -36,6 +42,9 @@ public class PlayerCardHolder : CardHolder
         LoadCostEffectIcons();
     }
 
+    /// <summary>
+    /// Removes all references to the Card's information from this holder.
+    /// </summary>
     protected override void ClearCardFromContainer()
     {
         card = null;

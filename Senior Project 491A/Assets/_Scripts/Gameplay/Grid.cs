@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// TODO
+/// The area of the screen where the parent object's Cards will be shown.
 /// </summary>
 public class Grid : MonoBehaviour
 {
@@ -67,7 +67,7 @@ public class Grid : MonoBehaviour
     }
 
     /// <summary>
-    /// Initializes the Vector2 spaces as false, i.e., the spaces are empty.
+    /// Initializes the Vector2 spaces as false, i.e., initialize the spaces as empty.
     /// </summary>
     private void InitializePlacements()
     {

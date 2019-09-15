@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Defines a Card as a scriptable object and is the base class for all types of Cards to extend. Contains attributes common to all types of Cards.
+/// </summary>
 public abstract class Card : ScriptableObject
 {
     [SerializeField]

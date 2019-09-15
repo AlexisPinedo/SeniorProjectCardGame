@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Extends the Card scriptable object and contains information specific to Player Cards.
+/// </summary>
 [CreateAssetMenu]
 public class PlayerCard : Card
 {
