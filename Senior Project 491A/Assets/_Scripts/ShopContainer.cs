@@ -48,10 +48,15 @@ public class ShopContainer : PlayerCardContainer
 
             // PlayerCardHolder
             holder.card = cardDrawn;
+<<<<<<< HEAD
             PlayerCardHolder cardHolder = Instantiate(holder, containerGrid.freeLocations.Dequeue(), Quaternion.identity, this.transform);
 
             // Connect 
             containerGrid.cardLocationReference.Add(new Vector2(cardHolder.gameObject.transform.position.x,
+=======
+            PlayerCardHolder cardHolder = Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
+            containerGrid.cardLocationReference.Add(new Vector2(cardHolder.gameObject.transform.position.x, 
+>>>>>>> 972666df8fb555092af7063e88eb7d6b759ecd18
                 cardHolder.gameObject.transform.position.y), cardHolder);
         }
     }

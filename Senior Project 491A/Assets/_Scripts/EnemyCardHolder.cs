@@ -6,9 +6,12 @@ using UnityEngine;
 [ExecuteInEditMode]
 public abstract class EnemyCardHolder : CardHolder
 {
+<<<<<<< HEAD
     public delegate void _cardDestroyed(EnemyCardHolder destroytedCard);
     public static event _cardDestroyed CardDestroyed;
 
+=======
+>>>>>>> 972666df8fb555092af7063e88eb7d6b759ecd18
     public EnemyCard card;
 
     [SerializeField] private TextMeshPro healthText;
@@ -35,10 +38,5 @@ public abstract class EnemyCardHolder : CardHolder
         cardEffectText.text = null;
         healthText.text = null;
         rewardText.text = null;
-        
-        if (CardDestroyed != null)
-        {
-            CardDestroyed.Invoke(this);
-        }
     }
 }

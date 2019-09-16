@@ -14,7 +14,7 @@ public class Grid : MonoBehaviour
 
     [SerializeField] private Color GizmoColor;
 
-    public Queue<Vector2> freeLocations = new Queue<Vector2>();
+    public Stack<Vector2> freeLocations = new Stack<Vector2>();
     public Dictionary<Vector2, CardHolder> cardLocationReference = new Dictionary<Vector2, CardHolder>();
     
     [SerializeField] private int _xValUnits = 1;
@@ -79,7 +79,7 @@ public class Grid : MonoBehaviour
             for (float y = 0; y < yTotal; y += Size)
             {
                 Vector2 point = GetNearestPointOnGrid(new Vector2(x, y));
-                freeLocations.Enqueue(point);
+                freeLocations.Push(point);
             }
         }
     }
@@ -97,7 +97,7 @@ public class Grid : MonoBehaviour
         Vector2 result = new Vector2((float)xCount * Size, (float)yCount * Size);
 
         result += new Vector2(transform.position.x, transform.position.y);
-
+        
         return result;
     }
 

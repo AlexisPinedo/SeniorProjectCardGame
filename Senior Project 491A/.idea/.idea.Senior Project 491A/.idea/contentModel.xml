@@ -33,6 +33,7 @@
           </e>
           <e p="CardHolder.cs" t="Include" />
           <e p="CardType.cs" t="Include" />
+          <e p="CardZoomer.cs" t="Include" />
           <e p="Container.cs" t="Include" />
           <e p="DeckContainer.cs" t="Include" />
           <e p="Enemy" t="Include">
@@ -98,6 +99,7 @@
             <e p="TextUpdate.cs" t="Include" />
             <e p="UIHandler.cs" t="Include" />
           </e>
+          <e p="UIEventHandler.cs" t="Include" />
         </e>
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">
