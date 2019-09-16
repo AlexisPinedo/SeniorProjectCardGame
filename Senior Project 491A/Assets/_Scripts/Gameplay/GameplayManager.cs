@@ -3,11 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+
+
+public class GameplayManager : MonoBehaviourPun
+{
+    public BossTurnCardPlayer bossCardPlayer;
+    public TextUpdate textManger;
+    public GameObject shop;
+    public GameObject bossArea;
+}
+
+
+
+
 /// <summary>
 /// TODO
 /// </summary>
-public class GameplayManager : MonoBehaviourPun
-{
+//public class GameplayManager : MonoBehaviourPun
+//{
     //public playerSwitch playerSwitcher;
     //public BossTurnCardPlayer bossCardPlayer;
     //public TextUpdate textManger;
@@ -92,4 +105,4 @@ public class GameplayManager : MonoBehaviourPun
     //    shop.SetActive(true);
     //    bossArea.SetActive(false);
     //}
-}
+//}

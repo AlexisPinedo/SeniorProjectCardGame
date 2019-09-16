@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,5 +22,10 @@ public class MinionCardHolder : EnemyCardHolder
         base.OnDestroy();
         if(CardDestroyed != null)
             CardDestroyed.Invoke(this);
+    }
+
+    protected override void OnMouseDown()
+    {
+        Debug.Log("Minion has been clicked");
     }
 }

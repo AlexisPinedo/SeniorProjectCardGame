@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -32,7 +33,7 @@ public abstract class CardHolder : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        Debug.Log("card had been enabled ");
+        //Debug.Log("card had been enabled ");
         LoadCardIntoContainer();
     }
 
@@ -52,6 +53,9 @@ public abstract class CardHolder : MonoBehaviour
     {
 
     }
-    
 
+    protected virtual void OnMouseDown()
+    {
+        
+    }
 }

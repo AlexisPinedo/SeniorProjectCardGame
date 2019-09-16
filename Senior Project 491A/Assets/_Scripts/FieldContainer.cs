@@ -16,11 +16,13 @@ public class FieldContainer : Container
     private void OnEnable()
     {
         MinionCardHolder.CardDestroyed += AddFreeCardLocation;
+        UIHandler.EndTurnClicked += DisplayACard;
     }
 
     private void OnDisable()
     {
         MinionCardHolder.CardDestroyed -= AddFreeCardLocation;
+        UIHandler.EndTurnClicked -= DisplayACard;
     }
 
     public void DisplayACard()
@@ -28,13 +30,13 @@ public class FieldContainer : Container
         if(enemyDeck.cardsInDeck.Count <= 0)
         {
             //Debug.Log("Enemy deck is " + enemyDeck.cardsInDeck.Count);
-            Debug.Log("Enemy Deck is empty");
+            //Debug.Log("Enemy Deck is empty");
             return;
         }
         
         if (containerGrid.freeLocations.Count == 0)
         {
-            Debug.Log("Field Zone is full");
+            //Debug.Log("Field Zone is full");
             return;
         }
 
@@ -42,7 +44,7 @@ public class FieldContainer : Container
         //Debug.Log(containerGrid.GetNearestPointOnGrid(new Vector2(0, 3.5f)));
         if (freeLocation == containerGrid.GetNearestPointOnGrid(new Vector2(8, 2)))
         {
-            Debug.Log("Card is in boss zone");
+            //Debug.Log("Card is in boss zone");
             DisplayACard();
             return;
         }
@@ -83,7 +85,7 @@ public class FieldContainer : Container
     void AddFreeCardLocation(EnemyCardHolder cardDestroyed)
     {
         Vector2 cardLocation = cardDestroyed.gameObject.transform.position;
-        Debug.Log("Card destroyed adding free location");
+        //Debug.Log("Card destroyed adding free location");
         containerGrid.freeLocations.Push(cardLocation);
         
         //containerGrid.cardLocationReference[cardLocation] = null;

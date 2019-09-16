@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -7,17 +8,25 @@ using UnityEngine;
     Defines the Player class, i.e, everything that the Player can do and
     has access to during a match.
  */
+[CreateAssetMenu]
 public class Player : ScriptableObject
 {
-
     [SerializeField] public Hand hand;
-    [SerializeField] private PlayerDeck deck;
+    [SerializeField] private Deck deck;
     [SerializeField] private int currency;
     [SerializeField] private int power;
     [SerializeField] public Graveyard graveyard;
     [SerializeField] private List<PlayerCard> rewardPile;
 
-    //public delegate void _CurrencyUpdated(int value);
+
+}
+
+
+
+
+//public class Player : ScriptableObject
+//{
+//public delegate void _CurrencyUpdated(int value);
     //public static event _CurrencyUpdated CurrencyChanged;
 
     //public delegate void _PowerUpdated(int value);
@@ -149,4 +158,4 @@ public class Player : ScriptableObject
     //{
     //    hand.TurnStartDraw();
     //}
-}
+//}

@@ -5,6 +5,12 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class BossCardHolder : EnemyCardHolder
 {
+    protected override void Awake()
+    {
+        //base.Awake();
+        this.enabled = true;
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -14,4 +20,10 @@ public class BossCardHolder : EnemyCardHolder
     {
         base.OnDisable();
     }
+
+    protected override void OnMouseDown()
+    {
+        Debug.Log("boss has been clicked");
+    }
+
 }

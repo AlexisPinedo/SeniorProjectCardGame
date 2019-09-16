@@ -7,6 +7,14 @@ using UnityEngine;
 /// </summary>
 public class BossTurnCardPlayer : MonoBehaviour
 {
+    
+}
+
+
+
+
+//public class BossTurnCardPlayer : MonoBehaviour
+//{
     //public EnemyCard cardToPlay;
 
     //public EnemyDeck enemyDeck;
@@ -94,4 +102,4 @@ public class BossTurnCardPlayer : MonoBehaviour
     //        //Debug.Log("In boss zone");
     //    }
     //}
-}
+//}
