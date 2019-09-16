@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: e5b97bdc07de340389ac78cbd012206d
+=======
+guid: 12ac8348e762efb479857ab5c2c83ecd
+>>>>>>> Firebase Auth for Facecbook, Email, and Google added
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
