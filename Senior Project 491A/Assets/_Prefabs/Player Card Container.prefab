@@ -584,9 +584,9 @@ GameObject:
   m_Component:
   - component: {fileID: 522489324146028442}
   - component: {fileID: 522489324146028421}
-  - component: {fileID: 8993356684577127615}
   - component: {fileID: 6452798937650027219}
-  - component: {fileID: 3749782130279420571}
+  - component: {fileID: 6509064376903318764}
+  - component: {fileID: 2017493157725821428}
   m_Layer: 0
   m_Name: Player Card Container
   m_TagString: Untagged
@@ -643,19 +643,6 @@ MonoBehaviour:
     type: 3}
   costIcon: {fileID: 522489324350622253}
   cardIcons: []
---- !u!114 &8993356684577127615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522489324146028420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83c3787a03d785c4c8dbcae5a0c744f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OriginalPosition: {x: 0, y: 0}
 --- !u!61 &6452798937650027219
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -682,7 +669,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.624723, y: 2.4536524}
   m_EdgeRadius: 0
---- !u!114 &3749782130279420571
+--- !u!114 &6509064376903318764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522489324146028420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c3787a03d785c4c8dbcae5a0c744f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginalPosition: {x: 0, y: 0}
+--- !u!114 &2017493157725821428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
