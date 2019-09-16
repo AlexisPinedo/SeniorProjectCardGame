@@ -57,13 +57,10 @@ public class HandContainer : PlayerCardContainer
 
             // Set the PlayerCardContainer's PlayerCardHolder to the cardDrawn
             holder.card = cardDrawn;
-<<<<<<< HEAD
             // Place it on the grid!
             Instantiate(holder, containerGrid.freeLocations.Dequeue(), Quaternion.identity, this.transform);
             // Add it to the HandContainer
-=======
             Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
->>>>>>> 972666df8fb555092af7063e88eb7d6b759ecd18
             hand.hand.Add(cardDrawn);
         }
     }

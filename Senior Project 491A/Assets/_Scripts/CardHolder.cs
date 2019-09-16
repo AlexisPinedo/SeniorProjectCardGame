@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-﻿using TMPro;
-=======
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
->>>>>>> 972666df8fb555092af7063e88eb7d6b759ecd18
 using UnityEngine;
 using Photon.Pun;
 
@@ -36,12 +32,8 @@ public abstract class CardHolder : MonoBehaviourPun
     }
 
     protected virtual void OnEnable()
-    {
-<<<<<<< HEAD
+    { 
         Debug.Log("CardHolder: OnEnable()");
-=======
-        //Debug.Log("card had been enabled ");
->>>>>>> 972666df8fb555092af7063e88eb7d6b759ecd18
         LoadCardIntoContainer();
     }
 
@@ -60,12 +52,9 @@ public abstract class CardHolder : MonoBehaviourPun
     {
 
     }
-<<<<<<< HEAD
-=======
 
     protected virtual void OnMouseDown()
     {
         
     }
->>>>>>> 972666df8fb555092af7063e88eb7d6b759ecd18
 }
