@@ -164,6 +164,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.SeniorProject491A.RaisingSpirits
     Standalone: com.Company.ProductName
+    iPhone: com.SeniorProject491A.RaisingSpirits
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
