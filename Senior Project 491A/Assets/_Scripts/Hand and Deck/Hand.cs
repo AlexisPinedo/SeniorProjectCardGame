@@ -8,7 +8,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Hand : ScriptableObject
 {
+    /// <summary>
+    /// List of PlayerCard objects.
+    /// </summary>
     [SerializeField] public List<PlayerCard> hand;
+
     //private int cardsInHand = 0;
     //[SerializeField] private CardContainer cardContainter;
 
@@ -16,8 +20,7 @@ public class Hand : ScriptableObject
     {
         hand.Clear();
     }
-
-   
+       
 }
 
 

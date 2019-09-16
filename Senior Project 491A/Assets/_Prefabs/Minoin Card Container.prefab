@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 147df2d7cfc917c4fbc1aca85aed8b56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_Size: {x: 1.4040816, y: 0.74693877}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &522489323609107169
@@ -563,7 +563,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a8cc807b531bb8e49b625e58bf248853, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -571,7 +571,7 @@ SpriteRenderer:
   m_Size: {x: 1.4136055, y: 0.17414966}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &522489324146028420
@@ -583,9 +583,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 522489324146028442}
-  - component: {fileID: 304121539440660337}
+  - component: {fileID: 7737181224830327970}
   - component: {fileID: 6452798937650027219}
-  - component: {fileID: 7000129078703534630}
   m_Layer: 0
   m_Name: Minoin Card Container
   m_TagString: Untagged
@@ -614,7 +613,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &304121539440660337
+--- !u!114 &7737181224830327970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -623,10 +622,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 522489324146028420}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7d07bed3509404ea6e7f0c60f4b807, type: 3}
+  m_Script: {fileID: 11500000, guid: 8269dc984b00cb14c95db7527bb4644f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardArtDisplay: {fileID: 522489325570323521}
+  cardArtDisplay: {fileID: 522489324667172571}
   typeIcon: {fileID: 522489324599465695}
   cardBorder: {fileID: 522489324667172571}
   cardEffectTextBox: {fileID: 522489323547367173}
@@ -662,28 +661,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.624723, y: 2.4536524}
   m_EdgeRadius: 0
---- !u!114 &7000129078703534630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522489324146028420}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8269dc984b00cb14c95db7527bb4644f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardArtDisplay: {fileID: 0}
-  typeIcon: {fileID: 0}
-  cardBorder: {fileID: 0}
-  cardEffectTextBox: {fileID: 0}
-  cardNameTextBox: {fileID: 0}
-  nameText: {fileID: 0}
-  cardEffectText: {fileID: 0}
-  card: {fileID: 0}
-  healthText: {fileID: 0}
-  rewardText: {fileID: 0}
 --- !u!1 &522489324211365295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1017,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7a09aa9da641d4a4bab2974a4bc78874, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1048,7 +1025,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &522489324667172549
@@ -1120,7 +1097,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a795863df57edd45815b9405fb20466, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1128,7 +1105,7 @@ SpriteRenderer:
   m_Size: {x: 1.6367347, y: 2.4571428}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &522489325007569000
@@ -1492,7 +1469,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.0001953, y: 2.8}
+  m_Size: {x: 1.5973333, y: 2.3986666}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

@@ -4,18 +4,17 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// TODO
+/// The area of the screen where the parent object's Cards will be shown.
 /// </summary>
 public class Grid : MonoBehaviour
 {
-    //When incrementing by a value in other scripts reference the Size value here for the increment
+    // When incrementing by a value in other scripts reference the Size value here for the increment
 
-    [SerializeField, Range(1f, 5f)]
-    private float size = 1f;
+    [SerializeField, Range(1f, 5f)] private float size = 1f;
 
     [SerializeField] private Color GizmoColor;
 
-    public Queue<Vector2> freeLocations = new Queue<Vector2>();
+    public Stack<Vector2> freeLocations = new Stack<Vector2>();
     public Dictionary<Vector2, CardHolder> cardLocationReference = new Dictionary<Vector2, CardHolder>();
     
     [SerializeField] private int _xValUnits = 1;
@@ -41,7 +40,6 @@ public class Grid : MonoBehaviour
         }
     }
 
-
     public int yValUnits
     {
         get => _yValUnits;
@@ -64,12 +62,12 @@ public class Grid : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Size Cannot be less then 1");
+            // Debug.Log("Size Cannot be less then 1");
         }
     }
 
     /// <summary>
-    /// Initializes the Vector2 spaces as false, i.e., the spaces are empty.
+    /// Initializes the Vector2 spaces as false, i.e., initialize the spaces as empty.
     /// </summary>
     private void InitializePlacements()
     {
@@ -81,7 +79,7 @@ public class Grid : MonoBehaviour
             for (float y = 0; y < yTotal; y += Size)
             {
                 Vector2 point = GetNearestPointOnGrid(new Vector2(x, y));
-                freeLocations.Enqueue(point);
+                freeLocations.Push(point);
             }
         }
     }
@@ -99,7 +97,7 @@ public class Grid : MonoBehaviour
         Vector2 result = new Vector2((float)xCount * Size, (float)yCount * Size);
 
         result += new Vector2(transform.position.x, transform.position.y);
-
+        
         return result;
     }
 
@@ -137,7 +135,6 @@ public class Grid : MonoBehaviour
     public void ResizeGrid()
     {
         Debug.Log("Resizing grid");
-        
     }
 
 }

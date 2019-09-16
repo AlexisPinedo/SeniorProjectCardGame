@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// A Deck as a scriptable object. This class is mainly contained within a DeckContainer.
+/// </summary>
 [CreateAssetMenu]
 public class Deck : ScriptableObject
-{ 
+{
+    /// <summary>
+    /// The deck of cards represented in Stack form.
+    /// </summary>
     [SerializeField] public Stack<Card> cardsInDeck = new Stack<Card>();
-
-
+    
     protected virtual void Awake()
     {
         cardsInDeck.Clear();
