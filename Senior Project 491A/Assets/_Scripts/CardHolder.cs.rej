@@ -1,0 +1,13 @@
+diff a/Senior Project 491A/Assets/_Scripts/CardHolder.cs b/Senior Project 491A/Assets/_Scripts/CardHolder.cs	(rejected hunks)
+@@ -1,11 +1,7 @@
+-<<<<<<< HEAD
+-﻿using TMPro;
+-=======
+ ﻿using System;
+ using System.Collections;
+ using System.Collections.Generic;
+ using TMPro;
+->>>>>>> 972666df8fb555092af7063e88eb7d6b759ecd18
+ using UnityEngine;
+ using Photon.Pun;
+ 
