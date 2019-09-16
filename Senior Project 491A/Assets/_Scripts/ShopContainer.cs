@@ -46,9 +46,10 @@ public class ShopContainer : PlayerCardContainer
             PlayerCard cardDrawn = null;
             cardDrawn = (PlayerCard)shopDeck.cardsInDeck.Pop();
 
-            // PlayerCardHolder
+            // Set the ShopContainer's PlayerCardHolder to the cardDrawn
             holder.card = cardDrawn;
 
+            // Instantiate a NEW PlayerCardHolder and add it to the containerGrid
             PlayerCardHolder cardHolder = Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
             containerGrid.cardLocationReference.Add(new Vector2(cardHolder.gameObject.transform.position.x, cardHolder.gameObject.transform.position.y), cardHolder);
         }
