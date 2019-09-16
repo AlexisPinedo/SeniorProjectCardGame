@@ -65,6 +65,7 @@
           <e p="HandContainer.cs" t="Include" />
           <e p="History.cs" t="Include" />
           <e p="MinionCardHolder.cs" t="Include" />
+          <e p="NewBehaviourScript.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="Graveyard.cs" t="Include" />
             <e p="Player.cs" t="Include" />
