@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ExitGames.Client.Photon;
 
 /// <summary>
 /// Extends the Card scriptable object and contains information specific to Player Cards.
