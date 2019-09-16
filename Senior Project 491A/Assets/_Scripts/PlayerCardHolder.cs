@@ -72,6 +72,7 @@ public class PlayerCardHolder : CardHolder
             Debug.Log("PlayerCardHolder: photonView.IsMine");
 
             cardArtDisplay.sprite = card.CardArtwork;
+            Debug.Log("CardArtwork: " + card.CardArtwork.ToString());
             typeIcon.sprite = card.CardTypeArt;
             cardBorder.sprite = card.BorderArt;
             cardEffectTextBox.sprite = card.CardEffectBoxArt;
@@ -84,16 +85,16 @@ public class PlayerCardHolder : CardHolder
 
             object[] cardData = new object[]
             {
-                card.CardArtwork,
-                card.CardTypeArt,
-                card.BorderArt,
-                card.CardEffectBoxArt,
-                card.NameBoxArt,
-                card.CardName,
-                card.CardEffectDisplay,
-                card.CardAttack.ToString(),
-                card.CardCost.ToString(),
-                card.CardCurrency.ToString()
+                cardArtDisplay.sprite,
+                typeIcon.sprite,
+                cardBorder.sprite,
+                cardEffectTextBox.sprite,
+                cardNameTextBox.sprite,
+                nameText.text,
+                cardEffectText.text,
+                attackText.text,
+                costText.text,
+                currencyText.text
             };
 
             RaiseEventOptions reo = new RaiseEventOptions
