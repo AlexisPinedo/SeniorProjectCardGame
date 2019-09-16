@@ -26,9 +26,7 @@ public class DragCard : MonoBehaviour
     {
         if (this.gameObject != null)
         {
-
             this.transform.position = OriginalPosition;
-
         }
     }
 
