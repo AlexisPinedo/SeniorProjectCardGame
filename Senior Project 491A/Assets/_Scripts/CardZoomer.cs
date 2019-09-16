@@ -6,13 +6,13 @@ public class CardZoomer : MonoBehaviour
 {
     public void OnMouseEnter()
     {
-        Debug.Log("enter");
+        //Debug.Log("enter");
         //transform.localScale += new Vector3(1.1F, 1.1f, 1.1f); //zooms in the object
     }
 
     public void OnMouseExit()
     {
-        Debug.Log("exit");
+        //Debug.Log("exit");
         //transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
     }
 }

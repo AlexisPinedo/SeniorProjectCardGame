@@ -19,7 +19,7 @@ public class ShopContainer : PlayerCardContainer
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         InitialCardDisplay();
     }
 
@@ -42,13 +42,14 @@ public class ShopContainer : PlayerCardContainer
                 return;
             }
 
-            // Draw a Card
+            // Draw a Card from the ShopDeck
             PlayerCard cardDrawn = null;
             cardDrawn = (PlayerCard)shopDeck.cardsInDeck.Pop();
 
             // PlayerCardHolder
             holder.card = cardDrawn;
             PlayerCardHolder cardHolder = Instantiate(holder, containerGrid.freeLocations.Dequeue(), Quaternion.identity, this.transform);
+
             // Connect 
             containerGrid.cardLocationReference.Add(new Vector2(cardHolder.gameObject.transform.position.x,
                 cardHolder.gameObject.transform.position.y), cardHolder);

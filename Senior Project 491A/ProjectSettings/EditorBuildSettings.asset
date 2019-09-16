@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/Lobby.unity
     guid: 28663871e8c27634e998170fe951ddb5
   - enabled: 1
-    path: Assets/_Scenes/DavidsSceneOLD.unity
-    guid: e4bd46b7e49a1365da27e2e4dc4d6400
-  - enabled: 1
-    path: Assets/_Scenes/MVP Scene.unity
-    guid: ac71916be9d013a4ea51083a5671cf95
+    path: Assets/_Scenes/DavidsScene.unity
+    guid: b54ffe63424ff544aa5d5ca92b2eff8c
   m_configObjects: {}
