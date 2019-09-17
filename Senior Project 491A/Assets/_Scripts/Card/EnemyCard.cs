@@ -2,46 +2,71 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCard : Card
+public abstract class EnemyCard : Card
 {
-    [SerializeField]
-    private int rewardValue, healthValue;
+    [SerializeField] protected int _rewardValue, _healthValue;
 
-    public TurnManager turnPlayer;
-
-
-    //Enemy Card components
-    public BossTurnCardPlayer manager;
-    public CreateGrid bossZones;
-
-    private void Awake()
+    public int HealthValue
     {
-        bossZones = this.GetComponent<CreateGrid>();
-        manager = this.GetComponent<BossTurnCardPlayer>();
-        turnPlayer = GameObject.FindObjectOfType<TurnManager>();
-        Debug.Log("This method ran");
+        get { return _healthValue; }
+        set { _healthValue = value; }
     }
 
-    private void OnDestroy()
+    public int RewardValue
     {
-        bossZones.SetObjectPlacement(this.transform.position, false);
-        manager.filledCardZones--;
-        Debug.Log("Set location to false");
+        get => _rewardValue;
+        set => _rewardValue = value;
     }
-
-    public void OnMouseDown()
-    {
-        Debug.Log("I have been clicked");
-        if (turnPlayer.turnPlayer.GetPower() >= healthValue)
-        {
-            Debug.Log("I can kill the enemy");
-            turnPlayer.turnPlayer.SubtractPower(healthValue);
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Debug.Log("Cannot kill not enough power");
-        }
-    }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//public abstract class EnemyCard : Card
+//{
+//    //public delegate void _EnemyDestroyed(Vector2 cardPosition, bool cardRemoved);
+//    //public static event _EnemyDestroyed EnemyDestroyed;
+//
+//    // Create delegate event like the one above for the enemycardclicked
+//    // Delegate will be type void and take a gameobject as a parameter
+//    //public delegate void _EnemyCardClicked(EnemyCard enemyCard);
+//    //public static event _EnemyCardClicked EnemyClicked;
+//
+//    [SerializeField]
+//    protected int _rewardValue, _healthValue;
+//
+//    public int HealthValue
+//    {
+//        get { return _healthValue; }
+//        set { _healthValue = value; }
+//    }
+//public BossTurnCardPlayer manager;
+
+    //private void Awake()
+    //{
+    //    manager = this.GetComponent<BossTurnCardPlayer>();
+    //}
+
+    //protected virtual void OnDestroy()
+    //{
+    //    if (EnemyDestroyed != null)
+    //        EnemyDestroyed.Invoke(this.transform.position, false);
+    //}
+
+    //public virtual void OnMouseDown()
+    //{
+    //    //invoke your event like in the ondestroy method and pass in this.gameObject
+    //    if (EnemyClicked != null)
+    //    {
+    //        EnemyClicked.Invoke(this);
+    //    }
+    //}
+//}
