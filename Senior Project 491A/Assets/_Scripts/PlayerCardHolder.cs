@@ -22,27 +22,31 @@ public class PlayerCardHolder : CardHolder
 
     protected override void Awake()
     {
-        Debug.Log("PlayerCardHolder: Awake()");
+        //Debug.Log("PlayerCardHolder: Awake()");
         PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_EventReceived;
 
-        Debug.Log("PlayerCardHolder: += NetworkingClient_EventReceived");
+        //Debug.Log("PlayerCardHolder: += NetworkingClient_EventReceived");
         LoadCardIntoContainer();
     }
 
     /// <summary>
     /// Called when this object is enabled. Adds EventReceived to the Networking Client.
     /// </summary>
+    [ExecuteInEditMode]
     protected override void OnEnable()
     {
-        Debug.Log("PlayerCardHolder: OnEnable()");
+        //Debug.Log("PlayerCardHolder: OnEnable()");
+        LoadCardIntoContainer();
         //PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_EventReceived;
     }
 
     /// <summary>
     /// Called when this object is disabled. Removes EventReceived from the Networking Client.
     /// </summary>
+    [ExecuteInEditMode]
     protected override void OnDisable()
     {
+        ClearCardFromContainer();
         PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_EventReceived;
     }
 
@@ -50,29 +54,45 @@ public class PlayerCardHolder : CardHolder
     {
         if (obj.Code == LOAD_CARD_EVENT)
         {
-            Debug.Log("PlayerCardHolder: LOAD_CARD_EVENT received!");
+            //Debug.Log("PlayerCardHolder: LOAD_CARD_EVENT received!");
             object[] datas = (object[])obj.CustomData;
 
             LoadCardIntoContainer(datas);
         }
     }
 
+    protected override void LoadCardIntoContainer()
+    {
+        cardArtDisplay.sprite = card.CardArtwork;
+        //Debug.Log("CardArtwork: " + card.CardArtwork.ToString());
+        typeIcon.sprite = card.CardTypeArt;
+        cardBorder.sprite = card.BorderArt;
+        cardEffectTextBox.sprite = card.CardEffectBoxArt;
+        cardNameTextBox.sprite = card.NameBoxArt;
+        nameText.text = card.CardName;
+        cardEffectText.text = card.CardEffectDisplay;
+        attackText.text = card.CardAttack.ToString();
+        costText.text = card.CardCost.ToString();
+        currencyText.text = card.CardCurrency.ToString();
+        LoadCostEffectIcons();
+    }
+
     /// <summary>
     /// Loads all of the Card's pertinent information into the holder.
     /// </summary>
-    protected override void LoadCardIntoContainer()
+    /*protected override void LoadCardIntoContainer()
     {
-        Debug.Log("PlayerCardHolder: LoadCardIntoContainer()");
+        //Debug.Log("PlayerCardHolder: LoadCardIntoContainer()");
 
         if (base.photonView.IsMine)
         {
             // PUN Required
             //object[] cardData;
 
-            Debug.Log("PlayerCardHolder: photonView.IsMine");
+            //Debug.Log("PlayerCardHolder: photonView.IsMine");
 
             cardArtDisplay.sprite = card.CardArtwork;
-            Debug.Log("CardArtwork: " + card.CardArtwork.ToString());
+            //Debug.Log("CardArtwork: " + card.CardArtwork.ToString());
             typeIcon.sprite = card.CardTypeArt;
             cardBorder.sprite = card.BorderArt;
             cardEffectTextBox.sprite = card.CardEffectBoxArt;
@@ -110,7 +130,7 @@ public class PlayerCardHolder : CardHolder
 
             LoadCostEffectIcons();
         }
-    }
+    }*/
 
     /// <summary>
     /// Overloaded method used for PUN.
@@ -118,7 +138,7 @@ public class PlayerCardHolder : CardHolder
     /// <param name="cardData"></param>
     protected void LoadCardIntoContainer(object[] cardData)
     {
-        Debug.Log("PlayerCardHolder: LoadCardIntoContainer(params)");
+        //Debug.Log("PlayerCardHolder: LoadCardIntoContainer(params)");
 
         cardArtDisplay.sprite = (Sprite)cardData[0];
         typeIcon.sprite = (Sprite)cardData[1];
