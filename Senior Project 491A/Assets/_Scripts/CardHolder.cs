@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Photon.Pun;
 
 /// <summary>
 /// Holds information pertinent to all types of Cards in the game.
 /// </summary>
-public abstract class CardHolder : MonoBehaviourPun
+public abstract class CardHolder : MonoBehaviour
 {
     protected const byte LOAD_CARD_EVENT = 1;
 
@@ -39,7 +38,6 @@ public abstract class CardHolder : MonoBehaviourPun
 
     protected virtual void OnDisable()
     {
-        // Debug.Log("card had been enabled ");
         ClearCardFromContainer();
     }
     
