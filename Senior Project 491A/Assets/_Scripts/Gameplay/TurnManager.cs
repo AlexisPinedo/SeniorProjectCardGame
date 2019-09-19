@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,16 @@ public class TurnManager : MonoBehaviour
     public static TurnManager Instance
     {
         get { return _instance; }
+    }
+
+    private void OnEnable()
+    {
+        UIHandler.EndTurnClicked += ShowHidePanel;
+    }
+
+    private void OnDisable()
+    {
+        UIHandler.EndTurnClicked -= ShowHidePanel;
     }
 
 

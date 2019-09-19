@@ -13,9 +13,22 @@ public class Player : ScriptableObject
 {
     [SerializeField] public Hand hand;
     [SerializeField] private Deck deck;
-    [SerializeField] private int currency;
-    [SerializeField] private int power;
-    [SerializeField] public Graveyard graveyard;
+    
+    private int currency;
+    public int Currency
+    {
+        get => currency;
+        set => currency = value;
+    }
+
+    private int power;
+    public int Power
+    {
+        get => power;
+        set => power = value;
+    }
+
+    public Graveyard graveyard;
     [SerializeField] private List<PlayerCard> rewardPile;
 
 

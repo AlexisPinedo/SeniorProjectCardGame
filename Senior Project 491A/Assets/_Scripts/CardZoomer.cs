@@ -7,6 +7,8 @@ public class CardZoomer : MonoBehaviour
     private object myGameObject;
 
     public Vector2 OriginalPosition;
+    
+    
 
     private void Awake()
     {

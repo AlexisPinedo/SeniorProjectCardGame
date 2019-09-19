@@ -7,19 +7,21 @@ public class PlayZone : MonoBehaviour
     /* Triggers when a PlayerCard is dragged into the Play Zone */
     void OnTriggerEnter2D(Collider2D col)
     {
-        //Debug.Log(col.gameObject.name + " has entered the scene");
+        Debug.Log(col.gameObject.name + " has entered the scene");
 
-        //// Card stuff
-        //Hand tpHand = TurnManager.turnPlayer.GetComponentInChildren<Hand>();
-        //PlayerCard card = col.gameObject.GetComponent<PlayerCard>();
-        //TurnManager.turnPlayer.AddCurrency(card.cardCurrency);
-        //TurnManager.turnPlayer.AddPower(card.cardAttack);
+        // Card stuff
+        Hand tpHand = TurnManager.Instance.turnPlayer.hand;
+        PlayerCardHolder cardHolder = col.gameObject.GetComponent<PlayerCardHolder>();
+        PlayerCard cardPlayed = cardHolder.card;
+        TurnManager.Instance.turnPlayer.Power += cardPlayed.CardAttack;
+        TurnManager.Instance.turnPlayer.Currency += cardPlayed.CardCurrency;
 
-        //if (!card.cardName.Equals("Phantom"))
-        //{
-        //    tpHand.SendToGraveyard(card);
-        //}
+        if (!cardPlayed.CardName.Equals("Phantom"))
+        {
+            tpHand.hand.Remove(cardPlayed);
+            TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardPlayed);
+        }
 
-        //GameObject.Destroy(card.gameObject);
+        GameObject.Destroy(col.gameObject);
     }
 }
