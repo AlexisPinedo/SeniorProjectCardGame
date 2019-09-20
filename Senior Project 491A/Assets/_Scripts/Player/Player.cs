@@ -28,6 +28,12 @@ public class Player : ScriptableObject
         set => power = value;
     }
 
+    private void OnEnable()
+    {
+        power = 0;
+        currency = 0;
+    }
+
     public Graveyard graveyard;
     [SerializeField] private List<PlayerCard> rewardPile;
 

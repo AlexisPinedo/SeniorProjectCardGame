@@ -1,43 +1,52 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TextUpdate : MonoBehaviour
 {
-    //public Text playerPower;
-    //public Text playerCurrency;
+    public Text playerPower;
+    public Text playerCurrency;
 
-    //private void OnEnable()
-    //{
-    //    Player.CurrencyChanged += UpdateCurrency;
-    //    Player.PowerChanged += UpdatePower;
-    //}
+    private void Start()
+    {
+        UpdatePower();
+        UpdateCurrency();
+    }
 
-    //private void OnDisable()
-    //{
-    //    Player.CurrencyChanged -= UpdateCurrency;
-    //    Player.PowerChanged -= UpdatePower;
-    //}
+    private void OnEnable()
+    {
+        PlayZone.CardPlayed += UpdateTextValues;
+    }
 
-    //public void ResetPower()
-    //{
-    //    playerPower.text = "Power: + " + 0;
-    //}
+    private void OnDisable()
+    {
+        PlayZone.CardPlayed -= UpdateTextValues;
+    }
 
-    //public void ResetCurrency()
-    //{
-    //    playerCurrency.text = "Currency: + " + 0;
-    //}
+    public void UpdateTextValues()
+    {
+        UpdatePower();
+        UpdateCurrency();
+    }
+    public void ResetPower()
+    {
+        playerPower.text = "Power: + " + 0;
+    }
 
-    //private void UpdatePower(int value)
-    //{
-    //    playerPower.text = "Power: + " + value;
-    //}
+    public void ResetCurrency()
+    {
+        playerCurrency.text = "Currency: + " + 0;
+    }
 
-    //private void UpdateCurrency(int value)
-    //{
-    //    playerCurrency.text = "Currency: + " + value;
+    private void UpdatePower()
+    {
+        playerPower.text = "Power: " + TurnManager.Instance.turnPlayer.Power;
+    }
 
-    //}
+    private void UpdateCurrency()
+    {
+        playerCurrency.text = "Currency: " + TurnManager.Instance.turnPlayer.Currency;
+    }
 }

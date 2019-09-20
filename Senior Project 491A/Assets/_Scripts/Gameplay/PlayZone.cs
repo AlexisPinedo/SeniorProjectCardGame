@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayZone : MonoBehaviour
 {
     /* Triggers when a PlayerCard is dragged into the Play Zone */
+
+    public delegate void _CardPlayed();
+
+    public static event _CardPlayed CardPlayed;
     void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log(col.gameObject.name + " has entered the scene");
@@ -21,6 +25,8 @@ public class PlayZone : MonoBehaviour
             tpHand.hand.Remove(cardPlayed);
             TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardPlayed);
         }
+        
+        CardPlayed?.Invoke();
 
         GameObject.Destroy(col.gameObject);
     }

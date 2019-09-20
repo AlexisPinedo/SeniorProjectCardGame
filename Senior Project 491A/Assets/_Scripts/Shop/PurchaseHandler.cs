@@ -1,32 +1,86 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PurchaseHandler : MonoBehaviour
 {
-    public delegate void _CardBought(Card cardBuying);
-    public static event _CardBought CardBought;
+    private static PurchaseHandler _instance;
 
-    private Player turnPlayer;
-
-    public void Start()
+    public static PurchaseHandler Instance
     {
-        turnPlayer = TurnManager.Instance.turnPlayer;
+        get { return _instance; }
     }
 
-    public bool isPurchasable(Card cardClicked)
+    private void Awake()
     {
-        bool canBePurchased;
-        // TODO
-
-        canBePurchased = true;
-
-        return canBePurchased;
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
-    public void PurchaseCard(Card cardBuying)
+    private void OnEnable()
     {
-        CardBought?.Invoke(cardBuying);
+        DragCard.ShopCardClicked += HandlePurchase;
     }
 
+    private void OnDisable()
+    {
+        DragCard.ShopCardClicked -= HandlePurchase;
+    }
+
+
+    private void HandlePurchase(PlayerCardHolder cardSelected)
+    {
+        if (TurnManager.Instance.turnPlayer.Currency >= cardSelected.card.CardCost)
+        {
+            TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardSelected.card);
+
+            TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
+            
+            Destroy(cardSelected.gameObject);
+        }
+        else
+        {
+            Debug.Log("Cannot purchase. Not enough currecny");
+        }
+    }
 }
+
+
+
+
+//public class PurchaseHandler : MonoBehaviour
+//{
+//    public delegate void _CardBought(Card cardBuying);
+//    public static event _CardBought CardBought;
+//
+//    private Player turnPlayer;
+//
+//    public void Start()
+//    {
+//        turnPlayer = TurnManager.Instance.turnPlayer;
+//    }
+//
+//    public bool isPurchasable(Card cardClicked)
+//    {
+//        bool canBePurchased;
+//        // TODO
+//
+//        canBePurchased = true;
+//
+//        return canBePurchased;
+//    }
+//
+//    public void PurchaseCard(Card cardBuying)
+//    {
+//        CardBought?.Invoke(cardBuying);
+//    }
+//
+//}
