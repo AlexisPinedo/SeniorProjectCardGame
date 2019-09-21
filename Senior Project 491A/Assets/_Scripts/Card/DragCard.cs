@@ -35,7 +35,7 @@ public class DragCard : MonoBehaviour
 
     public void OnMouseUp()
     {
-        if (this.gameObject != null)
+        if (this.gameObject != null && PlayZone.cardInPlayZone == false)
         {
             this.transform.position = OriginalPosition;
         }

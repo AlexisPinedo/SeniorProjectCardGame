@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +9,18 @@ public class PlayZone : MonoBehaviour
 
     public delegate void _CardPlayed();
 
+    public static bool cardInPlayZone = false;
     public static event _CardPlayed CardPlayed;
-    void OnTriggerEnter2D(Collider2D col)
+
+    private BoxCollider2D playZoneCollider; 
+    
+    
+
+
+    public void HandleCardPlayed(Collider2D col)
     {
+
+        
         Debug.Log(col.gameObject.name + " has entered the scene");
 
         // Card stuff
@@ -29,5 +39,7 @@ public class PlayZone : MonoBehaviour
         CardPlayed?.Invoke();
 
         GameObject.Destroy(col.gameObject);
+        
+        cardInPlayZone = false;
     }
 }
