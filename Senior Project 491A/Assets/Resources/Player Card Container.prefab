@@ -590,6 +590,7 @@ GameObject:
   - component: {fileID: 3685979605709534444}
   - component: {fileID: -1721089531084996046}
   - component: {fileID: -5424049436834606893}
+  - component: {fileID: 688989224447753347}
   m_Layer: 0
   m_Name: Player Card Container
   m_TagString: Untagged
@@ -759,6 +760,27 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!50 &688989224447753347
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522489324146028420}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &522489324211365295
 GameObject:
   m_ObjectHideFlags: 0

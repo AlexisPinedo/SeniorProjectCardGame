@@ -22,7 +22,7 @@ public abstract class CardHolder : MonoBehaviourPun
 
     protected virtual void Awake()
     {
-        Debug.Log("CardHolder: Awake()");
+        //Debug.Log("CardHolder: Awake()");
         LoadCardIntoContainer();
     }
     
@@ -33,7 +33,7 @@ public abstract class CardHolder : MonoBehaviourPun
 
     protected virtual void OnEnable()
     { 
-        Debug.Log("CardHolder: OnEnable()");
+        //Debug.Log("CardHolder: OnEnable()");
         LoadCardIntoContainer();
     }
 

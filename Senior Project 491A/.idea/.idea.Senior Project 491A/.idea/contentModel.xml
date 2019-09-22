@@ -105,6 +105,8 @@
             <e p="UIHandler.cs" t="Include" />
           </e>
         </e>
+        <e p="BattleManager.cs" t="Include" />
+        <e p="BossTurnManager.cs" t="Include" />
         <e p="FacebookSDK" t="Include">
           <e p="Examples" t="Include">
             <e p="Scripts" t="Include">

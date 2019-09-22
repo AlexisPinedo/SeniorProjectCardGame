@@ -16,11 +16,24 @@ public class HandContainer : PlayerCardContainer
 
     [SerializeField] private int DefaultHandSize = 5;
 
-    private void Start()
+//    private void Awake()
+//    {
+//        InitialCardDisplay();
+//    }
+
+    private void OnEnable()
     {
-        InitialCardDisplay();
+        UIHandler.EndTurnClicked += DestroyHand;
+        TurnManager.PlayerSwitched += InitialCardDisplay;
     }
-    
+
+    private void OnDisable()
+    {
+        UIHandler.EndTurnClicked -= DestroyHand;
+        TurnManager.PlayerSwitched -= InitialCardDisplay;
+    }
+
+
     protected override void InitialCardDisplay()
     {
         PlayerCard cardDrawn = null;
@@ -35,12 +48,13 @@ public class HandContainer : PlayerCardContainer
             {
                 if (playerGrave.graveyard.Count > 0)
                 {
-                    foreach (var card in playerGrave.graveyard)
+                    for (int j = 0; j < playerGrave.graveyard.Count; j++)
                     {
-                        playerDeck.cardsInDeck.Push(card);
-                        playerGrave.graveyard.Remove(card);
+                        playerDeck.cardsInDeck.Push(playerGrave.graveyard[j]);
+                        playerGrave.graveyard.Remove(playerGrave.graveyard[j]);
                     }
                     playerDeck.Shuffle();
+                    cardDrawn = (PlayerCard)playerDeck.cardsInDeck.Pop();
                 }
                 else
                 {
@@ -58,9 +72,26 @@ public class HandContainer : PlayerCardContainer
             // Set the PlayerCardContainer's PlayerCardHolder to the cardDrawn
             holder.card = cardDrawn;
             // Place it on the grid!
-            Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
+            PlayerCardHolder cardHolder =  Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
 
+            if (!containerGrid.cardLocationReference.ContainsKey(cardHolder.gameObject.transform.position))
+                containerGrid.cardLocationReference.Add(cardHolder.gameObject.transform.position, cardHolder);
+            else
+                containerGrid.cardLocationReference[cardHolder.gameObject.transform.position] = cardHolder;
+    
             hand.hand.Add(cardDrawn);
+        }
+    }
+
+    private void DestroyHand()
+    {
+        foreach (var locationReferenceKeyValuePair in containerGrid.cardLocationReference)
+        {
+            if (locationReferenceKeyValuePair.Value != null)
+            {
+                Destroy(locationReferenceKeyValuePair.Value.gameObject);
+            }
+            containerGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
         }
     }
 

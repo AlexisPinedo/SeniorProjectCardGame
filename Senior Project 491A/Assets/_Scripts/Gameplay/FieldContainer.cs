@@ -8,11 +8,6 @@ public class FieldContainer : Container
     public EnemyCardHolder holder;
     public EnemyDeck enemyDeck;
 
-    private void Start()
-    {
-        DisplayACard();
-    }
-
     private void OnEnable()
     {
         MinionCardHolder.CardDestroyed += AddFreeCardLocation;

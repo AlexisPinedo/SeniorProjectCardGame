@@ -2,11 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 
 public class PurchaseHandler : MonoBehaviour
 {
     private static PurchaseHandler _instance;
+
+    public delegate void _CardPurchased(PlayerCardHolder cardBought);
+
+    public static event _CardPurchased CardPurchased;
 
     public static PurchaseHandler Instance
     {
@@ -38,17 +43,22 @@ public class PurchaseHandler : MonoBehaviour
 
     private void HandlePurchase(PlayerCardHolder cardSelected)
     {
+        //Debug.Log("Handling Purchase");
         if (TurnManager.Instance.turnPlayer.Currency >= cardSelected.card.CardCost)
         {
             TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardSelected.card);
 
             TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
             
+            CardPurchased?.Invoke(cardSelected);
+            
             Destroy(cardSelected.gameObject);
+            
+            
         }
         else
         {
-            Debug.Log("Cannot purchase. Not enough currecny");
+            Debug.Log("Cannot purchase. Not enough currency");
         }
     }
 }

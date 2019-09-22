@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Purchasing;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,25 @@ public class TextUpdate : MonoBehaviour
     public Text playerPower;
     public Text playerCurrency;
 
+    private static TextUpdate _instance;
+
+    public static TextUpdate Instance
+    {
+        get => _instance;
+    }
+    
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+    
     private void Start()
     {
         UpdatePower();
@@ -17,35 +37,22 @@ public class TextUpdate : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayZone.CardPlayed += UpdateTextValues;
+        Player.PowerUpdated += UpdatePower;
+        Player.CurrencyUpdated += UpdateCurrency;
     }
 
     private void OnDisable()
     {
-        PlayZone.CardPlayed -= UpdateTextValues;
+        Player.PowerUpdated -= UpdatePower;
+        Player.CurrencyUpdated -= UpdateCurrency;
     }
 
-    public void UpdateTextValues()
-    {
-        UpdatePower();
-        UpdateCurrency();
-    }
-    public void ResetPower()
-    {
-        playerPower.text = "Power: + " + 0;
-    }
-
-    public void ResetCurrency()
-    {
-        playerCurrency.text = "Currency: + " + 0;
-    }
-
-    private void UpdatePower()
+    public void UpdatePower()
     {
         playerPower.text = "Power: " + TurnManager.Instance.turnPlayer.Power;
     }
 
-    private void UpdateCurrency()
+    public void UpdateCurrency()
     {
         playerCurrency.text = "Currency: " + TurnManager.Instance.turnPlayer.Currency;
     }

@@ -8,8 +8,11 @@ public class MinionCardHolder : EnemyCardHolder
 {
     
     public delegate void _cardDestroyed(EnemyCardHolder destroytedCard);
-
     public static event _cardDestroyed CardDestroyed;
+
+    public delegate void _MinionCardClicked(MinionCardHolder cardClicked);
+
+    public static event _MinionCardClicked MinionCardClicked;
     
     protected override void OnEnable()
     {
@@ -26,6 +29,6 @@ public class MinionCardHolder : EnemyCardHolder
 
     protected override void OnMouseDown()
     {
-        Debug.Log("Minion has been clicked");
+        MinionCardClicked?.Invoke(this);
     }
 }

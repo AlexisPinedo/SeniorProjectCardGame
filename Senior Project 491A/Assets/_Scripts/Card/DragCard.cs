@@ -22,7 +22,7 @@ public class DragCard : MonoBehaviour
     {
         if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
-            Debug.Log("Card is in Shop");
+            //Debug.Log("Card is in Shop");
             PlayerCardHolder cardClicked = this.gameObject.GetComponent<PlayerCardHolder>();
             ShopCardClicked?.Invoke(cardClicked);
         }

@@ -1,31 +1,69 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayZone : MonoBehaviour
 {
     /* Triggers when a PlayerCard is dragged into the Play Zone */
 
+    private static PlayZone _instance;
+
+    public static PlayZone Instance
+    {
+        get => _instance;
+    }
+
     public delegate void _CardPlayed();
 
     public static bool cardInPlayZone = false;
+    public static PlayerCardHolder cardInZone;
     public static event _CardPlayed CardPlayed;
-
-    private BoxCollider2D playZoneCollider; 
     
-    
-
-
-    public void HandleCardPlayed(Collider2D col)
+    void Awake()
     {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //Debug.Log("Card has entered");
+        cardInPlayZone = true;
+        cardInZone = other.gameObject.GetComponent<PlayerCardHolder>();
+    }
 
-        
-        Debug.Log(col.gameObject.name + " has entered the scene");
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        //Debug.Log("Card has left");
+        cardInPlayZone = false;
+        cardInZone = null;
+    }
+
+    private void Update()
+    {
+        if (cardInPlayZone)
+        {
+            if(!Input.GetMouseButton(0))
+                HandleCardPlayed();
+        }
+    }
+
+
+    private void HandleCardPlayed()
+    {
+        //Debug.Log(col.gameObject.name + " has entered the scene");
 
         // Card stuff
         Hand tpHand = TurnManager.Instance.turnPlayer.hand;
-        PlayerCardHolder cardHolder = col.gameObject.GetComponent<PlayerCardHolder>();
+        PlayerCardHolder cardHolder = cardInZone;
         PlayerCard cardPlayed = cardHolder.card;
         TurnManager.Instance.turnPlayer.Power += cardPlayed.CardAttack;
         TurnManager.Instance.turnPlayer.Currency += cardPlayed.CardCurrency;
@@ -38,8 +76,9 @@ public class PlayZone : MonoBehaviour
         
         CardPlayed?.Invoke();
 
-        GameObject.Destroy(col.gameObject);
+        GameObject.Destroy(cardInZone.gameObject);
         
         cardInPlayZone = false;
+        cardInZone = null;
     }
 }

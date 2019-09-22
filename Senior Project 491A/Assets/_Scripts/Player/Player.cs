@@ -13,19 +13,37 @@ public class Player : ScriptableObject
 {
     [SerializeField] public Hand hand;
     [SerializeField] private Deck deck;
+
+    public delegate void _CurrencyUpdated();
+
+    public static event _CurrencyUpdated CurrencyUpdated;
+
+    public delegate void _PowerUpdated();
+
+    public static event _PowerUpdated PowerUpdated;
     
+    [SerializeField]
     private int currency;
     public int Currency
     {
         get => currency;
-        set => currency = value;
+        set
+        {
+            currency = value;
+            CurrencyUpdated?.Invoke();
+        }
     }
 
+    [SerializeField]
     private int power;
     public int Power
     {
         get => power;
-        set => power = value;
+        set
+        {
+            power = value;
+            PowerUpdated?.Invoke();
+        } 
     }
 
     private void OnEnable()

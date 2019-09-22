@@ -14,6 +14,10 @@ public class TurnManager : MonoBehaviour
     [SerializeField]
     private GameObject p2HandSpacePanel;
 
+    public delegate void _PlayerSwitched();
+
+    public static event _PlayerSwitched PlayerSwitched;
+
     public Player player1;
 
     public Player player2;
@@ -49,12 +53,21 @@ public class TurnManager : MonoBehaviour
 
         p2HandSpacePanel.SetActive(false);
         turnPlayer = player1;
+        
+    }
+
+    private void Start()
+    {
+        PlayerSwitched?.Invoke();
     }
 
     public void ShowHidePanel()
     {
         if (p1HandSpacePanel != null && p2HandSpacePanel != null)
         {
+            turnPlayer.Currency = 0;
+            turnPlayer.Power = 0;
+            
             // Switch to Player Two
             if (p1HandSpacePanel.activeSelf)
             {
@@ -72,6 +85,11 @@ public class TurnManager : MonoBehaviour
 
                 turnPlayer = player1;
             }
+            
+            PlayerSwitched?.Invoke();
+
+            TextUpdate.Instance.UpdateCurrency();
+            TextUpdate.Instance.UpdatePower();
         }
     }
 

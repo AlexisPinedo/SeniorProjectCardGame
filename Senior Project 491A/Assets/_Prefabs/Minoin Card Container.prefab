@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8269dc984b00cb14c95db7527bb4644f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardArtDisplay: {fileID: 522489324667172571}
+  cardArtDisplay: {fileID: 522489325570323521}
   typeIcon: {fileID: 522489324599465695}
   cardBorder: {fileID: 522489324667172571}
   cardEffectTextBox: {fileID: 522489323547367173}
@@ -642,7 +642,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522489324146028420}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1102,7 +1102,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.6367347, y: 2.4571428}
+  m_Size: {x: 1.5973333, y: 2.3986666}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

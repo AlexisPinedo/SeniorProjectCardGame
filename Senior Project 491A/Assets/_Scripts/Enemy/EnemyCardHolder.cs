@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public abstract class EnemyCardHolder : CardHolder
 {
     public delegate void _cardDestroyed(EnemyCardHolder destroytedCard);

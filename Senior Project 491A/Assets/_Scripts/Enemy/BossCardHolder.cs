@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class BossCardHolder : EnemyCardHolder
 {
+    public delegate void _BossCardClicked(BossCardHolder cardClicked);
+
+    public static event _BossCardClicked BossCardClicked;
+    
     protected override void Awake()
     {
         //base.Awake();
@@ -24,6 +28,7 @@ public class BossCardHolder : EnemyCardHolder
     protected override void OnMouseDown()
     {
         Debug.Log("boss has been clicked");
+        BossCardClicked?.Invoke(this);
     }
 
 }
