@@ -33,17 +33,21 @@ public class PlayerCardHolder : CardHolder
     /// <summary>
     /// Called when this object is enabled. Adds EventReceived to the Networking Client.
     /// </summary>
+    [ExecuteInEditMode]
     protected override void OnEnable()
     {
-        Debug.Log("PlayerCardHolder: OnEnable()");
+        //Debug.Log("PlayerCardHolder: OnEnable()");
+        LoadCardIntoContainer();
         //PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_EventReceived;
     }
 
     /// <summary>
     /// Called when this object is disabled. Removes EventReceived from the Networking Client.
     /// </summary>
+    [ExecuteInEditMode]
     protected override void OnDisable()
     {
+        ClearCardFromContainer();
         PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_EventReceived;
     }
 
@@ -60,12 +64,28 @@ public class PlayerCardHolder : CardHolder
     }
     #endregion
 
+    protected override void LoadCardIntoContainer()
+    {
+        cardArtDisplay.sprite = card.CardArtwork;
+        //Debug.Log("CardArtwork: " + card.CardArtwork.ToString());
+        typeIcon.sprite = card.CardTypeArt;
+        cardBorder.sprite = card.BorderArt;
+        cardEffectTextBox.sprite = card.CardEffectBoxArt;
+        cardNameTextBox.sprite = card.NameBoxArt;
+        nameText.text = card.CardName;
+        cardEffectText.text = card.CardEffectDisplay;
+        attackText.text = card.CardAttack.ToString();
+        costText.text = card.CardCost.ToString();
+        currencyText.text = card.CardCurrency.ToString();
+        LoadCostEffectIcons();
+    }
+
     /// <summary>
     /// Loads all of the Card's pertinent information into the holder.
     /// </summary>
-    protected override void LoadCardIntoContainer()
+    /*protected override void LoadCardIntoContainer()
     {
-        Debug.Log("PlayerCardHolder: LoadCardIntoContainer()");
+        //Debug.Log("PlayerCardHolder: LoadCardIntoContainer()");
 
         cardArtDisplay.sprite = card?.CardArtwork;
         typeIcon.sprite = card?.CardTypeArt;

@@ -8,7 +8,7 @@ using UnityEngine;
 public class ShopContainer : PlayerCardContainer
 {
     public ShopDeck shopDeck;
-
+    
     //[SerializeField]
     //public PlayerCardHolder playerCardContainer;
 
