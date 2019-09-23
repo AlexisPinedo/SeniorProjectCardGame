@@ -7,6 +7,7 @@ public class CardZoomer : MonoBehaviour
     private object myGameObject;
 
     public Vector2 OriginalPosition;
+
     
     
 
@@ -19,6 +20,7 @@ public class CardZoomer : MonoBehaviour
     {
         //Debug.Log("enter");
         transform.localScale += new Vector3(1.5F, 1.5F, 1.5F); //zooms in the object
+
     }
 
     public void OnMouseExit()

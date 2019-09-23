@@ -67,6 +67,9 @@
             <e p="HandContainer.cs" t="Include" />
             <e p="Prefillable Deck.cs" t="Include" />
           </e>
+          <e p="Hero" t="Include">
+            <e p="Hero.cs" t="Include" />
+          </e>
           <e p="Player" t="Include">
             <e p="GraveContainer.cs" t="Include" />
             <e p="Graveyard.cs" t="Include" />
