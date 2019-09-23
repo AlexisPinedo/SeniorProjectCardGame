@@ -25,6 +25,8 @@ public class CardEffectEvaluationManager : MonoBehaviour
         if (costCount == 0)
         {
             Debug.Log("No cost needed");
+            if(cardToEvaluate.CardEffect != null)
+                cardToEvaluate.CardEffect.LaunchCardEffect();
             return;
         }
 
@@ -61,5 +63,7 @@ public class CardEffectEvaluationManager : MonoBehaviour
         }
         
         Debug.Log("Cost has been met");
+        if(cardToEvaluate.CardEffect != null)
+            cardToEvaluate.CardEffect.LaunchCardEffect();
     }
 }
