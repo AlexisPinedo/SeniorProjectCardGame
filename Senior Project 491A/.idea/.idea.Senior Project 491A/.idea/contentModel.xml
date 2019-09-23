@@ -34,9 +34,7 @@
           <e p="Enemy" t="Include">
             <e p="Boss.cs" t="Include" />
             <e p="BossCardHolder.cs" t="Include" />
-            <e p="BossTurnCardPlayer.cs" t="Include" />
             <e p="EnemyCardHolder.cs" t="Include" />
-            <e p="EnemyCardManager.cs" t="Include" />
             <e p="EnemyDeck.cs" t="Include" />
             <e p="EnemyEventCard.cs" t="Include" />
             <e p="Goals" t="Include">
@@ -73,30 +71,15 @@
             <e p="GraveContainer.cs" t="Include" />
             <e p="Graveyard.cs" t="Include" />
             <e p="Player.cs" t="Include" />
-            <e p="PlayerDeck.cs" t="Include" />
-          </e>
-          <e p="Sharp Accent Card Game" t="Include">
-            <e p="Card.cs" t="Include" />
-            <e p="CardDisplay.cs" t="Include" />
-            <e p="CardDisplayProperties.cs" t="Include" />
-            <e p="CardProperties.cs" t="Include" />
-            <e p="Element.cs" t="Include" />
-            <e p="ElementImage.cs" t="Include" />
-            <e p="ElementInt.cs" t="Include" />
-            <e p="ElementText.cs" t="Include" />
           </e>
           <e p="Shop" t="Include">
             <e p="PurchaseHandler.cs" t="Include" />
-            <e p="Shop.cs" t="Include" />
             <e p="ShopContainer.cs" t="Include" />
             <e p="ShopDeck.cs" t="Include" />
-            <e p="ShopTransaction.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
-            <e p="currencyDisplay.cs" t="Include" />
             <e p="LobbyMenu.cs" t="Include" />
-            <e p="powerDisplay.cs" t="Include" />
             <e p="SceneRestarter.cs" t="Include" />
             <e p="TextUpdate.cs" t="Include" />
             <e p="UIHandler.cs" t="Include" />
