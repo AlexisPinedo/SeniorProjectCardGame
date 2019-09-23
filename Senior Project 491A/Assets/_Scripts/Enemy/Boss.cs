@@ -6,13 +6,14 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
 /*
     This class represents a match's Boss
  */
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card/Boss Card")]
 public class Boss : EnemyCard
 {
     [SerializeField]

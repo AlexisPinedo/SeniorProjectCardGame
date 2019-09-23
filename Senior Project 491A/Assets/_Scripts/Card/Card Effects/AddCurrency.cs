@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card Effect/Add Currency")]
 public class AddCurrency : CardEffect
 {
     [SerializeField] private int currencyAdditionAmount;

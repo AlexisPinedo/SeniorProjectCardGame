@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Deck/Shop Deck")]
 public class ShopDeck : PrefillableDeck
 {
     [SerializeField	] private List<PlayerCard> CardsToAddLaterInGame = new List<PlayerCard>();

@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// A Deck as a scriptable object. This class is mainly contained within a DeckContainer.
 /// </summary>
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Deck/Player Deck")]
 public class Deck : ScriptableObject
 {
     /// <summary>

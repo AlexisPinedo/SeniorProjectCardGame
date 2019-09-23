@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Defines what is part of a Player's Hand.
 /// </summary>
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Player Component/Hand")]
 public class Hand : ScriptableObject
 {
     /// <summary>
