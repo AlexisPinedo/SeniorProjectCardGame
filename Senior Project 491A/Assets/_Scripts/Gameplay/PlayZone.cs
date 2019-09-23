@@ -15,10 +15,12 @@ public class PlayZone : MonoBehaviour
         get => _instance;
     }
 
-    public delegate void _CardPlayed();
 
     public static bool cardInPlayZone = false;
     public static PlayerCardHolder cardInZone;
+    
+    public delegate void _CardPlayed(PlayerCard cardPlayed);
+
     public static event _CardPlayed CardPlayed;
     
     void Awake()
@@ -74,7 +76,7 @@ public class PlayZone : MonoBehaviour
             TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardPlayed);
         }
         
-        CardPlayed?.Invoke();
+        CardPlayed?.Invoke(cardPlayed);
 
         GameObject.Destroy(cardInZone.gameObject);
         

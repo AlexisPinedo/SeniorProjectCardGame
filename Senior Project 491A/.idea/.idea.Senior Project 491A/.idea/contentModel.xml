@@ -22,6 +22,7 @@
               <e p="PassiveEffect.cs" t="Include" />
             </e>
             <e p="Card.cs" t="Include" />
+            <e p="CardEffectEvaluationManager.cs" t="Include" />
             <e p="CardHolder.cs" t="Include" />
             <e p="CardType.cs" t="Include" />
             <e p="CardZoomer.cs" t="Include" />

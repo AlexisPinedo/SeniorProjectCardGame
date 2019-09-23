@@ -1,42 +1,90 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class History : MonoBehaviour
 {
-    //private static History _instance;
+    private static History _instance;
 
-    //public static History Instance
-    //{
-    //    get
-    //    {
-    //        if (_instance == null) _instance = new History();
-    //        return _instance;
-    //    }
-    //    set
-    //    {
-    //        _instance = value;
-    //    }
-    //}
+    public static History Instance
+    {
+        get
+        {
+            return _instance;
+        } 
+    }
 
-    //[SerializeField]
-    //private List<PlayerCard> playerCardHistory = new List<PlayerCard>();
+    [SerializeField]
+    private List<PlayerCard> playerCardHistory = new List<PlayerCard>();
 
-    //private  PlayerCard LastCardPlayed;
+    public List<PlayerCard> PlayerCardHistory
+    {
+        get { return playerCardHistory; }
+    }
+    
+    [SerializeField]
+    private List<PlayerCard> EntireCardHistory = new List<PlayerCard>();
 
-    //private void Awake()
-    //{
-    //    if (Instance != null && Instance != this)
-    //        Destroy(this);
-    //    else
-    //        Instance = this;
-    //}
+    [SerializeField] private int turnCount = 0;
 
-    //public void AddCardToHistory(PlayerCard cardToAdd)
-    //{
-    //    Debug.Log("Card Added");
-    //    playerCardHistory.Add(cardToAdd);
-    //}
+    public int TurnCount => turnCount;
+
+    public delegate void _TurnCounterUpdated();
+
+    public static event _TurnCounterUpdated TurnCounterUpdated;
+
+    //private PlayerCard LastCardPlayed;
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        PlayZone.CardPlayed += AddCardToHistory;
+        TurnManager.PlayerSwitched += HandleTurnEnding;
+    }
+
+    private void OnDisable()
+    {
+        PlayZone.CardPlayed -= AddCardToHistory;
+        TurnManager.PlayerSwitched -= HandleTurnEnding;
+    }
+
+    public void AddCardToHistory(PlayerCard cardToAdd)
+    {
+        Debug.Log("Card Added");
+        playerCardHistory.Add(cardToAdd);
+        EntireCardHistory.Add(cardToAdd);
+    }
+
+    private void HandleTurnEnding()
+    {
+        ClearPlayerHistory();
+        IncrementTurnCounter();
+    }
+
+    public void ClearPlayerHistory()
+    {
+        playerCardHistory.Clear();
+    }
+
+    public void IncrementTurnCounter()
+    {
+        turnCount++;
+        TurnCounterUpdated?.Invoke();
+    }
 
     //public void ClearHistory()
     //{
