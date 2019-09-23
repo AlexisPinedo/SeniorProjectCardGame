@@ -31,7 +31,13 @@ public class PlayerCard : Card
         get { return _cardCurrency; }
     }
 
-    public List<CardType.CardTypes> CardEffectRequirement = new List<CardType.CardTypes>();
+    [SerializeField]
+    private List<CardType.CardTypes> CardEffectRequirement = new List<CardType.CardTypes>();
+
+    public List<CardType.CardTypes> cardEffectRequirments
+    {
+        get { return CardEffectRequirement; }
+    }
 
     public List<Sprite> cardCostsIcons = new List<Sprite>();
 }

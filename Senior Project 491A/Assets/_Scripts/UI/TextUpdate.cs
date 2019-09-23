@@ -1,43 +1,59 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Purchasing;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TextUpdate : MonoBehaviour
 {
-    //public Text playerPower;
-    //public Text playerCurrency;
+    public Text playerPower;
+    public Text playerCurrency;
 
-    //private void OnEnable()
-    //{
-    //    Player.CurrencyChanged += UpdateCurrency;
-    //    Player.PowerChanged += UpdatePower;
-    //}
+    private static TextUpdate _instance;
 
-    //private void OnDisable()
-    //{
-    //    Player.CurrencyChanged -= UpdateCurrency;
-    //    Player.PowerChanged -= UpdatePower;
-    //}
+    public static TextUpdate Instance
+    {
+        get => _instance;
+    }
+    
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+    
+    private void Start()
+    {
+        UpdatePower();
+        UpdateCurrency();
+    }
 
-    //public void ResetPower()
-    //{
-    //    playerPower.text = "Power: + " + 0;
-    //}
+    private void OnEnable()
+    {
+        Player.PowerUpdated += UpdatePower;
+        Player.CurrencyUpdated += UpdateCurrency;
+    }
 
-    //public void ResetCurrency()
-    //{
-    //    playerCurrency.text = "Currency: + " + 0;
-    //}
+    private void OnDisable()
+    {
+        Player.PowerUpdated -= UpdatePower;
+        Player.CurrencyUpdated -= UpdateCurrency;
+    }
 
-    //private void UpdatePower(int value)
-    //{
-    //    playerPower.text = "Power: + " + value;
-    //}
+    public void UpdatePower()
+    {
+        playerPower.text = "Power: " + TurnManager.Instance.turnPlayer.Power;
+    }
 
-    //private void UpdateCurrency(int value)
-    //{
-    //    playerCurrency.text = "Currency: + " + value;
-
-    //}
+    public void UpdateCurrency()
+    {
+        playerCurrency.text = "Currency: " + TurnManager.Instance.turnPlayer.Currency;
+    }
 }

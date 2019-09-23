@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1ab4ade3d1e8e4397ddd87f04e6bd2, type: 3}
   m_Name: Apprentice
   m_EditorClassIdentifier: 
-  cardName: Apprentice
+  cardName: Whisperer
   cardDescription: 
   cardEffect: {fileID: 0}
   cardEffectDisplay: Draw a card from the shop
-  cardArtwork: {fileID: 21300000, guid: b78a7c1fe7354fd408239c8db51d66dd, type: 3}
+  cardArtwork: {fileID: 21300000, guid: 1151537206507654f92f4955c355c960, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 4ccb6c05577c54545b0ff360882023f5, type: 3}
   cardType: 2
   nameBoxArt: {fileID: 21300000, guid: 146aa82345020c34f9f1930161cec372, type: 3}

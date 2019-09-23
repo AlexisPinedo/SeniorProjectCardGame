@@ -6,78 +6,75 @@
     <e p="C:\Users\pined\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="_Prefabs" t="Include">
-          <e p="Player Card Shop Prefabs" t="Include">
-            <e p="Card Effects" t="Include">
-              <e p="CardEffect.cs" t="Include" />
-              <e p="UpdateCurrency.cs" t="Include" />
-            </e>
-          </e>
-        </e>
         <e p="_Scripts" t="Include">
-          <e p="BossCardHolder.cs" t="Include" />
           <e p="Card" t="Include">
             <e p="Card Effects" t="Include">
+              <e p="AddCurrency.cs" t="Include" />
+              <e p="AddPower.cs" t="Include" />
+              <e p="CardEffect.cs" t="Include" />
               <e p="OnDeath.cs" t="Include" />
               <e p="OnPlayEffects.cs" t="Include" />
               <e p="PassiveEffect.cs" t="Include" />
             </e>
             <e p="Card.cs" t="Include" />
+            <e p="CardEffectEvaluationManager.cs" t="Include" />
+            <e p="CardHolder.cs" t="Include" />
+            <e p="CardType.cs" t="Include" />
+            <e p="CardZoomer.cs" t="Include" />
             <e p="DragCard.cs" t="Include" />
             <e p="DrawCard.cs" t="Include" />
             <e p="EnemyCard.cs" t="Include" />
             <e p="PlayerCard.cs" t="Include" />
+            <e p="PlayerCardContainer.cs" t="Include" />
+            <e p="PlayerCardHolder.cs" t="Include" />
           </e>
           <e p="Card Log" t="Include">
             <e p="CardLog.cs" t="Include" />
           </e>
-          <e p="CardHolder.cs" t="Include" />
-          <e p="CardType.cs" t="Include" />
-          <e p="CardZoomer.cs" t="Include" />
-          <e p="Container.cs" t="Include" />
-          <e p="DeckContainer.cs" t="Include" />
           <e p="Enemy" t="Include">
             <e p="Boss.cs" t="Include" />
+            <e p="BossCardHolder.cs" t="Include" />
             <e p="BossTurnCardPlayer.cs" t="Include" />
+            <e p="EnemyCardHolder.cs" t="Include" />
+            <e p="EnemyCardManager.cs" t="Include" />
             <e p="EnemyDeck.cs" t="Include" />
+            <e p="EnemyEventCard.cs" t="Include" />
             <e p="Goals" t="Include">
               <e p="BombGoal.cs" t="Include" />
               <e p="Goal.cs" t="Include" />
             </e>
             <e p="Minion.cs" t="Include" />
+            <e p="MinionCardHolder.cs" t="Include" />
             <e p="Reward.cs" t="Include" />
           </e>
-          <e p="EnemyCardHolder.cs" t="Include" />
-          <e p="EnemyCardManager.cs" t="Include" />
-          <e p="EnemyEventCard.cs" t="Include" />
-          <e p="FieldContainer.cs" t="Include" />
           <e p="Firebase" t="Include">
             <e p="AuthManager.cs" t="Include" />
             <e p="Forms.cs" t="Include" />
           </e>
           <e p="Gameplay" t="Include">
+            <e p="BattleManager.cs" t="Include" />
+            <e p="BossTurnManager.cs" t="Include" />
+            <e p="Container.cs" t="Include" />
+            <e p="FieldContainer.cs" t="Include" />
             <e p="GameplayManager.cs" t="Include" />
             <e p="Grid.cs" t="Include" />
+            <e p="History.cs" t="Include" />
             <e p="PlayZone.cs" t="Include" />
             <e p="TurnManager.cs" t="Include" />
           </e>
-          <e p="GraveContainer.cs" t="Include" />
           <e p="Hand and Deck" t="Include">
             <e p="Deck.cs" t="Include" />
+            <e p="DeckContainer.cs" t="Include" />
             <e p="Hand.cs" t="Include" />
+            <e p="HandContainer.cs" t="Include" />
+            <e p="Prefillable Deck.cs" t="Include" />
           </e>
-          <e p="HandContainer.cs" t="Include" />
-          <e p="History.cs" t="Include" />
-          <e p="MinionCardHolder.cs" t="Include" />
-          <e p="NewBehaviourScript.cs" t="Include" />
           <e p="Player" t="Include">
+            <e p="GraveContainer.cs" t="Include" />
             <e p="Graveyard.cs" t="Include" />
             <e p="Player.cs" t="Include" />
             <e p="PlayerDeck.cs" t="Include" />
           </e>
-          <e p="PlayerCardContainer.cs" t="Include" />
-          <e p="PlayerCardHolder.cs" t="Include" />
-          <e p="Prefillable Deck.cs" t="Include" />
           <e p="Sharp Accent Card Game" t="Include">
             <e p="Card.cs" t="Include" />
             <e p="CardDisplay.cs" t="Include" />
@@ -91,10 +88,10 @@
           <e p="Shop" t="Include">
             <e p="PurchaseHandler.cs" t="Include" />
             <e p="Shop.cs" t="Include" />
+            <e p="ShopContainer.cs" t="Include" />
             <e p="ShopDeck.cs" t="Include" />
             <e p="ShopTransaction.cs" t="Include" />
           </e>
-          <e p="ShopContainer.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
             <e p="currencyDisplay.cs" t="Include" />
@@ -104,7 +101,6 @@
             <e p="TextUpdate.cs" t="Include" />
             <e p="UIHandler.cs" t="Include" />
           </e>
-          <e p="UIEventHandler.cs" t="Include" />
         </e>
         <e p="FacebookSDK" t="Include">
           <e p="Examples" t="Include">
