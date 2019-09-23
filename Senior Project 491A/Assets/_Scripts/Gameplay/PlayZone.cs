@@ -37,6 +37,11 @@ public class PlayZone : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        {
+            return;
+        }
+
         //Debug.Log("Card has entered");
         cardInPlayZone = true;
         cardInZone = other.gameObject.GetComponent<PlayerCardHolder>();
