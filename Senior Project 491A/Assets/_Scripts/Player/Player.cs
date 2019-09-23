@@ -8,7 +8,7 @@ using UnityEngine;
     Defines the Player class, i.e, everything that the Player can do and
     has access to during a match.
  */
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Player Component/Player")]
 public class Player : ScriptableObject
 {
     [SerializeField] public Hand hand;

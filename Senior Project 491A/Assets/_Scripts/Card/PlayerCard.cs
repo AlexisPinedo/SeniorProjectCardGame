@@ -6,7 +6,7 @@ using ExitGames.Client.Photon;
 /// <summary>
 /// Extends the Card scriptable object and contains information specific to Player Cards.
 /// </summary>
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card/Player Card")]
 public class PlayerCard : Card
 {
     //All this stuff below belongs in Player Card Class

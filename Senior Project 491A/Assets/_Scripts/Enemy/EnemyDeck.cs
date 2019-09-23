@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Deck/EnemyDeck")]
  public class EnemyDeck : PrefillableDeck
  {
   

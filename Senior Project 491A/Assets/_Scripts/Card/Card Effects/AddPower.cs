@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card Effect/Add Power")]
 public class AddPower : CardEffect
 {
     [SerializeField] private int powerAdditionAmount;
