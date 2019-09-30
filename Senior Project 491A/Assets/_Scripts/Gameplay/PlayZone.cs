@@ -41,9 +41,6 @@ public class PlayZone : MonoBehaviour
         {
             return;
         }
-        
-        if(!Input.GetMouseButtonDown(0))
-            return;
 
         //Debug.Log("Card has entered");
         cardInPlayZone = true;
