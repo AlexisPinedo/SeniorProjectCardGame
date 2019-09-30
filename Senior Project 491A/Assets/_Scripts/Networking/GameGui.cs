@@ -30,27 +30,40 @@ public class GameGui : MonoBehaviour
     public void Awake()
     {
         // Null check
-        if (string.IsNullOrEmpty(AppId))
-        {
-            Debug.LogError("You must enter your AppId from the Dashboard in the component: Scripts, MemoryGui, AppId before you can use this demo.");
-            Debug.Break();
-        }
+        //if (string.IsNullOrEmpty(AppId))
+        //{
+        //    Debug.LogError("You must enter your AppId from the Dashboard in the component: Scripts, MemoryGui, AppId before you can use this demo.");
+        //    Debug.Break();
+        //}
 
         Application.runInBackground = true;
         // TODO: Check the internals of CustomTypes
         CustomTypes.Register();
 
         // Start it up!
-        GameClientInstance = new GameClient();
-        GameClientInstance.AppId = AppId;   // Photon ID - set in inspector!
-        GameClientInstance.AppVersion = "1.0";
-        
+        GameClientInstance = new GameClient
+        {
+            AppId = this.AppId,   // Photon ID - set in inspector!
+            AppVersion = "1.0"
+        };
+
         // Connect the networking components
         board = GetComponentInChildren<GameBoard>();
         board.GameClientInstance = GameClientInstance;
         GameClientInstance.board = board;
         board.GameGui = this;
         // DisableButtons();
+    }
+
+    public void OnEnable()
+    {
+        if (GameClientInstance.IsConnected)
+        {
+            Debug.Log("Already connected");
+            return;
+        }
+
+        
     }
 
     void OnVisibleChanged()
