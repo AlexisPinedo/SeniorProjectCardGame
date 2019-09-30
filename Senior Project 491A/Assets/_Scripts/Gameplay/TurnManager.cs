@@ -30,11 +30,6 @@ public class TurnManager : MonoBehaviour
     private void OnEnable()
     {
         UIHandler.EndTurnClicked += ShowHidePanel;
-        player1.GameName = PhotonNetwork.PlayerList[0].NickName;
-        Debug.Log("\tPlayer1: " + player1.GameName);
-
-        player2.GameName = PhotonNetwork.PlayerList[1].NickName;
-        Debug.Log("\tPlayer2: " + player2.GameName);
     }
 
     private void OnDisable()
