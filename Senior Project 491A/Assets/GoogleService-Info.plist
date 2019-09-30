@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>831562947652-kv89b5gvqh6aiumr8v3ladrqgu5gjvin.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.831562947652-kv89b5gvqh6aiumr8v3ladrqgu5gjvin</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD8RssyHH16VWc4p-7PZGWjO3bVkcuuGMI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>831562947652</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.SeniorProject491A.RaisingSpirits</string>
+	<key>PROJECT_ID</key>
+	<string>raising-spirits</string>
+	<key>STORAGE_BUCKET</key>
+	<string>raising-spirits.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:831562947652:ios:695c1dea07c21b4c653011</string>
+	<key>DATABASE_URL</key>
+	<string>https://raising-spirits.firebaseio.com</string>
+</dict>
+</plist>

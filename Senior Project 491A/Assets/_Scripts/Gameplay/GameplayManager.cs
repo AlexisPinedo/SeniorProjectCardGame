@@ -7,7 +7,6 @@ using Photon.Pun;
 
 public class GameplayManager : MonoBehaviourPun
 {
-    public BossTurnCardPlayer bossCardPlayer;
     public TextUpdate textManger;
     public GameObject shop;
     public GameObject bossArea;

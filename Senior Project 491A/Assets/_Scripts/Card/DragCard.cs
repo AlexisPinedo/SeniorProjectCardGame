@@ -9,6 +9,10 @@ public class DragCard : MonoBehaviour
 
     public Vector2 OriginalPosition;
 
+    public delegate void _ShopCardClicked(PlayerCardHolder cardClicked);
+
+    public static event _ShopCardClicked ShopCardClicked;
+
     private void Awake()
     {
         OriginalPosition = this.transform.position;
@@ -16,6 +20,13 @@ public class DragCard : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        {
+            //Debug.Log("Card is in Shop");
+            PlayerCardHolder cardClicked = this.gameObject.GetComponent<PlayerCardHolder>();
+            ShopCardClicked?.Invoke(cardClicked);
+        }
+
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
 
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
@@ -24,7 +35,7 @@ public class DragCard : MonoBehaviour
 
     public void OnMouseUp()
     {
-        if (this.gameObject != null)
+        if (this.gameObject != null && PlayZone.cardInPlayZone == false)
         {
             this.transform.position = OriginalPosition;
         }
@@ -34,8 +45,6 @@ public class DragCard : MonoBehaviour
     {
         if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
-            //Debug.Log("Attempted to drag and the object is not in the hand container");
-
             return;
         }
 

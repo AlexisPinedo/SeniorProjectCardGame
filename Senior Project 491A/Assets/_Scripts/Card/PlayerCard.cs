@@ -6,7 +6,7 @@ using ExitGames.Client.Photon;
 /// <summary>
 /// Extends the Card scriptable object and contains information specific to Player Cards.
 /// </summary>
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card/Player Card")]
 public class PlayerCard : Card
 {
     //All this stuff below belongs in Player Card Class
@@ -31,7 +31,13 @@ public class PlayerCard : Card
         get { return _cardCurrency; }
     }
 
-    public List<CardType.CardTypes> CardEffectRequirement = new List<CardType.CardTypes>();
+    [SerializeField]
+    private List<CardType.CardTypes> CardEffectRequirement = new List<CardType.CardTypes>();
+
+    public List<CardType.CardTypes> cardEffectRequirments
+    {
+        get { return CardEffectRequirement; }
+    }
 
     public List<Sprite> cardCostsIcons = new List<Sprite>();
 }

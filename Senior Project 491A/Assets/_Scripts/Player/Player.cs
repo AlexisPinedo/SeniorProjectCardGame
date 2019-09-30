@@ -8,14 +8,51 @@ using UnityEngine;
     Defines the Player class, i.e, everything that the Player can do and
     has access to during a match.
  */
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Player Component/Player")]
 public class Player : ScriptableObject
 {
     [SerializeField] public Hand hand;
     [SerializeField] private Deck deck;
-    [SerializeField] private int currency;
-    [SerializeField] private int power;
-    [SerializeField] public Graveyard graveyard;
+
+    public delegate void _CurrencyUpdated();
+
+    public static event _CurrencyUpdated CurrencyUpdated;
+
+    public delegate void _PowerUpdated();
+
+    public static event _PowerUpdated PowerUpdated;
+    
+    [SerializeField]
+    private int currency;
+    public int Currency
+    {
+        get => currency;
+        set
+        {
+            currency = value;
+            CurrencyUpdated?.Invoke();
+        }
+    }
+
+    [SerializeField]
+    private int power;
+    public int Power
+    {
+        get => power;
+        set
+        {
+            power = value;
+            PowerUpdated?.Invoke();
+        } 
+    }
+
+    private void OnEnable()
+    {
+        power = 0;
+        currency = 0;
+    }
+
+    public Graveyard graveyard;
     [SerializeField] private List<PlayerCard> rewardPile;
 
 
