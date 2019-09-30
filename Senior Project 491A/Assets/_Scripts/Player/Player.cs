@@ -55,6 +55,13 @@ public class Player : ScriptableObject
     public Graveyard graveyard;
     [SerializeField] private List<PlayerCard> rewardPile;
 
+    [SerializeField]
+    private Hero _selectedHero;
+
+    public Hero SelectedHero
+    {
+        get { return _selectedHero; }
+    }
 
 }
 

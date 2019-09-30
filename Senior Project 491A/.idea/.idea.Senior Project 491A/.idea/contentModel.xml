@@ -87,6 +87,7 @@
             <e p="TextUpdate.cs" t="Include" />
             <e p="UIHandler.cs" t="Include" />
           </e>
+          <e p="Vito.cs" t="Include" />
         </e>
         <e p="FacebookSDK" t="Include">
           <e p="Examples" t="Include">
