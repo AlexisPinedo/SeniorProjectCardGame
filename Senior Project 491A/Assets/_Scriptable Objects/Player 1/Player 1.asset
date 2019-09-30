@@ -18,3 +18,4 @@ MonoBehaviour:
   power: 0
   graveyard: {fileID: 11400000, guid: b7077001044931a40b33d83873f50253, type: 2}
   rewardPile: []
+  _selectedHero: {fileID: 0}
