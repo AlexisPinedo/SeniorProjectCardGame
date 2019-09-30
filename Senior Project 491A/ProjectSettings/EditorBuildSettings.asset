@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/Lobby.unity
     guid: 28663871e8c27634e998170fe951ddb5
   - enabled: 1
-    path: Assets/_Scenes/DavidsScene.unity
-    guid: b54ffe63424ff544aa5d5ca92b2eff8c
+    path: Assets/_Scenes/AlexPinedoScene.unity
+    guid: e7c2cf53079353241812ae5e98fbcf7b
   m_configObjects: {}

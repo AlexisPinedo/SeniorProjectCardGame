@@ -18,11 +18,11 @@ public class PlayZone : MonoBehaviour
 
     public static bool cardInPlayZone = false;
     public static PlayerCardHolder cardInZone;
-    
+
     public delegate void _CardPlayed(PlayerCard cardPlayed);
 
     public static event _CardPlayed CardPlayed;
-    
+
     void Awake()
     {
         if (_instance != null && _instance != this)
@@ -34,7 +34,7 @@ public class PlayZone : MonoBehaviour
             _instance = this;
         }
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.parent.gameObject.GetComponent<HandContainer>() == null)
@@ -58,7 +58,7 @@ public class PlayZone : MonoBehaviour
     {
         if (cardInPlayZone)
         {
-            if(!Input.GetMouseButton(0))
+            if (!Input.GetMouseButton(0))
                 HandleCardPlayed();
         }
     }
@@ -80,11 +80,11 @@ public class PlayZone : MonoBehaviour
             tpHand.hand.Remove(cardPlayed);
             TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardPlayed);
         }
-        
+
         CardPlayed?.Invoke(cardPlayed);
 
         GameObject.Destroy(cardInZone.gameObject);
-        
+
         cardInPlayZone = false;
         cardInZone = null;
     }

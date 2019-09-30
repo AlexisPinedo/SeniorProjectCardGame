@@ -13,7 +13,7 @@ public class History : MonoBehaviour
         get
         {
             return _instance;
-        } 
+        }
     }
 
     [SerializeField]
@@ -23,7 +23,7 @@ public class History : MonoBehaviour
     {
         get { return playerCardHistory; }
     }
-    
+
     [SerializeField]
     private List<PlayerCard> EntireCardHistory = new List<PlayerCard>();
 

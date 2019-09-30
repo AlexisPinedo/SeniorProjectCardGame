@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,16 +11,13 @@ public class TurnManager : MonoBehaviour
 
     [SerializeField]
     private GameObject p1HandSpacePanel;
-
     [SerializeField]
     private GameObject p2HandSpacePanel;
 
     public delegate void _PlayerSwitched();
-
     public static event _PlayerSwitched PlayerSwitched;
 
     public Player player1;
-
     public Player player2;
 
     private static TurnManager _instance;
@@ -32,13 +30,17 @@ public class TurnManager : MonoBehaviour
     private void OnEnable()
     {
         UIHandler.EndTurnClicked += ShowHidePanel;
+        player1.GameName = PhotonNetwork.PlayerList[0].NickName;
+        Debug.Log("\tPlayer1: " + player1.GameName);
+
+        player2.GameName = PhotonNetwork.PlayerList[1].NickName;
+        Debug.Log("\tPlayer2: " + player2.GameName);
     }
 
     private void OnDisable()
     {
         UIHandler.EndTurnClicked -= ShowHidePanel;
     }
-
 
     void Awake()
     {
@@ -53,7 +55,6 @@ public class TurnManager : MonoBehaviour
 
         p2HandSpacePanel.SetActive(false);
         turnPlayer = player1;
-        
     }
 
     private void Start()
@@ -67,7 +68,7 @@ public class TurnManager : MonoBehaviour
         {
             turnPlayer.Currency = 0;
             turnPlayer.Power = 0;
-            
+
             // Switch to Player Two
             if (p1HandSpacePanel.activeSelf)
             {
@@ -85,12 +86,11 @@ public class TurnManager : MonoBehaviour
 
                 turnPlayer = player1;
             }
-            
+
             PlayerSwitched?.Invoke();
 
             TextUpdate.Instance.UpdateCurrency();
             TextUpdate.Instance.UpdatePower();
         }
     }
-
 }

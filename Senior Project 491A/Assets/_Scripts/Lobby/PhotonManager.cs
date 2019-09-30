@@ -32,6 +32,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = nameInp.text;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
+        // Settings defined via PhotonServerSettings
         PhotonNetwork.ConnectUsingSettings();
     }
 
@@ -43,6 +44,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         photonStatus.text = "Connected to master.";
+
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         Destroy(photonStatus);
     }
@@ -68,10 +70,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void OnClick_GeneratePhotonRoom()
     {
-        RoomOptions options = new RoomOptions();
-        options.IsOpen = true;
-        options.IsVisible = true;
-        options.MaxPlayers = 2;
+        RoomOptions options = new RoomOptions
+        {
+            IsOpen = true,
+            IsVisible = true,
+            MaxPlayers = 2
+        };
         PhotonNetwork.JoinOrCreateRoom(roomInput.text, options, null);
     }
 
