@@ -8,10 +8,26 @@ using UnityEngine;
 /// </summary>
 public class ShopContainer : PlayerCardContainer
 {
+    // Singleton pattern
+    public static ShopContainer Instance { get; set; } = new ShopContainer();
+    static ShopContainer() { }
+    private ShopContainer() { }
+
     public ShopDeck shopDeck;
-    
-    //[SerializeField]
-    //public PlayerCardHolder playerCardContainer;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.Log("\tDestroying ShopContainer");
+            Destroy(this);
+        }
+        else
+        {
+            Debug.Log("\tShopContainer Instance = this");
+            Instance = this;
+        }
+    }
 
     /// <summary>
     /// Maximum number of cards in the shop at any given time.
@@ -28,7 +44,7 @@ public class ShopContainer : PlayerCardContainer
     {
         PurchaseHandler.CardPurchased += DisplayNewCard;
     }
-    
+
     private void OnDisable()
     {
         PurchaseHandler.CardPurchased -= DisplayNewCard;
@@ -63,7 +79,7 @@ public class ShopContainer : PlayerCardContainer
 
         PlayerCardHolder cardHolder = Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         cardHolder.enabled = true;
-        
+
         Vector3 freeSpot = cardHolder.gameObject.transform.position;
 
         if (!containerGrid.cardLocationReference.ContainsKey(freeSpot))
@@ -75,9 +91,8 @@ public class ShopContainer : PlayerCardContainer
     private void DisplayNewCard(PlayerCardHolder cardBought)
     {
         Vector3 freeSpot = cardBought.gameObject.transform.position;
-        
+
         containerGrid.freeLocations.Push(freeSpot);
         HandleDisplayOfACard();
-        
     }
 }
