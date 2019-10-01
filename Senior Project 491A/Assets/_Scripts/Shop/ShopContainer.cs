@@ -2,6 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 /// <summary>
 /// The container object for the Shop, which itself can contain PlayerCardContainers.
@@ -12,7 +17,6 @@ public class ShopContainer : PlayerCardContainer
     public static ShopContainer Instance { get; set; } = new ShopContainer();
     static ShopContainer() { }
     private ShopContainer() { }
-
     public ShopDeck shopDeck;
 
     private void Awake()
@@ -34,20 +38,65 @@ public class ShopContainer : PlayerCardContainer
     /// </summary>
     private int shopCardCount = 6;
 
+
+    //public void SerializeState (PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        stream.SendNext(shopDeck);
+    //    }
+    //    else
+    //    {
+    //        shopDeck = (ShopDeck)stream.ReceiveNext();
+    //    }
+    //}
+
+    //public void OnPhotonSerializeView( PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    Debug.Log("... i think its syncing?");
+    //    SerializeState(stream, info);
+    //}
+
     // Start is called before the first frame update
     void Start()
     {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions();
+            raiseEventOptions.CachingOption = EventCaching.DoNotCache;
+            raiseEventOptions.Receivers = ReceiverGroup.All;
+            SendOptions sendOptions = new SendOptions();
+
+            object content = shopDeck;
+            //.GetHashCode();
+
+            PhotonNetwork.RaiseEvent(0, content, raiseEventOptions, sendOptions);
+
+
+            Debug.Log("Raise event sent..");
+        }
         InitialCardDisplay();
     }
 
     private void OnEnable()
     {
         PurchaseHandler.CardPurchased += DisplayNewCard;
+        PhotonNetwork.AddCallbackTarget(this);
     }
 
     private void OnDisable()
     {
         PurchaseHandler.CardPurchased -= DisplayNewCard;
+        PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
+    public void OnEvent(EventData photonEvent)
+    {
+        Debug.Log("Event recieved...");
+        photonEvent.Code = 0;
+
+        //myObject = photonEvent.CustomData;
+        //shopDeck = (ShopDeck) myObject;
     }
 
     /// <summary>
@@ -67,6 +116,7 @@ public class ShopContainer : PlayerCardContainer
 
             // Draw a Card from the ShopDeck
         }
+
     }
 
     private void HandleDisplayOfACard()

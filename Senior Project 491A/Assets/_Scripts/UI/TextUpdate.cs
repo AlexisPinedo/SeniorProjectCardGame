@@ -4,11 +4,14 @@ using System.Collections.Generic;
 //using UnityEditor.Purchasing;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class TextUpdate : MonoBehaviour
+public class TextUpdate : MonoBehaviourPunCallbacks
 {
     public Text playerPower;
     public Text playerCurrency;
+    public Text player1NickName;
+    public Text player2NickName;
 
     private static TextUpdate _instance;
 
@@ -33,6 +36,15 @@ public class TextUpdate : MonoBehaviour
     {
         UpdatePower();
         UpdateCurrency();
+
+        player1NickName.text = "Current turn: " + PhotonNetwork.MasterClient.NickName;
+        foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+        {
+            if (playerInfo.Value.NickName != PhotonNetwork.MasterClient.NickName)
+            {
+                player2NickName.text = "Waiting for turn: " + playerInfo.Value.NickName;
+            }
+        }
     }
 
     private void OnEnable()
