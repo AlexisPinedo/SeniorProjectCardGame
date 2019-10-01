@@ -296,7 +296,7 @@ public class AuthManager : MonoBehaviour
 
     #region Firebase Utilities
 
-    void UpdateUserDisplayName(string username)
+    public void UpdateUserDisplayName(string username)
     {
         user = auth.CurrentUser;
         if (user != null)
