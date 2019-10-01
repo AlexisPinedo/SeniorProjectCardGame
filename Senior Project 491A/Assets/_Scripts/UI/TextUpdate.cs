@@ -37,7 +37,10 @@ public class TextUpdate : MonoBehaviourPunCallbacks
         UpdatePower();
         UpdateCurrency();
 
-        player1NickName.text = "Current turn: " + PhotonNetwork.MasterClient.NickName;
+        if (PhotonNetwork.MasterClient.NickName != null)
+        {
+            player1NickName.text = "Current turn: " + PhotonNetwork.MasterClient.NickName;
+        }
         foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             if (playerInfo.Value.NickName != PhotonNetwork.MasterClient.NickName)

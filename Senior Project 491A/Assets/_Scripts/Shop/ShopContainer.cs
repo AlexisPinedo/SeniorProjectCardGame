@@ -1,35 +1,42 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
-using ExitGames.Client.Photon;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine;
+
+//using UnityEditorInternal;
 
 /// <summary>
 /// The container object for the Shop, which itself can contain PlayerCardContainers.
 /// </summary>
 public class ShopContainer : PlayerCardContainer
 {
+    private static ShopContainer _instance;
+
     // Singleton pattern
-    public static ShopContainer Instance { get; set; } = new ShopContainer();
-    static ShopContainer() { }
-    private ShopContainer() { }
+    public static ShopContainer Instance
+    {
+        get { return _instance; }
+    }
     public ShopDeck shopDeck;
+
+
+    public delegate void _cardDrawnLocationCreated(PlayerCardHolder cardDrawn, Vector3 freeSpot);
+
+    public static event _cardDrawnLocationCreated CardDrawnLocationCreated;
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Debug.Log("\tDestroying ShopContainer");
+            //Debug.Log("\tDestroying ShopContainer");
             Destroy(this);
         }
         else
         {
-            Debug.Log("\tShopContainer Instance = this");
-            Instance = this;
+            //Debug.Log("\tShopContainer Instance = this");
+            _instance = this;
         }
     }
 
@@ -38,65 +45,22 @@ public class ShopContainer : PlayerCardContainer
     /// </summary>
     private int shopCardCount = 6;
 
-
-    //public void SerializeState (PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if (stream.IsWriting)
-    //    {
-    //        stream.SendNext(shopDeck);
-    //    }
-    //    else
-    //    {
-    //        shopDeck = (ShopDeck)stream.ReceiveNext();
-    //    }
-    //}
-
-    //public void OnPhotonSerializeView( PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    Debug.Log("... i think its syncing?");
-    //    SerializeState(stream, info);
-    //}
-
     // Start is called before the first frame update
     void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            RaiseEventOptions raiseEventOptions = new RaiseEventOptions();
-            raiseEventOptions.CachingOption = EventCaching.DoNotCache;
-            raiseEventOptions.Receivers = ReceiverGroup.All;
-            SendOptions sendOptions = new SendOptions();
-
-            object content = shopDeck;
-            //.GetHashCode();
-
-            PhotonNetwork.RaiseEvent(0, content, raiseEventOptions, sendOptions);
-
-
-            Debug.Log("Raise event sent..");
-        }
         InitialCardDisplay();
     }
 
     private void OnEnable()
     {
         PurchaseHandler.CardPurchased += DisplayNewCard;
-        PhotonNetwork.AddCallbackTarget(this);
+        
     }
 
     private void OnDisable()
     {
         PurchaseHandler.CardPurchased -= DisplayNewCard;
-        PhotonNetwork.RemoveCallbackTarget(this);
-    }
-
-    public void OnEvent(EventData photonEvent)
-    {
-        Debug.Log("Event recieved...");
-        photonEvent.Code = 0;
-
-        //myObject = photonEvent.CustomData;
-        //shopDeck = (ShopDeck) myObject;
+        
     }
 
     /// <summary>
@@ -131,7 +95,9 @@ public class ShopContainer : PlayerCardContainer
         cardHolder.enabled = true;
 
         Vector3 freeSpot = cardHolder.gameObject.transform.position;
-
+        
+        CardDrawnLocationCreated?.Invoke(cardHolder, freeSpot);
+        
         if (!containerGrid.cardLocationReference.ContainsKey(freeSpot))
             containerGrid.cardLocationReference.Add(freeSpot, cardHolder);
         else
