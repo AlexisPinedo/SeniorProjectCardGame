@@ -9,8 +9,7 @@ public class UIHandler : MonoBehaviour
 
     public delegate void StartBattleButtonAction();
     public static event StartBattleButtonAction StartClicked;
-
-
+    
     public delegate void GraveyardButtonAction();
     public static event GraveyardButtonAction GraveyardClicked;
 
@@ -19,6 +18,28 @@ public class UIHandler : MonoBehaviour
 
     public delegate void EndTurnButtonAction();
     public static event EndTurnButtonAction EndTurnClicked;
+
+    private static UIHandler _instance;
+
+    public static UIHandler Instance
+    {
+        get { return _instance; }
+    }
+    
+    void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
+    [SerializeField]
+    private NotificationWindow windowReference;
 
     public void SettingsButtonOnClick()
     {
@@ -46,4 +67,9 @@ public class UIHandler : MonoBehaviour
         EndTurnClicked?.Invoke();
     }
 
+    public void EnableNotificationWindow(string message)
+    {
+        windowReference.gameObject.SetActive(true);
+        NotificationWindow.Instance.DisplayMessage(message);
+    }
 }
