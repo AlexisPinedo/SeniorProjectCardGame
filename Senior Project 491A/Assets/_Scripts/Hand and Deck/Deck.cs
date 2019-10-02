@@ -26,8 +26,7 @@ public class Deck : ScriptableObject
 
     public void Shuffle()
     {
-        //if(PhotonNetwork.IsMasterClient)
-        System.Random random = RandomNumberNetworkGenerator.randomNumber;
+        System.Random random = RandomNumberNetworkGenerator.Instance.randomNumber;
         
         var deckList = cardsInDeck.ToArray();
         int n = deckList.Length;
