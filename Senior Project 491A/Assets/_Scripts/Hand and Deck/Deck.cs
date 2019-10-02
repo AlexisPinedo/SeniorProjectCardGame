@@ -15,9 +15,7 @@ public class Deck : ScriptableObject
     /// The deck of cards represented in Stack form.
     /// </summary>
     [SerializeField] public Stack<Card> cardsInDeck = new Stack<Card>();
-    
-    
-    
+
     protected virtual void Awake()
     {
         cardsInDeck.Clear();

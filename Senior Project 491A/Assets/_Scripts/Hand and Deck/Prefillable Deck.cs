@@ -19,8 +19,8 @@ public abstract class PrefillableDeck : Deck
                  cardsInDeck.Push(card);
              }
          }
-         
-         Shuffle();
+         if(RandomNumberNetworkGenerator.Instance != null)
+            Shuffle();
          //Debug.Log("cards added");
      }
  }
