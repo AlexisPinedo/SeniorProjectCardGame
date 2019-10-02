@@ -17,19 +17,18 @@ public abstract class Hero : ScriptableObject
 {
     [SerializeField]
     private Sprite heroPortrait;
-    protected virtual void OnEnable()
+    
+    protected virtual void TriggerHeroPowerEffect()
     {
-        TurnManager.PlayerSwitched += HeroPowerEffect;
+        if (TurnManager.Instance.turnPlayer.SelectedHero == this)
+        {
+            HeroPowerEffect();
+        }
     }
-
-    protected void OnDisable()
-    {
-        TurnManager.PlayerSwitched -= HeroPowerEffect;
-    }
-
-
+    
     protected virtual void HeroPowerEffect()
     {
         
     }
+
 }

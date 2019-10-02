@@ -13,7 +13,7 @@ public class ShopDeck : PrefillableDeck
 
     protected override void OnEnable()
     {
-        History.TurnCounterUpdated += AddCardsLaterInGame;
+        History.CardHistoryComponentsUpdated += AddCardsLaterInGame;
         
         foreach (PlayerCard card in cardsToAdd)
         {
@@ -35,7 +35,7 @@ public class ShopDeck : PrefillableDeck
 
     private void OnDisable()
     {
-        History.TurnCounterUpdated -= AddCardsLaterInGame;
+        History.CardHistoryComponentsUpdated -= AddCardsLaterInGame;
         CardsToAddLaterInGame.Clear();
     }
 
@@ -50,6 +50,6 @@ public class ShopDeck : PrefillableDeck
         
         Shuffle();
 
-        History.TurnCounterUpdated -= AddCardsLaterInGame;
+        History.CardHistoryComponentsUpdated -= AddCardsLaterInGame;
     }
 }

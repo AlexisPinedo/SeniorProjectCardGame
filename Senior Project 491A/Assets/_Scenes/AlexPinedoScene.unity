@@ -348,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 1981492783}
   holder: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
-  shopDeck: {fileID: 11400000, guid: 4ff002b0bee054542a589b4945221746, type: 2}
+  shopDeck: {fileID: 11400000, guid: 2ba6b1a3e2ecc0447bc728d99bd161c8, type: 2}
 --- !u!1 &381133601
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: 381133603}
   - component: {fileID: 381133605}
   - component: {fileID: 381133606}
+  - component: {fileID: 381133607}
   m_Layer: 0
   m_Name: Manager Container
   m_TagString: Untagged
@@ -438,6 +439,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de802d88a2a6014aac779e5624c3cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &381133607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381133601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff3fc2798eeda34d968947afe7299ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeTurnHero: {fileID: 0}
 --- !u!1 &393574265
 GameObject:
   m_ObjectHideFlags: 0

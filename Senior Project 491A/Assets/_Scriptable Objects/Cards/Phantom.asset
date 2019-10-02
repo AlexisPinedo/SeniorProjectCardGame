@@ -18,7 +18,7 @@ MonoBehaviour:
   cardEffectDisplay: 
   cardArtwork: {fileID: 21300000, guid: 95248315020dc3d4a88dbb354d8a50aa, type: 3}
   cardTypeArt: {fileID: 0}
-  cardType: 0
+  cardType: 7
   nameBoxArt: {fileID: 21300000, guid: 1c1257085b2c01a47b6261009752c247, type: 3}
   cardEffectBoxArt: {fileID: 0}
   borderArt: {fileID: 21300000, guid: cacb440c5f694d6409a1e12a51490663, type: 3}
