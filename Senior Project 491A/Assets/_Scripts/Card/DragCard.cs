@@ -49,15 +49,13 @@ public class DragCard : MonoBehaviour
         }
 
         //Debug.Log("Attempting to drag and the object is draggable");
-
-
+        
         UnityEngine.Vector2 cursorScreenPoint = new UnityEngine.Vector2(Input.mousePosition.x, Input.mousePosition.y); //stores position of cursor in screen space
         UnityEngine.Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
 
         transform.position = cursorPosition; //updates position of game object        
     }
 }
-
 
 //public class DragCard : MonoBehaviour
     //{
