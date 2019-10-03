@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdfbd1ec0a9f0a41ae8e52cd30a2856, type: 3}
   m_Name: Vaughn
   m_EditorClassIdentifier: 
-  heroPortrait: {fileID: 0}
+  _heroPortrait: {fileID: 21300000, guid: 007b297e8d921024ab2d19afd4db72bb, type: 3}
   cardEffectRequirementCount: 3

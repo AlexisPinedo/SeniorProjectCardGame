@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 /*
@@ -16,8 +17,13 @@ using UnityEngine;
 public abstract class Hero : ScriptableObject
 {
     [SerializeField]
-    private Sprite heroPortrait;
-    
+    public Sprite _heroPortrait;
+
+    public Sprite HeroPortrait
+    {
+        get => _heroPortrait;
+    }
+
     protected virtual void TriggerHeroPowerEffect()
     {
         if (TurnManager.Instance.turnPlayer.SelectedHero == this)

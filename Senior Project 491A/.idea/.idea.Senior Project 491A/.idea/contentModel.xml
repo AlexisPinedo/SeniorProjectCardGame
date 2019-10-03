@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\pined\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\pined\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.-1760692213.00" t="ExcludeRecursive" />
-    <e p="C:\Users\pined\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
+    <e p="C:\Users\Alex and Abby's\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Alex and Abby's\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.501270672.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Alex and Abby's\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Scripts" t="Include">
@@ -76,6 +76,8 @@
             </e>
             <e p="TurnStartEffectHero.cs" t="Include" />
           </e>
+          <e p="HeroPortraitUpdate.cs" t="Include" />
+          <e p="NotificationWindow.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="GraveContainer.cs" t="Include" />
             <e p="Graveyard.cs" t="Include" />
@@ -86,6 +88,7 @@
             <e p="ShopContainer.cs" t="Include" />
             <e p="ShopDeck.cs" t="Include" />
           </e>
+          <e p="TurnPlayerHeroManager.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
             <e p="LobbyMenu.cs" t="Include" />
@@ -152,7 +155,6 @@
             <e p="SignInHelperObject.cs" t="Include" />
           </e>
         </e>
-        <e p="NotificationWindow.cs" t="Include" />
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">
             <e p="Code" t="Include">
@@ -335,7 +337,6 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
-        <e p="TurnPlayerHeroManager.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />

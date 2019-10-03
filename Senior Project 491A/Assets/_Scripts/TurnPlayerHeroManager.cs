@@ -15,6 +15,10 @@ public class TurnPlayerHeroManager : MonoBehaviour
 
     private static TurnPlayerHeroManager _instance;
 
+    public delegate void _heroChanged();
+
+    public static event _heroChanged HeroChanged;
+
     public static TurnPlayerHeroManager Instance
     {
         get => _instance;
@@ -44,5 +48,6 @@ public class TurnPlayerHeroManager : MonoBehaviour
     private void UpdateActiveHero()
     {
         activeTurnHero = TurnManager.Instance.turnPlayer.SelectedHero;
+        HeroChanged?.Invoke();
     }
 }
