@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-public class RandomNumberNetworkGenerator : MonoBehaviourPun
+public class RandomNumberNetworkGenerator : MonoBehaviourPunCallbacks, IPunObservable
 {
     public System.Random randomNumber = new System.Random();
 
@@ -15,7 +15,6 @@ public class RandomNumberNetworkGenerator : MonoBehaviourPun
     private static RandomNumberNetworkGenerator _instance;
 
     public static RandomNumberNetworkGenerator Instance { get { return _instance; } }
-
 
     private void Awake()
     {
@@ -30,34 +29,51 @@ public class RandomNumberNetworkGenerator : MonoBehaviourPun
 
         if (PhotonNetwork.IsMasterClient)
         {
-            object[] content = { _instance };
-            RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
-            SendOptions sendOptions = new SendOptions { Reliability = true };
-            PhotonNetwork.RaiseEvent(DECK_RANDOM_EVENT, content, raiseEventOptions, sendOptions);
-            Debug.Log("Sending random number event from master client");
+            photonView.RPC("ReceiveRandomDeckValueFromMaster", RpcTarget.AllBufferedViaServer, 18);
+            Debug.Log("sent RPC!");
         }
     }
 
-    public void OnEnable()
+    [PunRPC]
+    private void ReceiveRandomDeckValueFromMaster(System.Random randomValue)
     {
-        PhotonNetwork.AddCallbackTarget(this);
+        Debug.Log("recieved value..");
+        randomNumber = randomValue;
     }
 
-    public void OnDisable()
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        PhotonNetwork.RemoveCallbackTarget(this);
-    }
-
-    public void OnEvent(EventData photonEvent)
-    {
-        Debug.Log("Event recieved...");
-        if (photonEvent.Code == DECK_RANDOM_EVENT)
+        if (stream.IsWriting)
         {
-            object[] data = (object[])photonEvent.CustomData;
-            randomNumber = (System.Random)data[0];
-            Debug.Log("Event handeled...");
+            stream.SendNext(randomNumber);
         }
+        else
+        {
+            randomNumber = (System.Random)stream.ReceiveNext();
+        }
+        //((IPunObservable)Instance).OnPhotonSerializeView(stream, info);
     }
+
+    //public void OnEnable()
+    //{
+    //    PhotonNetwork.AddCallbackTarget(this);
+    //}
+
+    //public void OnDisable()
+    //{
+    //    PhotonNetwork.RemoveCallbackTarget(this);
+    //}
+
+    //public void OnEvent(EventData photonEvent)
+    //{
+    //    Debug.Log("Event recieved...");
+    //    if (photonEvent.Code == DECK_RANDOM_EVENT)
+    //    {
+    //        object[] data = (object[])photonEvent.CustomData;
+    //        randomNumber = (System.Random)data[0];
+    //        Debug.Log("Event handeled...");
+    //    }
+    //}
 
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     //{
