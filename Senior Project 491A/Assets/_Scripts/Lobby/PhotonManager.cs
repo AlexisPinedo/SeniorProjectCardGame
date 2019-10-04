@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 /// <summary>
 /// This class defines all characteristics and functions of the lobby menu.
@@ -70,11 +69,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void OnClick_GeneratePhotonRoom()
     {
+        System.Random randomNumber = new System.Random();
+        int randomInt = randomNumber.Next();
         RoomOptions options = new RoomOptions
         {
             IsOpen = true,
             IsVisible = true,
-            MaxPlayers = 2
+            MaxPlayers = 2,
+            CustomRoomProperties = new Hashtable() { { "deckRandomValue", randomInt } }
         };
         PhotonNetwork.JoinOrCreateRoom(roomInput.text, options, null);
     }

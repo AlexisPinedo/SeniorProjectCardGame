@@ -6,9 +6,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-public class RandomNumberNetworkGenerator : MonoBehaviourPunCallbacks, IPunObservable
+public class RandomNumberNetworkGenerator : MonoBehaviourPunCallbacks
 {
-    public System.Random randomNumber = new System.Random();
+    public int randomNumber;
 
     private const byte DECK_RANDOM_EVENT = 0;
 
@@ -18,41 +18,43 @@ public class RandomNumberNetworkGenerator : MonoBehaviourPunCallbacks, IPunObser
 
     private void Awake()
     {
-        if(_instance != this && _instance != null)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
+        //if(_instance != this && _instance != null)
+        //{
+        //    Destroy(this.gameObject);
+        //}
+        //else
+        //{
+        //    _instance = this;
+        //}
+        randomNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["deckRandomValue"];
+        Debug.Log("RandomSyncedValue: " + randomNumber);
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            photonView.RPC("ReceiveRandomDeckValueFromMaster", RpcTarget.AllBufferedViaServer, 18);
-            Debug.Log("sent RPC!");
-        }
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    photonView.RPC("ReceiveRandomDeckValueFromMaster", RpcTarget.AllBufferedViaServer, 18);
+        //    Debug.Log("sent RPC!");
+        //}
     }
 
-    [PunRPC]
-    private void ReceiveRandomDeckValueFromMaster(System.Random randomValue)
-    {
-        Debug.Log("recieved value..");
-        randomNumber = randomValue;
-    }
+    //[PunRPC]
+    //private void ReceiveRandomDeckValueFromMaster(System.Random randomValue)
+    //{
+    //    Debug.Log("recieved value..");
+    //    randomNumber = randomValue;
+    //}
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(randomNumber);
-        }
-        else
-        {
-            randomNumber = (System.Random)stream.ReceiveNext();
-        }
-        //((IPunObservable)Instance).OnPhotonSerializeView(stream, info);
-    }
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        stream.SendNext(randomNumber);
+    //    }
+    //    else
+    //    {
+    //        randomNumber = (System.Random)stream.ReceiveNext();
+    //    }
+    //    //((IPunObservable)Instance).OnPhotonSerializeView(stream, info);
+    //}
 
     //public void OnEnable()
     //{

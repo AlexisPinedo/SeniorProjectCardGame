@@ -32,14 +32,13 @@ public class ShopDeck : PrefillableDeck
                 
             }
         }
-
-
         if (RandomNumberNetworkGenerator.Instance != null)
         {
             Debug.Log("trying to shuffle deck");
-
             Shuffle();
         }
+        else
+            Debug.Log("attempted to shuffle but still waiting for instance of random value...");
     }
 
     private void OnDisable()
