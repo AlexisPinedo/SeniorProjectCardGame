@@ -89,9 +89,14 @@ public class HandContainer : PlayerCardContainer
         {
             if (locationReferenceKeyValuePair.Value != null)
             {
+                PlayerCardHolder cardHolder = (PlayerCardHolder)locationReferenceKeyValuePair.Value;
+                if(cardHolder.card.CardType != CardType.CardTypes.None)
+                    playerGrave.graveyard.Add(cardHolder.card);
+
                 Destroy(locationReferenceKeyValuePair.Value.gameObject);
             }
             containerGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
+            
         }
     }
 
