@@ -10,7 +10,10 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
     [SerializeField]
     GameObject player1Prefab, player2Prefab, shopPrefab, playZonePrefab, gameCanvasPrefab;
 
+    GameObject player1, player2, shop, playZone, gameCanvas;
+
     // Start is called before the first frame update
+
     void Start()
     {
         //Online Gameplay
@@ -18,14 +21,15 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.Instantiate(player1Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-                PhotonNetwork.Instantiate(shopPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-                PhotonNetwork.Instantiate(playZonePrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-                PhotonNetwork.Instantiate(gameCanvasPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                player1 = PhotonNetwork.Instantiate(player1Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                shop = PhotonNetwork.Instantiate(shopPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                playZone = PhotonNetwork.Instantiate(playZonePrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                gameCanvas = PhotonNetwork.Instantiate(gameCanvasPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
             }
             else
             {
-                //PhotonNetwork.Instantiate(player2Prefab.name, new Vector3(0, 0, 0), Quaternion.identity).SetActive(false);
+                //player2 = PhotonNetwork.Instantiate(player2Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                //player2.SetActive(false);
             }
         }
         //Offline Gameplay
