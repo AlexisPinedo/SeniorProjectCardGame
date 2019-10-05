@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class UIHandler : MonoBehaviour
+public class UIHandler : MonoBehaviourPunCallbacks
 {
+    [SerializeField]
+    public GameObject startBattleButton, endTurnButton;
+
     public delegate void settingsButtonAction();
     public static event settingsButtonAction SettingsClicked;
 
     public delegate void StartBattleButtonAction();
     public static event StartBattleButtonAction StartClicked;
-
 
     public delegate void GraveyardButtonAction();
     public static event GraveyardButtonAction GraveyardClicked;
@@ -19,6 +22,19 @@ public class UIHandler : MonoBehaviour
 
     public delegate void EndTurnButtonAction();
     public static event EndTurnButtonAction EndTurnClicked;
+
+    private void Awake()
+    {
+        Debug.Log("ui handle awake");
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("im master");
+            startBattleButton.SetActive(true);
+            endTurnButton.SetActive(true);
+        }
+        else
+            Debug.Log("not master??");
+    }
 
     public void SettingsButtonOnClick()
     {
