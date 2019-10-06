@@ -383,8 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnPlayer: {fileID: 0}
-  p1HandSpacePanel: {fileID: 101520841}
-  p2HandSpacePanel: {fileID: 2025430591}
+  turnPlayerGameObject: {fileID: 0}
+  player1GameObject: {fileID: 101520841}
+  player2GameObject: {fileID: 2025430591}
   player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
   player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
 --- !u!114 &381133603

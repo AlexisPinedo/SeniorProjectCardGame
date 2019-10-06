@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -19,14 +20,19 @@ public class Grid : MonoBehaviour
     
     [SerializeField] private int _xValUnits = 1;
     [SerializeField] private int _yValUnits = 1;
+
+    public delegate void _onGridResizeDelegate();
+
+    public _onGridResizeDelegate onGridResize;
     
     public float Size
     {
         get => size;
         set
         {
-            size = Mathf.Clamp(value, 0, 100); 
+            size = Mathf.Clamp(value, 0, 5); 
             ResizeGrid();
+            onGridResize();
         }
     }
     
@@ -71,6 +77,7 @@ public class Grid : MonoBehaviour
     /// </summary>
     private void InitializePlacements()
     {
+        Debug.Log("Initializing Placements");
         float xTotal = Size * _xValUnits;   // Keep as float to allow grid resizing
         int yTotal = (int)Size * _yValUnits;
 
@@ -82,6 +89,7 @@ public class Grid : MonoBehaviour
                 freeLocations.Push(point);
             }
         }
+        Debug.Log("Elementds added to freelocations");
     }
 
     /// <summary>
@@ -134,7 +142,8 @@ public class Grid : MonoBehaviour
     /// <param name="newX"></param>
     public void ResizeGrid()
     {
-        Debug.Log("Resizing grid");
+        Debug.Log("Resizing Grid");
+        InitializePlacements();
     }
 
 }
