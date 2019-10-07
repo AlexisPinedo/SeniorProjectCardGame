@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class CardZoomer : MonoBehaviour
 {
-    private object myGameObject;
-
     public Vector2 OriginalPosition;
 
     private BoxCollider2D cardBoxCollider;
@@ -46,8 +44,6 @@ public class CardZoomer : MonoBehaviour
         else{
             transform.localScale = new Vector3(1, 1, 1);
         }
-        //TODO: Make a conditional statement
-        //where if a card is being dragged, other cards should not zoom when they are touched
     }
 
     public void OnMouseExit()
@@ -63,6 +59,18 @@ public class CardZoomer : MonoBehaviour
             Debug.Log("exit");
             transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
             transform.position = OriginalPosition;
+        }
+    }
+
+    public void OnMouseDown()
+    {
+        //shop card
+        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
+            transform.position = OriginalPosition;
+        }
+        //player card
+        else{
+            transform.localScale = OriginalPosition;
         }
     }
 }
