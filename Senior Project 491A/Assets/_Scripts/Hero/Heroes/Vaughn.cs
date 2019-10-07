@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class Vaughn : CostRequirementHeroe
+public class Vaughn : CostRequirementHero
 {
     protected override void HeroPowerEffect()
     {

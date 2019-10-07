@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CostRequirementHeroe : Hero
+
+public abstract class CostRequirementHero : Hero
 {
     [SerializeField] private int cardEffectRequirementCount = 3;
     [SerializeField] private int cardsSinceLastEffectTrigger = 0;

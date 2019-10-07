@@ -19,6 +19,11 @@ public class UIHandler : MonoBehaviour
     public delegate void EndTurnButtonAction();
     public static event EndTurnButtonAction EndTurnClicked;
 
+    public delegate void _notificationWindowEnabled();
+
+    public static event _notificationWindowEnabled NotificationWindowEnabled;
+    
+
     private static UIHandler _instance;
 
     public static UIHandler Instance
@@ -71,5 +76,7 @@ public class UIHandler : MonoBehaviour
     {
         windowReference.gameObject.SetActive(true);
         NotificationWindow.Instance.DisplayMessage(message);
+        NotificationWindow.Instance.transparentCover.gameObject.SetActive(true);
+        NotificationWindowEnabled?.Invoke();
     }
 }
