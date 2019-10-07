@@ -55,7 +55,8 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
             
             Destroy(cardSelected.gameObject);
 
-            photonView.RPC("RPCHandlePurchase", RpcTarget.Others, cardSelected);
+            if(!PhotonNetworkManager.IsOffline)
+                photonView.RPC("RPCHandlePurchase", RpcTarget.Others, cardSelected);
         }
         else
         {

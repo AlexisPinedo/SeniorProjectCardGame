@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using Photon.Pun;
 /// <summary>
 /// Holds information pertinent to all types of Cards in the game.
 /// </summary>
-public abstract class CardHolder : MonoBehaviour
+public abstract class CardHolder : MonoBehaviourPunCallbacks
 {
     protected const byte LOAD_CARD_EVENT = 1;
 
@@ -19,11 +19,22 @@ public abstract class CardHolder : MonoBehaviour
     [SerializeField] protected TextMeshPro nameText;
     [SerializeField] protected TextMeshPro cardEffectText;
 
-    private BoxCollider2D cardCollider;
+    private bool offline;
 
     protected virtual void Awake()
     {
-        //Debug.Log("CardHolder: Awake()");
+        offline = PhotonNetworkManager.IsOffline;
+
+        Debug.Log(this.nameText + " from CardHolder is owned by " + this.photonView.OwnerActorNr);
+
+        if (!offline && this.photonView.Owner != PhotonNetwork.MasterClient)
+        {
+
+            Debug.Log("From Cardholder.cs, transfering card ownership to Master Client");
+
+            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
+        }
+
         LoadCardIntoContainer();
     }
     
@@ -36,19 +47,11 @@ public abstract class CardHolder : MonoBehaviour
     { 
         //Debug.Log("CardHolder: OnEnable()");
         LoadCardIntoContainer();
-
-        UIHandler.NotificationWindowEnabled += DisableCollider;
-
-        NotificationWindow.NotificatoinWindoClosed += EnableCollider;
     }
 
     protected virtual void OnDisable()
     {
         ClearCardFromContainer();
-        
-        UIHandler.NotificationWindowEnabled -= DisableCollider;
-
-        NotificationWindow.NotificatoinWindoClosed -= EnableCollider;
     }
     
     protected virtual void LoadCardIntoContainer()
@@ -63,24 +66,6 @@ public abstract class CardHolder : MonoBehaviour
 
     protected virtual void OnMouseDown()
     {
-
-    }
-    protected virtual void DisableCollider()
-    {
-        cardCollider = GetComponent<BoxCollider2D>();
-
-        Debug.Log("Disabling card collider");
-        if(cardCollider != null)
-            cardCollider.enabled = false;
-    }
-
-    protected virtual void EnableCollider()
-    {
-        cardCollider = GetComponent<BoxCollider2D>();
-
-        Debug.Log("Enabling card collider");
         
-        if(cardCollider != null)
-            cardCollider.enabled = true; 
     }
 }

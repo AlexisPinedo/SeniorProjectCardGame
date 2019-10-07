@@ -10,21 +10,22 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
     [SerializeField]
     GameObject player1Prefab, player2Prefab, shopPrefab, playZonePrefab, gameCanvasPrefab;
 
-    // Start is called before the first frame update
+    private static bool _offline = true;
+
+    public static bool IsOffline {get { return _offline; }}
+
 
     void Start()
     {
-        //Online Gameplay
-        if (PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnectedAndReady)
         {
-            Debug.Log("Network is connected... instantiating objects");
+            _offline = false;
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.Instantiate(player1Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-                PhotonNetwork.Instantiate(shopPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-                PhotonNetwork.Instantiate(playZonePrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-                PhotonNetwork.Instantiate(gameCanvasPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-
+                PhotonNetwork.InstantiateSceneObject(player1Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                PhotonNetwork.InstantiateSceneObject(shopPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                PhotonNetwork.InstantiateSceneObject(playZonePrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                PhotonNetwork.InstantiateSceneObject(gameCanvasPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
             }
             else
             {
@@ -34,7 +35,6 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
                  */
 
             }
-
             //player2 = GameObject.FindWithTag("Player 2");
             //player2 = GameObject.Find("Player2(Clone)");
             //if (player2 != null)
@@ -42,10 +42,13 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
             //else
             //    Debug.Log("could not find...");
         }
-        //Offline Gameplay
         else
         {
-            Debug.Log("Photon network is offline... offline gameplay mode is stashed.");
+            PhotonNetwork.OfflineMode = true;
+            Instantiate(player1Prefab, new Vector3(0, 0, 0), Quaternion.identity);
+            Instantiate(shopPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            Instantiate(playZonePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            Instantiate(gameCanvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         }
     }
 
