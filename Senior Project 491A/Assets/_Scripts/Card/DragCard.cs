@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
-public class DragCard : MonoBehaviourPunCallbacks
+
+public class DragCard : MonoBehaviour
 {
     private Vector3 offset;
     private Vector3 screenPoint;
+
     public Vector2 OriginalPosition;
 
     public delegate void _ShopCardClicked(PlayerCardHolder cardClicked);
@@ -16,80 +16,45 @@ public class DragCard : MonoBehaviourPunCallbacks
     private void Awake()
     {
         OriginalPosition = this.transform.position;
-
-        if (this.photonView.Owner != PhotonNetwork.MasterClient)
-        {
-            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
-        }
     }
 
     public void OnMouseDown()
     {
-        if (photonView.IsMine)
+        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
-            if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
-            {
-                //Debug.Log("Card is in Shop");
-                PlayerCardHolder cardClicked = this.gameObject.GetComponent<PlayerCardHolder>();
-                ShopCardClicked?.Invoke(cardClicked);
-
-                photonView.RPC("RPCOnMouseDown", RpcTarget.Others, cardClicked);
-            }
-
-            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
-
-            offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
-                         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+            //Debug.Log("Card is in Shop");
+            PlayerCardHolder cardClicked = this.gameObject.GetComponent<PlayerCardHolder>();
+            ShopCardClicked?.Invoke(cardClicked);
         }
+
+        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
+
+        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
+                     new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
 
     public void OnMouseUp()
     {
-        if (photonView.IsMine)
+        if (this.gameObject != null && PlayZone.cardInPlayZone == false)
         {
-            if (this.gameObject != null && PlayZone.cardInPlayZone == false)
-            {
-                this.transform.position = OriginalPosition;
-                photonView.RPC("RPCOnMouseUp", RpcTarget.Others, OriginalPosition);
-            }
+            this.transform.position = OriginalPosition;
         }
     }
 
     public void OnMouseDrag()
     {
-        if (photonView.IsMine)
+        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
-            if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
-            {
-                return;
-            }
-
-            //Debug.Log("Attempting to drag and the object is draggable");
-
-            UnityEngine.Vector2 cursorScreenPoint = new UnityEngine.Vector2(Input.mousePosition.x, Input.mousePosition.y); //stores position of cursor in screen space
-            UnityEngine.Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
-
-            transform.position = cursorPosition; //updates position of game object
-            photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, cursorPosition);
+            return;
         }
-    }
 
-    [PunRPC]
-    private void RPCOnMouseDown(PlayerCardHolder cardClicked)
-    {
-        ShopCardClicked?.Invoke(cardClicked);
-    }
+        //Debug.Log("Attempting to drag and the object is draggable");
 
-    [PunRPC]
-    private void RPCOnMouseUp(Vector2 position)
-    {
-        transform.position = position;
-    }
 
-    [PunRPC]
-    private void RPCOnMouseDrag(Vector2 position)
-    {
-        transform.position = position;
+        UnityEngine.Vector2 cursorScreenPoint = new UnityEngine.Vector2(Input.mousePosition.x, Input.mousePosition.y); //stores position of cursor in screen space
+        UnityEngine.Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
+
+        transform.position = cursorPosition; //updates position of game object        
     }
 }
 

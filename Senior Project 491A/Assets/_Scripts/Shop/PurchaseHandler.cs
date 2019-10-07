@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
-using Photon.Pun;
 
 
-public class PurchaseHandler : MonoBehaviourPunCallbacks
+public class PurchaseHandler : MonoBehaviour
 {
     private static PurchaseHandler _instance;
 
@@ -54,25 +53,13 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
             CardPurchased?.Invoke(cardSelected);
             
             Destroy(cardSelected.gameObject);
-
-            photonView.RPC("RPCHandlePurchase", RpcTarget.Others, cardSelected);
+            
+            
         }
         else
         {
             Debug.Log("Cannot purchase. Not enough currency");
         }
-    }
-
-    [PunRPC]
-    private void RPCHandlePurchase(PlayerCardHolder cardSelected)
-    {
-        TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardSelected.card);
-
-        TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
-
-        CardPurchased?.Invoke(cardSelected);
-
-        Destroy(cardSelected.gameObject);
     }
 }
 

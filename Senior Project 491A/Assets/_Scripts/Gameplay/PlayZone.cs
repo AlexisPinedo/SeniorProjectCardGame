@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using Photon.Pun;
 
-public class PlayZone : MonoBehaviourPunCallbacks
+public class PlayZone : MonoBehaviour
 {
     /* Triggers when a PlayerCard is dragged into the Play Zone */
 
@@ -15,6 +14,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
     {
         get => _instance;
     }
+
 
     public static bool cardInPlayZone = false;
     public static PlayerCardHolder cardInZone;
@@ -37,27 +37,21 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (photonView.IsMine)
+        if (other.transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
-            if (other.transform.parent.gameObject.GetComponent<HandContainer>() == null)
-            {
-                return;
-            }
-
-            //Debug.Log("Card has entered");
-            cardInPlayZone = true;
-            cardInZone = other.gameObject.GetComponent<PlayerCardHolder>();
+            return;
         }
+
+        //Debug.Log("Card has entered");
+        cardInPlayZone = true;
+        cardInZone = other.gameObject.GetComponent<PlayerCardHolder>();
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (photonView.IsMine)
-        {
-            //Debug.Log("Card has left");
-            cardInPlayZone = false;
-            cardInZone = null;
-        }
+        //Debug.Log("Card has left");
+        cardInPlayZone = false;
+        cardInZone = null;
     }
 
     private void Update()
@@ -69,35 +63,29 @@ public class PlayZone : MonoBehaviourPunCallbacks
         }
     }
 
+
     private void HandleCardPlayed()
     {
         //Debug.Log(col.gameObject.name + " has entered the scene");
+
         // Card stuff
-        if (photonView.IsMine)
+        Hand tpHand = TurnManager.Instance.turnPlayer.hand;
+        PlayerCardHolder cardHolder = cardInZone;
+        PlayerCard cardPlayed = cardHolder.card;
+        TurnManager.Instance.turnPlayer.Power += cardPlayed.CardAttack;
+        TurnManager.Instance.turnPlayer.Currency += cardPlayed.CardCurrency;
+
+        if (!cardPlayed.CardName.Equals("Phantom"))
         {
-            Hand tpHand = TurnManager.Instance.turnPlayer.hand;
-            PlayerCardHolder cardHolder = cardInZone;
-            PlayerCard cardPlayed = cardHolder.card;
-            TurnManager.Instance.turnPlayer.Power += cardPlayed.CardAttack;
-            TurnManager.Instance.turnPlayer.Currency += cardPlayed.CardCurrency;
-
-            if (!cardPlayed.CardName.Equals("Phantom"))
-            {
-                tpHand.hand.Remove(cardPlayed);
-                TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardPlayed);
-            }
-
-            CardPlayed?.Invoke(cardPlayed);
-
-            GameObject.Destroy(cardInZone.gameObject);
-            cardInPlayZone = false;
-            cardInZone = null;
+            tpHand.hand.Remove(cardPlayed);
+            TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardPlayed);
         }
-        else
-        {
-            GameObject.Destroy(cardInZone.gameObject);
-            cardInPlayZone = false;
-            cardInZone = null;
-        }
+
+        CardPlayed?.Invoke(cardPlayed);
+
+        GameObject.Destroy(cardInZone.gameObject);
+
+        cardInPlayZone = false;
+        cardInZone = null;
     }
 }

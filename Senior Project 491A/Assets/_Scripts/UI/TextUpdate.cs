@@ -37,9 +37,16 @@ public class TextUpdate : MonoBehaviourPunCallbacks
         UpdatePower();
         UpdateCurrency();
 
-        if (!photonView.IsMine)
+        if (PhotonNetwork.MasterClient.NickName != null)
         {
-            player1NickName.text = "Waiting for turn...";
+            player1NickName.text = "Current turn: " + PhotonNetwork.MasterClient.NickName;
+        }
+        foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+        {
+            if (playerInfo.Value.NickName != PhotonNetwork.MasterClient.NickName)
+            {
+                player2NickName.text = "Waiting for turn: " + playerInfo.Value.NickName;
+            }
         }
     }
 
@@ -47,7 +54,6 @@ public class TextUpdate : MonoBehaviourPunCallbacks
     {
         Player.PowerUpdated += UpdatePower;
         Player.CurrencyUpdated += UpdateCurrency;
-        
     }
 
     private void OnDisable()
@@ -58,46 +64,11 @@ public class TextUpdate : MonoBehaviourPunCallbacks
 
     public void UpdatePower()
     {
-        if (photonView.IsMine)
-        {
-            playerPower.text = "Power: " + TurnManager.Instance.turnPlayer.Power;
-            photonView.RPC("RPCUpdatePower", RpcTarget.All, TurnManager.Instance.turnPlayer.Power);
-        }
+        playerPower.text = "Power: " + TurnManager.Instance.turnPlayer.Power;
     }
 
     public void UpdateCurrency()
     {
-        if (photonView.IsMine)
-        {
-            playerCurrency.text = "Currency: " + TurnManager.Instance.turnPlayer.Currency;
-            photonView.RPC("RPCUpdateCurrency", RpcTarget.All, TurnManager.Instance.turnPlayer.Currency);
-        }
+        playerCurrency.text = "Currency: " + TurnManager.Instance.turnPlayer.Currency;
     }
-
-    [PunRPC]
-    private void RPCUpdatePower(int power)
-    {
-        playerPower.text = "Power: " + power;
-    }
-
-    [PunRPC]
-    private void RPCUpdateCurrency(int currency)
-    {
-        playerCurrency.text = "Currency " + currency;
-    }
-
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if (stream.IsWriting)
-    //    {
-    //        stream.SendNext(TurnManager.Instance.turnPlayer.Power);
-    //        stream.SendNext(TurnManager.Instance.turnPlayer.Currency);
-    //    }
-    //    if (stream.IsReading)
-    //    {
-    //        playerPower.text = (string)stream.ReceiveNext();
-    //        playerCurrency.text = (string)stream.ReceiveNext();
-    //    }
-    //}
-
 }
