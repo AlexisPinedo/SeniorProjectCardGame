@@ -66,7 +66,6 @@ public class PlayZone : MonoBehaviour
         }
     }
 
-
     private void HandleCardPlayed()
     {
         //Debug.Log(col.gameObject.name + " has entered the scene");

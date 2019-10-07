@@ -48,18 +48,9 @@ public class CardZoomer : MonoBehaviour
 
     public void OnMouseExit()
     {
-        //shop card
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
-            Debug.Log("exit");
-            transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
-            transform.position = OriginalPosition;
-        }
-        //player card
-        else{
-            Debug.Log("exit");
-            transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
-            transform.position = OriginalPosition;
-        }
+        Debug.Log("exit");
+        transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
+        transform.position = OriginalPosition;
     }
 
     public void OnMouseDown()
