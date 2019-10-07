@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class CardZoomer : MonoBehaviourPunCallbacks, IPunObservable
+public class CardZoomer : MonoBehaviourPunCallbacks
 {
     private object myGameObject;
 
@@ -21,6 +21,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks, IPunObservable
         {
             //Debug.Log("enter");
             transform.localScale += new Vector3(1.5F, 1.5F, 1.5F); //zooms in the object
+            photonView.RPC("RPCOnMouseEnter", RpcTarget.Others, transform.localScale);
         }
     }
 
@@ -29,6 +30,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, transform.localScale);
         }
     }
 
@@ -38,6 +40,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks, IPunObservable
         {
             //Debug.Log("exit");
             transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
+            photonView.RPC("RPCOnMouseExit", RpcTarget.Others, transform.localScale);
         }
     }
 
@@ -51,5 +54,23 @@ public class CardZoomer : MonoBehaviourPunCallbacks, IPunObservable
         {
             transform.localScale = (Vector3)stream.ReceiveNext();
         }
+    }
+
+    [PunRPC]
+    private void RPCOnMouseEnter(Vector3 position)
+    {
+        transform.localScale = position;
+    }
+
+    [PunRPC]
+    private void RPCOnMouseDrag(Vector3 position)
+    {
+        transform.localScale = position;
+    }
+
+    [PunRPC]
+    private void RPCOnMouseExit(Vector3 position)
+    {
+        transform.localScale = position;
     }
 }

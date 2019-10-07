@@ -10,8 +10,6 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
     [SerializeField]
     GameObject player1Prefab, player2Prefab, shopPrefab, playZonePrefab, gameCanvasPrefab;
 
-    GameObject player1, player2, shop, playZone, gameCanvas;
-
     // Start is called before the first frame update
 
     void Start()
@@ -19,23 +17,42 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
         //Online Gameplay
         if (PhotonNetwork.IsConnected)
         {
+            Debug.Log("Network is connected... instantiating objects");
             if (PhotonNetwork.IsMasterClient)
             {
-                player1 = PhotonNetwork.Instantiate(player1Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-                shop = PhotonNetwork.Instantiate(shopPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-                playZone = PhotonNetwork.Instantiate(playZonePrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-                gameCanvas = PhotonNetwork.Instantiate(gameCanvasPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                PhotonNetwork.Instantiate(player1Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                PhotonNetwork.Instantiate(shopPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                PhotonNetwork.Instantiate(playZonePrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                PhotonNetwork.Instantiate(gameCanvasPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+
             }
             else
             {
-                //player2 = PhotonNetwork.Instantiate(player2Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-                //player2.SetActive(false);
+                /**
+                 *  TODO: Fix on photon instantiation to manipulate instantiated objects from different clients.
+                 *  PhotonNetwork.Instantiate(player2Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
+                 */
+
             }
+
+            //player2 = GameObject.FindWithTag("Player 2");
+            //player2 = GameObject.Find("Player2(Clone)");
+            //if (player2 != null)
+            //    player2.SetActive(false);
+            //else
+            //    Debug.Log("could not find...");
         }
         //Offline Gameplay
         else
         {
-            Debug.Log("photon network is offline... offline gameplay mode is stashed.");
+            Debug.Log("Photon network is offline... offline gameplay mode is stashed.");
         }
     }
+
+    void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        Debug.Log("tagging object...");
+        info.Sender.TagObject = this.gameObject;
+    }
+
 }

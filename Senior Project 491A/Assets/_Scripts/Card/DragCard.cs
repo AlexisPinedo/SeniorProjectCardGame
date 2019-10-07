@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-public class DragCard : MonoBehaviourPunCallbacks, IPunObservable
+public class DragCard : MonoBehaviourPunCallbacks
 {
     private Vector3 offset;
     private Vector3 screenPoint;
@@ -19,7 +19,6 @@ public class DragCard : MonoBehaviourPunCallbacks, IPunObservable
 
         if (this.photonView.Owner != PhotonNetwork.MasterClient)
         {
-            Debug.Log("switching card ownership...");
             this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
         }
     }
@@ -33,6 +32,8 @@ public class DragCard : MonoBehaviourPunCallbacks, IPunObservable
                 //Debug.Log("Card is in Shop");
                 PlayerCardHolder cardClicked = this.gameObject.GetComponent<PlayerCardHolder>();
                 ShopCardClicked?.Invoke(cardClicked);
+
+                photonView.RPC("RPCOnMouseDown", RpcTarget.Others, cardClicked);
             }
 
             screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
@@ -49,6 +50,7 @@ public class DragCard : MonoBehaviourPunCallbacks, IPunObservable
             if (this.gameObject != null && PlayZone.cardInPlayZone == false)
             {
                 this.transform.position = OriginalPosition;
+                photonView.RPC("RPCOnMouseUp", RpcTarget.Others, OriginalPosition);
             }
         }
     }
@@ -67,20 +69,27 @@ public class DragCard : MonoBehaviourPunCallbacks, IPunObservable
             UnityEngine.Vector2 cursorScreenPoint = new UnityEngine.Vector2(Input.mousePosition.x, Input.mousePosition.y); //stores position of cursor in screen space
             UnityEngine.Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
 
-            transform.position = cursorPosition; //updates position of game object    
+            transform.position = cursorPosition; //updates position of game object
+            photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, cursorPosition);
         }
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    [PunRPC]
+    private void RPCOnMouseDown(PlayerCardHolder cardClicked)
     {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(this.transform.position);
-        }
-        if (stream.IsReading)
-        {
-            this.transform.position = (Vector3)stream.ReceiveNext();
-        }
+        ShopCardClicked?.Invoke(cardClicked);
+    }
+
+    [PunRPC]
+    private void RPCOnMouseUp(Vector2 position)
+    {
+        transform.position = position;
+    }
+
+    [PunRPC]
+    private void RPCOnMouseDrag(Vector2 position)
+    {
+        transform.position = position;
     }
 }
 

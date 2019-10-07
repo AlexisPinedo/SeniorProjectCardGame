@@ -6,7 +6,7 @@ using Photon.Pun;
 public class UIHandler : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    public GameObject startBattleButton, endTurnButton;
+    public GameObject canvas, startBattleButton, endTurnButton;
 
     public delegate void settingsButtonAction();
     public static event settingsButtonAction SettingsClicked;
@@ -25,15 +25,16 @@ public class UIHandler : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        Debug.Log("ui handle awake");
-        if (PhotonNetwork.IsMasterClient)
+        if (photonView.IsMine)
         {
-            Debug.Log("im master");
             startBattleButton.SetActive(true);
             endTurnButton.SetActive(true);
         }
         else
-            Debug.Log("not master??");
+        {
+            startBattleButton.SetActive(false);
+            endTurnButton.SetActive(false);
+        }
     }
 
     public void SettingsButtonOnClick()
