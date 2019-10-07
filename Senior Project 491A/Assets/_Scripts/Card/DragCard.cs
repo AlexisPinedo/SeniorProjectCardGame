@@ -39,6 +39,12 @@ public class DragCard : MonoBehaviour
         {
             this.transform.position = OriginalPosition;
         }
+        else
+        {
+            PlayZone.Instance.HandleCardPlayed();
+        }
+
+
     }
 
     public void OnMouseDrag()
