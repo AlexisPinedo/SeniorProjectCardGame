@@ -52,13 +52,13 @@ public class UIHandler : MonoBehaviourPunCallbacks
         
         if (photonView.IsMine)
         {
-            startBattleButton.SetActive(true);
-            endTurnButton.SetActive(true);
+            //startBattleButton.SetActive(true);
+            //endTurnButton.SetActive(true);
         }
         else
         {
-            startBattleButton.SetActive(true);
-            endTurnButton.SetActive(true);
+            //startBattleButton.SetActive(true);
+            //endTurnButton.SetActive(true);
         }
 
 
