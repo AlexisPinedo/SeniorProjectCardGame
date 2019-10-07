@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable()]
 public abstract class PrefillableDeck : Deck
 {
     
@@ -17,8 +19,8 @@ public abstract class PrefillableDeck : Deck
                  cardsInDeck.Push(card);
              }
          }
-         
-         Shuffle();
+         if(RandomNumberNetworkGenerator.Instance != null)
+            Shuffle();
          //Debug.Log("cards added");
      }
  }

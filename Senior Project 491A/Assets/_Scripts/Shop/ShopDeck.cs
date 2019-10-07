@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Deck/Shop Deck")]
@@ -30,7 +32,13 @@ public class ShopDeck : PrefillableDeck
                 
             }
         }
-        Shuffle();
+        if (RandomNumberNetworkGenerator.Instance != null)
+        {
+            Debug.Log("trying to shuffle deck");
+            Shuffle();
+        }
+        else
+            Debug.Log("attempted to shuffle but still waiting for instance of random value...");
     }
 
     private void OnDisable()
@@ -51,5 +59,15 @@ public class ShopDeck : PrefillableDeck
         Shuffle();
 
         History.CardHistoryComponentsUpdated -= AddCardsLaterInGame;
+    }
+
+    public void OnBeforeSerialize()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnAfterDeserialize()
+    {
+        throw new NotImplementedException();
     }
 }

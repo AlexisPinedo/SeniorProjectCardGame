@@ -1,17 +1,44 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 using UnityEngine;
+
+//using UnityEditorInternal;
 
 /// <summary>
 /// The container object for the Shop, which itself can contain PlayerCardContainers.
 /// </summary>
 public class ShopContainer : PlayerCardContainer
 {
+    private static ShopContainer _instance;
+
+    // Singleton pattern
+    public static ShopContainer Instance
+    {
+        get { return _instance; }
+    }
     public ShopDeck shopDeck;
-    
-    //[SerializeField]
-    //public PlayerCardHolder playerCardContainer;
+
+
+    public delegate void _cardDrawnLocationCreated(PlayerCardHolder cardDrawn, Vector3 freeSpot);
+
+    public static event _cardDrawnLocationCreated CardDrawnLocationCreated;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            //Debug.Log("\tDestroying ShopContainer");
+            Destroy(this);
+        }
+        else
+        {
+            //Debug.Log("\tShopContainer Instance = this");
+            _instance = this;
+        }
+    }
 
     /// <summary>
     /// Maximum number of cards in the shop at any given time.
@@ -27,11 +54,13 @@ public class ShopContainer : PlayerCardContainer
     private void OnEnable()
     {
         PurchaseHandler.CardPurchased += DisplayNewCard;
+        
     }
-    
+
     private void OnDisable()
     {
         PurchaseHandler.CardPurchased -= DisplayNewCard;
+        
     }
 
     /// <summary>
@@ -51,6 +80,7 @@ public class ShopContainer : PlayerCardContainer
 
             // Draw a Card from the ShopDeck
         }
+
     }
 
     private void HandleDisplayOfACard()
@@ -63,9 +93,11 @@ public class ShopContainer : PlayerCardContainer
 
         PlayerCardHolder cardHolder = Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         cardHolder.enabled = true;
-        
-        Vector3 freeSpot = cardHolder.gameObject.transform.position;
 
+        Vector3 freeSpot = cardHolder.gameObject.transform.position;
+        
+        CardDrawnLocationCreated?.Invoke(cardHolder, freeSpot);
+        
         if (!containerGrid.cardLocationReference.ContainsKey(freeSpot))
             containerGrid.cardLocationReference.Add(freeSpot, cardHolder);
         else
@@ -75,9 +107,8 @@ public class ShopContainer : PlayerCardContainer
     private void DisplayNewCard(PlayerCardHolder cardBought)
     {
         Vector3 freeSpot = cardBought.gameObject.transform.position;
-        
+
         containerGrid.freeLocations.Push(freeSpot);
         HandleDisplayOfACard();
-        
     }
 }

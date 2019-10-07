@@ -29,8 +29,6 @@ public class BattleManager : MonoBehaviour
         UIHandler.EndTurnClicked -= EndBattleState;
         MinionCardHolder.MinionCardClicked -= CalculateBattleOutcome;
         BossCardHolder.BossCardClicked -= CalculateBossBattleOutcome;
-
-
     }
 
     private void CalculateBattleOutcome(MinionCardHolder cardClicked)
@@ -104,6 +102,4 @@ public class BattleManager : MonoBehaviour
         PurchaseHandler.Instance.gameObject.transform.position -= new Vector3(0f, 20f, 0f);
 
     }
-    
-    
 }

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,7 +15,7 @@ public class Deck : ScriptableObject
     /// The deck of cards represented in Stack form.
     /// </summary>
     [SerializeField] public Stack<Card> cardsInDeck = new Stack<Card>();
-    
+
     protected virtual void Awake()
     {
         cardsInDeck.Clear();
@@ -22,7 +24,10 @@ public class Deck : ScriptableObject
 
     public void Shuffle()
     {
-        System.Random random = new System.Random();
+        System.Random random = new System.Random(RandomNumberNetworkGenerator.Instance.randomNumber);
+
+        Debug.Log("Shuffling with new seed: " + random);
+
         var deckList = cardsInDeck.ToArray();
         int n = deckList.Length;
         while (n > 1)

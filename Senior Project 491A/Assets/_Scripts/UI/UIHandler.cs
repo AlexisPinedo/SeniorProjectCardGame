@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class UIHandler : MonoBehaviour
+public class UIHandler : MonoBehaviourPunCallbacks
 {
+    [SerializeField]
+    public GameObject canvas, startBattleButton, endTurnButton;
+
     public delegate void settingsButtonAction();
     public static event settingsButtonAction SettingsClicked;
 
     public delegate void StartBattleButtonAction();
     public static event StartBattleButtonAction StartClicked;
-    
+
     public delegate void GraveyardButtonAction();
     public static event GraveyardButtonAction GraveyardClicked;
 
@@ -19,32 +23,19 @@ public class UIHandler : MonoBehaviour
     public delegate void EndTurnButtonAction();
     public static event EndTurnButtonAction EndTurnClicked;
 
-    public delegate void _notificationWindowEnabled();
-
-    public static event _notificationWindowEnabled NotificationWindowEnabled;
-    
-
-    private static UIHandler _instance;
-
-    public static UIHandler Instance
+    private void Awake()
     {
-        get { return _instance; }
-    }
-    
-    void Awake()
-    {
-        if (_instance != null && _instance != this)
+        if (photonView.IsMine)
         {
-            Destroy(this.gameObject);
+            startBattleButton.SetActive(true);
+            endTurnButton.SetActive(true);
         }
         else
         {
-            _instance = this;
+            startBattleButton.SetActive(false);
+            endTurnButton.SetActive(false);
         }
     }
-
-    [SerializeField]
-    private NotificationWindow windowReference;
 
     public void SettingsButtonOnClick()
     {
@@ -72,11 +63,4 @@ public class UIHandler : MonoBehaviour
         EndTurnClicked?.Invoke();
     }
 
-    public void EnableNotificationWindow(string message)
-    {
-        windowReference.gameObject.SetActive(true);
-        NotificationWindow.Instance.DisplayMessage(message);
-        NotificationWindow.Instance.transparentCover.gameObject.SetActive(true);
-        NotificationWindowEnabled?.Invoke();
-    }
 }

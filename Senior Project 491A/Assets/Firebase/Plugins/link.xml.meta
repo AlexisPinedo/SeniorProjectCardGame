@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 30f4d0eb77704ba68bf8dede64390643
+guid: 5bc1871406765e04eb6abc5a899e61b0
 labels:
 - gvh
 - gvh_rename_to_disable
@@ -12,7 +12,7 @@ labels:
 - gvh_targets-windows
 - gvh_targets-windows64
 - gvh_version-6.4.0
-TextScriptImporter:
+DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 

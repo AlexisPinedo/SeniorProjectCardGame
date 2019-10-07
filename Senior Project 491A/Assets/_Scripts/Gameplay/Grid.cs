@@ -68,7 +68,7 @@ public class Grid : MonoBehaviour
         }
         else
         {
-            // Debug.Log("Size Cannot be less then 1");
+            // Size cannot be less than 1
         }
     }
 
@@ -131,7 +131,7 @@ public class Grid : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Size Cannot be less then 1");
+            // Size cannot be less than 1
         }
     }
 

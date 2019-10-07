@@ -17,10 +17,10 @@ public class HandContainer : PlayerCardContainer
 
     [SerializeField] private int DefaultHandSize = 5;
 
-//    private void Awake()
-//    {
-//        InitialCardDisplay();
-//    }
+    private void Awake()
+    {
+        InitialCardDisplay();
+    }
 
     private void OnEnable()
     {
