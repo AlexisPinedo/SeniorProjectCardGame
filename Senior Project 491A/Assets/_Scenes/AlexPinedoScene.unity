@@ -1826,7 +1826,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d42a31713ed45a4d94dc764e6da1b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windowReference: {fileID: 0}
+  canvas: {fileID: 0}
+  startBattleButton: {fileID: 0}
+  endTurnButton: {fileID: 0}
+  windowReference: {fileID: 1825280831}
 --- !u!114 &815000617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1841,6 +1844,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPower: {fileID: 1014222953}
   playerCurrency: {fileID: 1694429697}
+  player1NickName: {fileID: 0}
+  player2NickName: {fileID: 0}
 --- !u!114 &815000618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3822,6 +3827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924753338f68a824786e44cd314e2b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transparentCover: {fileID: 0}
 --- !u!1 &1948916661
 GameObject:
   m_ObjectHideFlags: 0
