@@ -13,7 +13,7 @@ public abstract class Container : MonoBehaviour
     /// The grid where the Cards in this Container are shown.
     /// </summary>
     [Tooltip("The grid where the Cards are shown")]
-    public Grid containerGrid;
+    public  Grid containerGrid;
     
     /// <summary>
     /// Initializes card placements on the Container's grid.

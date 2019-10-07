@@ -24,7 +24,7 @@ public class CardEffectEvaluationManager : MonoBehaviour
 
         if (costCount == 0)
         {
-            Debug.Log("No cost needed");
+            //Debug.Log("No cost needed");
             if(cardToEvaluate.CardEffect != null)
                 cardToEvaluate.CardEffect.LaunchCardEffect();
             return;
@@ -32,7 +32,7 @@ public class CardEffectEvaluationManager : MonoBehaviour
 
         if (History.Instance.PlayerCardHistory.Count < costCount)
         {
-            Debug.Log("History not big enough requirement not met");
+            //Debug.Log("History not big enough requirement not met");
             return;
         } 
         
@@ -48,21 +48,21 @@ public class CardEffectEvaluationManager : MonoBehaviour
             {
                 if (cardInHistory.CardType == CardType.CardTypes.All)
                 {
-                    Debug.Log("the card in history was type any so it is equal ");
+                    //Debug.Log("the card in history was type any so it is equal ");
                 }
                 else if (typeToCompareAgainst == CardType.CardTypes.All)
                 {
-                    Debug.Log("The card requirement was any card to be played. The condition is met.");
+                    //Debug.Log("The card requirement was any card to be played. The condition is met.");
                 }
                 else
                 {
-                    Debug.Log("Requirement not met history is big enough");
+                    //Debug.Log("Requirement not met history is big enough");
                     return;
                 }
             }
         }
         
-        Debug.Log("Cost has been met");
+        //Debug.Log("Cost has been met");
         if(cardToEvaluate.CardEffect != null)
             cardToEvaluate.CardEffect.LaunchCardEffect();
     }
