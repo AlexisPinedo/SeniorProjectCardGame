@@ -20,14 +20,14 @@ public class CardZoomer : MonoBehaviour
         //cardcollider.size & cardcollider.offset
         //shop card
         if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
-            Debug.Log("enter");
+            //Debug.Log("enter");
             transform.localScale += new Vector3(0.5F, 0.5F, 0.5F); //zooms in the object
             Vector3 newPosition = new Vector3(0, -1, 0);
             transform.position += newPosition;
         }
         //player card
         else{
-            Debug.Log("enter");
+            //Debug.Log("enter");
             transform.localScale += new Vector3(0.5F, 0.5F, 0.5F); //zooms in the object
             Vector3 newPosition = new Vector3(0, 1, 0);
             transform.position += newPosition;
@@ -48,20 +48,21 @@ public class CardZoomer : MonoBehaviour
 
     public void OnMouseExit()
     {
-        Debug.Log("exit");
+        //shop card
+        //Debug.Log("exit");
         transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
         transform.position = OriginalPosition;
     }
 
-    public void OnMouseDown()
-    {
-        //shop card
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
-            transform.position = OriginalPosition;
-        }
-        //player card
-        else{
-            transform.localScale = OriginalPosition;
-        }
-    }
+//    public void OnMouseDown()
+//    {
+//        //shop card
+//        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
+//            transform.position = OriginalPosition;
+//        }
+//        //player card
+//        else{
+//            transform.localScale = OriginalPosition;
+//        }
+//    }
 }

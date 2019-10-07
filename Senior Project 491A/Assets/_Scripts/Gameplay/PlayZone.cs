@@ -1,4 +1,4 @@
-﻿using System;
+﻿eusing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -42,9 +42,6 @@ public class PlayZone : MonoBehaviour
             return;
         }
         
-        if(!Input.GetMouseButtonDown(0))
-            return;
-
         //Debug.Log("Card has entered");
         cardInPlayZone = true;
         cardInZone = other.gameObject.GetComponent<PlayerCardHolder>();
@@ -57,16 +54,8 @@ public class PlayZone : MonoBehaviour
         cardInZone = null;
     }
 
-    private void Update()
-    {
-        if (cardInPlayZone)
-        {
-            if(!Input.GetMouseButton(0))
-                HandleCardPlayed();
-        }
-    }
-
-    private void HandleCardPlayed()
+    
+    public void HandleCardPlayed()
     {
         //Debug.Log(col.gameObject.name + " has entered the scene");
 
