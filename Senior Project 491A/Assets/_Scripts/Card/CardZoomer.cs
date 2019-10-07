@@ -8,27 +8,30 @@ public class CardZoomer : MonoBehaviour
     private object myGameObject;
 
     public Vector2 OriginalPosition;
-    
+
+    private BoxCollider2D cardBoxCollider;
 
     private void Awake()
     {
         OriginalPosition = this.transform.position;
+        cardBoxCollider = GetComponent<BoxCollider2D>();
     }
 
     public void OnMouseEnter()
     {
+        //cardcollider.size & cardcollider.offset
         //shop card
         if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
             Debug.Log("enter");
             transform.localScale += new Vector3(0.5F, 0.5F, 0.5F); //zooms in the object
-            Vector3 newPosition = new Vector3(0, -1.5F, 0);
+            Vector3 newPosition = new Vector3(0, -1, 0);
             transform.position += newPosition;
         }
         //player card
         else{
             Debug.Log("enter");
             transform.localScale += new Vector3(0.5F, 0.5F, 0.5F); //zooms in the object
-            Vector3 newPosition = new Vector3(0, 1.5f, 0);
+            Vector3 newPosition = new Vector3(0, 1, 0);
             transform.position += newPosition;
         }
     }
