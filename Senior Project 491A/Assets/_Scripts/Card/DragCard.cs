@@ -13,19 +13,28 @@ public class DragCard : MonoBehaviourPunCallbacks
 
     public static event _ShopCardClicked ShopCardClicked;
 
+    private bool offline;
+
     private void Awake()
     {
         OriginalPosition = this.transform.position;
+        offline = PhotonNetworkManager.IsOffline;
+        Debug.Log(this.name + " from DragCard is owned by " + this.photonView.OwnerActorNr);
 
-        if (this.photonView.Owner != PhotonNetwork.MasterClient)
+
+        if (!offline)
         {
-            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
+            if (this.photonView.Owner != PhotonNetwork.MasterClient)
+            {
+                Debug.Log("From DragCard.cs, transfering card ownership to Master Client");
+                this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
+            }
         }
     }
 
     public void OnMouseDown()
     {
-        if (photonView.IsMine)
+        if (offline || photonView.IsMine)
         {
             if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
             {
@@ -33,7 +42,8 @@ public class DragCard : MonoBehaviourPunCallbacks
                 PlayerCardHolder cardClicked = this.gameObject.GetComponent<PlayerCardHolder>();
                 ShopCardClicked?.Invoke(cardClicked);
 
-                photonView.RPC("RPCOnMouseDown", RpcTarget.Others, cardClicked);
+                if(!offline)
+                    photonView.RPC("RPCOnMouseDown", RpcTarget.Others, cardClicked);
             }
 
             screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
@@ -45,19 +55,20 @@ public class DragCard : MonoBehaviourPunCallbacks
 
     public void OnMouseUp()
     {
-        if (photonView.IsMine)
+        if (offline || photonView.IsMine)
         {
             if (this.gameObject != null && PlayZone.cardInPlayZone == false)
             {
                 this.transform.position = OriginalPosition;
-                photonView.RPC("RPCOnMouseUp", RpcTarget.Others, OriginalPosition);
+                if (!offline)
+                    photonView.RPC("RPCOnMouseUp", RpcTarget.Others, OriginalPosition);
             }
         }
     }
 
     public void OnMouseDrag()
     {
-        if (photonView.IsMine)
+        if (offline || photonView.IsMine)
         {
             if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
             {
@@ -70,7 +81,8 @@ public class DragCard : MonoBehaviourPunCallbacks
             UnityEngine.Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
 
             transform.position = cursorPosition; //updates position of game object
-            photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, cursorPosition);
+            if (!offline)
+                photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, cursorPosition);
         }
     }
 

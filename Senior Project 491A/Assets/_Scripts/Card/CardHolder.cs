@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using Photon.Pun;
 /// <summary>
 /// Holds information pertinent to all types of Cards in the game.
 /// </summary>
-public abstract class CardHolder : MonoBehaviour
+public abstract class CardHolder : MonoBehaviourPunCallbacks
 {
     protected const byte LOAD_CARD_EVENT = 1;
 
@@ -19,9 +19,22 @@ public abstract class CardHolder : MonoBehaviour
     [SerializeField] protected TextMeshPro nameText;
     [SerializeField] protected TextMeshPro cardEffectText;
 
+    private bool offline;
+
     protected virtual void Awake()
     {
-        //Debug.Log("CardHolder: Awake()");
+        offline = PhotonNetworkManager.IsOffline;
+
+        Debug.Log(this.nameText + " from CardHolder is owned by " + this.photonView.OwnerActorNr);
+
+        if (!offline && this.photonView.Owner != PhotonNetwork.MasterClient)
+        {
+
+            Debug.Log("From Cardholder.cs, transfering card ownership to Master Client");
+
+            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
+        }
+
         LoadCardIntoContainer();
     }
     

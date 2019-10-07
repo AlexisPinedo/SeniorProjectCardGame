@@ -17,16 +17,18 @@ public class DrawCard : MonoBehaviourPunCallbacks
     /* Spawn point for car */
     private Vector2 spot = new Vector2();
 
+    private bool offline;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        offline = PhotonNetworkManager.IsOffline;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
+        if (offline || photonView.IsMine)
         {
             // Check if the player has pressed the "draw" button
             if (Input.GetKeyDown("space"))
@@ -43,7 +45,8 @@ public class DrawCard : MonoBehaviourPunCallbacks
 
                 // Remove card from deck
                 deck.RemoveAt(0);
-                photonView.RPC("RPCDrawCard", RpcTarget.Others, spawnPoint);
+                if (!offline)
+                    photonView.RPC("RPCDrawCard", RpcTarget.Others, spawnPoint);
             }
         }
 

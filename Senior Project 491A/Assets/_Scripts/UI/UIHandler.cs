@@ -25,21 +25,21 @@ public class UIHandler : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        if (photonView.IsMine)
+        startBattleButton.SetActive(true);
+        endTurnButton.SetActive(true);
+
+        if (!PhotonNetworkManager.IsOffline)
         {
-            startBattleButton.SetActive(true);
-            endTurnButton.SetActive(true);
-        }
-        else
-        {
-            startBattleButton.SetActive(false);
-            endTurnButton.SetActive(false);
+            if (!photonView.IsMine)
+            {
+                startBattleButton.SetActive(false);
+                endTurnButton.SetActive(false);
+            }
         }
     }
 
     public void SettingsButtonOnClick()
     {
-        //Debug.Log("clicked");
         SettingsClicked?.Invoke();
     }
 

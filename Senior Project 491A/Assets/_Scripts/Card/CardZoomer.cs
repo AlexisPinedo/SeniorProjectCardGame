@@ -10,14 +10,18 @@ public class CardZoomer : MonoBehaviourPunCallbacks
 
     public Vector2 OriginalPosition;
 
+    private bool offline;
+
     private void Awake()
     {
         OriginalPosition = this.transform.position;
+        offline = PhotonNetworkManager.IsOffline;
+
     }
 
     public void OnMouseEnter()
     {
-        if (photonView.IsMine)
+        if (offline || photonView.IsMine)
         {
             //Debug.Log("enter");
             transform.localScale += new Vector3(1.5F, 1.5F, 1.5F); //zooms in the object
@@ -27,7 +31,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
 
     private void OnMouseDrag()
     {
-        if (photonView.IsMine)
+        if (offline || photonView.IsMine)
         {
             transform.localScale = new Vector3(1, 1, 1);
             photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, transform.localScale);
@@ -36,23 +40,11 @@ public class CardZoomer : MonoBehaviourPunCallbacks
 
     public void OnMouseExit()
     {
-        if (photonView.IsMine)
+        if (offline || photonView.IsMine)
         {
             //Debug.Log("exit");
             transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
             photonView.RPC("RPCOnMouseExit", RpcTarget.Others, transform.localScale);
-        }
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(transform.localScale);
-        }
-        if (stream.IsReading)
-        {
-            transform.localScale = (Vector3)stream.ReceiveNext();
         }
     }
 
