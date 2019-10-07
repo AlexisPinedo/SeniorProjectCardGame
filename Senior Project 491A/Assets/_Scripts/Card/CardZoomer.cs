@@ -54,15 +54,15 @@ public class CardZoomer : MonoBehaviour
         transform.position = OriginalPosition;
     }
 
-//    public void OnMouseDown()
-//    {
-//        //shop card
-//        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
-//            transform.position = OriginalPosition;
-//        }
-//        //player card
-//        else{
-//            transform.localScale = OriginalPosition;
-//        }
-//    }
+    public void OnMouseDown()
+    {
+        //shop card
+        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
+            transform.position = OriginalPosition;
+        }
+        //player card
+        else{
+            transform.localScale = OriginalPosition;
+        }
+    }
 }

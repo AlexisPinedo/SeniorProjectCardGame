@@ -16,7 +16,6 @@ public class TextUpdate : MonoBehaviour
     {
         get => _instance;
     }
-    
     private void Awake()
     {
         if (_instance != null && _instance != this)
