@@ -20,6 +20,8 @@ public abstract class CardHolder : MonoBehaviourPun
     [SerializeField] protected TextMeshPro nameText;
     [SerializeField] protected TextMeshPro cardEffectText;
 
+    private BoxCollider2D cardCollider;
+
     protected virtual void Awake()
     {
         //Debug.Log("CardHolder: Awake()");
@@ -35,12 +37,20 @@ public abstract class CardHolder : MonoBehaviourPun
     { 
         //Debug.Log("CardHolder: OnEnable()");
         LoadCardIntoContainer();
+
+        UIHandler.NotificationWindowEnabled += DisableCollider;
+
+        NotificationWindow.NotificatoinWindoClosed += EnableCollider;
     }
 
     protected virtual void OnDisable()
     {
         // Debug.Log("card had been enabled ");
         ClearCardFromContainer();
+        
+        UIHandler.NotificationWindowEnabled -= DisableCollider;
+
+        NotificationWindow.NotificatoinWindoClosed -= EnableCollider;
     }
     
     protected virtual void LoadCardIntoContainer()
@@ -55,6 +65,24 @@ public abstract class CardHolder : MonoBehaviourPun
 
     protected virtual void OnMouseDown()
     {
+
+    }
+    protected virtual void DisableCollider()
+    {
+        cardCollider = GetComponent<BoxCollider2D>();
+
+        Debug.Log("Disabling card collider");
+        if(cardCollider != null)
+            cardCollider.enabled = false;
+    }
+
+    protected virtual void EnableCollider()
+    {
+        cardCollider = GetComponent<BoxCollider2D>();
+
+        Debug.Log("Enabling card collider");
         
+        if(cardCollider != null)
+            cardCollider.enabled = true; 
     }
 }
