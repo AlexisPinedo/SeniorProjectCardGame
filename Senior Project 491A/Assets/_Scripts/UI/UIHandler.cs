@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class UIHandler : MonoBehaviour
+public class UIHandler : MonoBehaviourPunCallbacks
 {
+    [SerializeField]
+    public GameObject canvas, startBattleButton, endTurnButton;
+
     public delegate void settingsButtonAction();
     public static event settingsButtonAction SettingsClicked;
 
     public delegate void StartBattleButtonAction();
     public static event StartBattleButtonAction StartClicked;
-
 
     public delegate void GraveyardButtonAction();
     public static event GraveyardButtonAction GraveyardClicked;
@@ -19,6 +22,20 @@ public class UIHandler : MonoBehaviour
 
     public delegate void EndTurnButtonAction();
     public static event EndTurnButtonAction EndTurnClicked;
+
+    private void Awake()
+    {
+        if (photonView.IsMine)
+        {
+            startBattleButton.SetActive(true);
+            endTurnButton.SetActive(true);
+        }
+        else
+        {
+            startBattleButton.SetActive(false);
+            endTurnButton.SetActive(false);
+        }
+    }
 
     public void SettingsButtonOnClick()
     {

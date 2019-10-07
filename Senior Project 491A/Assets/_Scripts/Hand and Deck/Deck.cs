@@ -24,8 +24,10 @@ public class Deck : ScriptableObject
 
     public void Shuffle()
     {
-        System.Random random = RandomNumberNetworkGenerator.Instance.randomNumber;
-        
+        System.Random random = new System.Random(RandomNumberNetworkGenerator.Instance.randomNumber);
+
+        Debug.Log("Shuffling with new seed: " + random);
+
         var deckList = cardsInDeck.ToArray();
         int n = deckList.Length;
         while (n > 1)
