@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b082ef0f61ef87a4198dfd8e8bb888ea, type: 3}
-  m_Name: Vito
+  m_Script: {fileID: 11500000, guid: 90b5ae0ddb7914b439c8afaf0b8c0707, type: 3}
+  m_Name: Valor
   m_EditorClassIdentifier: 
-  _heroPortrait: {fileID: 21300000, guid: d0d5096e97382d045b7f8350371d032f, type: 3}
+  _heroPortrait: {fileID: 0}
+  cardEffectRequirementCount: 3
+  cardsSinceLastEffectTrigger: 0
+  cardsPlayedForEffect: []
