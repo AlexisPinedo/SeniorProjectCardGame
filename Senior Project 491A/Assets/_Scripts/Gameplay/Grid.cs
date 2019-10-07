@@ -77,7 +77,7 @@ public class Grid : MonoBehaviour
     /// </summary>
     private void InitializePlacements()
     {
-        Debug.Log("Initializing Placements");
+        //Debug.Log("Initializing Placements");
         float xTotal = Size * _xValUnits;   // Keep as float to allow grid resizing
         int yTotal = (int)Size * _yValUnits;
 
@@ -89,7 +89,7 @@ public class Grid : MonoBehaviour
                 freeLocations.Push(point);
             }
         }
-        Debug.Log("Elementds added to freelocations");
+        //Debug.Log("Elementds added to freelocations");
     }
 
     /// <summary>
