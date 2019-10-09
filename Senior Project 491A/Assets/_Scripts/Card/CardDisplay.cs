@@ -5,9 +5,12 @@ using TMPro;
 using UnityEngine;
 using Photon.Pun;
 /// <summary>
-/// Holds information pertinent to all types of Cards in the game.
+/// This class handles the in game display of each card.
+/// The class holds components relative to all card displays
+/// Each card component will have its data read and stored here
+/// this is used to relay each card's information to the player
 /// </summary>
-public abstract class CardHolder : MonoBehaviourPunCallbacks
+public abstract class CardDisplay : MonoBehaviourPunCallbacks
 {
     protected const byte LOAD_CARD_EVENT = 1;
 
@@ -25,7 +28,7 @@ public abstract class CardHolder : MonoBehaviourPunCallbacks
     {
 //        offline = PhotonNetworkManager.IsOffline;
 //
-//        Debug.Log(this.nameText + " from CardHolder is owned by " + this.photonView.OwnerActorNr);
+//        Debug.Log(this.nameText + " from CardDisplay is owned by " + this.photonView.OwnerActorNr);
 //
 //        if (!offline && this.photonView.Owner != PhotonNetwork.MasterClient)
 //        {
@@ -35,31 +38,35 @@ public abstract class CardHolder : MonoBehaviourPunCallbacks
 //            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
 //        }
 
-        LoadCardIntoContainer();
+        LoadCardIntoDisplay();
     }
     
+    /// <summary>
+    /// This method like the others will handle destruction and creation of the displays
+    /// running virtual methods of what to do when this happens 
+    /// </summary>
     protected virtual void OnDestroy()
     {
-        ClearCardFromContainer();
+        ClearCardFromDisplay();
     }
 
     protected virtual void OnEnable()
     { 
-        //Debug.Log("CardHolder: OnEnable()");
-        LoadCardIntoContainer();
+        //Debug.Log("CardDisplay: OnEnable()");
+        LoadCardIntoDisplay();
     }
 
     protected virtual void OnDisable()
     {
-        ClearCardFromContainer();
+        ClearCardFromDisplay();
     }
     
-    protected virtual void LoadCardIntoContainer()
+    protected virtual void LoadCardIntoDisplay()
     {
 
     }
     
-    protected virtual void ClearCardFromContainer()
+    protected virtual void ClearCardFromDisplay()
     {
 
     }

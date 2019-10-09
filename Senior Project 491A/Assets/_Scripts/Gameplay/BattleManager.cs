@@ -19,19 +19,19 @@ public class BattleManager : MonoBehaviour
     {
         UIHandler.StartClicked += StartBattleState;
         UIHandler.EndTurnClicked += EndBattleState;
-        MinionCardHolder.MinionCardClicked += CalculateBattleOutcome;
-        BossCardHolder.BossCardClicked += CalculateBossBattleOutcome;
+        MinionCardDisplay.MinionCardClicked += CalculateBattleOutcome;
+        BossCardDisplay.BossCardClicked += CalculateBossBattleOutcome;
     }
 
     private void OnDisable()
     {
         UIHandler.StartClicked -= StartBattleState;
         UIHandler.EndTurnClicked -= EndBattleState;
-        MinionCardHolder.MinionCardClicked -= CalculateBattleOutcome;
-        BossCardHolder.BossCardClicked -= CalculateBossBattleOutcome;
+        MinionCardDisplay.MinionCardClicked -= CalculateBattleOutcome;
+        BossCardDisplay.BossCardClicked -= CalculateBossBattleOutcome;
     }
 
-    private void CalculateBattleOutcome(MinionCardHolder cardClicked)
+    private void CalculateBattleOutcome(MinionCardDisplay cardClicked)
     {
         if (TurnManager.Instance.turnPlayer.Power >= cardClicked.card.HealthValue)
         {
@@ -40,7 +40,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void CalculateBossBattleOutcome(BossCardHolder cardClicked)
+    private void CalculateBossBattleOutcome(BossCardDisplay cardClicked)
     {
         foreach (var keyValuePair in EnemyGrid.cardLocationReference)
         {

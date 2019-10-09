@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class MinionCardHolder : EnemyCardHolder
+public class MinionCardDisplay : EnemyCardDisplay
 {
     
-    public delegate void _cardDestroyed(EnemyCardHolder destroytedCard);
+    public delegate void _cardDestroyed(EnemyCardDisplay destroytedCard);
     public static event _cardDestroyed CardDestroyed;
 
-    public delegate void _MinionCardClicked(MinionCardHolder cardClicked);
+    public delegate void _MinionCardClicked(MinionCardDisplay cardClicked);
 
     public static event _MinionCardClicked MinionCardClicked;
     

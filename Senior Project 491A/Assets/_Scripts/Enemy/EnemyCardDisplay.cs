@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public abstract class EnemyCardHolder : CardHolder
+public abstract class EnemyCardDisplay : CardDisplay
 {
-    public delegate void _cardDestroyed(EnemyCardHolder destroytedCard);
+    public delegate void _cardDestroyed(EnemyCardDisplay destroytedCard);
     public static event _cardDestroyed CardDestroyed;
 
     public EnemyCard card;
     [SerializeField] private TextMeshPro healthText;
     [SerializeField] private TextMeshPro rewardText;
 
-    protected override void LoadCardIntoContainer()
+    protected override void LoadCardIntoDisplay()
     {
         cardArtDisplay.sprite = card.CardArtwork;
         typeIcon.sprite = card.CardTypeArt;

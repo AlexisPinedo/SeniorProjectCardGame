@@ -7,5 +7,5 @@ using UnityEngine;
 /// </summary>
 public abstract class PlayerCardContainer : Container
 {
-    public PlayerCardHolder holder;
+    public PlayerCardDisplay display;
 }

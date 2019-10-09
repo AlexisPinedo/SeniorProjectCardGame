@@ -16,7 +16,7 @@ public class Grid : MonoBehaviour
     [SerializeField] private Color GizmoColor;
 
     public Stack<Vector2> freeLocations = new Stack<Vector2>();
-    public Dictionary<Vector2, CardHolder> cardLocationReference = new Dictionary<Vector2, CardHolder>();
+    public Dictionary<Vector2, CardDisplay> cardLocationReference = new Dictionary<Vector2, CardDisplay>();
     
     [SerializeField] private int _xValUnits = 1;
     [SerializeField] private int _yValUnits = 1;

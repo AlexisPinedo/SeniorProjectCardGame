@@ -6,10 +6,10 @@ using Photon.Realtime;
 using ExitGames.Client.Photon;
 
 /// <summary>
-/// Holds pertinent information specific to PlayerCards. Extends CardHolder.
+/// Holds pertinent information specific to PlayerCards. Extends CardDisplay.
 /// </summary>
 [ExecuteInEditMode]
-public class PlayerCardHolder : CardHolder
+public class PlayerCardDisplay : CardDisplay
 {
     public PlayerCard card;
 
@@ -22,7 +22,7 @@ public class PlayerCardHolder : CardHolder
 
     protected override void Awake()
     {
-        LoadCardIntoContainer();
+        LoadCardIntoDisplay();
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ public class PlayerCardHolder : CardHolder
     [ExecuteInEditMode]
     protected override void OnEnable()
     {
-        LoadCardIntoContainer();
+        LoadCardIntoDisplay();
     }
 
     /// <summary>
@@ -40,10 +40,10 @@ public class PlayerCardHolder : CardHolder
     [ExecuteInEditMode]
     protected override void OnDisable()
     {
-        ClearCardFromContainer();
+        ClearCardFromDisplay();
     }
 
-    protected override void LoadCardIntoContainer()
+    protected override void LoadCardIntoDisplay()
     {
         cardArtDisplay.sprite = card.CardArtwork;
         typeIcon.sprite = card.CardTypeArt;
@@ -61,7 +61,7 @@ public class PlayerCardHolder : CardHolder
     /// <summary>
     /// Removes all references to the Card's information from this holder.
     /// </summary>
-    protected override void ClearCardFromContainer()
+    protected override void ClearCardFromDisplay()
     {
         card = null;
         cardArtDisplay.sprite = null;

@@ -9,7 +9,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     private Vector3 screenPoint;
     public Vector2 OriginalPosition;
 
-    public delegate void _ShopCardClicked(PlayerCardHolder cardClicked);
+    public delegate void _ShopCardClicked(PlayerCardDisplay cardClicked);
 
     public static event _ShopCardClicked ShopCardClicked;
 
@@ -44,7 +44,7 @@ public class DragCard : MonoBehaviourPunCallbacks
         if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
             //Debug.Log("Card is in Shop");
-            PlayerCardHolder cardClicked = this.gameObject.GetComponent<PlayerCardHolder>();
+            PlayerCardDisplay cardClicked = this.gameObject.GetComponent<PlayerCardDisplay>();
             ShopCardClicked?.Invoke(cardClicked);
 
 
@@ -93,7 +93,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void RPCOnMouseDown(PlayerCardHolder cardClicked)
+    private void RPCOnMouseDown(PlayerCardDisplay cardClicked)
     {
         ShopCardClicked?.Invoke(cardClicked);
     }

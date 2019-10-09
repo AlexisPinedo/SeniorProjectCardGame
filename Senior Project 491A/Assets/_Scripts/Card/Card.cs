@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Defines a Card as a scriptable object and is the base class for all types of Cards to extend. Contains attributes common to all types of Cards.
+/// Defines a Card as a scriptable object and is the base class for all types of Cards to extend.
+/// Contains attributes common to all types of Cards.
+/// These cards are immutable allowing for anything to reference their components w/o changing any of them
 /// </summary>
 public abstract class Card : ScriptableObject
 {
+    //This class uses many properties allowing all the variables to be read but not modified
     [SerializeField]
     protected string cardName;
     public string CardName

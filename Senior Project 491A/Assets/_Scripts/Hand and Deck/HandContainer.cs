@@ -80,8 +80,8 @@ public class HandContainer : PlayerCardContainer
             return;
         }
 
-        // Set the PlayerCardContainer's PlayerCardHolder to the cardDrawn
-        holder.card = cardDrawn;
+        // Set the PlayerCardContainer's PlayerCardDisplay to the cardDrawn
+        display.card = cardDrawn;
 
         if (containerGrid.freeLocations.Count == 0)
         {
@@ -90,12 +90,12 @@ public class HandContainer : PlayerCardContainer
         }
             
         // Place it on the grid!
-        PlayerCardHolder cardHolder =  Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
+        PlayerCardDisplay cardDisplay =  Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
 
-        if (!containerGrid.cardLocationReference.ContainsKey(cardHolder.gameObject.transform.position))
-            containerGrid.cardLocationReference.Add(cardHolder.gameObject.transform.position, cardHolder);
+        if (!containerGrid.cardLocationReference.ContainsKey(cardDisplay.gameObject.transform.position))
+            containerGrid.cardLocationReference.Add(cardDisplay.gameObject.transform.position, cardDisplay);
         else
-            containerGrid.cardLocationReference[cardHolder.gameObject.transform.position] = cardHolder;
+            containerGrid.cardLocationReference[cardDisplay.gameObject.transform.position] = cardDisplay;
     
         hand.hand.Add(cardDrawn);
     }
@@ -112,9 +112,9 @@ public class HandContainer : PlayerCardContainer
         {
             if (locationReferenceKeyValuePair.Value != null)
             {
-                PlayerCardHolder cardHolder = (PlayerCardHolder)locationReferenceKeyValuePair.Value;
-                if(cardHolder.card.CardType != CardType.CardTypes.None)
-                    playerGrave.graveyard.Add(cardHolder.card);
+                PlayerCardDisplay cardDisplay = (PlayerCardDisplay)locationReferenceKeyValuePair.Value;
+                if(cardDisplay.card.CardType != CardType.CardTypes.None)
+                    playerGrave.graveyard.Add(cardDisplay.card);
 
                 Destroy(locationReferenceKeyValuePair.Value.gameObject);
             }
@@ -134,7 +134,7 @@ public class HandContainer : PlayerCardContainer
 
             var location = containerGrid.cardLocationReference.ElementAt(i);
 
-            CardHolder locationElement = location.Value;
+            CardDisplay locationElement = location.Value;
                 
             locationElement.gameObject.transform.position = newLocation;
             

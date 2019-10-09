@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class FieldContainer : Container
 {
-    public EnemyCardHolder holder;
+    public EnemyCardDisplay display;
     public EnemyDeck enemyDeck;
 
     private void OnEnable()
     {
-        MinionCardHolder.CardDestroyed += AddFreeCardLocation;
+        MinionCardDisplay.CardDestroyed += AddFreeCardLocation;
         UIHandler.EndTurnClicked += DisplayACard;
     }
 
     private void OnDisable()
     {
-        MinionCardHolder.CardDestroyed -= AddFreeCardLocation;
+        MinionCardDisplay.CardDestroyed -= AddFreeCardLocation;
         UIHandler.EndTurnClicked -= DisplayACard;
     }
 
@@ -61,23 +61,23 @@ public class FieldContainer : Container
         EnemyCard cardDrawn = null;
         cardDrawn = (EnemyCard)enemyDeck.cardsInDeck.Pop();
 
-        holder.card = cardDrawn;
-        EnemyCardHolder cardHolder = Instantiate(holder, freeLocation, Quaternion.identity, this.transform);
+        display.card = cardDrawn;
+        EnemyCardDisplay cardDisplay = Instantiate(display, freeLocation, Quaternion.identity, this.transform);
         
         if (!containerGrid.cardLocationReference.ContainsKey(freeLocation))
         {
-            containerGrid.cardLocationReference.Add(new Vector2(cardHolder.gameObject.transform.position.x, 
-                cardHolder.gameObject.transform.position.y), cardHolder);
+            containerGrid.cardLocationReference.Add(new Vector2(cardDisplay.gameObject.transform.position.x, 
+                cardDisplay.gameObject.transform.position.y), cardDisplay);
         }
         else
         {
-            containerGrid.cardLocationReference[freeLocation] = cardHolder;
+            containerGrid.cardLocationReference[freeLocation] = cardDisplay;
         }
         
 
     }
 
-    void AddFreeCardLocation(EnemyCardHolder cardDestroyed)
+    void AddFreeCardLocation(EnemyCardDisplay cardDestroyed)
     {
         Vector2 cardLocation = cardDestroyed.gameObject.transform.position;
         //Debug.Log("Card destroyed adding free location");

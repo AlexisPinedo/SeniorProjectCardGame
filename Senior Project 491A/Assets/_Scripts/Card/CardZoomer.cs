@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
+/// <summary>
+/// This class handles the zooming of cards
+/// It will scale based on the card you are highlighting over
+/// </summary>
 public class CardZoomer : MonoBehaviourPunCallbacks
 {
     private object myGameObject;

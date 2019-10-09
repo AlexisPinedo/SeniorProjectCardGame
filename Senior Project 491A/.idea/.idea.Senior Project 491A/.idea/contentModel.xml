@@ -17,8 +17,8 @@
               <e p="PassiveEffect.cs" t="Include" />
             </e>
             <e p="Card.cs" t="Include" />
+            <e p="CardDisplay.cs" t="Include" />
             <e p="CardEffectEvaluationManager.cs" t="Include" />
-            <e p="CardHolder.cs" t="Include" />
             <e p="CardType.cs" t="Include" />
             <e p="CardZoomer.cs" t="Include" />
             <e p="DragCard.cs" t="Include" />
@@ -26,15 +26,15 @@
             <e p="EnemyCard.cs" t="Include" />
             <e p="PlayerCard.cs" t="Include" />
             <e p="PlayerCardContainer.cs" t="Include" />
-            <e p="PlayerCardHolder.cs" t="Include" />
+            <e p="PlayerCardDisplay.cs" t="Include" />
           </e>
           <e p="Card Log" t="Include">
             <e p="CardLog.cs" t="Include" />
           </e>
           <e p="Enemy" t="Include">
             <e p="Boss.cs" t="Include" />
-            <e p="BossCardHolder.cs" t="Include" />
-            <e p="EnemyCardHolder.cs" t="Include" />
+            <e p="BossCardDisplay.cs" t="Include" />
+            <e p="EnemyCardDisplay.cs" t="Include" />
             <e p="EnemyDeck.cs" t="Include" />
             <e p="EnemyEventCard.cs" t="Include" />
             <e p="Goals" t="Include">
@@ -42,7 +42,7 @@
               <e p="Goal.cs" t="Include" />
             </e>
             <e p="Minion.cs" t="Include" />
-            <e p="MinionCardHolder.cs" t="Include" />
+            <e p="MinionCardDisplay.cs" t="Include" />
             <e p="Reward.cs" t="Include" />
           </e>
           <e p="Firebase" t="Include">
@@ -76,9 +76,10 @@
               <e p="Vaughn.cs" t="Include" />
               <e p="Vito.cs" t="Include" />
             </e>
+            <e p="HeroPortraitUpdate.cs" t="Include" />
+            <e p="TurnPlayerHeroManager.cs" t="Include" />
             <e p="TurnStartEffectHero.cs" t="Include" />
           </e>
-          <e p="HeroPortraitUpdate.cs" t="Include" />
           <e p="Lobby" t="Include">
             <e p="NameScreen.cs" t="Include" />
             <e p="PhotonManager.cs" t="Include" />
@@ -94,7 +95,6 @@
             <e p="GameClient.cs" t="Include" />
             <e p="GameGui.cs" t="Include" />
           </e>
-          <e p="NotificationWindow.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="GraveContainer.cs" t="Include" />
             <e p="Graveyard.cs" t="Include" />
@@ -105,9 +105,9 @@
             <e p="ShopContainer.cs" t="Include" />
             <e p="ShopDeck.cs" t="Include" />
           </e>
-          <e p="TurnPlayerHeroManager.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
+            <e p="NotificationWindow.cs" t="Include" />
             <e p="SceneRestarter.cs" t="Include" />
             <e p="TextUpdate.cs" t="Include" />
             <e p="UIHandler.cs" t="Include" />

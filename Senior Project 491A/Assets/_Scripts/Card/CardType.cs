@@ -5,6 +5,7 @@ using UnityEngine;
 public static class CardType 
 {
     //This Enum has a reference for which attribute the card is. 
+    //Also helps create a reference for stored values of cards types required to trigger effects
     public enum CardTypes
     {
         MythicalCreature = 0,

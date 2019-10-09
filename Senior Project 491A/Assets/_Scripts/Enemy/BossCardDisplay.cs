@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //[ExecuteInEditMode]
-public class BossCardHolder : EnemyCardHolder
+public class BossCardDisplay : EnemyCardDisplay
 {
-    public delegate void _BossCardClicked(BossCardHolder cardClicked);
+    public delegate void _BossCardClicked(BossCardDisplay cardClicked);
 
     public static event _BossCardClicked BossCardClicked;
     
