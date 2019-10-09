@@ -1,9 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public static class ShuffleDeck 
+public class ShuffleDeck : MonoBehaviourPunCallbacks
 {
+    public int randomNumber;
+
+    private static ShuffleDeck _instance;
+
+    public static ShuffleDeck Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance != this && _instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+        randomNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["deckRandomValue"];
+        Debug.Log("RandomSyncedValue: " + randomNumber);
+    }
+    
     public static Stack<Card> Shuffle(Deck deckToShuffle)
     {
         //System.Random random = new System.Random(RandomNumberNetworkGenerator.Instance.randomNumber);
