@@ -33,7 +33,6 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
                  *  TODO: Fix on photon instantiation to manipulate instantiated objects from different clients.
                  *  PhotonNetwork.Instantiate(player2Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
                  */
-
             }
             //player2 = GameObject.FindWithTag("Player 2");
             //player2 = GameObject.Find("Player2(Clone)");
