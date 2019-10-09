@@ -18,6 +18,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     private void Awake()
     {
         OriginalPosition = this.transform.position;
+
 //        offline = PhotonNetworkManager.IsOffline;
 //        Debug.Log(this.name + " from DragCard is owned by " + this.photonView.OwnerActorNr);
 //
