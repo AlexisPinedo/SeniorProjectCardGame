@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
-
+/// <summary>
+/// Is this obsolete?
+/// </summary>
 public class DrawCard : MonoBehaviourPunCallbacks
 {
     /* References the grid space for cards played during the turn */

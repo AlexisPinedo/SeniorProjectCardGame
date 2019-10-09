@@ -24,7 +24,7 @@ public class HandContainer : PlayerCardContainer
 
     private void OnEnable()
     {
-        UIHandler.EndTurnClicked += DestroyHand;
+        TurnManager.GoingToSwitchPlayer += DestroyHand;
         TurnManager.PlayerSwitched += InitialCardDisplay;
         containerGrid.onGridResize += ChangeCardPositions;
     }
@@ -32,8 +32,8 @@ public class HandContainer : PlayerCardContainer
     private void OnDisable()
     {
         
-        Debug.Log("Hand container has been disabled");
-        UIHandler.EndTurnClicked -= DestroyHand;
+        //Debug.Log("Hand container has been disabled");
+        TurnManager.GoingToSwitchPlayer -= DestroyHand;
         TurnManager.PlayerSwitched -= InitialCardDisplay;
         containerGrid.onGridResize -= ChangeCardPositions;
     }
@@ -85,7 +85,7 @@ public class HandContainer : PlayerCardContainer
 
         if (containerGrid.freeLocations.Count == 0)
         {
-            Debug.Log("Stack is empty ");
+            //Debug.Log("Stack is empty ");
             return;
         }
             
@@ -113,6 +113,13 @@ public class HandContainer : PlayerCardContainer
             if (locationReferenceKeyValuePair.Value != null)
             {
                 PlayerCardDisplay cardDisplay = (PlayerCardDisplay)locationReferenceKeyValuePair.Value;
+
+                if (cardDisplay.card == null)
+                {
+                    Debug.Log("No card in Hand Display game object");
+                    return;
+                }
+                
                 if(cardDisplay.card.CardType != CardType.CardTypes.None)
                 {                    
                     Debug.Log("Add card to grave");

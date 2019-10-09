@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Holds visual information specific to enemy cards. Extends CardDisplay.
+/// Class will load in text, sprites, card art, and values into the card display
+/// this loads depending on the card attached to it. 
+/// </summary>
 public abstract class EnemyCardDisplay : CardDisplay
 {
-    public delegate void _cardDestroyed(EnemyCardDisplay destroytedCard);
-    public static event _cardDestroyed CardDestroyed;
-
     public EnemyCard card;
+    
     [SerializeField] private TextMeshPro healthText;
     [SerializeField] private TextMeshPro rewardText;
 
+    //This method will load the display based on the information stored within the card
     protected override void LoadCardIntoDisplay()
     {
         cardArtDisplay.sprite = card.CardArtwork;
@@ -25,6 +29,9 @@ public abstract class EnemyCardDisplay : CardDisplay
         rewardText.text = card.RewardValue.ToString();
     }
 
+    /// <summary>
+    /// Removes all references to the Card's information from this display.
+    /// </summary>
     protected override void OnDisable()
     {
         card = null;

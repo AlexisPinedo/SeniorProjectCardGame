@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class contains the data components for card that are enemy cards
+/// minion & boss cards inherit from this class
+/// Defines an Enemy Card as a scriptable object inherits from card
+/// </summary>
 public abstract class EnemyCard : Card
 {
+    //This class uses many properties allowing all the variables to be read but not modified
     [SerializeField] protected int _rewardValue, _healthValue;
 
     public int HealthValue

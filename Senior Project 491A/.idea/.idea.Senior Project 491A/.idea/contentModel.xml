@@ -28,9 +28,6 @@
             <e p="PlayerCardContainer.cs" t="Include" />
             <e p="PlayerCardDisplay.cs" t="Include" />
           </e>
-          <e p="Card Log" t="Include">
-            <e p="CardLog.cs" t="Include" />
-          </e>
           <e p="Enemy" t="Include">
             <e p="Boss.cs" t="Include" />
             <e p="BossCardDisplay.cs" t="Include" />

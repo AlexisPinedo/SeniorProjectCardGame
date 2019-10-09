@@ -16,7 +16,7 @@ public class HeroPortraitUpdate : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("hero changed event subbed");
+        //Debug.Log("hero changed event subbed");
         TurnPlayerHeroManager.HeroChanged += ChangeHeroPortrait;
     }
 
@@ -27,7 +27,7 @@ public class HeroPortraitUpdate : MonoBehaviour
 
     private void ChangeHeroPortrait()
     {
-        Debug.Log("attempting to swap ");
+        //Debug.Log("attempting to swap ");
 
         playerAvatar.sprite = TurnPlayerHeroManager.Instance.ActiveTurnHero.HeroPortrait;
     }

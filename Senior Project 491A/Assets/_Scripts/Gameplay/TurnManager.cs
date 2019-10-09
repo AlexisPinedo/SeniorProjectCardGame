@@ -22,6 +22,10 @@ public class TurnManager : MonoBehaviour
 
     public static event _PlayerSwitched PlayerSwitched;
 
+    public delegate void _goingToSwitchPlayer();
+
+    public static event _goingToSwitchPlayer GoingToSwitchPlayer;
+
     [SerializeField]
     private Player player1;
 
@@ -74,6 +78,8 @@ public class TurnManager : MonoBehaviour
         {
             turnPlayer.Currency = 0;
             turnPlayer.Power = 0;
+            
+            GoingToSwitchPlayer?.Invoke();
             
             // Switch to Player Two
             if (player1GameObject.activeSelf)

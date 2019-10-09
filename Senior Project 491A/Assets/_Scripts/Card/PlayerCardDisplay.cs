@@ -6,9 +6,11 @@ using Photon.Realtime;
 using ExitGames.Client.Photon;
 
 /// <summary>
-/// Holds pertinent information specific to PlayerCards. Extends CardDisplay.
+/// Holds visual information specific to PlayerCards. Extends CardDisplay.
+/// Class will load in text, sprites, card art, and values into the card display
+/// this loads depending on the card attached to it. 
 /// </summary>
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class PlayerCardDisplay : CardDisplay
 {
     public PlayerCard card;
@@ -20,6 +22,7 @@ public class PlayerCardDisplay : CardDisplay
     [SerializeField] private SpriteRenderer costIcon;
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
 
+    //When the PlayerCardDisplay is loaded we want to load in the components into the display
     protected override void Awake()
     {
         LoadCardIntoDisplay();
@@ -28,7 +31,7 @@ public class PlayerCardDisplay : CardDisplay
     /// <summary>
     /// Called when this object is enabled. Adds EventReceived to the Networking Client.
     /// </summary>
-    [ExecuteInEditMode]
+    //[ExecuteInEditMode]
     protected override void OnEnable()
     {
         LoadCardIntoDisplay();
@@ -37,12 +40,13 @@ public class PlayerCardDisplay : CardDisplay
     /// <summary>
     /// Called when this object is disabled. Removes EventReceived from the Networking Client.
     /// </summary>
-    [ExecuteInEditMode]
+    //[ExecuteInEditMode]
     protected override void OnDisable()
     {
         ClearCardFromDisplay();
     }
 
+    //THis method will load the display based on the information stored within the card
     protected override void LoadCardIntoDisplay()
     {
         cardArtDisplay.sprite = card.CardArtwork;
@@ -59,7 +63,7 @@ public class PlayerCardDisplay : CardDisplay
     }
 
     /// <summary>
-    /// Removes all references to the Card's information from this holder.
+    /// Removes all references to the Card's information from this display.
     /// </summary>
     protected override void ClearCardFromDisplay()
     {
@@ -82,7 +86,11 @@ public class PlayerCardDisplay : CardDisplay
             costIcon.gameObject.SetActive(false);
         }
     }
-
+    
+    /// <summary>
+    /// this method will look at sprite list of required costs icons and place them appropriately into the scene
+    /// 
+    /// </summary>
     private void LoadCostEffectIcons()
     {
         // Initial spawn point that changes with each card added
@@ -99,6 +107,9 @@ public class PlayerCardDisplay : CardDisplay
         }
     }
 
+    /// <summary>
+    /// This method will remove the icons from the display
+    /// </summary>
     private void RemoveCardEffectCostIcons()
     {
         // Debug.Log(cardIcons.Count);
