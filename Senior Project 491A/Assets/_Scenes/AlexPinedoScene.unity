@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 1981492783}
-  holder: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
+  display: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
   shopDeck: {fileID: 11400000, guid: 2ba6b1a3e2ecc0447bc728d99bd161c8, type: 2}
 --- !u!1 &381133601
 GameObject:
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 837790465}
-  holder: {fileID: 7737181224830327970, guid: 3a52656890895c8488c3d5d03033505b, type: 3}
+  display: {fileID: 7737181224830327970, guid: 3a52656890895c8488c3d5d03033505b, type: 3}
   enemyDeck: {fileID: 11400000, guid: 3011dc8c8f7e58f4eb9c00577c9c4b8c, type: 2}
 --- !u!1 &612034186
 GameObject:
@@ -2683,7 +2683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 696043139}
-  holder: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
+  display: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
   hand: {fileID: 11400000, guid: 7473ef4c36860c2479a050f88a746ac7, type: 2}
   playerDeck: {fileID: 11400000, guid: 9a5eec11a96d3f44e88cd3bd254f306a, type: 2}
   playerGrave: {fileID: 11400000, guid: b7077001044931a40b33d83873f50253, type: 2}
@@ -4087,7 +4087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 566032829}
-  holder: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
+  display: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
   hand: {fileID: 11400000, guid: faffe65425888364c90c44179becc897, type: 2}
   playerDeck: {fileID: 11400000, guid: 129d1d2bb41d2444b8d6adeae81ba26a, type: 2}
   playerGrave: {fileID: 11400000, guid: 3a630b2f752ea964c894ac5173f0aa73, type: 2}
