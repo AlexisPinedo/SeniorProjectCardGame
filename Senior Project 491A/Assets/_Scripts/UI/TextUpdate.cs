@@ -57,21 +57,23 @@ public class TextUpdate : MonoBehaviourPunCallbacks
 
     public void UpdatePower()
     {
-        if (photonView.IsMine)
-        {
-            playerPower.text = "Power: " + TurnManager.Instance.turnPlayer.Power;
-            photonView.RPC("RPCUpdatePower", RpcTarget.All, TurnManager.Instance.turnPlayer.Power);
-        }
+        playerPower.text = "Power: " + TurnManager.Instance.turnPlayer.Power;
+
+//        if (photonView.IsMine)
+//        {
+//            photonView.RPC("RPCUpdatePower", RpcTarget.All, TurnManager.Instance.turnPlayer.Power);
+//        }
 
     }
 
     public void UpdateCurrency()
     {
-        if (photonView.IsMine)
-        {
-            playerCurrency.text = "Currency: " + TurnManager.Instance.turnPlayer.Currency;
-            photonView.RPC("RPCUpdateCurrency", RpcTarget.All, TurnManager.Instance.turnPlayer.Currency);
-        }
+        playerCurrency.text = "Currency: " + TurnManager.Instance.turnPlayer.Currency;
+
+//        if (photonView.IsMine)
+//        {
+//            photonView.RPC("RPCUpdateCurrency", RpcTarget.All, TurnManager.Instance.turnPlayer.Currency);
+//        }
     }
 
     [PunRPC]
