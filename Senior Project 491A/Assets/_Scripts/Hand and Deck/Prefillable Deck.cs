@@ -13,7 +13,11 @@ public abstract class PrefillableDeck : Deck
     
     [SerializeField] protected List<Card> cardsToAdd = new List<Card>();
     [SerializeField] protected int cardCopies;
-     
+    
+    /// <summary>
+    /// When the deck is enabled it will push the cards into the deck based on how many copies
+    /// to add and then shuffle
+    /// </summary>
      protected virtual void OnEnable()
      {        
          foreach (Card card in cardsToAdd)

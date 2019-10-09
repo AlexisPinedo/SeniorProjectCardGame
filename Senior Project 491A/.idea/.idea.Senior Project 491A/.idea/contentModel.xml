@@ -33,7 +33,6 @@
             <e p="BossCardDisplay.cs" t="Include" />
             <e p="EnemyCardDisplay.cs" t="Include" />
             <e p="EnemyDeck.cs" t="Include" />
-            <e p="EnemyEventCard.cs" t="Include" />
             <e p="Goals" t="Include">
               <e p="BombGoal.cs" t="Include" />
               <e p="Goal.cs" t="Include" />
