@@ -1,32 +1,110 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
+using Photon.Pun;
 
-public class PurchaseHandler : MonoBehaviour
+
+public class PurchaseHandler : MonoBehaviourPunCallbacks
 {
-    public delegate void _CardBought(Card cardBuying);
-    public static event _CardBought CardBought;
+    private static PurchaseHandler _instance;
 
-    private Player turnPlayer;
+    public delegate void _CardPurchased(PlayerCardDisplay cardBought);
 
-    public void Start()
+    public static event _CardPurchased CardPurchased;
+
+    public static PurchaseHandler Instance
     {
-        turnPlayer = TurnManager.Instance.turnPlayer;
+        get { return _instance; }
     }
 
-    public bool isPurchasable(Card cardClicked)
+    private void Awake()
     {
-        bool canBePurchased;
-        // TODO
-
-        canBePurchased = true;
-
-        return canBePurchased;
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
-    public void PurchaseCard(Card cardBuying)
+    private void OnEnable()
     {
-        CardBought?.Invoke(cardBuying);
+        DragCard.ShopCardClicked += HandlePurchase;
     }
 
+    private void OnDisable()
+    {
+        DragCard.ShopCardClicked -= HandlePurchase;
+    }
+
+
+    private void HandlePurchase(PlayerCardDisplay cardSelected)
+    {
+        //Debug.Log("Handling Purchase");
+        if (TurnManager.Instance.turnPlayer.Currency >= cardSelected.card.CardCost)
+        {
+            TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardSelected.card);
+
+            TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
+            
+            CardPurchased?.Invoke(cardSelected);
+            
+            Destroy(cardSelected.gameObject);
+
+            if(!PhotonNetworkManager.IsOffline)
+                photonView.RPC("RPCHandlePurchase", RpcTarget.Others, cardSelected);
+        }
+        else
+        {
+            Debug.Log("Cannot purchase. Not enough currency");
+        }
+    }
+
+    [PunRPC]
+    private void RPCHandlePurchase(PlayerCardDisplay cardSelected)
+    {
+        TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardSelected.card);
+
+        TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
+
+        CardPurchased?.Invoke(cardSelected);
+
+        Destroy(cardSelected.gameObject);
+    }
 }
+
+
+
+
+//public class PurchaseHandler : MonoBehaviour
+//{
+//    public delegate void _CardBought(Card cardBuying);
+//    public static event _CardBought CardBought;
+//
+//    private Player turnPlayer;
+//
+//    public void Start()
+//    {
+//        turnPlayer = TurnManager.Instance.turnPlayer;
+//    }
+//
+//    public bool isPurchasable(Card cardClicked)
+//    {
+//        bool canBePurchased;
+//        // TODO
+//
+//        canBePurchased = true;
+//
+//        return canBePurchased;
+//    }
+//
+//    public void PurchaseCard(Card cardBuying)
+//    {
+//        CardBought?.Invoke(cardBuying);
+//    }
+//
+//}

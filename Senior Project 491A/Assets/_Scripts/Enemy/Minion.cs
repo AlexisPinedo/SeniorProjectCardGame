@@ -7,7 +7,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+/// <summary>
+/// This class contains the data components for card that are Minion cards
+/// This object is what is used to to create different Minions
+/// Defines a Minion Card as a scriptable object inherits from card
+/// </summary>
+//This is used to create Minion card in the project section you can then attach the components for that boss
+[CreateAssetMenu(menuName = "Card/Minion Card")]
 public class Minion : EnemyCard
 {
     

@@ -8,6 +8,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ALSO OBSOLETE CLASS THAT IS WIP
+/// </summary>
 
 /*
     This class represents a Boss' goal, i.e., what needs to happen in a match

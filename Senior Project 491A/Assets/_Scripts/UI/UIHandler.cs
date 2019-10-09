@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class UIHandler : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class UIHandler : MonoBehaviour
     public delegate void StartBattleButtonAction();
     public static event StartBattleButtonAction StartClicked;
 
-
     public delegate void GraveyardButtonAction();
     public static event GraveyardButtonAction GraveyardClicked;
 
@@ -19,10 +19,37 @@ public class UIHandler : MonoBehaviour
 
     public delegate void EndTurnButtonAction();
     public static event EndTurnButtonAction EndTurnClicked;
+    
+        
+    public delegate void _notificationWindowEnabled();
+
+    public static event _notificationWindowEnabled NotificationWindowEnabled;
+    
+
+    private static UIHandler _instance;
+
+    public static UIHandler Instance
+    {
+        get { return _instance; }
+    }
+
+    [SerializeField]
+    private NotificationWindow windowReference;
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     public void SettingsButtonOnClick()
     {
-        //Debug.Log("clicked");
         SettingsClicked?.Invoke();
     }
 
@@ -44,6 +71,14 @@ public class UIHandler : MonoBehaviour
     public void EndTurnButtonOnClick()
     {
         EndTurnClicked?.Invoke();
+    }
+    
+    public void EnableNotificationWindow(string message)
+    {
+        windowReference.gameObject.SetActive(true);
+        NotificationWindow.Instance.DisplayMessage(message);
+        NotificationWindow.Instance.transparentCover.gameObject.SetActive(true);
+        NotificationWindowEnabled?.Invoke();
     }
 
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Player Component/Grave")]
 public class Graveyard : ScriptableObject
 {
     public List<PlayerCard> graveyard = new List<PlayerCard>();
