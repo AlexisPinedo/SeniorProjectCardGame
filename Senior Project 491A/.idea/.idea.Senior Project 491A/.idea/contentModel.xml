@@ -42,8 +42,18 @@
             <e p="Reward.cs" t="Include" />
           </e>
           <e p="Firebase" t="Include">
-            <e p="AuthManager.cs" t="Include" />
-            <e p="Forms.cs" t="Include" />
+            <e p="Authentication" t="Include">
+              <e p="AuthManager.cs" t="Include" />
+              <e p="Forms.cs" t="Include" />
+              <e p="SignIn.cs" t="Include" />
+              <e p="SignUp.cs" t="Include" />
+            </e>
+            <e p="Database" t="Include">
+              <e p="DatabaseManager.cs" t="Include" />
+              <e p="PlayerRecord.cs" t="Include" />
+              <e p="Router.cs" t="Include" />
+            </e>
+            <e p="WinLoss.cs" t="Include" />
           </e>
           <e p="Gameplay" t="Include">
             <e p="BattleManager.cs" t="Include" />
@@ -101,6 +111,7 @@
             <e p="ShopContainer.cs" t="Include" />
             <e p="ShopDeck.cs" t="Include" />
           </e>
+          <e p="ShuffleDeck.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
             <e p="NotificationWindow.cs" t="Include" />
