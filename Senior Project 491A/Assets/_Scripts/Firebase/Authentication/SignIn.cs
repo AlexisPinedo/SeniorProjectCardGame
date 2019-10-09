@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SignIn : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private InputField emailInput;
+    [SerializeField] private InputField passwordInput;
+
+    public void EmailSignIn()
     {
-        
+        AuthManager.sharedInstance.SignInUserWithEmail(emailInput.text, passwordInput.text);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void FacebookSignIn()
     {
-        
+        AuthManager.sharedInstance.FBLogin("fb_login");
+    }
+
+    public void GoogleSignIn()
+    {
+        AuthManager.sharedInstance.GoogleLogin("google_login");
     }
 }

@@ -1,13 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Database;
 using Firebase.Unity.Editor;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
 {
     public static DatabaseManager sharedInstance = null;
+
+    public event Action<PlayerRecord> RetrievedPlayerRecord;
 
     private void Awake()
     {
@@ -49,5 +54,26 @@ public class DatabaseManager : MonoBehaviour
         childUpdates["/player_record/" + user.UserId + "/"] = dict;
 
         Router.Base().UpdateChildrenAsync(childUpdates);
+    }
+
+    public void GetPlayerRecords()
+    {
+        FirebaseUser user = AuthManager.sharedInstance.GetCurrentUser();
+
+        Router.PlayerRecord(user.UserId).GetValueAsync().ContinueWith(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                return;
+            } else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                var recordDict = (Dictionary<string, object>) snapshot.Value;
+                int winsRetrieved = Convert.ToInt32(recordDict["wins"]);
+                int lossesRetrieved = Convert.ToInt32(recordDict["losses"]);
+                PlayerRecord record = new PlayerRecord(winsRetrieved, lossesRetrieved);
+                RetrievedPlayerRecord(record);
+            }
+        });
     }
 }
