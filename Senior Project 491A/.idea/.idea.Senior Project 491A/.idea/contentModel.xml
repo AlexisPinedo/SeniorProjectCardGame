@@ -68,8 +68,17 @@
             <e p="Prefillable Deck.cs" t="Include" />
           </e>
           <e p="Hero" t="Include">
+            <e p="CostRequirementHero.cs" t="Include" />
             <e p="Hero.cs" t="Include" />
+            <e p="Heroes" t="Include">
+              <e p="Valor.cs" t="Include" />
+              <e p="Vann.cs" t="Include" />
+              <e p="Vaughn.cs" t="Include" />
+              <e p="Vito.cs" t="Include" />
+            </e>
+            <e p="TurnStartEffectHero.cs" t="Include" />
           </e>
+          <e p="HeroPortraitUpdate.cs" t="Include" />
           <e p="Lobby" t="Include">
             <e p="NameScreen.cs" t="Include" />
             <e p="PhotonManager.cs" t="Include" />
@@ -85,6 +94,7 @@
             <e p="GameClient.cs" t="Include" />
             <e p="GameGui.cs" t="Include" />
           </e>
+          <e p="NotificationWindow.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="GraveContainer.cs" t="Include" />
             <e p="Graveyard.cs" t="Include" />
@@ -95,6 +105,7 @@
             <e p="ShopContainer.cs" t="Include" />
             <e p="ShopDeck.cs" t="Include" />
           </e>
+          <e p="TurnPlayerHeroManager.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
             <e p="SceneRestarter.cs" t="Include" />
@@ -104,7 +115,6 @@
           <e p="Utility" t="Include">
             <e p="InputToEvent.cs" t="Include" />
           </e>
-          <e p="Vito.cs" t="Include" />
         </e>
         <e p="FacebookSDK" t="Include">
           <e p="Examples" t="Include">
@@ -311,6 +321,7 @@
             </e>
           </e>
         </e>
+        <e p="PhotonNetworkManager.cs" t="Include" />
         <e p="RandomNumberNetworkGenerator.cs" t="Include" />
         <e p="ShopNetworkRelay.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
@@ -348,6 +359,7 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
+        <e p="UIViewHandler.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />

@@ -62,6 +62,7 @@ public class TextUpdate : MonoBehaviourPunCallbacks
             playerPower.text = "Power: " + TurnManager.Instance.turnPlayer.Power;
             photonView.RPC("RPCUpdatePower", RpcTarget.All, TurnManager.Instance.turnPlayer.Power);
         }
+
     }
 
     public void UpdateCurrency()

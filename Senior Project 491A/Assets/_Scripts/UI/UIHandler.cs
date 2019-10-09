@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class UIHandler : MonoBehaviourPunCallbacks
+public class UIHandler : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject canvas, startBattleButton, endTurnButton;
-
     public delegate void settingsButtonAction();
     public static event settingsButtonAction SettingsClicked;
 
@@ -48,27 +45,6 @@ public class UIHandler : MonoBehaviourPunCallbacks
         else
         {
             _instance = this;
-        }
-        
-        if (photonView.IsMine)
-        {
-            //startBattleButton.SetActive(true);
-            //endTurnButton.SetActive(true);
-        }
-        else
-        {
-            //startBattleButton.SetActive(true);
-            //endTurnButton.SetActive(true);
-        }
-
-
-        if (!PhotonNetworkManager.IsOffline)
-        {
-            if (!photonView.IsMine)
-            {
-                startBattleButton.SetActive(false);
-                endTurnButton.SetActive(false);
-            }
         }
     }
 
