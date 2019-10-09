@@ -114,7 +114,10 @@ public class HandContainer : PlayerCardContainer
             {
                 PlayerCardDisplay cardDisplay = (PlayerCardDisplay)locationReferenceKeyValuePair.Value;
                 if(cardDisplay.card.CardType != CardType.CardTypes.None)
+                {                    
+                    Debug.Log("Add card to grave");
                     playerGrave.graveyard.Add(cardDisplay.card);
+                }
 
                 Destroy(locationReferenceKeyValuePair.Value.gameObject);
             }
