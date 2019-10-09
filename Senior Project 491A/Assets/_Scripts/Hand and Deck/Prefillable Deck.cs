@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable()]
+/// <summary>
+/// Prefillable decks are decks that can be created before run time
+/// Creating a deck from this class will allow you to add cards into the game
+/// before the game starts
+/// </summary>
 public abstract class PrefillableDeck : Deck
 {
     

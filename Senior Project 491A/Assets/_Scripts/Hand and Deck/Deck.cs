@@ -6,8 +6,11 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// A Deck as a scriptable object. This class is mainly contained within a DeckContainer.
+/// A Deck as a scriptable object.
+/// This class is mainly contained within a DeckContainer.
+/// The deck is stack of card game objects used for draws and card manipulation
 /// </summary>
+// This will allow to create a new deck in the project folder
 [CreateAssetMenu(menuName = "Deck/Player Deck")]
 public class Deck : ScriptableObject
 {
@@ -16,12 +19,14 @@ public class Deck : ScriptableObject
     /// </summary>
     [SerializeField] public Stack<Card> cardsInDeck = new Stack<Card>();
 
+    //When the game starts we want to clear the cards in deck
     protected virtual void Awake()
     {
         cardsInDeck.Clear();
         Debug.Log("Card have been cleared from the deck");
     }
 
+    //Method that shuffles the deck. Possibly going to move out of card. 
     public void Shuffle()
     {
         //System.Random random = new System.Random(RandomNumberNetworkGenerator.Instance.randomNumber);
@@ -48,7 +53,7 @@ public class Deck : ScriptableObject
 
 
 
-
+//Obsolete method of the deck no longer used. 
 
 //public class Deck : MonoBehaviour
 //{
