@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ShuffleDeck : MonoBehaviourPunCallbacks
 {
-    public static int randomNumber;
+    public int randomNumber;
 
     private static ShuffleDeck _instance;
 
@@ -21,21 +21,17 @@ public class ShuffleDeck : MonoBehaviourPunCallbacks
         {
             _instance = this;
         }
-
-        if(PhotonNetwork.IsConnectedAndReady)
-            randomNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["deckRandomValue"];
+        randomNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["deckRandomValue"];
+        Debug.Log("RandomSyncedValue: " + randomNumber);
     }
     
     public static Stack<Card> Shuffle(Deck deckToShuffle)
     {
+        //System.Random random = new System.Random(RandomNumberNetworkGenerator.Instance.randomNumber);
 
-        System.Random random;
-
-        if (PhotonNetwork.IsConnectedAndReady)
-            random = new System.Random(randomNumber);
-        else
-            random = new System.Random();
-
+        System.Random random = new System.Random();
+        
+        Debug.Log("Shuffling with new seed: " + random);
 
         var deckList = deckToShuffle.cardsInDeck.ToArray();
         int n = deckList.Length;
