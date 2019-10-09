@@ -26,6 +26,8 @@ public class AuthManager : MonoBehaviour
 
     private DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavailableOther;
 
+    private bool signUp;
+
     private GoogleSignInConfiguration googleConfiguration;
 
     void Awake()
@@ -137,7 +139,7 @@ public class AuthManager : MonoBehaviour
     #region EMAIL / PASSWORD METHODS
 
     // Signs the user up and creates a Firebase Account via Email / Password
-    void SignUpNewUserWithEmail(string email, string password)
+    public void SignUpNewUserWithEmail(string email, string password)
     {
         // pass user info to Firebase Project 
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
@@ -147,7 +149,7 @@ public class AuthManager : MonoBehaviour
     }
 
     // Log the user in with email and password
-    void SignInNewUserWithEmail(string email, string password)
+    public void SignInUserWithEmail(string email, string password)
     {
         // pass user info to Firebase project to look up
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
@@ -161,8 +163,11 @@ public class AuthManager : MonoBehaviour
     #region FACEBOOK AUTHENTICATION
 
 
-    public void FBLogin()
+    public void FBLogin(string operation)
     {
+        if (operation == "fb_sign_up")
+            signUp = true;
+
         List<string> permissions = new List<string>
         {
             "public_profile",
@@ -212,11 +217,13 @@ public class AuthManager : MonoBehaviour
             {
                 FirebaseUser newUser = task.Result;
 
-                StartCoroutine(ContinueFBAuth(task));
+                //StartCoroutine(ContinueFBAuth(task));
+                StartCoroutine(signUp ? authCallback(task, "facebook_sign_up") : authCallback(task, "facebook_login"));
             }
         });
     }
 
+    /*
     // Lookup Database for whether or not the user already exists
     IEnumerator ContinueFBAuth(Task<FirebaseUser> task)
     {
@@ -228,13 +235,14 @@ public class AuthManager : MonoBehaviour
         StartCoroutine(exists ? authCallback(task, "facebook_login") : authCallback(task, "facebook_sign_up"));
 
     }
+    */
 
     #endregion
 
     #region GOOGLE AUTHENTICATION
 
     //GOOGLE Login 
-    public void GoogleLogin()
+    public void GoogleLogin(string operation)
     {
         GoogleSignIn.Configuration = googleConfiguration;
 
@@ -296,7 +304,7 @@ public class AuthManager : MonoBehaviour
 
     #region Firebase Utilities
 
-    void UpdateUserDisplayName(string username)
+    public void UpdateUserDisplayName(string username)
     {
         user = auth.CurrentUser;
         if (user != null)
