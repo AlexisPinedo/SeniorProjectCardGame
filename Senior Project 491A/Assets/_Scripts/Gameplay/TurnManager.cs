@@ -65,7 +65,7 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerSwitched?.Invoke();
+        //PlayerSwitched?.Invoke();
     }
 
     public void ShowHidePanel()
@@ -80,6 +80,7 @@ public class TurnManager : MonoBehaviour
             {
                 player1GameObject.SetActive(false);
                 player2GameObject.SetActive(true);
+                player2GameObject.GetComponentInChildren<HandContainer>().enabled = true;
                 //turnManager.SetPlayerTwosTurn();
                 turnPlayer = player2;
                 turnPlayerGameObject = player2GameObject;

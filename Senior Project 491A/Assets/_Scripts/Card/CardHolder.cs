@@ -23,17 +23,17 @@ public abstract class CardHolder : MonoBehaviourPunCallbacks
 
     protected virtual void Awake()
     {
-        offline = PhotonNetworkManager.IsOffline;
-
-        Debug.Log(this.nameText + " from CardHolder is owned by " + this.photonView.OwnerActorNr);
-
-        if (!offline && this.photonView.Owner != PhotonNetwork.MasterClient)
-        {
-
-            Debug.Log("From Cardholder.cs, transfering card ownership to Master Client");
-
-            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
-        }
+//        offline = PhotonNetworkManager.IsOffline;
+//
+//        Debug.Log(this.nameText + " from CardHolder is owned by " + this.photonView.OwnerActorNr);
+//
+//        if (!offline && this.photonView.Owner != PhotonNetwork.MasterClient)
+//        {
+//
+//            Debug.Log("From Cardholder.cs, transfering card ownership to Master Client");
+//
+//            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
+//        }
 
         LoadCardIntoContainer();
     }

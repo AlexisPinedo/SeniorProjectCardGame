@@ -21,29 +21,32 @@ public class CardZoomer : MonoBehaviourPunCallbacks
 
     public void OnMouseEnter()
     {
+        transform.localScale += new Vector3(1.5F, 1.5F, 1.5F); //zooms in the object
+
         if (offline || photonView.IsMine)
         {
             //Debug.Log("enter");
-            transform.localScale += new Vector3(1.5F, 1.5F, 1.5F); //zooms in the object
             //photonView.RPC("RPCOnMouseEnter", RpcTarget.Others, transform.localScale);
         }
     }
 
     private void OnMouseDrag()
     {
+        transform.localScale = new Vector3(1, 1, 1);
+
         if (offline || photonView.IsMine)
         {
-            transform.localScale = new Vector3(1, 1, 1);
             //photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, transform.localScale);
         }
     }
 
     public void OnMouseExit()
     {
+        transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
+
         if (offline || photonView.IsMine)
         {
             //Debug.Log("exit");
-            transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
             //photonView.RPC("RPCOnMouseExit", RpcTarget.Others, transform.localScale);
         }
     }

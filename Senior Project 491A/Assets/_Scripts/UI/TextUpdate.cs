@@ -36,10 +36,10 @@ public class TextUpdate : MonoBehaviourPunCallbacks
         UpdatePower();
         UpdateCurrency();
 
-        if (!photonView.IsMine)
-        {
-            player1NickName.text = "Waiting for turn...";
-        }
+//        if (!photonView.IsMine)
+//        {
+//            player1NickName.text = "Waiting for turn...";
+//        }
     }
 
     private void OnEnable()

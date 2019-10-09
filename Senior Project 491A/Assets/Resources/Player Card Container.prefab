@@ -673,7 +673,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522489324146028420}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13cfb9b914d2d804fa5a78f7011072cb, type: 3}
   m_Name: 
@@ -685,7 +685,7 @@ MonoBehaviour:
   cardNameTextBox: {fileID: 522489323761172444}
   nameText: {fileID: 522489325007569006}
   cardEffectText: {fileID: 522489323694313994}
-  card: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
+  card: {fileID: 11400000, guid: 26efa0295f30625438479bc43369cbce, type: 2}
   attackText: {fileID: 522489324534388793}
   costText: {fileID: 522489324681891626}
   currencyText: {fileID: 522489323609107175}

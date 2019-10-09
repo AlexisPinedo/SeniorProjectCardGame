@@ -16,7 +16,7 @@ public class HandContainer : PlayerCardContainer
     public PlayerCard phantomCard;
 
     [SerializeField] private int DefaultHandSize = 5;
-
+    
     private void Awake()
     {
         InitialCardDisplay();
@@ -31,6 +31,8 @@ public class HandContainer : PlayerCardContainer
 
     private void OnDisable()
     {
+        
+        Debug.Log("Hand container has been disabled");
         UIHandler.EndTurnClicked -= DestroyHand;
         TurnManager.PlayerSwitched -= InitialCardDisplay;
         containerGrid.onGridResize -= ChangeCardPositions;
@@ -80,6 +82,12 @@ public class HandContainer : PlayerCardContainer
 
         // Set the PlayerCardContainer's PlayerCardHolder to the cardDrawn
         holder.card = cardDrawn;
+
+        if (containerGrid.freeLocations.Count == 0)
+        {
+            Debug.Log("Stack is empty ");
+            return;
+        }
             
         // Place it on the grid!
         PlayerCardHolder cardHolder =  Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
