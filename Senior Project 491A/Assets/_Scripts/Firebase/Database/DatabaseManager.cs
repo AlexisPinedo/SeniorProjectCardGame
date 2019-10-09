@@ -5,7 +5,6 @@ using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Unity.Editor;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
