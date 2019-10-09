@@ -13,6 +13,7 @@ public class DatabaseManager : MonoBehaviour
     public static DatabaseManager sharedInstance = null;
 
     public event Action<PlayerRecord> RetrievedPlayerRecord;
+    public event Action<bool> PlayerExists;
 
     private void Awake()
     {
@@ -26,14 +27,30 @@ public class DatabaseManager : MonoBehaviour
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://raising-spirits.firebaseio.com/");
     }
 
-    public void CreateNewPlayer()
+    public void CreateNewPlayer(AuthPlayer player, string uid)
     {
-
+        string jsonString = JsonUtility.ToJson(player);
+        Router.PlayerWithUID(uid).SetRawJsonValueAsync(jsonString);
     }
 
-    public void CheckIfPlayerExists()
+    public void CheckIfPlayerExists(string uid)
     {
+        Router.PlayerWithUID(uid).GetValueAsync().ContinueWith(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                Debug.Log("Error in database retrieval. ERROR: " + task.Exception);
+                return;
+            }
 
+            DataSnapshot snapshot = task.Result;
+
+            if (snapshot.Value != null)
+                PlayerExists(true); // The player exists
+            else
+                PlayerExists(false); // The player does not exist
+
+        });
     }
 
     public void CreatePlayerRecords(PlayerRecord playerRecord, string uid)

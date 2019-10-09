@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SignIn : MonoBehaviour
+public class SignIn : Forms
 {
-    [SerializeField] private InputField emailInput;
-    [SerializeField] private InputField passwordInput;
 
     public void EmailSignIn()
     {
-        AuthManager.sharedInstance.SignInUserWithEmail(emailInput.text, passwordInput.text);
+        if(isFilled && emailAuthorized)
+            AuthManager.sharedInstance.SignInUserWithEmail(emailInput.text, passwordInput.text);
+        else if(!isFilled)
+            Debug.Log("Please fill out all fields");
+        else if(!emailAuthorized)
+            Debug.Log("Please fill out a valid email"); 
     }
 
     public void FacebookSignIn()
