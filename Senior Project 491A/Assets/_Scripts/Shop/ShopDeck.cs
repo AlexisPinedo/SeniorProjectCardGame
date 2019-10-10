@@ -8,7 +8,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Deck/Shop Deck")]
 public class ShopDeck : PrefillableDeck
 {
-    [SerializeField] private List<PlayerCard> CardsToAddLaterInGame = new List<PlayerCard>();
+    [SerializeField	] private List<PlayerCard> CardsToAddLaterInGame = new List<PlayerCard>();
 
     [SerializeField]
     private int turnCountToAddOtherCards;
@@ -16,7 +16,7 @@ public class ShopDeck : PrefillableDeck
     protected override void OnEnable()
     {
         History.CardHistoryComponentsUpdated += AddCardsLaterInGame;
-
+        
         foreach (PlayerCard card in cardsToAdd)
         {
             for (int i = 0; i < cardCopies; i++)
@@ -29,11 +29,16 @@ public class ShopDeck : PrefillableDeck
                 {
                     CardsToAddLaterInGame.Add(card);
                 }
-
+                
             }
         }
-        Debug.Log("shuffling...");
-        cardsInDeck = ShuffleDeck.Shuffle(this);
+        if (RandomNumberNetworkGenerator.Instance != null)
+        {
+            Debug.Log("trying to shuffle deck");
+            cardsInDeck =  ShuffleDeck.Shuffle(this);
+        }
+        //else
+            //Debug.Log("attempted to shuffle but still waiting for instance of random value...");
     }
 
     private void OnDisable()
@@ -44,14 +49,14 @@ public class ShopDeck : PrefillableDeck
 
     private void AddCardsLaterInGame()
     {
-        if (History.Instance.TurnCount != turnCountToAddOtherCards)
+        if(History.Instance.TurnCount != turnCountToAddOtherCards)
             return;
         foreach (PlayerCard card in CardsToAddLaterInGame)
         {
             cardsInDeck.Push(card);
         }
-
-        cardsInDeck = ShuffleDeck.Shuffle(this);
+        
+        cardsInDeck =  ShuffleDeck.Shuffle(this);
 
         History.CardHistoryComponentsUpdated -= AddCardsLaterInGame;
     }
