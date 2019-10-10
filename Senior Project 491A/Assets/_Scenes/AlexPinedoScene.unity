@@ -1883,9 +1883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 815000619}
   - component: {fileID: 815000616}
-  - component: {fileID: 815000617}
   - component: {fileID: 815000618}
-  - component: {fileID: 815000620}
   m_Layer: 0
   m_Name: UI Handler
   m_TagString: Untagged
@@ -1906,21 +1904,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windowReference: {fileID: 1825280831}
---- !u!114 &815000617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815000615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc4ca37fe80ce4ca2aee8446efea8bee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPower: {fileID: 1014222953}
-  playerCurrency: {fileID: 1694429697}
-  currentTurn: {fileID: 2063148892}
 --- !u!114 &815000618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1953,18 +1936,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.99664307, y: 0.6809082}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &815000620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815000615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf2cc82c57dac642820c8e9afc85054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &837790463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3192,6 +3163,8 @@ GameObject:
   - component: {fileID: 1455907484}
   - component: {fileID: 1455907486}
   - component: {fileID: 1455907485}
+  - component: {fileID: 1455907488}
+  - component: {fileID: 1455907487}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3339,6 +3312,33 @@ MonoBehaviour:
   viewIdField: 5
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1455907487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455907479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf2cc82c57dac642820c8e9afc85054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1455907488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455907479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4ca37fe80ce4ca2aee8446efea8bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPower: {fileID: 1014222953}
+  playerCurrency: {fileID: 1694429697}
+  currentTurn: {fileID: 2063148892}
 --- !u!4 &1472367416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 522489324146028442, guid: ca9d4b072acf4164588d35a26d1bddd4,

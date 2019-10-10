@@ -34,12 +34,6 @@ public class TextUpdate : MonoBehaviourPunCallbacks
     {
         UpdatePower();
         UpdateCurrency();
-    }
-
-    private void OnEnable()
-    {
-        Player.PowerUpdated += UpdatePower;
-        Player.CurrencyUpdated += UpdateCurrency;
         if (photonView.IsMine)
         {
             currentTurn.text = "";
@@ -50,6 +44,11 @@ public class TextUpdate : MonoBehaviourPunCallbacks
         }
     }
 
+    private void OnEnable()
+    {
+        Player.PowerUpdated += UpdatePower;
+        Player.CurrencyUpdated += UpdateCurrency;
+    }
     private void OnDisable()
     {
         Player.PowerUpdated -= UpdatePower;

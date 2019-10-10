@@ -25,27 +25,21 @@ public class ShuffleDeck : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsConnected)
         {
-
-            Debug.Log("In online mode" );
-
+            //Debug.Log("In online mode" );
             randomNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["deckRandomValue"];
+            //Debug.Log("RandomSyncedValue: " + randomNumber);
         }
         else
         {
-            Debug.Log("In offline mode" );
-
+            //Debug.Log("In offline mode" );
             randomNumber = (int)(DateTime.Now.Ticks / TimeSpan.TicksPerSecond);
         }
-        Debug.Log("RandomSyncedValue: " + randomNumber);
     }
     
     public static Stack<Card> Shuffle(Deck deckToShuffle)
     {
-        //System.Random random = new System.Random(RandomNumberNetworkGenerator.Instance.randomNumber);
 
         System.Random random = new System.Random(randomNumber);
-        
-        //Debug.Log("Shuffling with new seed: " + random.Next());
 
         var deckList = deckToShuffle.cardsInDeck.ToArray();
         int n = deckList.Length;
