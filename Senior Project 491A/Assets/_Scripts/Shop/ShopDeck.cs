@@ -32,13 +32,6 @@ public class ShopDeck : PrefillableDeck
                 
             }
         }
-        if (RandomNumberNetworkGenerator.Instance != null)
-        {
-            Debug.Log("trying to shuffle deck");
-            cardsInDeck =  ShuffleDeck.Shuffle(this);
-        }
-        //else
-            //Debug.Log("attempted to shuffle but still waiting for instance of random value...");
     }
 
     private void OnDisable()
@@ -56,7 +49,7 @@ public class ShopDeck : PrefillableDeck
             cardsInDeck.Push(card);
         }
         
-        cardsInDeck =  ShuffleDeck.Shuffle(this);
+        this.cardsInDeck =  ShuffleDeck.Shuffle(this);
 
         History.CardHistoryComponentsUpdated -= AddCardsLaterInGame;
     }

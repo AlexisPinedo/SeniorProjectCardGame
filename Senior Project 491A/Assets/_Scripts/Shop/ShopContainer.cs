@@ -38,6 +38,9 @@ public class ShopContainer : PlayerCardContainer
             //Debug.Log("\tShopContainer Instance = this");
             _instance = this;
         }
+
+        //else
+        //Debug.Log("attempted to shuffle but still waiting for instance of random value...");
     }
 
     /// <summary>
@@ -48,12 +51,16 @@ public class ShopContainer : PlayerCardContainer
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("trying to shuffle deck");
+        shopDeck.cardsInDeck = ShuffleDeck.Shuffle(shopDeck);
+        
         InitialCardDisplay();
     }
 
     private void OnEnable()
     {
         PurchaseHandler.CardPurchased += DisplayNewCard;
+        
         
     }
 

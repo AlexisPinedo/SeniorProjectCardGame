@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
 public class ShuffleDeck : MonoBehaviourPunCallbacks
 {
-    public int randomNumber;
+    public static int randomNumber;
 
     private static ShuffleDeck _instance;
 
@@ -21,7 +22,20 @@ public class ShuffleDeck : MonoBehaviourPunCallbacks
         {
             _instance = this;
         }
-        randomNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["deckRandomValue"];
+
+        if (PhotonNetwork.IsConnected)
+        {
+
+            Debug.Log("In online mode" );
+
+            randomNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["deckRandomValue"];
+        }
+        else
+        {
+            Debug.Log("In offline mode" );
+
+            randomNumber = (int)(DateTime.Now.Ticks / TimeSpan.TicksPerSecond);
+        }
         Debug.Log("RandomSyncedValue: " + randomNumber);
     }
     
@@ -29,9 +43,9 @@ public class ShuffleDeck : MonoBehaviourPunCallbacks
     {
         //System.Random random = new System.Random(RandomNumberNetworkGenerator.Instance.randomNumber);
 
-        System.Random random = new System.Random();
+        System.Random random = new System.Random(randomNumber);
         
-        Debug.Log("Shuffling with new seed: " + random);
+        Debug.Log("Shuffling with new seed: " + random.Next());
 
         var deckList = deckToShuffle.cardsInDeck.ToArray();
         int n = deckList.Length;
