@@ -45,7 +45,7 @@ public class ShuffleDeck : MonoBehaviourPunCallbacks
 
         System.Random random = new System.Random(randomNumber);
         
-        Debug.Log("Shuffling with new seed: " + random.Next());
+        //Debug.Log("Shuffling with new seed: " + random.Next());
 
         var deckList = deckToShuffle.cardsInDeck.ToArray();
         int n = deckList.Length;
@@ -59,6 +59,8 @@ public class ShuffleDeck : MonoBehaviourPunCallbacks
         }
         
         deckToShuffle.cardsInDeck = new Stack<Card>(deckList);
+
+        randomNumber = random.Next();
 
         return deckToShuffle.cardsInDeck;
     }
