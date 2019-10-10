@@ -348,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 1981492783}
   display: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
-  shopDeck: {fileID: 11400000, guid: 2ba6b1a3e2ecc0447bc728d99bd161c8, type: 2}
+  shopDeck: {fileID: 11400000, guid: 4ff002b0bee054542a589b4945221746, type: 2}
 --- !u!1 &381133601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,6 +2605,7 @@ GameObject:
   - component: {fileID: 1121214001}
   - component: {fileID: 1121213999}
   - component: {fileID: 1121214000}
+  - component: {fileID: 1121214002}
   m_Layer: 0
   m_Name: Networking Client
   m_TagString: Untagged
@@ -2663,6 +2664,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1121214002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121213998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75fae9552ddf6ec4fbe66717876e9592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1121273062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3872,7 +3885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1825280830
 RectTransform:
   m_ObjectHideFlags: 0
