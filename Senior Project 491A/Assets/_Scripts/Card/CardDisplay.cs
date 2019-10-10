@@ -42,7 +42,7 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
 //            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
 //        }
 
-        Debug.Log("Card has been created");
+//      Debug.Log("Card has been created");
         cardDisplayCollider = GetComponent<BoxCollider2D>();
 
 

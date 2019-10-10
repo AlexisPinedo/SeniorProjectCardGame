@@ -8,61 +8,67 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
 {
 
     [SerializeField]
-    GameObject player1Prefab, player2Prefab, shopPrefab, playZonePrefab, gameCanvasPrefab;
-
-    [SerializeField]
     private HandContainer p1Handcontainer;
 
     [SerializeField]
     private HandContainer p2HandContainer;
-    
-    
+
+    [SerializeField]
+    private ShopContainer shopContainer;
+
+    [SerializeField]
+    private PlayZone playZone;
+
+    [SerializeField]
+    private GameObject cavnas;
+
+    PhotonView p1HandcontainerPV, p2HandContainerPV, shopContainerPV, playZonePV, canvasPV;
+
+    Photon.Realtime.Player photonPlayer1, photonPlayer2;
 
     private static bool _offline = true;
 
-    public static bool IsOffline {get { return _offline; }}
+    public static bool IsOffline { get { return _offline; } }
 
 
     void Start()
     {
-//        if (PhotonNetwork.IsConnectedAndReady)
-//        {
-//            _offline = false;
-//            if (PhotonNetwork.IsMasterClient)
-//            {
-//                PhotonNetwork.InstantiateSceneObject(player1Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-//                PhotonNetwork.InstantiateSceneObject(shopPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-//                PhotonNetwork.InstantiateSceneObject(playZonePrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-//                PhotonNetwork.InstantiateSceneObject(gameCanvasPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-//            }
-//            else
-//            {
-//                /**
-//                 *  TODO: Fix on photon instantiation to manipulate instantiated objects from different clients.
-//                 *  PhotonNetwork.Instantiate(player2Prefab.name, new Vector3(0, 0, 0), Quaternion.identity);
-//                 */
-//            }
-//            //player2 = GameObject.FindWithTag("Player 2");
-//            //player2 = GameObject.Find("Player2(Clone)");
-//            //if (player2 != null)
-//            //    player2.SetActive(false);
-//            //else
-//            //    Debug.Log("could not find...");
-//        }
-//        else
-//        {
-//            PhotonNetwork.OfflineMode = true;
-//            Instantiate(player1Prefab, new Vector3(0, 0, 0), Quaternion.identity);
-//            Instantiate(shopPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-//            Instantiate(playZonePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-//            Instantiate(gameCanvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-//        }
+        p1HandcontainerPV = p1Handcontainer.GetComponent<PhotonView>();
+        p2HandContainerPV = p2HandContainer.GetComponent<PhotonView>();
+        shopContainerPV = shopContainer.GetComponent<PhotonView>();
+        playZonePV = playZone.GetComponent<PhotonView>();
+        canvasPV = cavnas.GetComponent<PhotonView>();
+
+        if (PhotonNetwork.IsConnected)
+        {
+            Debug.Log("Photon is online...");
+            _offline = false;
+
+            foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+            {
+                if (player.IsMasterClient)
+                    photonPlayer1 = player;
+                else
+                    photonPlayer2 = player;
+            }
+
+            Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
+            Debug.Log("Photon Player 2: " + photonPlayer2.NickName);
+
+            p1HandcontainerPV.TransferOwnership(photonPlayer1);
+            p2HandContainerPV.TransferOwnership(photonPlayer2);
+            shopContainerPV.TransferOwnership(photonPlayer1);
+            playZonePV.TransferOwnership(photonPlayer1);
+            canvasPV.TransferOwnership(photonPlayer1);
+
+            Debug.Log("Transfered ownership...");
+        }
+        else
+        {
+            PhotonNetwork.OfflineMode = true;
+            Debug.Log("Photon is offline...");
+        }
     }
 
-    void OnPhotonInstantiate(PhotonMessageInfo info)
-    {
-//        Debug.Log("tagging object...");
-//        info.Sender.TagObject = this.gameObject;
-    }
 
 }
