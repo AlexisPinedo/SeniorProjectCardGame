@@ -31,9 +31,13 @@ public class History : MonoBehaviour
 
     public int TurnCount => turnCount;
 
-    public delegate void _TurnCounterUpdated();
+    public delegate void _cardHistoryComponentsUpdated();
 
-    public static event _TurnCounterUpdated TurnCounterUpdated;
+    public static event _cardHistoryComponentsUpdated CardHistoryComponentsUpdated;
+
+    public delegate void _cardAddedToHistory();
+    
+    public static event _cardAddedToHistory CardAddedToHistory;
 
     //private PlayerCard LastCardPlayed;
 
@@ -64,9 +68,11 @@ public class History : MonoBehaviour
 
     public void AddCardToHistory(PlayerCard cardToAdd)
     {
-        Debug.Log("Card Added");
+        //Debug.Log("Card Added");
         playerCardHistory.Add(cardToAdd);
         EntireCardHistory.Add(cardToAdd);
+        
+        CardAddedToHistory?.Invoke();
     }
 
     private void HandleTurnEnding()
@@ -83,7 +89,7 @@ public class History : MonoBehaviour
     public void IncrementTurnCounter()
     {
         turnCount++;
-        TurnCounterUpdated?.Invoke();
+        CardHistoryComponentsUpdated?.Invoke();
     }
 
     //public void ClearHistory()

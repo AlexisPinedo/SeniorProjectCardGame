@@ -17,7 +17,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
     }
 
     public static bool cardInPlayZone = false;
-    public static PlayerCardHolder cardInZone;
+    public static PlayerCardDisplay cardInZone;
 
     public delegate void _CardPlayed(PlayerCard cardPlayed);
 
@@ -47,7 +47,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
             //Debug.Log("Card has entered");
             cardInPlayZone = true;
-            cardInZone = other.gameObject.GetComponent<PlayerCardHolder>();
+            cardInZone = other.gameObject.GetComponent<PlayerCardDisplay>();
             if(!offline)
                 photonView.RPC("RPCOnTriggerEnter2D", RpcTarget.Others, cardInZone);
 
@@ -87,8 +87,11 @@ public class PlayZone : MonoBehaviourPunCallbacks
         //Debug.Log(col.gameObject.name + " has entered the scene");
         // Card stuff
         Hand tpHand = TurnManager.Instance.turnPlayer.hand;
-        PlayerCardHolder cardHolder = cardInZone;
-        PlayerCard cardPlayed = cardHolder.card;
+        PlayerCardDisplay cardDisplay = cardInZone;
+        PlayerCard cardPlayed = cardDisplay.card;
+        
+        GameObject.Destroy(cardInZone.gameObject);
+        
         TurnManager.Instance.turnPlayer.Power += cardPlayed.CardAttack;
         TurnManager.Instance.turnPlayer.Currency += cardPlayed.CardCurrency;
 
@@ -100,13 +103,13 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
         CardPlayed?.Invoke(cardPlayed);
 
-        GameObject.Destroy(cardInZone.gameObject);
+        
         cardInPlayZone = false;
         cardInZone = null;
     }
 
     [PunRPC]
-    private void RPCOnTriggerEnter2D(PlayerCardHolder RPCcardInZone)
+    private void RPCOnTriggerEnter2D(PlayerCardDisplay RPCcardInZone)
     {
         cardInZone = RPCcardInZone;
     }
@@ -118,7 +121,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void RPCPlayZoneUpdate(PlayerCardHolder cardClicked)
+    private void RPCPlayZoneUpdate(PlayerCardDisplay cardClicked)
     {
         HandleCardPlayed();
     }

@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: 381133603}
   - component: {fileID: 381133605}
   - component: {fileID: 381133606}
+  - component: {fileID: 381133607}
   m_Layer: 0
   m_Name: Manager Container
   m_TagString: Untagged
@@ -382,8 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnPlayer: {fileID: 0}
-  p1HandSpacePanel: {fileID: 101520841}
-  p2HandSpacePanel: {fileID: 2025430591}
+  turnPlayerGameObject: {fileID: 0}
+  player1GameObject: {fileID: 101520841}
+  player2GameObject: {fileID: 2025430591}
   player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
   player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
 --- !u!114 &381133603
@@ -438,6 +440,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de802d88a2a6014aac779e5624c3cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &381133607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381133601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff3fc2798eeda34d968947afe7299ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeTurnHero: {fileID: 0}
 --- !u!1 &393574265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,6 +1588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d42a31713ed45a4d94dc764e6da1b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  windowReference: {fileID: 0}
 --- !u!114 &815000617
 MonoBehaviour:
   m_ObjectHideFlags: 0

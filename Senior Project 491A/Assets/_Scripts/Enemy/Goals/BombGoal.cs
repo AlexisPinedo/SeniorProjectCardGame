@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Obsolete method that is wip
+/// </summary>
 public class BombGoal : Goal
 {
     //public int bombCounter = 0;

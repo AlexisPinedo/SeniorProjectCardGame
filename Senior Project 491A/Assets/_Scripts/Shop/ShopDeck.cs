@@ -15,7 +15,7 @@ public class ShopDeck : PrefillableDeck
 
     protected override void OnEnable()
     {
-        History.TurnCounterUpdated += AddCardsLaterInGame;
+        History.CardHistoryComponentsUpdated += AddCardsLaterInGame;
         
         foreach (PlayerCard card in cardsToAdd)
         {
@@ -35,15 +35,15 @@ public class ShopDeck : PrefillableDeck
         if (RandomNumberNetworkGenerator.Instance != null)
         {
             Debug.Log("trying to shuffle deck");
-            Shuffle();
+            cardsInDeck =  ShuffleDeck.Shuffle(this);
         }
-        else
-            Debug.Log("attempted to shuffle but still waiting for instance of random value...");
+        //else
+            //Debug.Log("attempted to shuffle but still waiting for instance of random value...");
     }
 
     private void OnDisable()
     {
-        History.TurnCounterUpdated -= AddCardsLaterInGame;
+        History.CardHistoryComponentsUpdated -= AddCardsLaterInGame;
         CardsToAddLaterInGame.Clear();
     }
 
@@ -56,9 +56,9 @@ public class ShopDeck : PrefillableDeck
             cardsInDeck.Push(card);
         }
         
-        Shuffle();
+        cardsInDeck =  ShuffleDeck.Shuffle(this);
 
-        History.TurnCounterUpdated -= AddCardsLaterInGame;
+        History.CardHistoryComponentsUpdated -= AddCardsLaterInGame;
     }
 
     public void OnBeforeSerialize()

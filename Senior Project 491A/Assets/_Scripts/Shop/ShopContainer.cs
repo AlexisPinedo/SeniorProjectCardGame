@@ -22,7 +22,7 @@ public class ShopContainer : PlayerCardContainer
     public ShopDeck shopDeck;
 
 
-    public delegate void _cardDrawnLocationCreated(PlayerCardHolder cardDrawn, Vector3 freeSpot);
+    public delegate void _cardDrawnLocationCreated(PlayerCardDisplay cardDrawn, Vector3 freeSpot);
 
     public static event _cardDrawnLocationCreated CardDrawnLocationCreated;
 
@@ -88,23 +88,23 @@ public class ShopContainer : PlayerCardContainer
         PlayerCard cardDrawn = null;
         cardDrawn = (PlayerCard)shopDeck.cardsInDeck.Pop();
 
-        // PlayerCardHolder
-        holder.card = cardDrawn;
+        // PlayerCardDisplay
+        display.card = cardDrawn;
 
-        PlayerCardHolder cardHolder = Instantiate(holder, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
-        cardHolder.enabled = true;
+        PlayerCardDisplay cardDisplay = Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
+        cardDisplay.enabled = true;
 
-        Vector3 freeSpot = cardHolder.gameObject.transform.position;
+        Vector3 freeSpot = cardDisplay.gameObject.transform.position;
         
-        CardDrawnLocationCreated?.Invoke(cardHolder, freeSpot);
+        CardDrawnLocationCreated?.Invoke(cardDisplay, freeSpot);
         
         if (!containerGrid.cardLocationReference.ContainsKey(freeSpot))
-            containerGrid.cardLocationReference.Add(freeSpot, cardHolder);
+            containerGrid.cardLocationReference.Add(freeSpot, cardDisplay);
         else
-            containerGrid.cardLocationReference[freeSpot] = cardHolder;
+            containerGrid.cardLocationReference[freeSpot] = cardDisplay;
     }
 
-    private void DisplayNewCard(PlayerCardHolder cardBought)
+    private void DisplayNewCard(PlayerCardDisplay cardBought)
     {
         Vector3 freeSpot = cardBought.gameObject.transform.position;
 

@@ -4,12 +4,14 @@ using UnityEngine;
 using ExitGames.Client.Photon;
 
 /// <summary>
-/// Extends the Card scriptable object and contains information specific to Player Cards.
+/// This class contains the data components for card that are player cards
+/// Defines a player Card as a scriptable object inherits from card
 /// </summary>
 [CreateAssetMenu(menuName = "Card/Player Card")]
 public class PlayerCard : Card
 {
     //All this stuff below belongs in Player Card Class
+    //This class uses many properties allowing all the variables to be read but not modified
     //========================================================
     //public bool inShop = true;
 

@@ -10,7 +10,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
 {
     private static PurchaseHandler _instance;
 
-    public delegate void _CardPurchased(PlayerCardHolder cardBought);
+    public delegate void _CardPurchased(PlayerCardDisplay cardBought);
 
     public static event _CardPurchased CardPurchased;
 
@@ -42,7 +42,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
     }
 
 
-    private void HandlePurchase(PlayerCardHolder cardSelected)
+    private void HandlePurchase(PlayerCardDisplay cardSelected)
     {
         //Debug.Log("Handling Purchase");
         if (TurnManager.Instance.turnPlayer.Currency >= cardSelected.card.CardCost)
@@ -65,7 +65,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void RPCHandlePurchase(PlayerCardHolder cardSelected)
+    private void RPCHandlePurchase(PlayerCardDisplay cardSelected)
     {
         TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardSelected.card);
 

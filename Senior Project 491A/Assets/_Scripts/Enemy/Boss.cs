@@ -3,16 +3,19 @@
     Date:       2019-04-11
  */
 
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 
-/*
-    This class represents a match's Boss
- */
+/// <summary>
+/// This class contains the data components for card that are boss cards
+/// This object is what is used to to create different bosses
+/// Defines a boss Card as a scriptable object inherits from card
+/// </summary>
+
+//This is used to create boss card in the project section you can then attatch the components for that boss
 [CreateAssetMenu(menuName = "Card/Boss Card")]
 public class Boss : EnemyCard
 {
@@ -21,6 +24,10 @@ public class Boss : EnemyCard
     [SerializeField]
     private EnemyDeck bossDeck;
 }
+
+
+
+/* This was the previous implementation of the enemy card 
 
 //public class Boss : EnemyCard
 //   {
