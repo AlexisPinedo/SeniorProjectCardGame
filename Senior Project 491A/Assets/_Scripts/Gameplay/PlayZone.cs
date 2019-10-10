@@ -89,6 +89,9 @@ public class PlayZone : MonoBehaviourPunCallbacks
         Hand tpHand = TurnManager.Instance.turnPlayer.hand;
         PlayerCardDisplay cardDisplay = cardInZone;
         PlayerCard cardPlayed = cardDisplay.card;
+        
+        GameObject.Destroy(cardInZone.gameObject);
+        
         TurnManager.Instance.turnPlayer.Power += cardPlayed.CardAttack;
         TurnManager.Instance.turnPlayer.Currency += cardPlayed.CardCurrency;
 
@@ -100,7 +103,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
         CardPlayed?.Invoke(cardPlayed);
 
-        GameObject.Destroy(cardInZone.gameObject);
+        
         cardInPlayZone = false;
         cardInZone = null;
     }
