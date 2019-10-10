@@ -10,6 +10,10 @@ public class NotificationWindow : MonoBehaviour
     private TextMeshProUGUI notificationText;
     private Button okButton;
 
+    public delegate void _notificationWindowOpened();
+
+    public static event _notificationWindowOpened NotificationWindowOpened;
+
     public delegate void _notificationWindowClosed();
 
     public static event _notificationWindowClosed NotificatoinWindoClosed;
@@ -21,8 +25,10 @@ public class NotificationWindow : MonoBehaviour
         get { return _instance; }
     }
 
-    [SerializeField]
+    [HideInInspector]
     public Image transparentCover;
+    
+
 
     void Awake()
     {
@@ -37,6 +43,19 @@ public class NotificationWindow : MonoBehaviour
 
         notificationText = GetComponentInChildren<TextMeshProUGUI>();
         okButton = GetComponent<Button>();
+        transparentCover = GetComponentInChildren<Image>();
+        
+    }
+
+    private void OnEnable()
+    {
+        //Debug.Log("Going to invoke event");
+        NotificationWindowOpened?.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        NotificatoinWindoClosed?.Invoke();
     }
 
     public void DisplayMessage(string message)
@@ -49,6 +68,7 @@ public class NotificationWindow : MonoBehaviour
         transparentCover.gameObject.SetActive(false);
         notificationText.text = "";
         this.gameObject.SetActive(false);
-        NotificatoinWindoClosed?.Invoke();
     }
+    
+
 }

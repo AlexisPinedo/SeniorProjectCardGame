@@ -23,6 +23,10 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     [SerializeField] protected TextMeshPro cardEffectText;
 
     private bool offline;
+    
+    [SerializeField]
+    private BoxCollider2D cardDisplayCollider;
+
 
     protected virtual void Awake()
     {
@@ -38,6 +42,10 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
 //            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
 //        }
 
+        Debug.Log("Card has been created");
+        cardDisplayCollider = GetComponent<BoxCollider2D>();
+
+
         LoadCardIntoDisplay();
     }
     
@@ -51,13 +59,18 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     }
 
     protected virtual void OnEnable()
-    { 
+    {
+        NotificationWindow.NotificationWindowOpened += DisableBoxCollider;
+        NotificationWindow.NotificatoinWindoClosed += EnableBoxCollider;
         //Debug.Log("CardDisplay: OnEnable()");
         LoadCardIntoDisplay();
+        
     }
 
     protected virtual void OnDisable()
     {
+        NotificationWindow.NotificationWindowOpened -= DisableBoxCollider;
+        NotificationWindow.NotificatoinWindoClosed -= EnableBoxCollider;
         ClearCardFromDisplay();
     }
     
@@ -75,4 +88,16 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     {
         
     }
+    
+    protected virtual void DisableBoxCollider()
+    {
+        Debug.Log("disabling collider for " + nameText);
+        cardDisplayCollider.enabled = false;
+    }
+
+    protected virtual void EnableBoxCollider()
+    {
+        cardDisplayCollider.enabled = true;
+    }
+    
 }
