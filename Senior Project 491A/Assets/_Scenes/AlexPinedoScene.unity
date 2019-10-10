@@ -381,10 +381,10 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 301505298}
   viewIdField: 3
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -594,10 +594,10 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 393574269}
   viewIdField: 4
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1920,7 +1920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPower: {fileID: 1014222953}
   playerCurrency: {fileID: 1694429697}
-  currentTurn: {fileID: 0}
+  currentTurn: {fileID: 2063148892}
 --- !u!114 &815000618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2715,9 +2715,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p1Handcontainer: {fileID: 1190731606}
   p2HandContainer: {fileID: 2033931931}
-  shopContainer: {fileID: 0}
-  playZone: {fileID: 0}
-  cavnas: {fileID: 0}
+  shopContainer: {fileID: 301505297}
+  playZone: {fileID: 393574267}
+  cavnas: {fileID: 1455907479}
 --- !u!4 &1121214001
 Transform:
   m_ObjectHideFlags: 0
@@ -2861,7 +2861,7 @@ MonoBehaviour:
   Synchronization: 1
   OwnershipTransfer: 1
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 1190731607}
   viewIdField: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -3332,10 +3332,10 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 1455907485}
   viewIdField: 5
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -4345,7 +4345,7 @@ MonoBehaviour:
   Synchronization: 1
   OwnershipTransfer: 1
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 2033931932}
   viewIdField: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0

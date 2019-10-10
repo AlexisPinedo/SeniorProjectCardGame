@@ -28,14 +28,6 @@ public class TextUpdate : MonoBehaviourPunCallbacks
         {
             _instance = this;
         }
-        if (photonView.IsMine)
-        {
-            currentTurn.text = "";
-        } 
-        else
-        {
-            currentTurn.text = "Waiting for turn...";
-        }
     }
     
     private void Start()
@@ -48,7 +40,14 @@ public class TextUpdate : MonoBehaviourPunCallbacks
     {
         Player.PowerUpdated += UpdatePower;
         Player.CurrencyUpdated += UpdateCurrency;
-        
+        if (photonView.IsMine)
+        {
+            currentTurn.text = "";
+        }
+        else
+        {
+            currentTurn.text = "Waiting for turn...";
+        }
     }
 
     private void OnDisable()

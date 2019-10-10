@@ -30,9 +30,9 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
 
     public static bool IsOffline { get { return _offline; } }
 
-
-    void Start()
+    void Awake()
     {
+        Debug.Log("Hello from photon network manager");
         p1HandcontainerPV = p1Handcontainer.GetComponent<PhotonView>();
         p2HandContainerPV = p2HandContainer.GetComponent<PhotonView>();
         shopContainerPV = shopContainer.GetComponent<PhotonView>();
