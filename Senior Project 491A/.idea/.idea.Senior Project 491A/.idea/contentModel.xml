@@ -102,16 +102,19 @@
             <e p="GameClient.cs" t="Include" />
             <e p="GameGui.cs" t="Include" />
           </e>
+          <e p="PhotonNetworkManager.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="GraveContainer.cs" t="Include" />
             <e p="Graveyard.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
+          <e p="RandomNumberNetworkGenerator.cs" t="Include" />
           <e p="Shop" t="Include">
             <e p="PurchaseHandler.cs" t="Include" />
             <e p="ShopContainer.cs" t="Include" />
             <e p="ShopDeck.cs" t="Include" />
           </e>
+          <e p="ShopNetworkRelay.cs" t="Include" />
           <e p="ShuffleDeck.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
@@ -120,6 +123,7 @@
             <e p="TextUpdate.cs" t="Include" />
             <e p="UIHandler.cs" t="Include" />
           </e>
+          <e p="UIViewHandler.cs" t="Include" />
           <e p="Utility" t="Include">
             <e p="InputToEvent.cs" t="Include" />
           </e>
@@ -329,9 +333,7 @@
             </e>
           </e>
         </e>
-        <e p="PhotonNetworkManager.cs" t="Include" />
-        <e p="RandomNumberNetworkGenerator.cs" t="Include" />
-        <e p="ShopNetworkRelay.cs" t="Include" />
+        <e p="ShopSelectionEventListener.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />
@@ -367,7 +369,6 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
-        <e p="UIViewHandler.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
