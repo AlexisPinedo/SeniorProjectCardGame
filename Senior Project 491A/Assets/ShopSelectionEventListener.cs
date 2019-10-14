@@ -50,14 +50,14 @@ public class ShopSelectionEventListener : MonoBehaviour
 
     public void EnableShopSelectionState(int cardsToSelect, CardType.CardTypes typeToCompare = CardType.CardTypes.All)
     {
-        ButtonInputManager.DisableButtonsInList();
+        //ButtonInputManager.DisableButtonsInList();
         compareType = typeToCompare;
         StartCoroutine(SelectionState(cardsToSelect));
     }
 
     public void DisableShopSelectionState()
     {
-        ButtonInputManager.DisableButtonsInList();
+        //ButtonInputManager.DisableButtonsInList();
         inShopSelectionState = false;
         compareType = CardType.CardTypes.All;
     }

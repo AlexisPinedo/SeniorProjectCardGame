@@ -7,7 +7,7 @@ public class ButtonInputManager : MonoBehaviour
 {
     private List<Button> buttonList = new List<Button>();
     
-    private static ButtonInputManager
+    //private static ButtonInputManager
 
     public void DisableButtonsInList()
     {
