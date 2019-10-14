@@ -59,14 +59,14 @@ public class ShopContainer : PlayerCardContainer
 
     private void OnEnable()
     {
-        PurchaseHandler.CardPurchased += DisplayNewCard;
+        PlayerCardDisplay.CardPurchased += DisplayNewCard;
         
         
     }
 
     private void OnDisable()
     {
-        PurchaseHandler.CardPurchased -= DisplayNewCard;
+        PlayerCardDisplay.CardPurchased -= DisplayNewCard;
         
     }
 
