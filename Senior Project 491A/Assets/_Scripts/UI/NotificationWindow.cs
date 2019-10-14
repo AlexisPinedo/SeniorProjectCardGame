@@ -20,6 +20,8 @@ public class NotificationWindow : MonoBehaviour
 
     private static NotificationWindow _instance;
 
+    public bool inNotificationState = false;
+
     public static NotificationWindow Instance
     {
         get { return _instance; }
@@ -51,16 +53,23 @@ public class NotificationWindow : MonoBehaviour
     {
         //Debug.Log("Going to invoke event");
         NotificationWindowOpened?.Invoke();
+        inNotificationState = true;
+
     }
 
     private void OnDisable()
     {
         NotificatoinWindoClosed?.Invoke();
+        inNotificationState = false;
+
     }
 
     public void DisplayMessage(string message)
     {
         notificationText.text = message;
+        
+
+        StartCoroutine(NotificationState());
     }
 
     public void CloseNotificationWindow()
@@ -69,6 +78,14 @@ public class NotificationWindow : MonoBehaviour
         notificationText.text = "";
         this.gameObject.SetActive(false);
     }
-    
+
+    IEnumerator NotificationState()
+    {
+        while (inNotificationState)
+        {
+            yield return null;
+        }
+        
+    }
 
 }

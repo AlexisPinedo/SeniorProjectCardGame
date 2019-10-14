@@ -25,7 +25,7 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     private bool offline;
     
     [SerializeField]
-    private BoxCollider2D cardDisplayCollider;
+    protected BoxCollider2D cardDisplayCollider;
 
 
     protected virtual void Awake()
@@ -91,7 +91,7 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     
     protected virtual void DisableBoxCollider()
     {
-        Debug.Log("disabling collider for " + nameText);
+        //Debug.Log("disabling collider for " + nameText);
         cardDisplayCollider.enabled = false;
     }
 

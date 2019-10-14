@@ -20,6 +20,12 @@ public class ShopSelectionEventListener : MonoBehaviour
         get { return _instance; }
     }
 
+    public bool inShopSelectionState = false;
+
+    private int cardsPurchased;
+
+    private CardType.CardTypes compareType = CardType.CardTypes.All;
+
     private void Awake()
     {
         if (_instance == null && _instance != this)
@@ -31,22 +37,77 @@ public class ShopSelectionEventListener : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    public void EnableShopSelectionState()
+    
+    private void OnEnable()
     {
-        StartCoroutine(SelectionState());
+        DragCard.ShopCardClicked += CardPurchase;
+    }
+
+    private void OnDisable()
+    {
+        DragCard.ShopCardClicked -= CardPurchase;
+    }
+
+    public void EnableShopSelectionState(int cardsToSelect, CardType.CardTypes typeToCompare = CardType.CardTypes.All)
+    {
+        ButtonInputManager.DisableButtonsInList();
+        compareType = typeToCompare;
+        StartCoroutine(SelectionState(cardsToSelect));
+    }
+
+    public void DisableShopSelectionState()
+    {
+        ButtonInputManager.DisableButtonsInList();
+        inShopSelectionState = false;
+        compareType = CardType.CardTypes.All;
+    }
+
+    private void CardPurchase(PlayerCardDisplay cardClicked)
+    {
+        if (!inShopSelectionState)
+            return;
+        
+        if (cardClicked.card.CardType == compareType || compareType == CardType.CardTypes.All)
+        {
+            TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardClicked.card);
+        
+            cardClicked.TriggerCardPurchasedEvent();
+        
+            Destroy(cardClicked.gameObject);
+
+            cardsPurchased++; 
+            
+            Debug.Log("card purchased for free");
+
+        }
+        else
+        {
+            Debug.Log("must select card of correct type");
+        }
     }
 
 
-    IEnumerator SelectionState()
+    IEnumerator SelectionState(int cardsToSelect)
     {
+        while (NotificationWindow.Instance.inNotificationState)
+        {
+            yield return null;
+        }
+
+        inShopSelectionState = true;
+        
         PurchaseEventTriggered?.Invoke();
         Debug.Log("Purchase event triggered");
 
-        yield return new WaitForSeconds(10);
+        while (cardsPurchased < cardsToSelect)
+        {
+            yield return null;
+        }
         
         Debug.Log("Purchase event ended");
 
+        DisableShopSelectionState();
+        
         PurchaseEventEnded.Invoke();
     }
 }

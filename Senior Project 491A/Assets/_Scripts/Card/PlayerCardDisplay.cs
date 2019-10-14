@@ -21,6 +21,10 @@ public class PlayerCardDisplay : CardDisplay
     [SerializeField] private SpriteRenderer cardEffectCostsIcons;
     [SerializeField] private SpriteRenderer costIcon;
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
+    
+    public delegate void _CardPurchased(PlayerCardDisplay cardBought);
+
+    public static event _CardPurchased CardPurchased;
 
 
     //When the PlayerCardDisplay is loaded we want to load in the components into the display
@@ -134,20 +138,28 @@ public class PlayerCardDisplay : CardDisplay
 
     private void DisablePlayerCardCollider()
     {
-        Debug.Log("Disabling player card collider");
         if (this.gameObject.GetComponentInParent<HandContainer>() != null)
         {
-            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            Debug.Log("Disabling player card collider for" + nameText.text);
+
+            cardDisplayCollider.enabled = false;
         }
     }
     
     private void EnablePlayerCardCollider()
     {
-        Debug.Log("Enabling player card collider");
 
         if (this.gameObject.GetComponentInParent<HandContainer>() != null)
         {
-            this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            Debug.Log("Enabling player card collider for " + nameText.text);
+
+            cardDisplayCollider.enabled = true;
         }
+    }
+
+    public void TriggerCardPurchasedEvent()
+    {
+        CardPurchased?.Invoke(this);
+
     }
 }

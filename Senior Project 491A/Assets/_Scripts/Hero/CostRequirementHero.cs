@@ -8,7 +8,9 @@ public abstract class CostRequirementHero : Hero
     [SerializeField] private int cardEffectRequirementCount = 3;
     [SerializeField] private int cardsSinceLastEffectTrigger = 0;
 
-    [SerializeField] private List<PlayerCard> cardsPlayedForEffect;
+    [SerializeField] protected List<PlayerCard> cardsPlayedForEffect;
+
+    protected CardType.CardTypes lastCardPlayedType;
     
     protected virtual void OnEnable()
     {
@@ -41,6 +43,8 @@ public abstract class CostRequirementHero : Hero
         }
         
         cardsPlayedForEffect.Add(cardPlayed);
+        lastCardPlayedType = cardPlayed.CardType;
+        
         Debug.Log("Card added to hero effect check");
 
         if (cardsPlayedForEffect.Count < cardEffectRequirementCount)

@@ -10,9 +10,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
 {
     private static PurchaseHandler _instance;
 
-    public delegate void _CardPurchased(PlayerCardDisplay cardBought);
 
-    public static event _CardPurchased CardPurchased;
 
     public static PurchaseHandler Instance
     {
@@ -41,9 +39,11 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
         DragCard.ShopCardClicked -= HandlePurchase;
     }
 
-
     private void HandlePurchase(PlayerCardDisplay cardSelected)
     {
+        if(ShopSelectionEventListener.Instance.inShopSelectionState)
+            return;
+        ;
         //Debug.Log("Handling Purchase");
         if (TurnManager.Instance.turnPlayer.Currency >= cardSelected.card.CardCost)
         {
@@ -51,7 +51,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
 
             TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
             
-            CardPurchased?.Invoke(cardSelected);
+            cardSelected.TriggerCardPurchasedEvent();
             
             Destroy(cardSelected.gameObject);
 
@@ -71,7 +71,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
 
         TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
 
-        CardPurchased?.Invoke(cardSelected);
+        cardSelected.TriggerCardPurchasedEvent();
 
         Destroy(cardSelected.gameObject);
     }
