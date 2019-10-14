@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
-
+using Photon.Pun;
 /// <summary>
 /// 
 /// </summary>
@@ -14,6 +14,7 @@ public class HandContainer : PlayerCardContainer
     public Deck playerDeck;
     public Graveyard playerGrave;
     public PlayerCard phantomCard;
+    public PlayerCard cardDrawn;
 
     [SerializeField] private int DefaultHandSize = 5;
     
@@ -49,7 +50,7 @@ public class HandContainer : PlayerCardContainer
 
     public void DrawCard()
     {
-        PlayerCard cardDrawn = null;
+        cardDrawn = null;
 
         if (playerDeck.cardsInDeck.Count > 0)
         {
@@ -66,7 +67,7 @@ public class HandContainer : PlayerCardContainer
                 }
 
                 playerDeck.cardsInDeck = ShuffleDeck.Shuffle(playerDeck);
-                
+
                 cardDrawn = (PlayerCard)playerDeck.cardsInDeck.Pop();
             }
             else
@@ -90,7 +91,10 @@ public class HandContainer : PlayerCardContainer
             //Debug.Log("Stack is empty ");
             return;
         }
-            
+
+        //object[] myCustomInitData = {display.card};
+        //PlayerCardDisplay cardDisplay = (PlayerCardDisplay) PhotonNetwork.InstantiateSceneObject("Player Card Container", containerGrid.freeLocations.Pop(), Quaternion.identity, 0, myCustomInitData);
+        //Debug.Log("instantiated photon scene object...");
         // Place it on the grid!
         PlayerCardDisplay cardDisplay =  Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
 
@@ -100,6 +104,12 @@ public class HandContainer : PlayerCardContainer
             containerGrid.cardLocationReference[cardDisplay.gameObject.transform.position] = cardDisplay;
     
         hand.hand.Add(cardDrawn);
+    }
+
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        object[] instantiationData = info.photonView.InstantiationData;
+        this.cardDrawn = (PlayerCard)instantiationData[0];
     }
 
     public void DrawExtraCard()

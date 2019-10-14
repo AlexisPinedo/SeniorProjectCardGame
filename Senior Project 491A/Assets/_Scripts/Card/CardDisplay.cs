@@ -10,10 +10,10 @@ using Photon.Pun;
 /// Each card component will have its data read and stored here
 /// this is used to relay each card's information to the player
 /// </summary>
-public abstract class CardDisplay : MonoBehaviourPunCallbacks
+///
+[Serializable]
+public abstract class CardDisplay : MonoBehaviour
 {
-    protected const byte LOAD_CARD_EVENT = 1;
-
     [SerializeField] protected SpriteRenderer cardArtDisplay;
     [SerializeField] protected SpriteRenderer typeIcon;
     [SerializeField] protected SpriteRenderer cardBorder;
