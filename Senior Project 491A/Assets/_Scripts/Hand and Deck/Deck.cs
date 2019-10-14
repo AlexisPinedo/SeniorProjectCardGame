@@ -23,7 +23,7 @@ public class Deck : ScriptableObject
     protected virtual void Awake()
     {
         cardsInDeck.Clear();
-        Debug.Log("Card have been cleared from the deck");
+//        Debug.Log("Card have been cleared from the deck");
     }
     //Method that shuffles the deck. Possibly going to move out of card. 
 }

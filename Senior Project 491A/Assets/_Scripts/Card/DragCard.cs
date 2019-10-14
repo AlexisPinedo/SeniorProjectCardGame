@@ -98,34 +98,38 @@ public class DragCard : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnMouseDrag()
     {
-        //if the card display has no hand container it means that the card is in the shop
-        //if that is the case we do not want to drag the card. 
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        if (photonView.IsMine)
         {
-            return;
+            //if the card display has no hand container it means that the card is in the shop
+            //if that is the case we do not want to drag the card. 
+            if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+            {
+                return;
+            }
+
+            //Debug.Log("Attempting to drag and the object is draggable");
+
+            //stores position of cursor in screen space
+            UnityEngine.Vector2 cursorScreenPoint = new UnityEngine.Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+            //grabs the position of the mouse cursor and converts to world space
+            UnityEngine.Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset;
+
+            //updates position of game object
+            transform.position = cursorPosition;
+
+            //current card
+            thisCard = this.gameObject.GetComponent<PlayerCardDisplay>();
+            Debug.Log("Mouse drag: " + thisCard.card.CardName);
+
+            //photon view of our current card
+            draggedCard = this.GetComponent<PhotonView>();
+
+            //RPC call the current card photon ID and the changed position
+            this.photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, draggedCard.ViewID, transform.position);
+           
         }
 
-        //Debug.Log("Attempting to drag and the object is draggable");
-
-        //stores position of cursor in screen space
-        UnityEngine.Vector2 cursorScreenPoint = new UnityEngine.Vector2(Input.mousePosition.x, Input.mousePosition.y);
-
-        //grabs the position of the mouse cursor and converts to world space
-        UnityEngine.Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset;
-
-        //updates position of game object
-        //transform.position = cursorPosition;
-
-        //thisCard = this.gameObject.GetComponent<PlayerCardDisplay>();
-        //Debug.Log("Mouse drag: " + thisCard.card.CardName);
-
-        //photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, thisCard, transform.position);
-
-        draggedCard = this.GetComponent<PhotonView>();
-
-        Debug.Log(draggedCard.ViewID);
-
-        this.photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, draggedCard.ViewID);
     }
 
     //[PunRPC]
@@ -151,21 +155,19 @@ public class DragCard : MonoBehaviourPunCallbacks
     //}
 
     [PunRPC]
-    private void RPCOnMouseDrag(int cardID)
+    private void RPCOnMouseDrag(int cardID, Vector2 position)
     {
-
-        Debug.Log("Photon View not found. CardID: " + cardID);
-        //PhotonView foundCard = PhotonView.Find(cardID);
-        //if (foundCard)
-        //{
-        //    this.transform.position = position;
-        //}
-        //else
-        //{
-        //    Debug.Log("Photon View not found. CardID: " + cardID);
-        //}
-        //currentCard.transform.position = position;
-        //Debug.Log("Mouse drag: " + currentCard.card.CardName);
+        //find the phototon view associted with the given ID
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            //update the position of the card
+            foundCard.transform.position = position;
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
     }
 }
 

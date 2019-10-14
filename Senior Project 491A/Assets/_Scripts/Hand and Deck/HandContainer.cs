@@ -92,9 +92,16 @@ public class HandContainer : PlayerCardContainer
             return;
         }
 
-        //object[] myCustomInitData = {display.card};
-        //PlayerCardDisplay cardDisplay = (PlayerCardDisplay) PhotonNetwork.InstantiateSceneObject("Player Card Container", containerGrid.freeLocations.Pop(), Quaternion.identity, 0, myCustomInitData);
-        //Debug.Log("instantiated photon scene object...");
+        /**
+         *
+         * Alternate approach to attach a photon view unique identifier across network.
+         *
+         *         //object[] myCustomInitData = {display.card};
+         *         //PlayerCardDisplay cardDisplay = (PlayerCardDisplay) PhotonNetwork.InstantiateSceneObject("Player Card Container", containerGrid.freeLocations.Pop(), Quaternion.identity, 0, myCustomInitData);
+         *         Debug.Log("instantiated photon scene object...");
+         */
+
+
         // Place it on the grid!
         PlayerCardDisplay cardDisplay =  Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
 

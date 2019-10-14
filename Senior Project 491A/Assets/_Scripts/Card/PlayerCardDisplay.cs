@@ -20,14 +20,14 @@ public class PlayerCardDisplay : CardDisplay
 {
     public PlayerCard card;
 
+    private byte currentCardIdenrifier = (byte)'C';
+
     [SerializeField] private TextMeshPro attackText;
     [SerializeField] private TextMeshPro costText;
     [SerializeField] private TextMeshPro currencyText;
     [SerializeField] private SpriteRenderer cardEffectCostsIcons;
     [SerializeField] private SpriteRenderer costIcon;
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
-
-    public static PhotonView thisPhotonView;
 
     //When the PlayerCardDisplay is loaded we want to load in the components into the display
     //    protected override void Awake()
@@ -72,33 +72,27 @@ public class PlayerCardDisplay : CardDisplay
                 {
                     Reliability = true
                 };
-
-                PhotonNetwork.RaiseEvent((byte)1, data, raiseEventOptions, sendOptions);
+                Debug.Log("ViewID: " + photonView.ViewID);
+                PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
             }
             else
             {
                 Debug.Log("Unable to allocate ID");
             }
 
-            Debug.Log("ViewID: " + photonView.ViewID);
         }
         //thisPhotonView = GetComponent(this.gameObject.GetComponentInChildren<PhotonView>);
         //PhotonPeer.RegisterType(typeof(PlayerCardDisplay), (byte)'C', PlayerCardDisplay.SerializeCard, PlayerCardDisplay.DeserializeCard);
     }
 
-    public static explicit operator PlayerCardDisplay(GameObject v)
-    {
-        throw new NotImplementedException();
-    }
-
     public void OnEvent(EventData photonEvent)
     {
-        if (photonEvent.Code == (byte) 1)
+        if (photonEvent.Code == currentCardIdenrifier)
         {
             object[] data = (object[])photonEvent.CustomData;
-
             PhotonView photonView = GetComponent<PhotonView>();
             photonView.ViewID = (int)data[0];
+            Debug.Log("RPC of photon view ID recieved..." + (int)data[0]);
         }
         else
         {
