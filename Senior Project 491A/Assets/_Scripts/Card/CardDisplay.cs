@@ -44,8 +44,6 @@ public abstract class CardDisplay : MonoBehaviour
 
 //      Debug.Log("Card has been created");
         cardDisplayCollider = GetComponent<BoxCollider2D>();
-
-
         LoadCardIntoDisplay();
     }
     

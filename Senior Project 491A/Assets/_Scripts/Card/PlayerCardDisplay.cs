@@ -72,7 +72,7 @@ public class PlayerCardDisplay : CardDisplay
                 {
                     Reliability = true
                 };
-                Debug.Log("ViewID: " + photonView.ViewID);
+                Debug.Log("Assigned ViewID: " + photonView.ViewID);
                 PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
             }
             else
@@ -81,53 +81,33 @@ public class PlayerCardDisplay : CardDisplay
             }
 
         }
-        //thisPhotonView = GetComponent(this.gameObject.GetComponentInChildren<PhotonView>);
-        //PhotonPeer.RegisterType(typeof(PlayerCardDisplay), (byte)'C', PlayerCardDisplay.SerializeCard, PlayerCardDisplay.DeserializeCard);
+    }
+
+    public void OnEnable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
+    }
+
+    public void OnDisable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
 
     public void OnEvent(EventData photonEvent)
     {
-        if (photonEvent.Code == currentCardIdenrifier)
+        byte recievedCode = photonEvent.Code;
+        if (recievedCode == currentCardIdenrifier)
         {
             object[] data = (object[])photonEvent.CustomData;
             PhotonView photonView = GetComponent<PhotonView>();
             photonView.ViewID = (int)data[0];
-            Debug.Log("RPC of photon view ID recieved..." + (int)data[0]);
+            Debug.Log("Photon ViewID recieved: " + (int)data[0]);
         }
         else
         {
-            Debug.Log("Event code not found..");
+            Debug.Log("Event code not found");
         }
     }
-
-    //private static short SerializeCard(StreamBuffer outStream, object customobject)
-    //{
-    //    PlayerCardDisplay vo = (PlayerCardDisplay)customobject;
-    //    //lock (memVector2)
-    //    //{
-    //    //    byte[] bytes = memVector2;
-    //    //    int index = 0;
-    //    //    Protocol.Serialize(vo.attackText, bytes, ref index);
-    //    //    Protocol.Serialize(vo.y, bytes, ref index);
-    //    //    outStream.Write(bytes, 0, 2 * 4);
-    //    //}
-
-    //    return 2 * 4;
-    //}
-
-    //private static object DeserializeCard(StreamBuffer inStream, short length)
-    //{
-    //    PlayerCardDisplay vo = new PlayerCardDisplay();
-    //    //lock (memVector2)
-    //    //{
-    //    //    inStream.Read(memVector2, 0, 2 * 4);
-    //    //    int index = 0;
-    //    //    Protocol.Deserialize(out vo.x, memVector2, ref index);
-    //    //    Protocol.Deserialize(out vo.y, memVector2, ref index);
-    //    //}
-
-    //    return vo;
-    //}
 
     //THis method will load the display based on the information stored within the card
     protected override void LoadCardIntoDisplay()
