@@ -30,19 +30,17 @@ public class DragCard : MonoBehaviourPunCallbacks
         //Set the original position of the card to its location in space to use a reference
         OriginalPosition = this.transform.position;
 
+        //offline = PhotonNetworkManager.IsOffline;
+        Debug.Log(this.name + " from DragCard is owned by " + this.photonView.OwnerActorNr);
 
-        //        offline = PhotonNetworkManager.IsOffline;
-        //        Debug.Log(this.name + " from DragCard is owned by " + this.photonView.OwnerActorNr);
-        //
-        //
-        //        if (!offline)
-        //        {
-        //            if (this.photonView.Owner != PhotonNetwork.MasterClient)
-        //            {
-        //                Debug.Log("From DragCard.cs, transfering card ownership to Master Client");
-        //                this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
-        //            }
-        //        }
+        //if (!offline)
+        //{
+        if (this.photonView.Owner != PhotonNetwork.MasterClient)
+        {
+            Debug.Log("From DragCard.cs, transfering card ownership to Master Client");
+            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
+        }
+        //}
 
         //draggedCard = this.GetComponent<PhotonView>();
     }
@@ -52,22 +50,26 @@ public class DragCard : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnMouseDown()
     {
-        //used to grab the z coordinate of the game object 
-        //We need to conver the position to world space so it works with nested objects
-        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-
-        //Here we add the offset from the card and the mouse
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
-                     new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-
-
-        //if the card display has no hand container it means that the card is in the shop
-        //We can use this to our advantage by adding shop functionality here
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        //if 
+        if (photonView.IsMine)
         {
-            //Debug.Log("Card is in Shop");
-            PlayerCardDisplay cardClicked = this.gameObject.GetComponent<PlayerCardDisplay>();
-            ShopCardClicked?.Invoke(cardClicked);
+            //used to grab the z coordinate of the game object 
+            //We need to conver the position to world space so it works with nested objects
+            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+
+            //Here we add the offset from the card and the mouse
+            offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
+                         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+
+            //if the card display has no hand container it means that the card is in the shop
+            //We can use this to our advantage by adding shop functionality here
+            if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+            {
+                //Debug.Log("Card is in Shop");
+                PlayerCardDisplay cardClicked = this.gameObject.GetComponent<PlayerCardDisplay>();
+                ShopCardClicked?.Invoke(cardClicked);
+            }
         }
 
         //thisCard = this.gameObject.GetComponent<PlayerCardDisplay>();
@@ -80,11 +82,15 @@ public class DragCard : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnMouseUp()
     {
-        //if there is a gameobject and the card is not in the play zone we will return the card to the original position
-        if (this.gameObject != null && PlayZone.cardInPlayZone == false)
+        if (photonView.IsMine)
         {
-            this.transform.position = OriginalPosition;
+            //if there is a gameobject and the card is not in the play zone we will return the card to the original position
+            if (this.gameObject != null && PlayZone.cardInPlayZone == false)
+            {
+                this.transform.position = OriginalPosition;
+            }
         }
+
         //thisCard = this.gameObject.GetComponent<PlayerCardDisplay>();
         //Debug.Log("Mouse up: " + thisCard.card.CardName);
         //photonView.RPC("RPCOnMouseUp", RpcTarget.Others, thisCard, this.transform.position);
@@ -127,7 +133,6 @@ public class DragCard : MonoBehaviourPunCallbacks
 
             //RPC call the current card photon ID and the changed position
             this.photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, draggedCard.ViewID, transform.position);
-           
         }
 
     }

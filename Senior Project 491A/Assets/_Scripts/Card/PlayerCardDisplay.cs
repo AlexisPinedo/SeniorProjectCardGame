@@ -58,6 +58,7 @@ public class PlayerCardDisplay : CardDisplay
         PhotonView photonView = GetComponent<PhotonView>();
         if (PhotonNetwork.IsMasterClient)
         {
+            Debug.Log("I am in master client.");
             if (PhotonNetwork.AllocateViewID(photonView))
             {
                 object[] data = { photonView.ViewID };
@@ -105,7 +106,7 @@ public class PlayerCardDisplay : CardDisplay
         }
         else
         {
-            Debug.Log("Event code not found");
+            //Debug.Log("Event code not found");
         }
     }
 
