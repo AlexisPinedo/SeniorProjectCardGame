@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class DragCard : MonoBehaviourPunCallbacks
     public delegate void _ShopCardClicked(PlayerCardDisplay cardClicked);
 
     public static event _ShopCardClicked ShopCardClicked;
+    public static event Action CardDragged;
+    public static event Action CardReleased; 
 
     private bool offline;
     
