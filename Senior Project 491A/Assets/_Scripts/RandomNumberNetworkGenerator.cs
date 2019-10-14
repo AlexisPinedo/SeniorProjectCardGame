@@ -24,8 +24,17 @@ public class RandomNumberNetworkGenerator : MonoBehaviourPunCallbacks
         {
             _instance = this;
         }
-        randomNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["deckRandomValue"];
-        Debug.Log("RandomSyncedValue: " + randomNumber);
 
+        if (PhotonNetwork.IsConnected)
+        {
+            randomNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["deckRandomValue"];
+        }
+        else
+        {
+
+            randomNumber = (int)(DateTime.Now.Ticks / TimeSpan.TicksPerSecond);
+        }
+        
+        Debug.Log("RandomSyncedValue: " + randomNumber);
     }
 }

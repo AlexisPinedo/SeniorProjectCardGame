@@ -33,6 +33,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
         // Settings defined via PhotonServerSettings
         PhotonNetwork.ConnectUsingSettings();
+       // DontDestroyOnLoad(this.gameObject);
     }
 
     void Update()

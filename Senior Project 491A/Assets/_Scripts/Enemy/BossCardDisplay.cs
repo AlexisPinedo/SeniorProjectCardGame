@@ -17,18 +17,8 @@ public class BossCardDisplay : EnemyCardDisplay
     
     protected override void Awake()
     {
-        //base.Awake();
+        base.Awake();
         this.enabled = true;
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
     }
 
     //this handles the boss card being clicked 

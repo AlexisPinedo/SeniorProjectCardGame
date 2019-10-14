@@ -34,6 +34,8 @@ public abstract class EnemyCardDisplay : CardDisplay
     /// </summary>
     protected override void OnDisable()
     {
+        base.OnDisable();
+        
         card = null;
         cardArtDisplay.sprite = null;
         nameText.text = null;

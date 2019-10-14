@@ -10,8 +10,7 @@ public class TextUpdate : MonoBehaviourPunCallbacks
 {
     public Text playerPower;
     public Text playerCurrency;
-    public Text player1NickName;
-    public Text player2NickName;
+    public Text currentTurn;
 
     private static TextUpdate _instance;
 
@@ -35,20 +34,21 @@ public class TextUpdate : MonoBehaviourPunCallbacks
     {
         UpdatePower();
         UpdateCurrency();
-
-//        if (!photonView.IsMine)
-//        {
-//            player1NickName.text = "Waiting for turn...";
-//        }
+        if (photonView.IsMine)
+        {
+            currentTurn.text = "";
+        }
+        else
+        {
+            currentTurn.text = "Waiting for turn...";
+        }
     }
 
     private void OnEnable()
     {
         Player.PowerUpdated += UpdatePower;
         Player.CurrencyUpdated += UpdateCurrency;
-        
     }
-
     private void OnDisable()
     {
         Player.PowerUpdated -= UpdatePower;
@@ -59,10 +59,10 @@ public class TextUpdate : MonoBehaviourPunCallbacks
     {
         playerPower.text = "Power: " + TurnManager.Instance.turnPlayer.Power;
 
-//        if (photonView.IsMine)
-//        {
-//            photonView.RPC("RPCUpdatePower", RpcTarget.All, TurnManager.Instance.turnPlayer.Power);
-//        }
+        if (photonView.IsMine)
+        {
+            photonView.RPC("RPCUpdatePower", RpcTarget.All, TurnManager.Instance.turnPlayer.Power);
+        }
 
     }
 
@@ -70,10 +70,10 @@ public class TextUpdate : MonoBehaviourPunCallbacks
     {
         playerCurrency.text = "Currency: " + TurnManager.Instance.turnPlayer.Currency;
 
-//        if (photonView.IsMine)
-//        {
-//            photonView.RPC("RPCUpdateCurrency", RpcTarget.All, TurnManager.Instance.turnPlayer.Currency);
-//        }
+        if (photonView.IsMine)
+        {
+            photonView.RPC("RPCUpdateCurrency", RpcTarget.All, TurnManager.Instance.turnPlayer.Currency);
+        }
     }
 
     [PunRPC]
@@ -87,19 +87,4 @@ public class TextUpdate : MonoBehaviourPunCallbacks
     {
         playerCurrency.text = "Currency " + currency;
     }
-
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if (stream.IsWriting)
-    //    {
-    //        stream.SendNext(TurnManager.Instance.turnPlayer.Power);
-    //        stream.SendNext(TurnManager.Instance.turnPlayer.Currency);
-    //    }
-    //    if (stream.IsReading)
-    //    {
-    //        playerPower.text = (string)stream.ReceiveNext();
-    //        playerCurrency.text = (string)stream.ReceiveNext();
-    //    }
-    //}
-
 }

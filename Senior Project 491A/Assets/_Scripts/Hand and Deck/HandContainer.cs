@@ -64,7 +64,9 @@ public class HandContainer : PlayerCardContainer
                     playerDeck.cardsInDeck.Push(playerGrave.graveyard[j]);
                     playerGrave.graveyard.Remove(playerGrave.graveyard[j]);
                 }
-                playerDeck.Shuffle();
+
+                playerDeck.cardsInDeck = ShuffleDeck.Shuffle(playerDeck);
+                
                 cardDrawn = (PlayerCard)playerDeck.cardsInDeck.Pop();
             }
             else

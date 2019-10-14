@@ -22,11 +22,12 @@ public class PlayerCardDisplay : CardDisplay
     [SerializeField] private SpriteRenderer costIcon;
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
 
+
     //When the PlayerCardDisplay is loaded we want to load in the components into the display
-    protected override void Awake()
-    {
-        LoadCardIntoDisplay();
-    }
+//    protected override void Awake()
+//    {
+//        LoadCardIntoDisplay();
+//    }
 
     /// <summary>
     /// Called when this object is enabled. Adds EventReceived to the Networking Client.
@@ -34,17 +35,26 @@ public class PlayerCardDisplay : CardDisplay
     //[ExecuteInEditMode]
     protected override void OnEnable()
     {
-        LoadCardIntoDisplay();
+        base.OnEnable();
+        ShopSelectionEventListener.PurchaseEventTriggered += DisablePlayerCardCollider;
+        ShopSelectionEventListener.PurchaseEventEnded += EnablePlayerCardCollider;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        ShopSelectionEventListener.PurchaseEventTriggered -= DisablePlayerCardCollider;
+        ShopSelectionEventListener.PurchaseEventEnded -= EnablePlayerCardCollider;
     }
 
     /// <summary>
     /// Called when this object is disabled. Removes EventReceived from the Networking Client.
     /// </summary>
     //[ExecuteInEditMode]
-    protected override void OnDisable()
-    {
-        ClearCardFromDisplay();
-    }
+//    protected override void OnDisable()
+//    {
+//        ClearCardFromDisplay();
+//    }
 
     //THis method will load the display based on the information stored within the card
     protected override void LoadCardIntoDisplay()
@@ -120,5 +130,24 @@ public class PlayerCardDisplay : CardDisplay
         }
 
         cardIcons.Clear();
+    }
+
+    private void DisablePlayerCardCollider()
+    {
+        Debug.Log("Disabling player card collider");
+        if (this.gameObject.GetComponentInParent<HandContainer>() != null)
+        {
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+    
+    private void EnablePlayerCardCollider()
+    {
+        Debug.Log("Enabling player card collider");
+
+        if (this.gameObject.GetComponentInParent<HandContainer>() != null)
+        {
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
     }
 }

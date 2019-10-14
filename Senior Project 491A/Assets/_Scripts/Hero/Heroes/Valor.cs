@@ -7,8 +7,15 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Valor : CostRequirementHero
 {
+
+        
     protected override void HeroPowerEffect()
     {
-        UIHandler.Instance.EnableNotificationWindow("Valor Effect Activated");
+        UIHandler.Instance.EnableNotificationWindow("Select up to 2 cards of the same color");
+        
+        ShopSelectionEventListener.Instance.EnableShopSelectionState();
+
     }
+
+
 }
