@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 400006}
   m_RootOrder: 2
@@ -267,7 +267,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.19
+      scalar: 3.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4983,8 +4983,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.1
+      scalar: 0.57
+      minScalar: 0.29
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9628,8 +9628,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: 0.2
+      scalar: 0.86
+      minScalar: 0.57
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14074,7 +14074,7 @@ GameObject:
   - component: {fileID: 19900006}
   - component: {fileID: 11400002}
   m_Layer: 0
-  m_Name: CFX3_MagicAura_B_Runic
+  m_Name: MagicAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14096,7 +14096,7 @@ Transform:
   - {fileID: 400000}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!198 &19800006
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -14331,7 +14331,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.75
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
