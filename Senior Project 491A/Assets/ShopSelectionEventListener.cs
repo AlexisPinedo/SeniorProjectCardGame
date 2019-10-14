@@ -22,6 +22,10 @@ public class ShopSelectionEventListener : MonoBehaviour
 
     public bool inShopSelectionState = false;
 
+    private int cardsPurchased;
+
+    private CardType.CardTypes compareType = CardType.CardTypes.All;
+
     private void Awake()
     {
         if (_instance == null && _instance != this)
@@ -44,41 +48,41 @@ public class ShopSelectionEventListener : MonoBehaviour
         DragCard.ShopCardClicked -= CardPurchase;
     }
 
-    public void EnableShopSelectionState(int cardsToSelect)
+    public void EnableShopSelectionState(int cardsToSelect, CardType.CardTypes typeToCompare = CardType.CardTypes.All)
     {
-        StartCoroutine(SelectionState(cardsToSelect));
-    }
-    
-    public void EnableShopSelectionState(int cardsToSelect, CardType.CardTypes cardTypeToCompare)
-    {
+        ButtonInputManager.DisableButtonsInList();
+        compareType = typeToCompare;
         StartCoroutine(SelectionState(cardsToSelect));
     }
 
     public void DisableShopSelectionState()
     {
+        ButtonInputManager.DisableButtonsInList();
         inShopSelectionState = false;
+        compareType = CardType.CardTypes.All;
     }
-    
-    private void CardPurchase(PlayerCardDisplay cardClicked)
-    {vcb
-        TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardClicked.card);
-            
-        cardClicked.TriggerCardPurchasedEvent();
-            
-        Destroy(cardClicked.gameObject);
-        
-    }
-    
-    private void CardPurchase(PlayerCardDisplay cardClicked,CardType.CardTypes lastCardPlayedType)
-    {
 
-        if (cardClicked.card.CardType == CardType.CardTypes.All || cardClicked.card.CardType == lastCardPlayedType)
+    private void CardPurchase(PlayerCardDisplay cardClicked)
+    {
+        if (!inShopSelectionState)
+            return;
+        
+        if (cardClicked.card.CardType == compareType || compareType == CardType.CardTypes.All)
         {
             TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardClicked.card);
-            
+        
             cardClicked.TriggerCardPurchasedEvent();
-            
+        
             Destroy(cardClicked.gameObject);
+
+            cardsPurchased++; 
+            
+            Debug.Log("card purchased for free");
+
+        }
+        else
+        {
+            Debug.Log("must select card of correct type");
         }
     }
 
@@ -95,13 +99,15 @@ public class ShopSelectionEventListener : MonoBehaviour
         PurchaseEventTriggered?.Invoke();
         Debug.Log("Purchase event triggered");
 
-        while (inShopSelectionState)
+        while (cardsPurchased < cardsToSelect)
         {
             yield return null;
         }
         
         Debug.Log("Purchase event ended");
 
+        DisableShopSelectionState();
+        
         PurchaseEventEnded.Invoke();
     }
 }
