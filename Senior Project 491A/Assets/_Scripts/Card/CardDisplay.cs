@@ -10,10 +10,10 @@ using Photon.Pun;
 /// Each card component will have its data read and stored here
 /// this is used to relay each card's information to the player
 /// </summary>
+///
+
 public abstract class CardDisplay : MonoBehaviourPunCallbacks
 {
-    protected const byte LOAD_CARD_EVENT = 1;
-
     [SerializeField] protected SpriteRenderer cardArtDisplay;
     [SerializeField] protected SpriteRenderer typeIcon;
     [SerializeField] protected SpriteRenderer cardBorder;
@@ -21,8 +21,6 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     [SerializeField] protected SpriteRenderer cardNameTextBox;
     [SerializeField] protected TextMeshPro nameText;
     [SerializeField] protected TextMeshPro cardEffectText;
-
-    private bool offline;
     
     [SerializeField]
     protected BoxCollider2D cardDisplayCollider;
@@ -30,22 +28,7 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
 
     protected virtual void Awake()
     {
-//        offline = PhotonNetworkManager.IsOffline;
-//
-//        Debug.Log(this.nameText + " from CardDisplay is owned by " + this.photonView.OwnerActorNr);
-//
-//        if (!offline && this.photonView.Owner != PhotonNetwork.MasterClient)
-//        {
-//
-//            Debug.Log("From Cardholder.cs, transfering card ownership to Master Client");
-//
-//            this.photonView.TransferOwnership(PhotonNetwork.MasterClient);
-//        }
-
-//      Debug.Log("Card has been created");
         cardDisplayCollider = GetComponent<BoxCollider2D>();
-
-
         LoadCardIntoDisplay();
     }
     

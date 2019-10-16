@@ -93,6 +93,7 @@ public static class CustomTypes
         {
             inStream.Read(memVector3, 0, 3 * 4);
             int index = 0;
+
             Protocol.Deserialize(out vo.x, memVector3, ref index);
             Protocol.Deserialize(out vo.y, memVector3, ref index);
             Protocol.Deserialize(out vo.z, memVector3, ref index);
