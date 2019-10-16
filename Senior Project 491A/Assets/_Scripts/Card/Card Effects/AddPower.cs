@@ -20,7 +20,7 @@ public class AddPower : CardEffect
     //This method will add the powerAdditionAmount when called
     void AddPowerByEffect()
     {
-        Debug.Log("Adding Power via card effect");
+        //Debug.Log("Adding Power via card effect");
         TurnManager.Instance.turnPlayer.Power += powerAdditionAmount;
     }
 

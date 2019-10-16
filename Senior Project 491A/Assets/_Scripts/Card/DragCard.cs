@@ -62,6 +62,7 @@ public class DragCard : MonoBehaviourPunCallbacks
         {
             //Debug.Log("Card is in Shop");
             PlayerCardDisplay cardClicked = this.gameObject.GetComponent<PlayerCardDisplay>();
+            this.transform.position = OriginalPosition;
             ShopCardClicked?.Invoke(cardClicked);
         }
         if (offline || photonView.IsMine)
