@@ -140,7 +140,7 @@ public class PlayerCardDisplay : CardDisplay
     {
         if (this.gameObject.GetComponentInParent<HandContainer>() != null)
         {
-            Debug.Log("Disabling player card collider for" + nameText.text);
+            //Debug.Log("Disabling player card collider for" + nameText.text);
 
             cardDisplayCollider.enabled = false;
         }
@@ -151,7 +151,7 @@ public class PlayerCardDisplay : CardDisplay
 
         if (this.gameObject.GetComponentInParent<HandContainer>() != null)
         {
-            Debug.Log("Enabling player card collider for " + nameText.text);
+            //Debug.Log("Enabling player card collider for " + nameText.text);
 
             cardDisplayCollider.enabled = true;
         }

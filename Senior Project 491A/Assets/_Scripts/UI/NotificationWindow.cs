@@ -61,31 +61,46 @@ public class NotificationWindow : MonoBehaviour
     {
         NotificatoinWindoClosed?.Invoke();
         inNotificationState = false;
-
+        
+        transparentCover.gameObject.SetActive(false);
+        notificationText.text = "";
     }
 
     public void DisplayMessage(string message)
     {
-        notificationText.text = message;
-        
-
-        StartCoroutine(NotificationState());
+        //GameStateHandler.Instance.stateQueue.Enqueue(NotificationState());
+        StartCoroutine(NotificationState( message));
     }
 
     public void CloseNotificationWindow()
     {
-        transparentCover.gameObject.SetActive(false);
-        notificationText.text = "";
-        this.gameObject.SetActive(false);
+        inNotificationState = false;
     }
 
-    IEnumerator NotificationState()
+    IEnumerator NotificationState(string message)
     {
+        Debug.Log("Going into notification State");
+
+        while (GameStateHandler.Instance.currentlyInaState)
+        {
+            yield return null;
+        }
+
+        GameStateHandler.Instance.currentlyInaState = true;
+        
+        notificationText.text = message;
+
+        Debug.Log("in notification State");
+
         while (inNotificationState)
         {
             yield return null;
         }
         
+        Debug.Log("Setting notification state to false");
+        GameStateHandler.Instance.currentlyInaState = false;
+        
+        this.gameObject.SetActive(false);
     }
 
 }

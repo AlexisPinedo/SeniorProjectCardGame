@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+//[CreateAssetMenu]
 public class Vann : TurnStartEffectHero
 {
     protected override void HeroPowerEffect()

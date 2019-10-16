@@ -19,12 +19,13 @@ public class TurnManager : MonoBehaviour
     
 
     public delegate void _PlayerSwitched();
-
     public static event _PlayerSwitched PlayerSwitched;
 
     public delegate void _goingToSwitchPlayer();
-
     public static event _goingToSwitchPlayer GoingToSwitchPlayer;
+
+    public delegate void _effectSwitchedPlayer();
+    public static event _effectSwitchedPlayer EffectSwitchedPlayer; 
 
     [SerializeField]
     private Player player1;
@@ -41,12 +42,12 @@ public class TurnManager : MonoBehaviour
 
     private void OnEnable()
     {
-        UIHandler.EndTurnClicked += ShowHidePanel;
+        UIHandler.EndTurnClicked += ChangeActivePlayer;
     }
 
     private void OnDisable()
     {
-        UIHandler.EndTurnClicked -= ShowHidePanel;
+        UIHandler.EndTurnClicked -= ChangeActivePlayer;
     }
 
 
@@ -72,7 +73,13 @@ public class TurnManager : MonoBehaviour
         //PlayerSwitched?.Invoke();
     }
 
-    public void ShowHidePanel()
+    public void QuickChangeActivePlayer()
+    {
+        SwapPlayers();
+        EffectSwitchedPlayer?.Invoke();
+    }
+
+    public void ChangeActivePlayer()
     {
         if (player1GameObject != null && player2GameObject != null)
         {
@@ -81,31 +88,36 @@ public class TurnManager : MonoBehaviour
             
             GoingToSwitchPlayer?.Invoke();
             
-            // Switch to Player Two
-            if (player1GameObject.activeSelf)
-            {
-                player1GameObject.SetActive(false);
-                player2GameObject.SetActive(true);
-                player2GameObject.GetComponentInChildren<HandContainer>().enabled = true;
-                //turnManager.SetPlayerTwosTurn();
-                turnPlayer = player2;
-                turnPlayerGameObject = player2GameObject;
-            }
-            // Switch to Player One
-            else if (player2GameObject.activeSelf)
-            {
-                player2GameObject.SetActive(false);
-                player1GameObject.SetActive(true);
-                //turnManager.SetPlayerOnesTurn();
+            SwapPlayers();
 
-                turnPlayer = player1;
-                turnPlayerGameObject = player1GameObject;
-            }
-            
             PlayerSwitched?.Invoke();
 
             TextUpdate.Instance.UpdateCurrency();
             TextUpdate.Instance.UpdatePower();
+        }
+    }
+
+    private void SwapPlayers()
+    {
+        // Switch to Player Two
+        if (player1GameObject.activeSelf)
+        {
+            player1GameObject.SetActive(false);
+            player2GameObject.SetActive(true);
+            player2GameObject.GetComponentInChildren<HandContainer>().enabled = true;
+            //turnManager.SetPlayerTwosTurn();
+            turnPlayer = player2;
+            turnPlayerGameObject = player2GameObject;
+        }
+        // Switch to Player One
+        else if (player2GameObject.activeSelf)
+        {
+            player2GameObject.SetActive(false);
+            player1GameObject.SetActive(true);
+            //turnManager.SetPlayerOnesTurn();
+
+            turnPlayer = player1;
+            turnPlayerGameObject = player1GameObject;
         }
     }
 }
