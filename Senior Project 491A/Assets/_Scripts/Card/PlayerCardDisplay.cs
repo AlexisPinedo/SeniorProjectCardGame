@@ -4,6 +4,10 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
 /// <summary>
 /// Holds visual information specific to PlayerCards. Extends CardDisplay.
@@ -11,9 +15,12 @@ using ExitGames.Client.Photon;
 /// this loads depending on the card attached to it. 
 /// </summary>
 //[ExecuteInEditMode]
+[Serializable]
 public class PlayerCardDisplay : CardDisplay
 {
     public PlayerCard card;
+
+    private byte currentCardIdenrifier = (byte)'C';
 
     [SerializeField] private TextMeshPro attackText;
     [SerializeField] private TextMeshPro costText;
@@ -21,44 +28,100 @@ public class PlayerCardDisplay : CardDisplay
     [SerializeField] private SpriteRenderer cardEffectCostsIcons;
     [SerializeField] private SpriteRenderer costIcon;
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
-    
-    public delegate void _CardPurchased(PlayerCardDisplay cardBought);
 
-    public static event _CardPurchased CardPurchased;
-
+    private static List<int> photonViewIDs = new List<int>();
 
     //When the PlayerCardDisplay is loaded we want to load in the components into the display
-//    protected override void Awake()
-//    {
-//        LoadCardIntoDisplay();
-//    }
+    //    protected override void Awake()
+    //    {
+    //        LoadCardIntoDisplay();
+    //    }
 
     /// <summary>
     /// Called when this object is enabled. Adds EventReceived to the Networking Client.
     /// </summary>
     //[ExecuteInEditMode]
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        FreeShopSelectionEvent.PurchaseEventTriggered += DisablePlayerCardCollider;
-        FreeShopSelectionEvent.PurchaseEventEnded += EnablePlayerCardCollider;
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        FreeShopSelectionEvent.PurchaseEventTriggered -= DisablePlayerCardCollider;
-        FreeShopSelectionEvent.PurchaseEventEnded -= EnablePlayerCardCollider;
-    }
+    //    protected override void OnEnable()
+    //    {
+    //        base.OnEnable();
+    //    }
 
     /// <summary>
     /// Called when this object is disabled. Removes EventReceived from the Networking Client.
     /// </summary>
     //[ExecuteInEditMode]
-//    protected override void OnDisable()
-//    {
-//        ClearCardFromDisplay();
-//    }
+    //    protected override void OnDisable()
+    //    {
+    //        ClearCardFromDisplay();
+    //    }
+
+    void Start()
+    { 
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (PhotonNetwork.AllocateViewID(photonView))
+            {
+                object[] data = { photonView.ViewID };
+
+                RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+                {
+                    Receivers = ReceiverGroup.Others,
+                    CachingOption = EventCaching.AddToRoomCache
+                };
+
+                SendOptions sendOptions = new SendOptions
+                {
+                    Reliability = true
+                };
+
+                Debug.Log("Master Client assigned ViewID: " + photonView.ViewID);
+                PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
+            }
+            else
+            {
+                Debug.Log("Unable to allocate ID");
+            }
+
+            if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
+            {
+                Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
+                photonView.TransferOwnership(PhotonNetworkManager.currentPhotonPlayer);
+            }
+        }
+    }
+
+    public void OnEnable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
+    }
+
+    public void OnDisable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
+    }
+
+    public void OnEvent(EventData photonEvent)
+    {
+        byte recievedCode = photonEvent.Code;
+        if (recievedCode == currentCardIdenrifier)
+        {
+            object[] data = (object[])photonEvent.CustomData;
+            int recievedPhotonID = (int)data[0];
+
+            if (!photonViewIDs.Contains(recievedPhotonID))
+            {
+                photonView.ViewID = recievedPhotonID;
+                photonViewIDs.Add(recievedPhotonID);
+
+                Debug.Log("Recieved RPC to assign PhotonView ID: " + photonView.ViewID);
+                PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
+            }
+        }
+        else
+        {
+            //Debug.Log("Event code not found");
+        }
+    }
 
     //THis method will load the display based on the information stored within the card
     protected override void LoadCardIntoDisplay()
@@ -100,7 +163,7 @@ public class PlayerCardDisplay : CardDisplay
             costIcon.gameObject.SetActive(false);
         }
     }
-    
+
     /// <summary>
     /// this method will look at sprite list of required costs icons and place them appropriately into the scene
     /// 
@@ -113,7 +176,7 @@ public class PlayerCardDisplay : CardDisplay
         foreach (var cardIconSprite in card.cardCostsIcons)
         {
             SpriteRenderer cardIcon = Instantiate(cardEffectCostsIcons, cardEffectTextBox.transform.position, Quaternion.identity, cardEffectTextBox.transform);
-            cardIcon.sortingLayerName = "Player Card" ;
+            cardIcon.sortingLayerName = "Player Card";
             cardIcons.Add(cardIcon.gameObject);
             cardIcon.transform.position += spawnPoint;
             spawnPoint += new Vector3(.10f, 0f, 0f);
@@ -136,30 +199,5 @@ public class PlayerCardDisplay : CardDisplay
         cardIcons.Clear();
     }
 
-    private void DisablePlayerCardCollider()
-    {
-        if (this.gameObject.GetComponentInParent<HandContainer>() != null)
-        {
-            //Debug.Log("Disabling player card collider for" + nameText.text);
 
-            cardDisplayCollider.enabled = false;
-        }
-    }
-    
-    private void EnablePlayerCardCollider()
-    {
-
-        if (this.gameObject.GetComponentInParent<HandContainer>() != null)
-        {
-            //Debug.Log("Enabling player card collider for " + nameText.text);
-
-            cardDisplayCollider.enabled = true;
-        }
-    }
-
-    public void TriggerCardPurchasedEvent()
-    {
-        CardPurchased?.Invoke(this);
-
-    }
 }

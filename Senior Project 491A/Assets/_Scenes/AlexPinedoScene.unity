@@ -427,6 +427,7 @@ MonoBehaviour:
   turnPlayerGameObject: {fileID: 0}
   player1GameObject: {fileID: 101520841}
   player2GameObject: {fileID: 2025430591}
+  player2HandContainer: {fileID: 2033931929}
   player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
   player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
 --- !u!114 &381133603
@@ -975,6 +976,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 695779580}
     m_Modifications:
+    - target: {fileID: -3257049812469847756, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 522489324146028420, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_Name
@@ -1068,6 +1074,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca9d4b072acf4164588d35a26d1bddd4, type: 3}
+--- !u!114 &589770440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 304121539440660337, guid: ca9d4b072acf4164588d35a26d1bddd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 589770439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7d07bed3509404ea6e7f0c60f4b807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &607427540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1096,8 @@ GameObject:
   m_Component:
   - component: {fileID: 607427541}
   - component: {fileID: 607427542}
+  - component: {fileID: 607427544}
+  - component: {fileID: 607427543}
   m_Layer: 0
   m_Name: Field Container
   m_TagString: Untagged
@@ -1114,6 +1134,43 @@ MonoBehaviour:
   containerGrid: {fileID: 837790465}
   display: {fileID: 7737181224830327970, guid: 3a52656890895c8488c3d5d03033505b, type: 3}
   enemyDeck: {fileID: 11400000, guid: 3011dc8c8f7e58f4eb9c00577c9c4b8c, type: 2}
+--- !u!114 &607427543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607427540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+--- !u!114 &607427544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607427540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 7
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &612034186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2715,6 +2772,8 @@ MonoBehaviour:
   p1Handcontainer: {fileID: 1190731606}
   p2HandContainer: {fileID: 2033931931}
   shopContainer: {fileID: 301505297}
+  minionContainer: {fileID: 607427542}
+  bossCard: {fileID: 589770440}
   playZone: {fileID: 393574267}
   cavnas: {fileID: 1455907479}
 --- !u!4 &1121214001
@@ -2826,6 +2885,7 @@ MonoBehaviour:
   playerDeck: {fileID: 11400000, guid: 9a5eec11a96d3f44e88cd3bd254f306a, type: 2}
   playerGrave: {fileID: 11400000, guid: b7077001044931a40b33d83873f50253, type: 2}
   phantomCard: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
+  cardDrawn: {fileID: 0}
   DefaultHandSize: 5
 --- !u!114 &1190731607
 MonoBehaviour:
@@ -4340,6 +4400,7 @@ MonoBehaviour:
   playerDeck: {fileID: 11400000, guid: 129d1d2bb41d2444b8d6adeae81ba26a, type: 2}
   playerGrave: {fileID: 11400000, guid: 3a630b2f752ea964c894ac5173f0aa73, type: 2}
   phantomCard: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
+  cardDrawn: {fileID: 0}
   DefaultHandSize: 5
 --- !u!114 &2033931932
 MonoBehaviour:

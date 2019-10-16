@@ -685,7 +685,8 @@ MonoBehaviour:
   cardNameTextBox: {fileID: 522489323761172444}
   nameText: {fileID: 522489325007569006}
   cardEffectText: {fileID: 522489323694313994}
-  card: {fileID: 0}
+  cardDisplayCollider: {fileID: 0}
+  card: {fileID: 11400000, guid: 5bea60f098d49e44fb0c6cced5903361, type: 2}
   attackText: {fileID: 522489324534388793}
   costText: {fileID: 522489324681891626}
   currencyText: {fileID: 522489323609107175}
@@ -735,7 +736,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 1
-  OwnershipTransfer: 2
+  OwnershipTransfer: 1
   ObservedComponents:
   - {fileID: -1721089531084996046}
   viewIdField: 0
