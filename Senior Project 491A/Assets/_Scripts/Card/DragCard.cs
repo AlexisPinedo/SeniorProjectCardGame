@@ -48,6 +48,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnMouseDown()
     {
+        CardDragged();
         //used to grab the z coordinate of the game object 
         //We need to conver the position to world space so it works with nested objects
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -77,6 +78,8 @@ public class DragCard : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnMouseUp()
     {
+        CardReleased();
+
         //if there is a gameobject and the card is not in the play zone we will return the card to the original position
         if (this.gameObject != null && PlayZone.cardInPlayZone == false)
         {
@@ -95,6 +98,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnMouseDrag()
     {
+        
         //if the card display has no hand container it means that the card is in the shop
         //if that is the case we do not want to drag the card. 
         if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
@@ -120,6 +124,8 @@ public class DragCard : MonoBehaviourPunCallbacks
             if (!offline)
                 photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, cursorPosition);
         }
+
+
     }
 
     [PunRPC]
