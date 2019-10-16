@@ -56,7 +56,7 @@ public class PlayerCardDisplay : CardDisplay
     //    }
 
     void Start()
-    {
+    { 
         if (PhotonNetwork.IsMasterClient)
         {
             if (PhotonNetwork.AllocateViewID(photonView))
@@ -73,7 +73,8 @@ public class PlayerCardDisplay : CardDisplay
                 {
                     Reliability = true
                 };
-                Debug.Log("Assigned ViewID: " + photonView.ViewID);
+
+                Debug.Log("Master Client assigned ViewID: " + photonView.ViewID);
                 PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
             }
             else
@@ -81,6 +82,11 @@ public class PlayerCardDisplay : CardDisplay
                 Debug.Log("Unable to allocate ID");
             }
 
+            if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
+            {
+                Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
+                photonView.TransferOwnership(PhotonNetworkManager.currentPhotonPlayer);
+            }
         }
     }
 
@@ -99,22 +105,16 @@ public class PlayerCardDisplay : CardDisplay
         byte recievedCode = photonEvent.Code;
         if (recievedCode == currentCardIdenrifier)
         {
-            Debug.Log("Assigning card ID event recieved...");
 
             object[] data = (object[])photonEvent.CustomData;
             int recievedPhotonID = (int)data[0];
 
-            if (photonViewIDs.Contains(recievedPhotonID))
-            {
-                Debug.Log("This ID is currently being used already...");
-            }
-            else
+            if (!photonViewIDs.Contains(recievedPhotonID))
             {
                 photonView.ViewID = recievedPhotonID;
                 photonViewIDs.Add(recievedPhotonID);
-                Debug.Log(photonViewIDs.Count);
 
-                Debug.Log("This view has been assigned ID: " + photonView.ViewID);
+                Debug.Log("Recieved RPC to assign PhotonView ID: " + photonView.ViewID);
                 PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
             }
         }

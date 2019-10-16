@@ -94,7 +94,6 @@ public class UIHandler : MonoBehaviour
         };
 
         PhotonNetwork.RaiseEvent(endTurnIdentifier, null, raiseEventOptions, sendOptions);
-
     }
     
     public void EnableNotificationWindow(string message)

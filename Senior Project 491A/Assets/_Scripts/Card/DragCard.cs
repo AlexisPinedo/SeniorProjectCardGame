@@ -108,7 +108,6 @@ public class DragCard : MonoBehaviourPunCallbacks
 
             //current card
             thisCard = this.gameObject.GetComponent<PlayerCardDisplay>();
-            Debug.Log("Mouse drag: " + thisCard.card.CardName);
 
             //photon view of our current card
             RPCCardSelected = this.GetComponent<PhotonView>();
@@ -135,7 +134,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void RPCOnMouseUp(int cardID, Vector2 position)
+    private void RPCOnMouseUp(int cardID, Vector3 position)
     {
         PhotonView foundCard = PhotonView.Find(cardID);
         if (foundCard)
@@ -149,7 +148,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void RPCOnMouseDrag(int cardID, Vector2 position)
+    private void RPCOnMouseDrag(int cardID, Vector3 position)
     {
         //find the phototon view associted with the given ID
         PhotonView foundCard = PhotonView.Find(cardID);

@@ -425,6 +425,7 @@ MonoBehaviour:
   turnPlayerGameObject: {fileID: 0}
   player1GameObject: {fileID: 101520841}
   player2GameObject: {fileID: 2025430591}
+  player2HandContainer: {fileID: 2033931929}
   player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
   player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
 --- !u!114 &381133603
@@ -2798,6 +2799,7 @@ MonoBehaviour:
   playerDeck: {fileID: 11400000, guid: 9a5eec11a96d3f44e88cd3bd254f306a, type: 2}
   playerGrave: {fileID: 11400000, guid: b7077001044931a40b33d83873f50253, type: 2}
   phantomCard: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
+  cardDrawn: {fileID: 0}
   DefaultHandSize: 5
 --- !u!114 &1190731607
 MonoBehaviour:
@@ -4311,6 +4313,7 @@ MonoBehaviour:
   playerDeck: {fileID: 11400000, guid: 129d1d2bb41d2444b8d6adeae81ba26a, type: 2}
   playerGrave: {fileID: 11400000, guid: 3a630b2f752ea964c894ac5173f0aa73, type: 2}
   phantomCard: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
+  cardDrawn: {fileID: 0}
   DefaultHandSize: 5
 --- !u!114 &2033931932
 MonoBehaviour:

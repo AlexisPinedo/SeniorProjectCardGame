@@ -24,7 +24,9 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
 
     PhotonView p1HandcontainerPV, p2HandContainerPV, shopContainerPV, playZonePV, canvasPV;
 
-    Photon.Realtime.Player photonPlayer1, photonPlayer2;
+    public static Photon.Realtime.Player photonPlayer1, photonPlayer2;
+
+    public static Photon.Realtime.Player currentPhotonPlayer;
 
     private static bool _offline = true;
 
@@ -52,6 +54,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
                     photonPlayer2 = player;
             }
 
+            currentPhotonPlayer = photonPlayer1;
+
             Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
             Debug.Log("Photon Player 2: " + photonPlayer2.NickName);
 
@@ -70,5 +74,41 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+	private void OnEnable()
+	{
+		UIHandler.EndTurnClicked += TransferObjects;
+	}
 
+	private void OnDisable()
+	{
+		UIHandler.EndTurnClicked -= TransferObjects;
+	}
+
+	public void TransferObjects()
+    {
+        Debug.Log("HELLO I AM DELEGRATE FOR END TURN,,,");
+        if (TurnManager.Instance.turnPlayer == TurnManager.Instance.player1)
+        {
+            currentPhotonPlayer = photonPlayer1;
+			shopContainerPV.TransferOwnership(photonPlayer1);
+			playZonePV.TransferOwnership(photonPlayer1);
+			canvasPV.TransferOwnership(photonPlayer1);
+
+            PhotonView[] shopCards = shopContainerPV.GetComponentsInChildren<PhotonView>();
+            foreach (PhotonView shopCard in shopCards)
+                shopCard.TransferOwnership(photonPlayer1);
+
+		}
+        else if (TurnManager.Instance.turnPlayer == TurnManager.Instance.player2)
+        {
+            currentPhotonPlayer = photonPlayer2;
+			shopContainerPV.TransferOwnership(photonPlayer2);
+			playZonePV.TransferOwnership(photonPlayer2);
+			canvasPV.TransferOwnership(photonPlayer2);
+            PhotonView[] shopCards = shopContainerPV.GetComponentsInChildren<PhotonView>();
+            foreach (PhotonView shopCard in shopCards)
+                shopCard.TransferOwnership(photonPlayer2);
+        }
+		Debug.Log("Transfered ownership to: " + currentPhotonPlayer.NickName);
+	}
 }
