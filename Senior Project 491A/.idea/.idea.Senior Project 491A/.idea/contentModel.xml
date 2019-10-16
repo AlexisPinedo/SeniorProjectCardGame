@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+    <e p="C:\Users\pined\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\pined\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.-1760692213.00" t="ExcludeRecursive" />
+    <e p="C:\Users\pined\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Scripts" t="Include">
@@ -39,9 +42,21 @@
             <e p="MinionCardDisplay.cs" t="Include" />
             <e p="Reward.cs" t="Include" />
           </e>
+          <e p="Event_Base.cs" t="Include" />
           <e p="Firebase" t="Include">
-            <e p="AuthManager.cs" t="Include" />
-            <e p="Forms.cs" t="Include" />
+            <e p="Authentication" t="Include">
+              <e p="AuthManager.cs" t="Include" />
+              <e p="Forms.cs" t="Include" />
+              <e p="SignIn.cs" t="Include" />
+              <e p="SignUp.cs" t="Include" />
+            </e>
+            <e p="Database" t="Include">
+              <e p="AuthPlayer.cs" t="Include" />
+              <e p="DatabaseManager.cs" t="Include" />
+              <e p="PlayerRecord.cs" t="Include" />
+              <e p="Router.cs" t="Include" />
+            </e>
+            <e p="WinLoss.cs" t="Include" />
           </e>
           <e p="Gameplay" t="Include">
             <e p="BattleManager.cs" t="Include" />
@@ -68,6 +83,7 @@
               <e p="Valor.cs" t="Include" />
               <e p="Vann.cs" t="Include" />
               <e p="Vaughn.cs" t="Include" />
+              <e p="Veda.cs" t="Include" />
               <e p="Vito.cs" t="Include" />
             </e>
             <e p="HeroPortraitUpdate.cs" t="Include" />
@@ -89,27 +105,33 @@
             <e p="GameClient.cs" t="Include" />
             <e p="GameGui.cs" t="Include" />
           </e>
+          <e p="PhotonNetworkManager.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="GraveContainer.cs" t="Include" />
             <e p="Graveyard.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
+          <e p="RandomNumberNetworkGenerator.cs" t="Include" />
           <e p="Shop" t="Include">
             <e p="PurchaseHandler.cs" t="Include" />
             <e p="ShopContainer.cs" t="Include" />
             <e p="ShopDeck.cs" t="Include" />
           </e>
+          <e p="ShopNetworkRelay.cs" t="Include" />
+          <e p="ShuffleDeck.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
-            <e p="NotificationWindow.cs" t="Include" />
+            <e p="NotificationWindowEvent.cs" t="Include" />
             <e p="SceneRestarter.cs" t="Include" />
             <e p="TextUpdate.cs" t="Include" />
             <e p="UIHandler.cs" t="Include" />
           </e>
+          <e p="UIViewHandler.cs" t="Include" />
           <e p="Utility" t="Include">
             <e p="InputToEvent.cs" t="Include" />
           </e>
         </e>
+        <e p="ButtonInputManager.cs" t="Include" />
         <e p="FacebookSDK" t="Include">
           <e p="Examples" t="Include">
             <e p="Scripts" t="Include">
@@ -129,8 +151,20 @@
             </e>
           </e>
           <e p="link.xml" t="Include" />
+          <e p="Plugins" t="Include">
+            <e p="Editor" t="Include">
+              <e p="Dependencies.xml" t="Include" />
+            </e>
+          </e>
         </e>
         <e p="Firebase" t="Include">
+          <e p="Editor" t="Include">
+            <e p="AppDependencies.xml" t="Include" />
+            <e p="AuthDependencies.xml" t="Include" />
+            <e p="DatabaseDependencies.xml" t="Include" />
+            <e p="FirebaseAuth_version-6.4.0_manifest.txt" t="Include" />
+            <e p="FirebaseDatabase_version-6.4.0_manifest.txt" t="Include" />
+          </e>
           <e p="m2repository" t="Include">
             <e p="com" t="Include">
               <e p="google" t="Include">
@@ -148,8 +182,32 @@
               </e>
             </e>
           </e>
+          <e p="Plugins" t="Include">
+            <e p="Http" t="Include">
+              <e p="link.xml" t="Include" />
+            </e>
+            <e p="link.xml" t="Include" />
+          </e>
         </e>
+        <e p="FreeShopSelectionEvent.cs" t="Include" />
+        <e p="GameEventManager.cs" t="Include" />
         <e p="GoogleSignIn" t="Include">
+          <e p="Editor" t="Include">
+            <e p="google-signin-plugin_v1.0.4.txt" t="Include" />
+            <e p="GoogleSignInDependencies.xml" t="Include" />
+            <e p="GoogleSignInSupportDependencies.xml" t="Include" />
+            <e p="m2repository" t="Include">
+              <e p="com" t="Include">
+                <e p="google" t="Include">
+                  <e p="signin" t="Include">
+                    <e p="google-signin-support" t="Include">
+                      <e p="maven-metadata.xml" t="Include" />
+                    </e>
+                  </e>
+                </e>
+              </e>
+            </e>
+          </e>
           <e p="Future.cs" t="Include" />
           <e p="GoogleSignIn.cs" t="Include" />
           <e p="GoogleSignInConfiguration.cs" t="Include" />
@@ -160,6 +218,37 @@
             <e p="GoogleSignInImpl.cs" t="Include" />
             <e p="NativeFuture.cs" t="Include" />
             <e p="SignInHelperObject.cs" t="Include" />
+          </e>
+        </e>
+        <e p="JMO Assets" t="Include">
+          <e p="Cartoon FX" t="Include">
+            <e p="CartoonFX Free.txt" t="Include" />
+            <e p="Demo" t="Include">
+              <e p="Assets" t="Include">
+                <e p="CFX_AutoStopLoopedEffect.cs" t="Include" />
+                <e p="CFX_Demo_New.cs" t="Include" />
+                <e p="CFX_Demo_RandomDir.cs" t="Include" />
+                <e p="CFX_Demo_RandomDirectionTranslate.cs" t="Include" />
+                <e p="CFX_Demo_RotateCamera.cs" t="Include" />
+                <e p="CFX_Demo_Translate.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="CFX_AutoDestructShuriken.cs" t="Include" />
+              <e p="CFX_AutoRotate.cs" t="Include" />
+              <e p="CFX_LightFlicker.cs" t="Include" />
+              <e p="CFX_LightIntensityFade.cs" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="CFX3 Multiply Color.shader" t="Include" />
+              <e p="CFXM_MobileParticleAdd_Alpha8.shader" t="Include" />
+            </e>
+          </e>
+          <e p="Cartoon FX Easy Editor" t="Include">
+            <e p="CartoonFX Easy Editor Readme.txt" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="CFXEasyEditor.cs" t="Include" />
+            </e>
           </e>
         </e>
         <e p="Photon" t="Include">
@@ -309,9 +398,11 @@
             </e>
           </e>
         </e>
-        <e p="PhotonNetworkManager.cs" t="Include" />
-        <e p="RandomNumberNetworkGenerator.cs" t="Include" />
-        <e p="ShopNetworkRelay.cs" t="Include" />
+        <e p="PlayServicesResolver" t="Include">
+          <e p="Editor" t="Include">
+            <e p="play-services-resolver_v1.2.124.0.txt" t="Include" />
+          </e>
+        </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />
@@ -347,7 +438,6 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
-        <e p="UIViewHandler.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
@@ -360,9 +450,7 @@
       <e p="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj" t="IncludeRecursive" />
       <e p="PhotonWebSocket.csproj" t="IncludeRecursive" />
       <e p="Senior Project 491A.sln" t="IncludeFlat" />
-      <e p="Temp/bin" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_Senior Project 491A.30232847.00" t="ExcludeRecursive" />
   </component>
 </project>

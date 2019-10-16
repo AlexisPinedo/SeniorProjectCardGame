@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 public class UIHandler : MonoBehaviour
 {
@@ -20,11 +22,10 @@ public class UIHandler : MonoBehaviour
     public delegate void EndTurnButtonAction();
     public static event EndTurnButtonAction EndTurnClicked;
     
-        
     public delegate void _notificationWindowEnabled();
-
     public static event _notificationWindowEnabled NotificationWindowEnabled;
-    
+
+    private byte endTurnIdentifier = (byte)'E';
 
     private static UIHandler _instance;
 
@@ -34,7 +35,7 @@ public class UIHandler : MonoBehaviour
     }
 
     [SerializeField]
-    private NotificationWindow windowReference;
+    private NotificationWindowEvent windowReference;
 
     private void Awake()
     {
@@ -46,6 +47,16 @@ public class UIHandler : MonoBehaviour
         {
             _instance = this;
         }
+    }
+
+    public void OnEnable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
+    }
+
+    public void OnDisable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
 
     public void SettingsButtonOnClick()
@@ -71,14 +82,39 @@ public class UIHandler : MonoBehaviour
     public void EndTurnButtonOnClick()
     {
         EndTurnClicked?.Invoke();
+
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+        {
+            Receivers = ReceiverGroup.Others,
+        };
+
+        SendOptions sendOptions = new SendOptions
+        {
+            Reliability = true
+        };
+
+        PhotonNetwork.RaiseEvent(endTurnIdentifier, null, raiseEventOptions, sendOptions);
     }
     
     public void EnableNotificationWindow(string message)
     {
         windowReference.gameObject.SetActive(true);
-        NotificationWindow.Instance.DisplayMessage(message);
-        NotificationWindow.Instance.transparentCover.gameObject.SetActive(true);
+        NotificationWindowEvent.Instance.DisplayMessage(message);
+        NotificationWindowEvent.Instance.transparentCover.gameObject.SetActive(true);
         NotificationWindowEnabled?.Invoke();
+    }
+
+    public void OnEvent(EventData photonEvent)
+    {
+        byte recievedCode = photonEvent.Code;
+        if (recievedCode == endTurnIdentifier)
+        {
+            EndTurnClicked?.Invoke();
+        }
+        else
+        {
+            //Debug.Log("Event code not found");
+        }
     }
 
 }

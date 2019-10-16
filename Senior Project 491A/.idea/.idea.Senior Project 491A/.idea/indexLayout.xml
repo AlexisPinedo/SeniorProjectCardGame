@@ -3,6 +3,7 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
+      <Path>Library/PackageCache/com.unity.addressables@1.2.4</Path>
       <Path>Library/PackageCache/com.unity.ads@2.0.8</Path>
       <Path>Library/PackageCache/com.unity.analytics@3.3.2</Path>
       <Path>Library/PackageCache/com.unity.collab-proxy@1.2.16</Path>
@@ -11,6 +12,7 @@
       <Path>Library/PackageCache/com.unity.ide.vscode@1.0.7</Path>
       <Path>Library/PackageCache/com.unity.multiplayer-hlapi@1.0.2</Path>
       <Path>Library/PackageCache/com.unity.purchasing@2.0.6</Path>
+      <Path>Library/PackageCache/com.unity.scriptablebuildpipeline@1.5.2</Path>
       <Path>Library/PackageCache/com.unity.test-framework@1.0.13</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@2.0.1</Path>
       <Path>Library/PackageCache/com.unity.xr.legacyinputhelpers@2.0.2</Path>

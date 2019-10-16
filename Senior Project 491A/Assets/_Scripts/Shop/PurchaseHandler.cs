@@ -54,26 +54,11 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
             CardPurchased?.Invoke(cardSelected);
             
             Destroy(cardSelected.gameObject);
-
-            if(!PhotonNetworkManager.IsOffline)
-                photonView.RPC("RPCHandlePurchase", RpcTarget.Others, cardSelected);
         }
         else
         {
             Debug.Log("Cannot purchase. Not enough currency");
         }
-    }
-
-    [PunRPC]
-    private void RPCHandlePurchase(PlayerCardDisplay cardSelected)
-    {
-        TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardSelected.card);
-
-        TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
-
-        CardPurchased?.Invoke(cardSelected);
-
-        Destroy(cardSelected.gameObject);
     }
 }
 
