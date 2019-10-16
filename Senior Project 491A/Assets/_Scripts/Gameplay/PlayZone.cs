@@ -17,12 +17,15 @@ public class PlayZone : MonoBehaviourPunCallbacks
     }
 
     public static bool cardInPlayZone = false;
+
     public static PlayerCardDisplay cardInZone;
 
     public delegate void _CardPlayed(PlayerCard cardPlayed);
 
     public static event _CardPlayed CardPlayed;
-    private bool offline;
+
+    private PhotonView RPCCardSelected;
+
     void Awake()
     {
         if (_instance != null && _instance != this)
@@ -33,12 +36,11 @@ public class PlayZone : MonoBehaviourPunCallbacks
         {
             _instance = this;
         }
-        offline = PhotonNetworkManager.IsOffline;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (offline || photonView.IsMine)
+        if (photonView.IsMine)
         {
             if (other.transform.parent.gameObject.GetComponent<HandContainer>() == null)
             {
@@ -48,21 +50,21 @@ public class PlayZone : MonoBehaviourPunCallbacks
             //Debug.Log("Card has entered");
             cardInPlayZone = true;
             cardInZone = other.gameObject.GetComponent<PlayerCardDisplay>();
-            if(!offline)
-                photonView.RPC("RPCOnTriggerEnter2D", RpcTarget.Others, cardInZone);
 
+            RPCCardSelected = cardInZone.GetComponent<PhotonView>();
+            this.photonView.RPC("RPCOnTriggerEnter2D", RpcTarget.Others, RPCCardSelected.ViewID);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (offline || photonView.IsMine)
+        if (photonView.IsMine)
         {
             //Debug.Log("Card has left");
             cardInPlayZone = false;
             cardInZone = null;
-            if (!offline)
-                photonView.RPC("RPCOnTriggerExit2D", RpcTarget.Others);
+
+            this.photonView.RPC("RPCOnTriggerExit2D", RpcTarget.Others);
         }
     }
 
@@ -70,13 +72,12 @@ public class PlayZone : MonoBehaviourPunCallbacks
     {
         if (cardInPlayZone)
         {
-            if (offline || photonView.IsMine)
+            if (photonView.IsMine)
             {
                 if (!Input.GetMouseButton(0))
                 {
                     HandleCardPlayed();
-                    if (!offline)
-                        photonView.RPC("RPCPlayZoneUpdate", RpcTarget.Others);
+                    this.photonView.RPC("RPCPlayZoneUpdate", RpcTarget.Others);
                 }
             }
         }
@@ -84,13 +85,12 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
     private void HandleCardPlayed()
     {
-        //Debug.Log(col.gameObject.name + " has entered the scene");
         // Card stuff
         Hand tpHand = TurnManager.Instance.turnPlayer.hand;
         PlayerCardDisplay cardDisplay = cardInZone;
         PlayerCard cardPlayed = cardDisplay.card;
         
-        GameObject.Destroy(cardInZone.gameObject);
+        Destroy(cardInZone.gameObject);
         
         TurnManager.Instance.turnPlayer.Power += cardPlayed.CardAttack;
         TurnManager.Instance.turnPlayer.Currency += cardPlayed.CardCurrency;
@@ -102,26 +102,42 @@ public class PlayZone : MonoBehaviourPunCallbacks
         }
 
         CardPlayed?.Invoke(cardPlayed);
-
-        
         cardInPlayZone = false;
         cardInZone = null;
     }
 
     [PunRPC]
-    private void RPCOnTriggerEnter2D(PlayerCardDisplay RPCcardInZone)
+    private void RPCOnTriggerEnter2D(int cardID)
     {
-        cardInZone = RPCcardInZone;
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            cardInPlayZone = true;
+            cardInZone = foundCard.GetComponent<PlayerCardDisplay>();
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
     }
 
     [PunRPC]
-    private void RPCOnTriggerExit2D()
+    private void RPCOnTriggerExit2D(int cardID)
     {
-        cardInZone = null;
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            cardInPlayZone = false;
+            cardInZone = null;
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
     }
 
     [PunRPC]
-    private void RPCPlayZoneUpdate(PlayerCardDisplay cardClicked)
+    private void RPCPlayZoneUpdate()
     {
         HandleCardPlayed();
     }
