@@ -88,9 +88,10 @@ public class NotificationWindow : MonoBehaviour
 
         GameStateHandler.Instance.currentlyInaState = true;
         
+        Debug.Log("in notification State setting message: " + message);
         notificationText.text = message;
 
-        Debug.Log("in notification State");
+        
 
         while (inNotificationState)
         {

@@ -28,7 +28,7 @@ public class GameStateHandler : MonoBehaviour
         }
     }
 
-/*    private void Update()
+    private void Update()
     {
         if(stateQueue.Count == 0)
             return;
@@ -41,7 +41,7 @@ public class GameStateHandler : MonoBehaviour
             currentlyInaState = true;
             StartCoroutine(stateQueue.Dequeue());
         }
-    }*/
+    }
 
     public void EndState()
     {
