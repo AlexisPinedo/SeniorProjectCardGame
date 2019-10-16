@@ -29,6 +29,8 @@ public class PlayerCardDisplay : CardDisplay
     [SerializeField] private SpriteRenderer costIcon;
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
 
+    private static List<int> photonViewIDs = new List<int>();
+
     //When the PlayerCardDisplay is loaded we want to load in the components into the display
     //    protected override void Awake()
     //    {
@@ -55,10 +57,8 @@ public class PlayerCardDisplay : CardDisplay
 
     void Start()
     {
-        PhotonView photonView = GetComponent<PhotonView>();
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("I am in master client.");
             if (PhotonNetwork.AllocateViewID(photonView))
             {
                 object[] data = { photonView.ViewID };
@@ -99,10 +99,24 @@ public class PlayerCardDisplay : CardDisplay
         byte recievedCode = photonEvent.Code;
         if (recievedCode == currentCardIdenrifier)
         {
+            Debug.Log("Assigning card ID event recieved...");
+
             object[] data = (object[])photonEvent.CustomData;
-            PhotonView photonView = GetComponent<PhotonView>();
-            photonView.ViewID = (int)data[0];
-            Debug.Log("Photon ViewID recieved: " + (int)data[0]);
+            int recievedPhotonID = (int)data[0];
+
+            if (photonViewIDs.Contains(recievedPhotonID))
+            {
+                Debug.Log("This ID is currently being used already...");
+            }
+            else
+            {
+                photonView.ViewID = recievedPhotonID;
+                photonViewIDs.Add(recievedPhotonID);
+                Debug.Log(photonViewIDs.Count);
+
+                Debug.Log("This view has been assigned ID: " + photonView.ViewID);
+                PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
+            }
         }
         else
         {

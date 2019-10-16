@@ -12,7 +12,7 @@ using Photon.Pun;
 /// </summary>
 ///
 [Serializable]
-public abstract class CardDisplay : MonoBehaviour
+public abstract class CardDisplay : MonoBehaviourPunCallbacks
 {
     [SerializeField] protected SpriteRenderer cardArtDisplay;
     [SerializeField] protected SpriteRenderer typeIcon;
