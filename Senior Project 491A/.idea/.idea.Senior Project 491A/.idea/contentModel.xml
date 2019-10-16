@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Alex and Abby's\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Alex and Abby's\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.501270672.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Alex and Abby's\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
+    <e p="C:\Users\pined\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\pined\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.-1760692213.00" t="ExcludeRecursive" />
+    <e p="C:\Users\pined\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -42,6 +42,7 @@
             <e p="MinionCardDisplay.cs" t="Include" />
             <e p="Reward.cs" t="Include" />
           </e>
+          <e p="Event_Base.cs" t="Include" />
           <e p="Firebase" t="Include">
             <e p="Authentication" t="Include">
               <e p="AuthManager.cs" t="Include" />
@@ -120,7 +121,7 @@
           <e p="ShuffleDeck.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
-            <e p="NotificationWindow.cs" t="Include" />
+            <e p="NotificationWindowEvent.cs" t="Include" />
             <e p="SceneRestarter.cs" t="Include" />
             <e p="TextUpdate.cs" t="Include" />
             <e p="UIHandler.cs" t="Include" />
@@ -188,7 +189,8 @@
             <e p="link.xml" t="Include" />
           </e>
         </e>
-        <e p="GameStateHandler.cs" t="Include" />
+        <e p="FreeShopSelectionEvent.cs" t="Include" />
+        <e p="GameEventManager.cs" t="Include" />
         <e p="GoogleSignIn" t="Include">
           <e p="Editor" t="Include">
             <e p="google-signin-plugin_v1.0.4.txt" t="Include" />
@@ -401,7 +403,6 @@
             <e p="play-services-resolver_v1.2.124.0.txt" t="Include" />
           </e>
         </e>
-        <e p="ShopSelectionEventListener.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />

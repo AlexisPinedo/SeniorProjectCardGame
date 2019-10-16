@@ -40,15 +40,15 @@ public class PlayerCardDisplay : CardDisplay
     protected override void OnEnable()
     {
         base.OnEnable();
-        ShopSelectionEventListener.PurchaseEventTriggered += DisablePlayerCardCollider;
-        ShopSelectionEventListener.PurchaseEventEnded += EnablePlayerCardCollider;
+        FreeShopSelectionEvent.PurchaseEventTriggered += DisablePlayerCardCollider;
+        FreeShopSelectionEvent.PurchaseEventEnded += EnablePlayerCardCollider;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        ShopSelectionEventListener.PurchaseEventTriggered -= DisablePlayerCardCollider;
-        ShopSelectionEventListener.PurchaseEventEnded -= EnablePlayerCardCollider;
+        FreeShopSelectionEvent.PurchaseEventTriggered -= DisablePlayerCardCollider;
+        FreeShopSelectionEvent.PurchaseEventEnded -= EnablePlayerCardCollider;
     }
 
     /// <summary>

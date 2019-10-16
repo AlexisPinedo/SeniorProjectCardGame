@@ -60,8 +60,8 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
 
     protected virtual void OnEnable()
     {
-        NotificationWindow.NotificationWindowOpened += DisableBoxCollider;
-        NotificationWindow.NotificatoinWindoClosed += EnableBoxCollider;
+        NotificationWindowEvent.NotificationWindowOpened += DisableBoxCollider;
+        NotificationWindowEvent.NotificatoinWindoClosed += EnableBoxCollider;
         //Debug.Log("CardDisplay: OnEnable()");
         LoadCardIntoDisplay();
         
@@ -69,8 +69,8 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
 
     protected virtual void OnDisable()
     {
-        NotificationWindow.NotificationWindowOpened -= DisableBoxCollider;
-        NotificationWindow.NotificatoinWindoClosed -= EnableBoxCollider;
+        NotificationWindowEvent.NotificationWindowOpened -= DisableBoxCollider;
+        NotificationWindowEvent.NotificatoinWindoClosed -= EnableBoxCollider;
         ClearCardFromDisplay();
     }
     
