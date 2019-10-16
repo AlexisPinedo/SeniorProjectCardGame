@@ -99,8 +99,8 @@ public class UIHandler : MonoBehaviour
     public void EnableNotificationWindow(string message)
     {
         windowReference.gameObject.SetActive(true);
-        NotificationWindow.Instance.DisplayMessage(message);
-        NotificationWindow.Instance.transparentCover.gameObject.SetActive(true);
+        NotificationWindowEvent.Instance.DisplayMessage(message);
+        NotificationWindowEvent.Instance.transparentCover.gameObject.SetActive(true);
         NotificationWindowEnabled?.Invoke();
     }
 
