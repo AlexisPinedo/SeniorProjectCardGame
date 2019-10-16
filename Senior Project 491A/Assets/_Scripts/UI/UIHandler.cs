@@ -35,7 +35,7 @@ public class UIHandler : MonoBehaviour
     }
 
     [SerializeField]
-    private NotificationWindow windowReference;
+    private NotificationWindowEvent windowReference;
 
     private void Awake()
     {
