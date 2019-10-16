@@ -105,7 +105,6 @@ public class PlayerCardDisplay : CardDisplay
         byte recievedCode = photonEvent.Code;
         if (recievedCode == currentCardIdenrifier)
         {
-
             object[] data = (object[])photonEvent.CustomData;
             int recievedPhotonID = (int)data[0];
 

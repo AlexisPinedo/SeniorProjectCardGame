@@ -34,7 +34,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
 
     void Awake()
     {
-        Debug.Log("Hello from photon network manager");
+        //grab photon views from game objects
         p1HandcontainerPV = p1Handcontainer.GetComponent<PhotonView>();
         p2HandContainerPV = p2HandContainer.GetComponent<PhotonView>();
         shopContainerPV = shopContainer.GetComponent<PhotonView>();
@@ -46,6 +46,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
             Debug.Log("Photon is online...");
             _offline = false;
 
+            //assign player 1 and player 2 for referencee
             foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
             {
                 if (player.IsMasterClient)
@@ -54,6 +55,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
                     photonPlayer2 = player;
             }
 
+            //current player
             currentPhotonPlayer = photonPlayer1;
 
             Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
@@ -64,11 +66,10 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
             shopContainerPV.TransferOwnership(photonPlayer1);
             playZonePV.TransferOwnership(photonPlayer1);
             canvasPV.TransferOwnership(photonPlayer1);
-
-            Debug.Log("Transfered ownership...");
         }
         else
         {
+            //enabling offline mode allows all photon code to be ignored
             PhotonNetwork.OfflineMode = true;
             Debug.Log("Photon is offline...");
         }
@@ -86,7 +87,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
 
 	public void TransferObjects()
     {
-        Debug.Log("HELLO I AM DELEGRATE FOR END TURN,,,");
+        // transfer photon view ownership to player 1
         if (TurnManager.Instance.turnPlayer == TurnManager.Instance.player1)
         {
             currentPhotonPlayer = photonPlayer1;
@@ -94,17 +95,21 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
 			playZonePV.TransferOwnership(photonPlayer1);
 			canvasPV.TransferOwnership(photonPlayer1);
 
+            //grab all shop cards and transfer to current player
             PhotonView[] shopCards = shopContainerPV.GetComponentsInChildren<PhotonView>();
             foreach (PhotonView shopCard in shopCards)
                 shopCard.TransferOwnership(photonPlayer1);
 
 		}
+        // transfer photon view ownership to player 2
         else if (TurnManager.Instance.turnPlayer == TurnManager.Instance.player2)
         {
             currentPhotonPlayer = photonPlayer2;
 			shopContainerPV.TransferOwnership(photonPlayer2);
 			playZonePV.TransferOwnership(photonPlayer2);
 			canvasPV.TransferOwnership(photonPlayer2);
+
+            //grab all shop cards and transfer to current player
             PhotonView[] shopCards = shopContainerPV.GetComponentsInChildren<PhotonView>();
             foreach (PhotonView shopCard in shopCards)
                 shopCard.TransferOwnership(photonPlayer2);
