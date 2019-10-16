@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 
-public class NotificationWindow : MonoBehaviour
+public class NotificationWindowEvent : Event_Base
 {
     private TextMeshProUGUI notificationText;
     private Button okButton;
@@ -18,20 +19,17 @@ public class NotificationWindow : MonoBehaviour
 
     public static event _notificationWindowClosed NotificatoinWindoClosed;
 
-    private static NotificationWindow _instance;
-
-    public bool inNotificationState = false;
-
-    public static NotificationWindow Instance
+    private static NotificationWindowEvent _instance;
+    public static NotificationWindowEvent Instance
     {
         get { return _instance; }
     }
 
     [HideInInspector]
     public Image transparentCover;
+
+    private string messageText = "";
     
-
-
     void Awake()
     {
         if (_instance != null && _instance != this)
@@ -46,46 +44,41 @@ public class NotificationWindow : MonoBehaviour
         notificationText = GetComponentInChildren<TextMeshProUGUI>();
         okButton = GetComponent<Button>();
         transparentCover = GetComponentInChildren<Image>();
-        
-    }
-
-    private void OnEnable()
-    {
-        //Debug.Log("Going to invoke event");
-        NotificationWindowOpened?.Invoke();
-        inNotificationState = true;
-
     }
 
     private void OnDisable()
     {
         NotificatoinWindoClosed?.Invoke();
-        inNotificationState = false;
-
+        
+        transparentCover.gameObject.SetActive(false);
+        notificationText.text = "";
     }
+    
+    public void EnableNotificationWindow(string message)
+    {
+        DisplayMessage(message);
+        GameEventManager.Instance.AddStateToQueue(this);
+    }
+
+    public override void EventState()
+    {
+        Debug.Log("In display notification window event");
+
+        notificationText.text = messageText;
+        NotificationWindowOpened?.Invoke();
+    }
+
 
     public void DisplayMessage(string message)
     {
-        notificationText.text = message;
-        
-
-        StartCoroutine(NotificationState());
+        messageText = message;
     }
 
     public void CloseNotificationWindow()
     {
-        transparentCover.gameObject.SetActive(false);
-        notificationText.text = "";
         this.gameObject.SetActive(false);
+        messageText = "";
+        GameEventManager.Instance.EndEvent();
     }
-
-    IEnumerator NotificationState()
-    {
-        while (inNotificationState)
-        {
-            yield return null;
-        }
-        
-    }
-
+    
 }
