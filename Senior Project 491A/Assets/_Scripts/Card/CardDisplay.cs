@@ -23,7 +23,7 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     [SerializeField] protected TextMeshPro cardEffectText;
     
     [SerializeField]
-    private BoxCollider2D cardDisplayCollider;
+    protected BoxCollider2D cardDisplayCollider;
 
 
     protected virtual void Awake()
@@ -43,8 +43,8 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
 
     protected virtual void OnEnable()
     {
-        NotificationWindow.NotificationWindowOpened += DisableBoxCollider;
-        NotificationWindow.NotificatoinWindoClosed += EnableBoxCollider;
+        NotificationWindowEvent.NotificationWindowOpened += DisableBoxCollider;
+        NotificationWindowEvent.NotificatoinWindoClosed += EnableBoxCollider;
         //Debug.Log("CardDisplay: OnEnable()");
         LoadCardIntoDisplay();
         
@@ -52,8 +52,8 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
 
     protected virtual void OnDisable()
     {
-        NotificationWindow.NotificationWindowOpened -= DisableBoxCollider;
-        NotificationWindow.NotificatoinWindoClosed -= EnableBoxCollider;
+        NotificationWindowEvent.NotificationWindowOpened -= DisableBoxCollider;
+        NotificationWindowEvent.NotificatoinWindoClosed -= EnableBoxCollider;
         ClearCardFromDisplay();
     }
     
@@ -74,7 +74,7 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     
     protected virtual void DisableBoxCollider()
     {
-        Debug.Log("disabling collider for " + nameText);
+        //Debug.Log("disabling collider for " + nameText);
         cardDisplayCollider.enabled = false;
     }
 

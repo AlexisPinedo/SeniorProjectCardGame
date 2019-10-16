@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class DragCard : MonoBehaviourPunCallbacks
     public delegate void _ShopCardClicked(PlayerCardDisplay cardClicked);
 
     public static event _ShopCardClicked ShopCardClicked;
+    public static event Action CardDragged;
+    public static event Action CardReleased; 
 
     private PlayerCardDisplay thisCard;
 
@@ -34,8 +37,10 @@ public class DragCard : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnMouseDown()
     {
+        
         if (photonView.IsMine)
         {
+            CardDragged();
             //used to grab the z coordinate of the game object 
             //We need to conver the position to world space so it works with nested objects
             screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -51,6 +56,9 @@ public class DragCard : MonoBehaviourPunCallbacks
             {
                 //Debug.Log("Card is in Shop");
                 PlayerCardDisplay cardClicked = this.gameObject.GetComponent<PlayerCardDisplay>();
+
+                cardClicked.transform.position = OriginalPosition;
+                
                 ShopCardClicked?.Invoke(cardClicked);
 
                 //photon view of our current card
@@ -67,6 +75,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
+            CardReleased();
             //if there is a gameobject and the card is not in the play zone we will return the card to the original position
             if (this.gameObject != null && PlayZone.cardInPlayZone == false)
             {

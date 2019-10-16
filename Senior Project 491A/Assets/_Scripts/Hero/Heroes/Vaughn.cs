@@ -7,7 +7,7 @@ public class Vaughn : CostRequirementHero
 {
     protected override void HeroPowerEffect()
     {
-        UIHandler.Instance.EnableNotificationWindow("Condition met gain 2 currency");
+        NotificationWindowEvent.Instance.EnableNotificationWindow("Condition met gain 2 currency");
         TurnManager.Instance.turnPlayer.Currency += 2;
     }
 }

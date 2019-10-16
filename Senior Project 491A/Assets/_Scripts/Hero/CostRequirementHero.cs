@@ -8,7 +8,9 @@ public abstract class CostRequirementHero : Hero
     [SerializeField] private int cardEffectRequirementCount = 3;
     [SerializeField] private int cardsSinceLastEffectTrigger = 0;
 
-    [SerializeField] private List<PlayerCard> cardsPlayedForEffect;
+    [SerializeField] protected List<PlayerCard> cardsPlayedForEffect;
+
+    protected CardType.CardTypes lastCardPlayedType;
     
     protected virtual void OnEnable()
     {
@@ -36,16 +38,18 @@ public abstract class CostRequirementHero : Hero
         
         if (cardPlayed.CardType == CardType.CardTypes.None)
         {
-            Debug.Log("Card has no type nothing to evaluate");
+            //Debug.Log("Card has no type nothing to evaluate");
             return;
         }
         
         cardsPlayedForEffect.Add(cardPlayed);
-        Debug.Log("Card added to hero effect check");
+        lastCardPlayedType = cardPlayed.CardType;
+        
+        //Debug.Log("Card added to hero effect check");
 
         if (cardsPlayedForEffect.Count < cardEffectRequirementCount)
         {
-            Debug.Log("Card history too small to evaluate");
+            //Debug.Log("Card history too small to evaluate");
             return;
         }
         
@@ -56,7 +60,7 @@ public abstract class CostRequirementHero : Hero
         {
             if (cardsPlayedForEffect[lastCardPlayedReference - i].CardType != cardPlayed.CardType)
             {
-                Debug.Log("last 3 cards were not the same type");
+                //Debug.Log("last 3 cards were not the same type");
                 return;
             }
         }

@@ -23,7 +23,7 @@ public abstract class Container : MonoBehaviour
     /// This abstract method will run through instantiating every location
     /// set in the grid.
     /// </summary>
-    protected virtual void InitialCardDisplay()
+    protected virtual void DrawStartingHand()
     {
         Debug.Log("Container: am I overridden?");
     }

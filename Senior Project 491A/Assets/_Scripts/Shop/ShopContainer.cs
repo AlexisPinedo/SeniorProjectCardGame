@@ -51,29 +51,29 @@ public class ShopContainer : PlayerCardContainer
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("trying to shuffle deck");
+        //Debug.Log("trying to shuffle deck");
         shopDeck.cardsInDeck = ShuffleDeck.Shuffle(shopDeck);
         
-        InitialCardDisplay();
+        DrawStartingHand();
     }
 
     private void OnEnable()
     {
-        PurchaseHandler.CardPurchased += DisplayNewCard;
+        PlayerCardDisplay.CardPurchased += DisplayNewCard;
         
         
     }
 
     private void OnDisable()
     {
-        PurchaseHandler.CardPurchased -= DisplayNewCard;
+        PlayerCardDisplay.CardPurchased -= DisplayNewCard;
         
     }
 
     /// <summary>
     /// Initializes the Shop's card's placements.
     /// </summary>
-    protected override void InitialCardDisplay()
+    protected override void DrawStartingHand()
     {
         for (int i = 0; i < shopCardCount; i++)
         {

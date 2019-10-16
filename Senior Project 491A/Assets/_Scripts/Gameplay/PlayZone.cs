@@ -23,6 +23,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
     public delegate void _CardPlayed(PlayerCard cardPlayed);
 
     public static event _CardPlayed CardPlayed;
+    public static event Action HasPlayed;
 
     private PhotonView RPCCardSelected;
 
@@ -102,6 +103,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
         }
 
         CardPlayed?.Invoke(cardPlayed);
+        HasPlayed();
         cardInPlayZone = false;
         cardInZone = null;
     }

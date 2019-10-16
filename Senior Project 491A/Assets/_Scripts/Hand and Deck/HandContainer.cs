@@ -20,13 +20,13 @@ public class HandContainer : PlayerCardContainer
     
     private void Awake()
     {
-        InitialCardDisplay();
+        DrawStartingHand();
     }
 
     private void OnEnable()
     {
         TurnManager.GoingToSwitchPlayer += DestroyHand;
-        TurnManager.PlayerSwitched += InitialCardDisplay;
+        TurnManager.PlayerSwitched += DrawStartingHand;
         containerGrid.onGridResize += ChangeCardPositions;
     }
 
@@ -35,12 +35,12 @@ public class HandContainer : PlayerCardContainer
         
         //Debug.Log("Hand container has been disabled");
         TurnManager.GoingToSwitchPlayer -= DestroyHand;
-        TurnManager.PlayerSwitched -= InitialCardDisplay;
+        TurnManager.PlayerSwitched -= DrawStartingHand;
         containerGrid.onGridResize -= ChangeCardPositions;
     }
 
 
-    protected override void InitialCardDisplay()
+    protected override void DrawStartingHand()
     {
         for (int i = 0; i < DefaultHandSize; i++)
         {
