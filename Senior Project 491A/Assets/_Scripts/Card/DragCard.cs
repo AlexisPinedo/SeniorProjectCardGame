@@ -40,7 +40,7 @@ public class DragCard : MonoBehaviourPunCallbacks
         
         if (photonView.IsMine)
         {
-            CardDragged();
+            //CardDragged();
             //used to grab the z coordinate of the game object 
             //We need to conver the position to world space so it works with nested objects
             screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -75,7 +75,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-            CardReleased();
+            //CardReleased();
             //if there is a gameobject and the card is not in the play zone we will return the card to the original position
             if (this.gameObject != null && PlayZone.cardInPlayZone == false)
             {

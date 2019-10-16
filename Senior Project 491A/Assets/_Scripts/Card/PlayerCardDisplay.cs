@@ -28,6 +28,10 @@ public class PlayerCardDisplay : CardDisplay
     [SerializeField] private SpriteRenderer cardEffectCostsIcons;
     [SerializeField] private SpriteRenderer costIcon;
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
+    
+    public delegate void _CardPurchased(PlayerCardDisplay cardBought);
+
+    public static event _CardPurchased CardPurchased;
 
     //private static List<int> photonViewIDs = new List<int>();
 
@@ -198,6 +202,10 @@ public class PlayerCardDisplay : CardDisplay
 
         cardIcons.Clear();
     }
+    
+    public void TriggerCardPurchasedEvent()
+    {
+        CardPurchased?.Invoke(this);
 
-
+    }
 }
