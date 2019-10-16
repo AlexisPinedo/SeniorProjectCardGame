@@ -57,7 +57,8 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
     {
         if(FreeShopSelectionEvent.Instance.inShopSelectionState)
             return;
-        ;
+        return;
+        
         //Debug.Log("Handling Purchase");
         if (TurnManager.Instance.turnPlayer.Currency >= cardSelected.card.CardCost)
         {
