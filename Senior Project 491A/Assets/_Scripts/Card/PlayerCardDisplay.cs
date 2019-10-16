@@ -30,6 +30,10 @@ public class PlayerCardDisplay : CardDisplay
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
 
     private static List<int> photonViewIDs = new List<int>();
+    
+    public delegate void _CardPurchased(PlayerCardDisplay cardBought);
+
+    public static event _CardPurchased CardPurchased;
 
     //When the PlayerCardDisplay is loaded we want to load in the components into the display
     //    protected override void Awake()
@@ -197,6 +201,12 @@ public class PlayerCardDisplay : CardDisplay
         }
 
         cardIcons.Clear();
+    }
+    
+    public void TriggerCardPurchasedEvent()
+    {
+        CardPurchased?.Invoke(this);
+
     }
 
 
