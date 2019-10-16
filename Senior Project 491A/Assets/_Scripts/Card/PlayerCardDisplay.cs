@@ -29,7 +29,7 @@ public class PlayerCardDisplay : CardDisplay
     [SerializeField] private SpriteRenderer costIcon;
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
 
-    private static List<int> photonViewIDs = new List<int>();
+    //private static List<int> photonViewIDs = new List<int>();
 
     //When the PlayerCardDisplay is loaded we want to load in the components into the display
     //    protected override void Awake()
@@ -74,18 +74,18 @@ public class PlayerCardDisplay : CardDisplay
                     Reliability = true
                 };
 
-                Debug.Log("Master Client assigned ViewID: " + photonView.ViewID);
+                Debug.Log("PlayerCard assigned ViewID: " + photonView.ViewID);
                 PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
+
+                if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
+                {
+                    Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
+                    photonView.TransferOwnership(PhotonNetworkManager.currentPhotonPlayer);
+                }
             }
             else
             {
                 Debug.Log("Unable to allocate ID");
-            }
-
-            if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
-            {
-                Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
-                photonView.TransferOwnership(PhotonNetworkManager.currentPhotonPlayer);
             }
         }
     }
@@ -108,12 +108,12 @@ public class PlayerCardDisplay : CardDisplay
             object[] data = (object[])photonEvent.CustomData;
             int recievedPhotonID = (int)data[0];
 
-            if (!photonViewIDs.Contains(recievedPhotonID))
+            if (!PhotonNetworkManager.photonViewIDs.Contains(recievedPhotonID))
             {
                 photonView.ViewID = recievedPhotonID;
-                photonViewIDs.Add(recievedPhotonID);
+                PhotonNetworkManager.photonViewIDs.Add(recievedPhotonID);
 
-                Debug.Log("Recieved RPC to assign PhotonView ID: " + photonView.ViewID);
+                Debug.Log("PlayerCard RPC to assign PhotonView ID: " + photonView.ViewID);
                 PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
             }
         }
