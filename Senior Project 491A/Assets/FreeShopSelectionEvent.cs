@@ -83,7 +83,7 @@ public class FreeShopSelectionEvent : Event_Base
 
     private void FreeCardPurchase(PlayerCardDisplay cardClicked)
     {
-        
+        return;
         if (!ValidateSameCostRequirement())
         {
             DisableShopSelectionState();

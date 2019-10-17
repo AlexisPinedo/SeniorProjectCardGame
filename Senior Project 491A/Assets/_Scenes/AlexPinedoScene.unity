@@ -427,7 +427,6 @@ MonoBehaviour:
   turnPlayerGameObject: {fileID: 0}
   player1GameObject: {fileID: 101520841}
   player2GameObject: {fileID: 2025430591}
-  player2HandContainer: {fileID: 2033931929}
   player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
   player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
 --- !u!114 &381133603
@@ -502,7 +501,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381133601}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c89529f31dce0094a989e9139a11fe5c, type: 3}
   m_Name: 
@@ -520,7 +519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137c8ee6418d021479eddbee8a1ea1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentlyInaState: 0
 --- !u!1 &393574265
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,15 +974,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 695779580}
     m_Modifications:
-    - target: {fileID: -3257049812469847756, guid: ca9d4b072acf4164588d35a26d1bddd4,
-        type: 3}
-      propertyPath: viewIdField
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 522489324146028420, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_Name
       value: Boss Card Container
+      objectReference: {fileID: 0}
+    - target: {fileID: -3257049812469847756, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: viewIdField
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 522489324146028442, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
@@ -4142,7 +4140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924753338f68a824786e44cd314e2b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inNotificationState: 0
   transparentCover: {fileID: 0}
 --- !u!1 &1948916661
 GameObject:

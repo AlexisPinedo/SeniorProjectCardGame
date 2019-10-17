@@ -61,35 +61,39 @@ public class PlayerCardDisplay : CardDisplay
 
     void Start()
     { 
-        if (PhotonNetwork.IsMasterClient)
+        if(!PhotonNetwork.OfflineMode)
         {
-            if (PhotonNetwork.AllocateViewID(photonView))
+            if (PhotonNetwork.IsMasterClient)
             {
-                object[] data = { photonView.ViewID };
-
-                RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+                if (PhotonNetwork.AllocateViewID(photonView))
                 {
-                    Receivers = ReceiverGroup.Others,
-                    CachingOption = EventCaching.AddToRoomCache
-                };
+                    object[] data = {photonView.ViewID};
 
-                SendOptions sendOptions = new SendOptions
-                {
-                    Reliability = true
-                };
+                    RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+                    {
+                        Receivers = ReceiverGroup.Others,
+                        CachingOption = EventCaching.AddToRoomCache
+                    };
 
-                Debug.Log("PlayerCard assigned ViewID: " + photonView.ViewID);
-                PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
+                    SendOptions sendOptions = new SendOptions
+                    {
+                        Reliability = true
+                    };
 
-                if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
-                {
-                    Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
-                    photonView.TransferOwnership(PhotonNetworkManager.currentPhotonPlayer);
+                    Debug.Log("PlayerCard assigned ViewID: " + photonView.ViewID);
+
+                    PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
+                    if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
+                    {
+                        Debug.Log(
+                            "Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
+                        photonView.TransferOwnership(PhotonNetworkManager.currentPhotonPlayer);
+                    }
                 }
-            }
-            else
-            {
-                Debug.Log("Unable to allocate ID");
+                else
+                {
+                    Debug.Log("Unable to allocate ID");
+                }
             }
         }
     }

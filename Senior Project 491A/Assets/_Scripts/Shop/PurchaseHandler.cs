@@ -51,7 +51,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
 
             TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
             
-            CardPurchased?.Invoke(cardSelected);
+            cardSelected.TriggerCardPurchasedEvent();
             
             Destroy(cardSelected.gameObject);
         }

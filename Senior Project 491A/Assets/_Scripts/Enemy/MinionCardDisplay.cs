@@ -44,10 +44,13 @@ public class MinionCardDisplay : EnemyCardDisplay
                 Debug.Log("MinionCard assigned ViewID: " + photonView.ViewID);
                 PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
 
-                if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
+                if (!PhotonNetwork.OfflineMode)
                 {
-                    Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
-                    photonView.TransferOwnership(PhotonNetworkManager.currentPhotonPlayer);
+                    if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
+                    {
+                        Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
+                        photonView.TransferOwnership(PhotonNetworkManager.currentPhotonPlayer);
+                    }
                 }
             }
             else
