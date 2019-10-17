@@ -25,7 +25,7 @@ public class Veda : CostRequirementHero
         //Debug.Log("Swap to next shop");
         FreeShopSelectionEvent.Instance.EnableShopSelectionState(cardSelectionLimit);
         
-        //TurnManager.Instance.QuickChangeActivePlayer();
+        PlayerSwitchEvent.Instance.EnablePlayerSwitchEvent();
 
     }
 }

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e1ab4ade3d1e8e4397ddd87f04e6bd2, type: 3}
-  m_Name: Star
+  m_Name: Corny Unicorn
   m_EditorClassIdentifier: 
-  cardName: Star
+  cardName: Corny Unicorn
   cardDescription: 
   cardEffect: {fileID: 0}
   cardEffectDisplay: Skip the boss's turn.
-  cardArtwork: {fileID: 21300000, guid: b78a7c1fe7354fd408239c8db51d66dd, type: 3}
+  cardArtwork: {fileID: 21300000, guid: f175f3029a835d649b53f3b3cf494a12, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 857794b94e1566d4d97be253d90d350f, type: 3}
   cardType: 1
   nameBoxArt: {fileID: 21300000, guid: f24d6a3477ae4084fa1ea289f0ba25fd, type: 3}

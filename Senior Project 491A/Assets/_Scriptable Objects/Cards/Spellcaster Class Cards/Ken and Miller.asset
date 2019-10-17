@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e1ab4ade3d1e8e4397ddd87f04e6bd2, type: 3}
-  m_Name: Archmage
+  m_Name: Ken and Miller
   m_EditorClassIdentifier: 
-  cardName: Archmage
+  cardName: Ken and Miller
   cardDescription: 
   cardEffect: {fileID: 0}
   cardEffectDisplay: Exchange cards in your hand with cards in the shop.
-  cardArtwork: {fileID: 21300000, guid: b78a7c1fe7354fd408239c8db51d66dd, type: 3}
+  cardArtwork: {fileID: 21300000, guid: 1e7ca39adab5e8f4faeb1ccf43d64236, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 4ccb6c05577c54545b0ff360882023f5, type: 3}
   cardType: 2
   nameBoxArt: {fileID: 21300000, guid: 146aa82345020c34f9f1930161cec372, type: 3}

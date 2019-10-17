@@ -54,10 +54,10 @@ public class GameEventManager : MonoBehaviour
     {
         Event_Base nextEventToRun = stateQueue.Peek();
         
-        nextEventToRun.EventState();
-        
         eventActive = true;
 
+        nextEventToRun.EventState();
+        
         while (eventActive)
         {
             yield return null;
