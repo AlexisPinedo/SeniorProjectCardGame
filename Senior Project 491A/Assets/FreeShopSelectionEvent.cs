@@ -6,11 +6,10 @@ using UnityEngine;
 public class FreeShopSelectionEvent : Event_Base
 {
     public delegate void _purchaseEventTriggered();
-
     public static event _purchaseEventTriggered PurchaseEventTriggered;
 
+    
     public delegate void _purchaseEventEnded();
-
     public static event _purchaseEventEnded PurchaseEventEnded;
 
     private static FreeShopSelectionEvent _instance;
@@ -39,7 +38,7 @@ public class FreeShopSelectionEvent : Event_Base
             Destroy(this.gameObject);
         }
     }
-    
+
     private void OnEnable()
     {
         DragCard.ShopCardClicked += FreeCardPurchase;
@@ -62,6 +61,7 @@ public class FreeShopSelectionEvent : Event_Base
     public override void EventState()
     {
         Debug.Log("In Free shop cards event");
+        
         this.enabled = true;
         
         PurchaseEventTriggered?.Invoke();
@@ -83,7 +83,6 @@ public class FreeShopSelectionEvent : Event_Base
 
     private void FreeCardPurchase(PlayerCardDisplay cardClicked)
     {
-        return;
         if (!ValidateSameCostRequirement())
         {
             DisableShopSelectionState();

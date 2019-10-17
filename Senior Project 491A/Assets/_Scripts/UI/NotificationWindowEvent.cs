@@ -56,20 +56,20 @@ public class NotificationWindowEvent : Event_Base
     
     public void EnableNotificationWindow(string message)
     {
-        DisplayMessage(message);
+        SetDisplayMessage(message);
+        transparentCover.gameObject.SetActive(true);
         GameEventManager.Instance.AddStateToQueue(this);
     }
 
     public override void EventState()
     {
         Debug.Log("In display notification window event");
-
         notificationText.text = messageText;
         NotificationWindowOpened?.Invoke();
     }
 
 
-    public void DisplayMessage(string message)
+    public void SetDisplayMessage(string message)
     {
         messageText = message;
     }

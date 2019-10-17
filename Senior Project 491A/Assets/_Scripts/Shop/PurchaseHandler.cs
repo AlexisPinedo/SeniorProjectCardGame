@@ -34,14 +34,28 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
     private void OnEnable()
     {
         DragCard.ShopCardClicked += HandlePurchase;
+        FreeShopSelectionEvent.PurchaseEventTriggered += UnSubHandlePurchase;
+        FreeShopSelectionEvent.PurchaseEventEnded += SubHandlePurchase;
     }
 
     private void OnDisable()
     {
         DragCard.ShopCardClicked -= HandlePurchase;
+        FreeShopSelectionEvent.PurchaseEventTriggered -= UnSubHandlePurchase;
+        FreeShopSelectionEvent.PurchaseEventEnded += SubHandlePurchase;
     }
 
+    private void UnSubHandlePurchase()
+    {
+        DragCard.ShopCardClicked -= HandlePurchase;
 
+    }
+
+    private void SubHandlePurchase()
+    {
+        DragCard.ShopCardClicked += HandlePurchase;
+    }
+    
     private void HandlePurchase(PlayerCardDisplay cardSelected)
     {
         //Debug.Log("Handling Purchase");

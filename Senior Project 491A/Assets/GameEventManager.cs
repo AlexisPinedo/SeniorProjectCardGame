@@ -7,7 +7,7 @@ public class GameEventManager : MonoBehaviour
 {
     private Queue<Event_Base> stateQueue = new Queue<Event_Base>();
 
-    private bool eventActive;
+    private bool eventActive = false;
     
     private static GameEventManager _instance;
 
@@ -34,6 +34,7 @@ public class GameEventManager : MonoBehaviour
             Debug.Log("Adding to empty queue");
 
             stateQueue.Enqueue(eventState);
+            eventActive = true;
             StartCoroutine(HandleState(eventState));
         }
         else
