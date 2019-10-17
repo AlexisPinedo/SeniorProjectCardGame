@@ -11,6 +11,7 @@ public class ParticlePlay : MonoBehaviour
     {
         DragCard.CardDragged += PlaySummoningCircle;
         DragCard.CardReleased += CanDestroySummoner;
+        PlayZone.HasPlayed += PlayPurpleCircle;
     }
 
     void PlaySummoningCircle()
@@ -29,8 +30,20 @@ public class ParticlePlay : MonoBehaviour
         }
     }
 
+    void PlayPurpleCircle()
+    {
+        // Instantiate the PurpleCircleHere
+    }
+
     void CanDestroySummoner()
     {
         canDestroyCircle = true;
+    }
+
+    void OnDestroy()
+    {
+        DragCard.CardDragged -= PlaySummoningCircle;
+        DragCard.CardReleased -= CanDestroySummoner;
+        PlayZone.HasPlayed -= PlayPurpleCircle;
     }
 }
