@@ -92,12 +92,6 @@ public class UIHandler : MonoBehaviour
 
         PhotonNetwork.RaiseEvent(endTurnIdentifier, null, raiseEventOptions, sendOptions);
     }
-    
-    public void EnableNotificationWindow(string message)
-    {
-        windowReference.gameObject.SetActive(true);
-        NotificationWindowEvent.Instance.EnableNotificationWindow(message);
-    }
 
     public void OnEvent(EventData photonEvent)
     {

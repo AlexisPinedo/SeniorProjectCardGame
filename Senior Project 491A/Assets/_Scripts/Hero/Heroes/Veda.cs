@@ -17,7 +17,7 @@ public class Veda : CostRequirementHero
         FreeShopSelectionEvent.Instance.EnableShopSelectionState(cardSelectionLimit);
         
         //Debug.Log("Changing Active Player");
-        //TurnManager.Instance.QuickChangeActivePlayer();
+        PlayerSwitchEvent.Instance.EnablePlayerSwitchEvent();
         
         //Debug.Log("Showing next Notification");
         NotificationWindowEvent.Instance.EnableNotificationWindow("Other Player may Select 1 card");
@@ -25,5 +25,7 @@ public class Veda : CostRequirementHero
         //Debug.Log("Swap to next shop");
         FreeShopSelectionEvent.Instance.EnableShopSelectionState(cardSelectionLimit);
         
+        //TurnManager.Instance.QuickChangeActivePlayer();
+
     }
 }

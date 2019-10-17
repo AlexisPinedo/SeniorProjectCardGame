@@ -111,6 +111,7 @@
             <e p="Graveyard.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
+          <e p="PlayerSwitchEvent.cs" t="Include" />
           <e p="RandomNumberNetworkGenerator.cs" t="Include" />
           <e p="Shop" t="Include">
             <e p="PurchaseHandler.cs" t="Include" />

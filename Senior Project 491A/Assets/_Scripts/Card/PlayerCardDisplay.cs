@@ -36,10 +36,11 @@ public class PlayerCardDisplay : CardDisplay
     //private static List<int> photonViewIDs = new List<int>();
 
     //When the PlayerCardDisplay is loaded we want to load in the components into the display
-    //    protected override void Awake()
-    //    {
-    //        LoadCardIntoDisplay();
-    //    }
+        protected override void Awake()
+        {
+            base.Awake();
+            LoadCardIntoDisplay();
+        }
 
     /// <summary>
     /// Called when this object is enabled. Adds EventReceived to the Networking Client.
@@ -100,11 +101,13 @@ public class PlayerCardDisplay : CardDisplay
 
     public void OnEnable()
     {
+        base.OnEnable();
         PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
     }
 
     public void OnDisable()
     {
+        base.OnEnable();
         PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
 
@@ -210,6 +213,5 @@ public class PlayerCardDisplay : CardDisplay
     public void TriggerCardPurchasedEvent()
     {
         CardPurchased?.Invoke(this);
-
     }
 }
