@@ -61,6 +61,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
+            if (other.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+                return;
             //Debug.Log("Card has left");
             cardInPlayZone = false;
             cardInZone = null;
@@ -114,6 +116,9 @@ public class PlayZone : MonoBehaviourPunCallbacks
         PhotonView foundCard = PhotonView.Find(cardID);
         if (foundCard)
         {
+            if(foundCard.GetComponentInParent<HandContainer>() == null)
+                return;
+            
             cardInPlayZone = true;
             cardInZone = foundCard.GetComponent<PlayerCardDisplay>();
         }
