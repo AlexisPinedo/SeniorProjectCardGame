@@ -43,8 +43,8 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
 
     protected virtual void OnEnable()
     {
-        NotificationWindowEvent.NotificationWindowOpened += DisableBoxCollider;
-        NotificationWindowEvent.NotificatoinWindoClosed += EnableBoxCollider;
+        Event_Base.GameStatePausingEventTriggered += DisableBoxCollider;
+        Event_Base.GameStatePausingEventEnded += EnableBoxCollider;
         //Debug.Log("CardDisplay: OnEnable()");
         LoadCardIntoDisplay();
         
@@ -52,8 +52,8 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
 
     protected virtual void OnDisable()
     {
-        NotificationWindowEvent.NotificationWindowOpened -= DisableBoxCollider;
-        NotificationWindowEvent.NotificatoinWindoClosed -= EnableBoxCollider;
+        Event_Base.GameStatePausingEventTriggered -= DisableBoxCollider;
+        Event_Base.GameStatePausingEventEnded -= EnableBoxCollider;
         ClearCardFromDisplay();
     }
     
@@ -75,12 +75,14 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     protected virtual void DisableBoxCollider()
     {
         //Debug.Log("disabling collider for " + nameText);
-        cardDisplayCollider.enabled = false;
+        if(this != null)
+            cardDisplayCollider.enabled = false;
     }
 
     protected virtual void EnableBoxCollider()
     {
-        cardDisplayCollider.enabled = true;
+        if(this != null)
+            cardDisplayCollider.enabled = true;
     }
     
 }

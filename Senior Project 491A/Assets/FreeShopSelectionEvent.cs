@@ -6,11 +6,10 @@ using UnityEngine;
 public class FreeShopSelectionEvent : Event_Base
 {
     public delegate void _purchaseEventTriggered();
-
     public static event _purchaseEventTriggered PurchaseEventTriggered;
 
+    
     public delegate void _purchaseEventEnded();
-
     public static event _purchaseEventEnded PurchaseEventEnded;
 
     private static FreeShopSelectionEvent _instance;
@@ -19,14 +18,14 @@ public class FreeShopSelectionEvent : Event_Base
     {
         get { return _instance; }
     }
-
-    public bool inShopSelectionState = false;
-
+    
     private int cardsPurchased;
-
-    private int cardsToPurchase;
+    
+    private Queue<int> cardsToPurchaseQueue = new Queue<int>();
 
     private CardType.CardTypes compareType = CardType.CardTypes.All;
+
+    private int cardsToPurchase = 0;
     
     private void Awake()
     {
@@ -39,7 +38,7 @@ public class FreeShopSelectionEvent : Event_Base
             Destroy(this.gameObject);
         }
     }
-    
+
     private void OnEnable()
     {
         DragCard.ShopCardClicked += FreeCardPurchase;
@@ -53,8 +52,8 @@ public class FreeShopSelectionEvent : Event_Base
     public void EnableShopSelectionState(int cardsToSelect, CardType.CardTypes typeToCompare = CardType.CardTypes.All)
     {
         compareType = typeToCompare;
-
-        cardsToPurchase = cardsToSelect;
+        
+        cardsToPurchaseQueue.Enqueue(cardsToSelect);
         
         GameEventManager.Instance.AddStateToQueue(this);
     }
@@ -62,30 +61,37 @@ public class FreeShopSelectionEvent : Event_Base
     public override void EventState()
     {
         Debug.Log("In Free shop cards event");
+        
+        ButtonInputManager.Instance.DisableButtonsInList();
+        
+        cardsToPurchase = cardsToPurchaseQueue.Dequeue();
+
         this.enabled = true;
         
         PurchaseEventTriggered?.Invoke();
-        
-        inShopSelectionState = true;
     }
 
     public void DisableShopSelectionState()
     {
-        //ButtonInputManager.DisableButtonsInList();
         compareType = CardType.CardTypes.All;
         
         PurchaseEventEnded?.Invoke();
 
         this.enabled = false;
+
+        cardsPurchased = 0;
+        
+        ButtonInputManager.Instance.EnableButtonsInList();
         
         GameEventManager.Instance.EndEvent();
     }
 
     private void FreeCardPurchase(PlayerCardDisplay cardClicked)
     {
-        
         if (!ValidateSameCostRequirement())
         {
+            Debug.Log("could not validate free card purchase must exit");
+
             DisableShopSelectionState();
             return;
         }
@@ -102,6 +108,8 @@ public class FreeShopSelectionEvent : Event_Base
 
             if (cardsPurchased == cardsToPurchase)
             {
+                Debug.Log("purchased required amount must exit");
+
                 DisableShopSelectionState();
             }
 
@@ -116,7 +124,10 @@ public class FreeShopSelectionEvent : Event_Base
     public bool ValidateSameCostRequirement()
     {
         if (compareType == CardType.CardTypes.All)
+        {
+            Debug.Log("Comparetype is all so you can buy anything");
             return true;
+        }
         
         Dictionary<Vector2, CardDisplay> CardsinShop = ShopContainer.Instance.containerGrid.cardLocationReference;
 

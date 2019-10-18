@@ -305,7 +305,8 @@ namespace Photon.Pun
         /// </remarks>
         public void TransferOwnership(Player newOwner)
         {
-            this.TransferOwnership(newOwner.ActorNumber);
+            if(!PhotonNetwork.OfflineMode)
+                this.TransferOwnership(newOwner.ActorNumber);
         }
 
         /// <summary>

@@ -15,7 +15,7 @@ public class Valor : CostRequirementHero
 
     protected override void HeroPowerEffect()
     {
-        UIHandler.Instance.EnableNotificationWindow("Cost met select 2 cards of the same color");
+        NotificationWindowEvent.Instance.EnableNotificationWindow("Cost met select 2 cards of the same color");
         
         FreeShopSelectionEvent.Instance.EnableShopSelectionState(cardSelectionLimit, History.Instance.PlayerCardHistory.Last().CardType);
     }

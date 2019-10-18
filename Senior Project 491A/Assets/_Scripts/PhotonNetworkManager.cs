@@ -130,6 +130,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
             foreach (PhotonView minionCard in minionCards)
                 minionCard.TransferOwnership(photonPlayer2);
         }
-		Debug.Log("Transfered ownership to: " + currentPhotonPlayer.NickName);
+		if(!PhotonNetwork.OfflineMode)
+            Debug.Log("Transfered ownership to: " + currentPhotonPlayer.NickName);
 	}
 }
