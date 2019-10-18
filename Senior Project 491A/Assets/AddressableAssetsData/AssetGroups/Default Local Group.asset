@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: Assets/_Prefabs/MagicAura.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 3a4f5a0368b63e64b9125b6e1bcc0f76
+    m_Address: Assets/_Prefabs/PurpleAura.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ccbf235a12ac68041b317583bc12edfb, type: 2}
   m_SchemaSet:
