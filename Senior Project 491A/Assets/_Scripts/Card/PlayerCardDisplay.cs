@@ -32,6 +32,13 @@ public class PlayerCardDisplay : CardDisplay
     public delegate void _CardPurchased(PlayerCardDisplay cardBought);
 
     public static event _CardPurchased CardPurchased;
+    
+    public string sortingLayerName;
+    public int sortingOrder;
+
+    //for testing purposes
+    public string sortName;
+    public int sortOrder;
 
     //private static List<int> photonViewIDs = new List<int>();
 
@@ -96,6 +103,8 @@ public class PlayerCardDisplay : CardDisplay
                     Debug.Log("Unable to allocate ID");
                 }
             }
+            sortingLayerName = GetComponent<ParticleSystemRenderer>().sortingLayerName;
+            sortingOrder = GetComponent<ParticleSystemRenderer>().sortingOrder;
         }
     }
 
