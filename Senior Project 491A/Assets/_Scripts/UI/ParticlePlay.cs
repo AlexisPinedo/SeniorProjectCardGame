@@ -33,7 +33,7 @@ public class ParticlePlay : MonoBehaviour
 
         LoadAndSpawn(goldSummoner);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.6f);
 
         if (!canDestroyCircle)
         {
