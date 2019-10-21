@@ -3425,6 +3425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf2cc82c57dac642820c8e9afc85054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBattleButton: {fileID: 1526216801}
+  endTurnButton: {fileID: 1385409946}
 --- !u!114 &1455907488
 MonoBehaviour:
   m_ObjectHideFlags: 0
