@@ -24,6 +24,8 @@ public class UIHandler : MonoBehaviour
 
     private byte endTurnIdentifier = (byte)'E';
 
+    private byte startBattleIdentifier = (byte)'S';
+
     private static UIHandler _instance;
 
     public static UIHandler Instance
@@ -64,6 +66,19 @@ public class UIHandler : MonoBehaviour
     public void StartBattleButtonOnClick()
     {
         StartClicked?.Invoke();
+
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+        {
+            Receivers = ReceiverGroup.Others,
+        };
+
+        SendOptions sendOptions = new SendOptions
+        {
+            Reliability = true
+        };
+
+        PhotonNetwork.RaiseEvent(startBattleIdentifier, null, raiseEventOptions, sendOptions);
+
     }
 
     public void GraveyardButtonOnClick()
@@ -105,10 +120,12 @@ public class UIHandler : MonoBehaviour
         if (recievedCode == endTurnIdentifier)
         {
             EndTurnClicked?.Invoke();
+            Debug.Log("OnEvent end turn...");
         }
-        else
+        if (recievedCode == startBattleIdentifier)
         {
-            //Debug.Log("Event code not found");
+            StartClicked?.Invoke();
+            Debug.Log("OnEvent start battle");
         }
     }
 

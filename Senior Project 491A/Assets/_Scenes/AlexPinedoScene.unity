@@ -350,7 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 1981492783}
   display: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
-  shopDeck: {fileID: 11400000, guid: 2ba6b1a3e2ecc0447bc728d99bd161c8, type: 2}
+  shopDeck: {fileID: 11400000, guid: 4ff002b0bee054542a589b4945221746, type: 2}
 --- !u!114 &301505298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3410,6 +3410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf2cc82c57dac642820c8e9afc85054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBattleButton: {fileID: 1526216801}
+  endTurnButton: {fileID: 1385409946}
 --- !u!114 &1455907488
 MonoBehaviour:
   m_ObjectHideFlags: 0

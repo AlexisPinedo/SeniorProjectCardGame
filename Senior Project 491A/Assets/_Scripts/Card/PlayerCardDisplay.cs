@@ -80,7 +80,7 @@ public class PlayerCardDisplay : CardDisplay
                         Reliability = true
                     };
 
-                    Debug.Log("PlayerCard assigned ViewID: " + photonView.ViewID);
+//                    Debug.Log("PlayerCard assigned ViewID: " + photonView.ViewID);
 
                     PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
                     if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
@@ -121,7 +121,7 @@ public class PlayerCardDisplay : CardDisplay
                 photonView.ViewID = recievedPhotonID;
                 PhotonNetworkManager.photonViewIDs.Add(recievedPhotonID);
 
-                Debug.Log("PlayerCard RPC to assign PhotonView ID: " + photonView.ViewID);
+//                Debug.Log("PlayerCard RPC to assign PhotonView ID: " + photonView.ViewID);
                 PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
             }
         }

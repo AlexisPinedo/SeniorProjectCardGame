@@ -105,6 +105,7 @@ public class TurnManager : MonoBehaviour
             player2GameObject.GetComponentInChildren<HandContainer>().enabled = true;
             //turnManager.SetPlayerTwosTurn();
             turnPlayer = player2;
+            Debug.Log("Player switched to player 2");
             turnPlayerGameObject = player2GameObject;
         }
         // Switch to Player One
@@ -113,8 +114,8 @@ public class TurnManager : MonoBehaviour
             player2GameObject.SetActive(false);
             player1GameObject.SetActive(true);
             //turnManager.SetPlayerOnesTurn();
-
             turnPlayer = player1;
+            Debug.Log("Player switched to player 1");
             turnPlayerGameObject = player1GameObject;
         }
     }
