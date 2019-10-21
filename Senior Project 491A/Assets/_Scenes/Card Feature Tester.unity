@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 1981492783}
-  holder: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
+  display: {fileID: 0}
   shopDeck: {fileID: 11400000, guid: 4ff002b0bee054542a589b4945221746, type: 2}
 --- !u!1 &381133601
 GameObject:
@@ -873,6 +873,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss Card Container
       objectReference: {fileID: 0}
+    - target: {fileID: -3257049812469847756, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: viewIdField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 522489324146028442, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1005,7 +1010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 837790465}
-  holder: {fileID: 7737181224830327970, guid: 3a52656890895c8488c3d5d03033505b, type: 3}
+  display: {fileID: 0}
   enemyDeck: {fileID: 11400000, guid: 3011dc8c8f7e58f4eb9c00577c9c4b8c, type: 2}
 --- !u!1 &635150313
 GameObject:
@@ -1603,6 +1608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPower: {fileID: 1014222953}
   playerCurrency: {fileID: 1694429697}
+  currentTurn: {fileID: 0}
 --- !u!224 &815000619
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2260,11 +2266,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 696043139}
-  holder: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
+  display: {fileID: 0}
   hand: {fileID: 11400000, guid: 7473ef4c36860c2479a050f88a746ac7, type: 2}
   playerDeck: {fileID: 11400000, guid: 9a5eec11a96d3f44e88cd3bd254f306a, type: 2}
   playerGrave: {fileID: 11400000, guid: b7077001044931a40b33d83873f50253, type: 2}
   phantomCard: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
+  cardDrawn: {fileID: 0}
   DefaultHandSize: 5
 --- !u!1 &1194804835
 GameObject:
@@ -3538,11 +3545,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerGrid: {fileID: 566032829}
-  holder: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
+  display: {fileID: 0}
   hand: {fileID: 11400000, guid: faffe65425888364c90c44179becc897, type: 2}
   playerDeck: {fileID: 11400000, guid: 129d1d2bb41d2444b8d6adeae81ba26a, type: 2}
   playerGrave: {fileID: 11400000, guid: 3a630b2f752ea964c894ac5173f0aa73, type: 2}
   phantomCard: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
+  cardDrawn: {fileID: 0}
   DefaultHandSize: 5
 --- !u!1 &2090628132
 GameObject:
