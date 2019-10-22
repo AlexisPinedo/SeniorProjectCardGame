@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 247937407
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -686,7 +686,7 @@ MonoBehaviour:
   nameText: {fileID: 522489325007569006}
   cardEffectText: {fileID: 522489323694313994}
   cardDisplayCollider: {fileID: 0}
-  card: {fileID: 11400000, guid: 5bea60f098d49e44fb0c6cced5903361, type: 2}
+  card: {fileID: 11400000, guid: a99d863b184b0444390201b3e9d57e94, type: 2}
   attackText: {fileID: 522489324534388793}
   costText: {fileID: 522489324681891626}
   currencyText: {fileID: 522489323609107175}
@@ -694,6 +694,30 @@ MonoBehaviour:
     type: 3}
   costIcon: {fileID: 522489324350622253}
   cardIcons: []
+  imageLayerName: 
+  typeLayerName: 
+  attackLayerName: 
+  soulLayerName: 
+  costLayerName: 
+  borderLayerName: 
+  effectsLayerName: 
+  nameLayer: 
+  cardImage: {fileID: 522489325570323523}
+  cardTypeIcon: {fileID: 522489324599465689}
+  cardAttackIcon: {fileID: 522489324211365295}
+  cardSoulIcon: {fileID: 522489325236304043}
+  cardCostIcon: {fileID: 522489324350622255}
+  cardBorderImage: {fileID: 522489324667172549}
+  effectsTxt: {fileID: 522489323547367175}
+  nameTxt: {fileID: 522489323761172446}
+  originalImageOrder: 0
+  originalTypeOrder: 1
+  originalAttackOrder: 1
+  originalSoulOrder: 1
+  originalCostOrder: 1
+  originalBorderOrder: 0
+  originaleffectOrder: 0
+  originalNameOrder: 0
 --- !u!114 &6509064376903318764
 MonoBehaviour:
   m_ObjectHideFlags: 0
