@@ -227,14 +227,14 @@ public class PlayerCardDisplay : CardDisplay
     {
         //TODO: Implement an incrementor for the sorting order of each sorting layer
         Debug.Log("Enter betch!");
-        cardParts[0].GetComponent<Renderer>().sortingOrder = 2;
-        cardParts[1].GetComponent<Renderer>().sortingOrder = 3;
-        cardParts[2].GetComponent<Renderer>().sortingOrder = 3;
-        cardParts[3].GetComponent<Renderer>().sortingOrder = 3;
-        cardParts[4].GetComponent<Renderer>().sortingOrder = 3;
-        cardParts[5].GetComponent<Renderer>().sortingOrder = 3;
-        cardParts[6].GetComponent<Renderer>().sortingOrder = 3;
-        cardParts[7].GetComponent<Renderer>().sortingOrder = 2;
+//        cardParts[0].GetComponent<Renderer>().sortingOrder = 2;
+//        cardParts[1].GetComponent<Renderer>().sortingOrder = 3;
+//        cardParts[2].GetComponent<Renderer>().sortingOrder = 3;
+//        cardParts[3].GetComponent<Renderer>().sortingOrder = 3;
+//        cardParts[4].GetComponent<Renderer>().sortingOrder = 3;
+//        cardParts[5].GetComponent<Renderer>().sortingOrder = 3;
+//        cardParts[6].GetComponent<Renderer>().sortingOrder = 3;
+//        cardParts[7].GetComponent<Renderer>().sortingOrder = 2;
         sortOrder += 1;
 //        originalImageOrder += 1;
 //        originalTypeOrder += 1;
