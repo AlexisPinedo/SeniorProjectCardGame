@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _heroPortrait: {fileID: 21300000, guid: 007b297e8d921024ab2d19afd4db72bb, type: 3}
   _heroPowerMessageDisplay: if you play 3 cards of the same color. you can add up
-    to 2 cards from the shop to your grave.
+    to 2 cards from the shop to your grave
   cardEffectRequirementCount: 3
   cardsSinceLastEffectTrigger: 0
   cardsPlayedForEffect: []

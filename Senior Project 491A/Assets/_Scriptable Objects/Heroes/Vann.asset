@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Vann
   m_EditorClassIdentifier: 
   _heroPortrait: {fileID: 21300000, guid: d0d5096e97382d045b7f8350371d032f, type: 3}
-  _heroPowerMessageDisplay: Draw an extra card every turn
+  _heroPowerMessageDisplay: Drawn an extra card every turn
