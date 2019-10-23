@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 public class TurnPlayerHeroManager : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class TurnPlayerHeroManager : MonoBehaviour
         {
             _instance = this;
         }
+    }
+
+    private void Start()
+    {
+        UpdateActiveHero();
     }
 
     private void OnEnable()

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216145c18b803b64f9372e80fcc5075e, type: 3}
   m_Name: Veda
   m_EditorClassIdentifier: 
-  _heroPortrait: {fileID: 0}
+  _heroPortrait: {fileID: 21300000, guid: d0d5096e97382d045b7f8350371d032f, type: 3}
+  _heroPowerMessageDisplay: 'Play 3 cards of same color: Each player selects 1 card
+    from the shop to add to their grave. '
   cardEffectRequirementCount: 3
   cardsSinceLastEffectTrigger: 0
   cardsPlayedForEffect: []
