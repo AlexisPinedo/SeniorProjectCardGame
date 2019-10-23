@@ -153,7 +153,7 @@ public class PlayerCardDisplay : CardDisplay
             cardParts[4].GetComponent<Renderer>().sortingOrder = 2;
             cardParts[5].GetComponent<Renderer>().sortingOrder = 2;
             cardParts[6].GetComponent<Renderer>().sortingOrder = 2;
-            cardParts[7].GetComponent<Renderer>().sortingOrder = 1;
+            cardParts[7].GetComponent<Renderer>().sortingOrder = 2;
             for (int i = 0; i < cardParts.Length; i++)
             {
                 cardParts[i].GetComponent<Renderer>().sortingLayerName = sortLayerName;
@@ -233,7 +233,7 @@ public class PlayerCardDisplay : CardDisplay
         cardParts[4].GetComponent<Renderer>().sortingOrder = 3;
         cardParts[5].GetComponent<Renderer>().sortingOrder = 3;
         cardParts[6].GetComponent<Renderer>().sortingOrder = 3;
-        cardParts[7].GetComponent<Renderer>().sortingOrder = 2;
+        cardParts[7].GetComponent<Renderer>().sortingOrder = 3;
         //sortOrder += 1;
 //        originalImageOrder += 1;
 //        originalTypeOrder += 1;
@@ -255,7 +255,7 @@ public class PlayerCardDisplay : CardDisplay
         cardParts[4].GetComponent<Renderer>().sortingOrder = 2;
         cardParts[5].GetComponent<Renderer>().sortingOrder = 2;
         cardParts[6].GetComponent<Renderer>().sortingOrder = 2;
-        cardParts[7].GetComponent<Renderer>().sortingOrder = 1;
+        cardParts[7].GetComponent<Renderer>().sortingOrder = 2;
         
 //        for (int j = 0; j < cardParts.Length; j++)
 //        {
