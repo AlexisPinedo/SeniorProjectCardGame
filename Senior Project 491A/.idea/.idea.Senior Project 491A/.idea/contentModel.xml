@@ -124,6 +124,7 @@
           </e>
           <e p="ShopNetworkRelay.cs" t="Include" />
           <e p="ShuffleDeck.cs" t="Include" />
+          <e p="SortingLayers.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
             <e p="NotificationWindowEvent.cs" t="Include" />
