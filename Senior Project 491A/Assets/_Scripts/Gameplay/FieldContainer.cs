@@ -8,6 +8,24 @@ public class FieldContainer : Container
     public EnemyCardDisplay display;
     public EnemyDeck enemyDeck;
 
+    private static FieldContainer _instance;
+
+    public static FieldContainer Instance
+    {
+        get => _instance;
+    }
+
+    private void Awake()
+    {
+        if (_instance != this && _instance == null)
+            _instance = this;
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        enemyDeck.cardsInDeck = ShuffleDeck.Shuffle(enemyDeck);
+    }
+
     private void OnEnable()
     {
         MinionCardDisplay.CardDestroyed += AddFreeCardLocation;
@@ -86,7 +104,6 @@ public class FieldContainer : Container
         containerGrid.freeLocations.Push(cardLocation);
         
         //containerGrid.cardLocationReference[cardLocation] = null;
-        
     }
     
     

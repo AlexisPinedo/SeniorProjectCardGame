@@ -35,6 +35,28 @@ public class ShuffleDeck : MonoBehaviourPunCallbacks
             randomNumber = (int)(DateTime.Now.Ticks / TimeSpan.TicksPerSecond);
         }
     }
+
+//    public static Stack<Card> Shuffle<T>(T deckToShuffle) where T : Deck
+//    {
+//        System.Random random = new System.Random(randomNumber);
+//
+//        var deckList = deckToShuffle.cardsInDeck.ToArray();
+//        int n = deckList.Length;
+//        while (n > 1)
+//        {
+//            n--;
+//            int k = random.Next(n + 1);
+//            Card value = deckList[k];
+//            deckList[k] = deckList[n];
+//            deckList[n] = value;
+//        }
+//        
+//        deckToShuffle.cardsInDeck = new Stack<Card>(deckList);
+//
+//        randomNumber = random.Next();
+//
+//        return deckToShuffle.cardsInDeck;
+//    }
     
     public static Stack<Card> Shuffle(Deck deckToShuffle)
     {
