@@ -179,14 +179,38 @@ public class PlayerCardDisplay : CardDisplay
 
     private void OnMouseEnter()
     {
+        powerIcon.sortingLayerName = "Selected Player Card";
+        currencyIcon.sortingLayerName = "Selected Player Card";
+        cardEffectCostsIcons.sortingLayerName = "Selected Player Card";
+        costIcon.sortingLayerName = "Selected Player Card";
         typeIcon.sortingLayerName = "Selected Player Card";
+        cardBorder.sortingLayerName = "Selected Player Card";
+        cardEffectTextBox.sortingLayerName = "Selected Player Card";
+        cardNameTextBox.sortingLayerName = "Selected Player Card";
+        cardArtDisplay.sortingLayerName = "Selected Player Card";
         attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+        costText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+        currencyText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+        nameText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+        cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
     }
 
     private void OnMouseExit()
     {
+        powerIcon.sortingLayerName = "Player Card";
+        currencyIcon.sortingLayerName = "Player Card";
+        cardEffectCostsIcons.sortingLayerName = "Player Card";
+        costIcon.sortingLayerName = "Player Card";
         typeIcon.sortingLayerName = "Player Card";
+        cardBorder.sortingLayerName = "Player Card";
+        cardEffectTextBox.sortingLayerName = "Player Card";
+        cardNameTextBox.sortingLayerName = "Player Card";
+        cardArtDisplay.sortingLayerName = "Player Card";
         attackText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+        costText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+        currencyText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+        nameText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+        cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
     }
 
     /// <summary>
