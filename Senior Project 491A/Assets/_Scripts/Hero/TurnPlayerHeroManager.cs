@@ -55,6 +55,10 @@ public class TurnPlayerHeroManager : MonoBehaviour
     private void UpdateActiveHero()
     {
         activeTurnHero = TurnManager.Instance.turnPlayer.SelectedHero;
-        HeroChanged?.Invoke();
+        if (HeroChanged != null)
+        {
+            Debug.Log("Invoking Hero Changed event");
+            HeroChanged?.Invoke();
+        }
     }
 }

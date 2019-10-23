@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class HeroIconViewed : MonoBehaviour
 {
@@ -11,15 +14,19 @@ public class HeroIconViewed : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI heroPowerText;
 
+    [SerializeField] private Image dispayBackground;
+
     private void Awake()
     {
         display = this;
-        display.gameObject.SetActive(false);
+        
+        //display.gameObject.SetActive(false);
 
         heroPowerText = GetComponentInChildren<TextMeshProUGUI>();
-        
-        //heroPowerText.text = "";
 
+        dispayBackground = GetComponentInChildren<Image>();
+
+        DecactivateDisplay();
     }
 
     private void OnEnable()
@@ -32,22 +39,36 @@ public class HeroIconViewed : MonoBehaviour
         TurnPlayerHeroManager.HeroChanged -= SetHeroPowerText;
     }
 
-    private void Start()
-    {
-    }
-
     public void ActivateDisplay()
     {
-        display.gameObject.SetActive(true);
+        dispayBackground.enabled = true;
+        heroPowerText.enabled = true;
     }
 
     public void DecactivateDisplay()
     {
-        display.gameObject.SetActive(false);
+        dispayBackground.enabled = false;
+        heroPowerText.enabled = false;
+    }
+
+    public void TriggerInteractableHeroEffect()
+    {
+        if (TurnPlayerHeroManager.Instance.ActiveTurnHero is InteractableHero)
+        {
+            InteractableHero hero = (InteractableHero)TurnPlayerHeroManager.Instance.ActiveTurnHero;
+            hero.TriggerHeroPower();
+        }
     }
 
     private void SetHeroPowerText()
     {
-        heroPowerText.text = TurnPlayerHeroManager.Instance.ActiveTurnHero.HeroPowerMessageDisplay;
+        Hero turnPlayerHero = TurnPlayerHeroManager.Instance.ActiveTurnHero;
+        heroPowerText.text = turnPlayerHero.HeroPowerMessageDisplay;
+
+        if (turnPlayerHero is InteractableHero)
+        {
+            InteractableHero hero = (InteractableHero) turnPlayerHero;
+            hero.SetIsInteractableTrue();
+        }
     }
 }

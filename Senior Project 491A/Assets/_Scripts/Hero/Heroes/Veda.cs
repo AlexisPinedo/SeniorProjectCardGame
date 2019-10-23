@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Win32.SafeHandles;
 using UnityEngine;
 
-[CreateAssetMenu]
+//[CreateAssetMenu]
 public class Veda : CostRequirementHero
 {
     private int cardSelectionLimit = 1;
