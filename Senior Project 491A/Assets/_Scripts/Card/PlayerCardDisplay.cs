@@ -226,16 +226,15 @@ public class PlayerCardDisplay : CardDisplay
     public void OnMouseEnter()
     {
         //TODO: Implement an incrementor for the sorting order of each sorting layer
-        Debug.Log("Enter betch!");
-//        cardParts[0].GetComponent<Renderer>().sortingOrder = 2;
-//        cardParts[1].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[2].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[3].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[4].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[5].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[6].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[7].GetComponent<Renderer>().sortingOrder = 2;
-        sortOrder += 1;
+        cardParts[0].GetComponent<Renderer>().sortingOrder = 2;
+        cardParts[1].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[2].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[3].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[4].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[5].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[6].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[7].GetComponent<Renderer>().sortingOrder = 2;
+        //sortOrder += 1;
 //        originalImageOrder += 1;
 //        originalTypeOrder += 1;
 //        originalAttackOrder += 1;
@@ -248,17 +247,21 @@ public class PlayerCardDisplay : CardDisplay
 
     public void OnMouseExit()
     {
-        Debug.Log("Exit betch!");
         //TODO: Return the sorting order back to its original value
-//        cardParts[0].GetComponent<Renderer>().sortingOrder = 1;
-//        cardParts[1].GetComponent<Renderer>().sortingOrder = 2;
-//        cardParts[2].GetComponent<Renderer>().sortingOrder = 2;
-//        cardParts[3].GetComponent<Renderer>().sortingOrder = 2;
-//        cardParts[4].GetComponent<Renderer>().sortingOrder = 2;
-//        cardParts[5].GetComponent<Renderer>().sortingOrder = 2;
-//        cardParts[6].GetComponent<Renderer>().sortingOrder = 2;
-//        cardParts[7].GetComponent<Renderer>().sortingOrder = 1;
-        sortOrder -= 1;
+        cardParts[0].GetComponent<Renderer>().sortingOrder = 1;
+        cardParts[1].GetComponent<Renderer>().sortingOrder = 2;
+        cardParts[2].GetComponent<Renderer>().sortingOrder = 2;
+        cardParts[3].GetComponent<Renderer>().sortingOrder = 2;
+        cardParts[4].GetComponent<Renderer>().sortingOrder = 2;
+        cardParts[5].GetComponent<Renderer>().sortingOrder = 2;
+        cardParts[6].GetComponent<Renderer>().sortingOrder = 2;
+        cardParts[7].GetComponent<Renderer>().sortingOrder = 1;
+        
+//        for (int j = 0; j < cardParts.Length; j++)
+//        {
+//            cardParts[j].GetComponent<Renderer>().sortingOrder = sortOrder;
+//        }
+        //sortOrder -= 1;
 //        originalImageOrder -= 1;
 //        originalTypeOrder -= 1;
 //        originalAttackOrder -= 1;
