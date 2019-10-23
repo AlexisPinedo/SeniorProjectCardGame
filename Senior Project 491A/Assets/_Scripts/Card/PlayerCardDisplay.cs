@@ -34,37 +34,36 @@ public class PlayerCardDisplay : CardDisplay
 
     public static event _CardPurchased CardPurchased;
 
-//    public string sortLayerName;
-//    public int sortOrder;
-
-    //public GameObject[] cardParts;
-
-    public string imageLayerName;
-    public string typeLayerName;
-    public string attackLayerName;
-    public string soulLayerName;
-    public string costLayerName;
-    public string borderLayerName;
-    public string effectsLayerName;
-    public string nameLayer;
+    public string sortLayerName;
+    public int sortOrder;
     
-    public GameObject cardImage;
-    public GameObject cardTypeIcon;
-    public GameObject cardAttackIcon;
-    public GameObject cardSoulIcon;
-    public GameObject cardCostIcon;
-    public GameObject cardBorderImage;
-    public GameObject effectsTxt;
-    public GameObject nameTxt;
-
-    public int originalImageOrder;
-    public int originalTypeOrder;
-    public int originalAttackOrder;
-    public int originalSoulOrder;
-    public int originalCostOrder;
-    public int originalBorderOrder;
-    public int originaleffectOrder;
-    public int originalNameOrder;
+    public GameObject[] cardParts;
+//    public GameObject cardImage;
+//    public GameObject cardTypeIcon;
+//    public GameObject cardAttackIcon;
+//    public GameObject cardSoulIcon;
+//    public GameObject cardCostIcon;
+//    public GameObject cardBorderImage;
+//    public GameObject effectsTxt;
+//    public GameObject nameTxt;
+//    
+//    public string imageLayerName;
+//    public string typeLayerName;
+//    public string attackLayerName;
+//    public string soulLayerName;
+//    public string costLayerName;
+//    public string borderLayerName;
+//    public string effectsLayerName;
+//    public string nameLayer;
+//    
+//    public int originalImageOrder;
+//    public int originalTypeOrder;
+//    public int originalAttackOrder;
+//    public int originalSoulOrder;
+//    public int originalCostOrder;
+//    public int originalBorderOrder;
+//    public int originaleffectOrder;
+//    public int originalNameOrder;
 
     //private static List<int> photonViewIDs = new List<int>();
 
@@ -130,35 +129,45 @@ public class PlayerCardDisplay : CardDisplay
                 }
             }
 
-            cardImage.GetComponent<Renderer>().sortingLayerName = imageLayerName;
-            cardTypeIcon.GetComponent<Renderer>().sortingLayerName = typeLayerName;
-            cardAttackIcon.GetComponent<Renderer>().sortingLayerName = attackLayerName;
-            cardSoulIcon.GetComponent<Renderer>().sortingLayerName = soulLayerName;
-            cardCostIcon.GetComponent<Renderer>().sortingLayerName = costLayerName;
-            cardBorderImage.GetComponent<Renderer>().sortingLayerName = borderLayerName;
-            effectsTxt.GetComponent<Renderer>().sortingLayerName = effectsLayerName;
-            nameTxt.GetComponent<Renderer>().sortingLayerName = nameLayer;
-            
-            cardImage.GetComponent<Renderer>().sortingOrder = originalImageOrder;
-            cardTypeIcon.GetComponent<Renderer>().sortingOrder = originalTypeOrder;
-            cardAttackIcon.GetComponent<Renderer>().sortingOrder = originalAttackOrder;
-            cardSoulIcon.GetComponent<Renderer>().sortingOrder = originalSoulOrder;
-            cardCostIcon.GetComponent<Renderer>().sortingOrder = originalCostOrder;
-            cardBorderImage.GetComponent<Renderer>().sortingOrder = originalBorderOrder;
-            effectsTxt.GetComponent<Renderer>().sortingOrder = originaleffectOrder;
-            nameTxt.GetComponent<Renderer>().sortingOrder = originalNameOrder;
-//            for (int i = 0; i < cardParts.Length; i++)
-//            {
-//                cardParts[i].GetComponent<Renderer>().sortingLayerName = sortLayerName;
+//            cardImage.GetComponent<Renderer>().sortingLayerName = imageLayerName;
+//            cardTypeIcon.GetComponent<Renderer>().sortingLayerName = typeLayerName;
+//            cardAttackIcon.GetComponent<Renderer>().sortingLayerName = attackLayerName;
+//            cardSoulIcon.GetComponent<Renderer>().sortingLayerName = soulLayerName;
+//            cardCostIcon.GetComponent<Renderer>().sortingLayerName = costLayerName;
+//            cardBorderImage.GetComponent<Renderer>().sortingLayerName = borderLayerName;
+//            effectsTxt.GetComponent<Renderer>().sortingLayerName = effectsLayerName;
+//            nameTxt.GetComponent<Renderer>().sortingLayerName = nameLayer;
+//            
+//            cardImage.GetComponent<Renderer>().sortingOrder = originalImageOrder;
+//            cardTypeIcon.GetComponent<Renderer>().sortingOrder = originalTypeOrder;
+//            cardAttackIcon.GetComponent<Renderer>().sortingOrder = originalAttackOrder;
+//            cardSoulIcon.GetComponent<Renderer>().sortingOrder = originalSoulOrder;
+//            cardCostIcon.GetComponent<Renderer>().sortingOrder = originalCostOrder;
+//            cardBorderImage.GetComponent<Renderer>().sortingOrder = originalBorderOrder;
+//            effectsTxt.GetComponent<Renderer>().sortingOrder = originaleffectOrder;
+//            nameTxt.GetComponent<Renderer>().sortingOrder = originalNameOrder;
+            cardParts[0].GetComponent<Renderer>().sortingOrder = 1;
+            cardParts[1].GetComponent<Renderer>().sortingOrder = 2;
+            cardParts[2].GetComponent<Renderer>().sortingOrder = 2;
+            cardParts[3].GetComponent<Renderer>().sortingOrder = 2;
+            cardParts[4].GetComponent<Renderer>().sortingOrder = 2;
+            cardParts[5].GetComponent<Renderer>().sortingOrder = 2;
+            cardParts[6].GetComponent<Renderer>().sortingOrder = 2;
+            cardParts[7].GetComponent<Renderer>().sortingOrder = 1;
+            for (int i = 0; i < cardParts.Length; i++)
+            {
+                cardParts[i].GetComponent<Renderer>().sortingLayerName = sortLayerName;
+                //cardParts[i].GetComponent<Renderer>().sortingOrder = sortOrder;
 //                cardParts[0].GetComponent<Renderer>().sortingOrder = 1;
 //                cardParts[1].GetComponent<Renderer>().sortingOrder = 2;
 //                cardParts[2].GetComponent<Renderer>().sortingOrder = 2;
 //                cardParts[3].GetComponent<Renderer>().sortingOrder = 2;
 //                cardParts[4].GetComponent<Renderer>().sortingOrder = 2;
-//                cardParts[5].GetComponent<Renderer>().sortingOrder = 1;
+//                cardParts[5].GetComponent<Renderer>().sortingOrder = 2;
 //                cardParts[6].GetComponent<Renderer>().sortingOrder = 2;
 //                cardParts[7].GetComponent<Renderer>().sortingOrder = 1;
-//            }
+                cardParts[i].GetComponent<Renderer>().sortingOrder = sortOrder;
+            }
         }
     }
 
@@ -218,37 +227,46 @@ public class PlayerCardDisplay : CardDisplay
     {
         //TODO: Implement an incrementor for the sorting order of each sorting layer
         Debug.Log("Enter betch!");
-//        cardParts[0].GetComponent<Renderer>().sortingOrder = 2;
-//        cardParts[1].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[2].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[3].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[4].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[5].GetComponent<Renderer>().sortingOrder = 2;
-//        cardParts[6].GetComponent<Renderer>().sortingOrder = 3;
-//        cardParts[7].GetComponent<Renderer>().sortingOrder = 2;
-        originalImageOrder += 1;
-        originalTypeOrder += 1;
-        originalAttackOrder += 1;
-        originalSoulOrder += 1;
-        originalCostOrder += 1;
-        originalBorderOrder += 1;
-        originaleffectOrder += 1;
-        originalNameOrder += 1;
+        cardParts[0].GetComponent<Renderer>().sortingOrder = 2;
+        cardParts[1].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[2].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[3].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[4].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[5].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[6].GetComponent<Renderer>().sortingOrder = 3;
+        cardParts[7].GetComponent<Renderer>().sortingOrder = 2;
+        sortOrder += 1;
+//        originalImageOrder += 1;
+//        originalTypeOrder += 1;
+//        originalAttackOrder += 1;
+//        originalSoulOrder += 1;
+//        originalCostOrder += 1;
+//        originalBorderOrder += 1;
+//        originaleffectOrder += 1;
+//        originalNameOrder += 1;
     }
 
     public void OnMouseExit()
     {
         Debug.Log("Exit betch!");
         //TODO: Return the sorting order back to its original value
-        
-        originalImageOrder -= 1;
-        originalTypeOrder -= 1;
-        originalAttackOrder -= 1;
-        originalSoulOrder -= 1;
-        originalCostOrder -= 1;
-        originalBorderOrder -= 1;
-        originaleffectOrder -= 1;
-        originalNameOrder -= 1;
+//        cardParts[0].GetComponent<Renderer>().sortingOrder = 1;
+//        cardParts[1].GetComponent<Renderer>().sortingOrder = 2;
+//        cardParts[2].GetComponent<Renderer>().sortingOrder = 2;
+//        cardParts[3].GetComponent<Renderer>().sortingOrder = 2;
+//        cardParts[4].GetComponent<Renderer>().sortingOrder = 2;
+//        cardParts[5].GetComponent<Renderer>().sortingOrder = 2;
+//        cardParts[6].GetComponent<Renderer>().sortingOrder = 2;
+//        cardParts[7].GetComponent<Renderer>().sortingOrder = 1;
+        sortOrder -= 1;
+//        originalImageOrder -= 1;
+//        originalTypeOrder -= 1;
+//        originalAttackOrder -= 1;
+//        originalSoulOrder -= 1;
+//        originalCostOrder -= 1;
+//        originalBorderOrder -= 1;
+//        originaleffectOrder -= 1;
+//        originalNameOrder -= 1;
     }
     
 
