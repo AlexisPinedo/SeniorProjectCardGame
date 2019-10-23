@@ -9,7 +9,7 @@ using UnityEngine;
 /// Attach to card.
 /// </summary>
 [CreateAssetMenu(menuName = "Card Effect/Add Currency")]
-public class AddCurrency : CardEffect
+public class AddCurrency : OnPlayEffects
 {
     //Select how much currency you want to add. If you want different amounts for other card effects
     //You need to create a new scriptable object to reference. 
