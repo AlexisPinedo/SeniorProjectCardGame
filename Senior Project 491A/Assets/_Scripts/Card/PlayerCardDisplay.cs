@@ -27,6 +27,8 @@ public class PlayerCardDisplay : CardDisplay
     [SerializeField] private TextMeshPro currencyText;
     [SerializeField] private SpriteRenderer cardEffectCostsIcons;
     [SerializeField] private SpriteRenderer costIcon;
+    [SerializeField] private SpriteRenderer powerIcon;
+    [SerializeField] private SpriteRenderer currencyIcon;
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
     
     public delegate void _CardPurchased(PlayerCardDisplay cardBought);
