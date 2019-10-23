@@ -693,6 +693,8 @@ MonoBehaviour:
   cardEffectCostsIcons: {fileID: 434651401103367992, guid: f0311d06475ef3e4390195ecdc074ea3,
     type: 3}
   costIcon: {fileID: 522489324350622253}
+  powerIcon: {fileID: 0}
+  currencyIcon: {fileID: 0}
   cardIcons: []
 --- !u!114 &6509064376903318764
 MonoBehaviour:
