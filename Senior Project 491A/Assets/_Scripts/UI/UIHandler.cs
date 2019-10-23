@@ -21,11 +21,10 @@ public class UIHandler : MonoBehaviour
 
     public delegate void EndTurnButtonAction();
     public static event EndTurnButtonAction EndTurnClicked;
-    
-    public delegate void _notificationWindowEnabled();
-    public static event _notificationWindowEnabled NotificationWindowEnabled;
 
     private byte endTurnIdentifier = (byte)'E';
+
+    private byte startBattleIdentifier = (byte)'S';
 
     private static UIHandler _instance;
 
@@ -67,6 +66,19 @@ public class UIHandler : MonoBehaviour
     public void StartBattleButtonOnClick()
     {
         StartClicked?.Invoke();
+
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+        {
+            Receivers = ReceiverGroup.Others,
+        };
+
+        SendOptions sendOptions = new SendOptions
+        {
+            Reliability = true
+        };
+
+        PhotonNetwork.RaiseEvent(startBattleIdentifier, null, raiseEventOptions, sendOptions);
+
     }
 
     public void GraveyardButtonOnClick()
@@ -95,14 +107,6 @@ public class UIHandler : MonoBehaviour
 
         PhotonNetwork.RaiseEvent(endTurnIdentifier, null, raiseEventOptions, sendOptions);
     }
-    
-    public void EnableNotificationWindow(string message)
-    {
-        windowReference.gameObject.SetActive(true);
-        NotificationWindowEvent.Instance.DisplayMessage(message);
-        NotificationWindowEvent.Instance.transparentCover.gameObject.SetActive(true);
-        NotificationWindowEnabled?.Invoke();
-    }
 
     public void OnEvent(EventData photonEvent)
     {
@@ -110,10 +114,12 @@ public class UIHandler : MonoBehaviour
         if (recievedCode == endTurnIdentifier)
         {
             EndTurnClicked?.Invoke();
+            Debug.Log("OnEvent end turn...");
         }
-        else
+        if (recievedCode == startBattleIdentifier)
         {
-            //Debug.Log("Event code not found");
+            StartClicked?.Invoke();
+            Debug.Log("OnEvent start battle");
         }
     }
 

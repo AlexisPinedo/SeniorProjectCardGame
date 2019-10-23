@@ -31,7 +31,7 @@ public class FieldContainer : Container
         
         if (containerGrid.freeLocations.Count == 0)
         {
-            //Debug.Log("Field Zone is full");
+            EndGameHandler.TriggerEndGame();
             return;
         }
 
@@ -63,6 +63,8 @@ public class FieldContainer : Container
 
         display.card = cardDrawn;
         EnemyCardDisplay cardDisplay = Instantiate(display, freeLocation, Quaternion.identity, this.transform);
+
+        cardDisplay.enabled = true;
         
         if (!containerGrid.cardLocationReference.ContainsKey(freeLocation))
         {

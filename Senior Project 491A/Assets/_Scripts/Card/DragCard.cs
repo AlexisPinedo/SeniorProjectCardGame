@@ -40,7 +40,7 @@ public class DragCard : MonoBehaviourPunCallbacks
         
         if (photonView.IsMine)
         {
-            //CardDragged();
+            
             //used to grab the z coordinate of the game object 
             //We need to conver the position to world space so it works with nested objects
             screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -64,6 +64,10 @@ public class DragCard : MonoBehaviourPunCallbacks
                 //photon view of our current card
                 RPCCardSelected = this.GetComponent<PhotonView>();
                 this.photonView.RPC("RPCOnMouseDown", RpcTarget.Others, RPCCardSelected.ViewID);
+            }
+            else
+            {
+                CardDragged?.Invoke();
             }
         }
     }

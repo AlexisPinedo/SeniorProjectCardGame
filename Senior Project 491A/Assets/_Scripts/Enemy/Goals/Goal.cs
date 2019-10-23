@@ -18,24 +18,13 @@ using UnityEngine;
 
     ex: Draw 5 bombs
  */
-public class Goal : MonoBehaviour
+public abstract class Goal : MonoBehaviour
 {
-    /* Description of the Goal */
-    public string endGoal;
-
-    // Start is called before the first frame update
-    void Start()
+    public string goalDescriptionText;
+    
+    protected void OnGoalCompletion()
     {
-
-    }
-
-    /*
-        Called when the goal has been achieved
-     */
-    public void EndGame()
-    {
-        // TODO: Change from a debug log to an end state
-        //Debug.Log("Goal was reached. Boss has won. Sorry bud");
-        
+        NotificationWindowEvent.Instance.EnableNotificationWindow("Goal has been completed enemy won");
+        EndGameHandler.TriggerEndGame();
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 //Valor - if you play 3 cards of the same color. you can add up to 2 cards from the shop to your grave
 
-[CreateAssetMenu]
+//[CreateAssetMenu]
 public class Valor : CostRequirementHero
 {
     private int cardSelectionLimit = 2;
@@ -15,7 +15,7 @@ public class Valor : CostRequirementHero
 
     protected override void HeroPowerEffect()
     {
-        UIHandler.Instance.EnableNotificationWindow("Cost met select 2 cards of the same color");
+        NotificationWindowEvent.Instance.EnableNotificationWindow("Cost met select 2 cards of the same color");
         
         FreeShopSelectionEvent.Instance.EnableShopSelectionState(cardSelectionLimit, History.Instance.PlayerCardHistory.Last().CardType);
     }

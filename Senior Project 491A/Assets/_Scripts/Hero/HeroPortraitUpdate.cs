@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class HeroPortraitUpdate : MonoBehaviour
 {
     [SerializeField]
-    private SpriteRenderer playerAvatar;
+    private Image playerAvatar;
 
     private void Start()
     {

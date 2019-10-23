@@ -28,17 +28,19 @@ public class TextUpdate : MonoBehaviourPunCallbacks
         {
             _instance = this;
         }
+
     }
     
     private void Start()
     {
+        UpdateCurrentTurn();
         UpdatePower();
         UpdateCurrency();
-        UpdateCurrentTurn();
     }
 
     public void UpdateCurrentTurn()
     {
+        Debug.Log("Switching turn text");
         if (photonView.IsMine)
         {
             currentTurn.text = "";

@@ -14,11 +14,19 @@ using UnityEngine.UIElements;
 public abstract class Hero : ScriptableObject
 {
     [SerializeField]
-    public Sprite _heroPortrait;
+    private Sprite _heroPortrait;
 
     public Sprite HeroPortrait
     {
         get => _heroPortrait;
+    }
+
+    [SerializeField]
+    private string _heroPowerMessageDisplay;
+
+    public string HeroPowerMessageDisplay
+    {
+        get => _heroPowerMessageDisplay;
     }
 
     protected virtual void TriggerHeroPowerEffect()

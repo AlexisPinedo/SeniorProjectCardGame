@@ -103,7 +103,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
         }
 
         CardPlayed?.Invoke(cardPlayed);
-        HasPlayed();
+        HasPlayed?.Invoke();
         cardInPlayZone = false;
         cardInZone = null;
     }
