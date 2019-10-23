@@ -175,6 +175,21 @@ public class PlayerCardDisplay : CardDisplay
         }
     }
 
+    private void OnMouseEnter()
+    {
+        cardArtDisplay.sortingLayerName = "Selected Player Card";
+        typeIcon.sortingLayerName = "Selected Player Card";
+        attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+    }
+
+    private void OnMouseExit()
+    {
+        cardArtDisplay.sortingLayerName = "Player Card";
+        typeIcon.sortingLayerName = "Player Card";
+        attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+
+    }
+
     /// <summary>
     /// this method will look at sprite list of required costs icons and place them appropriately into the scene
     /// 
