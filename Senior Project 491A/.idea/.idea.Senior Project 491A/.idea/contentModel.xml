@@ -404,6 +404,7 @@
             <e p="play-services-resolver_v1.2.124.0.txt" t="Include" />
           </e>
         </e>
+        <e p="SelectedCardHandler.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />
