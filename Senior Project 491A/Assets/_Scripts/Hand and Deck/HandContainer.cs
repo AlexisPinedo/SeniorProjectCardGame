@@ -103,7 +103,13 @@ public class HandContainer : PlayerCardContainer
 
 
         // Place it on the grid!
-        PlayerCardDisplay cardDisplay =  Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
+        //PlayerCardDisplay cardDisplay = Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
+        PlayerCardDisplay cardDisplay =  Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
+
+        Vector3 tempCardDestination = containerGrid.freeLocations.Pop();
+
+        // Trasnforms the card position to the grid position
+        StartCoroutine(TransformCardPosition(cardDisplay, tempCardDestination));
 
         if (!containerGrid.cardLocationReference.ContainsKey(cardDisplay.gameObject.transform.position))
             containerGrid.cardLocationReference.Add(cardDisplay.gameObject.transform.position, cardDisplay);

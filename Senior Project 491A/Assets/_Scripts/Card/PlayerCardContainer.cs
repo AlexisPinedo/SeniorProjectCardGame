@@ -10,4 +10,28 @@ public abstract class PlayerCardContainer : Container
 {
     //The player card containers need a reference to the player card display to load in the player card components
     public PlayerCardDisplay display;
+    public GameObject spawnPostion;
+
+    protected IEnumerator TransformCardPosition(PlayerCardDisplay cardDisplay, Vector3 cardDestination)
+    {
+        float currentLerpTime = 0;
+        float lerpTime = 1.0f;
+
+        Vector3 startPos = cardDisplay.transform.position;
+
+        while (cardDisplay.transform.position != cardDestination)
+        {
+            currentLerpTime += Time.deltaTime;
+            if (currentLerpTime >= lerpTime)
+            {
+                currentLerpTime = lerpTime;
+            }
+
+            float Perc = currentLerpTime / lerpTime;
+
+            cardDisplay.transform.position = Vector3.Lerp(startPos, cardDestination, Perc);
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
 }

@@ -14073,6 +14073,7 @@ GameObject:
   - component: {fileID: 19800006}
   - component: {fileID: 19900006}
   - component: {fileID: 11400002}
+  - component: {fileID: -7184005839996463325}
   m_Layer: 0
   m_Name: MagicAura
   m_TagString: Untagged
@@ -18781,3 +18782,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!114 &-7184005839996463325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3946c6b262ff9d4438dfc382cdb4775d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
