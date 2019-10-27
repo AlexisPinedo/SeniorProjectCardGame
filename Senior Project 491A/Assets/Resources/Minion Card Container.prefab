@@ -117,8 +117,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.35, y: 0.35}
+  m_AnchoredPosition: {x: 0.0021, y: 0.004}
+  m_SizeDelta: {x: 0.5123, y: 0.4845}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &522489323609107194
 MeshRenderer:
@@ -194,7 +194,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 87d2973ad117a2c47bfe6c3b9d105f42, type: 2}
   m_sharedMaterial: {fileID: -7876339290849976810, guid: 87d2973ad117a2c47bfe6c3b9d105f42,
@@ -264,13 +264,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 522489323609107175}
-    characterCount: 0
+    characterCount: 2
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -584,11 +584,12 @@ GameObject:
   m_Component:
   - component: {fileID: 522489324146028442}
   - component: {fileID: 7737181224830327970}
+  - component: {fileID: 3078934459038037417}
   - component: {fileID: 6452798937650027219}
   - component: {fileID: 7908558559488116065}
   - component: {fileID: 4825229470080327896}
   m_Layer: 0
-  m_Name: Minoin Card Container
+  m_Name: Minion Card Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -638,6 +639,18 @@ MonoBehaviour:
   card: {fileID: 0}
   healthText: {fileID: 522489324534388793}
   rewardText: {fileID: 522489323609107175}
+--- !u!114 &3078934459038037417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522489324146028420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd14adfb9fbc4af89f94812e1c39e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &6452798937650027219
 BoxCollider2D:
   m_ObjectHideFlags: 0

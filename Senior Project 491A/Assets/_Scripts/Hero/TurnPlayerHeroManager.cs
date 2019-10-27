@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 public class TurnPlayerHeroManager : MonoBehaviour
 {
@@ -34,6 +35,11 @@ public class TurnPlayerHeroManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        UpdateActiveHero();
+    }
+
     private void OnEnable()
     {
         TurnManager.PlayerSwitched += UpdateActiveHero;
@@ -49,6 +55,10 @@ public class TurnPlayerHeroManager : MonoBehaviour
     private void UpdateActiveHero()
     {
         activeTurnHero = TurnManager.Instance.turnPlayer.SelectedHero;
-        HeroChanged?.Invoke();
+        if (HeroChanged != null)
+        {
+            Debug.Log("Invoking Hero Changed event");
+            HeroChanged?.Invoke();
+        }
     }
 }

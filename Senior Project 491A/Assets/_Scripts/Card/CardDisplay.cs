@@ -75,14 +75,18 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     protected virtual void DisableBoxCollider()
     {
         //Debug.Log("disabling collider for " + nameText);
-        if(this != null)
-            cardDisplayCollider.enabled = false;
+        if (this != null)
+        {
+            if(cardDisplayCollider.enabled)
+                cardDisplayCollider.enabled = false;
+        }
     }
 
-    protected virtual void EnableBoxCollider()
+    public virtual void EnableBoxCollider()
     {
         if(this != null)
-            cardDisplayCollider.enabled = true;
+            if(!cardDisplayCollider.enabled)
+                cardDisplayCollider.enabled = true;
     }
     
 }

@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class BombGoal : Goal
+{
+    
+}
+
+
+
 /// <summary>
 /// Obsolete method that is wip
 /// </summary>
-public class BombGoal : Goal
-{
+//public class BombGoal : Goal
+//{
     //public int bombCounter = 0;
 
     //public int bombsToShuffle;
@@ -51,4 +59,4 @@ public class BombGoal : Goal
     //}
 
 
-}
+//}

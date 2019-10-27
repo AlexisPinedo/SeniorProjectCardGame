@@ -12,7 +12,7 @@ using UnityEngine;
 public class Player : ScriptableObject
 {
     [SerializeField] public Hand hand;
-    [SerializeField] private Deck deck;
+    [SerializeField] public Deck deck;
 
     public delegate void _CurrencyUpdated();
     public static event _CurrencyUpdated CurrencyUpdated;
