@@ -42,14 +42,14 @@ public class MinionCardDisplay : EnemyCardDisplay
                     Reliability = true
                 };
 
-                Debug.Log("MinionCard assigned ViewID: " + photonView.ViewID);
+//                Debug.Log("MinionCard assigned ViewID: " + photonView.ViewID);
                 PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
 
                 if (!PhotonNetwork.OfflineMode)
                 {
                     if (!TurnManager.currentPhotonPlayer.IsMasterClient)
                     {
-                        Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
+                        //Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
                         photonView.TransferOwnership(TurnManager.currentPhotonPlayer);
                     }
                 }
@@ -87,7 +87,6 @@ public class MinionCardDisplay : EnemyCardDisplay
     protected override void OnEnable()
     {
         base.OnEnable();
-        Debug.Log("I am an event...");
         PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
     }
 

@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviourPunCallbacks
 {
-        // Player References
+    // Player References
     public Player turnPlayer;
+
+    public static Photon.Realtime.Player photonPlayer1, photonPlayer2, currentPhotonPlayer;
 
     public GameObject turnPlayerGameObject;
 
@@ -35,9 +37,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private GameObject cavnas;
 
-    PhotonView p1HandcontainerPV, p2HandContainerPV, shopContainerPV, minionContainerPV, playZonePV, canvasPV, bossCardPV;
-
-    public static Photon.Realtime.Player photonPlayer1, photonPlayer2, currentPhotonPlayer;
+    private PhotonView p1HandcontainerPV, p2HandContainerPV, shopContainerPV, minionContainerPV, playZonePV, canvasPV, bossCardPV;
 
     public Player player1;
 
@@ -64,13 +64,11 @@ public class TurnManager : MonoBehaviourPunCallbacks
     private void OnEnable()
     {
         UIHandler.EndTurnClicked += ChangeActivePlayer;
-        UIHandler.EndTurnClicked += TransferObjects;
     }
 
     private void OnDisable()
     {
         UIHandler.EndTurnClicked -= ChangeActivePlayer;
-        UIHandler.EndTurnClicked -= TransferObjects;
     }
 
     void Awake()
@@ -173,6 +171,9 @@ public class TurnManager : MonoBehaviourPunCallbacks
             player2GameObject.SetActive(true);
             player2GameObject.GetComponentInChildren<HandContainer>().enabled = true;
             turnPlayer = player2;
+
+            Debug.Log("SwapPlayers() to player 2");
+
             turnPlayerGameObject = player2GameObject;
         }
         // Switch to Player One
@@ -181,6 +182,9 @@ public class TurnManager : MonoBehaviourPunCallbacks
             player2GameObject.SetActive(false);
             player1GameObject.SetActive(true);
             turnPlayer = player1;
+
+            Debug.Log("SwapPlayers() to player 1");
+
             turnPlayerGameObject = player1GameObject;
         }
 
