@@ -89,11 +89,11 @@ public class TurnManager : MonoBehaviourPunCallbacks
         //grab photon views from game objects
         p1HandcontainerPV = p1Handcontainer.GetComponent<PhotonView>();
         p2HandContainerPV = p2HandContainer.GetComponent<PhotonView>();
-        shopContainerPV = shopContainer.GetComponent<PhotonView>();
-        minionContainerPV = minionContainer.GetComponent<PhotonView>();
-        bossCardPV = bossCard.GetComponent<PhotonView>();
-        playZonePV = playZone.GetComponent<PhotonView>();
-        canvasPV = cavnas.GetComponent<PhotonView>();
+        //shopContainerPV = shopContainer.GetComponent<PhotonView>();
+        //minionContainerPV = minionContainer.GetComponent<PhotonView>();
+        //bossCardPV = bossCard.GetComponent<PhotonView>();
+        //playZonePV = playZone.GetComponent<PhotonView>();
+        //canvasPV = cavnas.GetComponent<PhotonView>();
 
         if (PhotonNetwork.IsConnected)
         {

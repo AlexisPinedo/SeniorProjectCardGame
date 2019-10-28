@@ -43,7 +43,7 @@ public class ButtonInputManager : MonoBehaviour
 
     public void MyTurn()
     {
-        Debug.Log("Switching button control to: " + TurnManager.currentPhotonPlayer.NickName);
+        //Debug.Log("Switching button control to: " + TurnManager.currentPhotonPlayer.NickName);
         foreach (Button abutton in buttonList)
         {
             if(abutton.name == "Start Battle Button" || abutton.name == "End Turn Button")

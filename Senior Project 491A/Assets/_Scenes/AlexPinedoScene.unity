@@ -459,6 +459,13 @@ MonoBehaviour:
   turnPlayerGameObject: {fileID: 0}
   player1GameObject: {fileID: 101520841}
   player2GameObject: {fileID: 2025430591}
+  p1Handcontainer: {fileID: 1190731606}
+  p2HandContainer: {fileID: 2033931931}
+  shopContainer: {fileID: 0}
+  minionContainer: {fileID: 0}
+  bossCard: {fileID: 0}
+  playZone: {fileID: 0}
+  cavnas: {fileID: 0}
   player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
   player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
 --- !u!114 &381133603
@@ -1118,18 +1125,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca9d4b072acf4164588d35a26d1bddd4, type: 3}
---- !u!114 &589770440 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 304121539440660337, guid: ca9d4b072acf4164588d35a26d1bddd4,
-    type: 3}
-  m_PrefabInstance: {fileID: 589770439}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7d07bed3509404ea6e7f0c60f4b807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &607427540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,13 +2883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88450659603364da1affe52e78d94eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1Handcontainer: {fileID: 1190731606}
-  p2HandContainer: {fileID: 2033931931}
-  shopContainer: {fileID: 301505297}
-  minionContainer: {fileID: 607427542}
-  bossCard: {fileID: 589770440}
-  playZone: {fileID: 393574267}
-  cavnas: {fileID: 1455907479}
 --- !u!4 &1121214001
 Transform:
   m_ObjectHideFlags: 0
@@ -3584,8 +3572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf2cc82c57dac642820c8e9afc85054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startBattleButton: {fileID: 1526216801}
-  endTurnButton: {fileID: 1385409946}
 --- !u!114 &1455907488
 MonoBehaviour:
   m_ObjectHideFlags: 0

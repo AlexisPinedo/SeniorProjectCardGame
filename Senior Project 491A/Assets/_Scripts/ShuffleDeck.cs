@@ -23,15 +23,15 @@ public class ShuffleDeck : MonoBehaviourPunCallbacks
             _instance = this;
         }
 
-        if (PhotonNetwork.IsConnected)
+        if (!PhotonNetwork.OfflineMode)
         {
-            //Debug.Log("In online mode" );
+            Debug.Log("In online mode" );
             randomNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["deckRandomValue"];
             //Debug.Log("RandomSyncedValue: " + randomNumber);
         }
         else
         {
-            //Debug.Log("In offline mode" );
+            Debug.Log("In offline mode" );
             randomNumber = (int)(DateTime.Now.Ticks / TimeSpan.TicksPerSecond);
         }
     }
