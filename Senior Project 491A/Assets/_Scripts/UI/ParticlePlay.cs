@@ -23,7 +23,7 @@ public class ParticlePlay : MonoBehaviour
         PlayZone.HasPlayed += PlayPurpleCircle;
     }
 
-    void PlaySummoningCircle()
+    void PlaySummoningCircle(PlayerCardDisplay selectedCard)
     {
         canDestroyCircle = false;
         StartCoroutine("PlaySummoningCircleHelper");
