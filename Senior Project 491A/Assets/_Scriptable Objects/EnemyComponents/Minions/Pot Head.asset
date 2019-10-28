@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Pot Head
   cardDescription: 
   cardEffect: {fileID: 11400000, guid: 19a1ff6faafcd450793e2e73cca9f0f9, type: 2}
-  cardEffectDisplay: 'On Play: Enemy draws a card'
+  cardEffectDisplay: 'On Play: Enemy plays a card'
   cardArtwork: {fileID: 21300000, guid: 89d5d535b137d6e4a96742a4c4bb45ee, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 7a09aa9da641d4a4bab2974a4bc78874, type: 3}
   cardType: 6

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+    <e p="C:\Users\pined\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\pined\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.-1760692213.00" t="ExcludeRecursive" />
+    <e p="C:\Users\pined\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -12,6 +14,8 @@
               <e p="Enemy Card Effects" t="Include">
                 <e p="OnDeathDestroyPlayerDeckCard.cs" t="Include" />
                 <e p="OnDeathGainPowerEffect.cs" t="Include" />
+                <e p="OnDeathPlayPlayerCardEffect.cs" t="Include" />
+                <e p="PassiveEnemyBuffEffect.cs" t="Include" />
                 <e p="PlayMinonCardEffect.cs" t="Include" />
               </e>
               <e p="OnDeath.cs" t="Include" />
@@ -194,6 +198,12 @@
                 </e>
               </e>
             </e>
+          </e>
+          <e p="Plugins" t="Include">
+            <e p="Http" t="Include">
+              <e p="link.xml" t="Include" />
+            </e>
+            <e p="link.xml" t="Include" />
           </e>
         </e>
         <e p="FreeShopSelectionEvent.cs" t="Include" />
@@ -459,9 +469,7 @@
       <e p="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj" t="IncludeRecursive" />
       <e p="PhotonWebSocket.csproj" t="IncludeRecursive" />
       <e p="Senior Project 491A.sln" t="IncludeFlat" />
-      <e p="Temp/bin" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_Senior Project 491A.820768640.00" t="ExcludeRecursive" />
   </component>
 </project>

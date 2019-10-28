@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Minion 4
   cardDescription: 
   cardEffect: {fileID: 11400000, guid: 0a55978d9d7c34bd6b57749d43d9902b, type: 2}
-  cardEffectDisplay: 'On Death: Game 3 power'
+  cardEffectDisplay: 'On Death: Gain 3 power'
   cardArtwork: {fileID: 21300000, guid: 762f9a6288c62d245894c26e318cc0b5, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 7a09aa9da641d4a4bab2974a4bc78874, type: 3}
   cardType: 6

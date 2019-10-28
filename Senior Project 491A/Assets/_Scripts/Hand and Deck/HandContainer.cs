@@ -61,14 +61,14 @@ public class HandContainer : PlayerCardContainer
             if (playerGrave.graveyard.Count > 0)
             {
                 for (int j = 0; j < playerGrave.graveyard.Count; j++)
-                {
-                    playerDeck.cardsInDeck.Push(playerGrave.graveyard[j]);
-                    playerGrave.graveyard.Remove(playerGrave.graveyard[j]);
-                }
+               {
+                   playerDeck.cardsInDeck.Push(playerGrave.graveyard[j]);
+                   playerGrave.graveyard.Remove(playerGrave.graveyard[j]);
+               }
 
-                playerDeck.cardsInDeck = ShuffleDeck.Shuffle(playerDeck);
-
-                cardDrawn = (PlayerCard)playerDeck.cardsInDeck.Pop();
+               playerDeck.cardsInDeck = ShuffleDeck.Shuffle(playerDeck);
+               
+               cardDrawn = (PlayerCard)playerDeck.cardsInDeck.Pop();
             }
             else
             {

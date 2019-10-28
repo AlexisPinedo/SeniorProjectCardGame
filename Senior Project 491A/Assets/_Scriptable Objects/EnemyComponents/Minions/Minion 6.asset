@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Minion 6
   cardDescription: 
-  cardEffect: {fileID: 0}
-  cardEffectDisplay: 'On Death: Play the top card of your deck.'
+  cardEffect: {fileID: 11400000, guid: 7c80775e08b47c940b4ffaf971443bd3, type: 2}
+  cardEffectDisplay: 'On Death: Play the top card of the deck: Gain that attack.'
   cardArtwork: {fileID: 21300000, guid: 8ba2d3c9d7d32a349baacd7a1c250c29, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 7a09aa9da641d4a4bab2974a4bc78874, type: 3}
   cardType: 6

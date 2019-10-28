@@ -179,11 +179,9 @@ public class PlayerCardDisplay : CardDisplay
 
     private void OnMouseEnter()
     {
-<<<<<<< HEAD
         cardArtDisplay.sortingLayerName = "Selected Player Card";
         typeIcon.sortingLayerName = "Selected Player Card";
         attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
-=======
         powerIcon.sortingLayerName = "Selected Player Card";
         currencyIcon.sortingLayerName = "Selected Player Card";
         cardEffectCostsIcons.sortingLayerName = "Selected Player Card";
@@ -198,17 +196,13 @@ public class PlayerCardDisplay : CardDisplay
         currencyText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
         nameText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
         cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
->>>>>>> DominicsBranch
     }
 
     private void OnMouseExit()
     {
-<<<<<<< HEAD
         cardArtDisplay.sortingLayerName = "Player Card";
         typeIcon.sortingLayerName = "Player Card";
         attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
-
-=======
         powerIcon.sortingLayerName = "Player Card";
         currencyIcon.sortingLayerName = "Player Card";
         cardEffectCostsIcons.sortingLayerName = "Player Card";
@@ -223,7 +217,6 @@ public class PlayerCardDisplay : CardDisplay
         currencyText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
         nameText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
         cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
->>>>>>> DominicsBranch
     }
 
     /// <summary>

@@ -11,7 +11,7 @@ public class HeroPortraitUpdate : MonoBehaviour
 
     private void Start()
     {
-        //ChangeHeroPortrait();
+        ChangeHeroPortrait();
     }
 
     private void OnEnable()

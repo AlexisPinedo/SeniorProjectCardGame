@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,6 +13,13 @@ public class Valor : CostRequirementHero
     
 
     //Veda - If you play 3 cards of the same color, both players may add 1 card from the shop to the graveyard
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        _heroPowerMessageDisplay =
+            "If you play 3 cards of the same color: Add 2 cards of the same color to your grave";
+    }
 
     protected override void HeroPowerEffect()
     {
