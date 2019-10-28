@@ -8,14 +8,21 @@
         <e p="_Scripts" t="Include">
           <e p="Card" t="Include">
             <e p="Card Effects" t="Include">
-              <e p="AddCurrency.cs" t="Include" />
-              <e p="AddPower.cs" t="Include" />
               <e p="CardEffect.cs" t="Include" />
+              <e p="Enemy Card Effects" t="Include">
+                <e p="OnDeathDestroyPlayerDeckCard.cs" t="Include" />
+                <e p="OnDeathGainPowerEffect.cs" t="Include" />
+                <e p="PlayMinonCardEffect.cs" t="Include" />
+              </e>
               <e p="OnDeath.cs" t="Include" />
               <e p="OnDeathCardEffects.cs" t="Include" />
               <e p="OnPlayEffects.cs" t="Include" />
               <e p="OnSummonCardEffects.cs" t="Include" />
               <e p="PassiveEffect.cs" t="Include" />
+              <e p="Player Card Effects" t="Include">
+                <e p="AddCurrency.cs" t="Include" />
+                <e p="AddPower.cs" t="Include" />
+              </e>
             </e>
             <e p="Card.cs" t="Include" />
             <e p="CardDisplay.cs" t="Include" />
@@ -252,6 +259,7 @@
             </e>
           </e>
         </e>
+        <e p="MinionCardEffectHandler.cs" t="Include" />
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">
             <e p="Code" t="Include">
@@ -455,6 +463,6 @@
       <e p="Temp/bin" t="ExcludeRecursive" />
     </e>
     <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_Senior Project 491A.30232847.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_Senior Project 491A.820768640.00" t="ExcludeRecursive" />
   </component>
 </project>

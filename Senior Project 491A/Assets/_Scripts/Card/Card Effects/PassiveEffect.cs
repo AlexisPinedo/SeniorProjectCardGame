@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassiveEffect : CardEffect
+public abstract class PassiveEffect : CardEffect
 {
    /*
     * When a card is played add a passive effect

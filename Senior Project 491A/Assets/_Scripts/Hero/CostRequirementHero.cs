@@ -11,7 +11,7 @@ public abstract class CostRequirementHero : Hero
     [SerializeField] protected List<PlayerCard> cardsPlayedForEffect;
 
     protected CardType.CardTypes lastCardPlayedType;
-    
+
     protected virtual void OnEnable()
     {
         //History.CardAddedToHistory += ValidateEffectRequirement;
@@ -33,44 +33,46 @@ public abstract class CostRequirementHero : Hero
 
     protected virtual void OtherValidateEffectRequirement(PlayerCard cardPlayed)
     {
-        if(TurnPlayerHeroManager.Instance.ActiveTurnHero != this)
+        if (TurnPlayerHeroManager.Instance.ActiveTurnHero != this)
             return;
-        
-        if (cardPlayed.CardType == CardType.CardTypes.None)
-        {
-            //Debug.Log("Card has no type nothing to evaluate");
-            return;
-        }
-        
-        cardsPlayedForEffect.Add(cardPlayed);
-        lastCardPlayedType = cardPlayed.CardType;
-        
-        //Debug.Log("Card added to hero effect check");
 
-        if (cardsPlayedForEffect.Count < cardEffectRequirementCount)
+        if (cardPlayed.CardEffect is OnPlayEffects)
         {
-            //Debug.Log("Card history too small to evaluate");
-            return;
-        }
-        
-        int lastCardPlayedReference = cardsPlayedForEffect.Count - 1;
-
-        
-        for (int i = 1; i < cardEffectRequirementCount; i++)
-        {
-            if (cardsPlayedForEffect[lastCardPlayedReference - i].CardType != cardPlayed.CardType)
+            if (cardPlayed.CardType == CardType.CardTypes.None)
             {
-                //Debug.Log("last 3 cards were not the same type");
+                //Debug.Log("Card has no type nothing to evaluate");
                 return;
             }
-        }
 
-        TriggerHeroPowerEffect();
-        cardsPlayedForEffect.Clear();
-        
+            cardsPlayedForEffect.Add(cardPlayed);
+            lastCardPlayedType = cardPlayed.CardType;
+
+            //Debug.Log("Card added to hero effect check");
+
+            if (cardsPlayedForEffect.Count < cardEffectRequirementCount)
+            {
+                //Debug.Log("Card history too small to evaluate");
+                return;
+            }
+
+            int lastCardPlayedReference = cardsPlayedForEffect.Count - 1;
+
+
+            for (int i = 1; i < cardEffectRequirementCount; i++)
+            {
+                if (cardsPlayedForEffect[lastCardPlayedReference - i].CardType != cardPlayed.CardType)
+                {
+                    //Debug.Log("last 3 cards were not the same type");
+                    return;
+                }
+            }
+
+            TriggerHeroPowerEffect();
+            cardsPlayedForEffect.Clear();
+        }
     }
 
-    
+
     //Running a more optimized method above
 //    protected virtual void ValidateEffectRequirement()
 //    {
@@ -115,5 +117,4 @@ public abstract class CostRequirementHero : Hero
 //
 //        TriggerHeroPowerEffect();
 //    }
-
 }
