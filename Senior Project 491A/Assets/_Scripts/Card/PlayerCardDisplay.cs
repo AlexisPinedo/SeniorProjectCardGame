@@ -86,11 +86,11 @@ public class PlayerCardDisplay : CardDisplay
 //                    Debug.Log("PlayerCard assigned ViewID: " + photonView.ViewID);
 
                     PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
-                    if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
+                    if (!TurnManager.currentPhotonPlayer.IsMasterClient)
                     {
                         Debug.Log(
                             "Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
-                        photonView.TransferOwnership(PhotonNetworkManager.currentPhotonPlayer);
+                        photonView.TransferOwnership(TurnManager.currentPhotonPlayer);
                     }
                 }
                 else
@@ -121,10 +121,10 @@ public class PlayerCardDisplay : CardDisplay
             object[] data = (object[])photonEvent.CustomData;
             int recievedPhotonID = (int)data[0];
 
-            if (!PhotonNetworkManager.photonViewIDs.Contains(recievedPhotonID))
+            if (!TurnManager.photonViewIDs.Contains(recievedPhotonID))
             {
                 photonView.ViewID = recievedPhotonID;
-                PhotonNetworkManager.photonViewIDs.Add(recievedPhotonID);
+                TurnManager.photonViewIDs.Add(recievedPhotonID);
 
 //                Debug.Log("PlayerCard RPC to assign PhotonView ID: " + photonView.ViewID);
                 PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;

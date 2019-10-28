@@ -26,7 +26,13 @@ public class ButtonInputManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        foreach (Button abutton in buttonList)
+            Debug.Log(abutton.name);
     }
+
+
+
 
     public void DisableButtonsInList()
     {

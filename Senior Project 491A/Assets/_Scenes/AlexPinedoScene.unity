@@ -428,6 +428,13 @@ MonoBehaviour:
   turnPlayerGameObject: {fileID: 0}
   player1GameObject: {fileID: 101520841}
   player2GameObject: {fileID: 2025430591}
+  p1Handcontainer: {fileID: 1190731606}
+  p2HandContainer: {fileID: 2033931931}
+  shopContainer: {fileID: 301505297}
+  minionContainer: {fileID: 607427542}
+  bossCard: {fileID: 589770440}
+  playZone: {fileID: 393574267}
+  cavnas: {fileID: 1455907479}
   player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
   player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
 --- !u!114 &381133603
@@ -2826,13 +2833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88450659603364da1affe52e78d94eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1Handcontainer: {fileID: 1190731606}
-  p2HandContainer: {fileID: 2033931931}
-  shopContainer: {fileID: 301505297}
-  minionContainer: {fileID: 607427542}
-  bossCard: {fileID: 589770440}
-  playZone: {fileID: 393574267}
-  cavnas: {fileID: 1455907479}
 --- !u!4 &1121214001
 Transform:
   m_ObjectHideFlags: 0

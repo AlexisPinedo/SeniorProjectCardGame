@@ -40,26 +40,26 @@ public class TextUpdate : MonoBehaviourPunCallbacks
 
     public void UpdateCurrentTurn()
     {
-        Debug.Log("Switching turn text");
-        if (photonView.IsMine)
-        {
-            currentTurn.text = "";
-        }
-        else
-        {
-            currentTurn.text = "Waiting for turn...";
-        }
+        //Debug.Log("Switching turn text");
+        //if (photonView.IsMine)
+        //{
+        //    currentTurn.text = "";
+        //}
+        //else
+        //{
+        //    currentTurn.text = "Waiting for turn...";
+        //}
     }
 
     private void OnEnable()
     {
-        UIHandler.EndTurnClicked += UpdateCurrentTurn;
+        //UIHandler.EndTurnClicked += UpdateCurrentTurn;
         Player.PowerUpdated += UpdatePower;
         Player.CurrencyUpdated += UpdateCurrency;
     }
     private void OnDisable()
     {
-        UIHandler.EndTurnClicked += UpdateCurrentTurn;
+        //UIHandler.EndTurnClicked += UpdateCurrentTurn;
         Player.PowerUpdated -= UpdatePower;
         Player.CurrencyUpdated -= UpdateCurrency;
     }
