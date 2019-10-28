@@ -93,7 +93,7 @@ public class UIHandler : MonoBehaviour
 
     public void EndTurnButtonOnClick()
     {
-        EndTurnClicked?.Invoke();
+        //EndTurnClicked?.Invoke();
 
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions
         {
