@@ -111,10 +111,10 @@ public class HandContainer : PlayerCardContainer
         // Trasnforms the card position to the grid position
         StartCoroutine(TransformCardPosition(cardDisplay, tempCardDestination));
 
-        if (!containerGrid.cardLocationReference.ContainsKey(cardDisplay.gameObject.transform.position))
-            containerGrid.cardLocationReference.Add(cardDisplay.gameObject.transform.position, cardDisplay);
+        if (!containerGrid.cardLocationReference.ContainsKey(tempCardDestination))
+            containerGrid.cardLocationReference.Add(tempCardDestination, cardDisplay);
         else
-            containerGrid.cardLocationReference[cardDisplay.gameObject.transform.position] = cardDisplay;
+            containerGrid.cardLocationReference[tempCardDestination] = cardDisplay;
     
         hand.hand.Add(cardDrawn);
     }
