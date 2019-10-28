@@ -42,15 +42,15 @@ public class MinionCardDisplay : EnemyCardDisplay
                     Reliability = true
                 };
 
-                Debug.Log("MinionCard assigned ViewID: " + photonView.ViewID);
+//                Debug.Log("MinionCard assigned ViewID: " + photonView.ViewID);
                 PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
 
                 if (!PhotonNetwork.OfflineMode)
                 {
-                    if (!PhotonNetworkManager.currentPhotonPlayer.IsMasterClient)
+                    if (!TurnManager.currentPhotonPlayer.IsMasterClient)
                     {
-                        Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
-                        photonView.TransferOwnership(PhotonNetworkManager.currentPhotonPlayer);
+                        //Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
+                        photonView.TransferOwnership(TurnManager.currentPhotonPlayer);
                     }
                 }
             }
@@ -62,7 +62,6 @@ public class MinionCardDisplay : EnemyCardDisplay
     }
     public void OnEvent(EventData photonEvent)
     {
-        Debug.Log("I'm the event!");
 
         byte recievedCode = photonEvent.Code;
         if (recievedCode == currentCardIdenrifier)
@@ -70,10 +69,10 @@ public class MinionCardDisplay : EnemyCardDisplay
             object[] data = (object[])photonEvent.CustomData;
             int recievedPhotonID = (int)data[0];
 
-            if (!PhotonNetworkManager.photonViewIDs.Contains(recievedPhotonID))
+            if (!TurnManager.photonViewIDs.Contains(recievedPhotonID))
             {
                 photonView.ViewID = recievedPhotonID;
-                PhotonNetworkManager.photonViewIDs.Add(recievedPhotonID);
+                TurnManager.photonViewIDs.Add(recievedPhotonID);
 
                 Debug.Log("MinionCard RPC to assign PhotonView ID: " + photonView.ViewID);
                 PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
@@ -88,7 +87,6 @@ public class MinionCardDisplay : EnemyCardDisplay
     protected override void OnEnable()
     {
         base.OnEnable();
-        Debug.Log("I am an event...");
         PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
     }
 

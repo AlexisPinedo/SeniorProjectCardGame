@@ -67,17 +67,17 @@ public class UIHandler : MonoBehaviour
     {
         StartClicked?.Invoke();
 
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-        {
-            Receivers = ReceiverGroup.Others,
-        };
+        //RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+        //{
+        //    Receivers = ReceiverGroup.Others,
+        //};
 
-        SendOptions sendOptions = new SendOptions
-        {
-            Reliability = true
-        };
+        //SendOptions sendOptions = new SendOptions
+        //{
+        //    Reliability = true
+        //};
 
-        PhotonNetwork.RaiseEvent(startBattleIdentifier, null, raiseEventOptions, sendOptions);
+        //PhotonNetwork.RaiseEvent(startBattleIdentifier, null, raiseEventOptions, sendOptions);
 
     }
 
@@ -95,32 +95,32 @@ public class UIHandler : MonoBehaviour
     {
         EndTurnClicked?.Invoke();
 
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-        {
-            Receivers = ReceiverGroup.Others,
-        };
+        //RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+        //{
+        //    Receivers = ReceiverGroup.Others,
+        //};
 
-        SendOptions sendOptions = new SendOptions
-        {
-            Reliability = true
-        };
+        //SendOptions sendOptions = new SendOptions
+        //{
+        //    Reliability = true
+        //};
 
-        PhotonNetwork.RaiseEvent(endTurnIdentifier, null, raiseEventOptions, sendOptions);
+        //PhotonNetwork.RaiseEvent(endTurnIdentifier, null, raiseEventOptions, sendOptions);
     }
 
     public void OnEvent(EventData photonEvent)
     {
-        byte recievedCode = photonEvent.Code;
-        if (recievedCode == endTurnIdentifier)
-        {
-            EndTurnClicked?.Invoke();
-            Debug.Log("OnEvent end turn...");
-        }
-        if (recievedCode == startBattleIdentifier)
-        {
-            StartClicked?.Invoke();
-            Debug.Log("OnEvent start battle");
-        }
+        //byte recievedCode = photonEvent.Code;
+        //if (recievedCode == endTurnIdentifier)
+        //{
+        //    EndTurnClicked?.Invoke();
+        //    Debug.Log("OnEvent end turn...");
+        //}
+        //if (recievedCode == startBattleIdentifier)
+        //{
+        //    StartClicked?.Invoke();
+        //    Debug.Log("OnEvent start battle");
+        //}
     }
 
 }
