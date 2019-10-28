@@ -19,7 +19,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     public delegate void _ShopCardClicked(PlayerCardDisplay cardClicked);
 
     public static event _ShopCardClicked ShopCardClicked;
-    public static event Action CardDragged;
+    public static event Action <PlayerCardDisplay> CardDragged;
     public static event Action CardReleased; 
 
     private PlayerCardDisplay thisCard;
@@ -67,7 +67,7 @@ public class DragCard : MonoBehaviourPunCallbacks
             }
             else
             {
-                CardDragged?.Invoke();
+                CardDragged?.Invoke(GetComponent<PlayerCardDisplay>());
             }
         }
     }

@@ -104,12 +104,17 @@ public class PlayerCardDisplay : CardDisplay
     public void OnEnable()
     {
         base.OnEnable();
+        DragCard.CardDragged += DisableNonSelectedCollider;
+        DragCard.CardReleased += EnableBoxCollider;
+        
         PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
     }
 
     public void OnDisable()
     {
         base.OnEnable();
+        DragCard.CardDragged -= DisableNonSelectedCollider;
+        DragCard.CardReleased -= EnableBoxCollider;
         PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
 
@@ -252,4 +257,13 @@ public class PlayerCardDisplay : CardDisplay
     {
         CardPurchased?.Invoke(this);
     }
+
+    private void DisableNonSelectedCollider(PlayerCardDisplay selectedCard)
+    {
+        if (selectedCard != this)
+        {
+            DisableBoxCollider();
+        }
+    }
+    
 }
