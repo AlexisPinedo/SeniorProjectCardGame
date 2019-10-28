@@ -22,7 +22,7 @@ public abstract class Hero : ScriptableObject
     }
 
     [SerializeField]
-    private string _heroPowerMessageDisplay;
+    protected string _heroPowerMessageDisplay;
 
     public string HeroPowerMessageDisplay
     {

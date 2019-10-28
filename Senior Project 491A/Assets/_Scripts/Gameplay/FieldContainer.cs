@@ -8,6 +8,10 @@ public class FieldContainer : Container
     public EnemyCardDisplay display;
     public EnemyDeck enemyDeck;
 
+    public delegate void _enemyCardPlayed(EnemyCard cardPlayed);
+
+    public static event _enemyCardPlayed EnemyCardPlayed;
+
     private static FieldContainer _instance;
 
     public static FieldContainer Instance
@@ -93,8 +97,7 @@ public class FieldContainer : Container
         {
             containerGrid.cardLocationReference[freeLocation] = cardDisplay;
         }
-        
-
+        EnemyCardPlayed?.Invoke(cardDisplay.card);
     }
 
     void AddFreeCardLocation(EnemyCardDisplay cardDestroyed)
