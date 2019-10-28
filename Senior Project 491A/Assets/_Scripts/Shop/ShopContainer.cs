@@ -102,12 +102,12 @@ public class ShopContainer : PlayerCardContainer
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
         cardDisplay.enabled = true;
 
-        Vector3 tempCardDestination = containerGrid.freeLocations.Pop();
+        Vector3 finalCardDestination = containerGrid.freeLocations.Pop();
 
         // Trasnforms the card position to the grid position
-        StartCoroutine(TransformCardPosition(cardDisplay, tempCardDestination));
+        StartCoroutine(TransformCardPosition(cardDisplay, finalCardDestination));
 
-        Vector3 freeSpot = cardDisplay.gameObject.transform.position;
+        Vector3 freeSpot = finalCardDestination;
         
         CardDrawnLocationCreated?.Invoke(cardDisplay, freeSpot);
         
@@ -117,7 +117,7 @@ public class ShopContainer : PlayerCardContainer
             containerGrid.cardLocationReference[freeSpot] = cardDisplay;
     }
 
-    
+  
 
     private void DisplayNewCard(PlayerCardDisplay cardBought)
     {

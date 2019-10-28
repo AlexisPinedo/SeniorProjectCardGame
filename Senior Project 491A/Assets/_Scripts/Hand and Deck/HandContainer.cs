@@ -119,6 +119,7 @@ public class HandContainer : PlayerCardContainer
         hand.hand.Add(cardDrawn);
     }
 
+
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         object[] instantiationData = info.photonView.InstantiationData;

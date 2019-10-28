@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ public abstract class PlayerCardContainer : Container
     protected IEnumerator TransformCardPosition(PlayerCardDisplay cardDisplay, Vector3 cardDestination)
     {
         float currentLerpTime = 0;
-        float lerpTime = 1.0f;
+        float lerpTime = 0.5f;
 
         Vector3 startPos = cardDisplay.transform.position;
 
@@ -33,5 +34,13 @@ public abstract class PlayerCardContainer : Container
 
             yield return new WaitForEndOfFrame();
         }
+
+        cardDisplay.GetComponent<CardZoomer>().OriginalPosition = cardDestination;
+        cardDisplay.GetComponent<DragCard>().OriginalPosition = cardDestination;
+
     }
+
+
+
+
 }

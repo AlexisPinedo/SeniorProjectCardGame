@@ -32,6 +32,8 @@ public class DragCard : MonoBehaviourPunCallbacks
         OriginalPosition = this.transform.position;
     }
 
+
+
     /// <summary>
     /// This method is ivoked when the mouse button is clicked
     /// </summary>
