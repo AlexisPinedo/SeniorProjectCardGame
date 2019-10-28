@@ -1,12 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Win32.SafeHandles;
 using UnityEngine;
 
-[CreateAssetMenu]
+//[CreateAssetMenu]
 public class Veda : CostRequirementHero
 {
     private int cardSelectionLimit = 1;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        _heroPowerMessageDisplay = "If you play 3 cards of the same color: Both players add 1 card from the shop";
+
+    }
 
     protected override void HeroPowerEffect()
     {

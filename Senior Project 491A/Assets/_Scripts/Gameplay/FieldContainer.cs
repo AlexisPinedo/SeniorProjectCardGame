@@ -8,6 +8,28 @@ public class FieldContainer : Container
     public EnemyCardDisplay display;
     public EnemyDeck enemyDeck;
 
+    public delegate void _enemyCardPlayed(EnemyCard cardPlayed);
+
+    public static event _enemyCardPlayed EnemyCardPlayed;
+
+    private static FieldContainer _instance;
+
+    public static FieldContainer Instance
+    {
+        get => _instance;
+    }
+
+    private void Awake()
+    {
+        if (_instance != this && _instance == null)
+            _instance = this;
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        enemyDeck.cardsInDeck = ShuffleDeck.Shuffle(enemyDeck);
+    }
+
     private void OnEnable()
     {
         MinionCardDisplay.CardDestroyed += AddFreeCardLocation;
@@ -31,7 +53,7 @@ public class FieldContainer : Container
         
         if (containerGrid.freeLocations.Count == 0)
         {
-            //Debug.Log("Field Zone is full");
+            EndGameHandler.TriggerEndGame();
             return;
         }
 
@@ -63,6 +85,8 @@ public class FieldContainer : Container
 
         display.card = cardDrawn;
         EnemyCardDisplay cardDisplay = Instantiate(display, freeLocation, Quaternion.identity, this.transform);
+
+        cardDisplay.enabled = true;
         
         if (!containerGrid.cardLocationReference.ContainsKey(freeLocation))
         {
@@ -73,8 +97,7 @@ public class FieldContainer : Container
         {
             containerGrid.cardLocationReference[freeLocation] = cardDisplay;
         }
-        
-
+        EnemyCardPlayed?.Invoke(cardDisplay.card);
     }
 
     void AddFreeCardLocation(EnemyCardDisplay cardDestroyed)
@@ -84,7 +107,6 @@ public class FieldContainer : Container
         containerGrid.freeLocations.Push(cardLocation);
         
         //containerGrid.cardLocationReference[cardLocation] = null;
-        
     }
     
     

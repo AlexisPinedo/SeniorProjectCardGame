@@ -24,6 +24,7 @@ public class MinionCardDisplay : EnemyCardDisplay
 
     void Awake()
     {
+        base.Awake();
         if (PhotonNetwork.IsMasterClient)
         {
             if (PhotonNetwork.AllocateViewID(photonView))

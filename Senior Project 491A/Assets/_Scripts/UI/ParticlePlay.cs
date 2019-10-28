@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -33,7 +32,7 @@ public class ParticlePlay : MonoBehaviour
 
         LoadAndSpawn(goldSummoner);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.6f);
 
         if (!canDestroyCircle)
         {

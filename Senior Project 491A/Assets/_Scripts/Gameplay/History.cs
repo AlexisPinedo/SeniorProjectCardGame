@@ -54,6 +54,11 @@ public class History : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        HandleTurnEnding();
+    }
+
     private void OnEnable()
     {
         PlayZone.CardPlayed += AddCardToHistory;

@@ -16,4 +16,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 978a4fcfbe74ce54ca6eacf88524dfd8, type: 2}
   - {fileID: 11400000, guid: 6b5dc36a50e103848b88230131a6a8d3, type: 2}
   - {fileID: 11400000, guid: c32bb1ee28c37484a9b472e0a297c26d, type: 2}
-  cardCopies: 6
+  - {fileID: 11400000, guid: 31b8803aa778c4857bfbedd9e561b2be, type: 2}
+  - {fileID: 11400000, guid: 12df97e7f340b4ae1aa08e2592d32c8d, type: 2}
+  - {fileID: 11400000, guid: 7d4e4a56a2ec04c6e910882049083ef6, type: 2}
+  - {fileID: 11400000, guid: d7ffebd2e27854d83b329d219aa06be9, type: 2}
+  - {fileID: 11400000, guid: 41016ff1537624731969d878f35a3126, type: 2}
+  cardCopies: 4
