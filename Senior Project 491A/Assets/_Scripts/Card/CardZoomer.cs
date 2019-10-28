@@ -84,9 +84,10 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
             transform.position = OriginalPosition;
         }
+        
         //player card
         else{
-            transform.localScale = OriginalPosition;
+            transform.position = OriginalPosition;
         }
     }
 
