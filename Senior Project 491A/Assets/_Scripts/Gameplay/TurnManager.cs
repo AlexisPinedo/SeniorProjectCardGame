@@ -87,8 +87,8 @@ public class TurnManager : MonoBehaviourPunCallbacks
         turnPlayerGameObject = player1GameObject;
 
         //grab photon views from game objects
-        p1HandcontainerPV = p1Handcontainer.GetComponent<PhotonView>();
-        p2HandContainerPV = p2HandContainer.GetComponent<PhotonView>();
+        //p1HandcontainerPV = p1Handcontainer.GetComponent<PhotonView>();
+        //p2HandContainerPV = p2HandContainer.GetComponent<PhotonView>();
         //shopContainerPV = shopContainer.GetComponent<PhotonView>();
         //minionContainerPV = minionContainer.GetComponent<PhotonView>();
         //bossCardPV = bossCard.GetComponent<PhotonView>();
@@ -114,13 +114,13 @@ public class TurnManager : MonoBehaviourPunCallbacks
             Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
             Debug.Log("Photon Player 2: " + photonPlayer2.NickName);
 
-            p1HandcontainerPV.TransferOwnership(photonPlayer1);
-            p2HandContainerPV.TransferOwnership(photonPlayer2);
-            shopContainerPV.TransferOwnership(photonPlayer1);
-            minionContainerPV.TransferOwnership(photonPlayer1);
-            bossCardPV.TransferOwnership(photonPlayer1);
-            playZonePV.TransferOwnership(photonPlayer1);
-            canvasPV.TransferOwnership(photonPlayer1);
+//            p1HandcontainerPV.TransferOwnership(photonPlayer1);
+//            p2HandContainerPV.TransferOwnership(photonPlayer2);
+//            shopContainerPV.TransferOwnership(photonPlayer1);
+//            minionContainerPV.TransferOwnership(photonPlayer1);
+//            bossCardPV.TransferOwnership(photonPlayer1);
+//            playZonePV.TransferOwnership(photonPlayer1);
+//            canvasPV.TransferOwnership(photonPlayer1);
         }
         else
         {
@@ -146,8 +146,10 @@ public class TurnManager : MonoBehaviourPunCallbacks
 
     public void ChangeActivePlayer()
     {
+        Debug.Log("Changing active player");
         if (player1GameObject != null && player2GameObject != null)
         {
+            Debug.Log("Players weren't null'");
             turnPlayer.Currency = 0;
             turnPlayer.Power = 0;
             
@@ -207,17 +209,17 @@ public class TurnManager : MonoBehaviourPunCallbacks
 
         Debug.Log("Current player to transfer ownership: " + currentPhotonPlayer.NickName);
 
-        shopContainerPV.TransferOwnership(currentPhotonPlayer);
-        playZonePV.TransferOwnership(currentPhotonPlayer);
-        canvasPV.TransferOwnership(currentPhotonPlayer);
-        bossCardPV.TransferOwnership(currentPhotonPlayer);
-        //grab all shop cards and transfer to current player
-        PhotonView[] shopCards = shopContainerPV.GetComponentsInChildren<PhotonView>();
-        foreach (PhotonView shopCard in shopCards)
-            shopCard.TransferOwnership(currentPhotonPlayer);
-        //grab all minion cards and transfer to current player
-        PhotonView[] minionCards = minionContainerPV.GetComponentsInChildren<PhotonView>();
-        foreach (PhotonView minionCard in minionCards)
-            minionCard.TransferOwnership(currentPhotonPlayer);
+//        shopContainerPV.TransferOwnership(currentPhotonPlayer);
+//        playZonePV.TransferOwnership(currentPhotonPlayer);
+//        canvasPV.TransferOwnership(currentPhotonPlayer);
+//        bossCardPV.TransferOwnership(currentPhotonPlayer);
+//        //grab all shop cards and transfer to current player
+//        PhotonView[] shopCards = shopContainerPV.GetComponentsInChildren<PhotonView>();
+//        foreach (PhotonView shopCard in shopCards)
+//            shopCard.TransferOwnership(currentPhotonPlayer);
+//        //grab all minion cards and transfer to current player
+//        PhotonView[] minionCards = minionContainerPV.GetComponentsInChildren<PhotonView>();
+//        foreach (PhotonView minionCard in minionCards)
+//            minionCard.TransferOwnership(currentPhotonPlayer);
     }
 }

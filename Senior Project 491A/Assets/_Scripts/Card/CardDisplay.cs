@@ -12,7 +12,7 @@ using Photon.Pun;
 /// </summary>
 ///
 
-public abstract class CardDisplay : MonoBehaviourPunCallbacks
+public abstract class CardDisplay : MonoBehaviourPunCallbacks, Itransferable
 {
     [SerializeField] protected SpriteRenderer cardArtDisplay;
     [SerializeField] protected SpriteRenderer typeIcon;
@@ -24,11 +24,13 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     
     [SerializeField]
     protected BoxCollider2D cardDisplayCollider;
-
+    
 
     protected virtual void Awake()
     {
         cardDisplayCollider = GetComponent<BoxCollider2D>();
+        TransferOwnersihpManager.AddTransferableObjectToList(this);
+        SetId();
         LoadCardIntoDisplay();
     }
     
@@ -88,5 +90,25 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
             if(!cardDisplayCollider.enabled)
                 cardDisplayCollider.enabled = true;
     }
-    
+
+    public int id { get; set; }
+
+    public void SetId()
+    {
+        //run logic to assign id depending if you are master or not
+    }
+
+    public void DoTransfer()
+    {
+        //What we want to happen when we do transfer
+    }
+
+    public void HandleTransfer()
+    {
+        
+    }
+
+    public void OnTransfer()
+    {
+    }
 }
