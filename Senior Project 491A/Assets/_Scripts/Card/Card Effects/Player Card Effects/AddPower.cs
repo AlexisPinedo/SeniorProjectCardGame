@@ -30,5 +30,6 @@ public class AddPower : OnPlayEffects
     public override void LaunchCardEffect()
     {
         AddPowerByEffect();
+        base.LaunchCardEffect();
     }
 }
