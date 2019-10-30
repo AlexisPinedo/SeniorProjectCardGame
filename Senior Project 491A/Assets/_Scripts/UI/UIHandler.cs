@@ -95,32 +95,33 @@ public class UIHandler : MonoBehaviour
     {
         EndTurnClicked?.Invoke();
 
-        //RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-        //{
-        //    Receivers = ReceiverGroup.Others,
-        //};
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+        {
+            Receivers = ReceiverGroup.Others,
+        };
 
-        //SendOptions sendOptions = new SendOptions
-        //{
-        //    Reliability = true
-        //};
+        SendOptions sendOptions = new SendOptions
+        {
+            Reliability = true
+        };
 
-        //PhotonNetwork.RaiseEvent(endTurnIdentifier, null, raiseEventOptions, sendOptions);
+        PhotonNetwork.RaiseEvent(endTurnIdentifier, null, raiseEventOptions, sendOptions);
+        Debug.Log("Sent raise event for ending turn");
     }
 
     public void OnEvent(EventData photonEvent)
     {
-        //byte recievedCode = photonEvent.Code;
-        //if (recievedCode == endTurnIdentifier)
-        //{
-        //    EndTurnClicked?.Invoke();
-        //    Debug.Log("OnEvent end turn...");
-        //}
-        //if (recievedCode == startBattleIdentifier)
-        //{
-        //    StartClicked?.Invoke();
-        //    Debug.Log("OnEvent start battle");
-        //}
+        byte recievedCode = photonEvent.Code;
+        if (recievedCode == endTurnIdentifier)
+        {
+            EndTurnClicked?.Invoke();
+            Debug.Log("Recieved raise event for ending turn");
+        }
+        if (recievedCode == startBattleIdentifier)
+        {
+            StartClicked?.Invoke();
+            Debug.Log("Recieved raise event for start battle");
+        }
     }
 
 }

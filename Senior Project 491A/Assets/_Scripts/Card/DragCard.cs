@@ -142,6 +142,9 @@ public class DragCard : MonoBehaviourPunCallbacks
         {
             PlayerCardDisplay purchasedCard = foundCard.GetComponent<PlayerCardDisplay>();
             ShopCardClicked?.Invoke(purchasedCard);
+
+            //Debug.Log("synced animation...");
+           // CardDragged?.Invoke(purchasedCard);
         }
         else
         {
@@ -156,6 +159,8 @@ public class DragCard : MonoBehaviourPunCallbacks
         if (foundCard)
         {
             this.transform.position = position;
+            //Debug.Log("synced released animation...");
+            //CardReleased?.Invoke();
         }
         else
         {

@@ -53,7 +53,6 @@ public class ParticlePlay : MonoBehaviour
 
         // Instantiate the PurpleCircleHere
         LoadAndSpawn(purpleSummoner);
-        
     }
 
     void LoadAndSpawn(AssetReference assetReference)
@@ -69,8 +68,6 @@ public class ParticlePlay : MonoBehaviour
                    
                 };
         };
-
-        
     }
 
     void CanDestroySummoner()

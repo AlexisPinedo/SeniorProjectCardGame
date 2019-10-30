@@ -142,6 +142,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
     private void RPCPlayZoneUpdate()
     {
         HandleCardPlayed();
+        //HasPlayed?.Invoke();
     }
 
 }
