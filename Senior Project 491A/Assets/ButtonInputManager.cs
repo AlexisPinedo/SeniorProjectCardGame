@@ -26,7 +26,36 @@ public class ButtonInputManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        MyTurn();
     }
+
+    private void OnEnable()
+    {
+        UIHandler.EndTurnClicked += MyTurn;
+    }
+
+    private void OnDisable()
+    {
+        UIHandler.EndTurnClicked -= MyTurn;
+    }
+
+
+    public void MyTurn()
+    {
+        //Debug.Log("Switching button control to: " + TurnManager.currentPhotonPlayer.NickName);
+        foreach (Button abutton in buttonList)
+        {
+            if(abutton.name == "Start Battle Button" || abutton.name == "End Turn Button")
+            {
+                if (TurnManager.currentPhotonPlayer.IsLocal)
+                    abutton.gameObject.SetActive(true);
+                else
+                    abutton.gameObject.SetActive(false);
+            }
+        }
+    }
+
 
     public void DisableButtonsInList()
     {

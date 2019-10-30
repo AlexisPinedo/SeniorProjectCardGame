@@ -30,6 +30,7 @@ public class DragCard : MonoBehaviourPunCallbacks
     {
         //Set the original position of the card to its location in space to use a reference
         OriginalPosition = this.transform.position;
+        
     }
 
 

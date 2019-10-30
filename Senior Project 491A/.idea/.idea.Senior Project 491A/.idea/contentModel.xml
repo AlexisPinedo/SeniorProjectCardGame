@@ -139,6 +139,7 @@
             <e p="NotificationWindowEvent.cs" t="Include" />
             <e p="ParticlePlay.cs" t="Include" />
             <e p="SceneRestarter.cs" t="Include" />
+            <e p="SummonerHandler.cs" t="Include" />
             <e p="TextUpdate.cs" t="Include" />
             <e p="UIHandler.cs" t="Include" />
           </e>
