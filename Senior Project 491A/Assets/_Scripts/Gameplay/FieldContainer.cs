@@ -79,8 +79,6 @@ public class FieldContainer : Container
 
     public void CreateInstanceOfCard(Vector2 freeLocation)
     {
-
-
         EnemyCard cardDrawn = null;
         cardDrawn = (EnemyCard)enemyDeck.cardsInDeck.Pop();
 
@@ -110,9 +108,6 @@ public class FieldContainer : Container
         Vector2 cardLocation = cardDestroyed.gameObject.transform.position;
         //Debug.Log("Card destroyed adding free location");
         containerGrid.freeLocations.Push(cardLocation);
-        
         //containerGrid.cardLocationReference[cardLocation] = null;
     }
-    
-    
 }

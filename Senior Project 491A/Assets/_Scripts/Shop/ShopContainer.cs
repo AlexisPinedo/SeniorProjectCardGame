@@ -22,7 +22,6 @@ public class ShopContainer : PlayerCardContainer
     }
     public ShopDeck shopDeck;
 
-
     public delegate void _cardDrawnLocationCreated(PlayerCardDisplay cardDrawn, Vector3 freeSpot);
 
     public static event _cardDrawnLocationCreated CardDrawnLocationCreated;
@@ -54,21 +53,17 @@ public class ShopContainer : PlayerCardContainer
     {
         //Debug.Log("trying to shuffle deck");
         shopDeck.cardsInDeck = ShuffleDeck.Shuffle(shopDeck);
-        
         DrawStartingHand();
     }
 
     private void OnEnable()
     {
         PlayerCardDisplay.CardPurchased += DisplayNewCard;
-        
-        
     }
 
     private void OnDisable()
     {
         PlayerCardDisplay.CardPurchased -= DisplayNewCard;
-        
     }
 
     /// <summary>
@@ -85,10 +80,8 @@ public class ShopContainer : PlayerCardContainer
             }
 
             HandleDisplayOfACard();
-
             // Draw a Card from the ShopDeck
         }
-
     }
 
     private void HandleDisplayOfACard()

@@ -27,11 +27,7 @@ public abstract class CardDisplay : MonoBehaviourPun, Itransferable
     [SerializeField]
     protected BoxCollider2D cardDisplayCollider;
 
-    private byte currentCardNetworkID = (byte)'C';
-
     public static int photonIdCounter = 1001;
-
-    private List<int> photonViewIDs = new List<int>();
 
     protected virtual void Awake()
     {
@@ -52,17 +48,13 @@ public abstract class CardDisplay : MonoBehaviourPun, Itransferable
 
     protected virtual void OnEnable()
     {
-        //PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
         Event_Base.GameStatePausingEventTriggered += DisableBoxCollider;
         Event_Base.GameStatePausingEventEnded += EnableBoxCollider;
-        //Debug.Log("CardDisplay: OnEnable()");
         LoadCardIntoDisplay();
-
     }
 
     protected virtual void OnDisable()
     {
-        //PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
         Event_Base.GameStatePausingEventTriggered -= DisableBoxCollider;
         Event_Base.GameStatePausingEventEnded -= EnableBoxCollider;
         ClearCardFromDisplay();
@@ -105,34 +97,7 @@ public abstract class CardDisplay : MonoBehaviourPun, Itransferable
     public void SetId()
     {
 
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    if (PhotonNetwork.AllocateSceneViewID(photonView))
-        //    {
-        //        Debug.Log("Assigned ID: " + photonView.ViewID);
-        //    }
-        //}
     }
-
-    //public void OnEvent(EventData photonEvent)
-    //{
-    //    if (photonEvent.Code == currentCardNetworkID)
-    //    {
-    //        object[] data = (object[])photonEvent.CustomData;
-    //        int recievedPhotonID = (int)data[0];
-
-    //        if (!photonViewIDs.Contains(recievedPhotonID))
-    //        {
-    //            photonView.ViewID = recievedPhotonID;
-    //            photonViewIDs.Add(recievedPhotonID);
-    //            Debug.Log("Assigned ID: " + photonView.ViewID);
-    //        }
-    //        else
-    //        {
-    //            Debug.Log(" ID is already in use... ");
-    //        }
-    //    }
-    //}
 
     public void DoTransfer()
     {

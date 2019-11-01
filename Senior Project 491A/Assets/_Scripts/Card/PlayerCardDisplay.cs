@@ -44,93 +44,11 @@ public class PlayerCardDisplay : CardDisplay
         LoadCardIntoDisplay();
     }
 
-    /// <summary>
-    /// Called when this object is enabled. Adds EventReceived to the Networking Client.
-    /// </summary>
-    //[ExecuteInEditMode]
-    //    protected override void OnEnable()
-    //    {
-    //        base.OnEnable();
-    //    }
-
-    /// <summary>
-    /// Called when this object is disabled. Removes EventReceived from the Networking Client.
-    /// </summary>
-    //[ExecuteInEditMode]
-    //    protected override void OnDisable()
-    //    {
-    //        ClearCardFromDisplay();
-    //    }
-
-    //public static void AllocateManualPhotonView(PlayerCardDisplay card)
-    //{
-    //    PhotonView pv = card.gameObject.GetPhotonView();
-    //    if (pv == null)
-    //    {
-    //        Debug.LogError("Can't do manual instantiation without PhotonView component.");
-    //        return;
-    //    }
-
-    //    PhotonNetwork.AllocateViewID(pv);
-    //    pv.RPC("InstantiateRpc", RpcTarget.AllBuffered, pv.ViewID);
-    //}
-
-    //[PunRPC]
-    //public void InstantiateRpc(int viewID)
-    //{
-    //    GameObject go = GameObject.Instantiate(Prefab, InputToEvent.inputHitPos + new Vector3(0, 5f, 0), Quaternion.identity) as GameObject;
-    //    go.GetPhotonView().viewID = viewID;
-    //}
-
-    void Start()
-    {
-        //        if(!PhotonNetwork.OfflineMode)
-        //        {
-        //            if (PhotonNetwork.IsMasterClient)
-        //            {
-        //                if (PhotonNetwork.AllocateViewID(photonView))
-        //                {
-        //                    object[] data = {photonView.ViewID};
-        //
-        //                    RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-        //                    {
-        //                        Receivers = ReceiverGroup.Others,
-        //                        CachingOption = EventCaching.AddToRoomCache
-        //                    };
-        //
-        //                    SendOptions sendOptions = new SendOptions
-        //                    {
-        //                        Reliability = true
-        //                    };
-        //
-        ////                    Debug.Log("PlayerCard assigned ViewID: " + photonView.ViewID);
-        //
-        //                    PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
-        //                    if (!TurnManager.currentPhotonPlayer.IsMasterClient)
-        //                    {
-        //                        Debug.Log(
-        //                            "Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
-        //                        photonView.TransferOwnership(TurnManager.currentPhotonPlayer);
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    Debug.Log("Unable to allocate ID");
-        //                }
-        //            }
-        //        }
-    }
-
-    private Player owner;
-
     public void OnEnable()
     {
-        owner = TurnManager.Instance.turnPlayer;
         base.OnEnable();
         DragCard.CardDragged += DisableNonSelectedCollider;
         DragCard.CardReleased += EnableBoxCollider;
-
-        // PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
     }
 
     public void OnDisable()
@@ -138,31 +56,7 @@ public class PlayerCardDisplay : CardDisplay
         base.OnEnable();
         DragCard.CardDragged -= DisableNonSelectedCollider;
         DragCard.CardReleased -= EnableBoxCollider;
-        //PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
-
-    //    public void OnEvent(EventData photonEvent)
-    //    {
-    //        byte recievedCode = photonEvent.Code;
-    //        if (recievedCode == currentCardIdenrifier)
-    //        {
-    //            object[] data = (object[])photonEvent.CustomData;
-    //            int recievedPhotonID = (int)data[0];
-    //
-    //            if (!TurnManager.photonViewIDs.Contains(recievedPhotonID))
-    //            {
-    //                photonView.ViewID = recievedPhotonID;
-    //                TurnManager.photonViewIDs.Add(recievedPhotonID);
-    //
-    ////                Debug.Log("PlayerCard RPC to assign PhotonView ID: " + photonView.ViewID);
-    //                PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
-    //            }
-    //        }
-    //        else
-    //        {
-    //            //Debug.Log("Event code not found");
-    //        }
-    //    }
 
     //THis method will load the display based on the information stored within the card
     protected override void LoadCardIntoDisplay()

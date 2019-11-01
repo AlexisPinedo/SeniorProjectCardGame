@@ -85,16 +85,11 @@ public class HandContainer : PlayerCardContainer
         // Set the PlayerCardContainer's PlayerCardDisplay to the cardDrawn
         display.card = cardDrawn;
 
-        //PlayerCardDisplay.AllocateManualPhotonView(display);
-
-
-
         if (containerGrid.freeLocations.Count == 0)
         {
             //Debug.Log("Stack is empty ");
             return;
         }
-
 
         // Place it on the grid!
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
@@ -106,24 +101,7 @@ public class HandContainer : PlayerCardContainer
         else
             Debug.Log("Already has an assigned ID");
 
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    PhotonNetwork.AllocateViewID(cardDisplayPhotonView);
-        //    cardDisplayPhotonView.RPC("RPCAssignID", RpcTarget.AllBuffered, cardDisplayPhotonView.ViewID);
-        //    Debug.Log("Assigned ID:" + cardDisplay.gameObject.GetPhotonView().ViewID);
-        //}
-
-        /**
-         * Attempt to instantiate on network...
-         * Reloads data from display.card
-         * BUG: other client loads in shop cards instead of phantom cards...
-         *      only 3 phantom cards appear the rest get destroyed?
-         *      
-            //GameObject cardObject = PhotonNetwork.InstantiateSceneObject("Player Card Container", spawnPostion.transform.position, Quaternion.identity, 0, null);
-            //cardObject.GetComponent<PlayerCardDisplay>().card = display.card;
-            //PlayerCardDisplay cardDisplay = cardObject.GetComponent<PlayerCardDisplay>();
-         *
-         */
+        cardDisplayPhotonView.TransferOwnership(TurnManager.currentPhotonPlayer);
 
         Vector3 tempCardDestination = containerGrid.freeLocations.Pop();
 
@@ -138,11 +116,6 @@ public class HandContainer : PlayerCardContainer
         hand.hand.Add(cardDrawn);
     }
 
-    //public void OnPhotonInstantiate(PhotonMessageInfo info)
-    //{
-    //    object[] instantiationData = info.photonView.InstantiationData;
-    //    this.cardDrawn = (PlayerCard)instantiationData[0];
-    //}
 
     public void DrawExtraCard()
     {
