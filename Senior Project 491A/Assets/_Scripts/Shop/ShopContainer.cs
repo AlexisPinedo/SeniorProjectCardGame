@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
+using Photon.Pun;
 
 //using UnityEditorInternal;
 
@@ -101,6 +102,12 @@ public class ShopContainer : PlayerCardContainer
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
         cardDisplay.enabled = true;
+
+        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
+        if (cardDisplayPhotonView.ViewID == 0)
+            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
+        else
+            Debug.Log("Already has an assigned ID");
 
         Vector3 finalCardDestination = containerGrid.freeLocations.Pop();
 

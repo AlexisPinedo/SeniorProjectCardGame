@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class FieldContainer : Container
@@ -85,7 +86,11 @@ public class FieldContainer : Container
 
         display.card = cardDrawn;
         EnemyCardDisplay cardDisplay = Instantiate(display, freeLocation, Quaternion.identity, this.transform);
-
+        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
+        if (cardDisplayPhotonView.ViewID == 0)
+            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
+        else
+            Debug.Log("Already has an assigned ID");
         cardDisplay.enabled = true;
         
         if (!containerGrid.cardLocationReference.ContainsKey(freeLocation))

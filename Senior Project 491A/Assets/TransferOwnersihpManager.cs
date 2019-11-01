@@ -15,92 +15,92 @@ public class TransferOwnersihpManager : MonoBehaviour
     {
         _transferables.Add(objectToAdd);
         
-        objectToAdd.HandleTransfer();
+        //objectToAdd.HandleTransfer();
     }
     
-    public static void AddTransferableObjectToList(MonoBehaviourPunCallbacks objectToAdd)
-    {
-        _transferablesMono.Add(objectToAdd);
+//    public static void AddTransferableObjectToList(MonoBehaviourPunCallbacks objectToAdd)
+//    {
+//        _transferablesMono.Add(objectToAdd);
         
-    }
+//    }
 
-    void HandleIdAssignment()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            for (int i = 0; i < _transferables.Count; i++)
-            {
-                if (PhotonNetwork.AllocateViewID(_transferablesMono))
-                {
-                    object[] data = {photonView.ViewID};
+//    void HandleIdAssignment()
+//    {
+//        if (PhotonNetwork.IsMasterClient)
+//        {
+//            for (int i = 0; i < _transferables.Count; i++)
+//            {
+//                if (PhotonNetwork.AllocateViewID(_transferablesMono))
+//                {
+//                    object[] data = {photonView.ViewID};
 
-                    RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-                    {
-                        Receivers = ReceiverGroup.Others,
-                        CachingOption = EventCaching.AddToRoomCache
-                    };
+//                    RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+//                    {
+//                        Receivers = ReceiverGroup.Others,
+//                        CachingOption = EventCaching.AddToRoomCache
+//                    };
 
-                    SendOptions sendOptions = new SendOptions
-                    {
-                        Reliability = true
-                    };
+//                    SendOptions sendOptions = new SendOptions
+//                    {
+//                        Reliability = true
+//                    };
 
-//                Debug.Log("MinionCard assigned ViewID: " + photonView.ViewID);
-                    PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
-                }
+////                Debug.Log("MinionCard assigned ViewID: " + photonView.ViewID);
+//                    PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
+//                }
 
-                PassID();
-            }
-        }
-    }
+//                PassID();
+//            }
+//        }
+//    }
 
-    public void OnEnable()
-        {
-            PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
-        }
+//    public void OnEnable()
+//        {
+//            PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
+//        }
         
-        public void OnDisable()
-        {
-            PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
-        }
+//        public void OnDisable()
+//        {
+//            PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
+//        }
         
-            public void OnEvent(EventData photonEvent)
-    {
+//            public void OnEvent(EventData photonEvent)
+//    {
 
-        byte recievedCode = photonEvent.Code;
-        if (recievedCode == currentCardIdenrifier)
-        {
-            object[] data = (object[])photonEvent.CustomData;
-            int recievedPhotonID = (int)data[0];
+//        byte recievedCode = photonEvent.Code;
+//        if (recievedCode == currentCardIdenrifier)
+//        {
+//            object[] data = (object[])photonEvent.CustomData;
+//            int recievedPhotonID = (int)data[0];
 
-            if (!TurnManager.photonViewIDs.Contains(recievedPhotonID))
-            {
-                photonView.ViewID = recievedPhotonID;
-                TurnManager.photonViewIDs.Add(recievedPhotonID);
+//            if (!TurnManager.photonViewIDs.Contains(recievedPhotonID))
+//            {
+//                photonView.ViewID = recievedPhotonID;
+//                TurnManager.photonViewIDs.Add(recievedPhotonID);
 
-                Debug.Log("MinionCard RPC to assign PhotonView ID: " + photonView.ViewID);
-                PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
-            }
-        }
-        else
-        {
-            //Debug.Log("Event code not found");
-        }
-    }
+//                Debug.Log("MinionCard RPC to assign PhotonView ID: " + photonView.ViewID);
+//                PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
+//            }
+//        }
+//        else
+//        {
+//            //Debug.Log("Event code not found");
+//        }
+//    }
 
-    private void PassID()
-    {
-        for (int i = 0; i < _transferables.Count; i++)
-        {
-            //Run logic to pass id
-        }
-    }
+//    private void PassID()
+//    {
+//        for (int i = 0; i < _transferables.Count; i++)
+//        {
+//            //Run logic to pass id
+//        }
+//    }
     
-    void SwapOwnership()
-    {
-        foreach (Itransferable transferable in _transferables)
-        {
+//    void SwapOwnership()
+//    {
+//        foreach (Itransferable transferable in _transferables)
+//        {
             
-        }
-    }
+//        }
+//    }
 }
