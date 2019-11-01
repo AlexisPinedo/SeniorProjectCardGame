@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
-using ExitGames.Client.Photon;
 /// <summary>
 /// This class handles the in game display of each card.
 /// The class holds components relative to all card displays
@@ -14,7 +9,7 @@ using ExitGames.Client.Photon;
 /// </summary>
 ///
 
-public abstract class CardDisplay : MonoBehaviourPun, Itransferable
+public abstract class CardDisplay : MonoBehaviourPun
 {
     [SerializeField] protected SpriteRenderer cardArtDisplay;
     [SerializeField] protected SpriteRenderer typeIcon;
@@ -32,8 +27,6 @@ public abstract class CardDisplay : MonoBehaviourPun, Itransferable
     protected virtual void Awake()
     {
         cardDisplayCollider = GetComponent<BoxCollider2D>();
-        TransferOwnersihpManager.AddTransferableObjectToList(this);
-        //SetId();
         LoadCardIntoDisplay();
     }
 
@@ -90,26 +83,5 @@ public abstract class CardDisplay : MonoBehaviourPun, Itransferable
         if (this != null)
             if (!cardDisplayCollider.enabled)
                 cardDisplayCollider.enabled = true;
-    }
-
-    public int id { get; set; }
-
-    public void SetId()
-    {
-
-    }
-
-    public void DoTransfer()
-    {
-        //What we want to happen when we do transfer
-    }
-
-    public void HandleTransfer()
-    {
-
-    }
-
-    public void OnTransfer()
-    {
     }
 }
