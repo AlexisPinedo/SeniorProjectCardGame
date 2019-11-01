@@ -67,18 +67,19 @@ public class UIHandler : MonoBehaviour
     {
         StartClicked?.Invoke();
 
-        //RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-        //{
-        //    Receivers = ReceiverGroup.Others,
-        //};
+        //BUG: If you purchase a card then start battle the cards will remain locked behind the shop table.
 
-        //SendOptions sendOptions = new SendOptions
-        //{
-        //    Reliability = true
-        //};
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+        {
+            Receivers = ReceiverGroup.Others,
+        };
 
-        //PhotonNetwork.RaiseEvent(startBattleIdentifier, null, raiseEventOptions, sendOptions);
+        SendOptions sendOptions = new SendOptions
+        {
+            Reliability = true
+        };
 
+        PhotonNetwork.RaiseEvent(startBattleIdentifier, null, raiseEventOptions, sendOptions);
     }
 
     public void GraveyardButtonOnClick()
@@ -106,7 +107,6 @@ public class UIHandler : MonoBehaviour
         };
 
         PhotonNetwork.RaiseEvent(endTurnIdentifier, null, raiseEventOptions, sendOptions);
-        Debug.Log("Sent raise event for ending turn");
     }
 
     public void OnEvent(EventData photonEvent)
@@ -115,12 +115,10 @@ public class UIHandler : MonoBehaviour
         if (recievedCode == endTurnIdentifier)
         {
             EndTurnClicked?.Invoke();
-            Debug.Log("Recieved raise event for ending turn");
         }
         if (recievedCode == startBattleIdentifier)
         {
             StartClicked?.Invoke();
-            Debug.Log("Recieved raise event for start battle");
         }
     }
 

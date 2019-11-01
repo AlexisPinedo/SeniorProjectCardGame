@@ -7,21 +7,23 @@ using UnityEngine;
 public class TurnManager : MonoBehaviourPunCallbacks
 {
     // Player References
-    public Player turnPlayer;
+    public Player player1, player2, turnPlayer;
 
     public static Photon.Realtime.Player photonPlayer1, photonPlayer2, currentPhotonPlayer;
 
     public GameObject turnPlayerGameObject;
 
     [SerializeField]
-    private GameObject player1GameObject;
+    private GameObject player1GameObject, player2GameObject;
 
     [SerializeField]
-    private GameObject player2GameObject;
+    private ShopContainer shopCards;
 
-    public Player player1;
+    [SerializeField]
+    private FieldContainer minionCards;
 
-    public Player player2;
+    [SerializeField]
+    private BossCardDisplay bossCard;
 
     public delegate void _PlayerSwitched();
     public static event _PlayerSwitched PlayerSwitched;
@@ -152,12 +154,34 @@ public class TurnManager : MonoBehaviourPunCallbacks
         else if (turnPlayer == player2)
             currentPhotonPlayer = photonPlayer2;
 
-       // TransferObjects();
+       TransferObjects();
     }
 
     public void TransferObjects()
     {
         if (PhotonNetwork.OfflineMode)
             return;
+
+        bossCard.photonView.TransferOwnership(currentPhotonPlayer);
+
+        PhotonView[] minionTransfer = minionCards.GetComponentsInChildren<PhotonView>();
+        for (int i = 0; i < minionTransfer.Length; i++)
+            minionTransfer[i].TransferOwnership(currentPhotonPlayer);
+
+        PhotonView[] shopTransfer = shopCards.GetComponentsInChildren<PhotonView>();
+        for (int i = 0; i < shopTransfer.Length; i++)
+            shopTransfer[i].TransferOwnership(currentPhotonPlayer);
+
+        //Alternate appraoches for transfer
+
+        //MinionCardDisplay[] views = FindObjectsOfType<MinionCardDisplay>();
+        //foreach (MinionCardDisplay card in views)
+        //    card.photonView.TransferOwnership(currentPhotonPlayer);
+
+        //foreach (PhotonView currentCard in minionTransfer)
+        //    currentCard.TransferOwnership(currentPhotonPlayer);
+
+        //foreach (PhotonView currentCard in shopTransfer)
+        //    currentCard.TransferOwnership(currentPhotonPlayer);
     }
 }

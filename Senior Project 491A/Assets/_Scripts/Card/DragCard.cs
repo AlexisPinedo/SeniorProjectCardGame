@@ -49,7 +49,6 @@ public class DragCard : MonoBehaviourPunCallbacks
             offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
                          new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 
-
             //if the card display has no hand container it means that the card is in the shop
             //We can use this to our advantage by adding shop functionality here
             if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
@@ -88,7 +87,6 @@ public class DragCard : MonoBehaviourPunCallbacks
 
             //photon view of our current card
             RPCCardSelected = this.GetComponent<PhotonView>();
-
             this.photonView.RPC("RPCOnMouseUp", RpcTarget.Others, RPCCardSelected.ViewID, this.transform.position);
         }
 
