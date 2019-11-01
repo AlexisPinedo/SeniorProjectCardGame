@@ -23,14 +23,14 @@ public class HandContainer : PlayerCardContainer
         DrawStartingHand();
     }
 
-    public void OnEnable()
+    private void OnEnable()
     {
         TurnManager.GoingToSwitchPlayer += DestroyHand;
         TurnManager.PlayerSwitched += DrawStartingHand;
         containerGrid.onGridResize += ChangeCardPositions;
     }
 
-    public void OnDisable()
+    private void OnDisable()
     {
         //Debug.Log("Hand container has been disabled");
         TurnManager.GoingToSwitchPlayer -= DestroyHand;
