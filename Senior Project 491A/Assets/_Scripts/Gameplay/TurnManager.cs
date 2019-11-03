@@ -36,6 +36,13 @@ public class TurnManager : MonoBehaviourPunCallbacks
 
     public static List<int> photonViewIDs = new List<int>();
 
+    public static byte endTurnEvent = (byte)'E';
+
+    public static byte startBattleEvent = (byte)'S';
+
+    public static byte attackMinionEvent = (byte)'A';
+
+
     private static TurnManager _instance;
 
     public static TurnManager Instance

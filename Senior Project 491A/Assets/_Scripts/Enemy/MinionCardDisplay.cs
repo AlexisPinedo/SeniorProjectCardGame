@@ -11,12 +11,12 @@ using ExitGames.Client.Photon;
 //[ExecuteInEditMode]
 public class MinionCardDisplay : EnemyCardDisplay
 {
-//    private byte currentCardIdenrifier = (byte)'E';
+    //    private byte currentCardIdenrifier = (byte)'E';
 
     //Delegate event to handle anything that cares if the card has been destroyed
     public delegate void _cardDestroyed(EnemyCardDisplay destroytedCard);
     public static event _cardDestroyed CardDestroyed;
-    
+
     //Delegate event to handle anything that cares if the card has been clicked
     public delegate void _MinionCardClicked(MinionCardDisplay cardClicked);
 
@@ -37,7 +37,7 @@ public class MinionCardDisplay : EnemyCardDisplay
     {
         Debug.Log("minion card was destroyed");
         base.OnDestroy();
-        if(CardDestroyed != null)
+        if (CardDestroyed != null)
             CardDestroyed.Invoke(this);
     }
 
@@ -45,5 +45,24 @@ public class MinionCardDisplay : EnemyCardDisplay
     protected override void OnMouseDown()
     {
         MinionCardClicked?.Invoke(this);
+        this.photonView.RPC("RPCAttackMinion", RpcTarget.Others, this.photonView.ViewID);
     }
+
+    [PunRPC]
+    private void RPCAttackMinion(int cardID)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            MinionCardDisplay purchasedCard = foundCard.GetComponent<MinionCardDisplay>();
+            MinionCardClicked?.Invoke(this);
+            Debug.Log("Minion Attacked");
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
+    }
+
+
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 /// <summary>
 /// Holds visual information specific to boss cards. Extends EnemyCardDisplay.
@@ -26,6 +27,22 @@ public class BossCardDisplay : EnemyCardDisplay
     {
         Debug.Log("boss has been clicked");
         BossCardClicked?.Invoke(this);
+        this.photonView.RPC("RPCAttackBoss", RpcTarget.Others, this.photonView.ViewID);
     }
 
+    [PunRPC]
+    private void RPCAttackBoss(int cardID)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            BossCardDisplay purchasedCard = foundCard.GetComponent<BossCardDisplay>();
+            BossCardClicked?.Invoke(this);
+            Debug.Log("boss has been clicked");
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
+    }
 }

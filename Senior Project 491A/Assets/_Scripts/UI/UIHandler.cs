@@ -22,9 +22,8 @@ public class UIHandler : MonoBehaviour
     public delegate void EndTurnButtonAction();
     public static event EndTurnButtonAction EndTurnClicked;
 
-    private byte endTurnIdentifier = (byte)'E';
-
-    private byte startBattleIdentifier = (byte)'S';
+    public RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+    public SendOptions sendOptions = new SendOptions { Reliability = true };
 
     private static UIHandler _instance;
 
@@ -66,20 +65,7 @@ public class UIHandler : MonoBehaviour
     public void StartBattleButtonOnClick()
     {
         StartClicked?.Invoke();
-
-        //BUG: If you purchase a card then start battle the cards will remain locked behind the shop table.
-
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-        {
-            Receivers = ReceiverGroup.Others,
-        };
-
-        SendOptions sendOptions = new SendOptions
-        {
-            Reliability = true
-        };
-
-        PhotonNetwork.RaiseEvent(startBattleIdentifier, null, raiseEventOptions, sendOptions);
+        PhotonNetwork.RaiseEvent(TurnManager.startBattleEvent, null, raiseEventOptions, sendOptions);
     }
 
     public void GraveyardButtonOnClick()
@@ -95,31 +81,16 @@ public class UIHandler : MonoBehaviour
     public void EndTurnButtonOnClick()
     {
         EndTurnClicked?.Invoke();
-
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-        {
-            Receivers = ReceiverGroup.Others,
-        };
-
-        SendOptions sendOptions = new SendOptions
-        {
-            Reliability = true
-        };
-
-        PhotonNetwork.RaiseEvent(endTurnIdentifier, null, raiseEventOptions, sendOptions);
+        PhotonNetwork.RaiseEvent(TurnManager.endTurnEvent, null, raiseEventOptions, sendOptions);
     }
 
     public void OnEvent(EventData photonEvent)
     {
         byte recievedCode = photonEvent.Code;
-        if (recievedCode == endTurnIdentifier)
-        {
+        if (recievedCode == TurnManager.endTurnEvent)
             EndTurnClicked?.Invoke();
-        }
-        if (recievedCode == startBattleIdentifier)
-        {
+        if (recievedCode == TurnManager.startBattleEvent)
             StartClicked?.Invoke();
-        }
     }
 
 }

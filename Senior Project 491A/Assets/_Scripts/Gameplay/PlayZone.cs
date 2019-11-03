@@ -41,8 +41,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (photonView.IsMine)
-        {
+        //if (photonView.IsMine)
+        //{
             if (other.transform.parent.gameObject.GetComponent<HandContainer>() == null)
             {
                 return;
@@ -54,19 +54,19 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
             RPCCardSelected = cardInZone.GetComponent<PhotonView>();
             this.photonView.RPC("RPCOnTriggerEnter2D", RpcTarget.Others, RPCCardSelected.ViewID);
-        }
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (photonView.IsMine)
-        {
+        //if (photonView.IsMine)
+        //{
             //Debug.Log("Card has left");
             cardInPlayZone = false;
             cardInZone = null;
 
             this.photonView.RPC("RPCOnTriggerExit2D", RpcTarget.Others);
-        }
+       // }
     }
 
     private void Update()
