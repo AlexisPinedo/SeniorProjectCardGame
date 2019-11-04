@@ -76,8 +76,15 @@ public class PlayZone : MonoBehaviourPunCallbacks
         {
             if (!Input.GetMouseButton(0))
             {
-                this.photonView.RPC("RPCPlayZoneUpdate", RpcTarget.Others);
-                HandleCardPlayed();
+                if (PhotonNetwork.OfflineMode)
+                {
+                    HandleCardPlayed();
+                }
+                else
+                {
+                    this.photonView.RPC("RPCPlayZoneUpdate", RpcTarget.All);
+
+                }
             }
         }
     }
