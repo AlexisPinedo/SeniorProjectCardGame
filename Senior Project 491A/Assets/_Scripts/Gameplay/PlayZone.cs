@@ -72,6 +72,9 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+        if(TurnManager.currentPhotonPlayer != PhotonNetwork.LocalPlayer)
+            return;
+        
         if (cardInPlayZone)
         {
             if (!Input.GetMouseButton(0))
@@ -83,7 +86,6 @@ public class PlayZone : MonoBehaviourPunCallbacks
                 else
                 {
                     this.photonView.RPC("RPCPlayZoneUpdate", RpcTarget.All);
-
                 }
             }
         }
