@@ -54,7 +54,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
                 cardInZone = other.gameObject.GetComponent<PlayerCardDisplay>();
 
             RPCCardSelected = cardInZone.GetComponent<PhotonView>();
-            this.photonView.RPC("RPCOnTriggerEnter2D", RpcTarget.Others, RPCCardSelected.ViewID);
+            RPCCardSelected.RPC("RPCOnTriggerEnter2D", RpcTarget.Others, RPCCardSelected.ViewID);
         //}
     }
 
