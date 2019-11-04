@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,11 +44,13 @@ public class ButtonInputManager : MonoBehaviour
 
     public void MyTurn()
     {
-        Debug.Log("Switching button control to: " + TurnManager.currentPhotonPlayer.NickName);
+        //Debug.Log("Switching button control to: " + TurnManager.currentPhotonPlayer.NickName);
         foreach (Button abutton in buttonList)
         {
             if(abutton.name == "Start Battle Button" || abutton.name == "End Turn Button")
             {
+                if (PhotonNetwork.OfflineMode)
+                    return;
                 if (TurnManager.currentPhotonPlayer.IsLocal)
                     abutton.gameObject.SetActive(true);
                 else

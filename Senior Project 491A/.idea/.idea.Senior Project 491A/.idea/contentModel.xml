@@ -233,7 +233,6 @@
           </e>
         </e>
         <e p="HeroIconViewed.cs" t="Include" />
-        <e p="Itransferable.cs" t="Include" />
         <e p="JMO Assets" t="Include">
           <e p="Cartoon FX" t="Include">
             <e p="CartoonFX Free.txt" t="Include" />
@@ -453,7 +452,6 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
-        <e p="TransferOwnersihpManager.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
