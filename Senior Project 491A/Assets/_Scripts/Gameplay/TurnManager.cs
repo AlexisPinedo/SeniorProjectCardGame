@@ -40,9 +40,6 @@ public class TurnManager : MonoBehaviourPunCallbacks
 
     public static byte startBattleEvent = (byte)'S';
 
-    public static byte attackMinionEvent = (byte)'A';
-
-
     private static TurnManager _instance;
 
     public static TurnManager Instance
