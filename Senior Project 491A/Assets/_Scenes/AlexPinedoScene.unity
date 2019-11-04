@@ -455,6 +455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7e90af0b3811eac8cec531e4b94592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
+  player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
   turnPlayer: {fileID: 0}
   turnPlayerGameObject: {fileID: 0}
   player1GameObject: {fileID: 101520841}
@@ -462,8 +464,6 @@ MonoBehaviour:
   shopCards: {fileID: 301505297}
   minionCards: {fileID: 607427542}
   bossCard: {fileID: 589770440}
-  player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
-  player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
 --- !u!114 &381133603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3417,8 +3417,6 @@ GameObject:
   - component: {fileID: 1455907481}
   - component: {fileID: 1455907480}
   - component: {fileID: 1455907484}
-  - component: {fileID: 1455907486}
-  - component: {fileID: 1455907485}
   - component: {fileID: 1455907488}
   - component: {fileID: 1455907487}
   m_Layer: 5
@@ -3530,43 +3528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a3cd5295be04e548b11591b8d74834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1455907485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455907479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
---- !u!114 &1455907486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455907479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 1455907485}
-  viewIdField: 5
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &1455907487
 MonoBehaviour:
   m_ObjectHideFlags: 0
