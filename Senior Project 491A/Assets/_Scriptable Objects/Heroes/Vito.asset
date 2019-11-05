@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b082ef0f61ef87a4198dfd8e8bb888ea, type: 3}
   m_Name: Vito
   m_EditorClassIdentifier: 
-  _heroPortrait: {fileID: 21300000, guid: 007b297e8d921024ab2d19afd4db72bb, type: 3}
+  _heroPortrait: {fileID: 21300000, guid: 41ba3555528e04e03aea67feb214d3ed, type: 3}
   _heroPowerMessageDisplay: Gain 4 power every turn
