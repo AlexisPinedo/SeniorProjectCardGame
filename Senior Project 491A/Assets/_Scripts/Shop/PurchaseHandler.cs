@@ -36,6 +36,8 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
         DragCard.ShopCardClicked += HandlePurchase;
         FreeShopSelectionEvent.PurchaseEventTriggered += UnSubHandlePurchase;
         FreeShopSelectionEvent.PurchaseEventEnded += SubHandlePurchase;
+        BattleManager.BattleStarted += MoveShopUp;
+        BattleManager.BattleEnded += MoveShopDown;
     }
 
     private void OnDisable()
@@ -43,6 +45,19 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
         DragCard.ShopCardClicked -= HandlePurchase;
         FreeShopSelectionEvent.PurchaseEventTriggered -= UnSubHandlePurchase;
         FreeShopSelectionEvent.PurchaseEventEnded += SubHandlePurchase;
+        BattleManager.BattleStarted -= MoveShopUp;
+        BattleManager.BattleEnded -= MoveShopDown;
+
+    }
+
+    private void MoveShopUp()
+    {
+        gameObject.transform.position = new Vector3(0, 40, 0);
+    }
+
+    private void MoveShopDown()
+    {
+        gameObject.transform.position = new Vector3(0, 0, 0);
     }
 
     private void UnSubHandlePurchase()
