@@ -52,21 +52,23 @@ public class DragCard : MonoBehaviourPun
 
             //if the card display has no hand container it means that the card is in the shop
             //We can use this to our advantage by adding shop functionality here
+            
+            //Debug.Log("Card is in Shop");
+            PlayerCardDisplay cardClicked = this.gameObject.GetComponent<PlayerCardDisplay>();
+            
             if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
             {
-                //Debug.Log("Card is in Shop");
-                PlayerCardDisplay cardClicked = this.gameObject.GetComponent<PlayerCardDisplay>();
-
+                //THIS MIGHT BE BREAKING SHIT
                 cardClicked.transform.position = OriginalPosition;
                 
                 ShopCardClicked?.Invoke(cardClicked);
 
                 //photon view of our current card
-                this.photonView.RPC("RPCOnMouseDownShop", RpcTarget.Others, RPCCardSelected.ViewID, cardClicked.transform);
+                this.photonView.RPC("RPCOnMouseDownShop", RpcTarget.Others, RPCCardSelected.ViewID);
             }
             else
             {
-                CardDragged?.Invoke(GetComponent<PlayerCardDisplay>());
+                CardDragged?.Invoke(cardClicked);
                 this.photonView.RPC("RPCOnMouseDown", RpcTarget.Others, RPCCardSelected.ViewID);
             }
         }
@@ -78,9 +80,9 @@ public class DragCard : MonoBehaviourPun
         PhotonView foundCard = PhotonView.Find(cardID);
         if (foundCard)
         {
-            PlayerCardDisplay purchasedCard = foundCard.GetComponent<PlayerCardDisplay>();
-            purchasedCard.transform.position = trans.position;
-            ShopCardClicked?.Invoke(purchasedCard);
+            PlayerCardDisplay cardClicked = foundCard.GetComponent<PlayerCardDisplay>();
+            cardClicked.transform.position = OriginalPosition;
+            ShopCardClicked?.Invoke(cardClicked);
         }
         else
         {
@@ -119,17 +121,18 @@ public class DragCard : MonoBehaviourPun
 
             //photon view of our current card
             RPCCardSelected = this.GetComponent<PhotonView>();
-            this.photonView.RPC("RPCOnMouseUp", RpcTarget.Others, RPCCardSelected.ViewID, this.transform);
+            this.photonView.RPC("RPCOnMouseUp", RpcTarget.Others, RPCCardSelected.ViewID);
         }
     }
 
     [PunRPC]
-    private void RPCOnMouseUp(int cardID, Transform trans)
+    private void RPCOnMouseUp(int cardID)
     {
         PhotonView foundCard = PhotonView.Find(cardID);
         if (foundCard)
         {
-            this.transform.position = trans.position;
+            
+            transform.position = OriginalPosition;
             CardReleased?.Invoke();
         }
         else
