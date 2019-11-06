@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Photon.Pun;
 /// <summary>
@@ -12,7 +9,7 @@ using Photon.Pun;
 /// </summary>
 ///
 
-public abstract class CardDisplay : MonoBehaviourPunCallbacks
+public abstract class CardDisplay : MonoBehaviourPun
 {
     [SerializeField] protected SpriteRenderer cardArtDisplay;
     [SerializeField] protected SpriteRenderer typeIcon;
@@ -21,17 +18,18 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     [SerializeField] protected SpriteRenderer cardNameTextBox;
     [SerializeField] protected TextMeshPro nameText;
     [SerializeField] protected TextMeshPro cardEffectText;
-    
+
     [SerializeField]
     protected BoxCollider2D cardDisplayCollider;
 
+    public static int photonIdCounter = 1001;
 
     protected virtual void Awake()
     {
         cardDisplayCollider = GetComponent<BoxCollider2D>();
         LoadCardIntoDisplay();
     }
-    
+
     /// <summary>
     /// This method like the others will handle destruction and creation of the displays
     /// running virtual methods of what to do when this happens 
@@ -45,9 +43,7 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
     {
         Event_Base.GameStatePausingEventTriggered += DisableBoxCollider;
         Event_Base.GameStatePausingEventEnded += EnableBoxCollider;
-        //Debug.Log("CardDisplay: OnEnable()");
         LoadCardIntoDisplay();
-        
     }
 
     protected virtual void OnDisable()
@@ -56,12 +52,12 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
         Event_Base.GameStatePausingEventEnded -= EnableBoxCollider;
         ClearCardFromDisplay();
     }
-    
+
     protected virtual void LoadCardIntoDisplay()
     {
 
     }
-    
+
     protected virtual void ClearCardFromDisplay()
     {
 
@@ -69,24 +65,23 @@ public abstract class CardDisplay : MonoBehaviourPunCallbacks
 
     protected virtual void OnMouseDown()
     {
-        
+
     }
-    
+
     protected virtual void DisableBoxCollider()
     {
         //Debug.Log("disabling collider for " + nameText);
         if (this != null)
         {
-            if(cardDisplayCollider.enabled)
+            if (cardDisplayCollider.enabled)
                 cardDisplayCollider.enabled = false;
         }
     }
 
     public virtual void EnableBoxCollider()
     {
-        if(this != null)
-            if(!cardDisplayCollider.enabled)
+        if (this != null)
+            if (!cardDisplayCollider.enabled)
                 cardDisplayCollider.enabled = true;
     }
-    
 }

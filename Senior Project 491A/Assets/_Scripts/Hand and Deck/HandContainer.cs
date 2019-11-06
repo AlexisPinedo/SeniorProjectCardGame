@@ -32,7 +32,6 @@ public class HandContainer : PlayerCardContainer
 
     private void OnDisable()
     {
-        
         //Debug.Log("Hand container has been disabled");
         TurnManager.GoingToSwitchPlayer -= DestroyHand;
         TurnManager.PlayerSwitched -= DrawStartingHand;
@@ -92,19 +91,17 @@ public class HandContainer : PlayerCardContainer
             return;
         }
 
-        /**
-         *
-         * Alternate approach to attach a photon view unique identifier across network.
-         *
-         *         //object[] myCustomInitData = {display.card};
-         *         //PlayerCardDisplay cardDisplay = (PlayerCardDisplay) PhotonNetwork.InstantiateSceneObject("Player Card Container", containerGrid.freeLocations.Pop(), Quaternion.identity, 0, myCustomInitData);
-         *         Debug.Log("instantiated photon scene object...");
-         */
-
-
         // Place it on the grid!
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
-        PlayerCardDisplay cardDisplay =  Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
+        PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
+
+        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
+        if (cardDisplayPhotonView.ViewID == 0)
+            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
+        else
+            Debug.Log("Already has an assigned ID");
+
+        cardDisplayPhotonView.TransferOwnership(TurnManager.currentPhotonPlayer);
 
         Vector3 tempCardDestination = containerGrid.freeLocations.Pop();
 
@@ -119,12 +116,6 @@ public class HandContainer : PlayerCardContainer
         hand.hand.Add(cardDrawn);
     }
 
-
-    public void OnPhotonInstantiate(PhotonMessageInfo info)
-    {
-        object[] instantiationData = info.photonView.InstantiationData;
-        this.cardDrawn = (PlayerCard)instantiationData[0];
-    }
 
     public void DrawExtraCard()
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,6 +49,8 @@ public class ButtonInputManager : MonoBehaviour
         {
             if(abutton.name == "Start Battle Button" || abutton.name == "End Turn Button")
             {
+                if (PhotonNetwork.OfflineMode)
+                    return;
                 if (TurnManager.currentPhotonPlayer.IsLocal)
                     abutton.gameObject.SetActive(true);
                 else

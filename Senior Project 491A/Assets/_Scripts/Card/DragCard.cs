@@ -8,7 +8,7 @@ using Photon.Realtime;
 /// <summary>
 /// This class handles the dragging of cards. When a card is clicked it will follow the mouse and drag with it. 
 /// </summary>
-public class DragCard : MonoBehaviourPunCallbacks
+public class DragCard : MonoBehaviourPun
 {
     private Vector3 offset;
     private Vector3 screenPoint;
@@ -33,17 +33,13 @@ public class DragCard : MonoBehaviourPunCallbacks
         
     }
 
-
-
     /// <summary>
     /// This method is ivoked when the mouse button is clicked
     /// </summary>
     public void OnMouseDown()
     {
-        
         if (photonView.IsMine)
         {
-            
             //used to grab the z coordinate of the game object 
             //We need to conver the position to world space so it works with nested objects
             screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -52,6 +48,7 @@ public class DragCard : MonoBehaviourPunCallbacks
             offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
                          new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 
+            RPCCardSelected = this.GetComponent<PhotonView>();
 
             //if the card display has no hand container it means that the card is in the shop
             //We can use this to our advantage by adding shop functionality here
@@ -65,13 +62,44 @@ public class DragCard : MonoBehaviourPunCallbacks
                 ShopCardClicked?.Invoke(cardClicked);
 
                 //photon view of our current card
-                RPCCardSelected = this.GetComponent<PhotonView>();
-                this.photonView.RPC("RPCOnMouseDown", RpcTarget.Others, RPCCardSelected.ViewID);
+                this.photonView.RPC("RPCOnMouseDownShop", RpcTarget.Others, RPCCardSelected.ViewID, cardClicked.transform);
             }
             else
             {
                 CardDragged?.Invoke(GetComponent<PlayerCardDisplay>());
+                this.photonView.RPC("RPCOnMouseDown", RpcTarget.Others, RPCCardSelected.ViewID);
             }
+        }
+    }
+
+    [PunRPC]
+    private void RPCOnMouseDownShop(int cardID, Transform trans)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            PlayerCardDisplay purchasedCard = foundCard.GetComponent<PlayerCardDisplay>();
+            purchasedCard.transform.position = trans.position;
+            ShopCardClicked?.Invoke(purchasedCard);
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
+    }
+
+    [PunRPC]
+    private void RPCOnMouseDown(int cardID)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            PlayerCardDisplay draggedCard = foundCard.GetComponent<PlayerCardDisplay>();
+            CardDragged?.Invoke(draggedCard);
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
         }
     }
 
@@ -91,10 +119,23 @@ public class DragCard : MonoBehaviourPunCallbacks
 
             //photon view of our current card
             RPCCardSelected = this.GetComponent<PhotonView>();
-
-            this.photonView.RPC("RPCOnMouseUp", RpcTarget.Others, RPCCardSelected.ViewID, this.transform.position);
+            this.photonView.RPC("RPCOnMouseUp", RpcTarget.Others, RPCCardSelected.ViewID, this.transform);
         }
+    }
 
+    [PunRPC]
+    private void RPCOnMouseUp(int cardID, Transform trans)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            this.transform.position = trans.position;
+            CardReleased?.Invoke();
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
     }
 
     /// <summary>
@@ -129,49 +170,19 @@ public class DragCard : MonoBehaviourPunCallbacks
             RPCCardSelected = this.GetComponent<PhotonView>();
 
             //RPC call the current card photon ID and the changed position
-            this.photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, RPCCardSelected.ViewID, transform.position);
-        }
-
-    }
-
-    [PunRPC]
-    private void RPCOnMouseDown(int cardID)
-    {
-        PhotonView foundCard = PhotonView.Find(cardID);
-        if (foundCard)
-        {
-            PlayerCardDisplay purchasedCard = foundCard.GetComponent<PlayerCardDisplay>();
-            ShopCardClicked?.Invoke(purchasedCard);
-        }
-        else
-        {
-            Debug.Log("Photon View not found. CardID: " + cardID);
+            this.photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, RPCCardSelected.ViewID, transform);
         }
     }
 
     [PunRPC]
-    private void RPCOnMouseUp(int cardID, Vector3 position)
-    {
-        PhotonView foundCard = PhotonView.Find(cardID);
-        if (foundCard)
-        {
-            this.transform.position = position;
-        }
-        else
-        {
-            Debug.Log("Photon View not found. CardID: " + cardID);
-        }
-    }
-
-    [PunRPC]
-    private void RPCOnMouseDrag(int cardID, Vector3 position)
+    private void RPCOnMouseDrag(int cardID, Transform trans)
     {
         //find the phototon view associted with the given ID
         PhotonView foundCard = PhotonView.Find(cardID);
         if (foundCard)
         {
             //update the position of the card
-            foundCard.transform.position = position;
+            foundCard.transform.position = trans.position;
         }
         else
         {
@@ -179,57 +190,3 @@ public class DragCard : MonoBehaviourPunCallbacks
         }
     }
 }
-
-
-//public class DragCard : MonoBehaviour
-//{
-//public delegate void _onCardPurschased(PlayerCard cardBought);
-//public static event _onCardPurschased CardPurchased;
-
-//private Vector3 screenPoint;
-//private Vector3 offset;
-
-//private PlayerCard card;
-
-//public bool draggable = true;
-
-//public void Awake()
-//{
-//    card = GetComponent<PlayerCard>();
-//}
-
-//void OnMouseDown()
-//{
-//    if (card.inShop)
-//    {
-//        draggable = true;
-//        //if (card.PurchaseCard())
-//        //{
-//        //    if (CardPurchased != null)
-//        //    {
-//        //        CardPurchased.Invoke(card);
-//        //    }
-//        //}
-//    }
-//    else
-//    {
-//        draggable = true;
-//        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); //used to grab the z coordinate of the game object 
-
-//        offset = gameObject.transform.position -
-//                 Camera.main.ScreenToWorldPoint(
-//                     new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-//    }
-//}
-
-//void OnMouseDrag()
-//{
-//    if (draggable)
-//    {
-//        UnityEngine.Vector2 cursorScreenPoint = new UnityEngine.Vector2(Input.mousePosition.x, Input.mousePosition.y); //stores position of cursor in screen space
-//        UnityEngine.Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset; //grabs the position of the mouse cursor and converts to world space
-
-//        transform.position = cursorPosition; //updates position of game object
-//    }
-//}
-//}

@@ -11,12 +11,12 @@ using ExitGames.Client.Photon;
 //[ExecuteInEditMode]
 public class MinionCardDisplay : EnemyCardDisplay
 {
-    private byte currentCardIdenrifier = (byte)'E';
+    //    private byte currentCardIdenrifier = (byte)'E';
 
     //Delegate event to handle anything that cares if the card has been destroyed
     public delegate void _cardDestroyed(EnemyCardDisplay destroytedCard);
     public static event _cardDestroyed CardDestroyed;
-    
+
     //Delegate event to handle anything that cares if the card has been clicked
     public delegate void _MinionCardClicked(MinionCardDisplay cardClicked);
 
@@ -25,83 +25,19 @@ public class MinionCardDisplay : EnemyCardDisplay
     void Awake()
     {
         base.Awake();
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (PhotonNetwork.AllocateViewID(photonView))
-            {
-                object[] data = { photonView.ViewID };
-
-                RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-                {
-                    Receivers = ReceiverGroup.Others,
-                    CachingOption = EventCaching.AddToRoomCache
-                };
-
-                SendOptions sendOptions = new SendOptions
-                {
-                    Reliability = true
-                };
-
-//                Debug.Log("MinionCard assigned ViewID: " + photonView.ViewID);
-                PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
-
-                if (!PhotonNetwork.OfflineMode)
-                {
-                    if (!TurnManager.currentPhotonPlayer.IsMasterClient)
-                    {
-                        //Debug.Log("Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
-                        photonView.TransferOwnership(TurnManager.currentPhotonPlayer);
-                    }
-                }
-            }
-            else
-            {
-                Debug.Log("Unable to allocate ID");
-            }
-        }
-    }
-    public void OnEvent(EventData photonEvent)
-    {
-
-        byte recievedCode = photonEvent.Code;
-        if (recievedCode == currentCardIdenrifier)
-        {
-            object[] data = (object[])photonEvent.CustomData;
-            int recievedPhotonID = (int)data[0];
-
-            if (!TurnManager.photonViewIDs.Contains(recievedPhotonID))
-            {
-                photonView.ViewID = recievedPhotonID;
-                TurnManager.photonViewIDs.Add(recievedPhotonID);
-
-                Debug.Log("MinionCard RPC to assign PhotonView ID: " + photonView.ViewID);
-                PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
-            }
-        }
-        else
-        {
-            //Debug.Log("Event code not found");
-        }
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
     }
-
-    public void OnDisable()
-    {
-        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
-    }
-
 
     //This method will invoke the CardDestroyed event 
     protected override void OnDestroy()
     {
         Debug.Log("minion card was destroyed");
         base.OnDestroy();
-        if(CardDestroyed != null)
+        if (CardDestroyed != null)
             CardDestroyed.Invoke(this);
     }
 
@@ -109,5 +45,24 @@ public class MinionCardDisplay : EnemyCardDisplay
     protected override void OnMouseDown()
     {
         MinionCardClicked?.Invoke(this);
+        this.photonView.RPC("RPCAttackMinion", RpcTarget.Others, this.photonView.ViewID);
     }
+
+    [PunRPC]
+    private void RPCAttackMinion(int cardID)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            MinionCardDisplay purchasedCard = foundCard.GetComponent<MinionCardDisplay>();
+            MinionCardClicked?.Invoke(this);
+            Debug.Log("Minion Attacked");
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
+    }
+
+
 }

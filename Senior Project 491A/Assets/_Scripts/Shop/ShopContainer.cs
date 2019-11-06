@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
+using Photon.Pun;
 
 //using UnityEditorInternal;
 
@@ -20,7 +21,6 @@ public class ShopContainer : PlayerCardContainer
         get { return _instance; }
     }
     public ShopDeck shopDeck;
-
 
     public delegate void _cardDrawnLocationCreated(PlayerCardDisplay cardDrawn, Vector3 freeSpot);
 
@@ -53,21 +53,17 @@ public class ShopContainer : PlayerCardContainer
     {
         //Debug.Log("trying to shuffle deck");
         shopDeck.cardsInDeck = ShuffleDeck.Shuffle(shopDeck);
-        
         DrawStartingHand();
     }
 
     private void OnEnable()
     {
         PlayerCardDisplay.CardPurchased += DisplayNewCard;
-        
-        
     }
 
     private void OnDisable()
     {
         PlayerCardDisplay.CardPurchased -= DisplayNewCard;
-        
     }
 
     /// <summary>
@@ -84,10 +80,8 @@ public class ShopContainer : PlayerCardContainer
             }
 
             HandleDisplayOfACard();
-
             // Draw a Card from the ShopDeck
         }
-
     }
 
     private void HandleDisplayOfACard()
@@ -101,6 +95,12 @@ public class ShopContainer : PlayerCardContainer
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
         cardDisplay.enabled = true;
+
+        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
+        if (cardDisplayPhotonView.ViewID == 0)
+            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
+        else
+            Debug.Log("Already has an assigned ID");
 
         Vector3 finalCardDestination = containerGrid.freeLocations.Pop();
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class FieldContainer : Container
@@ -78,14 +79,16 @@ public class FieldContainer : Container
 
     public void CreateInstanceOfCard(Vector2 freeLocation)
     {
-
-
         EnemyCard cardDrawn = null;
         cardDrawn = (EnemyCard)enemyDeck.cardsInDeck.Pop();
 
         display.card = cardDrawn;
         EnemyCardDisplay cardDisplay = Instantiate(display, freeLocation, Quaternion.identity, this.transform);
-
+        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
+        if (cardDisplayPhotonView.ViewID == 0)
+            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
+        else
+            Debug.Log("Already has an assigned ID");
         cardDisplay.enabled = true;
         
         if (!containerGrid.cardLocationReference.ContainsKey(freeLocation))
@@ -105,9 +108,6 @@ public class FieldContainer : Container
         Vector2 cardLocation = cardDestroyed.gameObject.transform.position;
         //Debug.Log("Card destroyed adding free location");
         containerGrid.freeLocations.Push(cardLocation);
-        
         //containerGrid.cardLocationReference[cardLocation] = null;
     }
-    
-    
 }

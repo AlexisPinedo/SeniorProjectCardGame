@@ -30,7 +30,7 @@ public class PlayerCardDisplay : CardDisplay
     [SerializeField] private SpriteRenderer powerIcon;
     [SerializeField] private SpriteRenderer currencyIcon;
     [SerializeField] private List<GameObject> cardIcons = new List<GameObject>();
-    
+
     public delegate void _CardPurchased(PlayerCardDisplay cardBought);
 
     public static event _CardPurchased CardPurchased;
@@ -38,67 +38,10 @@ public class PlayerCardDisplay : CardDisplay
     //private static List<int> photonViewIDs = new List<int>();
 
     //When the PlayerCardDisplay is loaded we want to load in the components into the display
-        protected override void Awake()
-        {
-            base.Awake();
-            LoadCardIntoDisplay();
-        }
-
-    /// <summary>
-    /// Called when this object is enabled. Adds EventReceived to the Networking Client.
-    /// </summary>
-    //[ExecuteInEditMode]
-    //    protected override void OnEnable()
-    //    {
-    //        base.OnEnable();
-    //    }
-
-    /// <summary>
-    /// Called when this object is disabled. Removes EventReceived from the Networking Client.
-    /// </summary>
-    //[ExecuteInEditMode]
-    //    protected override void OnDisable()
-    //    {
-    //        ClearCardFromDisplay();
-    //    }
-
-    void Start()
-    { 
-        if(!PhotonNetwork.OfflineMode)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                if (PhotonNetwork.AllocateViewID(photonView))
-                {
-                    object[] data = {photonView.ViewID};
-
-                    RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-                    {
-                        Receivers = ReceiverGroup.Others,
-                        CachingOption = EventCaching.AddToRoomCache
-                    };
-
-                    SendOptions sendOptions = new SendOptions
-                    {
-                        Reliability = true
-                    };
-
-//                    Debug.Log("PlayerCard assigned ViewID: " + photonView.ViewID);
-
-                    PhotonNetwork.RaiseEvent(currentCardIdenrifier, data, raiseEventOptions, sendOptions);
-                    if (!TurnManager.currentPhotonPlayer.IsMasterClient)
-                    {
-                        Debug.Log(
-                            "Master Client has assigned a PhotonView ID and is transfering ownership to other player...");
-                        photonView.TransferOwnership(TurnManager.currentPhotonPlayer);
-                    }
-                }
-                else
-                {
-                    Debug.Log("Unable to allocate ID");
-                }
-            }
-        }
+    protected override void Awake()
+    {
+        base.Awake();
+        LoadCardIntoDisplay();
     }
 
     public void OnEnable()
@@ -106,8 +49,6 @@ public class PlayerCardDisplay : CardDisplay
         base.OnEnable();
         DragCard.CardDragged += DisableNonSelectedCollider;
         DragCard.CardReleased += EnableBoxCollider;
-        
-        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
     }
 
     public void OnDisable()
@@ -115,30 +56,6 @@ public class PlayerCardDisplay : CardDisplay
         base.OnEnable();
         DragCard.CardDragged -= DisableNonSelectedCollider;
         DragCard.CardReleased -= EnableBoxCollider;
-        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
-    }
-
-    public void OnEvent(EventData photonEvent)
-    {
-        byte recievedCode = photonEvent.Code;
-        if (recievedCode == currentCardIdenrifier)
-        {
-            object[] data = (object[])photonEvent.CustomData;
-            int recievedPhotonID = (int)data[0];
-
-            if (!TurnManager.photonViewIDs.Contains(recievedPhotonID))
-            {
-                photonView.ViewID = recievedPhotonID;
-                TurnManager.photonViewIDs.Add(recievedPhotonID);
-
-//                Debug.Log("PlayerCard RPC to assign PhotonView ID: " + photonView.ViewID);
-                PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
-            }
-        }
-        else
-        {
-            //Debug.Log("Event code not found");
-        }
     }
 
     //THis method will load the display based on the information stored within the card
@@ -258,7 +175,7 @@ public class PlayerCardDisplay : CardDisplay
 
         cardIcons.Clear();
     }
-    
+
     public void TriggerCardPurchasedEvent()
     {
         CardPurchased?.Invoke(this);
@@ -271,5 +188,5 @@ public class PlayerCardDisplay : CardDisplay
             DisableBoxCollider();
         }
     }
-    
+
 }

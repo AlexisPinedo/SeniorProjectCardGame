@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using Photon.Pun;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class ParticlePlay : MonoBehaviour
+public class ParticlePlay : MonoBehaviourPun
 {
     [SerializeField] private AssetReference goldSummoner;
     [SerializeField] private AssetReference purpleSummoner;
@@ -31,7 +32,7 @@ public class ParticlePlay : MonoBehaviour
 
     IEnumerator PlaySummoningCircleHelper()
     {
-        Debug.Log("Playing Gold Summoner");
+        //Debug.Log("Playing Gold Summoner");
 
         if (summonerCount < 4)
         {
@@ -53,7 +54,6 @@ public class ParticlePlay : MonoBehaviour
 
         // Instantiate the PurpleCircleHere
         LoadAndSpawn(purpleSummoner);
-        
     }
 
     void LoadAndSpawn(AssetReference assetReference)
@@ -65,17 +65,14 @@ public class ParticlePlay : MonoBehaviour
             assetReference.InstantiateAsync(transform.position, Quaternion.identity).Completed +=
                 (asyncOperationHandle) =>
                 {
-                    Debug.Log("Spawned summoner");
-                   
+                    //Debug.Log("Spawned summoner");
                 };
         };
-
-        
     }
 
     void CanDestroySummoner()
     {
-        Debug.Log("Mouse Up, Card can be lifted");
+        //Debug.Log("Mouse Up, Card can be lifted");
 
         canDestroyCircle = true;
 

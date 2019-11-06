@@ -10,57 +10,77 @@ using UnityEngine;
 /// </summary>
 public class CardZoomer : MonoBehaviourPunCallbacks
 {
-    private object myGameObject;
-
     public Vector2 OriginalPosition;
-
-    private bool offline;
 
     private void Awake()
     {
         OriginalPosition = this.transform.position;
-        //offline = PhotonNetworkManager.IsOffline;
-
     }
 
     public void OnMouseEnter()
     {
         //cardcollider.size & cardcollider.offset
         //shop card
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
+        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        {
             //Debug.Log("enter");
             transform.localScale += new Vector3(0.5F, 0.5F, 0.5F); //zooms in the object
             Vector3 newPosition = new Vector3(0, -1, 0);
             transform.position += newPosition;
         }
         //player card
-        else{
+        else
+        {
             //Debug.Log("enter");
             transform.localScale += new Vector3(0.5F, 0.5F, 0.5F); //zooms in the object
             Vector3 newPosition = new Vector3(0, 1, 0);
             transform.position += newPosition;
         }
-        if (offline || photonView.IsMine)
+        photonView.RPC("RPCOnMouseEnter", RpcTarget.Others, photonView.ViewID, transform);
+    }
+
+    [PunRPC]
+    private void RPCOnMouseEnter(int cardID, Transform trans)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
         {
-            //Debug.Log("enter");
-            //photonView.RPC("RPCOnMouseEnter", RpcTarget.Others, transform.localScale);
+            //update the position of the card
+            foundCard.transform.localScale = trans.localScale;
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
         }
     }
 
     private void OnMouseDrag()
     {
         //shop card
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
+        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        {
             transform.localScale = new Vector3(1, 1, 1);
         }
         //player card
-        else{
+        else
+        {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        
-        if (offline || photonView.IsMine)
+        photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, photonView.ViewID, transform);
+    }
+
+    [PunRPC]
+    private void RPCOnMouseDrag(int cardID, Transform trans)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
         {
-            //photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, transform.localScale);
+            //update the position of the card
+            foundCard.transform.localScale = trans.localScale;
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
         }
     }
 
@@ -70,42 +90,54 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         //Debug.Log("exit");
         transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
         transform.position = OriginalPosition;
-        
-        if (offline || photonView.IsMine)
+
+        photonView.RPC("RPCOnMouseExit", RpcTarget.Others, photonView.ViewID, transform);
+    }
+
+    [PunRPC]
+    private void RPCOnMouseExit(int cardID, Transform trans)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
         {
-            //Debug.Log("exit");
-            //photonView.RPC("RPCOnMouseExit", RpcTarget.Others, transform.localScale);
+            //update the position of the card
+            foundCard.transform.localScale = trans.localScale;
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
         }
     }
-    
+
     public void OnMouseDown()
     {
         //shop card
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
+        //if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        //{
             transform.position = OriginalPosition;
-        }
-        
+        //}
+
         //player card
-        else{
-            transform.position = OriginalPosition;
+        //else
+        //{
+        //    transform.position = OriginalPosition;
+        //}
+
+        photonView.RPC("RPCOnMouseDown", RpcTarget.Others, photonView.ViewID, transform);
+    }
+
+    [PunRPC]
+    private void RPCOnMouseDown(int cardID, Transform trans)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            //update the position of the card
+            foundCard.transform.position = trans.position;
         }
-    }
-
-    [PunRPC]
-    private void RPCOnMouseEnter(Vector3 position)
-    {
-        transform.localScale = position;
-    }
-
-    [PunRPC]
-    private void RPCOnMouseDrag(Vector3 position)
-    {
-        transform.localScale = position;
-    }
-
-    [PunRPC]
-    private void RPCOnMouseExit(Vector3 position)
-    {
-        transform.localScale = position;
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
     }
 }

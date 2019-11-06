@@ -41,8 +41,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (photonView.IsMine)
-        {
+        //if (photonView.IsMine)
+        //{
             if (other.transform.parent.gameObject.GetComponent<HandContainer>() == null)
             {
                 return;
@@ -50,39 +50,47 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
             //Debug.Log("Card has entered");
             cardInPlayZone = true;
-            cardInZone = other.gameObject.GetComponent<PlayerCardDisplay>();
+            if(other.gameObject.GetComponent<PlayerCardDisplay>() != null)
+                cardInZone = other.gameObject.GetComponent<PlayerCardDisplay>();
 
             RPCCardSelected = cardInZone.GetComponent<PhotonView>();
-            this.photonView.RPC("RPCOnTriggerEnter2D", RpcTarget.Others, RPCCardSelected.ViewID);
-        }
+            RPCCardSelected.RPC("RPCOnTriggerEnter2D", RpcTarget.Others, RPCCardSelected.ViewID);
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (photonView.IsMine)
-        {
+        //if (photonView.IsMine)
+        //{
             //Debug.Log("Card has left");
             cardInPlayZone = false;
             cardInZone = null;
 
             this.photonView.RPC("RPCOnTriggerExit2D", RpcTarget.Others);
-        }
+       // }
     }
 
     private void Update()
     {
+        if(TurnManager.currentPhotonPlayer != PhotonNetwork.LocalPlayer)
+            return;
+        
         if (cardInPlayZone)
         {
-            if (photonView.IsMine)
+            if (!Input.GetMouseButton(0))
             {
-                if (!Input.GetMouseButton(0))
+                if (PhotonNetwork.OfflineMode)
                 {
                     HandleCardPlayed();
-                    this.photonView.RPC("RPCPlayZoneUpdate", RpcTarget.Others);
+                }
+                else
+                {
+                    this.photonView.RPC("RPCPlayZoneUpdate", RpcTarget.All);
                 }
             }
         }
     }
+    
 
     private void HandleCardPlayed()
     {
@@ -115,7 +123,14 @@ public class PlayZone : MonoBehaviourPunCallbacks
         if (foundCard)
         {
             cardInPlayZone = true;
-            cardInZone = foundCard.GetComponent<PlayerCardDisplay>();
+            if (foundCard.GetComponent<PlayerCardDisplay>() != null)
+            {
+                cardInZone = foundCard.GetComponent<PlayerCardDisplay>();
+            }
+            else
+            {
+                Debug.Log("Card container was null");
+            }
         }
         else
         {
@@ -124,24 +139,19 @@ public class PlayZone : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void RPCOnTriggerExit2D(int cardID)
+    private void RPCOnTriggerExit2D()
     {
-        PhotonView foundCard = PhotonView.Find(cardID);
-        if (foundCard)
-        {
-            cardInPlayZone = false;
-            cardInZone = null;
-        }
-        else
-        {
-            Debug.Log("Photon View not found. CardID: " + cardID);
-        }
+
+        cardInPlayZone = false;
+        cardInZone = null;
+
     }
 
     [PunRPC]
     private void RPCPlayZoneUpdate()
     {
         HandleCardPlayed();
+        //HasPlayed?.Invoke();
     }
 
 }
