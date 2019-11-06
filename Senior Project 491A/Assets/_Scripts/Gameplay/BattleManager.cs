@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.UI;
 /// <summary>
 /// This class will handle the logic for the battle state
@@ -17,11 +16,7 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI PlayZoneText;
-
-    public static event Action BattleStarted; 
-    public static event Action BattleEnded; 
-
-
+    
     private void OnEnable()
     {
         UIHandler.StartClicked += StartBattleState;
@@ -78,7 +73,6 @@ public class BattleManager : MonoBehaviour
     //This method subs to the start battle button.
     private void StartBattleState()
     {
-        BattleStarted.Invoke();
         //we want to check if we are in the battle state. If we are we do nothing. 
         if (inBattleState == true)
             return;
@@ -128,8 +122,8 @@ public class BattleManager : MonoBehaviour
         //set the components to true again
         PlayZoneText.enabled = true;
         PlayZone.Instance.gameObject.SetActive(true);
-        
-        Debug.Log("Ending battle state");
-        BattleEnded.Invoke();
+        PurchaseHandler.Instance.gameObject.SetActive(true);
+        PurchaseHandler.Instance.gameObject.transform.position -= new Vector3(0f, 20f, 0f);
+
     }
 }

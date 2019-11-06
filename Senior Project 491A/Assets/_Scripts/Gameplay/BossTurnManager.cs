@@ -26,12 +26,12 @@ public class BossTurnManager : MonoBehaviour
     {
         inBossTurn = true;
         
-        //PurchaseHandler.Instance.gameObject.transform.position = new Vector3(0f, 20f, 0f);
+        PurchaseHandler.Instance.gameObject.transform.position += new Vector3(0f, 20f, 0f);
         
         
         yield return new WaitForSeconds(1);
         
-        //PurchaseHandler.Instance.gameObject.transform.position -= new Vector3(0f, 20f, 0f);
+        PurchaseHandler.Instance.gameObject.transform.position -= new Vector3(0f, 20f, 0f);
 
 
     }

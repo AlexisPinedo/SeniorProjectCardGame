@@ -68,11 +68,6 @@ public class TextUpdate : MonoBehaviourPunCallbacks
     {
         playerPower.text = "Power: " + TurnManager.Instance.turnPlayer.Power;
 
-        if (PhotonNetwork.OfflineMode)
-        {
-            return;
-        }
-
         if (photonView.IsMine)
         {
             photonView.RPC("RPCUpdatePower", RpcTarget.All, TurnManager.Instance.turnPlayer.Power);
@@ -83,12 +78,7 @@ public class TextUpdate : MonoBehaviourPunCallbacks
     public void UpdateCurrency()
     {
         playerCurrency.text = "Currency: " + TurnManager.Instance.turnPlayer.Currency;
-        
-        if (PhotonNetwork.OfflineMode)
-        {
-            return;
-        }
-        
+
         if (photonView.IsMine)
         {
             photonView.RPC("RPCUpdateCurrency", RpcTarget.All, TurnManager.Instance.turnPlayer.Currency);

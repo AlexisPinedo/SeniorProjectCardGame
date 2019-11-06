@@ -200,12 +200,6 @@
               </e>
             </e>
           </e>
-          <e p="Plugins" t="Include">
-            <e p="Http" t="Include">
-              <e p="link.xml" t="Include" />
-            </e>
-            <e p="link.xml" t="Include" />
-          </e>
         </e>
         <e p="FreeShopSelectionEvent.cs" t="Include" />
         <e p="GameEventManager.cs" t="Include" />
@@ -423,7 +417,6 @@
             <e p="play-services-resolver_v1.2.124.0.txt" t="Include" />
           </e>
         </e>
-        <e p="ShopBackgroundImageHandler.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />

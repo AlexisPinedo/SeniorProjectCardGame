@@ -62,44 +62,13 @@ public class DragCard : MonoBehaviourPun
                 ShopCardClicked?.Invoke(cardClicked);
 
                 //photon view of our current card
-                this.photonView.RPC("RPCOnMouseDownShop", RpcTarget.Others, RPCCardSelected.ViewID, cardClicked.transform);
+                this.photonView.RPC("RPCOnMouseDown", RpcTarget.Others, RPCCardSelected.ViewID);
             }
             else
             {
                 CardDragged?.Invoke(GetComponent<PlayerCardDisplay>());
-                this.photonView.RPC("RPCOnMouseDown", RpcTarget.Others, RPCCardSelected.ViewID);
+                this.photonView.RPC("RPCCardDragged", RpcTarget.Others, RPCCardSelected.ViewID);
             }
-        }
-    }
-
-    [PunRPC]
-    private void RPCOnMouseDownShop(int cardID, Transform trans)
-    {
-        PhotonView foundCard = PhotonView.Find(cardID);
-        if (foundCard)
-        {
-            PlayerCardDisplay purchasedCard = foundCard.GetComponent<PlayerCardDisplay>();
-            purchasedCard.transform.position = trans.position;
-            ShopCardClicked?.Invoke(purchasedCard);
-        }
-        else
-        {
-            Debug.Log("Photon View not found. CardID: " + cardID);
-        }
-    }
-
-    [PunRPC]
-    private void RPCOnMouseDown(int cardID)
-    {
-        PhotonView foundCard = PhotonView.Find(cardID);
-        if (foundCard)
-        {
-            PlayerCardDisplay draggedCard = foundCard.GetComponent<PlayerCardDisplay>();
-            CardDragged?.Invoke(draggedCard);
-        }
-        else
-        {
-            Debug.Log("Photon View not found. CardID: " + cardID);
         }
     }
 
@@ -119,23 +88,9 @@ public class DragCard : MonoBehaviourPun
 
             //photon view of our current card
             RPCCardSelected = this.GetComponent<PhotonView>();
-            this.photonView.RPC("RPCOnMouseUp", RpcTarget.Others, RPCCardSelected.ViewID, this.transform);
+            this.photonView.RPC("RPCOnMouseUp", RpcTarget.Others, RPCCardSelected.ViewID, this.transform.position);
         }
-    }
 
-    [PunRPC]
-    private void RPCOnMouseUp(int cardID, Transform trans)
-    {
-        PhotonView foundCard = PhotonView.Find(cardID);
-        if (foundCard)
-        {
-            this.transform.position = trans.position;
-            CardReleased?.Invoke();
-        }
-        else
-        {
-            Debug.Log("Photon View not found. CardID: " + cardID);
-        }
     }
 
     /// <summary>
@@ -170,19 +125,66 @@ public class DragCard : MonoBehaviourPun
             RPCCardSelected = this.GetComponent<PhotonView>();
 
             //RPC call the current card photon ID and the changed position
-            this.photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, RPCCardSelected.ViewID, transform);
+            this.photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, RPCCardSelected.ViewID, transform.position);
+        }
+
+    }
+
+    [PunRPC]
+    private void RPCCardDragged(int cardID)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            Debug.Log("___ is this called?");
+            PlayerCardDisplay draggedCard = foundCard.GetComponent<PlayerCardDisplay>();
+            CardDragged?.Invoke(draggedCard);
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
         }
     }
 
     [PunRPC]
-    private void RPCOnMouseDrag(int cardID, Transform trans)
+    private void RPCOnMouseDown(int cardID)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            PlayerCardDisplay purchasedCard = foundCard.GetComponent<PlayerCardDisplay>();
+            ShopCardClicked?.Invoke(purchasedCard);
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
+    }
+
+    [PunRPC]
+    private void RPCOnMouseUp(int cardID, Vector3 position)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            this.transform.position = position;
+            CardReleased?.Invoke();
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
+        }
+    }
+
+    [PunRPC]
+    private void RPCOnMouseDrag(int cardID, Vector3 position)
     {
         //find the phototon view associted with the given ID
         PhotonView foundCard = PhotonView.Find(cardID);
         if (foundCard)
         {
             //update the position of the card
-            foundCard.transform.position = trans.position;
+            foundCard.transform.position = position;
         }
         else
         {

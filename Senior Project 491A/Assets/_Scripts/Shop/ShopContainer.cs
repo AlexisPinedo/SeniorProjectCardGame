@@ -65,7 +65,6 @@ public class ShopContainer : PlayerCardContainer
     {
         PlayerCardDisplay.CardPurchased -= DisplayNewCard;
     }
-    
 
     /// <summary>
     /// Initializes the Shop's card's placements.
