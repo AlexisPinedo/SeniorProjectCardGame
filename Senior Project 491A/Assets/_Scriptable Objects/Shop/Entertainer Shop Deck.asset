@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93421ccf3969ff46829900d1e3df751, type: 3}
+  m_Name: Entertainer Shop Deck
+  m_EditorClassIdentifier: 
+  cardsToAdd:
+  - {fileID: 11400000, guid: a8cadda3d732d464aa1e119236148567, type: 2}
+  - {fileID: 11400000, guid: a99d863b184b0444390201b3e9d57e94, type: 2}
+  - {fileID: 11400000, guid: 973a9dce847204648b81c2c61a21ade6, type: 2}
+  - {fileID: 11400000, guid: 630e7a65c1604ff4f91d0bb9ddb0e323, type: 2}
+  - {fileID: 11400000, guid: dafa27cdf1ec43d47b70bab967d3bb67, type: 2}
+  - {fileID: 11400000, guid: 51fe86d8c0a5831408b70a378390f9cf, type: 2}
+  cardCopies: 3
+  CardsToAddLaterInGame: []
+  turnCountToAddOtherCards: 2

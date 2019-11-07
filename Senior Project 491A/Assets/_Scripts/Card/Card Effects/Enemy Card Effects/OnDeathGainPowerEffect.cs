@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card Effect/Minion Card Effect/On Death Gain Power")]
+
 public class OnDeathGainPowerEffect : OnDeathCardEffects
 {
     [SerializeField] private int powerIncreaseAmount;

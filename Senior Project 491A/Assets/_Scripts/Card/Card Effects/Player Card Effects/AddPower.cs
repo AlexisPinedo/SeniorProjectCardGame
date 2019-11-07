@@ -10,7 +10,7 @@ using UnityEngine;
 /// </summary>.
 
 //This will enable the ability to create scriptable objects in the Project tab
-[CreateAssetMenu(menuName = "Card Effect/Add Power")]
+[CreateAssetMenu(menuName = "Card Effect/Player Card Effect/Add Power")]
 public class AddPower : OnPlayEffects
 {
     //Select how much power you want to add. If you want different amounts for other card effects
