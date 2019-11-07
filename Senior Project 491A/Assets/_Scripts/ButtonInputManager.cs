@@ -49,10 +49,18 @@ public class ButtonInputManager : MonoBehaviour
 
     public void CurrentTurnButtonSwitch()
     {
+        if (PhotonNetwork.OfflineMode)
+            return;
+
         if (!TurnManager.currentPhotonPlayer.IsLocal)
         {
             startBattleButton.SetActive(false);
             endTurnButton.SetActive(false);
+        }
+        else
+        {
+            startBattleButton.SetActive(true);
+            endTurnButton.SetActive(true);
         }
     }
 
