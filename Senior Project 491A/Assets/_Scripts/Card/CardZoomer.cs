@@ -26,15 +26,15 @@ public class CardZoomer : MonoBehaviourPunCallbacks
             ZoomInOnCard();
             
             //if(photonView.IsMine)
-                photonView.RPC("RPCOnMouseEnter", RpcTarget.Others);
+                photonView.RPC("CardHasEntered", RpcTarget.Others);
         }
     }
     
     [PunRPC]
-    private void RPCOnMouseEnter()
+    private void CardHasEntered()
     {
         Debug.Log("Received enter rpc call");
-        ZoomInOnCard();
+        //ZoomInOnCard();
     }
 
     public void OnMouseExit()
@@ -43,15 +43,15 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         ZoomOutOfCard();
         
         //if(photonView.IsMine)
-            photonView.RPC("RPCOnMouseExit", RpcTarget.Others);
+            photonView.RPC("CardHasExited", RpcTarget.Others);
     }
 
     [PunRPC]
-    private void RPCOnMouseExit()
+    private void CardHasExited()
     {
         Debug.Log("Received exit rpc call");
 
-        ZoomOutOfCard();
+        //ZoomOutOfCard();
     }
 
     public void OnMouseDown()
