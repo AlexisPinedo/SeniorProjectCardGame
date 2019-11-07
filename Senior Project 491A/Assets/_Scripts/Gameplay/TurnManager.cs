@@ -49,12 +49,12 @@ public class TurnManager : MonoBehaviourPunCallbacks
 
     private void OnEnable()
     {
-        UIHandler.EndTurnClicked += ChangeActivePlayer;
+        BossTurnManager.BossTurnEnded += ChangeActivePlayer;
     }
 
     private void OnDisable()
     {
-        UIHandler.EndTurnClicked -= ChangeActivePlayer;
+        BossTurnManager.BossTurnEnded -= ChangeActivePlayer;
     }
 
     void Awake()
@@ -161,6 +161,8 @@ public class TurnManager : MonoBehaviourPunCallbacks
         PhotonView[] shopTransfer = shopCards.GetComponentsInChildren<PhotonView>();
         for (int i = 0; i < shopTransfer.Length; i++)
             shopTransfer[i].TransferOwnership(currentPhotonPlayer);
+
+        Debug.Log("All items transfered.");
 
         //Alternate appraoches for transfer
 

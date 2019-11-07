@@ -151,6 +151,8 @@ public class DragCard : MonoBehaviourPun
         else
         {
             CardDragged?.Invoke(cardClicked);
+
+            Debug.Log("particle effect call...");
         }
     }
 }
