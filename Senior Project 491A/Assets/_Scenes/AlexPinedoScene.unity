@@ -200,6 +200,8 @@ MonoBehaviour:
   buttonList:
   - {fileID: 1385409948}
   - {fileID: 1526216803}
+  startBattleButton: {fileID: 1526216801}
+  endTurnButton: {fileID: 1385409946}
 --- !u!1 &159457802
 GameObject:
   m_ObjectHideFlags: 0

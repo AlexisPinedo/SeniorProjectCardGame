@@ -10,6 +10,9 @@ public class ButtonInputManager : MonoBehaviour
     [SerializeField]
     private List<Button> buttonList = new List<Button>();
 
+    [SerializeField]
+    private GameObject startBattleButton, endTurnButton;
+
     private static ButtonInputManager _instance;
 
     public static ButtonInputManager Instance
@@ -27,40 +30,29 @@ public class ButtonInputManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        
     }
 
     private void OnEnable()
     {
-        UIHandler.EndTurnClicked += MyTurn;
+        TurnManager.PlayerSwitched += CurrentTurnButtonSwitch;
     }
 
     private void OnDisable()
     {
-        UIHandler.EndTurnClicked -= MyTurn;
+        TurnManager.PlayerSwitched -= CurrentTurnButtonSwitch;
     }
 
     private void Start()
     {
-        MyTurn();
+        CurrentTurnButtonSwitch();
     }
 
-
-    public void MyTurn()
+    public void CurrentTurnButtonSwitch()
     {
-        //Debug.Log("Switching button control to: " + TurnManager.currentPhotonPlayer.NickName);
-        foreach (Button abutton in buttonList)
+        if (!TurnManager.currentPhotonPlayer.IsLocal)
         {
-            if(abutton.name == "Start Battle Button" || abutton.name == "End Turn Button")
-            {
-                if (PhotonNetwork.OfflineMode)
-                    return;
-                if (TurnManager.currentPhotonPlayer.IsLocal)
-                    abutton.gameObject.SetActive(true);
-                else
-                    abutton.gameObject.SetActive(false);
-            }
+            startBattleButton.SetActive(false);
+            endTurnButton.SetActive(false);
         }
     }
 
