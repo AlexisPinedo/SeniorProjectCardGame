@@ -202,5 +202,9 @@ public class PlayerCardDisplay : CardDisplay
         cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
     }
     
-
+    [PunRPC]
+    private void DestroyCard()
+    {
+        Destroy(gameObject);
+    }
 }

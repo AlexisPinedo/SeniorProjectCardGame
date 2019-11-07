@@ -132,9 +132,5 @@ public class PlayZone : MonoBehaviourPunCallbacks
         cardInZone = null;
     }
     
-    [PunRPC]
-    private void DestroyCard()
-    {
-        Destroy(this.gameObject);
-    }
+
 }
