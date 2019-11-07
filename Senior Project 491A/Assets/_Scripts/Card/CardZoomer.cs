@@ -25,7 +25,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         {
             ZoomInOnCard();
             
-            //if(photonView.IsMine)
+            if(photonView.IsMine)
                 photonView.RPC("CardHasEntered", RpcTarget.Others);
         }
     }
@@ -42,7 +42,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         
         ZoomOutOfCard();
         
-        //if(photonView.IsMine)
+        if(photonView.IsMine)
             photonView.RPC("CardHasExited", RpcTarget.Others);
     }
 
