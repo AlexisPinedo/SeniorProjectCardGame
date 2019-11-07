@@ -40,9 +40,6 @@ public class TurnManager : MonoBehaviourPunCallbacks
 
     public static byte startBattleEvent = (byte)'S';
 
-    public static byte attackMinionEvent = (byte)'A';
-
-
     private static TurnManager _instance;
 
     public static TurnManager Instance
@@ -88,7 +85,6 @@ public class TurnManager : MonoBehaviourPunCallbacks
                     photonPlayer2 = player;
             }
 
-            //current player
             currentPhotonPlayer = photonPlayer1;
 
             Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
@@ -116,19 +112,13 @@ public class TurnManager : MonoBehaviourPunCallbacks
 
     public void ChangeActivePlayer()
     {
-        Debug.Log("Changing active player");
         if (player1GameObject != null && player2GameObject != null)
         {
-            Debug.Log("Players weren't null'");
             turnPlayer.Currency = 0;
             turnPlayer.Power = 0;
-            
             GoingToSwitchPlayer?.Invoke();
-            
             SwapPlayers();
-
             PlayerSwitched?.Invoke();
-
             TextUpdate.Instance.UpdateCurrency();
             TextUpdate.Instance.UpdatePower();
         }
@@ -143,6 +133,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
             player2GameObject.SetActive(true);
             player2GameObject.GetComponentInChildren<HandContainer>().enabled = true;
             turnPlayer = player2;
+            currentPhotonPlayer = photonPlayer2;
             turnPlayerGameObject = player2GameObject;
         }
         // Switch to Player One
@@ -151,24 +142,16 @@ public class TurnManager : MonoBehaviourPunCallbacks
             player2GameObject.SetActive(false);
             player1GameObject.SetActive(true);
             turnPlayer = player1;
+            currentPhotonPlayer = photonPlayer1;
             turnPlayerGameObject = player1GameObject;
         }
 
-        // transfer photon view ownership to player 1
-        if (turnPlayer == player1)
-            currentPhotonPlayer = photonPlayer1;
-        // transfer photon view ownership to player 2
-        else if (turnPlayer == player2)
-            currentPhotonPlayer = photonPlayer2;
-
-       TransferObjects();
+        if (!PhotonNetwork.OfflineMode)
+            TransferObjects();
     }
 
     public void TransferObjects()
     {
-        if (PhotonNetwork.OfflineMode)
-            return;
-
         bossCard.photonView.TransferOwnership(currentPhotonPlayer);
 
         PhotonView[] minionTransfer = minionCards.GetComponentsInChildren<PhotonView>();
