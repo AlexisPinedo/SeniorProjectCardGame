@@ -34,7 +34,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
     private void CardHasEntered()
     {
         Debug.Log("Received enter rpc call" + photonView.ViewID);
-        //ZoomInOnCard();
+        ZoomInOnCard();
     }
 
     public void OnMouseExit()
@@ -51,7 +51,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
     {
         Debug.Log("Received exit rpc call"  + photonView.ViewID);
 
-        //ZoomOutOfCard();
+        ZoomOutOfCard();
     }
 
     public void OnMouseDown()
