@@ -108,7 +108,7 @@ public class PlayerCardDisplay : CardDisplay
     /// </summary>
     private void LoadCostEffectIcons()
     {
-        Debug.Log("Loading cost effect icons for " + card.CardName);
+        //Debug.Log("Loading cost effect icons for " + card.CardName);
         // Initial spawn point that changes with each card added
         Vector3 spawnPoint = new Vector3(-.55f, .23f, 0f);
 

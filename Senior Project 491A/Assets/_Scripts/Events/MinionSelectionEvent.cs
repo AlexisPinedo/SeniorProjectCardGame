@@ -14,7 +14,7 @@ public class MinionSelectionEvent : Event_Base
     
     public void EnableMinonSelectionEvent()
     {
-        StartCoroutine(MinionSelectionState());
+        
     }
     
     private void Awake()

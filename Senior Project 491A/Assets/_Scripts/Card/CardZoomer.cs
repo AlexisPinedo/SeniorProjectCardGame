@@ -70,7 +70,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
     
     private void ZoomInOnCard()
     {
-        Debug.Log("zoom in " + photonView.ViewID);
+        //Debug.Log("zoom in " + photonView.ViewID);
         if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
             //Debug.Log("enter");
@@ -91,7 +91,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
 
     private void ZoomOutOfCard()
     {
-        Debug.Log("zoom out " +photonView.ViewID);
+        //Debug.Log("zoom out " +photonView.ViewID);
         transform.localScale = new Vector2(1, 1);  //returns the object to its original state
         if (!DragCard.cardHeld)
             transform.position = OriginalPosition;
