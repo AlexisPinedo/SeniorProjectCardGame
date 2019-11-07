@@ -33,6 +33,7 @@ public class DragCard : MonoBehaviourPun
     private void HandleCardClicked(Vector2 RPCoffset)
     {
         cardHeld = true;
+        
         //used to grab the z coordinate of the game object 
         //We need to conver the position to world space so it works with nested objects
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -46,7 +47,7 @@ public class DragCard : MonoBehaviourPun
         //Debug.Log("Card is in Shop");
         PlayerCardDisplay cardClicked = this.gameObject.GetComponent<PlayerCardDisplay>();
 
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
             cardClicked.transform.position = OriginalPosition;
 
@@ -68,10 +69,10 @@ public class DragCard : MonoBehaviourPun
         {
             //used to grab the z coordinate of the game object 
             //We need to conver the position to world space so it works with nested objects
-            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+            screenPoint = Camera.main.WorldToScreenPoint(transform.position);
 
             //Here we add the offset from the card and the mouse
-            offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
+            offset = transform.position - Camera.main.ScreenToWorldPoint(
                          new Vector2(Input.mousePosition.x, Input.mousePosition.y));
 
             HandleCardClicked(offset);
@@ -121,7 +122,7 @@ public class DragCard : MonoBehaviourPun
             return;
         }
         //updates position of game object
-        transform.position = position;
+        transform.position = (Vector3)position;
     }
     
     /// <summary>
