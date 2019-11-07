@@ -25,48 +25,49 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         {
             ZoomInOnCard();
             
-            if(photonView.IsMine)
-                photonView.RPC("RPCOnMouseEnter", RpcTarget.Others);
+//            if(photonView.IsMine)
+//                photonView.RPC("RPCOnMouseEnter", RpcTarget.Others);
         }
     }
     
-    [PunRPC]
-    private void RPCOnMouseEnter()
-    {
-        ZoomInOnCard();
-    }
+//    [PunRPC]
+//    private void RPCOnMouseEnter()
+//    {
+//        ZoomInOnCard();
+//    }
 
     public void OnMouseExit()
     {
         
         ZoomOutOfCard();
         
-        if(photonView.IsMine)
-            photonView.RPC("RPCOnMouseExit", RpcTarget.Others);
+//        if(photonView.IsMine)
+//            photonView.RPC("RPCOnMouseExit", RpcTarget.Others);
     }
 
-    [PunRPC]
-    private void RPCOnMouseExit()
-    {
-        ZoomOutOfCard();
-    }
+//    [PunRPC]
+//    private void RPCOnMouseExit()
+//    {
+//        ZoomOutOfCard();
+//    }
 
     public void OnMouseDown()
     {
         ZoomOutOfCard();
         
-        if(photonView.IsMine)
-            photonView.RPC("RPCOnMouseDown", RpcTarget.Others);
+//        if(photonView.IsMine)
+//            photonView.RPC("RPCOnMouseDown", RpcTarget.Others);
     }
 
-    [PunRPC]
-    private void RPCOnMouseDown()
-    {
-        ZoomOutOfCard();
-    }
+//    [PunRPC]
+//    private void RPCOnMouseDown()
+//    {
+//        ZoomOutOfCard();
+//    }
     
     private void ZoomInOnCard()
     {
+        Debug.Log("zoom in " + photonView.ViewID);
         if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
             //Debug.Log("enter");
@@ -87,6 +88,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
 
     private void ZoomOutOfCard()
     {
+        Debug.Log(photonView.ViewID);
         transform.localScale = new Vector2(1, 1);  //returns the object to its original state
         if (!DragCard.cardHeld)
             transform.position = OriginalPosition;
