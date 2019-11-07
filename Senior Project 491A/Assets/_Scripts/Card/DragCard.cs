@@ -117,7 +117,12 @@ public class DragCard : MonoBehaviourPun
         }
         //updates position of game object
         //transform.position = position;
-        transform.position = Vector2.Lerp(transform.position, position, .25f);
+        if(photonView.IsMine)
+            transform.position = Vector2.Lerp(transform.position, position, .25f);
+        else
+        {
+            transform.position = Vector2.Lerp(transform.position, position, .05f);
+        }
     }
     
     private void HandleCardClicked(Vector2 RPCoffset)
