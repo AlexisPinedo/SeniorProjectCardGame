@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card Effect/Minion Card Effect/Destroy Player Card")]
 public class OnDeathPlayPlayerCardEffect : OnDeathCardEffects
 {
     public override void LaunchCardEffect()
