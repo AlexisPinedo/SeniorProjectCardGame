@@ -116,7 +116,8 @@ public class DragCard : MonoBehaviourPun
             return;
         }
         //updates position of game object
-        transform.position = Vector2.Lerp(transform.position, position, 1);
+        transform.position = position;
+        //transform.position = Vector2.Lerp(transform.position, position, 1);
     }
     
     private void HandleCardClicked(Vector2 RPCoffset)
