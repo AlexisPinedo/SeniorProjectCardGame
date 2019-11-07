@@ -121,7 +121,7 @@ public class DragCard : MonoBehaviourPun
             transform.position = Vector2.Lerp(transform.position, position, .25f);
         else
         {
-            transform.position = Vector2.Lerp(transform.position, position, .05f);
+            transform.position = Vector2.Lerp(transform.position, position, .01f);
         }
     }
     
