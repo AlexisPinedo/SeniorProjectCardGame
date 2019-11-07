@@ -59,11 +59,11 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         ZoomOutOfCard();
         
         if(photonView.IsMine)
-            photonView.RPC("RPCOnMouseDown", RpcTarget.Others);
+            photonView.RPC("CardZoomClicked", RpcTarget.Others);
     }
 
     [PunRPC]
-    private void RPCOnMouseDown()
+    private void CardZoomClicked()
     {
         ZoomOutOfCard();
     }
