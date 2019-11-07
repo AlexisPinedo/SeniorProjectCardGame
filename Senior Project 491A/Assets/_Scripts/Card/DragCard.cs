@@ -29,7 +29,8 @@ public class DragCard : MonoBehaviourPun
         OriginalPosition = this.transform.position;
     }
 
-    private void HandleCardClicked()
+
+    private void HandleCardClicked(Vector3 RPCoffset)
     {
         cardHeld = true;
         //used to grab the z coordinate of the game object 
@@ -37,8 +38,7 @@ public class DragCard : MonoBehaviourPun
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
         //Here we add the offset from the card and the mouse
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
-                     new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        offset = RPCoffset;
 
         //if the card display has no hand container it means that the card is in the shop
         //We can use this to our advantage by adding shop functionality here
@@ -58,6 +58,33 @@ public class DragCard : MonoBehaviourPun
         }
     }
 
+    /// <summary>
+    /// This method is ivoked when the mouse button is clicked
+    /// </summary>
+    public void OnMouseDown()
+    {
+        //photon view of our current card
+        if (photonView.IsMine)
+        {
+            //used to grab the z coordinate of the game object 
+            //We need to conver the position to world space so it works with nested objects
+            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+
+            //Here we add the offset from the card and the mouse
+            offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
+                         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+            HandleCardClicked(offset);
+            photonView.RPC("RPCOnMouseDown", RpcTarget.Others, offset);
+        }
+    }
+
+    [PunRPC]
+    private void RPCOnMouseDown(Vector3 position)
+    {
+        HandleCardClicked(position);
+    }
+
     private void HandleCardRelease()
     {
         cardHeld = false;
@@ -69,54 +96,13 @@ public class DragCard : MonoBehaviourPun
          }
     }
 
-    private void MoveCardWithCursor()
-    {
-
-        //if the card display has no hand container it means that the card is in the shop
-        //if that is the case we do not want to drag the card. 
-        if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
-        {
-            return;
-        }
-
-        //Debug.Log("Attempting to drag and the object is draggable");
-
-        //stores position of cursor in screen space
-        Vector2 cursorScreenPoint = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-
-        //grabs the position of the mouse cursor and converts to world space
-        Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset;
-
-        //updates position of game object
-        transform.position = cursorPosition;
-
-    }
-    
-
-    /// <summary>
-    /// This method is ivoked when the mouse button is clicked
-    /// </summary>
-    public void OnMouseDown()
-    {
-        HandleCardClicked();
-        //photon view of our current card
-        if(photonView.IsMine)
-            photonView.RPC("RPCOnMouseDown", RpcTarget.Others);
-    }
-
-    [PunRPC]
-    private void RPCOnMouseDown()
-    {
-        HandleCardClicked();
-    }
-
     /// <summary>
     /// this method is called when the mouse button is released
     /// </summary>
     public void OnMouseUp()
     {
         HandleCardRelease();
-        if(photonView.IsMine)
+        if (photonView.IsMine)
             photonView.RPC("RPCOnMouseUp", RpcTarget.Others);
     }
 
@@ -126,19 +112,39 @@ public class DragCard : MonoBehaviourPun
         HandleCardRelease();
     }
 
+    private void MoveCardWithCursor(Vector3 position)
+    {
+        //if the card display has no hand container it means that the card is in the shop
+        //if that is the case we do not want to drag the card. 
+        if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        {
+            return;
+        }
+        //updates position of game object
+        transform.position = position;
+    }
+    
     /// <summary>
     /// This method is called when the card is being dragged
     /// </summary>
     public void OnMouseDrag()
     {
-        MoveCardWithCursor();
-        if(photonView.IsMine)
-            photonView.RPC("RPCOnMouseDrag", RpcTarget.Others);
+        if (photonView.IsMine)
+        {
+            //stores position of cursor in screen space
+            Vector2 cursorScreenPoint = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+            //grabs the position of the mouse cursor and converts to world space
+            Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset;
+
+            MoveCardWithCursor(cursorPosition);
+            photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, cursorPosition);
+        }
     }
 
     [PunRPC]
-    private void RPCOnMouseDrag()
+    private void RPCOnMouseDrag(Vector3 position)
     {
-        MoveCardWithCursor();
+        MoveCardWithCursor(position);
     }
 }
