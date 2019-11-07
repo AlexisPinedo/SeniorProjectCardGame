@@ -14,7 +14,7 @@ public class MinionSelectionEvent : Event_Base
     
     public void EnableMinonSelectionEvent()
     {
-        
+        GameEventManager.Instance.AddStateToQueue(this);
     }
     
     private void Awake()
