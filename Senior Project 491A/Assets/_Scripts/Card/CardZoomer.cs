@@ -13,7 +13,6 @@ public class CardZoomer : MonoBehaviourPunCallbacks
 {
     public Vector2 OriginalPosition;
     
-
     private void Awake()
     {
         OriginalPosition = this.transform.position;
@@ -33,13 +32,11 @@ public class CardZoomer : MonoBehaviourPunCallbacks
     [PunRPC]
     private void CardHasEntered()
     {
-        Debug.Log("Received enter rpc call" + photonView.ViewID);
         ZoomInOnCard();
     }
 
     public void OnMouseExit()
     {
-        
         ZoomOutOfCard();
         
         if(photonView.IsMine)
@@ -49,15 +46,12 @@ public class CardZoomer : MonoBehaviourPunCallbacks
     [PunRPC]
     private void CardHasExited()
     {
-        Debug.Log("Received exit rpc call"  + photonView.ViewID);
-
         ZoomOutOfCard();
     }
 
     public void OnMouseDown()
     {
         ZoomOutOfCard();
-        
         if(photonView.IsMine)
             photonView.RPC("CardZoomClicked", RpcTarget.Others);
     }
@@ -70,10 +64,8 @@ public class CardZoomer : MonoBehaviourPunCallbacks
     
     private void ZoomInOnCard()
     {
-        Debug.Log("zoom in " + photonView.ViewID);
         if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
-            //Debug.Log("enter");
             transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
             Vector2 newPosition = new Vector2(0, -1);
             transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
@@ -81,17 +73,14 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         //player card
         else
         {
-            //Debug.Log("enter");
             transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
             Vector2 newPosition = new Vector2(0, 1);
             transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
-
         }
     }
 
     private void ZoomOutOfCard()
     {
-        Debug.Log("zoom out " +photonView.ViewID);
         transform.localScale = new Vector2(1, 1);  //returns the object to its original state
         if (!DragCard.cardHeld)
             transform.position = OriginalPosition;
