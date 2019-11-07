@@ -10,8 +10,8 @@ using Photon.Realtime;
 /// </summary>
 public class DragCard : MonoBehaviourPun
 {
-    private Vector3 offset;
-    private Vector3 screenPoint;
+    private Vector2 offset;
+    private Vector2 screenPoint;
     public Vector2 OriginalPosition;
     public static bool cardHeld = false;
 
@@ -30,7 +30,7 @@ public class DragCard : MonoBehaviourPun
     }
 
 
-    private void HandleCardClicked(Vector3 RPCoffset)
+    private void HandleCardClicked(Vector2 RPCoffset)
     {
         cardHeld = true;
         //used to grab the z coordinate of the game object 
@@ -72,7 +72,7 @@ public class DragCard : MonoBehaviourPun
 
             //Here we add the offset from the card and the mouse
             offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
-                         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+                         new Vector2(Input.mousePosition.x, Input.mousePosition.y));
 
             HandleCardClicked(offset);
             photonView.RPC("RPCOnMouseDown", RpcTarget.Others, offset);
@@ -80,7 +80,7 @@ public class DragCard : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void RPCOnMouseDown(Vector3 position)
+    private void RPCOnMouseDown(Vector2 position)
     {
         HandleCardClicked(position);
     }
@@ -112,7 +112,7 @@ public class DragCard : MonoBehaviourPun
         HandleCardRelease();
     }
 
-    private void MoveCardWithCursor(Vector3 position)
+    private void MoveCardWithCursor(Vector2 position)
     {
         //if the card display has no hand container it means that the card is in the shop
         //if that is the case we do not want to drag the card. 
@@ -135,7 +135,7 @@ public class DragCard : MonoBehaviourPun
             Vector2 cursorScreenPoint = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
             //grabs the position of the mouse cursor and converts to world space
-            Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset;
+            Vector2 cursorPosition = (Vector2)Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset;
 
             MoveCardWithCursor(cursorPosition);
             photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, cursorPosition);
@@ -143,7 +143,7 @@ public class DragCard : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void RPCOnMouseDrag(Vector3 position)
+    private void RPCOnMouseDrag(Vector2 position)
     {
         MoveCardWithCursor(position);
     }

@@ -71,7 +71,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         {
             //Debug.Log("enter");
             transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
-            Vector3 newPosition = new Vector2(0, -1);
+            Vector2 newPosition = new Vector2(0, -1);
             transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
         }
         //player card
@@ -79,7 +79,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         {
             //Debug.Log("enter");
             transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
-            Vector3 newPosition = new Vector2(0, 1);
+            Vector2 newPosition = new Vector2(0, 1);
             transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
 
         }
@@ -87,7 +87,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
 
     private void ZoomOutOfCard()
     {
-        transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
+        transform.localScale = new Vector2(1, 1);  //returns the object to its original state
         if (!DragCard.cardHeld)
             transform.position = OriginalPosition;
     }
