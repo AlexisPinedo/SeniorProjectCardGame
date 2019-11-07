@@ -9,6 +9,5 @@ public class DestroyMinion : OnPlayEffects
     {
         base.LaunchCardEffect();
         MinionSelectionEvent.Instance.EnableMinonSelectionEvent();
-
     }
 }

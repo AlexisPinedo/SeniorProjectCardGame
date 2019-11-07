@@ -116,11 +116,13 @@
           <e p="Lobby" t="Include">
             <e p="NameScreen.cs" t="Include" />
             <e p="PhotonManager.cs" t="Include" />
+            <e p="PhotonQuickManager.cs" t="Include" />
             <e p="PlayerListing.cs" t="Include" />
             <e p="PlayerListingsView.cs" t="Include" />
             <e p="RoomListing.cs" t="Include" />
             <e p="RoomListingsView.cs" t="Include" />
             <e p="RoomLobby.cs" t="Include" />
+            <e p="RoomQuickLobby.cs" t="Include" />
           </e>
           <e p="MinionCardEffectHandler.cs" t="Include" />
           <e p="Networking" t="Include">
@@ -427,6 +429,7 @@
             <e p="play-services-resolver_v1.2.124.0.txt" t="Include" />
           </e>
         </e>
+        <e p="ShopDisplayManager.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />

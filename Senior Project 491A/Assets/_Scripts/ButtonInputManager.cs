@@ -28,7 +28,7 @@ public class ButtonInputManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        MyTurn();
+        
     }
 
     private void OnEnable()
@@ -39,6 +39,11 @@ public class ButtonInputManager : MonoBehaviour
     private void OnDisable()
     {
         UIHandler.EndTurnClicked -= MyTurn;
+    }
+
+    private void Start()
+    {
+        MyTurn();
     }
 
 

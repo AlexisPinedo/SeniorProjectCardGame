@@ -7,12 +7,11 @@ public class ShopBackgroundImageHandler : MonoBehaviour
 {
     private RectTransform thisRectTransform;
 
-    private Vector3 originalPosition;
     
     private void Awake()
     {
         thisRectTransform = GetComponent<RectTransform>();
-        originalPosition = thisRectTransform.transform.position;
+        //originalPosition = thisRectTransform.transform.position;
     }
 
     private void OnEnable()
@@ -31,12 +30,11 @@ public class ShopBackgroundImageHandler : MonoBehaviour
 
     private void MoveBackgroundImageUp()
     {
-         thisRectTransform.transform.position = new Vector3(originalPosition.x, originalPosition.y + 20, originalPosition.z);
+         
     }
 
     private void MoveBackgoundImageDown()
     {
-        thisRectTransform.transform.position = new Vector3(originalPosition.x, originalPosition.y, originalPosition.z);
 
     }
 }

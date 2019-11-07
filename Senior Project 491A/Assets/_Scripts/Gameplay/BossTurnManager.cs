@@ -30,12 +30,13 @@ public class BossTurnManager : MonoBehaviour
 
         FieldContainer.Instance.DisplayACard();
         
+        ShopDisplayManager.Instance.MoveShopUp();
         //PurchaseHandler.Instance.gameObject.transform.position = new Vector3(0f, 20f, 0f);
         
         yield return new WaitForSeconds(1);
 
         //PurchaseHandler.Instance.gameObject.transform.position -= new Vector3(0f, 20f, 0f);
-
+        ShopDisplayManager.Instance.MoveShopDown();
         BossTurnEnded();
     }
 }
