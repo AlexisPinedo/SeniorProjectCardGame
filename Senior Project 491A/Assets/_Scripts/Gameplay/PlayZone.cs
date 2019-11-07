@@ -27,6 +27,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
     private PhotonView RPCCardSelected;
 
+    private BoxCollider2D playZoneCollider;
+
     void Awake()
     {
         if (_instance != null && _instance != this)
@@ -37,7 +39,30 @@ public class PlayZone : MonoBehaviourPunCallbacks
         {
             _instance = this;
         }
+
+        playZoneCollider = GetComponent<BoxCollider2D>();
     }
+
+    private void OnEnable()
+    {
+        TurnManager.PlayerSwitched += HandleNetworkActiveCollider;
+    }
+
+    private void OnDisable()
+    {
+        TurnManager.PlayerSwitched -= HandleNetworkActiveCollider;
+    }
+
+    private void HandleNetworkActiveCollider()
+    {
+        if (TurnManager.currentPhotonPlayer.IsLocal)
+            playZoneCollider.enabled = true;
+        else
+        {
+            playZoneCollider.enabled = false;
+        }
+    }
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
