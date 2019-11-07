@@ -43,6 +43,11 @@ public class PlayZone : MonoBehaviourPunCallbacks
         playZoneCollider = GetComponent<BoxCollider2D>();
     }
 
+    private void Start()
+    {
+        HandleNetworkActiveCollider();
+    }
+
     private void OnEnable()
     {
         TurnManager.PlayerSwitched += HandleNetworkActiveCollider;
@@ -79,7 +84,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
                 cardInZone = other.gameObject.GetComponent<PlayerCardDisplay>();
 
             RPCCardSelected = cardInZone.GetComponent<PhotonView>();
-            RPCCardSelected.RPC("RPCOnTriggerEnter2D", RpcTarget.Others, RPCCardSelected.ViewID);
+            //RPCCardSelected.RPC("RPCOnTriggerEnter2D", RpcTarget.Others, RPCCardSelected.ViewID);
         //}
     }
 
@@ -91,7 +96,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
             cardInPlayZone = false;
             cardInZone = null;
 
-            this.photonView.RPC("RPCOnTriggerExit2D", RpcTarget.Others);
+            //this.photonView.RPC("RPCOnTriggerExit2D", RpcTarget.Others);
        // }
     }
 
