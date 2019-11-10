@@ -25,6 +25,7 @@ public class PlayerSwitchEvent : Event_Base
     {
         GameEventManager.Instance.AddStateToQueue(this);
     }
+    
     public override void EventState()
     {
         Debug.Log("In Player swap event");
