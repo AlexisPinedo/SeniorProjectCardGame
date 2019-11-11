@@ -47,7 +47,7 @@ public class NotificationWindowEvent : Event_Base
     {
         AddMessageToMessageQueue(message);
         TriggerGameStatePauseEvent();
-        GameEventManager.Instance.AddStateToQueue(this);
+        AddStateToQueue();
     }
 
     public void AddMessageToMessageQueue(string message)
@@ -68,6 +68,7 @@ public class NotificationWindowEvent : Event_Base
         DisableComponents();
         messageText = "";
         EndGameStatePauseEvent();
+        DisableMinionCardContainters();
         ButtonInputManager.Instance.EnableButtonsInList();
         GameEventManager.Instance.EndEvent();
     }

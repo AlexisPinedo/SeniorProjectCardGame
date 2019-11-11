@@ -138,6 +138,8 @@ public class DragCard : MonoBehaviourPun
             cardClicked.transform.position = OriginalPosition;
 
             ShopCardClicked?.Invoke(cardClicked);
+
+            cardHeld = false;
         }
         else
         {
