@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
 
 /// <summary>
 /// This class handles the dragging of cards. When a card is clicked it will follow the mouse and drag with it. 
@@ -11,7 +8,6 @@ using Photon.Realtime;
 public class DragCard : MonoBehaviourPun
 {
     private Vector2 offset;
-    private Vector2 screenPoint;
     public Vector2 OriginalPosition;
     public static bool cardHeld = false;
 
@@ -37,16 +33,13 @@ public class DragCard : MonoBehaviourPun
         //photon view of our current card
         if (photonView.IsMine)
         {
-            //used to grab the z coordinate of the game object 
-            //We need to conver the position to world space so it works with nested objects
-            screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-
             //Here we add the offset from the card and the mouse
             offset = transform.position - Camera.main.ScreenToWorldPoint(
                          new Vector2(Input.mousePosition.x, Input.mousePosition.y));
 
             HandleCardClicked(offset);
-            photonView.RPC("CardDraggedClicked", RpcTarget.Others, offset);
+            if(!PhotonNetwork.OfflineMode) 
+                photonView.RPC("CardDraggedClicked", RpcTarget.Others, offset);
         }
     }
 
@@ -62,8 +55,9 @@ public class DragCard : MonoBehaviourPun
     public void OnMouseUp()
     {
         HandleCardRelease();
-        if (photonView.IsMine)
-            photonView.RPC("CardDraggedReleased", RpcTarget.Others);
+        if(!PhotonNetwork.OfflineMode)
+            if (photonView.IsMine)
+                photonView.RPC("CardDraggedReleased", RpcTarget.Others);
     }
 
     [PunRPC]
@@ -86,7 +80,8 @@ public class DragCard : MonoBehaviourPun
             Vector2 cursorPosition = (Vector2)Camera.main.ScreenToWorldPoint(cursorScreenPoint) + offset;
 
             MoveCardWithCursor(cursorPosition);
-            photonView.RPC("DraggingCard", RpcTarget.Others, cursorPosition);
+            if(!PhotonNetwork.OfflineMode)
+                photonView.RPC("DraggingCard", RpcTarget.Others, cursorPosition);
         }
     }
 
@@ -121,17 +116,13 @@ public class DragCard : MonoBehaviourPun
             transform.position = Vector2.Lerp(transform.position, position, .25f);
         else
         {
-            transform.position = Vector2.Lerp(transform.position, position, .01f);
+            transform.position = Vector2.Lerp(transform.position, position, .025f);
         }
     }
     
     private void HandleCardClicked(Vector2 RPCoffset)
     {
         cardHeld = true;
-        
-        //used to grab the z coordinate of the game object 
-        //We need to conver the position to world space so it works with nested objects
-        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
         //Here we add the offset from the card and the mouse
         offset = RPCoffset;

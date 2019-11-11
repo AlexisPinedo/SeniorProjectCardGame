@@ -5,38 +5,39 @@ using UnityEngine;
 
 public class BossTurnManager : MonoBehaviour
 {
-    private bool inBossTurn = false;
+    private bool inBossPhase = false;
 
     public static event Action BossTurnEnded;
 
     private void OnEnable()
     {
-        UIHandler.EndTurnClicked += StartBossTurn;
+        TurnPhaseManager.PlayerTurnEnded += StartBossPhase;
     }
     
     private void OnDisable()
     {
-        UIHandler.EndTurnClicked -= StartBossTurn;
+        TurnPhaseManager.PlayerTurnEnded -= StartBossPhase;
     }
 
-    private void StartBossTurn()
+    private void StartBossPhase()
     {
-        StartCoroutine(BossTurn());
+        StartCoroutine(BossPhase());
     }
 
-    IEnumerator BossTurn()
+    IEnumerator BossPhase()
     {
-        inBossTurn = true;
+        Debug.Log("in boss phase");
+        inBossPhase = true;
 
         FieldContainer.Instance.DisplayACard();
         
         ShopDisplayManager.Instance.MoveShopUp();
-        //PurchaseHandler.Instance.gameObject.transform.position = new Vector3(0f, 20f, 0f);
         
         yield return new WaitForSeconds(1);
 
-        //PurchaseHandler.Instance.gameObject.transform.position -= new Vector3(0f, 20f, 0f);
         ShopDisplayManager.Instance.MoveShopDown();
-        BossTurnEnded();
+        
+        Debug.Log("boss phase ended");
+        BossTurnEnded?.Invoke();
     }
 }

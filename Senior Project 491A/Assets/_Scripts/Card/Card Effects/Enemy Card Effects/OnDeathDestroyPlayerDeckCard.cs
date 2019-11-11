@@ -7,8 +7,8 @@ public class OnDeathDestroyPlayerDeckCard : OnDeathCardEffects
 {
     public override void LaunchCardEffect()
     {
-        Deck playerDeck = TurnManager.Instance.turnPlayer.deck;
-        Graveyard playerGrave = TurnManager.Instance.turnPlayer.graveyard;
+        Deck playerDeck = TurnPlayerManager.Instance.TurnPlayer.deck;
+        Graveyard playerGrave = TurnPlayerManager.Instance.TurnPlayer.graveyard;
 
         if (playerDeck.cardsInDeck.Count != 0)
         {

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+    <e p="C:\Users\Alex and Abby's\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Alex and Abby's\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.501270672.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Alex and Abby's\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -31,7 +33,7 @@
             <e p="Card.cs" t="Include" />
             <e p="CardDisplay.cs" t="Include" />
             <e p="CardEffectEvaluationManager.cs" t="Include" />
-            <e p="CardType.cs" t="Include" />
+            <e p="CardTypes.cs" t="Include" />
             <e p="CardZoomer.cs" t="Include" />
             <e p="DragCard.cs" t="Include" />
             <e p="DrawCard.cs" t="Include" />
@@ -84,8 +86,9 @@
             <e p="GameplayManager.cs" t="Include" />
             <e p="Grid.cs" t="Include" />
             <e p="History.cs" t="Include" />
+            <e p="NetworkOwnershipTransferManger.cs" t="Include" />
             <e p="PlayZone.cs" t="Include" />
-            <e p="TurnManager.cs" t="Include" />
+            <e p="TurnPlayerManager.cs" t="Include" />
           </e>
           <e p="Hand and Deck" t="Include">
             <e p="Deck.cs" t="Include" />
@@ -141,7 +144,6 @@
             <e p="ShopContainer.cs" t="Include" />
             <e p="ShopDeck.cs" t="Include" />
           </e>
-          <e p="ShopBackgroundImageHandler.cs" t="Include" />
           <e p="ShopNetworkRelay.cs" t="Include" />
           <e p="ShuffleDeck.cs" t="Include" />
           <e p="UI" t="Include">
@@ -208,6 +210,12 @@
               </e>
             </e>
           </e>
+          <e p="Plugins" t="Include">
+            <e p="Http" t="Include">
+              <e p="link.xml" t="Include" />
+            </e>
+            <e p="link.xml" t="Include" />
+          </e>
         </e>
         <e p="GoogleSignIn" t="Include">
           <e p="Editor" t="Include">
@@ -269,6 +277,7 @@
             </e>
           </e>
         </e>
+        <e p="NetworkUIEventRaiser.cs" t="Include" />
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">
             <e p="Code" t="Include">
@@ -416,6 +425,7 @@
             </e>
           </e>
         </e>
+        <e p="PlayPhases.cs" t="Include" />
         <e p="PlayServicesResolver" t="Include">
           <e p="Editor" t="Include">
             <e p="play-services-resolver_v1.2.124.0.txt" t="Include" />
@@ -457,7 +467,7 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
-        <e p="TurnStateManager.cs" t="Include" />
+        <e p="TurnPhaseManager.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
@@ -470,9 +480,7 @@
       <e p="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj" t="IncludeRecursive" />
       <e p="PhotonWebSocket.csproj" t="IncludeRecursive" />
       <e p="Senior Project 491A.sln" t="IncludeFlat" />
-      <e p="Temp/bin" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_Senior Project 491A.820768640.00" t="ExcludeRecursive" />
   </component>
 </project>

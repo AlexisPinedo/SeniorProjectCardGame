@@ -21,7 +21,7 @@ public class AddPower : OnPlayEffects
     void AddPowerByEffect()
     {
         //Debug.Log("Adding Power via card effect");
-        TurnManager.Instance.turnPlayer.Power += powerAdditionAmount;
+        TurnPlayerManager.Instance.TurnPlayer.Power += powerAdditionAmount;
     }
 
     /// <summary>

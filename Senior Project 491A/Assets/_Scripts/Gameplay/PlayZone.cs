@@ -50,17 +50,17 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
     private void OnEnable()
     {
-        TurnManager.PlayerSwitched += HandleNetworkActiveCollider;
+        TurnPlayerManager.PlayerSwitched += HandleNetworkActiveCollider;
     }
 
     private void OnDisable()
     {
-        TurnManager.PlayerSwitched -= HandleNetworkActiveCollider;
+        TurnPlayerManager.PlayerSwitched -= HandleNetworkActiveCollider;
     }
 
     private void Update()
     {
-        if(TurnManager.currentPhotonPlayer != PhotonNetwork.LocalPlayer)
+        if(NetworkOwnershipTransferManger.currentPhotonPlayer != PhotonNetwork.LocalPlayer)
             return;
         
         if (cardInPlayZone)
@@ -74,11 +74,14 @@ public class PlayZone : MonoBehaviourPunCallbacks
     
     private void HandleNetworkActiveCollider()
     {
-        if (TurnManager.currentPhotonPlayer.IsLocal)
-            playZoneCollider.enabled = true;
-        else
+        if(!PhotonNetwork.OfflineMode)
         {
-            playZoneCollider.enabled = false;
+            if (NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
+                playZoneCollider.enabled = true;
+            else
+            {
+                playZoneCollider.enabled = false;
+            }
         }
     }
     
@@ -110,20 +113,21 @@ public class PlayZone : MonoBehaviourPunCallbacks
     private void HandleCardPlayed()
     {
         // Card stuff
-        Hand tpHand = TurnManager.Instance.turnPlayer.hand;
+        Hand tpHand = TurnPlayerManager.Instance.TurnPlayer.hand;
         PlayerCardDisplay cardDisplay = cardInZone;
         PlayerCard cardPlayed = cardDisplay.card;
-        cardDisplay.photonView.RPC("DestroyCard", RpcTarget.Others);
+        if(!PhotonNetwork.OfflineMode)
+            cardDisplay.photonView.RPC("DestroyCard", RpcTarget.Others);
         
         Destroy(cardInZone.gameObject);
         
-        TurnManager.Instance.turnPlayer.Power += cardPlayed.CardAttack;
-        TurnManager.Instance.turnPlayer.Currency += cardPlayed.CardCurrency;
+        TurnPlayerManager.Instance.TurnPlayer.Power += cardPlayed.CardAttack;
+        TurnPlayerManager.Instance.TurnPlayer.Currency += cardPlayed.CardCurrency;
 
         if (!cardPlayed.CardName.Equals("Phantom"))
         {
             tpHand.hand.Remove(cardPlayed);
-            TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardPlayed);
+            TurnPlayerManager.Instance.TurnPlayer.graveyard.graveyard.Add(cardPlayed);
         }
 
         CardPlayed?.Invoke(cardPlayed);

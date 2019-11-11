@@ -24,9 +24,9 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         if (!DragCard.cardHeld)
         {
             ZoomInOnCard();
-            
-            if(photonView.IsMine)
-                photonView.RPC("CardHasEntered", RpcTarget.Others);
+            if(!PhotonNetwork.OfflineMode)
+                if(photonView.IsMine)
+                    photonView.RPC("CardHasEntered", RpcTarget.Others);
         }
     }
     
@@ -41,9 +41,9 @@ public class CardZoomer : MonoBehaviourPunCallbacks
     {
         
         ZoomOutOfCard();
-        
-        if(photonView.IsMine)
-            photonView.RPC("CardHasExited", RpcTarget.Others);
+        if(!PhotonNetwork.OfflineMode)
+            if(photonView.IsMine)
+                photonView.RPC("CardHasExited", RpcTarget.Others);
     }
 
     [PunRPC]
@@ -57,9 +57,9 @@ public class CardZoomer : MonoBehaviourPunCallbacks
     public void OnMouseDown()
     {
         ZoomOutOfCard();
-        
-        if(photonView.IsMine)
-            photonView.RPC("CardZoomClicked", RpcTarget.Others);
+        if(!PhotonNetwork.OfflineMode)
+            if(photonView.IsMine)
+                photonView.RPC("CardZoomClicked", RpcTarget.Others);
     }
 
     [PunRPC]

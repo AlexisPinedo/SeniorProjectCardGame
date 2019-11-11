@@ -60,7 +60,7 @@ public class FreeShopSelectionEvent : Event_Base
 
     public override void EventState()
     {
-        Debug.Log("In Free shop cards event");
+        //Debug.Log("In Free shop cards event");
         
         ButtonInputManager.Instance.DisableButtonsInList();
         
@@ -90,15 +90,15 @@ public class FreeShopSelectionEvent : Event_Base
     {
         if (!ValidateSameCostRequirement())
         {
-            Debug.Log("could not validate free card purchase must exit");
+            //Debug.Log("could not validate free card purchase must exit");
 
             DisableShopSelectionState();
             return;
         }
         
-        if (cardClicked.card.CardType == compareType || compareType == CardTypes.All)
+        if ((cardClicked.card.CardType == compareType || compareType == CardTypes.All) && cardClicked.card.CardType != CardTypes.Enemy)
         {
-            TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardClicked.card);
+            TurnPlayerManager.Instance.TurnPlayer.graveyard.graveyard.Add(cardClicked.card);
         
             cardClicked.TriggerCardPurchasedEvent();
         
@@ -108,7 +108,7 @@ public class FreeShopSelectionEvent : Event_Base
 
             if (cardsPurchased == cardsToPurchase)
             {
-                Debug.Log("purchased required amount must exit");
+                //Debug.Log("purchased required amount must exit");
 
                 DisableShopSelectionState();
             }
@@ -125,7 +125,7 @@ public class FreeShopSelectionEvent : Event_Base
     {
         if (compareType == CardTypes.All)
         {
-            Debug.Log("Comparetype is all so you can buy anything");
+            //Debug.Log("Comparetype is all so you can buy anything");
             return true;
         }
         

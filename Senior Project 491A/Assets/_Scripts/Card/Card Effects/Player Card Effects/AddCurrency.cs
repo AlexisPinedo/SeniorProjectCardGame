@@ -19,7 +19,7 @@ public class AddCurrency : OnPlayEffects
     void AddCurrencyByEffect()
     {
         Debug.Log("Adding currency from effect");
-        TurnManager.Instance.turnPlayer.Currency += currencyAdditionAmount;
+        TurnPlayerManager.Instance.TurnPlayer.Currency += currencyAdditionAmount;
     }
 
     /// <summary>

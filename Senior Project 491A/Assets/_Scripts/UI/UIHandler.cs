@@ -1,30 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
-using ExitGames.Client.Photon;
 
 public class UIHandler : MonoBehaviour
 {
-    public delegate void settingsButtonAction();
-    public static event settingsButtonAction SettingsClicked;
-
-    public delegate void StartBattleButtonAction();
-    public static event StartBattleButtonAction StartClicked;
-
-    public delegate void GraveyardButtonAction();
-    public static event GraveyardButtonAction GraveyardClicked;
-
-    public delegate void HeroPowerButtonAction();
-    public static event HeroPowerButtonAction HeroPowerClicked;
-
-    public delegate void EndTurnButtonAction();
-    public static event EndTurnButtonAction EndTurnClicked;
-
-    public RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
-    public SendOptions sendOptions = new SendOptions { Reliability = true };
-
+    public static event Action SettingsClicked;
+    public static event Action StartBattleClicked;
+    public static event Action GraveyardClicked;
+    public static event Action HeroPowerClicked;
+    public static event Action EndTurnClicked;
+    
     private static UIHandler _instance;
 
     public static UIHandler Instance
@@ -47,16 +33,6 @@ public class UIHandler : MonoBehaviour
         }
     }
 
-    public void OnEnable()
-    {
-        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
-    }
-
-    public void OnDisable()
-    {
-        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
-    }
-
     public void SettingsButtonOnClick()
     {
         SettingsClicked?.Invoke();
@@ -64,8 +40,7 @@ public class UIHandler : MonoBehaviour
 
     public void StartBattleButtonOnClick()
     {
-        StartClicked?.Invoke();
-        PhotonNetwork.RaiseEvent(TurnManager.startBattleEvent, null, raiseEventOptions, sendOptions);
+        StartBattleClicked?.Invoke();
     }
 
     public void GraveyardButtonOnClick()
@@ -81,16 +56,6 @@ public class UIHandler : MonoBehaviour
     public void EndTurnButtonOnClick()
     {
         EndTurnClicked?.Invoke();
-        PhotonNetwork.RaiseEvent(TurnManager.endTurnEvent, null, raiseEventOptions, sendOptions);
+        
     }
-
-    public void OnEvent(EventData photonEvent)
-    {
-        byte recievedCode = photonEvent.Code;
-        if (recievedCode == TurnManager.endTurnEvent)
-            EndTurnClicked?.Invoke();
-        if (recievedCode == TurnManager.startBattleEvent)
-            StartClicked?.Invoke();
-    }
-
 }

@@ -10,6 +10,6 @@ public class OnDeathGainPowerEffect : OnDeathCardEffects
     public override void LaunchCardEffect()
     {
         NotificationWindowEvent.Instance.EnableNotificationWindow("Enemy destroyed gain power");
-        TurnManager.Instance.turnPlayer.Power += powerIncreaseAmount;
+        TurnPlayerManager.Instance.TurnPlayer.Power += powerIncreaseAmount;
     }
 }

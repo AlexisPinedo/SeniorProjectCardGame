@@ -34,12 +34,12 @@ public class ButtonInputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        TurnManager.PlayerSwitched += CurrentTurnButtonSwitch;
+        TurnPhaseManager.PlayerTurnStarted += CurrentTurnButtonSwitch;
     }
 
     private void OnDisable()
     {
-        TurnManager.PlayerSwitched -= CurrentTurnButtonSwitch;
+        TurnPhaseManager.PlayerTurnStarted -= CurrentTurnButtonSwitch;
     }
 
     private void Start()
@@ -52,7 +52,7 @@ public class ButtonInputManager : MonoBehaviour
         if (PhotonNetwork.OfflineMode)
             return;
 
-        if (!TurnManager.currentPhotonPlayer.IsLocal)
+        if (!NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
         {
             startBattleButton.SetActive(false);
             endTurnButton.SetActive(false);

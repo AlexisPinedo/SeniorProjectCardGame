@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Grace The Knight
   cardDescription: 
-  cardEffect: {fileID: 11400000, guid: 30fceb32217c5144c8133f005104ad18, type: 2}
+  cardEffect: {fileID: 0}
   cardEffectDisplay: Destroy a minion
   cardArtwork: {fileID: 21300000, guid: e5c4a5170fd320046b8f4c68e5a69f67, type: 3}
   cardTypeArt: {fileID: 21300000, guid: f27d54add9d3f5346b11c73a7135eb98, type: 3}
