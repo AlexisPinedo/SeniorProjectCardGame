@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card Effect/Minion Card Effect/Passive Enemy Buff")]
 public class PassiveEnemyBuffEffect : PassiveEffect
 {
     [SerializeField] private int buffAmount = 2;

@@ -15,10 +15,10 @@ public class Vann : TurnStartEffectHero
 
     protected override void HeroPowerEffect()
     {
-        if(TurnManager.Instance.turnPlayer.SelectedHero != this)
+        if(TurnPlayerManager.Instance.TurnPlayer.SelectedHero != this)
             return;
 
-        HandContainer playerContainer = TurnManager.Instance.turnPlayerGameObject.GetComponentInChildren<HandContainer>();
+        HandContainer playerContainer = TurnPlayerManager.Instance.TurnPlayerGameObject.GetComponentInChildren<HandContainer>();
 
         //playerContainer.containerGrid.xValUnits += 1;
         playerContainer.containerGrid.xValUnits = 6;

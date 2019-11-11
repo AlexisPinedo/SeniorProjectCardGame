@@ -25,16 +25,16 @@ public class HandContainer : PlayerCardContainer
 
     private void OnEnable()
     {
-        TurnManager.GoingToSwitchPlayer += DestroyHand;
-        TurnManager.PlayerSwitched += DrawStartingHand;
+        TurnPhaseManager.PlayerTurnEnded += DestroyHand;
+        TurnPhaseManager.PlayerTurnStarted += DrawStartingHand;
         containerGrid.onGridResize += ChangeCardPositions;
     }
 
     private void OnDisable()
     {
         //Debug.Log("Hand container has been disabled");
-        TurnManager.GoingToSwitchPlayer -= DestroyHand;
-        TurnManager.PlayerSwitched -= DrawStartingHand;
+        TurnPhaseManager.PlayerTurnEnded -= DestroyHand;
+        TurnPhaseManager.PlayerTurnStarted -= DrawStartingHand;
         containerGrid.onGridResize -= ChangeCardPositions;
     }
 
@@ -101,7 +101,7 @@ public class HandContainer : PlayerCardContainer
         else
             Debug.Log("Already has an assigned ID");
 
-        cardDisplayPhotonView.TransferOwnership(TurnManager.currentPhotonPlayer);
+        cardDisplayPhotonView.TransferOwnership(NetworkOwnershipTransferManger.currentPhotonPlayer);
 
         Vector3 tempCardDestination = containerGrid.freeLocations.Pop();
 
@@ -137,7 +137,7 @@ public class HandContainer : PlayerCardContainer
                     return;
                 }
                 
-                if(cardDisplay.card.CardType != CardType.CardTypes.None)
+                if(cardDisplay.card.CardType != CardTypes.None)
                 {                    
                     Debug.Log("Add card to grave");
                     playerGrave.graveyard.Add(cardDisplay.card);

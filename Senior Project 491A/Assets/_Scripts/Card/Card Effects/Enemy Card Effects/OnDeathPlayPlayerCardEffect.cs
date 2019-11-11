@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card Effect/Minion Card Effect/Destroy Player Card")]
 public class OnDeathPlayPlayerCardEffect : OnDeathCardEffects
 {
     public override void LaunchCardEffect()
     {
-        Deck playerDeck = TurnManager.Instance.turnPlayer.deck;
-        Graveyard playerGrave = TurnManager.Instance.turnPlayer.graveyard;
+        Deck playerDeck = TurnPlayerManager.Instance.TurnPlayer.deck;
+        Graveyard playerGrave = TurnPlayerManager.Instance.TurnPlayer.graveyard;
 
         if (playerDeck.cardsInDeck.Count != 0)
         {
             PlayerCard playerCard = (PlayerCard)playerDeck.cardsInDeck.Pop();
-            TurnManager.Instance.turnPlayer.Power += playerCard.CardAttack;
+            TurnPlayerManager.Instance.TurnPlayer.Power += playerCard.CardAttack;
         }
         else
         {
@@ -28,7 +28,7 @@ public class OnDeathPlayPlayerCardEffect : OnDeathCardEffects
                 playerDeck.cardsInDeck = ShuffleDeck.Shuffle(playerDeck);
 
                 PlayerCard playerCard = (PlayerCard)playerDeck.cardsInDeck.Pop();
-                TurnManager.Instance.turnPlayer.Power += playerCard.CardAttack;
+                TurnPlayerManager.Instance.TurnPlayer.Power += playerCard.CardAttack;
             }
             else
                 NotificationWindowEvent.Instance.EnableNotificationWindow(

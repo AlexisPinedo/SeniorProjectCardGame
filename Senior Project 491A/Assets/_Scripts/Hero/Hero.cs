@@ -31,7 +31,7 @@ public abstract class Hero : ScriptableObject
 
     protected virtual void TriggerHeroPowerEffect()
     {
-        if (TurnManager.Instance.turnPlayer.SelectedHero == this)
+        if (TurnPlayerManager.Instance.TurnPlayer.SelectedHero == this)
         {
             HeroPowerEffect();
         }

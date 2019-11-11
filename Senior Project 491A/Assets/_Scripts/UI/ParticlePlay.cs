@@ -50,7 +50,7 @@ public class ParticlePlay : MonoBehaviourPun
 
     void PlayPurpleCircle()
     {
-        Debug.Log("Card Played.. Playing Purple Summoner");
+        //Debug.Log("Card Played.. Playing Purple Summoner");
 
         // Instantiate the PurpleCircleHere
         LoadAndSpawn(purpleSummoner);

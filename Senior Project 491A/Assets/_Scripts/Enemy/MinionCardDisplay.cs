@@ -30,6 +30,15 @@ public class MinionCardDisplay : EnemyCardDisplay
     protected override void OnEnable()
     {
         base.OnEnable();
+        TurnPhaseManager.BattlePhaseStarted += EnableBoxCollider;
+        TurnPhaseManager.BattlePhaseEnded += DisableBoxCollider;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        TurnPhaseManager.BattlePhaseStarted -= EnableBoxCollider;
+        TurnPhaseManager.BattlePhaseEnded -= DisableBoxCollider;
     }
 
     //This method will invoke the CardDestroyed event 
@@ -45,7 +54,8 @@ public class MinionCardDisplay : EnemyCardDisplay
     protected override void OnMouseDown()
     {
         MinionCardClicked?.Invoke(this);
-        this.photonView.RPC("RPCAttackMinion", RpcTarget.Others, this.photonView.ViewID);
+        if(!PhotonNetwork.OfflineMode)
+            photonView.RPC("RPCAttackMinion", RpcTarget.Others, this.photonView.ViewID);
     }
 
     [PunRPC]

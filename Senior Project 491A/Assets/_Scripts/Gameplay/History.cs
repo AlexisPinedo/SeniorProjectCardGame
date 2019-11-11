@@ -62,13 +62,13 @@ public class History : MonoBehaviour
     private void OnEnable()
     {
         PlayZone.CardPlayed += AddCardToHistory;
-        TurnManager.PlayerSwitched += HandleTurnEnding;
+        TurnPhaseManager.PlayerTurnEnded += HandleTurnEnding;
     }
 
     private void OnDisable()
     {
         PlayZone.CardPlayed -= AddCardToHistory;
-        TurnManager.PlayerSwitched -= HandleTurnEnding;
+        TurnPhaseManager.PlayerTurnEnded -= HandleTurnEnding;
     }
 
     public void AddCardToHistory(PlayerCard cardToAdd)

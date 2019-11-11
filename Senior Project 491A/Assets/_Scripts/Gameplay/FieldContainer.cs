@@ -34,13 +34,14 @@ public class FieldContainer : Container
     private void OnEnable()
     {
         MinionCardDisplay.CardDestroyed += AddFreeCardLocation;
-        UIHandler.EndTurnClicked += DisplayACard;
+
+        //UIHandler.EndTurnClicked += DisplayACard;
     }
 
     private void OnDisable()
     {
         MinionCardDisplay.CardDestroyed -= AddFreeCardLocation;
-        UIHandler.EndTurnClicked -= DisplayACard;
+        //UIHandler.EndTurnClicked -= DisplayACard;
     }
 
     public void DisplayACard()
@@ -84,6 +85,9 @@ public class FieldContainer : Container
 
         display.card = cardDrawn;
         EnemyCardDisplay cardDisplay = Instantiate(display, freeLocation, Quaternion.identity, this.transform);
+
+        Debug.Log("Minion was created");
+
         PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
         if (cardDisplayPhotonView.ViewID == 0)
             cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
