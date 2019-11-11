@@ -8,6 +8,7 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Scripts" t="Include">
+          <e p="ButtonInputManager.cs" t="Include" />
           <e p="Card" t="Include">
             <e p="Card Effects" t="Include">
               <e p="CardEffect.cs" t="Include" />
@@ -16,7 +17,7 @@
                 <e p="OnDeathGainPowerEffect.cs" t="Include" />
                 <e p="OnDeathPlayPlayerCardEffect.cs" t="Include" />
                 <e p="PassiveEnemyBuffEffect.cs" t="Include" />
-                <e p="PlayMinonCardEffect.cs" t="Include" />
+                <e p="PlayMinionCardEffect.cs" t="Include" />
               </e>
               <e p="OnDeath.cs" t="Include" />
               <e p="OnDeathCardEffects.cs" t="Include" />
@@ -26,12 +27,13 @@
               <e p="Player Card Effects" t="Include">
                 <e p="AddCurrency.cs" t="Include" />
                 <e p="AddPower.cs" t="Include" />
+                <e p="DestroyMinion.cs" t="Include" />
               </e>
             </e>
             <e p="Card.cs" t="Include" />
             <e p="CardDisplay.cs" t="Include" />
             <e p="CardEffectEvaluationManager.cs" t="Include" />
-            <e p="CardType.cs" t="Include" />
+            <e p="CardTypes.cs" t="Include" />
             <e p="CardZoomer.cs" t="Include" />
             <e p="DragCard.cs" t="Include" />
             <e p="DrawCard.cs" t="Include" />
@@ -40,6 +42,7 @@
             <e p="PlayerCardContainer.cs" t="Include" />
             <e p="PlayerCardDisplay.cs" t="Include" />
           </e>
+          <e p="EndGameHandler.cs" t="Include" />
           <e p="Enemy" t="Include">
             <e p="Boss.cs" t="Include" />
             <e p="BossCardDisplay.cs" t="Include" />
@@ -53,7 +56,12 @@
             <e p="MinionCardDisplay.cs" t="Include" />
             <e p="Reward.cs" t="Include" />
           </e>
-          <e p="Event_Base.cs" t="Include" />
+          <e p="Events" t="Include">
+            <e p="Event_Base.cs" t="Include" />
+            <e p="FreeShopSelectionEvent.cs" t="Include" />
+            <e p="MinionSelectionEvent.cs" t="Include" />
+            <e p="PlayerSwitchEvent.cs" t="Include" />
+          </e>
           <e p="Firebase" t="Include">
             <e p="Authentication" t="Include">
               <e p="AuthManager.cs" t="Include" />
@@ -69,6 +77,7 @@
             </e>
             <e p="WinLoss.cs" t="Include" />
           </e>
+          <e p="GameEventManager.cs" t="Include" />
           <e p="Gameplay" t="Include">
             <e p="BattleManager.cs" t="Include" />
             <e p="BossTurnManager.cs" t="Include" />
@@ -77,8 +86,9 @@
             <e p="GameplayManager.cs" t="Include" />
             <e p="Grid.cs" t="Include" />
             <e p="History.cs" t="Include" />
+            <e p="NetworkOwnershipTransferManger.cs" t="Include" />
             <e p="PlayZone.cs" t="Include" />
-            <e p="TurnManager.cs" t="Include" />
+            <e p="TurnPlayerManager.cs" t="Include" />
           </e>
           <e p="Hand and Deck" t="Include">
             <e p="Deck.cs" t="Include" />
@@ -103,15 +113,19 @@
             <e p="TurnPlayerHeroManager.cs" t="Include" />
             <e p="TurnStartEffectHero.cs" t="Include" />
           </e>
+          <e p="HeroIconViewed.cs" t="Include" />
           <e p="Lobby" t="Include">
             <e p="NameScreen.cs" t="Include" />
             <e p="PhotonManager.cs" t="Include" />
+            <e p="PhotonQuickManager.cs" t="Include" />
             <e p="PlayerListing.cs" t="Include" />
             <e p="PlayerListingsView.cs" t="Include" />
             <e p="RoomListing.cs" t="Include" />
             <e p="RoomListingsView.cs" t="Include" />
             <e p="RoomLobby.cs" t="Include" />
+            <e p="RoomQuickLobby.cs" t="Include" />
           </e>
+          <e p="MinionCardEffectHandler.cs" t="Include" />
           <e p="Networking" t="Include">
             <e p="CustomTypes.cs" t="Include" />
             <e p="GameBoard.cs" t="Include" />
@@ -124,7 +138,6 @@
             <e p="Graveyard.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
-          <e p="PlayerSwitchEvent.cs" t="Include" />
           <e p="RandomNumberNetworkGenerator.cs" t="Include" />
           <e p="Shop" t="Include">
             <e p="PurchaseHandler.cs" t="Include" />
@@ -133,7 +146,6 @@
           </e>
           <e p="ShopNetworkRelay.cs" t="Include" />
           <e p="ShuffleDeck.cs" t="Include" />
-          <e p="SortingLayers.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
             <e p="NotificationWindowEvent.cs" t="Include" />
@@ -148,8 +160,6 @@
             <e p="InputToEvent.cs" t="Include" />
           </e>
         </e>
-        <e p="ButtonInputManager.cs" t="Include" />
-        <e p="EndGameHandler.cs" t="Include" />
         <e p="FacebookSDK" t="Include">
           <e p="Examples" t="Include">
             <e p="Scripts" t="Include">
@@ -200,9 +210,13 @@
               </e>
             </e>
           </e>
+          <e p="Plugins" t="Include">
+            <e p="Http" t="Include">
+              <e p="link.xml" t="Include" />
+            </e>
+            <e p="link.xml" t="Include" />
+          </e>
         </e>
-        <e p="FreeShopSelectionEvent.cs" t="Include" />
-        <e p="GameEventManager.cs" t="Include" />
         <e p="GoogleSignIn" t="Include">
           <e p="Editor" t="Include">
             <e p="google-signin-plugin_v1.0.4.txt" t="Include" />
@@ -232,7 +246,6 @@
             <e p="SignInHelperObject.cs" t="Include" />
           </e>
         </e>
-        <e p="HeroIconViewed.cs" t="Include" />
         <e p="JMO Assets" t="Include">
           <e p="Cartoon FX" t="Include">
             <e p="CartoonFX Free.txt" t="Include" />
@@ -264,7 +277,7 @@
             </e>
           </e>
         </e>
-        <e p="MinionCardEffectHandler.cs" t="Include" />
+        <e p="NetworkUIEventRaiser.cs" t="Include" />
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">
             <e p="Code" t="Include">
@@ -412,11 +425,13 @@
             </e>
           </e>
         </e>
+        <e p="PlayPhases.cs" t="Include" />
         <e p="PlayServicesResolver" t="Include">
           <e p="Editor" t="Include">
             <e p="play-services-resolver_v1.2.124.0.txt" t="Include" />
           </e>
         </e>
+        <e p="ShopDisplayManager.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />
@@ -452,6 +467,7 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
+        <e p="TurnPhaseManager.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />

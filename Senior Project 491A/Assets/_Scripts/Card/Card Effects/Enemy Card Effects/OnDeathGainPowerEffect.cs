@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card Effect/Minion Card Effect/On Death Gain Power")]
+
 public class OnDeathGainPowerEffect : OnDeathCardEffects
 {
     [SerializeField] private int powerIncreaseAmount;
     public override void LaunchCardEffect()
     {
         NotificationWindowEvent.Instance.EnableNotificationWindow("Enemy destroyed gain power");
-        TurnManager.Instance.turnPlayer.Power += powerIncreaseAmount;
+        TurnPlayerManager.Instance.TurnPlayer.Power += powerIncreaseAmount;
     }
 }

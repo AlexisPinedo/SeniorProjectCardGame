@@ -43,7 +43,6 @@ public abstract class CardDisplay : MonoBehaviourPun
     {
         Event_Base.GameStatePausingEventTriggered += DisableBoxCollider;
         Event_Base.GameStatePausingEventEnded += EnableBoxCollider;
-        LoadCardIntoDisplay();
     }
 
     protected virtual void OnDisable()

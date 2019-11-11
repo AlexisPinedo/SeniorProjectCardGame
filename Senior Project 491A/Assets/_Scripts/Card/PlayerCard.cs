@@ -34,9 +34,9 @@ public class PlayerCard : Card
     }
 
     [SerializeField]
-    private List<CardType.CardTypes> CardEffectRequirement = new List<CardType.CardTypes>();
+    private List<CardTypes> CardEffectRequirement = new List<CardTypes>();
 
-    public List<CardType.CardTypes> cardEffectRequirments
+    public List<CardTypes> cardEffectRequirments
     {
         get { return CardEffectRequirement; }
     }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93421ccf3969ff46829900d1e3df751, type: 3}
+  m_Name: Mythical Creature
+  m_EditorClassIdentifier: 
+  cardsToAdd:
+  - {fileID: 11400000, guid: dc4093aa428569e43bfdcea06401e397, type: 2}
+  - {fileID: 11400000, guid: 744bb45563de1164fbe5da0c7eb764a9, type: 2}
+  - {fileID: 11400000, guid: 983fd9880d417a845b0fd67ed62a8d2d, type: 2}
+  - {fileID: 11400000, guid: ef73df910ba98f34cb214a6e58394d76, type: 2}
+  - {fileID: 11400000, guid: 25ac6e984153aaf449938659c876e892, type: 2}
+  - {fileID: 11400000, guid: 554bf5b539143934dbae7c52427373c1, type: 2}
+  cardCopies: 3
+  CardsToAddLaterInGame: []
+  turnCountToAddOtherCards: 2

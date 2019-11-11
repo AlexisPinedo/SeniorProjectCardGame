@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card Effect/Minion Card Effect/On Death Destroy Player Deck Card")]
 public class OnDeathDestroyPlayerDeckCard : OnDeathCardEffects
 {
     public override void LaunchCardEffect()
     {
-        Deck playerDeck = TurnManager.Instance.turnPlayer.deck;
-        Graveyard playerGrave = TurnManager.Instance.turnPlayer.graveyard;
+        Deck playerDeck = TurnPlayerManager.Instance.TurnPlayer.deck;
+        Graveyard playerGrave = TurnPlayerManager.Instance.TurnPlayer.graveyard;
 
         if (playerDeck.cardsInDeck.Count != 0)
         {

@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/Lobby.unity
-    guid: 28663871e8c27634e998170fe951ddb5
+    path: Assets/_Scenes/QuickLobby.unity
+    guid: ceca5627e09194902bf3940329ea70fc
   - enabled: 1
     path: Assets/_Scenes/AlexPinedoScene.unity
     guid: e7c2cf53079353241812ae5e98fbcf7b

@@ -76,19 +76,19 @@ public class CardEffectEvaluationManager : MonoBehaviour
             //Each card type has a card type: Magic, warrior, etc. These are values assigned from an enumerator
             //The cardToEvaluate.cardEffectRequirments is a list of these enumerator values
             //we will begin checking if the play order requirement matches up with the cards played
-            CardType.CardTypes typeToCompareAgainst = cardToEvaluate.cardEffectRequirments[cardToEvaluate.cardEffectRequirments.Count - 1 - i];
+            CardTypes typeToCompareAgainst = cardToEvaluate.cardEffectRequirments[cardToEvaluate.cardEffectRequirments.Count - 1 - i];
 
             //If the card type are not equal we have to check for a few more conditions
             if (cardInHistory.CardType != typeToCompareAgainst)
             {
                 //CardType.CardTypes.All means that the card is all types so the two cards are equal  
-                if (cardInHistory.CardType == CardType.CardTypes.All)
+                if (cardInHistory.CardType == CardTypes.All)
                 {
                     //Debug.Log("the card in history was type any so it is equal ");
                 }
                 //Card effect requirement could also just want a card played in this case no matter what is played 
                 //should trigger the card effect. 
-                else if (typeToCompareAgainst == CardType.CardTypes.All)
+                else if (typeToCompareAgainst == CardTypes.All)
                 {
                     //Debug.Log("The card requirement was any card to be played. The condition is met.");
                 }

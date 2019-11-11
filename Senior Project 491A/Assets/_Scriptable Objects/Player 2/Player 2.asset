@@ -15,7 +15,7 @@ MonoBehaviour:
   hand: {fileID: 11400000, guid: faffe65425888364c90c44179becc897, type: 2}
   deck: {fileID: 11400000, guid: 129d1d2bb41d2444b8d6adeae81ba26a, type: 2}
   currency: 0
-  power: 10
+  power: 0
   graveyard: {fileID: 11400000, guid: 3a630b2f752ea964c894ac5173f0aa73, type: 2}
   rewardPile: []
-  _selectedHero: {fileID: 11400000, guid: 3a825f4e57b7edc43a0d40879eecf058, type: 2}
+  _selectedHero: {fileID: 11400000, guid: 8560a61c11d6e124baf7b862814b7b9e, type: 2}

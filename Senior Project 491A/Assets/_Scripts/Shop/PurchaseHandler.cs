@@ -44,7 +44,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
         FreeShopSelectionEvent.PurchaseEventTriggered -= UnSubHandlePurchase;
         FreeShopSelectionEvent.PurchaseEventEnded += SubHandlePurchase;
     }
-
+    
     private void UnSubHandlePurchase()
     {
         DragCard.ShopCardClicked -= HandlePurchase;
@@ -59,87 +59,20 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
     private void HandlePurchase(PlayerCardDisplay cardSelected)
     {
         //Debug.Log("Handling Purchase");
-        if (TurnManager.Instance.turnPlayer.Currency >= cardSelected.card.CardCost)
+        if (TurnPlayerManager.Instance.TurnPlayer.Currency >= cardSelected.card.CardCost)
         {
-            
+            TurnPlayerManager.Instance.TurnPlayer.graveyard.graveyard.Add(cardSelected.card);
 
-            TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardSelected.card);
-
-            TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
+            TurnPlayerManager.Instance.TurnPlayer.Currency -= cardSelected.card.CardCost;
             
             cardSelected.TriggerCardPurchasedEvent();
-
-            StartCoroutine(TransformCardPosition(cardSelected));
-
+            
+            Destroy(cardSelected.gameObject);
         }
         else
         {
             Debug.Log("Cannot purchase. Not enough currency");
         }
     }
-
-
-    IEnumerator TransformCardPosition(PlayerCardDisplay cardSelected)
-    {
-        Vector3 cardDestination = GameObject.Find("GraveyardLocation").gameObject.transform.position;
-
-        float currentLerpTime = 0;
-        float lerpTime = 0.2f;
-
-        Vector3 startPos = cardSelected.transform.position;
-
-        while (cardSelected.transform.position != cardDestination)
-        {
-            currentLerpTime += Time.deltaTime;
-            if (currentLerpTime >= lerpTime)
-            {
-                currentLerpTime = lerpTime;
-            }
-
-            float Perc = currentLerpTime / lerpTime;
-
-            cardSelected.transform.position = Vector3.Lerp(startPos, cardDestination, Perc);
-
-            yield return new WaitForEndOfFrame();
-        }
-
-        cardSelected.GetComponent<CardZoomer>().OriginalPosition = cardDestination;
-        cardSelected.GetComponent<DragCard>().OriginalPosition = cardDestination;
-
-        Destroy(cardSelected.gameObject);
-    }
 }
 
-
-
-
-
-
-//public class PurchaseHandler : MonoBehaviour
-//{
-//    public delegate void _CardBought(Card cardBuying);
-//    public static event _CardBought CardBought;
-//
-//    private Player turnPlayer;
-//
-//    public void Start()
-//    {
-//        turnPlayer = TurnManager.Instance.turnPlayer;
-//    }
-//
-//    public bool isPurchasable(Card cardClicked)
-//    {
-//        bool canBePurchased;
-//        // TODO
-//
-//        canBePurchased = true;
-//
-//        return canBePurchased;
-//    }
-//
-//    public void PurchaseCard(Card cardBuying)
-//    {
-//        CardBought?.Invoke(cardBuying);
-//    }
-//
-//}

@@ -17,6 +17,6 @@ public class Vito : TurnStartEffectHero
     {
         //Debug.Log("Player has Vito selected increasing power by 4 for the turn");
         NotificationWindowEvent.Instance.EnableNotificationWindow("Vito is selected gaining 4 power");
-        TurnManager.Instance.turnPlayer.Power += 4;
+        TurnPlayerManager.Instance.TurnPlayer.Power += 4;
     }
 }
