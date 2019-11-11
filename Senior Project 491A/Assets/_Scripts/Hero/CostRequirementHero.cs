@@ -34,7 +34,7 @@ public abstract class CostRequirementHero : Hero
 
         if (cardPlayed.CardEffect is OnPlayEffects)
         {
-            if (cardPlayed.CardType == CardType.CardTypes.None)
+            if (cardPlayed.CardType == CardTypes.None)
             {
                 //Debug.Log("Card has no type nothing to evaluate");
                 return;

@@ -23,7 +23,7 @@ public class FreeShopSelectionEvent : Event_Base
     
     private Queue<int> cardsToPurchaseQueue = new Queue<int>();
 
-    private CardType.CardTypes compareType = CardType.CardTypes.All;
+    private CardTypes compareType = CardTypes.All;
 
     private int cardsToPurchase = 0;
     
@@ -49,7 +49,7 @@ public class FreeShopSelectionEvent : Event_Base
         DragCard.ShopCardClicked -= FreeCardPurchase;
     }
 
-    public void EnableShopSelectionState(int cardsToSelect, CardType.CardTypes typeToCompare = CardType.CardTypes.All)
+    public void EnableShopSelectionState(int cardsToSelect, CardTypes typeToCompare = CardTypes.All)
     {
         compareType = typeToCompare;
         
@@ -73,7 +73,7 @@ public class FreeShopSelectionEvent : Event_Base
 
     public void DisableShopSelectionState()
     {
-        compareType = CardType.CardTypes.All;
+        compareType = CardTypes.All;
         
         PurchaseEventEnded?.Invoke();
 
@@ -96,7 +96,7 @@ public class FreeShopSelectionEvent : Event_Base
             return;
         }
         
-        if (cardClicked.card.CardType == compareType || compareType == CardType.CardTypes.All)
+        if (cardClicked.card.CardType == compareType || compareType == CardTypes.All)
         {
             TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardClicked.card);
         

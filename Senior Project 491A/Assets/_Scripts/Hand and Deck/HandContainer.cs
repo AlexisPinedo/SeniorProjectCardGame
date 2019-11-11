@@ -137,7 +137,7 @@ public class HandContainer : PlayerCardContainer
                     return;
                 }
                 
-                if(cardDisplay.card.CardType != CardType.CardTypes.None)
+                if(cardDisplay.card.CardType != CardTypes.None)
                 {                    
                     Debug.Log("Add card to grave");
                     playerGrave.graveyard.Add(cardDisplay.card);
