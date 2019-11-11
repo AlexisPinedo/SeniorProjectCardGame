@@ -35,7 +35,6 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private GameObject player1GameObject, player2GameObject;
     public static event Action PlayerSwitched;
-    public static event Action EffectSwitchedPlayer;
     public static event Action GameStarted;
     
     private static TurnPlayerManager _instance;
@@ -76,12 +75,6 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
         player2GameObject.SetActive(false);
         turnPlayerGameObject = player1GameObject;
         GameStarted?.Invoke();
-    }
-
-    public void QuickChangeActivePlayer()
-    {
-        SwapPlayers();
-        EffectSwitchedPlayer?.Invoke();
     }
 
     public void ChangeActivePlayer()

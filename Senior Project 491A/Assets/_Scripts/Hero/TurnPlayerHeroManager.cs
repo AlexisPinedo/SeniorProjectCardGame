@@ -41,13 +41,11 @@ public class TurnPlayerHeroManager : MonoBehaviour
     private void OnEnable()
     {
         TurnPlayerManager.PlayerSwitched += UpdateActiveHero;
-        TurnPlayerManager.EffectSwitchedPlayer += UpdateActiveHero;
     }
 
     private void OnDisable()
     {
         TurnPlayerManager.PlayerSwitched -= UpdateActiveHero;
-        TurnPlayerManager.EffectSwitchedPlayer -= UpdateActiveHero;
     }
 
     private void UpdateActiveHero()
