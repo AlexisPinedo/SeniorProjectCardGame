@@ -123,7 +123,7 @@ public class FreeShopSelectionEvent : Event_Base
     
     public bool ValidateSameCostRequirement()
     {
-        if (compareType == CardType.CardTypes.All)
+        if (compareType == CardTypes.All)
         {
             Debug.Log("Comparetype is all so you can buy anything");
             return true;

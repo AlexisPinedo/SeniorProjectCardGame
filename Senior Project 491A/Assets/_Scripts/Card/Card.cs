@@ -53,8 +53,8 @@ public abstract class Card : ScriptableObject
     }
 
     [SerializeField]
-    protected CardType.CardTypes cardType;
-    public CardType.CardTypes CardType
+    protected CardTypes cardType;
+    public CardTypes CardType
     {
         get { return cardType; }
     }
