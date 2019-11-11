@@ -61,20 +61,56 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
         //Debug.Log("Handling Purchase");
         if (TurnManager.Instance.turnPlayer.Currency >= cardSelected.card.CardCost)
         {
+            
+
             TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardSelected.card);
 
             TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
             
             cardSelected.TriggerCardPurchasedEvent();
-            
-            Destroy(cardSelected.gameObject);
+
+            StartCoroutine(TransformCardPosition(cardSelected));
+
         }
         else
         {
             Debug.Log("Cannot purchase. Not enough currency");
         }
     }
+
+
+    IEnumerator TransformCardPosition(PlayerCardDisplay cardSelected)
+    {
+        Vector3 cardDestination = GameObject.Find("GraveyardLocation").gameObject.transform.position;
+
+        float currentLerpTime = 0;
+        float lerpTime = 0.2f;
+
+        Vector3 startPos = cardSelected.transform.position;
+
+        while (cardSelected.transform.position != cardDestination)
+        {
+            currentLerpTime += Time.deltaTime;
+            if (currentLerpTime >= lerpTime)
+            {
+                currentLerpTime = lerpTime;
+            }
+
+            float Perc = currentLerpTime / lerpTime;
+
+            cardSelected.transform.position = Vector3.Lerp(startPos, cardDestination, Perc);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        cardSelected.GetComponent<CardZoomer>().OriginalPosition = cardDestination;
+        cardSelected.GetComponent<DragCard>().OriginalPosition = cardDestination;
+
+        Destroy(cardSelected.gameObject);
+    }
 }
+
+
 
 
 

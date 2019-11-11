@@ -39,6 +39,8 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         photonView.RPC("RPCOnMouseEnter", RpcTarget.Others, photonView.ViewID, transform);
     }
 
+
+
     [PunRPC]
     private void RPCOnMouseEnter(int cardID, Transform trans)
     {

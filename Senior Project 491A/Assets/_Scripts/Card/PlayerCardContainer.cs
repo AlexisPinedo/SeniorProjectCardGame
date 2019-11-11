@@ -31,6 +31,7 @@ public abstract class PlayerCardContainer : Container
             float Perc = currentLerpTime / lerpTime;
 
             cardDisplay.transform.position = Vector3.Lerp(startPos, cardDestination, Perc);
+            
 
             yield return new WaitForEndOfFrame();
         }

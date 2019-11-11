@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UIElements;
 
 public class PlayZone : MonoBehaviourPunCallbacks
 {
@@ -26,6 +27,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
     public static event Action HasPlayed;
 
     private PhotonView RPCCardSelected;
+
+    [SerializeField] private Transform enlargementZone;
 
     void Awake()
     {
@@ -98,8 +101,9 @@ public class PlayZone : MonoBehaviourPunCallbacks
         Hand tpHand = TurnManager.Instance.turnPlayer.hand;
         PlayerCardDisplay cardDisplay = cardInZone;
         PlayerCard cardPlayed = cardDisplay.card;
-        
-        Destroy(cardInZone.gameObject);
+
+        StartCoroutine(TransformCard(cardInZone, enlargementZone.position));
+        //Destroy(cardInZone.gameObject);
         
         TurnManager.Instance.turnPlayer.Power += cardPlayed.CardAttack;
         TurnManager.Instance.turnPlayer.Currency += cardPlayed.CardCurrency;
@@ -114,6 +118,44 @@ public class PlayZone : MonoBehaviourPunCallbacks
         HasPlayed?.Invoke();
         cardInPlayZone = false;
         cardInZone = null;
+    }
+
+    IEnumerator TransformCard(PlayerCardDisplay cardInPlay, Vector3 destination)
+    {
+        cardInPlay.transform.localScale = new Vector3(0, 0, 0);
+        cardInPlay.transform.position = destination;
+        
+        float currentLerpTime = 0;
+        float lerpTime = 0.3f;
+
+        //Vector3 startPos = cardInPlay.transform.position;
+        Vector3 startSize = cardInPlay.transform.localScale;
+        Vector3 endSize = cardInPlay.transform.localScale + new Vector3(1.5f, 1.5f, 1.5f);
+
+
+        while (cardInPlay.transform.localScale != endSize)
+        {
+            currentLerpTime += Time.deltaTime;
+            if (currentLerpTime >= lerpTime)
+            {
+                currentLerpTime = lerpTime;
+            }
+
+            float Perc = currentLerpTime / lerpTime;
+
+            //cardInPlay.transform.position = Vector3.Lerp(startPos, destination, Perc);
+            cardInPlay.transform.localScale = Vector3.Lerp(startSize, endSize, Perc);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(1.0f);
+
+        Destroy(cardInPlay.gameObject);
+
+        //cardDisplay.GetComponent<CardZoomer>().OriginalPosition = cardDestination;
+        //cardDisplay.GetComponent<DragCard>().OriginalPosition = cardDestination;
+
     }
 
     [PunRPC]

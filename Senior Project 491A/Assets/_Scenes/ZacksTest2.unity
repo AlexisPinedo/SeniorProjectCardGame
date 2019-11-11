@@ -455,12 +455,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7e90af0b3811eac8cec531e4b94592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
+  player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
   turnPlayer: {fileID: 0}
   turnPlayerGameObject: {fileID: 0}
   player1GameObject: {fileID: 101520841}
   player2GameObject: {fileID: 2025430591}
-  player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
-  player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
+  shopCards: {fileID: 0}
+  minionCards: {fileID: 0}
+  bossCard: {fileID: 0}
 --- !u!114 &381133603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9cf00c622ea147b720ca9f7d06361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enlargementZone: {fileID: 469188426}
 --- !u!4 &393574268
 Transform:
   m_ObjectHideFlags: 0
@@ -807,6 +811,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464375761}
   m_CullTransparentMesh: 0
+--- !u!1 &469188425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 469188426}
+  m_Layer: 0
+  m_Name: EnlargementZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &469188426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469188425}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.5, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &527374155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,18 +1152,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca9d4b072acf4164588d35a26d1bddd4, type: 3}
---- !u!114 &589770440 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 304121539440660337, guid: ca9d4b072acf4164588d35a26d1bddd4,
-    type: 3}
-  m_PrefabInstance: {fileID: 589770439}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7d07bed3509404ea6e7f0c60f4b807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &607427540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2177,6 +2199,7 @@ Transform:
   - {fileID: 301505296}
   - {fileID: 1999649730}
   - {fileID: 149313523}
+  - {fileID: 1583401700}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2844,13 +2867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88450659603364da1affe52e78d94eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1Handcontainer: {fileID: 1190731606}
-  p2HandContainer: {fileID: 2033931931}
-  shopContainer: {fileID: 301505297}
-  minionContainer: {fileID: 607427542}
-  bossCard: {fileID: 589770440}
-  playZone: {fileID: 393574267}
-  cavnas: {fileID: 1455907479}
 --- !u!4 &1121214001
 Transform:
   m_ObjectHideFlags: 0
@@ -3488,8 +3504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf2cc82c57dac642820c8e9afc85054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startBattleButton: {fileID: 0}
-  endTurnButton: {fileID: 0}
 --- !u!114 &1455907488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3958,6 +3972,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578277351}
   m_CullTransparentMesh: 0
+--- !u!1 &1583401699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1583401700}
+  m_Layer: 8
+  m_Name: GraveyardLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1583401700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583401699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 897945987}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1694429695
 GameObject:
   m_ObjectHideFlags: 0
