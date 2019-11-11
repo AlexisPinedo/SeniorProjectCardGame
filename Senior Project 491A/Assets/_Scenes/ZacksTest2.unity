@@ -461,9 +461,6 @@ MonoBehaviour:
   turnPlayerGameObject: {fileID: 0}
   player1GameObject: {fileID: 101520841}
   player2GameObject: {fileID: 2025430591}
-  shopCards: {fileID: 0}
-  minionCards: {fileID: 0}
-  bossCard: {fileID: 0}
 --- !u!114 &381133603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,6 +565,8 @@ MonoBehaviour:
   buttonList:
   - {fileID: 1526216803}
   - {fileID: 1385409948}
+  startBattleButton: {fileID: 0}
+  endTurnButton: {fileID: 0}
 --- !u!1 &393574265
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,7 +3517,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPower: {fileID: 1014222953}
   playerCurrency: {fileID: 1694429697}
-  currentTurn: {fileID: 2063148892}
 --- !u!4 &1472367416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 522489324146028442, guid: ca9d4b072acf4164588d35a26d1bddd4,

@@ -25,6 +25,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
     public static event _CardPlayed CardPlayed;
     public static event Action HasPlayed;
 
+    public Transform enlargementZone;
+
     private PhotonView RPCCardSelected;
 
     private BoxCollider2D playZoneCollider;
@@ -118,7 +120,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
         PlayerCard cardPlayed = cardDisplay.card;
         if(!PhotonNetwork.OfflineMode)
             cardDisplay.photonView.RPC("DestroyCard", RpcTarget.Others);
-        
+
+        StartCoroutine(TransformCard(cardInZone, enlargementZone.position));
         Destroy(cardInZone.gameObject);
         
         TurnPlayerManager.Instance.TurnPlayer.Power += cardPlayed.CardAttack;
@@ -135,6 +138,45 @@ public class PlayZone : MonoBehaviourPunCallbacks
         cardInPlayZone = false;
         cardInZone = null;
     }
-    
+
+    IEnumerator TransformCard(PlayerCardDisplay cardInPlay, Vector3 destination)
+    {
+        cardInPlay.transform.localScale = new Vector3(0, 0, 0);
+        cardInPlay.transform.position = destination;
+
+        float currentLerpTime = 0;
+        float lerpTime = 0.3f;
+
+        //Vector3 startPos = cardInPlay.transform.position;
+        Vector3 startSize = cardInPlay.transform.localScale;
+        Vector3 endSize = cardInPlay.transform.localScale + new Vector3(1.5f, 1.5f, 1.5f);
+
+
+        while (cardInPlay.transform.localScale != endSize)
+        {
+            currentLerpTime += Time.deltaTime;
+            if (currentLerpTime >= lerpTime)
+            {
+                currentLerpTime = lerpTime;
+            }
+
+            float Perc = currentLerpTime / lerpTime;
+
+            //cardInPlay.transform.position = Vector3.Lerp(startPos, destination, Perc);
+            cardInPlay.transform.localScale = Vector3.Lerp(startSize, endSize, Perc);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(1.0f);
+
+        Destroy(cardInPlay.gameObject);
+
+        //cardDisplay.GetComponent<CardZoomer>().OriginalPosition = cardDestination;
+        //cardDisplay.GetComponent<DragCard>().OriginalPosition = cardDestination;
+
+    }
+
+
 
 }
