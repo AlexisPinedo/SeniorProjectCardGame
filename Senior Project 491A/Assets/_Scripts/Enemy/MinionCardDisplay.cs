@@ -32,6 +32,7 @@ public class MinionCardDisplay : EnemyCardDisplay
         base.OnEnable();
         TurnPhaseManager.BattlePhaseStarted += EnableBoxCollider;
         TurnPhaseManager.BattlePhaseEnded += DisableBoxCollider;
+        Event_Base.DisableMinionCards += DisableBoxCollider;
     }
 
     protected override void OnDisable()
@@ -39,6 +40,7 @@ public class MinionCardDisplay : EnemyCardDisplay
         base.OnDisable();
         TurnPhaseManager.BattlePhaseStarted -= EnableBoxCollider;
         TurnPhaseManager.BattlePhaseEnded -= DisableBoxCollider;
+        Event_Base.DisableMinionCards += DisableBoxCollider;
     }
 
     //This method will invoke the CardDestroyed event 

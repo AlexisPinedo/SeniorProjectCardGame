@@ -23,13 +23,13 @@ public class PlayerSwitchEvent : Event_Base
 
     public void EnablePlayerSwitchEvent()
     {
-        GameEventManager.Instance.AddStateToQueue(this);
+        AddStateToQueue();
     }
     
     public override void EventState()
     {
         Debug.Log("In Player swap event");
-        TurnPlayerManager.Instance.QuickChangeActivePlayer();
+        TurnPlayerManager.Instance.ChangeActivePlayer();
         GameEventManager.Instance.EndEvent();
     }
 }

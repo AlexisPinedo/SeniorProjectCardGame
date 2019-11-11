@@ -5,12 +5,8 @@ using UnityEngine;
 
 public class FreeShopSelectionEvent : Event_Base
 {
-    public delegate void _purchaseEventTriggered();
-    public static event _purchaseEventTriggered PurchaseEventTriggered;
-
-    
-    public delegate void _purchaseEventEnded();
-    public static event _purchaseEventEnded PurchaseEventEnded;
+    public static event Action PurchaseEventTriggered;
+    public static event Action PurchaseEventEnded;
 
     private static FreeShopSelectionEvent _instance;
 
@@ -55,7 +51,7 @@ public class FreeShopSelectionEvent : Event_Base
         
         cardsToPurchaseQueue.Enqueue(cardsToSelect);
         
-        GameEventManager.Instance.AddStateToQueue(this);
+        AddStateToQueue();
     }
 
     public override void EventState()

@@ -1,17 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+
 using UnityEngine;
 
 public abstract class Event_Base : MonoBehaviour
 {
-    public delegate void _gameStatePausingEventTriggered();
-    public static event _gameStatePausingEventTriggered GameStatePausingEventTriggered;
+    public static event Action GameStatePausingEventTriggered;
+    public static event Action GameStatePausingEventEnded;
+    public static event Action DisableMinionCards;
     
-    public delegate void _gameStatePausingEventEnded();
-    public static event _gameStatePausingEventEnded GameStatePausingEventEnded;
     public virtual void EventState()
     {
         
+    }
+
+    protected void AddStateToQueue()
+    {
+        GameEventManager.Instance.AddStateToQueue(this);
     }
 
     protected void TriggerGameStatePauseEvent()
@@ -22,6 +26,11 @@ public abstract class Event_Base : MonoBehaviour
     protected void EndGameStatePauseEvent()
     {
         GameStatePausingEventEnded?.Invoke();
+    }
+
+    protected void DisableMinionCardContainters()
+    {
+        DisableMinionCards?.Invoke();
     }
     
 }
