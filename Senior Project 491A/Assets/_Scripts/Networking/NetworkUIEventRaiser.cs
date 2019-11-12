@@ -38,9 +38,11 @@ public class NetworkUIEventRaiser : MonoBehaviour
     private void OnEvent(EventData photonEvent)
     {
         byte recievedCode = photonEvent.Code;
-        if (recievedCode == NetworkOwnershipTransferManger.endTurnEvent)
-            UIHandler.Instance.EndTurnButtonOnClick();
-        if (recievedCode == NetworkOwnershipTransferManger.startBattleEvent)
-            UIHandler.Instance.StartBattleButtonOnClick();
+        
+        //After removing from UIHandler the code now executes the events not allowing either player to react
+        //if (recievedCode == NetworkOwnershipTransferManger.endTurnEvent)
+            //UIHandler.Instance.EndTurnButtonOnClick();
+        //if (recievedCode == NetworkOwnershipTransferManger.startBattleEvent)
+            //UIHandler.Instance.StartBattleButtonOnClick();
     }
 }

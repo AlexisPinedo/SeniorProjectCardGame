@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Container class for the Deck scriptable object.
 /// </summary>
-public class DeckContainer : MonoBehaviour
+public class PlayerDeckContainer : MonoBehaviour
 {
-    public Deck deck;
+    public PlayerDeck deck;
 }

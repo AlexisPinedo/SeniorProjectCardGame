@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GraveContainer : MonoBehaviour
 {
-    public Graveyard grave;
+    public PlayerGraveyard grave;
 
     private void Awake()
     {

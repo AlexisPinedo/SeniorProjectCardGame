@@ -11,8 +11,8 @@ using Photon.Pun;
 public class HandContainer : PlayerCardContainer
 {
     public Hand hand;
-    public Deck playerDeck;
-    public Graveyard playerGrave;
+    public PlayerDeck playerDeck;
+    public PlayerGraveyard playerGraveyard;
     public PlayerCard phantomCard;
     public PlayerCard cardDrawn;
 
@@ -57,12 +57,12 @@ public class HandContainer : PlayerCardContainer
         }
         else
         {
-            if (playerGrave.graveyard.Count > 0)
+            if (playerGraveyard.graveyard.Count > 0)
             {
-                for (int j = 0; j < playerGrave.graveyard.Count; j++)
+                for (int j = 0; j < playerGraveyard.graveyard.Count; j++)
                {
-                   playerDeck.cardsInDeck.Push(playerGrave.graveyard[j]);
-                   playerGrave.graveyard.Remove(playerGrave.graveyard[j]);
+                   playerDeck.cardsInDeck.Push(playerGraveyard.graveyard[j]);
+                   playerGraveyard.graveyard.Remove(playerGraveyard.graveyard[j]);
                }
 
                playerDeck.cardsInDeck = ShuffleDeck.Shuffle(playerDeck);
@@ -140,7 +140,7 @@ public class HandContainer : PlayerCardContainer
                 if(cardDisplay.card.CardType != CardTypes.None)
                 {                    
                     Debug.Log("Add card to grave");
-                    playerGrave.graveyard.Add(cardDisplay.card);
+                    playerGraveyard.graveyard.Add(cardDisplay.card);
                 }
 
                 Destroy(locationReferenceKeyValuePair.Value.gameObject);
@@ -173,7 +173,7 @@ public class HandContainer : PlayerCardContainer
     }
 
     /// <summary>
-    /// Places a player's card onto the hand grid.
+    /// Places a playerGraveyard's card onto the hand grid.
     /// </summary>
     /// <param name="card"></param>
     private void PlaceCard(PlayerCard cardToPlace)

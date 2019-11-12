@@ -61,7 +61,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
         //Debug.Log("Handling Purchase");
         if (TurnPlayerManager.Instance.TurnPlayer.Currency >= cardSelected.card.CardCost)
         {
-            TurnPlayerManager.Instance.TurnPlayer.graveyard.graveyard.Add(cardSelected.card);
+            TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardSelected.card);
 
             TurnPlayerManager.Instance.TurnPlayer.Currency -= cardSelected.card.CardCost;
             

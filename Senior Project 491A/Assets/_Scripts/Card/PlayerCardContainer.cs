@@ -34,13 +34,7 @@ public abstract class PlayerCardContainer : Container
 
             yield return new WaitForEndOfFrame();
         }
-
         cardDisplay.GetComponent<CardZoomer>().OriginalPosition = cardDestination;
         cardDisplay.GetComponent<DragCard>().OriginalPosition = cardDestination;
-
     }
-
-
-
-
 }

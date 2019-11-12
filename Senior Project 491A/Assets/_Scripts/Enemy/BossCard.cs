@@ -16,8 +16,8 @@ using UnityEngine;
 /// </summary>
 
 //This is used to create boss card in the project section you can then attatch the components for that boss
-[CreateAssetMenu(menuName = "Card/Boss Card")]
-public class Boss : EnemyCard
+[CreateAssetMenu(menuName = "Card/BossCard Card")]
+public class BossCard : EnemyCard
 {
     [SerializeField]
     private Goal goal;
@@ -29,12 +29,12 @@ public class Boss : EnemyCard
 
 /* This was the previous implementation of the enemy card 
 
-//public class Boss : EnemyCard
+//public class BossCard : EnemyCard
 //   {
-/* The Boss' Goal */
+/* The BossCard' Goal */
     //public Goal goal;
     
-    /* Boss' health and reward value */
+    /* BossCard' health and reward value */
     //public int _health;
 
     //// from IEnemy
@@ -49,7 +49,7 @@ public class Boss : EnemyCard
     //    set { _rewardValue = value;}
     //}
 
-    /* The Boss' Deck */
+    /* The BossCard' Deck */
     //public EnemyDeck bossDeck;
 
     //public CreateGrid EnemyGrid;
@@ -59,7 +59,7 @@ public class Boss : EnemyCard
     //void Start()
     //{
     //    // TODO: Set the goal?
-    //    // TODO: Populate the Boss' deck?
+    //    // TODO: Populate the BossCard' deck?
 
     //    this.transform.position = EnemyGrid.GetNearestPointOnGrid(new Vector2(6, 2));
 

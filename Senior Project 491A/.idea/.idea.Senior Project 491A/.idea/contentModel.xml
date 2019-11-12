@@ -44,7 +44,7 @@
           </e>
           <e p="EndGameHandler.cs" t="Include" />
           <e p="Enemy" t="Include">
-            <e p="Boss.cs" t="Include" />
+            <e p="BossCard.cs" t="Include" />
             <e p="BossCardDisplay.cs" t="Include" />
             <e p="EnemyCardDisplay.cs" t="Include" />
             <e p="EnemyDeck.cs" t="Include" />
@@ -52,7 +52,7 @@
               <e p="BombGoal.cs" t="Include" />
               <e p="Goal.cs" t="Include" />
             </e>
-            <e p="Minion.cs" t="Include" />
+            <e p="MinionCard.cs" t="Include" />
             <e p="MinionCardDisplay.cs" t="Include" />
             <e p="Reward.cs" t="Include" />
           </e>
@@ -92,9 +92,10 @@
           </e>
           <e p="Hand and Deck" t="Include">
             <e p="Deck.cs" t="Include" />
-            <e p="DeckContainer.cs" t="Include" />
             <e p="Hand.cs" t="Include" />
             <e p="HandContainer.cs" t="Include" />
+            <e p="PlayerDeck.cs" t="Include" />
+            <e p="PlayerDeckContainer.cs" t="Include" />
             <e p="Prefillable Deck.cs" t="Include" />
           </e>
           <e p="Hero" t="Include">
@@ -135,8 +136,8 @@
           <e p="PhotonNetworkManager.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="GraveContainer.cs" t="Include" />
-            <e p="Graveyard.cs" t="Include" />
             <e p="Player.cs" t="Include" />
+            <e p="PlayerGraveyard.cs" t="Include" />
           </e>
           <e p="RandomNumberNetworkGenerator.cs" t="Include" />
           <e p="Shop" t="Include">
@@ -277,6 +278,7 @@
             </e>
           </e>
         </e>
+        <e p="MoveBottonPartTest.cs" t="Include" />
         <e p="NetworkUIEventRaiser.cs" t="Include" />
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">

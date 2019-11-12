@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056a92b0d7f014edeb431bf437a562b1, type: 3}
-  m_Name: Deck Player 1
+  m_Script: {fileID: 11500000, guid: f3e9a49f022f94ba4bee1892869679ec, type: 3}
+  m_Name: Player 2 Grave
   m_EditorClassIdentifier: 
+  graveyard: []

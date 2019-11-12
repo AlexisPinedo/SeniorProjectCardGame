@@ -94,7 +94,7 @@ public class FreeShopSelectionEvent : Event_Base
         
         if ((cardClicked.card.CardType == compareType || compareType == CardTypes.All) && cardClicked.card.CardType != CardTypes.Enemy)
         {
-            TurnPlayerManager.Instance.TurnPlayer.graveyard.graveyard.Add(cardClicked.card);
+            TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardClicked.card);
         
             cardClicked.TriggerCardPurchasedEvent();
         

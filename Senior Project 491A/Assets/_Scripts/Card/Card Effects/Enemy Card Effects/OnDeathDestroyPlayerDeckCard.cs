@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Card Effect/Minion Card Effect/On Death Destroy Player Deck Card")]
+[CreateAssetMenu(menuName = "Card Effect/Minion Card Effect/On Death Destroy PlayerGraveyard Deck Card")]
 public class OnDeathDestroyPlayerDeckCard : OnDeathCardEffects
 {
     public override void LaunchCardEffect()
     {
-        Deck playerDeck = TurnPlayerManager.Instance.TurnPlayer.deck;
-        Graveyard playerGrave = TurnPlayerManager.Instance.TurnPlayer.graveyard;
+        PlayerDeck playerDeck = TurnPlayerManager.Instance.TurnPlayer.deck;
+        PlayerGraveyard playerGraveyardGrave = TurnPlayerManager.Instance.TurnPlayer.playerGraveyard;
 
         if (playerDeck.cardsInDeck.Count != 0)
         {
@@ -16,12 +16,12 @@ public class OnDeathDestroyPlayerDeckCard : OnDeathCardEffects
         }
         else
         {
-            if (playerGrave.graveyard.Count != 0)
+            if (playerGraveyardGrave.graveyard.Count != 0)
             {
-                for (int j = 0; j < playerGrave.graveyard.Count; j++)
+                for (int j = 0; j < playerGraveyardGrave.graveyard.Count; j++)
                 {
-                    playerDeck.cardsInDeck.Push(playerGrave.graveyard[j]);
-                    playerGrave.graveyard.Remove(playerGrave.graveyard[j]);
+                    playerDeck.cardsInDeck.Push(playerGraveyardGrave.graveyard[j]);
+                    playerGraveyardGrave.graveyard.Remove(playerGraveyardGrave.graveyard[j]);
                 }
 
                 playerDeck.cardsInDeck = ShuffleDeck.Shuffle(playerDeck);
