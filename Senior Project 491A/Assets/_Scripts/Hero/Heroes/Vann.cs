@@ -20,8 +20,8 @@ public class Vann : TurnStartEffectHero
 
         HandContainer playerContainer = TurnPlayerManager.Instance.TurnPlayerGameObject.GetComponentInChildren<HandContainer>();
 
-        //playerContainer.containerGrid.xValUnits += 1;
-        playerContainer.containerGrid.xValUnits = 6;
+        //playerContainer.containerCardGrid.xValUnits += 1;
+        playerContainer.containerCardGrid.xValUnits = 6;
         playerContainer.DrawCard();
         
     }

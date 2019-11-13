@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 /// <summary>
 /// The area of the screen where the parent object's Cards will be shown.
 /// </summary>
-public class Grid : MonoBehaviour
+public class CardGrid : MonoBehaviour
 {
     // When incrementing by a value in other scripts reference the Size value here for the increment
 
@@ -17,25 +17,25 @@ public class Grid : MonoBehaviour
 
     public Stack<Vector2> freeLocations = new Stack<Vector2>();
     public Dictionary<Vector2, CardDisplay> cardLocationReference = new Dictionary<Vector2, CardDisplay>();
-    
+
     [SerializeField] private int _xValUnits = 1;
     [SerializeField] private int _yValUnits = 1;
 
-    public delegate void _onGridResizeDelegate();
+    public delegate void OnGridResize();
 
-    public _onGridResizeDelegate onGridResize;
-    
+    public OnGridResize onGridResize;
+
     public float Size
     {
         get => size;
         set
         {
-            size = Mathf.Clamp(value, 0, 5); 
+            size = Mathf.Clamp(value, 0, 5);
             ResizeGrid();
             onGridResize();
         }
     }
-    
+
     public int xValUnits
     {
         get => _xValUnits;
@@ -55,12 +55,12 @@ public class Grid : MonoBehaviour
             InitializePlacements();
         }
     }
-    
+
     private void Awake()
     {
         cardLocationReference.Clear();
         freeLocations.Clear();
-        
+
         Gizmos.color = GizmoColor;
         if (Size > .99)
         {
@@ -78,8 +78,8 @@ public class Grid : MonoBehaviour
     private void InitializePlacements()
     {
         //Debug.Log("Initializing Placements");
-        float xTotal = Size * _xValUnits;   // Keep as float to allow grid resizing
-        int yTotal = (int)Size * _yValUnits;
+        float xTotal = Size * _xValUnits; // Keep as float to allow grid resizing
+        int yTotal = (int) Size * _yValUnits;
 
         for (float x = 0; x < xTotal; x += Size)
         {
@@ -89,6 +89,7 @@ public class Grid : MonoBehaviour
                 freeLocations.Push(point);
             }
         }
+
         //Debug.Log("Elementds added to freelocations");
     }
 
@@ -102,10 +103,10 @@ public class Grid : MonoBehaviour
         int xCount = Mathf.RoundToInt(position.x / Size);
         int yCount = Mathf.RoundToInt(position.y / Size);
 
-        Vector2 result = new Vector2((float)xCount * Size, (float)yCount * Size);
+        Vector2 result = new Vector2((float) xCount * Size, (float) yCount * Size);
 
         result += new Vector2(transform.position.x, transform.position.y);
-        
+
         return result;
     }
 
@@ -115,7 +116,7 @@ public class Grid : MonoBehaviour
     private void OnDrawGizmos()
     {
         float xTotal = Size * _xValUnits;
-        int yTotal = (int)Size * _yValUnits;
+        int yTotal = (int) Size * _yValUnits;
 
         Gizmos.color = GizmoColor;
         if (Size > .99)
@@ -142,8 +143,9 @@ public class Grid : MonoBehaviour
     /// <param name="newX"></param>
     public void ResizeGrid()
     {
-        Debug.Log("Resizing Grid");
+        Debug.Log("Resizing CardGrid");
         InitializePlacements();
     }
 
 }
+    

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Defines a Card as a scriptable object and is the base class for all types of Cards to extend.
@@ -79,4 +80,23 @@ public abstract class Card : ScriptableObject
     {
         get { return borderArt; }
     }
+
+    private void Awake()
+    {
+        cardEffect.owner = this;
+    }
+
+    public Action CardDestoyed;
+    public Action CardPlayed;
+
+    public void HandleCardPlayed()
+    {
+        CardPlayed?.Invoke();
+    }
+
+    public void HandleCardDestroyed()
+    {
+        CardDestoyed?.Invoke();
+    }
+    
 }

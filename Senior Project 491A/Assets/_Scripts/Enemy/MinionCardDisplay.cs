@@ -2,6 +2,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
+using System;
 
 /// <summary>
 /// Holds visual information specific to minion cards. Extends EnemyCardDisplay.
@@ -9,21 +10,23 @@ using ExitGames.Client.Photon;
 /// this loads depending on the card attached to it. 
 /// </summary>
 //[ExecuteInEditMode]
-public class MinionCardDisplay : EnemyCardDisplay
+public class MinionCardDisplay : EnemyCardDisplay<MinionCard>
 {
-    //    private byte currentCardIdenrifier = (byte)'E';
+    //private byte currentCardIdenrifier = (byte)'E';
 
     //Delegate event to handle anything that cares if the card has been destroyed
-    public delegate void _cardDestroyed(EnemyCardDisplay destroytedCard);
-    public static event _cardDestroyed CardDestroyed;
+    public static event Action<MinionCardDisplay> CardDestroyed;
 
     //Delegate event to handle anything that cares if the card has been clicked
-    public delegate void _MinionCardClicked(MinionCardDisplay cardClicked);
+    public static event Action<MinionCardDisplay> MinionCardClicked;
 
-    public static event _MinionCardClicked MinionCardClicked;
+    public Action MinionCardSummoned;
+
+    public Action MinionCardDestroyed; 
 
     void Awake()
     {
+        
         base.Awake();
     }
 
@@ -33,6 +36,7 @@ public class MinionCardDisplay : EnemyCardDisplay
         TurnPhaseManager.BattlePhaseStarted += EnableBoxCollider;
         TurnPhaseManager.BattlePhaseEnded += DisableBoxCollider;
         Event_Base.DisableMinionCards += DisableBoxCollider;
+        MinionCardSummoned?.Invoke();
     }
 
     protected override void OnDisable()
@@ -48,8 +52,7 @@ public class MinionCardDisplay : EnemyCardDisplay
     {
         Debug.Log("minion card was destroyed");
         base.OnDestroy();
-        if (CardDestroyed != null)
-            CardDestroyed.Invoke(this);
+        CardDestroyed?.Invoke(this);
     }
 
     //This method will invoke the MinionCardClicked event

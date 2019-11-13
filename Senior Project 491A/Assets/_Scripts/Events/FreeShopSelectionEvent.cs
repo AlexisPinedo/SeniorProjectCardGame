@@ -125,13 +125,13 @@ public class FreeShopSelectionEvent : Event_Base
             return true;
         }
         
-        Dictionary<Vector2, CardDisplay> CardsinShop = ShopContainer.Instance.containerGrid.cardLocationReference;
+        Dictionary<Vector2, CardDisplay> CardsinShop = ShopContainer.Instance.containerCardGrid.cardLocationReference;
 
         int cardsOfSameTypeOnField = 0;
         
         foreach (var cardLocationReference in CardsinShop)
         {
-            PlayerCardDisplay cardDisplay = (PlayerCardDisplay) cardLocationReference.Value;
+            PlayerCardDisplay cardDisplay = (PlayerCardDisplay)cardLocationReference.Value;
 
             if (cardDisplay.card.CardType == compareType)
                 cardsOfSameTypeOnField++;

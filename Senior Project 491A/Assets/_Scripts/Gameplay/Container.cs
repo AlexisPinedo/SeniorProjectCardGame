@@ -16,7 +16,7 @@ public abstract class Container : MonoBehaviour
     /// These are a series of nodes that can be incremented or decrimented
     /// </summary>
     [Tooltip("The grid where the Cards are shown")]
-    public  Grid containerGrid;
+    public CardGrid containerCardGrid;
     
     /// <summary>
     /// Initializes card placements on the Container's grid.

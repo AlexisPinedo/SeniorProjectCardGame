@@ -556,7 +556,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 250}
+  m_SizeDelta: {x: 0, y: 185}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &254706623
 MonoBehaviour:
@@ -580,7 +580,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 15ef94212ee26504790fe4e6dff0702d, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73b5c2b034af4f40b22facab4d4f9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerGrid: {fileID: 1981492783}
+  containerCardGrid: {fileID: 1981492783}
   display: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
   spawnPostion: {fileID: 1835007938}
   shopDeck: {fileID: 11400000, guid: 2ba6b1a3e2ecc0447bc728d99bd161c8, type: 2}
@@ -1079,7 +1079,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566032828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.9, y: -4, z: 0}
+  m_LocalPosition: {x: -5, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2025430592}
@@ -1247,8 +1247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4781520af986125429a086e3dda86418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerGrid: {fileID: 837790465}
-  display: {fileID: 7737181224830327970, guid: 3a52656890895c8488c3d5d03033505b, type: 3}
+  containerCardGrid: {fileID: 837790465}
+  minionDisplay: {fileID: 7737181224830327970, guid: 3a52656890895c8488c3d5d03033505b,
+    type: 3}
   enemyDeck: {fileID: 11400000, guid: 3011dc8c8f7e58f4eb9c00577c9c4b8c, type: 2}
 --- !u!114 &607427543
 MonoBehaviour:
@@ -1712,7 +1713,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696043137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.9, y: -4, z: 0}
+  m_LocalPosition: {x: -5, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 101520842}
@@ -3356,7 +3357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf31c4c298cea24a8065133a62762ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerGrid: {fileID: 696043139}
+  containerCardGrid: {fileID: 696043139}
   display: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
   spawnPostion: {fileID: 1334096700}
   hand: {fileID: 11400000, guid: 7473ef4c36860c2479a050f88a746ac7, type: 2}
@@ -4373,7 +4374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874c01647e2e79743b76497be2eb1eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyGrid: {fileID: 837790465}
+  enemyCardGrid: {fileID: 837790465}
   PlayZoneText: {fileID: 2090628134}
 --- !u!1 &1505898446
 GameObject:
@@ -5302,7 +5303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf31c4c298cea24a8065133a62762ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerGrid: {fileID: 566032829}
+  containerCardGrid: {fileID: 566032829}
   display: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
   spawnPostion: {fileID: 1334096700}
   hand: {fileID: 11400000, guid: faffe65425888364c90c44179becc897, type: 2}
