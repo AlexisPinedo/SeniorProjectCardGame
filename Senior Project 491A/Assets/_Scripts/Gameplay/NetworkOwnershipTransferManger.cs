@@ -17,8 +17,8 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
     [SerializeField]
     private BossCardDisplay bossCard;
     
-    public static byte endTurnEvent = (byte)'E';
-    public static byte startBattleEvent = (byte)'S';
+    public static byte endTurnEvent = (byte)'0';
+    public static byte startBattleEvent = (byte)'1';
 
 
     private void Awake()

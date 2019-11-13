@@ -15,7 +15,7 @@ public class HandContainer : PlayerCardContainer
     public PlayerGraveyard playerGraveyard;
     public PlayerCard phantomCard;
     public PlayerCard cardDrawn;
-
+    
     [SerializeField] private int DefaultHandSize = 5;
     
     private void Awake()
@@ -94,15 +94,14 @@ public class HandContainer : PlayerCardContainer
         // Place it on the grid!
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerCardGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
+        
+        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
+        if (cardDisplayPhotonView.ViewID == 0)
+            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
+        else
+            Debug.Log("Already has an assigned ID");
 
-        //Need to reconfigure this what what this doing?
-//        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
-//        if (cardDisplayPhotonView.ViewID == 0)
-//            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
-//        else
-//            Debug.Log("Already has an assigned ID");
-
-//        cardDisplayPhotonView.TransferOwnership(NetworkOwnershipTransferManger.currentPhotonPlayer);
+        cardDisplayPhotonView.TransferOwnership(NetworkOwnershipTransferManger.currentPhotonPlayer);
 
         Vector3 tempCardDestination = containerCardGrid.freeLocations.Pop();
 

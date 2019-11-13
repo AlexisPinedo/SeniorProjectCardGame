@@ -81,11 +81,6 @@ public abstract class Card : ScriptableObject
         get { return borderArt; }
     }
 
-    private void Awake()
-    {
-        cardEffect.owner = this;
-    }
-
     public Action CardDestoyed;
     public Action CardPlayed;
 

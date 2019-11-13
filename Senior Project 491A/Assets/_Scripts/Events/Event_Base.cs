@@ -32,5 +32,4 @@ public abstract class Event_Base : MonoBehaviour
     {
         DisableMinionCards?.Invoke();
     }
-    
 }

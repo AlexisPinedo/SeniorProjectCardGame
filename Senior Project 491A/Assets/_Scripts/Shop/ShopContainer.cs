@@ -98,11 +98,11 @@ public class ShopContainer : PlayerCardContainer
         cardDisplay.enabled = true;
         
         //Need to reconfigure what was this doing?
-//        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
-//        if (cardDisplayPhotonView.ViewID == 0)
-//            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
-//        else
-//            Debug.Log("Already has an assigned ID");
+        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
+        if (cardDisplayPhotonView.ViewID == 0)
+            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
+        else
+            Debug.Log("Already has an assigned ID");
 
         Vector3 finalCardDestination = containerCardGrid.freeLocations.Pop();
 

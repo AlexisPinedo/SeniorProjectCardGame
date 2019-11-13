@@ -88,13 +88,13 @@ public class FieldContainer : Container
 
         Debug.Log("Minion was created");
 
-        //Need to make its own method. Using RPC Calls for this also seems better
-//        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
-//        if (cardDisplayPhotonView.ViewID == 0)
-//            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
-//        else
-//            Debug.Log("Already has an assigned ID");
-//        cardDisplay.enabled = true;
+        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
+        if (cardDisplayPhotonView.ViewID == 0)
+            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
+        else
+            Debug.Log("Already has an assigned ID");
+        
+        cardDisplay.enabled = true;
         
         if (!containerCardGrid.cardLocationReference.ContainsKey(freeLocation))
         {
