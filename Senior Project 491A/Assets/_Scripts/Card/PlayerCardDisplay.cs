@@ -94,11 +94,47 @@ public class PlayerCardDisplay : CardDisplay
     private void OnMouseEnter()
     {
         SetSelectedCardLayer();
+
+        if (!PhotonNetwork.OfflineMode)
+        {
+            if (photonView.IsMine)
+            {
+                photonView.RPC("ChangeCardLayer", RpcTarget.Others, "enter");
+            }
+        }
     }
 
     private void OnMouseExit()
     {
         SetCardLayerBack();
+
+        if (!PhotonNetwork.OfflineMode)
+        {
+            if (photonView.IsMine)
+            {
+                photonView.RPC("ChangeCardLayer", RpcTarget.Others, "exit");
+            }
+        }
+    }
+
+    /// <summary>
+    /// RPC call for OnMouseEnter() and OnMouseExit().
+    /// </summary>
+    /// <param name="changeType">Parameter to enter or exit the layer</param>
+    [PunRPC]
+    private void ChangeCardLayer(string changeType)
+    {
+        if (changeType.Equals("enter"))
+        {
+            SetSelectedCardLayer();
+            return;
+        }
+
+        if (changeType.Equals("exit"))
+        {
+            SetCardLayerBack();
+            return;
+        }
     }
 
     /// <summary>
