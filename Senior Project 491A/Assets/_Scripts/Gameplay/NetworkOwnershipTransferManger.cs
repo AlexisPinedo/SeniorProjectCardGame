@@ -20,7 +20,6 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
     public static byte endTurnEvent = (byte)'0';
     public static byte startBattleEvent = (byte)'1';
 
-
     private void Awake()
     {
         if (PhotonNetwork.IsConnected)
@@ -31,12 +30,10 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
             foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
             {
                 if (player.IsMasterClient)
-                    photonPlayer1 = player;
+                    photonPlayer1 = currentPhotonPlayer = player;
                 else
                     photonPlayer2 = player;
             }
-
-            currentPhotonPlayer = photonPlayer1;
 
             Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
             Debug.Log("Photon Player 2: " + photonPlayer2.NickName);
@@ -72,7 +69,6 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
     
     public void TransferObjects()
     {
-        
         bossCard.photonView.TransferOwnership(currentPhotonPlayer);
 
         PhotonView[] minionTransfer = minionCards.GetComponentsInChildren<PhotonView>();
