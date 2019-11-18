@@ -9,7 +9,7 @@ using Photon.Pun;
 /// this loads depending on the card attached to it. 
 /// </summary>
 //[ExecuteInEditMode]
-public class BossCardDisplay : EnemyCardDisplay
+public class BossCardDisplay : EnemyCardDisplay<BossCard>
 {
     //We create a delegate event for the boss card to handle what happens when clicked
     public delegate void _BossCardClicked(BossCardDisplay cardClicked);

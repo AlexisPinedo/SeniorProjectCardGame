@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Photon.Pun;
 using UnityEngine;
 
@@ -10,102 +11,89 @@ using UnityEngine;
 /// </summary>
 public class CardZoomer : MonoBehaviourPunCallbacks
 {
-    private object myGameObject;
-
     public Vector2 OriginalPosition;
-
-    private bool offline;
+    
 
     private void Awake()
     {
         OriginalPosition = this.transform.position;
-        //offline = PhotonNetworkManager.IsOffline;
-
     }
 
     public void OnMouseEnter()
     {
-        //cardcollider.size & cardcollider.offset
-        //shop card
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
-            //Debug.Log("enter");
-            transform.localScale += new Vector3(0.5F, 0.5F, 0.5F); //zooms in the object
-            Vector3 newPosition = new Vector3(0, -1, 0);
-            transform.position += newPosition;
-        }
-        //player card
-        else{
-            //Debug.Log("enter");
-            transform.localScale += new Vector3(0.5F, 0.5F, 0.5F); //zooms in the object
-            Vector3 newPosition = new Vector3(0, 1, 0);
-            transform.position += newPosition;
-        }
-        if (offline || photonView.IsMine)
+        if (!DragCard.cardHeld)
         {
-            //Debug.Log("enter");
-            //photonView.RPC("RPCOnMouseEnter", RpcTarget.Others, transform.localScale);
+            ZoomInOnCard();
+            if(!PhotonNetwork.OfflineMode)
+                if(photonView.IsMine)
+                    photonView.RPC("CardHasEntered", RpcTarget.Others);
         }
     }
-
-    private void OnMouseDrag()
+    
+    [PunRPC]
+    private void CardHasEntered()
     {
-        //shop card
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        //player card
-        else{
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        
-        if (offline || photonView.IsMine)
-        {
-            //photonView.RPC("RPCOnMouseDrag", RpcTarget.Others, transform.localScale);
-        }
+        Debug.Log("Received enter rpc call" + photonView.ViewID);
+        ZoomInOnCard();
     }
 
     public void OnMouseExit()
     {
-        //shop card
-        //Debug.Log("exit");
-        transform.localScale = new Vector3(1, 1, 1);  //returns the object to its original state
-        transform.position = OriginalPosition;
         
-        if (offline || photonView.IsMine)
-        {
-            //Debug.Log("exit");
-            //photonView.RPC("RPCOnMouseExit", RpcTarget.Others, transform.localScale);
-        }
+        ZoomOutOfCard();
+        if(!PhotonNetwork.OfflineMode)
+            if(photonView.IsMine)
+                photonView.RPC("CardHasExited", RpcTarget.Others);
     }
-    
+
+    [PunRPC]
+    private void CardHasExited()
+    {
+        Debug.Log("Received exit rpc call"  + photonView.ViewID);
+
+        ZoomOutOfCard();
+    }
+
     public void OnMouseDown()
     {
-        //shop card
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() == null) {
-            transform.position = OriginalPosition;
+        ZoomOutOfCard();
+        if(!PhotonNetwork.OfflineMode)
+            if(photonView.IsMine)
+                photonView.RPC("CardZoomClicked", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    private void CardZoomClicked()
+    {
+        ZoomOutOfCard();
+    }
+    
+    private void ZoomInOnCard()
+    {
+        //Debug.Log("zoom in " + photonView.ViewID);
+        if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        {
+            //Debug.Log("enter");
+            transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
+            Vector2 newPosition = new Vector2(0, -1);
+            transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
         }
-        
         //player card
-        else{
-            transform.position = OriginalPosition;
+        else
+        {
+            //Debug.Log("enter");
+            transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
+            Vector2 newPosition = new Vector2(0, 1);
+            transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
+
         }
     }
 
-    [PunRPC]
-    private void RPCOnMouseEnter(Vector3 position)
+    private void ZoomOutOfCard()
     {
-        transform.localScale = position;
-    }
-
-    [PunRPC]
-    private void RPCOnMouseDrag(Vector3 position)
-    {
-        transform.localScale = position;
-    }
-
-    [PunRPC]
-    private void RPCOnMouseExit(Vector3 position)
-    {
-        transform.localScale = position;
+        //Debug.Log("zoom out " +photonView.ViewID);
+        transform.localScale = new Vector2(1, 1);  //returns the object to its original state
+        if (!DragCard.cardHeld)
+            transform.position = OriginalPosition;
     }
 }

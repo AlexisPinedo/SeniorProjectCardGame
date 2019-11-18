@@ -177,7 +177,7 @@
             <remarks>The server could be down / not running or the client has no network or a misconfigured DNS.<br/>See {@link PhotonListener#OnStatusChanged}*</remarks>
         </member>
         <member name="F:ExitGames.Client.Photon.StatusCode.SecurityExceptionOnConnect">
-            <summary>Used on platforms that throw a security exception on connect. Unity3d does this, e.g., if a webplayer build could not fetch a policy-file from a remote server.</summary>
+            <summary>Used on platforms that throw a security exception on connect. Unity3d does this, e.g., if a webplayerGraveyard build could not fetch a policy-file from a remote server.</summary>
         </member>
         <member name="F:ExitGames.Client.Photon.StatusCode.SendError">
             <summary>Sending command failed. Either not connected, or the requested channel is bigger than the number of initialized channels.</summary>
@@ -248,7 +248,7 @@
              </remarks>
              <example>
              When you join a room, the server will assign a consecutive number to each client: the
-             &quot;actorNr&quot; or &quot;player number&quot;. This is sent back in the OperationResult's
+             &quot;actorNr&quot; or &quot;playerGraveyard number&quot;. This is sent back in the OperationResult's
              Parameters as value of key <see cref="!:ParameterCode.ActorNr" />.<para></para>
             
              Fetch your actorNr of a Join response like this:<para></para>
@@ -994,7 +994,7 @@
              If the client is disconnected already or the connection thread is stopped, then there is no callback.
             
              The default server logic will leave any joined game and trigger the respective event
-             (<see cref="!:EventCode.Leave" text="EventCode.Leave" />) for the remaining players.
+             (<see cref="!:EventCode.Leave" text="EventCode.Leave" />) for the remaining playerGraveyards.
              </remarks>
         </member>
         <member name="M:ExitGames.Client.Photon.PhotonPeer.StopThread">

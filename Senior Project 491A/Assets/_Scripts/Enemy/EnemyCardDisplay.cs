@@ -8,10 +8,9 @@ using UnityEngine;
 /// Class will load in text, sprites, card art, and values into the card display
 /// this loads depending on the card attached to it. 
 /// </summary>
-public abstract class EnemyCardDisplay : CardDisplay
+public abstract class EnemyCardDisplay<T> : CardDisplay where T : EnemyCard
 {
-    public EnemyCard card;
-    
+    public T card;
     [SerializeField] private TextMeshPro healthText;
     [SerializeField] private TextMeshPro rewardText;
 

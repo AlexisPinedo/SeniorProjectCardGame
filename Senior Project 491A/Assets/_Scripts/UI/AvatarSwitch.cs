@@ -12,7 +12,7 @@ public class AvatarSwitch : MonoBehaviour
     private GameObject p2Avatar;
 
     [SerializeField]
-    private TurnManager turnManager;
+    private TurnPlayerManager turnPlayerManager;
 
     void Start()
     {

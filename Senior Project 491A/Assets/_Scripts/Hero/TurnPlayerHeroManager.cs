@@ -16,9 +16,7 @@ public class TurnPlayerHeroManager : MonoBehaviour
 
     private static TurnPlayerHeroManager _instance;
 
-    public delegate void _heroChanged();
-
-    public static event _heroChanged HeroChanged;
+    public static event Action HeroChanged;
 
     public static TurnPlayerHeroManager Instance
     {
@@ -42,23 +40,18 @@ public class TurnPlayerHeroManager : MonoBehaviour
 
     private void OnEnable()
     {
-        TurnManager.PlayerSwitched += UpdateActiveHero;
-        TurnManager.EffectSwitchedPlayer += UpdateActiveHero;
+        TurnPlayerManager.PlayerSwitched += UpdateActiveHero;
     }
 
     private void OnDisable()
     {
-        TurnManager.PlayerSwitched -= UpdateActiveHero;
-        TurnManager.EffectSwitchedPlayer -= UpdateActiveHero;
+        TurnPlayerManager.PlayerSwitched -= UpdateActiveHero;
     }
 
     private void UpdateActiveHero()
     {
-        activeTurnHero = TurnManager.Instance.turnPlayer.SelectedHero;
-        if (HeroChanged != null)
-        {
-            Debug.Log("Invoking Hero Changed event");
-            HeroChanged?.Invoke();
-        }
+        activeTurnHero = TurnPlayerManager.Instance.TurnPlayer.SelectedHero;
+        HeroChanged?.Invoke();
+        
     }
 }

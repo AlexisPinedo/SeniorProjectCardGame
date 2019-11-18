@@ -32,7 +32,7 @@ public class ParticlePlay : MonoBehaviourPun
 
     IEnumerator PlaySummoningCircleHelper()
     {
-        Debug.Log("Playing Gold Summoner");
+        //Debug.Log("Playing Gold Summoner");
 
         if (summonerCount < 4)
         {
@@ -50,7 +50,7 @@ public class ParticlePlay : MonoBehaviourPun
 
     void PlayPurpleCircle()
     {
-        Debug.Log("Card Played.. Playing Purple Summoner");
+        //Debug.Log("Card Played.. Playing Purple Summoner");
 
         // Instantiate the PurpleCircleHere
         LoadAndSpawn(purpleSummoner);
@@ -65,14 +65,14 @@ public class ParticlePlay : MonoBehaviourPun
             assetReference.InstantiateAsync(transform.position, Quaternion.identity).Completed +=
                 (asyncOperationHandle) =>
                 {
-                    Debug.Log("Spawned summoner");
+                    //Debug.Log("Spawned summoner");
                 };
         };
     }
 
     void CanDestroySummoner()
     {
-        Debug.Log("Mouse Up, Card can be lifted");
+        //Debug.Log("Mouse Up, Card can be lifted");
 
         canDestroyCircle = true;
 

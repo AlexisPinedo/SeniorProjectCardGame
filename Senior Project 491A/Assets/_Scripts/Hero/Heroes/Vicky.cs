@@ -19,7 +19,7 @@ public class Vicky : InteractableHero
             
             NotificationWindowEvent.Instance.EnableNotificationWindow("Swapping currency and power");
             
-            Player currentPlayer = TurnManager.Instance.turnPlayer;
+            Player currentPlayer = TurnPlayerManager.Instance.TurnPlayer;
             
             int temp = currentPlayer.Currency;
 

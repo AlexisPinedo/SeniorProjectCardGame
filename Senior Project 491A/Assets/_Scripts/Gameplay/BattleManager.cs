@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.UI;
 /// <summary>
 /// This class will handle the logic for the battle state
@@ -12,23 +13,26 @@ public class BattleManager : MonoBehaviour
     private bool inBattleState = false;
 
     [SerializeField]
-    private Grid EnemyGrid;
+    private CardGrid enemyCardGrid;
 
     [SerializeField]
     private TextMeshProUGUI PlayZoneText;
-    
+
+    public static event Action EnemyBattlePhaseStarted; 
+    public static event Action EnemyBattlePhaseEnded;
+
     private void OnEnable()
     {
-        UIHandler.StartClicked += StartBattleState;
-        UIHandler.EndTurnClicked += EndBattleState;
+        TurnPhaseManager.BattlePhaseStarted += StartBattlePhase;
+        TurnPhaseManager.BattlePhaseEnded += EndBattlePhase;
         MinionCardDisplay.MinionCardClicked += CalculateBattleOutcome;
         BossCardDisplay.BossCardClicked += CalculateBossBattleOutcome;
     }
 
     private void OnDisable()
     {
-        UIHandler.StartClicked -= StartBattleState;
-        UIHandler.EndTurnClicked -= EndBattleState;
+        TurnPhaseManager.BattlePhaseStarted -= StartBattlePhase;
+        TurnPhaseManager.BattlePhaseEnded -= EndBattlePhase;
         MinionCardDisplay.MinionCardClicked -= CalculateBattleOutcome;
         BossCardDisplay.BossCardClicked -= CalculateBossBattleOutcome;
     }
@@ -38,9 +42,9 @@ public class BattleManager : MonoBehaviour
     {
         //if the turn player has equal or more power than the minions health value
         //we will decrement the power by the health then destroy the minion
-        if (TurnManager.Instance.turnPlayer.Power >= cardClicked.card.HealthValue)
+        if (TurnPlayerManager.Instance.TurnPlayer.Power >= cardClicked.card.HealthValue)
         {
-            TurnManager.Instance.turnPlayer.Power -= cardClicked.card.HealthValue;
+            TurnPlayerManager.Instance.TurnPlayer.Power -= cardClicked.card.HealthValue;
             Destroy(cardClicked.gameObject);
         }
     }
@@ -50,7 +54,7 @@ public class BattleManager : MonoBehaviour
     {
         //We need to check if there are any other minions on the field
         //If there is a minion we cannot attack the boss
-        foreach (var keyValuePair in EnemyGrid.cardLocationReference)
+        foreach (var keyValuePair in enemyCardGrid.cardLocationReference)
         {
             if (keyValuePair.Value != null)
             {
@@ -62,44 +66,45 @@ public class BattleManager : MonoBehaviour
         // There are no other minions on the field so now we can check to see if we can kill the boss
         //if the turn player has equal or more power than the boss health value
         //we will decrement the power by the health then destroy the boss
-        if (TurnManager.Instance.turnPlayer.Power >= cardClicked.card.HealthValue)
+        if (TurnPlayerManager.Instance.TurnPlayer.Power >= cardClicked.card.HealthValue)
         {
-            TurnManager.Instance.turnPlayer.Power -= cardClicked.card.HealthValue;
+            TurnPlayerManager.Instance.TurnPlayer.Power -= cardClicked.card.HealthValue;
             Destroy(cardClicked.gameObject);
             Debug.Log("Boss Has been defeated!");
         }
     }
 
     //This method subs to the start battle button.
-    private void StartBattleState()
+    private void StartBattlePhase()
     {
+        EnemyBattlePhaseStarted?.Invoke();
         //we want to check if we are in the battle state. If we are we do nothing. 
         if (inBattleState == true)
             return;
-        //This will begin the BattleState coroutine
-        StartCoroutine(BattleState());
+        //This will begin the BattlePhase coroutine
+        StartCoroutine(BattlePhase());
     }
 
-    //THis method is used to end the battle state
-    private void EndBattleState()
+    //THis method is used to end the battle phase
+    private void EndBattlePhase()
     {
         inBattleState = false;
     }
 
-    IEnumerator BattleState()
+    IEnumerator BattlePhase()
     {
         //This can be used to validate battle state anywhere
         inBattleState = true;
         
         //This will move the shop up showing the grid
-        PurchaseHandler.Instance.gameObject.transform.position += new Vector3(0f, 20f, 0f);
+        ShopDisplayManager.Instance.MoveShopUp();
         
         //We deactivate the playzone and it's text
         PlayZone.Instance.gameObject.SetActive(false);
         PlayZoneText.enabled = false;
         
         //We then want to enable all the enemy cards on the field
-        foreach (var keyValuePair in EnemyGrid.cardLocationReference)
+        foreach (var keyValuePair in enemyCardGrid.cardLocationReference)
         {
             if(keyValuePair.Value != null)
                 keyValuePair.Value.gameObject.GetComponent<BoxCollider2D>().enabled = true;
@@ -113,7 +118,7 @@ public class BattleManager : MonoBehaviour
         }
         
         //We are now exiting battle state we need to deactivate the colliders
-        foreach (var keyValuePair in EnemyGrid.cardLocationReference)
+        foreach (var keyValuePair in enemyCardGrid.cardLocationReference)
         {
             if(keyValuePair.Value != null)
                 keyValuePair.Value.gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -122,8 +127,9 @@ public class BattleManager : MonoBehaviour
         //set the components to true again
         PlayZoneText.enabled = true;
         PlayZone.Instance.gameObject.SetActive(true);
-        PurchaseHandler.Instance.gameObject.SetActive(true);
-        PurchaseHandler.Instance.gameObject.transform.position -= new Vector3(0f, 20f, 0f);
-
+        ShopDisplayManager.Instance.MoveShopDown();
+        
+        Debug.Log("Ending battle state");
+        EnemyBattlePhaseEnded?.Invoke();
     }
 }

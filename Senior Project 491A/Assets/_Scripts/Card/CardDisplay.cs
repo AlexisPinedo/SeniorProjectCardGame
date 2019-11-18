@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using Photon.Pun;
+
 /// <summary>
 /// This class handles the in game display of each card.
 /// The class holds components relative to all card displays
@@ -43,7 +44,6 @@ public abstract class CardDisplay : MonoBehaviourPun
     {
         Event_Base.GameStatePausingEventTriggered += DisableBoxCollider;
         Event_Base.GameStatePausingEventEnded += EnableBoxCollider;
-        LoadCardIntoDisplay();
     }
 
     protected virtual void OnDisable()

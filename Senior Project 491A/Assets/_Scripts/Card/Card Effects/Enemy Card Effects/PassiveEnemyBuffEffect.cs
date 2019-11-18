@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card Effect/Minion Card Effect/Passive Enemy Buff")]
 public class PassiveEnemyBuffEffect : PassiveEffect
 {
     [SerializeField] private int buffAmount = 2;
     
     private void BuffMinionsOnField()
     {
-        foreach (KeyValuePair<Vector2, CardDisplay> keyValuePair in FieldContainer.Instance.containerGrid.cardLocationReference)
+        foreach (KeyValuePair<Vector2, CardDisplay> keyValuePair in FieldContainer.Instance.containerCardGrid.cardLocationReference)
         {
             Debug.Log("Enemy buffed");
-            EnemyCardDisplay enemyCardDisplay = (EnemyCardDisplay)keyValuePair.Value;
-            EnemyCard enemyCard = enemyCardDisplay.card;
+            MinionCardDisplay enemyCardDisplay = (MinionCardDisplay)keyValuePair.Value;
+            MinionCard enemyCard = enemyCardDisplay.card;
 
             enemyCard.HealthValue += buffAmount;
         }
@@ -22,10 +22,10 @@ public class PassiveEnemyBuffEffect : PassiveEffect
 
     private void onDisable()
     {
-        foreach (KeyValuePair<Vector2, CardDisplay> keyValuePair in FieldContainer.Instance.containerGrid.cardLocationReference)
+        foreach (KeyValuePair<Vector2, CardDisplay> keyValuePair in FieldContainer.Instance.containerCardGrid.cardLocationReference)
         {
-            EnemyCardDisplay enemyCardDisplay = (EnemyCardDisplay)keyValuePair.Value;
-            EnemyCard enemyCard = enemyCardDisplay.card;
+            MinionCardDisplay enemyCardDisplay = (MinionCardDisplay)keyValuePair.Value;
+            MinionCard enemyCard = enemyCardDisplay.card;
 
             enemyCard.HealthValue -= buffAmount;
         }

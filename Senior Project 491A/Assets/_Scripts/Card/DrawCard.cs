@@ -9,7 +9,7 @@ public class DrawCard : MonoBehaviourPunCallbacks
 {
     /* References the grid space for cards played during the turn */
     [SerializeField]
-    private Grid handGrid;
+    private CardGrid handCardGrid;
     
     /* References the player's Deck */
     [SerializeField]
@@ -37,7 +37,7 @@ public class DrawCard : MonoBehaviourPunCallbacks
                 print(cardDrawn);   // DEBUGGING PURPOSES
 
                 // Show card on the field and shift x-pos
-                Vector2 spawnPoint = handGrid.GetComponent<Grid>().GetNearestPointOnGrid(spot);
+                Vector2 spawnPoint = handCardGrid.GetNearestPointOnGrid(spot);
                 cardDrawn.transform.position = spawnPoint;
                 spot.x += 2.0f;
 

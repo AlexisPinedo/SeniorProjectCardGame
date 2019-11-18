@@ -1,18 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class OnDeathCardEffects : CardEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void CardPlacedIntoPlay()
     {
-        
+        if(owner.CardPlayed != null)
+            owner.CardDestoyed += LaunchCardEffect;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void CardRemovedFromPlay()
     {
-        
+        if(owner.CardPlayed != null)
+            owner.CardDestoyed -= LaunchCardEffect;
     }
 }

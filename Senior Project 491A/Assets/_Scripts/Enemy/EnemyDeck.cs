@@ -1,6 +1,7 @@
 ﻿ using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+ using System.Xml.Schema;
+ using UnityEngine;
  
  /// <summary>
  /// Enemy decks are Prefillable decks
@@ -9,7 +10,7 @@ using UnityEngine;
  /// </summary>
 //This is used to create an instance of the enemy deck in the project folder
 [CreateAssetMenu(menuName = "Deck/EnemyDeck")]
- public class EnemyDeck : PrefillableDeck
+ public class EnemyDeck : PrefillableDeck<MinionCard>
  {
   
  }

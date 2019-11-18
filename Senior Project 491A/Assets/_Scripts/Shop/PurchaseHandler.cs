@@ -44,7 +44,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
         FreeShopSelectionEvent.PurchaseEventTriggered -= UnSubHandlePurchase;
         FreeShopSelectionEvent.PurchaseEventEnded += SubHandlePurchase;
     }
-
+    
     private void UnSubHandlePurchase()
     {
         DragCard.ShopCardClicked -= HandlePurchase;
@@ -59,11 +59,11 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
     private void HandlePurchase(PlayerCardDisplay cardSelected)
     {
         //Debug.Log("Handling Purchase");
-        if (TurnManager.Instance.turnPlayer.Currency >= cardSelected.card.CardCost)
+        if (TurnPlayerManager.Instance.TurnPlayer.Currency >= cardSelected.card.CardCost)
         {
-            TurnManager.Instance.turnPlayer.graveyard.graveyard.Add(cardSelected.card);
+            TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardSelected.card);
 
-            TurnManager.Instance.turnPlayer.Currency -= cardSelected.card.CardCost;
+            TurnPlayerManager.Instance.TurnPlayer.Currency -= cardSelected.card.CardCost;
             
             cardSelected.TriggerCardPurchasedEvent();
             
@@ -76,34 +76,3 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
     }
 }
 
-
-
-
-//public class PurchaseHandler : MonoBehaviour
-//{
-//    public delegate void _CardBought(Card cardBuying);
-//    public static event _CardBought CardBought;
-//
-//    private Player turnPlayer;
-//
-//    public void Start()
-//    {
-//        turnPlayer = TurnManager.Instance.turnPlayer;
-//    }
-//
-//    public bool isPurchasable(Card cardClicked)
-//    {
-//        bool canBePurchased;
-//        // TODO
-//
-//        canBePurchased = true;
-//
-//        return canBePurchased;
-//    }
-//
-//    public void PurchaseCard(Card cardBuying)
-//    {
-//        CardBought?.Invoke(cardBuying);
-//    }
-//
-//}

@@ -8,7 +8,7 @@ using UnityEngine;
 /// NOTE: You can reference the currently existing scriptable object if desired. 
 /// Attach to card.
 /// </summary>
-[CreateAssetMenu(menuName = "Card Effect/Add Currency")]
+[CreateAssetMenu(menuName = "Card Effect/Player Card Effect/Add Currency")]
 public class AddCurrency : OnPlayEffects
 {
     //Select how much currency you want to add. If you want different amounts for other card effects
@@ -19,7 +19,7 @@ public class AddCurrency : OnPlayEffects
     void AddCurrencyByEffect()
     {
         Debug.Log("Adding currency from effect");
-        TurnManager.Instance.turnPlayer.Currency += currencyAdditionAmount;
+        TurnPlayerManager.Instance.TurnPlayer.Currency += currencyAdditionAmount;
     }
 
     /// <summary>

@@ -2,33 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Card Effect/Minion Card Effect/Destroy PlayerGraveyard Card")]
 public class OnDeathPlayPlayerCardEffect : OnDeathCardEffects
 {
     public override void LaunchCardEffect()
     {
-        Deck playerDeck = TurnManager.Instance.turnPlayer.deck;
-        Graveyard playerGrave = TurnManager.Instance.turnPlayer.graveyard;
+        PlayerDeck playerDeck = TurnPlayerManager.Instance.TurnPlayer.deck;
+        PlayerGraveyard playerGraveyardGrave = TurnPlayerManager.Instance.TurnPlayer.playerGraveyard;
 
         if (playerDeck.cardsInDeck.Count != 0)
         {
             PlayerCard playerCard = (PlayerCard)playerDeck.cardsInDeck.Pop();
-            TurnManager.Instance.turnPlayer.Power += playerCard.CardAttack;
+            TurnPlayerManager.Instance.TurnPlayer.Power += playerCard.CardAttack;
         }
         else
         {
-            if (playerGrave.graveyard.Count != 0)
+            if (playerGraveyardGrave.graveyard.Count != 0)
             {
-                for (int j = 0; j < playerGrave.graveyard.Count; j++)
+                for (int j = 0; j < playerGraveyardGrave.graveyard.Count; j++)
                 {
-                    playerDeck.cardsInDeck.Push(playerGrave.graveyard[j]);
-                    playerGrave.graveyard.Remove(playerGrave.graveyard[j]);
+                    playerDeck.cardsInDeck.Push(playerGraveyardGrave.graveyard[j]);
+                    playerGraveyardGrave.graveyard.Remove(playerGraveyardGrave.graveyard[j]);
                 }
 
                 playerDeck.cardsInDeck = ShuffleDeck.Shuffle(playerDeck);
 
                 PlayerCard playerCard = (PlayerCard)playerDeck.cardsInDeck.Pop();
-                TurnManager.Instance.turnPlayer.Power += playerCard.CardAttack;
+                TurnPlayerManager.Instance.TurnPlayer.Power += playerCard.CardAttack;
             }
             else
                 NotificationWindowEvent.Instance.EnableNotificationWindow(
