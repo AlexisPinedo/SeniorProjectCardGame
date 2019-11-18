@@ -15,11 +15,15 @@ public class BossCardDisplay : EnemyCardDisplay<BossCard>
     public delegate void _BossCardClicked(BossCardDisplay cardClicked);
 
     public static event _BossCardClicked BossCardClicked;
+
+    [SerializeField] private SelectedBoss BossToLoad;
     
     protected override void Awake()
     {
+        card = BossToLoad.SelectedBossCard;
         base.Awake();
-        this.enabled = true;
+        enabled = true;
+        
     }
 
     //this handles the boss card being clicked 

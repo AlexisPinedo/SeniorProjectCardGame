@@ -126,12 +126,15 @@ public class PlayerCardDisplay : CardDisplay
     {
         if (changeType.Equals("enter"))
         {
+            Debug.Log("Setting card layer to top");
             SetSelectedCardLayer();
             return;
         }
 
         if (changeType.Equals("exit"))
         {
+            Debug.Log("Returning card layer to normal");
+
             SetCardLayerBack();
             return;
         }
