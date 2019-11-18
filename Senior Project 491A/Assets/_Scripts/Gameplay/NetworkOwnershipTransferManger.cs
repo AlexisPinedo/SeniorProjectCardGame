@@ -58,14 +58,6 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.OfflineMode)
             TurnPlayerManager.PlayerSwitched -= TransferObjects;
     }
-
-    private void SetCurrentPhotonPlayer()
-    {
-        if(TurnPlayerManager.Instance.TurnPlayer == TurnPlayerManager.Instance.Player1)
-            currentPhotonPlayer = photonPlayer1;
-        else if(TurnPlayerManager.Instance.TurnPlayer == TurnPlayerManager.Instance.Player2)
-            currentPhotonPlayer = photonPlayer2;
-    }
     
     public void TransferObjects()
     {
