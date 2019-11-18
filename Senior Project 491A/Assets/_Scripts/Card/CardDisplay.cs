@@ -23,8 +23,6 @@ public abstract class CardDisplay : MonoBehaviourPun
     [SerializeField]
     protected BoxCollider2D cardDisplayCollider;
 
-    public static int photonIdCounter = 1001;
-
     protected virtual void Awake()
     {
         cardDisplayCollider = GetComponent<BoxCollider2D>();

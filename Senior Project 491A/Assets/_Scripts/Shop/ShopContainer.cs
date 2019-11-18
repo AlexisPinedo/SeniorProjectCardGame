@@ -95,14 +95,10 @@ public class ShopContainer : PlayerCardContainer
 
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerCardGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
-        cardDisplay.enabled = true;
         
-        //Need to reconfigure what was this doing?
-        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
-        if (cardDisplayPhotonView.ViewID == 0)
-            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
-        else
-            Debug.Log("Already has an assigned ID");
+        NetworkIDAssigner.AssignID(cardDisplay.gameObject.GetPhotonView());
+
+        cardDisplay.enabled = true;
 
         Vector3 finalCardDestination = containerCardGrid.freeLocations.Pop();
 

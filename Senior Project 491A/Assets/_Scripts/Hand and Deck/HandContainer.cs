@@ -94,12 +94,10 @@ public class HandContainer : PlayerCardContainer
         // Place it on the grid!
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerCardGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
-        
+
         PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
-        if (cardDisplayPhotonView.ViewID == 0)
-            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
-        else
-            Debug.Log("Already has an assigned ID");
+
+        NetworkIDAssigner.AssignID(cardDisplayPhotonView);
 
         cardDisplayPhotonView.TransferOwnership(NetworkOwnershipTransferManger.currentPhotonPlayer);
 
