@@ -39,7 +39,6 @@ public class CardZoomer : MonoBehaviourPunCallbacks
 
     public void OnMouseExit()
     {
-        
         ZoomOutOfCard();
         if(!PhotonNetwork.OfflineMode)
             if(photonView.IsMine)
