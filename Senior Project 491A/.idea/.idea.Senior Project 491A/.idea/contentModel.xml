@@ -50,6 +50,7 @@
             <e p="MinionCardDisplay.cs" t="Include" />
             <e p="MinionCardEffectHandler.cs" t="Include" />
             <e p="Reward.cs" t="Include" />
+            <e p="SelectedBoss.cs" t="Include" />
           </e>
           <e p="Events" t="Include">
             <e p="Event_Base.cs" t="Include" />

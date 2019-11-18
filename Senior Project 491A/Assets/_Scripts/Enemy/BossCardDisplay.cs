@@ -15,22 +15,15 @@ public class BossCardDisplay : EnemyCardDisplay<BossCard>
     public delegate void _BossCardClicked(BossCardDisplay cardClicked);
 
     public static event _BossCardClicked BossCardClicked;
-    
-    public Vector2 OriginalPosition;
 
+    [SerializeField] private SelectedBoss BossToLoad;
+    
     protected override void Awake()
     {
+        card = BossToLoad.SelectedBossCard;
         base.Awake();
-        this.enabled = true;
-        OriginalPosition = this.transform.position;
-    }
-
-    private void OnMouseEnter()
-    {
-        //Debug.Log("enter");
-        transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
-        Vector2 newPosition = new Vector2(0, -1);
-        transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
+        enabled = true;
+        
     }
 
     //this handles the boss card being clicked 
@@ -39,13 +32,6 @@ public class BossCardDisplay : EnemyCardDisplay<BossCard>
         Debug.Log("boss has been clicked");
         BossCardClicked?.Invoke(this);
         this.photonView.RPC("RPCAttackBoss", RpcTarget.Others, this.photonView.ViewID);
-    }
-    
-    private void OnMouseExit()
-    {
-        transform.localScale = new Vector2(1, 1);  //returns the object to its original state
-        if (!DragCard.cardHeld)
-            transform.position = OriginalPosition;
     }
 
     [PunRPC]
