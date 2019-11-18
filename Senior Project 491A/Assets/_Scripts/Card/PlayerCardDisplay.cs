@@ -19,7 +19,6 @@ using System;
 public class PlayerCardDisplay : CardDisplay
 {
     public PlayerCard card;
-    private byte currentCardIdenrifier = (byte)'C';
 
     [SerializeField] private TextMeshPro attackText;
     [SerializeField] private TextMeshPro costText;
