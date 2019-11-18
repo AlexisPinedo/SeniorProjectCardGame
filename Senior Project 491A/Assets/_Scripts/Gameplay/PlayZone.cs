@@ -121,8 +121,13 @@ public class PlayZone : MonoBehaviourPunCallbacks
         
         Destroy(cardInZone.gameObject);
         
+        
+        
         TurnPlayerManager.Instance.TurnPlayer.Power += cardPlayed.CardAttack;
         TurnPlayerManager.Instance.TurnPlayer.Currency += cardPlayed.CardCurrency;
+        
+        photonView.RPC("SendPlayerValues", RpcTarget.Others, 
+            TurnPlayerManager.Instance.TurnPlayer.Power, TurnPlayerManager.Instance.TurnPlayer.Currency);
 
         if (!cardPlayed.CardName.Equals("Phantom"))
         {
@@ -134,6 +139,13 @@ public class PlayZone : MonoBehaviourPunCallbacks
         HasPlayed?.Invoke();
         cardInPlayZone = false;
         cardInZone = null;
+    }
+
+    [PunRPC]
+    private void SendPlayerValues(int powerValue, int currencyValue)
+    {
+        TurnPlayerManager.Instance.TurnPlayer.Power = powerValue;
+        TurnPlayerManager.Instance.TurnPlayer.Currency = currencyValue;
     }
     
 

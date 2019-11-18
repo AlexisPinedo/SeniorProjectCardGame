@@ -137,7 +137,9 @@ public class DragCard : MonoBehaviourPun
         {
             cardClicked.transform.position = OriginalPosition;
 
-            ShopCardClicked?.Invoke(cardClicked);
+            if(!PhotonNetwork.OfflineMode)
+                if(photonView.IsMine)
+                    ShopCardClicked?.Invoke(cardClicked);
 
             cardHeld = false;
         }

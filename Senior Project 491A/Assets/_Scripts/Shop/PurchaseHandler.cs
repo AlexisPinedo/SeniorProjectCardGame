@@ -66,7 +66,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
             TurnPlayerManager.Instance.TurnPlayer.Currency -= cardSelected.card.CardCost;
             
             cardSelected.TriggerCardPurchasedEvent();
-            
+
             Destroy(cardSelected.gameObject);
         }
         else
@@ -74,5 +74,6 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
             Debug.Log("Cannot purchase. Not enough currency");
         }
     }
+    
 }
 
