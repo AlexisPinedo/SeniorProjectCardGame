@@ -587,6 +587,7 @@ GameObject:
   - component: {fileID: 6452798937650027219}
   - component: {fileID: -3257049812469847756}
   - component: {fileID: -3738234448649244012}
+  - component: {fileID: 7486891545735108031}
   m_Layer: 0
   m_Name: Boss Card Container
   m_TagString: Untagged
@@ -702,6 +703,19 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &7486891545735108031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522489324146028420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebea8fab9720b496f8d1b17db4a788ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginalPosition: {x: 0, y: 0}
 --- !u!1 &522489324211365295
 GameObject:
   m_ObjectHideFlags: 0
