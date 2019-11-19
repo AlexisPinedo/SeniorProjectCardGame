@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4341f01df039177908e26e8abaa265bf, type: 3}
-  m_Name: Test Boss
+  m_Name: Azrail
   m_EditorClassIdentifier: 
-  cardName: Test Boss
+  cardName: Azrail
   cardDescription: 
   cardEffect: {fileID: 0}
-  cardEffectDisplay: 
+  cardEffectDisplay: 'Goal: Destroy 5 bombs'
   cardArtwork: {fileID: 21300000, guid: 0b093df730195d14cb10598268aa1a72, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 7a09aa9da641d4a4bab2974a4bc78874, type: 3}
   cardType: 6
-  nameBoxArt: {fileID: 21300000, guid: a8cc807b531bb8e49b625e58bf248853, type: 3}
-  cardEffectBoxArt: {fileID: 21300000, guid: 147df2d7cfc917c4fbc1aca85aed8b56, type: 3}
-  borderArt: {fileID: 21300000, guid: 4a795863df57edd45815b9405fb20466, type: 3}
+  nameBoxArt: {fileID: 21300000, guid: e06e763889254ad46aed6ec53b49ee63, type: 3}
+  cardEffectBoxArt: {fileID: 21300000, guid: e619800810d49324d8c541701e2fadeb, type: 3}
+  borderArt: {fileID: 0}
   _rewardValue: 5
   _healthValue: 20
   goal: {fileID: 0}
