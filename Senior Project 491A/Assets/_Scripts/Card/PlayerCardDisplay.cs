@@ -19,7 +19,6 @@ using System;
 public class PlayerCardDisplay : CardDisplay
 {
     public PlayerCard card;
-
     [SerializeField] private TextMeshPro attackText;
     [SerializeField] private TextMeshPro costText;
     [SerializeField] private TextMeshPro currencyText;
@@ -77,7 +76,8 @@ public class PlayerCardDisplay : CardDisplay
             nameText.text = card.CardName;
             cardEffectText.text = card.CardEffectDisplay;
             attackText.text = card.CardAttack.ToString();
-            costText.text = card.CardCost.ToString();
+            costIcon.enabled = false;
+            currencyText.text = card.CardCurrency.ToString();
             LoadCostEffectIcons();
         }
     }
@@ -233,6 +233,7 @@ public class PlayerCardDisplay : CardDisplay
             cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
         }
         
+        //TODO: REMOVE COST ICON AND TEXT
         else
         {
             cardArtDisplay.sortingLayerName = "Selected Player Card";
@@ -241,7 +242,6 @@ public class PlayerCardDisplay : CardDisplay
             powerIcon.sortingLayerName = "Selected Player Card";
             currencyIcon.sortingLayerName = "Selected Player Card";
             cardEffectCostsIcons.sortingLayerName = "Selected Player Card";
-            costIcon.sortingLayerName = "Selected Player Card";
             typeIcon.sortingLayerName = "Selected Player Card";
             cardBorder.sortingLayerName = "Selected Player Card";
             cardEffectTextBox.sortingLayerName = "Selected Player Card";
@@ -253,7 +253,7 @@ public class PlayerCardDisplay : CardDisplay
             cardNameTextBox.sortingLayerName = "Selected Player Card";
             cardArtDisplay.sortingLayerName = "Selected Player Card";
             attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
-            costText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            currencyText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
             nameText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
             cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
         }
@@ -293,7 +293,6 @@ public class PlayerCardDisplay : CardDisplay
             powerIcon.sortingLayerName = "Player Card";
             currencyIcon.sortingLayerName = "Player Card";
             cardEffectCostsIcons.sortingLayerName = "Player Card";
-            costIcon.sortingLayerName = "Player Card";
             typeIcon.sortingLayerName = "Player Card";
             cardBorder.sortingLayerName = "Player Card";
             cardEffectTextBox.sortingLayerName = "Player Card";
@@ -304,7 +303,6 @@ public class PlayerCardDisplay : CardDisplay
             cardNameTextBox.sortingLayerName = "Player Card";
             cardArtDisplay.sortingLayerName = "Player Card";
             attackText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
-            costText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
             nameText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
             cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
         }

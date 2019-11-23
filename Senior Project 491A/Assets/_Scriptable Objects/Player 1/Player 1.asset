@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Player 1
   m_EditorClassIdentifier: 
   hand: {fileID: 11400000, guid: 7473ef4c36860c2479a050f88a746ac7, type: 2}
-  deck: {fileID: 0}
-  currency: 1
+  deck: {fileID: 11400000, guid: 77511a9b75f407f488519f69205c933f, type: 2}
+  currency: 2
   power: 0
   playerGraveyard: {fileID: 11400000, guid: c9c8ae8b86cbfa74f8179ae0b4baa309, type: 2}
   rewardPile: []

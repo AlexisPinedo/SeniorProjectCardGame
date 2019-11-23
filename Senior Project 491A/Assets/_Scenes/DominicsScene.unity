@@ -3254,6 +3254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88450659603364da1affe52e78d94eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pvCache: {fileID: 0}
 --- !u!4 &1121214001
 Transform:
   m_ObjectHideFlags: 0
@@ -3364,7 +3365,7 @@ MonoBehaviour:
   playerDeck: {fileID: 11400000, guid: 77511a9b75f407f488519f69205c933f, type: 2}
   playerGraveyard: {fileID: 11400000, guid: c9c8ae8b86cbfa74f8179ae0b4baa309, type: 2}
   phantomCard: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
-  cardDrawn: {fileID: 0}
+  cardDrawn: {fileID: 11400000, guid: 2f0fdee6575bb4f4f8d8f48fe27d47a1, type: 2}
   DefaultHandSize: 5
 --- !u!114 &1190731607
 MonoBehaviour:
