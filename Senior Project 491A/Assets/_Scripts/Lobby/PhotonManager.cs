@@ -28,17 +28,34 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+
+        photonStatus.text = "Establishing conenction with server";
+
+        if (nameInp.text == null || nameInp.text == "")
+        {
+            nameInp.text = "Debugging Offline";
+        }
         PhotonNetwork.NickName = nameInp.text;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
         // Settings defined via PhotonServerSettings
         PhotonNetwork.ConnectUsingSettings();
-       // DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        PhotonNetwork.Disconnect();
     }
 
     void Update()
     {
-
     }
 
     public override void OnConnectedToMaster()
@@ -46,20 +63,21 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         photonStatus.text = "Connected to master.";
 
         PhotonNetwork.JoinLobby(TypedLobby.Default);
-        Destroy(photonStatus);
+        photonStatus.text = "";
+        //Destroy(photonStatus);
     }
 
     public override void OnJoinedLobby()
     {
         welcomeUser.text = "Welcome, " + PhotonNetwork.LocalPlayer.NickName;
         mainLobbyCanvas.SetActive(true);
-        //Debug.Log("Joined lobby: " + PhotonNetwork.CurrentLobby.ToString());
     }
 
     public override void OnJoinedRoom()
     {
         roomName.text = PhotonNetwork.CurrentRoom.Name;
         mainLobbyCanvas.SetActive(false);
+        // TODO: Select hero
         roomLobbyCanvas.SetActive(true);
     }
 
