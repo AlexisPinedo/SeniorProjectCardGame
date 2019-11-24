@@ -15,11 +15,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private Text photonStatus, welcomeUser, roomName;
 
+    // -- Canvases
     [SerializeField]
-    private GameObject mainLobbyCanvas, roomLobbyCanvas;
+    private GameObject mainLobbyCanvas, roomLobbyCanvas, heroPickerPopup;
 
     [SerializeField]
-    private GameObject createRoomPanel, backButton, createRoomButton;
+    private GameObject createRoomPanel, backButton, createRoomButton, gameLogo;
 
     [SerializeField]
     private Button photonGenerateRoomButton;
@@ -97,6 +98,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             MaxPlayers = 2,
             CustomRoomProperties = new Hashtable() { { "deckRandomValue", randomInt } }
         };
+
         PhotonNetwork.JoinOrCreateRoom(roomInput.text, options, null);
     }
 
@@ -122,5 +124,17 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         createRoomButton.SetActive(true);
         createRoomPanel.SetActive(false);
+    }
+
+    public void OnClick_SelectHero()
+    {
+        gameLogo.SetActive(false);
+        mainLobbyCanvas.SetActive(false);
+        heroPickerPopup.SetActive(true);
+    }
+
+    public void OnClick_HeroClicked(string heroName)
+    {
+        Debug.Log("Hero clicked: " + heroName);
     }
 }
