@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MultiplayerScreen : MonoBehaviour
+public class MultiplayerLobby : MonoBehaviour
 {
     [SerializeField]
-    private GameObject mainMenuScreen, multiplayerScreen;
+    private GameObject multiplayerLobby, mainMenuScreen, photonManager;
 
     [SerializeField]
     private GameObject backBtn;
@@ -14,9 +14,11 @@ public class MultiplayerScreen : MonoBehaviour
     #region OnClick Methods
     public void OnClick_Back()
     {
-        Debug.Log("going back to main menu");
-        multiplayerScreen.SetActive(false);
+        Debug.Log("Going back to main screen");
+        multiplayerLobby.SetActive(false);
+        photonManager.SetActive(false);
         mainMenuScreen.SetActive(true);
     }
     #endregion
+
 }
