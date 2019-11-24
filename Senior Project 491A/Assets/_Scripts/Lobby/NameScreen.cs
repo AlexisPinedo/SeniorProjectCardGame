@@ -7,7 +7,7 @@ public class NameScreen : MonoBehaviour
 {
     #region UI references
     [SerializeField]
-    private GameObject nameScreen, photonManager;
+    private GameObject nameScreen, photonManager, mainMenuScreen;
 
     [SerializeField]
     private GameObject createNameBtn;
@@ -24,7 +24,8 @@ public class NameScreen : MonoBehaviour
         if (nameInp.text.Length >= minNameLen)
         {
             nameScreen.SetActive(false);
-            photonManager.SetActive(true);
+            //photonManager.SetActive(true);
+            mainMenuScreen.SetActive(true);
         }
     }
 
