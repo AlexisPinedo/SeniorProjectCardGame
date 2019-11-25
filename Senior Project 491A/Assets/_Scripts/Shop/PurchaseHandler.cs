@@ -46,7 +46,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
         FreeShopSelectionEvent.PurchaseEventTriggered -= UnSubHandlePurchase;
         FreeShopSelectionEvent.PurchaseEventEnded += SubHandlePurchase;
     }
-    
+
     private void UnSubHandlePurchase()
     {
         DragCard.ShopCardClicked -= HandlePurchase;
@@ -57,26 +57,52 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
     {
         DragCard.ShopCardClicked += HandlePurchase;
     }
-    
+
     private void HandlePurchase(PlayerCardDisplay cardSelected)
     {
         //Debug.Log("Handling Purchase");
         if (TurnPlayerManager.Instance.TurnPlayer.Currency >= cardSelected.card.CardCost)
         {
             //StartCoroutine(TransformCardPosition(cardSelected, GraveyardPosition.position));
-            AnimationManager.SharedInstance.PlayAnimation(cardSelected, GraveyardPosition.position, 0.5f, storeOriginalPosition: true,shouldDestroy: true);
+            AnimationManager.SharedInstance.PlayAnimation(cardSelected, GraveyardPosition.position, 0.5f, storeOriginalPosition: true, shouldDestroy: true);
 
             TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardSelected.card);
 
             TurnPlayerManager.Instance.TurnPlayer.Currency -= cardSelected.card.CardCost;
-            
+
             cardSelected.TriggerCardPurchasedEvent();
-            
-            
+
+
+            if(!PhotonNetwork.OfflineMode)
+                cardSelected.photonView.RPC("NetworkHandlePurchase", RpcTarget.OthersBuffered, cardSelected.photonView.ViewID);
+
         }
         else
         {
             Debug.Log("Cannot purchase. Not enough currency");
+        }
+    }
+
+    [PunRPC]
+    private void NetworkHandlePurchase(int cardID)
+    {
+
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            PlayerCardDisplay cardSelected = foundCard.GetComponent<PlayerCardDisplay>();
+
+            AnimationManager.SharedInstance.PlayAnimation(cardSelected, GraveyardPosition.position, 0.5f, storeOriginalPosition: true, shouldDestroy: true);
+
+            TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardSelected.card);
+
+            TurnPlayerManager.Instance.TurnPlayer.Currency -= cardSelected.card.CardCost;
+
+            cardSelected.TriggerCardPurchasedEvent();
+        }
+        else
+        {
+            Debug.Log("Photon View not found. CardID: " + cardID);
         }
     }
 
