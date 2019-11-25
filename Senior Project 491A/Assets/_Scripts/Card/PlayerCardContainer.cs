@@ -13,9 +13,5 @@ public abstract class PlayerCardContainer : Container
     public PlayerCardDisplay display;
     public GameObject spawnPostion;
 
-    
-
-
-
 
 }
