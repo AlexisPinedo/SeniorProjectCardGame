@@ -72,37 +72,10 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
 
             cardSelected.TriggerCardPurchasedEvent();
 
-
-            if(!PhotonNetwork.OfflineMode)
-                cardSelected.photonView.RPC("NetworkHandlePurchase", RpcTarget.OthersBuffered, cardSelected.photonView.ViewID);
-
         }
         else
         {
             Debug.Log("Cannot purchase. Not enough currency");
-        }
-    }
-
-    [PunRPC]
-    private void NetworkHandlePurchase(int cardID)
-    {
-
-        PhotonView foundCard = PhotonView.Find(cardID);
-        if (foundCard)
-        {
-            PlayerCardDisplay cardSelected = foundCard.GetComponent<PlayerCardDisplay>();
-
-            AnimationManager.SharedInstance.PlayAnimation(cardSelected, GraveyardPosition.position, 0.5f, storeOriginalPosition: true, shouldDestroy: true);
-
-            TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardSelected.card);
-
-            TurnPlayerManager.Instance.TurnPlayer.Currency -= cardSelected.card.CardCost;
-
-            cardSelected.TriggerCardPurchasedEvent();
-        }
-        else
-        {
-            Debug.Log("Photon View not found. CardID: " + cardID);
         }
     }
 
