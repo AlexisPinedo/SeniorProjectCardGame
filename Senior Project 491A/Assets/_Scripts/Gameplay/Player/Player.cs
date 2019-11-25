@@ -61,6 +61,7 @@ public class Player : ScriptableObject
     public Hero SelectedHero
     {
         get { return _selectedHero; }
+        set { _selectedHero = value; }
     }
 
 }
