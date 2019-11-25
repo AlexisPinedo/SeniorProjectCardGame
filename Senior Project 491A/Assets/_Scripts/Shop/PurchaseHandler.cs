@@ -66,7 +66,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
             //StartCoroutine(TransformCardPosition(cardSelected, GraveyardPosition.position));
             AnimationManager.SharedInstance.PlayAnimation(cardSelected, GraveyardPosition.position, 0.5f, storeOriginalPosition: true,shouldDestroy: true);
 
-            TurnPlayerManager.Instance.TurnPlayer.graveyard.graveyard.Add(cardSelected.card);
+            TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardSelected.card);
 
             TurnPlayerManager.Instance.TurnPlayer.Currency -= cardSelected.card.CardCost;
             

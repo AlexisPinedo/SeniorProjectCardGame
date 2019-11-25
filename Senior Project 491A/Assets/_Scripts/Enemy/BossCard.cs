@@ -36,7 +36,8 @@ public class BossCard : EnemyCard
 
     public void EnableGoal()
     {
-        goal.OnGoalEnabled();
+        if(goal != null)
+            goal.OnGoalEnabled();
     }
 
     public void AddCardToBossDeck(MinionCard cardToAdd, int cardCopies = 1)

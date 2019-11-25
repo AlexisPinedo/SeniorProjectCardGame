@@ -11,6 +11,12 @@ public abstract class Goal : ScriptableObject
     public void SetOwner(BossCard ownerToSet)
     {
         owner = ownerToSet;
+        OnGoalEnabled();
+    }
+
+    public void RemoveOwner()
+    {
+        owner = null;
     }
 
     public virtual void OnGoalEnabled()
