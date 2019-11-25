@@ -10,5 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d58f6b62ff194c5998c28f150528e70, type: 3}
-  m_Name: Minon 3 Card Effect
+  m_Name: Minion 3 On Death Destroy Player Deck Card
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
