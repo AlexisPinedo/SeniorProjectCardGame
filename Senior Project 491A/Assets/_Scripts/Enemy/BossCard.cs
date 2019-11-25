@@ -3,8 +3,10 @@
     Date:       2019-04-11
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,62 +25,22 @@ public class BossCard : EnemyCard
     private Goal goal;
     [SerializeField]
     private EnemyDeck bossDeck;
-}
-
-
-
-/* This was the previous implementation of the enemy card 
-
-//public class BossCard : EnemyCard
-//   {
-/* The BossCard' Goal */
-    //public Goal goal;
     
-    /* BossCard' health and reward value */
-    //public int _health;
+    private void Awake()
+    {
+        if (goal != null)
+        {
+            goal.SetOwner(this);
+        }
+    }
 
-    //// from IEnemy
-    //public int health
-    //{
-    //    get { return _health; }
-    //    set { _health = value; }
-    //}
-    //public int rewardValue
-    //{
-    //    get { return _rewardValue;}
-    //    set { _rewardValue = value;}
-    //}
+    public void EnableGoal()
+    {
+        goal.OnGoalEnabled();
+    }
 
-    /* The BossCard' Deck */
-    //public EnemyDeck bossDeck;
-
-    //public CreateGrid EnemyGrid;
-    //public BossTurnCardPlayer cardPlayer;
-
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    // TODO: Set the goal?
-    //    // TODO: Populate the BossCard' deck?
-
-    //    this.transform.position = EnemyGrid.GetNearestPointOnGrid(new Vector2(6, 2));
-
-    //}
-
-    //public override void OnMouseDown()
-    //{
-    //    if (cardPlayer.filledCardZones == 0)
-    //    {
-    //        Debug.Log("can attack boss");
-    //        if (TurnManager.Instance.turnPlayer.GetPower() >= _health)
-    //        {
-    //            Destroy(this.gameObject);
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("not enough power");
-
-    //        }
-    //    }
-    //}
-//}
+    public void AddCardToBossDeck(MinionCard cardToAdd, int cardCopies = 1)
+    {
+        bossDeck.AddSingleCardToDeck(cardToAdd, cardCopies);
+    }
+}
