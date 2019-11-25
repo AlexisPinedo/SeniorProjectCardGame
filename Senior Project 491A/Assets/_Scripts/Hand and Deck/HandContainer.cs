@@ -104,7 +104,8 @@ public class HandContainer : PlayerCardContainer
         Vector3 tempCardDestination = containerCardGrid.freeLocations.Pop();
 
         // Trasnforms the card position to the grid position
-        StartCoroutine(TransformCardPosition(cardDisplay, tempCardDestination));
+        //StartCoroutine(TransformCardPosition(cardDisplay, tempCardDestination));
+        AnimationManager.SharedInstance.PlayAnimation(cardDisplay, tempCardDestination, 0.3f, storeOriginalPosition: true);
 
         if (!containerCardGrid.cardLocationReference.ContainsKey(tempCardDestination))
             containerCardGrid.cardLocationReference.Add(tempCardDestination, cardDisplay);
