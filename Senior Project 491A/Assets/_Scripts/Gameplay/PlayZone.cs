@@ -140,44 +140,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
         cardInZone = null;
     }
 
-    //IEnumerator TransformCard(PlayerCardDisplay cardInPlay, Vector3 destination)
-    //{
-    //    cardInPlay.transform.localScale = new Vector3(0, 0, 0);
-    //    //cardInPlay.transform.position = destination;
 
-    //    float currentLerpTime = 0;
-    //    float lerpTime = 0.3f;
-
-    //    Vector3 startPos = cardInPlay.transform.position;
-    //    Vector3 startSize = cardInPlay.transform.localScale;
-    //    Vector3 endSize = cardInPlay.transform.localScale + new Vector3(1.5f, 1.5f, 1.5f);
-
-    //    cardInPlay.GetComponent<BoxCollider2D>().enabled = false;
-
-    //    while (cardInPlay.transform.position != destination && cardInPlay.transform.localScale != endSize)
-    //    {
-    //        currentLerpTime += Time.deltaTime;
-    //        if (currentLerpTime >= lerpTime)
-    //        {
-    //            currentLerpTime = lerpTime;
-    //        }
-
-    //        float Perc = currentLerpTime / lerpTime;
-
-    //        cardInPlay.transform.position = Vector3.Lerp(startPos, destination, Perc);
-    //        cardInPlay.transform.localScale = Vector3.Lerp(startSize, endSize, Perc);
-
-    //        yield return new WaitForEndOfFrame();
-    //    }
-
-    //    yield return new WaitForSeconds(1.0f);
-
-    //    Destroy(cardInPlay.gameObject);
-
-    //    //cardDisplay.GetComponent<CardZoomer>().OriginalPosition = cardDestination;
-    //    //cardDisplay.GetComponent<DragCard>().OriginalPosition = cardDestination;
-
-    //}
 
 
 
