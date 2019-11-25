@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -91,6 +92,8 @@ public class AnimationManager : MonoBehaviour
     {
         if (canScale)
         {
+            var renderers = cardDisplay.GetComponentsInChildren<Renderer>();
+            renderers.ToList().ForEach(x => x.enabled = false);
             cardDisplay.transform.localScale -= new Vector3(cardDisplay.transform.localScale.x, cardDisplay.transform.localScale.y, cardDisplay.transform.localScale.z);
             Debug.Log("Card Display Shrank: " + cardDisplay.transform.localScale);
         }
@@ -147,7 +150,8 @@ public class AnimationManager : MonoBehaviour
     // This is called through a boolean 
     IEnumerator ScaleCardSize(PlayerCardDisplay cardDisplay, bool shouldDestroy = false, Collider2D cardTouch = null)
     {
-       
+        var renderers = cardDisplay.GetComponentsInChildren<Renderer>();
+        renderers.ToList().ForEach(x => x.enabled = true);
 
         float currentLerpTime = 0.0f;
         float lerpTime = 0.2f;
