@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bomb Goal
   m_EditorClassIdentifier: 
   goalDescriptionText: 
-  bombGoal: {fileID: 0}
+  bombGoal: {fileID: 11400000, guid: b8185a2a943103e4a9d3ef0646567680, type: 2}
   requiredCountOfCards: 5
   bombCardsRevealed: 0
