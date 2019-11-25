@@ -24,5 +24,5 @@ MonoBehaviour:
   borderArt: {fileID: 0}
   _rewardValue: 5
   _healthValue: 20
-  goal: {fileID: 0}
-  bossDeck: {fileID: 0}
+  goal: {fileID: 11400000, guid: 8686798cdc5326846954f5c77c87504a, type: 2}
+  bossDeck: {fileID: 11400000, guid: 3011dc8c8f7e58f4eb9c00577c9c4b8c, type: 2}
