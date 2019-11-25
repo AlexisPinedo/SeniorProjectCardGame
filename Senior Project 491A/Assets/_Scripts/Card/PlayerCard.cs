@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ExitGames.Client.Photon;
+using System;
 
 /// <summary>
 /// This class contains the data components for card that are player cards
@@ -42,4 +43,7 @@ public class PlayerCard : Card
     }
 
     public List<Sprite> cardCostsIcons = new List<Sprite>();
+    
+    
+    
 }

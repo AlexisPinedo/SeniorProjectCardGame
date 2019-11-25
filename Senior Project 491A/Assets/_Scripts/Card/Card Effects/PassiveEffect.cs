@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PassiveEffect : CardEffect
+public abstract class PassiveEffect : OnPlayEffects
 {
     
 }

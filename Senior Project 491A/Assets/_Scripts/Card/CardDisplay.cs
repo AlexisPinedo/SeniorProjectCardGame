@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using Photon.Pun;
+
 /// <summary>
 /// This class handles the in game display of each card.
 /// The class holds components relative to all card displays
@@ -21,8 +22,6 @@ public abstract class CardDisplay : MonoBehaviourPun
 
     [SerializeField]
     protected BoxCollider2D cardDisplayCollider;
-
-    public static int photonIdCounter = 1001;
 
     protected virtual void Awake()
     {

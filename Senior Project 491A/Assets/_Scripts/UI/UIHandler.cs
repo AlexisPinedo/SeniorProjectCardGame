@@ -41,6 +41,12 @@ public class UIHandler : MonoBehaviour
     public void StartBattleButtonOnClick()
     {
         StartBattleClicked?.Invoke();
+        NetworkUIEventRaiser.Instance.SendBattleButtonClickEvent();
+    }
+
+    public void RaiseEventStartBattleButtonOnClick()
+    {
+        StartBattleClicked?.Invoke();
     }
 
     public void GraveyardButtonOnClick()
@@ -56,6 +62,11 @@ public class UIHandler : MonoBehaviour
     public void EndTurnButtonOnClick()
     {
         EndTurnClicked?.Invoke();
-        
+        NetworkUIEventRaiser.Instance.SendEndTurnClickEvent();
+    }
+
+    public void RasieEventEndTurnButtonOnClick()
+    {
+        EndTurnClicked?.Invoke();
     }
 }

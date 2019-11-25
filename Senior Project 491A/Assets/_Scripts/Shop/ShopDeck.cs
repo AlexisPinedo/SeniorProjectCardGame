@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Deck/Shop Deck")]
-public class ShopDeck : PrefillableDeck
+public class ShopDeck : PrefillableDeck<PlayerCard>
 {
     [SerializeField	] private List<PlayerCard> CardsToAddLaterInGame = new List<PlayerCard>();
 
@@ -49,7 +49,7 @@ public class ShopDeck : PrefillableDeck
             cardsInDeck.Push(card);
         }
         
-        this.cardsInDeck =  ShuffleDeck.Shuffle(this);
+        cardsInDeck = ShuffleDeck.Shuffle(this);
 
         History.CardHistoryComponentsUpdated -= AddCardsLaterInGame;
     }

@@ -21,19 +21,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c8e857aee19f9bc4b8a1cf7e5d76d26f, type: 2}
   cardCopies: 5
   CardsToAddLaterInGame:
-  - {fileID: 11400000, guid: 9aab7e85c160c024da3f6f5a62f3ad83, type: 2}
-  - {fileID: 11400000, guid: 9aab7e85c160c024da3f6f5a62f3ad83, type: 2}
-  - {fileID: 11400000, guid: 9aab7e85c160c024da3f6f5a62f3ad83, type: 2}
-  - {fileID: 11400000, guid: 9aab7e85c160c024da3f6f5a62f3ad83, type: 2}
-  - {fileID: 11400000, guid: 9aab7e85c160c024da3f6f5a62f3ad83, type: 2}
   - {fileID: 11400000, guid: 803f8c7427603604db021059ebd9fd9a, type: 2}
   - {fileID: 11400000, guid: 803f8c7427603604db021059ebd9fd9a, type: 2}
   - {fileID: 11400000, guid: 803f8c7427603604db021059ebd9fd9a, type: 2}
   - {fileID: 11400000, guid: 803f8c7427603604db021059ebd9fd9a, type: 2}
   - {fileID: 11400000, guid: 803f8c7427603604db021059ebd9fd9a, type: 2}
-  - {fileID: 11400000, guid: c8e857aee19f9bc4b8a1cf7e5d76d26f, type: 2}
-  - {fileID: 11400000, guid: c8e857aee19f9bc4b8a1cf7e5d76d26f, type: 2}
-  - {fileID: 11400000, guid: c8e857aee19f9bc4b8a1cf7e5d76d26f, type: 2}
-  - {fileID: 11400000, guid: c8e857aee19f9bc4b8a1cf7e5d76d26f, type: 2}
-  - {fileID: 11400000, guid: c8e857aee19f9bc4b8a1cf7e5d76d26f, type: 2}
   turnCountToAddOtherCards: 2

@@ -2,6 +2,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
+using System;
 
 /// <summary>
 /// Holds visual information specific to minion cards. Extends EnemyCardDisplay.
@@ -9,22 +10,26 @@ using ExitGames.Client.Photon;
 /// this loads depending on the card attached to it. 
 /// </summary>
 //[ExecuteInEditMode]
-public class MinionCardDisplay : EnemyCardDisplay
+public class MinionCardDisplay : EnemyCardDisplay<MinionCard>
 {
-    //    private byte currentCardIdenrifier = (byte)'E';
+    //private byte currentCardIdenrifier = (byte)'E';
 
     //Delegate event to handle anything that cares if the card has been destroyed
-    public delegate void _cardDestroyed(EnemyCardDisplay destroytedCard);
-    public static event _cardDestroyed CardDestroyed;
+    public static event Action<MinionCardDisplay> CardDestroyed;
 
     //Delegate event to handle anything that cares if the card has been clicked
-    public delegate void _MinionCardClicked(MinionCardDisplay cardClicked);
+    public static event Action<MinionCardDisplay> MinionCardClicked;
 
-    public static event _MinionCardClicked MinionCardClicked;
+    public Action MinionCardSummoned;
+
+    public Action MinionCardDestroyed; 
+    
+    public Vector2 OriginalPosition;
 
     void Awake()
     {
         base.Awake();
+        OriginalPosition = this.transform.position;
     }
 
     protected override void OnEnable()
@@ -33,6 +38,7 @@ public class MinionCardDisplay : EnemyCardDisplay
         TurnPhaseManager.BattlePhaseStarted += EnableBoxCollider;
         TurnPhaseManager.BattlePhaseEnded += DisableBoxCollider;
         Event_Base.DisableMinionCards += DisableBoxCollider;
+        MinionCardSummoned?.Invoke();
     }
 
     protected override void OnDisable()
@@ -48,16 +54,30 @@ public class MinionCardDisplay : EnemyCardDisplay
     {
         Debug.Log("minion card was destroyed");
         base.OnDestroy();
-        if (CardDestroyed != null)
-            CardDestroyed.Invoke(this);
+        CardDestroyed?.Invoke(this);
     }
 
+    private void OnMouseEnter()
+    {
+        //Debug.Log("enter");
+        transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
+        Vector2 newPosition = new Vector2(0, -1);
+        transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
+    }
+    
     //This method will invoke the MinionCardClicked event
     protected override void OnMouseDown()
     {
         MinionCardClicked?.Invoke(this);
         if(!PhotonNetwork.OfflineMode)
             photonView.RPC("RPCAttackMinion", RpcTarget.Others, this.photonView.ViewID);
+    }
+
+    private void OnMouseExit()
+    {
+        transform.localScale = new Vector2(1, 1);  //returns the object to its original state
+        if (!DragCard.cardHeld)
+            transform.position = OriginalPosition;
     }
 
     [PunRPC]

@@ -93,17 +93,14 @@ public class ShopContainer : PlayerCardContainer
         // PlayerCardDisplay
         display.card = cardDrawn;
 
-        //PlayerCardDisplay cardDisplay = Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
+        //PlayerCardDisplay cardDisplay = Instantiate(display, containerCardGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
+        
+        NetworkIDAssigner.AssignID(cardDisplay.gameObject.GetPhotonView());
+
         cardDisplay.enabled = true;
 
-        PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
-        if (cardDisplayPhotonView.ViewID == 0)
-            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
-        else
-            Debug.Log("Already has an assigned ID");
-
-        Vector3 finalCardDestination = containerGrid.freeLocations.Pop();
+        Vector3 finalCardDestination = containerCardGrid.freeLocations.Pop();
 
         // Trasnforms the card position to the grid position
         //StartCoroutine(TransformCardPosition(cardDisplay, finalCardDestination));
@@ -113,10 +110,10 @@ public class ShopContainer : PlayerCardContainer
         
         CardDrawnLocationCreated?.Invoke(cardDisplay, freeSpot);
         
-        if (!containerGrid.cardLocationReference.ContainsKey(freeSpot))
-            containerGrid.cardLocationReference.Add(freeSpot, cardDisplay);
+        if (!containerCardGrid.cardLocationReference.ContainsKey(freeSpot))
+            containerCardGrid.cardLocationReference.Add(freeSpot, cardDisplay);
         else
-            containerGrid.cardLocationReference[freeSpot] = cardDisplay;
+            containerCardGrid.cardLocationReference[freeSpot] = cardDisplay;
     }
 
   
@@ -125,7 +122,7 @@ public class ShopContainer : PlayerCardContainer
     {
         Vector3 freeSpot = cardBought.gameObject.transform.position;
 
-        containerGrid.freeLocations.Push(freeSpot);
+        containerCardGrid.freeLocations.Push(freeSpot);
         HandleDisplayOfACard();
     }
 

@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+<<<<<<< Updated upstream
+guid: 52ff7b8101f2e4eecb7a2f2087b247bf
+=======
+<<<<<<< HEAD
+guid: 5ae5401c9928c49b9a80407803725fe6
+=======
+guid: 52ff7b8101f2e4eecb7a2f2087b247bf
+>>>>>>> d49698d0399fc5ad3de506eb566f9248a5ef3595
+>>>>>>> Stashed changes
+labels:
+- gvh
+- gvh_rename_to_disable
+- gvh_targets-linux
+- gvh_targets-linux32
+- gvh_targets-linux64
+- gvh_targets-osx
+- gvh_targets-osxintel
+- gvh_targets-osxintel64
+- gvh_targets-windows
+- gvh_targets-windows64
+- gvh_version-6.4.0
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

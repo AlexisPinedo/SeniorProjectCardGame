@@ -13,7 +13,7 @@ public class BattleManager : MonoBehaviour
     private bool inBattleState = false;
 
     [SerializeField]
-    private Grid EnemyGrid;
+    private CardGrid enemyCardGrid;
 
     [SerializeField]
     private TextMeshProUGUI PlayZoneText;
@@ -54,7 +54,7 @@ public class BattleManager : MonoBehaviour
     {
         //We need to check if there are any other minions on the field
         //If there is a minion we cannot attack the boss
-        foreach (var keyValuePair in EnemyGrid.cardLocationReference)
+        foreach (var keyValuePair in enemyCardGrid.cardLocationReference)
         {
             if (keyValuePair.Value != null)
             {
@@ -104,7 +104,7 @@ public class BattleManager : MonoBehaviour
         PlayZoneText.enabled = false;
         
         //We then want to enable all the enemy cards on the field
-        foreach (var keyValuePair in EnemyGrid.cardLocationReference)
+        foreach (var keyValuePair in enemyCardGrid.cardLocationReference)
         {
             if(keyValuePair.Value != null)
                 keyValuePair.Value.gameObject.GetComponent<BoxCollider2D>().enabled = true;
@@ -118,7 +118,7 @@ public class BattleManager : MonoBehaviour
         }
         
         //We are now exiting battle state we need to deactivate the colliders
-        foreach (var keyValuePair in EnemyGrid.cardLocationReference)
+        foreach (var keyValuePair in enemyCardGrid.cardLocationReference)
         {
             if(keyValuePair.Value != null)
                 keyValuePair.Value.gameObject.GetComponent<BoxCollider2D>().enabled = false;

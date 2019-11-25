@@ -11,11 +11,11 @@ using Photon.Pun;
 public class HandContainer : PlayerCardContainer
 {
     public Hand hand;
-    public Deck playerDeck;
-    public Graveyard playerGrave;
+    public PlayerDeck playerDeck;
+    public PlayerGraveyard playerGraveyard;
     public PlayerCard phantomCard;
     public PlayerCard cardDrawn;
-
+    
     [SerializeField] private int DefaultHandSize = 5;
     
     private void Awake()
@@ -27,7 +27,7 @@ public class HandContainer : PlayerCardContainer
     {
         TurnPhaseManager.PlayerTurnEnded += DestroyHand;
         TurnPhaseManager.PlayerTurnStarted += DrawStartingHand;
-        containerGrid.onGridResize += ChangeCardPositions;
+        containerCardGrid.onGridResize += ChangeCardPositions;
     }
 
     private void OnDisable()
@@ -35,7 +35,7 @@ public class HandContainer : PlayerCardContainer
         //Debug.Log("Hand container has been disabled");
         TurnPhaseManager.PlayerTurnEnded -= DestroyHand;
         TurnPhaseManager.PlayerTurnStarted -= DrawStartingHand;
-        containerGrid.onGridResize -= ChangeCardPositions;
+        containerCardGrid.onGridResize -= ChangeCardPositions;
     }
 
 
@@ -57,12 +57,12 @@ public class HandContainer : PlayerCardContainer
         }
         else
         {
-            if (playerGrave.graveyard.Count > 0)
+            if (playerGraveyard.graveyard.Count > 0)
             {
-                for (int j = 0; j < playerGrave.graveyard.Count; j++)
+                for (int j = 0; j < playerGraveyard.graveyard.Count; j++)
                {
-                   playerDeck.cardsInDeck.Push(playerGrave.graveyard[j]);
-                   playerGrave.graveyard.Remove(playerGrave.graveyard[j]);
+                   playerDeck.cardsInDeck.Push(playerGraveyard.graveyard[j]);
+                   playerGraveyard.graveyard.Remove(playerGraveyard.graveyard[j]);
                }
 
                playerDeck.cardsInDeck = ShuffleDeck.Shuffle(playerDeck);
@@ -85,34 +85,32 @@ public class HandContainer : PlayerCardContainer
         // Set the PlayerCardContainer's PlayerCardDisplay to the cardDrawn
         display.card = cardDrawn;
 
-        if (containerGrid.freeLocations.Count == 0)
+        if (containerCardGrid.freeLocations.Count == 0)
         {
             //Debug.Log("Stack is empty ");
             return;
         }
 
         // Place it on the grid!
-        //PlayerCardDisplay cardDisplay = Instantiate(display, containerGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
+        //PlayerCardDisplay cardDisplay = Instantiate(display, containerCardGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
 
         PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
-        if (cardDisplayPhotonView.ViewID == 0)
-            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
-        else
-            Debug.Log("Already has an assigned ID");
+
+        NetworkIDAssigner.AssignID(cardDisplayPhotonView);
 
         cardDisplayPhotonView.TransferOwnership(NetworkOwnershipTransferManger.currentPhotonPlayer);
 
-        Vector3 tempCardDestination = containerGrid.freeLocations.Pop();
+        Vector3 tempCardDestination = containerCardGrid.freeLocations.Pop();
 
         // Trasnforms the card position to the grid position
         //StartCoroutine(TransformCardPosition(cardDisplay, tempCardDestination));
         AnimationManager.SharedInstance.PlayAnimation(cardDisplay, tempCardDestination, 0.3f, storeOriginalPosition: true);
 
-        if (!containerGrid.cardLocationReference.ContainsKey(tempCardDestination))
-            containerGrid.cardLocationReference.Add(tempCardDestination, cardDisplay);
+        if (!containerCardGrid.cardLocationReference.ContainsKey(tempCardDestination))
+            containerCardGrid.cardLocationReference.Add(tempCardDestination, cardDisplay);
         else
-            containerGrid.cardLocationReference[tempCardDestination] = cardDisplay;
+            containerCardGrid.cardLocationReference[tempCardDestination] = cardDisplay;
     
         hand.hand.Add(cardDrawn);
     }
@@ -120,13 +118,13 @@ public class HandContainer : PlayerCardContainer
 
     public void DrawExtraCard()
     {
-        containerGrid.xValUnits += 1;
+        containerCardGrid.xValUnits += 1;
         DrawCard();
     }
 
     private void DestroyHand()
     {
-        foreach (var locationReferenceKeyValuePair in containerGrid.cardLocationReference)
+        foreach (var locationReferenceKeyValuePair in containerCardGrid.cardLocationReference)
         {
             if (locationReferenceKeyValuePair.Value != null)
             {
@@ -141,55 +139,55 @@ public class HandContainer : PlayerCardContainer
                 if(cardDisplay.card.CardType != CardTypes.None)
                 {                    
                     Debug.Log("Add card to grave");
-                    playerGrave.graveyard.Add(cardDisplay.card);
+                    playerGraveyard.graveyard.Add(cardDisplay.card);
                 }
 
                 Destroy(locationReferenceKeyValuePair.Value.gameObject);
             }
-            containerGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
+            containerCardGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
             
         }
     }
 
     private void ChangeCardPositions()
     {
-        for (int i = containerGrid.cardLocationReference.Count - 1; i > 0 ; i++)
+        for (int i = containerCardGrid.cardLocationReference.Count - 1; i > 0 ; i++)
         {
-            if(containerGrid.freeLocations.Count == 0)
+            if(containerCardGrid.freeLocations.Count == 0)
                 break;
             
-            Vector2 newLocation = containerGrid.freeLocations.Pop();
+            Vector2 newLocation = containerCardGrid.freeLocations.Pop();
 
-            var location = containerGrid.cardLocationReference.ElementAt(i);
+            var location = containerCardGrid.cardLocationReference.ElementAt(i);
 
-            CardDisplay locationElement = location.Value;
+            PlayerCardDisplay locationElement = (PlayerCardDisplay)location.Value;
                 
             locationElement.gameObject.transform.position = newLocation;
             
             var oldLocation = location.Key;
 
-            containerGrid.cardLocationReference.Remove(oldLocation);
-            containerGrid.cardLocationReference.Add(newLocation, locationElement);
+            containerCardGrid.cardLocationReference.Remove(oldLocation);
+            containerCardGrid.cardLocationReference.Add(newLocation, locationElement);
         }
     }
 
     /// <summary>
-    /// Places a player's card onto the hand grid.
+    /// Places a playerGraveyard's card onto the hand grid.
     /// </summary>
     /// <param name="card"></param>
     private void PlaceCard(PlayerCard cardToPlace)
     {
         //Vector2 spawnPoint;
-        //spawnPoint = handGrid.GetNearestPointOnGrid(cardSpot);
+        //spawnPoint = handCardGrid.GetNearestPointOnGrid(cardSpot);
 
-        //if (handGrid.IsPlaceable(spawnPoint))
+        //if (handCardGrid.IsPlaceable(spawnPoint))
         //{
         //    card.SetCoord(spawnPoint);
         //    hand.Add(card);
 
         //    inHandObjects.Add(Instantiate(card, this.transform).gameObject);
         //    cardsInHand += 1;
-        //    cardSpot.x += handGrid.size;
+        //    cardSpot.x += handCardGrid.size;
         //}
     }
 }

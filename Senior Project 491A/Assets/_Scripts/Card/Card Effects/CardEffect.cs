@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
 using UnityEngine;
@@ -13,10 +14,22 @@ using UnityEngine;
 /// </summary>
 public abstract class CardEffect : ScriptableObject
 {
+    public Card owner;
+
     /// <summary>
     /// This method is used among all children as the method to call to trigger each card effect
     /// </summary>
     public virtual void LaunchCardEffect()
+    {
+        
+    }
+    
+    public virtual void CardPlacedIntoPlay()
+    {
+        
+    }
+
+    public virtual void CardRemovedFromPlay()
     {
         
     }

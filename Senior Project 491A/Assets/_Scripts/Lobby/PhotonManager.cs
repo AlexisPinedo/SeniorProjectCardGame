@@ -13,32 +13,53 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private InputField nameInp, roomInput;
 
     [SerializeField]
-    private Text photonStatus, welcomeUser, roomName;
+    private Text photonStatus, welcomeUser, roomName, heroSelectedText;
+
+    // -- Canvases
+    [SerializeField]
+    private GameObject mainLobbyCanvas, roomLobbyCanvas, heroPickerPopup;
 
     [SerializeField]
-    private GameObject mainLobbyCanvas, roomLobbyCanvas;
-
-    [SerializeField]
-    private GameObject createRoomPanel, backButton, createRoomButton;
+    private GameObject createRoomPanel, backButton, createRoomButton, gameLogo;
 
     [SerializeField]
     private Button photonGenerateRoomButton;
+
+    private string playerOneHero = "";
+    private string playerTwoHero = "";
 
     private readonly int minRoomNameLen = 4;
 
     private void Awake()
     {
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+
+        photonStatus.text = "Establishing conenction with server";
+
+        if (nameInp.text == null || nameInp.text == "")
+        {
+            nameInp.text = "Debugging Offline";
+        }
         PhotonNetwork.NickName = nameInp.text;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
         // Settings defined via PhotonServerSettings
         PhotonNetwork.ConnectUsingSettings();
-       // DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        PhotonNetwork.Disconnect();
     }
 
     void Update()
     {
-
     }
 
     public override void OnConnectedToMaster()
@@ -46,20 +67,21 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         photonStatus.text = "Connected to master.";
 
         PhotonNetwork.JoinLobby(TypedLobby.Default);
-        Destroy(photonStatus);
+        photonStatus.text = "";
+        //Destroy(photonStatus);
     }
 
     public override void OnJoinedLobby()
     {
         welcomeUser.text = "Welcome, " + PhotonNetwork.LocalPlayer.NickName;
         mainLobbyCanvas.SetActive(true);
-        //Debug.Log("Joined lobby: " + PhotonNetwork.CurrentLobby.ToString());
     }
 
     public override void OnJoinedRoom()
     {
         roomName.text = PhotonNetwork.CurrentRoom.Name;
         mainLobbyCanvas.SetActive(false);
+        gameLogo.SetActive(true);
         roomLobbyCanvas.SetActive(true);
     }
 
@@ -68,7 +90,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.LogError("<Color=Red><a>Join Room Failed</a></Color>", this);
     }
 
-    public void OnClick_GeneratePhotonRoom()
+    public void GeneratePhotonRoom()
     {
         System.Random randomNumber = new System.Random();
         int randomInt = randomNumber.Next();
@@ -79,6 +101,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             MaxPlayers = 2,
             CustomRoomProperties = new Hashtable() { { "deckRandomValue", randomInt } }
         };
+
         PhotonNetwork.JoinOrCreateRoom(roomInput.text, options, null);
     }
 
@@ -104,5 +127,40 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         createRoomButton.SetActive(true);
         createRoomPanel.SetActive(false);
+    }
+
+    public void OnClick_SelectHero()
+    {
+        gameLogo.SetActive(false);
+        mainLobbyCanvas.SetActive(false);
+        heroPickerPopup.SetActive(true);
+    }
+
+    public void OnClick_HeroClicked(string heroName)
+    {
+        heroSelectedText.text = heroName;
+    }
+
+    public void OnClick_ConfirmHeroSelection()
+    {
+        if (heroSelectedText.text != "")
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                playerOneHero = heroSelectedText.text;
+            }
+            else
+            {
+                playerTwoHero = heroSelectedText.text;
+            }
+
+            heroPickerPopup.SetActive(false);
+            //roomLobbyCanvas.SetActive(true);
+            GeneratePhotonRoom();
+        }
+        else
+        {
+            heroSelectedText.text = "Hero Selected: Pick A Hero";
+        }
     }
 }

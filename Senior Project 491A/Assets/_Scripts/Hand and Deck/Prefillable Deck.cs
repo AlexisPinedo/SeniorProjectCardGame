@@ -8,10 +8,10 @@ using UnityEngine;
 /// Creating a deck from this class will allow you to add cards into the game
 /// before the game starts
 /// </summary>
-public abstract class PrefillableDeck : Deck
+public abstract class PrefillableDeck<T> : Deck<T> where T : Card
 {
     
-    [SerializeField] protected List<Card> cardsToAdd = new List<Card>();
+    [SerializeField] protected List<T> cardsToAdd = new List<T>();
     [SerializeField] protected int cardCopies;
     
     /// <summary>
@@ -19,16 +19,26 @@ public abstract class PrefillableDeck : Deck
     /// to add and then shuffle
     /// </summary>
      protected virtual void OnEnable()
-     {        
-         foreach (Card card in cardsToAdd)
-         {
-             for (int i = 0; i < cardCopies; i++)
-             {
-                 cardsInDeck.Push(card);
-             }
-         }
-         //f(RandomNumberNetworkGenerator.Instance != null)
-            
-         //Debug.Log("cards added");
+     {
+         AddCardsToDeck(cardsToAdd, cardCopies);
      }
+
+    public void AddCardsToDeck(List<T> cardsToAdd, int cardCopies)
+    {
+        foreach (T card in cardsToAdd)
+        {
+            for (int i = 0; i < cardCopies; i++)
+            {
+                cardsInDeck.Push(card);
+            }
+        }
+    }
+    
+    public void AddSingleCardToDeck(T card, int cardCopies = 1)
+    {
+        for (int i = 0; i < cardCopies; i++)
+        {
+            cardsInDeck.Push(card);
+        }
+    }
  }
