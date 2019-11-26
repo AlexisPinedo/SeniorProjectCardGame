@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c09662bb58d4d6a94ab5ec04c30494, type: 3}
+  m_Name: Audio Clip Container
+  m_EditorClassIdentifier: 
+  _shopBuyingClip: {fileID: 8300000, guid: 243e68aa9e1004faba25700f18055f7e, type: 3}
+  _startGameClip: {fileID: 8300000, guid: 62095002dedfd49ccb303e0f82f4a3a1, type: 3}
+  _endGameClip: {fileID: 8300000, guid: 2e498a595caa0466283b66f54fb678d1, type: 3}
