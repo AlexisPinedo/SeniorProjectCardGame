@@ -6,6 +6,10 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Scripts" t="Include">
+          <e p="Audio" t="Include">
+            <e p="AudioClipContainer.cs" t="Include" />
+            <e p="AudioHandler.cs" t="Include" />
+          </e>
           <e p="Card" t="Include">
             <e p="Card Effects" t="Include">
               <e p="CardEffect.cs" t="Include" />
