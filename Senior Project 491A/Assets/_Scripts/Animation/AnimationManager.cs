@@ -274,8 +274,6 @@ public class AnimationManager : MonoBehaviour
         {
             Destroy(cardDisplay.gameObject);
         }
-        
-
 
     }
 
@@ -342,6 +340,7 @@ class AnimationObject
         this.canScale = canScale;
         this.storeOriginalPosition = storeOriginalPosition;
         this.shouldDestroy = shouldDestroy;
+        this.shouldQueue = shouldQueue;
     }
 }
 
