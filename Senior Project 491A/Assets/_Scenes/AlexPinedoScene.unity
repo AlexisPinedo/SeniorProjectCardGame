@@ -1712,7 +1712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopCards: {fileID: 301505297}
-  notficationWindow: {fileID: 0}
+  notficationWindow: {fileID: 1825280831}
   minionCards: {fileID: 607427542}
   bossCard: {fileID: 589770440}
 --- !u!1 &659640897
