@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class UIHandler : MonoBehaviour
@@ -45,11 +44,6 @@ public class UIHandler : MonoBehaviour
         NetworkUIEventRaiser.Instance.SendBattleButtonClickEvent();
     }
 
-    public void RaiseEventStartBattleButtonOnClick()
-    {
-        StartBattleClicked?.Invoke();
-    }
-
     public void GraveyardButtonOnClick()
     {
         GraveyardClicked?.Invoke();
@@ -62,13 +56,7 @@ public class UIHandler : MonoBehaviour
 
     public void EndTurnButtonOnClick()
     {
-        //PlayZoneAnimationManager.SharedInstance.DestroyObjects();
         EndTurnClicked?.Invoke();
         NetworkUIEventRaiser.Instance.SendEndTurnClickEvent();
-    }
-
-    public void RasieEventEndTurnButtonOnClick()
-    {
-        EndTurnClicked?.Invoke();
     }
 }
