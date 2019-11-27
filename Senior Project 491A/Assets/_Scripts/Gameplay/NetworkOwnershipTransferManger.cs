@@ -1,4 +1,6 @@
+using ExitGames.Client.Photon;
 using Photon.Pun;
+using Photon.Realtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,10 +8,17 @@ using UnityEngine;
 
 public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
 {
-    public static Photon.Realtime.Player photonPlayer1, photonPlayer2, currentPhotonPlayer;
-    
+    public static Photon.Realtime.Player photonPlayer1, photonPlayer2, currentPhotonPlayer, pendingPhotonPlayer;
+
+    public static RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+
+    public static SendOptions sendOptions = new SendOptions { Reliability = true };
+
     [SerializeField]
     private ShopContainer shopCards;
+
+    [SerializeField]
+    private NotificationWindowEvent notficationWindow;
 
     [SerializeField]
     private FieldContainer minionCards;
@@ -19,6 +28,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
     
     public static byte endTurnEvent = (byte)'0';
     public static byte startBattleEvent = (byte)'1';
+
 
     private void Awake()
     {
@@ -32,11 +42,13 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
                 if (player.IsMasterClient)
                     photonPlayer1 = currentPhotonPlayer = player;
                 else
-                    photonPlayer2 = player;
+                    photonPlayer2 = pendingPhotonPlayer = player;
             }
 
             Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
             Debug.Log("Photon Player 2: " + photonPlayer2.NickName);
+
+            notficationWindow.photonView.TransferOwnership(currentPhotonPlayer);
         }
         else
         {
@@ -62,6 +74,9 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
     public void TransferObjects()
     {
         bossCard.photonView.TransferOwnership(currentPhotonPlayer);
+
+        notficationWindow.photonView.TransferOwnership(currentPhotonPlayer);
+        Debug.Log("notfication window transfered");
 
         PhotonView[] minionTransfer = minionCards.GetComponentsInChildren<PhotonView>();
         for (int i = 0; i < minionTransfer.Length; i++)

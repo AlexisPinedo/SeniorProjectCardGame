@@ -18,9 +18,11 @@ public class PhotonQuickManager : MonoBehaviourPunCallbacks
 
     private static System.Random randomNumber = new System.Random();
 
+    private static string[] randomPlayers = { "Edward", "Alex", "David", "Dominque", "Zack" };
+
     private void Awake()
     {
-        PhotonNetwork.NickName = randomNumber.Next(10000,99999).ToString();
+        PhotonNetwork.NickName = randomPlayers[randomNumber.Next(0,4)] + " " +randomNumber.Next(100,999).ToString();
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
         // Settings defined via PhotonServerSettings
