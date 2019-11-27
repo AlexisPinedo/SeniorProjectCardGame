@@ -27,6 +27,7 @@ public class TurnPhaseManager : MonoBehaviour
     public static event Action BattlePhaseStarted;
     public static event Action BattlePhaseEnded;
     public static event Action PrePlayerPhase;
+  
 
     private void Awake()
     {
@@ -69,6 +70,17 @@ public class TurnPhaseManager : MonoBehaviour
         battePhaseOccuring = false;
         endPhaseTriggered = true;
     }
+
+    //IEnumerator EndTurn()
+    //{
+    //    while (!AnimationManager.SharedInstance.CardAnimActive && !AnimationManager.SharedInstance.ShopAnimActive)
+    //    {
+    //        yield return null;
+    //    }
+
+       
+    //}
+
     private void StartBattlePhase()
     {
         if (endPhaseTriggered != true)

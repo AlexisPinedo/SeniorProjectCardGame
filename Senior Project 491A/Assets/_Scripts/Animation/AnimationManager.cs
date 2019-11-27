@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AnimationManager : MonoBehaviour
 {
@@ -13,13 +12,22 @@ public class AnimationManager : MonoBehaviour
         get => _instance;
     }
     
-    Queue<AnimationObject> animQueue = new Queue<AnimationObject>();
+    Queue<AnimationObject> cardQueue = new Queue<AnimationObject>();
+    Queue<AnimationObject> shopQueue = new Queue<AnimationObject>();
+    Queue<PlayerCardDisplay> playQueue = new Queue<PlayerCardDisplay>();
 
-    private bool animationActive;
+    private bool cardAnimActive;
 
-    public bool AnimationActive
+    public bool CardAnimActive
     {
-        get => animationActive;
+        get => cardAnimActive;
+    }
+
+    private bool shopAnimActive;
+
+    public bool ShopAnimActive
+    {
+        get => shopAnimActive;
     }
 
     void Awake()
@@ -34,61 +42,121 @@ public class AnimationManager : MonoBehaviour
 
     #region QEUEING SYSTEM
     //TODO: Add a queue that allows only one animation to occur at a time 
-    public void PlayAnimation(PlayerCardDisplay cardDisplay, Vector3 destination, float lerpTime, bool canScale = false, bool storeOriginalPosition = false, bool shouldDestroy = false)
+    public void PlayAnimation(PlayerCardDisplay cardDisplay, Vector3 destination, float lerpTime, bool canScale = false, bool storeOriginalPosition = false, bool shouldDestroy = false, bool shouldQueue = true, bool isShopCard = false)
     {
         AnimationObject animObject = new AnimationObject(cardDisplay, destination, lerpTime, canScale, storeOriginalPosition, shouldDestroy);
 
-        AddObjectToQueue(animObject);
+        if (shouldQueue)
+        {
+            if(isShopCard)
+                AddToShopQueue(animObject);
+            else
+                AddObjectToQueue(animObject);
+        }
+        else
+        {
+            StartCoroutine(TransformCardPosition(
+                animObject.cardDisplay, animObject.destination, animObject.lerpTime,
+                animObject.canScale, animObject.storeOriginalPosition,
+                animObject.shouldDestroy, isShopCard
+            ));
+        }
+       
     }
 
     void AddObjectToQueue(AnimationObject animObject)
     {
-        if (animQueue.Count == 0)
+        if (cardQueue.Count == 0)
         {
-            animQueue.Enqueue(animObject);
+            cardQueue.Enqueue(animObject);
             StartCoroutine(HandleAnim());
         }
         else
         {
-            animQueue.Enqueue(animObject);
+            cardQueue.Enqueue(animObject);
         }
     }
 
-    void EndEvent()
+    void AddToShopQueue(AnimationObject animObject)
     {
-        animationActive = false;
+        if (shopQueue.Count == 0)
+        {
+            shopQueue.Enqueue(animObject);
+            StartCoroutine(HandleAnim(isShopCard: true));
+        }
+        else
+        {
+            shopQueue.Enqueue(animObject);
+        }
+    }
+
+    void EndCardEvent()
+    {
+        cardAnimActive = false;
+    }
+
+    void EndShopEvent()
+    {
+        shopAnimActive = false;
     }
 
 
-    IEnumerator HandleAnim()
+    IEnumerator HandleAnim(bool isShopCard = false)
     {
-        AnimationObject nextAnim = animQueue.Peek();
 
-        animationActive = true;
+        AnimationObject nextAnim = isShopCard ? shopQueue.Peek() : cardQueue.Peek();
+
+        if (isShopCard)
+            shopAnimActive = true;
+        else
+            cardAnimActive = true;
 
         StartCoroutine(TransformCardPosition(
             nextAnim.cardDisplay, nextAnim.destination, nextAnim.lerpTime,
             nextAnim.canScale, nextAnim.storeOriginalPosition, 
-            nextAnim.shouldDestroy
+            nextAnim.shouldDestroy, isShopCard
             ));
 
-        while (animationActive)
+       
+        if (isShopCard)
         {
-            yield return null;
+            while (shopAnimActive)
+            {
+                yield return null;
+            }
+
+            shopQueue.Dequeue();
+
+            if (shopQueue.Count > 0)
+            {
+                StartCoroutine(HandleAnim(isShopCard: true));
+            }
         }
-
-        animQueue.Dequeue();
-
-        if (animQueue.Count > 0)
+        else
         {
-            StartCoroutine(HandleAnim());
+            while (cardAnimActive)
+            {
+                yield return null;
+            }
+
+            cardQueue.Dequeue();
+
+            if (cardQueue.Count > 0)
+            {
+                StartCoroutine(HandleAnim());
+            }
         }
 
     }
 
+    IEnumerator HandleScale()
+    {
+        yield return null;
+    }
+
     #endregion
 
-    public IEnumerator TransformCardPosition(PlayerCardDisplay cardDisplay, Vector3 destination, float lerpTime, bool canScale, bool storeOriginalPosition, bool shouldDestroy)
+    public IEnumerator TransformCardPosition(PlayerCardDisplay cardDisplay, Vector3 destination, float lerpTime, bool canScale, bool storeOriginalPosition, bool shouldDestroy, bool isShopCard, bool shouldEnd = true)
     {
         if (canScale)
         {
@@ -129,20 +197,39 @@ public class AnimationManager : MonoBehaviour
             cardDisplay.GetComponent<DragCard>().OriginalPosition = destination;
         }
 
-        if (canScale && shouldDestroy)
-            StartCoroutine(ScaleCardSize(cardDisplay, true));
-        else if (canScale && !shouldDestroy)
-            StartCoroutine(ScaleCardSize(cardDisplay, cardTouch: touch));
-        else if (!canScale && shouldDestroy)
+        if (shouldEnd)
         {
-            EndEvent();
-            Destroy(cardDisplay.gameObject);
+            if (canScale && shouldDestroy)
+            {
+                StartCoroutine(ScaleCardSize(cardDisplay, true));
+                //ScaledObject scaledObject = new ScaledObject(cardDisplay, shouldDestroy: true);
+            }
+            else if (canScale && !shouldDestroy)
+            {
+                StartCoroutine(ScaleCardSize(cardDisplay, cardTouch: touch));
+            }
+            else if (!canScale && shouldDestroy)
+            {
+                if (isShopCard)
+                    EndShopEvent();
+                else
+                    EndCardEvent();
+                Destroy(cardDisplay.gameObject);
+            }
+            else
+            {
+                touch.enabled = true;
+                if (isShopCard)
+                    EndShopEvent();
+                else
+                    EndCardEvent();
+            }
         }
         else
         {
-            touch.enabled = true;
-            EndEvent();
+            Destroy(cardDisplay.gameObject);
         }
+        
 
 
     }
@@ -150,6 +237,8 @@ public class AnimationManager : MonoBehaviour
     // This is called through a boolean 
     IEnumerator ScaleCardSize(PlayerCardDisplay cardDisplay, bool shouldDestroy = false, Collider2D cardTouch = null)
     {
+        playQueue.Enqueue(cardDisplay);
+        
         var renderers = cardDisplay.GetComponentsInChildren<Renderer>();
         renderers.ToList().ForEach(x => x.enabled = true);
 
@@ -157,7 +246,8 @@ public class AnimationManager : MonoBehaviour
         float lerpTime = 0.2f;
 
         Vector3 startSize = cardDisplay.transform.localScale;
-        Vector3 targetSize = cardDisplay.transform.localScale + new Vector3(.5f, .5f, .5f);
+        Debug.Log("START SIZE: " + startSize);
+        Vector3 targetSize = new Vector3(1.5f, 1.5f, 1.5f);
 
         while (cardDisplay.transform.localScale != targetSize)
         {
@@ -174,7 +264,7 @@ public class AnimationManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
 
         if (!shouldDestroy)
         {
@@ -185,7 +275,7 @@ public class AnimationManager : MonoBehaviour
             Destroy(cardDisplay.gameObject);
         }
 
-        EndEvent();
+        EndCardEvent();
     }
 
 }
@@ -198,8 +288,9 @@ class AnimationObject
     public bool canScale;
     public bool storeOriginalPosition;
     public bool shouldDestroy;
+    public bool shouldQueue;
 
-    public AnimationObject(PlayerCardDisplay cardDisplay, Vector3 destination, float lerpTime, bool canScale = false, bool storeOriginalPosition = false, bool shouldDestroy = false)
+    public AnimationObject(PlayerCardDisplay cardDisplay, Vector3 destination, float lerpTime, bool canScale = false, bool storeOriginalPosition = false, bool shouldDestroy = false, bool shouldQueue = true)
     {
         this.cardDisplay = cardDisplay;
         this.destination = destination;
@@ -207,5 +298,19 @@ class AnimationObject
         this.canScale = canScale;
         this.storeOriginalPosition = storeOriginalPosition;
         this.shouldDestroy = shouldDestroy;
+    }
+}
+
+class ScaledObject
+{
+    private PlayerCardDisplay cardDisplay;
+    private bool shouldDestroy;
+    private Collider2D cardTouch;
+
+    public ScaledObject(PlayerCardDisplay cardDisplay, bool shouldDestroy = false, Collider2D cardTouch = null)
+    {
+        this.cardDisplay = cardDisplay;
+        this.shouldDestroy = shouldDestroy;
+        this.cardTouch = cardTouch;
     }
 }

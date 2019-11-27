@@ -50,7 +50,14 @@ public class ButtonInputManager : MonoBehaviour
     public void CurrentTurnButtonSwitch()
     {
         if (PhotonNetwork.OfflineMode)
+        {
+            endTurnButton.GetComponent<Button>().interactable = false;
+            startBattleButton.GetComponent<Button>().interactable = false;
+            StartCoroutine(ShouldActivateButton(endTurnButton.GetComponent<Button>()));
+            StartCoroutine(ShouldActivateButton(startBattleButton.GetComponent<Button>()));
             return;
+        }
+        
 
         if (!NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
         {
@@ -60,8 +67,28 @@ public class ButtonInputManager : MonoBehaviour
         else
         {
             startBattleButton.SetActive(true);
+            startBattleButton.GetComponent<Button>().interactable = false;
             endTurnButton.SetActive(true);
+            endTurnButton.GetComponent<Button>().interactable = false;
+            StartCoroutine(ShouldActivateButton(endTurnButton.GetComponent<Button>()));
+            StartCoroutine(ShouldActivateButton(startBattleButton.GetComponent<Button>()));
         }
+    }
+
+    IEnumerator ShouldActivateButton(Button button)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        Debug.Log("In Here 1");
+
+        while (AnimationManager.SharedInstance.CardAnimActive || AnimationManager.SharedInstance.ShopAnimActive)
+        {
+            Debug.Log("In Here");
+            yield return null;
+        }
+
+        button.interactable = true;
+
     }
 
 
