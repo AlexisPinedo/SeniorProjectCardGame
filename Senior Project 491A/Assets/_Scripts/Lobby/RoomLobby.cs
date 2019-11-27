@@ -21,17 +21,28 @@ public class RoomLobby : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+        string playerOne = "";
+        string playerTwo = "";
+
         if (PhotonNetwork.IsMasterClient)
         {
             startMatchButton.gameObject.SetActive(true);
+
             if (PhotonNetwork.CurrentRoom.PlayerCount != 2)
             {
                 startMatchButton.interactable = false;
             }
             else
             {
-                buttonStatus.text = "Start Match";
-                startMatchButton.interactable = true;
+                playerOne = PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"].ToString();
+                playerTwo = PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"].ToString();
+
+                if (playerOne != "" && playerTwo != "")
+                {
+                    buttonStatus.text = "Start Match";
+                    startMatchButton.interactable = true;
+                }
+
             }
         }
         else
