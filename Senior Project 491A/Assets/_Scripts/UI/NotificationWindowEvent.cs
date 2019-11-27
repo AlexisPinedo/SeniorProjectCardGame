@@ -23,8 +23,8 @@ public class NotificationWindowEvent : Event_Base
     private Image NotificationView;
     [SerializeField]
     private Button startBattleButton, endTurnButton, okButton;
-    [SerializeField]
-    private Text currency, power;
+    //[SerializeField]
+    //private Text currency, power;
 
     private string messageText = "";
     
@@ -135,8 +135,6 @@ public class NotificationWindowEvent : Event_Base
 
         startBattleButton.gameObject.SetActive(false);
         endTurnButton.gameObject.SetActive(false);
-        currency.gameObject.SetActive(false);
-        power.gameObject.SetActive(false);
     }
     
     private void DisableComponents()
@@ -146,8 +144,6 @@ public class NotificationWindowEvent : Event_Base
 
         startBattleButton.gameObject.SetActive(true);
         endTurnButton.gameObject.SetActive(true);
-        currency.gameObject.SetActive(true);
-        power.gameObject.SetActive(true);
     }
     
 }
