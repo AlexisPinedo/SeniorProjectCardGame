@@ -42,7 +42,6 @@ public class UIHandler : MonoBehaviour
     {
         StartBattleClicked?.Invoke();
         NetworkUIEventRaiser.Instance.SendBattleButtonClickEvent();
-
     }
 
     public void GraveyardButtonOnClick()

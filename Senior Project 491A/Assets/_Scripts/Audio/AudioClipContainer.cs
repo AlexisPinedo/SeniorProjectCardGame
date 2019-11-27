@@ -24,6 +24,4 @@ public class AudioClipContainer : ScriptableObject
     {
         get { return _endGameClip; }
     }
-
-    //TODO: ADD MORE AUDIO CLIPS
 }

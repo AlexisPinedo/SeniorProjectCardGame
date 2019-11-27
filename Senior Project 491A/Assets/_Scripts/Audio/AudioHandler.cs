@@ -13,20 +13,36 @@ public class AudioHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void playBySound(PlayerCardDisplay cardBought)
+    void PlayBuySound(PlayerCardDisplay cardBought)
     {
         audioSource.clip = container.ShopBuyingClip;
+        audioSource.Play();
+    }
+
+    void PlayStartSound()
+    {
+        audioSource.clip = container.StartGameClip;
+        audioSource.Play();
+    }
+
+    void PlayEndSound()
+    {
+        audioSource.clip = container.EndGameClip;
         audioSource.Play();
     }
     
 
     private void OnEnable()
     {
-        PlayerCardDisplay.CardPurchased += playBySound;
+        PlayerCardDisplay.CardPurchased += PlayBuySound;
+        UIHandler.StartBattleClicked += PlayStartSound;
+        UIHandler.EndTurnClicked += PlayEndSound;
     }
 
     private void OnDisable()
     {
-        PlayerCardDisplay.CardPurchased -= playBySound;
+        PlayerCardDisplay.CardPurchased -= PlayBuySound;
+        UIHandler.StartBattleClicked -= PlayStartSound;
+        UIHandler.EndTurnClicked -= PlayEndSound;
     }
 }
