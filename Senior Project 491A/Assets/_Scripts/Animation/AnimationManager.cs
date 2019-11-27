@@ -14,6 +14,7 @@ public class AnimationManager : MonoBehaviour
     
     Queue<AnimationObject> cardQueue = new Queue<AnimationObject>();
     Queue<AnimationObject> shopQueue = new Queue<AnimationObject>();
+    Queue<PlayerCardDisplay> playQueue = new Queue<PlayerCardDisplay>();
 
     private bool cardAnimActive;
 
@@ -24,7 +25,7 @@ public class AnimationManager : MonoBehaviour
 
     private bool shopAnimActive;
 
-    public bool ShopAnimActie
+    public bool ShopAnimActive
     {
         get => shopAnimActive;
     }
@@ -145,11 +146,12 @@ public class AnimationManager : MonoBehaviour
                 StartCoroutine(HandleAnim());
             }
         }
-        
-       
 
-        
+    }
 
+    IEnumerator HandleScale()
+    {
+        yield return null;
     }
 
     #endregion
@@ -198,9 +200,14 @@ public class AnimationManager : MonoBehaviour
         if (shouldEnd)
         {
             if (canScale && shouldDestroy)
+            {
                 StartCoroutine(ScaleCardSize(cardDisplay, true));
+                //ScaledObject scaledObject = new ScaledObject(cardDisplay, shouldDestroy: true);
+            }
             else if (canScale && !shouldDestroy)
+            {
                 StartCoroutine(ScaleCardSize(cardDisplay, cardTouch: touch));
+            }
             else if (!canScale && shouldDestroy)
             {
                 if (isShopCard)
@@ -230,6 +237,8 @@ public class AnimationManager : MonoBehaviour
     // This is called through a boolean 
     IEnumerator ScaleCardSize(PlayerCardDisplay cardDisplay, bool shouldDestroy = false, Collider2D cardTouch = null)
     {
+        playQueue.Enqueue(cardDisplay);
+        
         var renderers = cardDisplay.GetComponentsInChildren<Renderer>();
         renderers.ToList().ForEach(x => x.enabled = true);
 
@@ -255,7 +264,7 @@ public class AnimationManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
 
         if (!shouldDestroy)
         {
@@ -289,5 +298,19 @@ class AnimationObject
         this.canScale = canScale;
         this.storeOriginalPosition = storeOriginalPosition;
         this.shouldDestroy = shouldDestroy;
+    }
+}
+
+class ScaledObject
+{
+    private PlayerCardDisplay cardDisplay;
+    private bool shouldDestroy;
+    private Collider2D cardTouch;
+
+    public ScaledObject(PlayerCardDisplay cardDisplay, bool shouldDestroy = false, Collider2D cardTouch = null)
+    {
+        this.cardDisplay = cardDisplay;
+        this.shouldDestroy = shouldDestroy;
+        this.cardTouch = cardTouch;
     }
 }
