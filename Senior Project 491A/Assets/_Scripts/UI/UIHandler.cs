@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class UIHandler : MonoBehaviour
@@ -61,6 +62,7 @@ public class UIHandler : MonoBehaviour
 
     public void EndTurnButtonOnClick()
     {
+        PlayZoneAnimationManager.SharedInstance.DestroyObjects();
         EndTurnClicked?.Invoke();
         NetworkUIEventRaiser.Instance.SendEndTurnClickEvent();
     }
