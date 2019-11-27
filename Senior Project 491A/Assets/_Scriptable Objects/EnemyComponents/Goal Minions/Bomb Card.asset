@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25d3e11518055a4c9ed616fce780621, type: 3}
   m_Name: Bomb Card
   m_EditorClassIdentifier: 
-  cardName: 
+  cardName: Bomb
   cardDescription: 
-  cardEffect: {fileID: 0}
-  cardEffectDisplay: 
-  cardArtwork: {fileID: 0}
-  cardTypeArt: {fileID: 0}
-  cardType: 0
-  nameBoxArt: {fileID: 0}
-  cardEffectBoxArt: {fileID: 0}
-  borderArt: {fileID: 0}
+  cardEffect: {fileID: 11400000, guid: 69f0c66f83dbfe54da4a720af9ef4964, type: 2}
+  cardEffectDisplay: On Play Destroy the top card of the deck
+  cardArtwork: {fileID: 21300000, guid: 16657d630fcc0a04496d7e9dd898be00, type: 3}
+  cardTypeArt: {fileID: 21300000, guid: 7a09aa9da641d4a4bab2974a4bc78874, type: 3}
+  cardType: 6
+  nameBoxArt: {fileID: 21300000, guid: a8cc807b531bb8e49b625e58bf248853, type: 3}
+  cardEffectBoxArt: {fileID: 21300000, guid: 147df2d7cfc917c4fbc1aca85aed8b56, type: 3}
+  borderArt: {fileID: 21300000, guid: 4a795863df57edd45815b9405fb20466, type: 3}
   _rewardValue: 0
   _healthValue: 0

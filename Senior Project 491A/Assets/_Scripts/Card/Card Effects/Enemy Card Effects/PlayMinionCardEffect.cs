@@ -14,4 +14,12 @@ public class PlayMinionCardEffect : OnPlayEffects
             FieldContainer.Instance.DisplayACard();
         }
     }
+
+    IEnumerator DestroyBomb()
+    {
+        yield return new WaitForSeconds(1);
+        
+    }
 }
+
+

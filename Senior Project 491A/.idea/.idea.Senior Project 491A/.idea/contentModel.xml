@@ -19,6 +19,7 @@
             <e p="Card Effects" t="Include">
               <e p="CardEffect.cs" t="Include" />
               <e p="Enemy Card Effects" t="Include">
+                <e p="BombCardEffect.cs" t="Include" />
                 <e p="OnDeathDestroyPlayerDeckCard.cs" t="Include" />
                 <e p="OnDeathGainPowerEffect.cs" t="Include" />
                 <e p="OnDeathPlayPlayerCardEffect.cs" t="Include" />

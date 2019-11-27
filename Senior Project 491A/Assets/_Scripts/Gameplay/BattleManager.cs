@@ -101,7 +101,6 @@ public class BattleManager : MonoBehaviour
         
         //We deactivate the playzone and it's text
         PlayZone.Instance.gameObject.SetActive(false);
-        PlayZoneText.enabled = false;
         
         //We then want to enable all the enemy cards on the field
         foreach (var keyValuePair in enemyCardGrid.cardLocationReference)
@@ -126,7 +125,6 @@ public class BattleManager : MonoBehaviour
         }
 
         //set the components to true again
-        PlayZoneText.enabled = true;
         PlayZone.Instance.gameObject.SetActive(true);
 
         ShopDisplayManager.Instance.MoveShopDown();
