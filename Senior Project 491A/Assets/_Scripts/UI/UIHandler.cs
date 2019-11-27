@@ -62,7 +62,7 @@ public class UIHandler : MonoBehaviour
 
     public void EndTurnButtonOnClick()
     {
-        PlayZoneAnimationManager.SharedInstance.DestroyObjects();
+        //PlayZoneAnimationManager.SharedInstance.DestroyObjects();
         EndTurnClicked?.Invoke();
         NetworkUIEventRaiser.Instance.SendEndTurnClickEvent();
     }
