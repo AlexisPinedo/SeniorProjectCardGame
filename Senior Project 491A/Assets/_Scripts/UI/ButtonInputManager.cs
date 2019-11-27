@@ -35,11 +35,13 @@ public class ButtonInputManager : MonoBehaviour
     private void OnEnable()
     {
         TurnPhaseManager.PlayerTurnStarted += CurrentTurnButtonSwitch;
+        TurnPhaseManager.BattlePhaseStarted += StartedBattle;
     }
 
     private void OnDisable()
     {
         TurnPhaseManager.PlayerTurnStarted -= CurrentTurnButtonSwitch;
+        TurnPhaseManager.BattlePhaseStarted -= StartedBattle;
     }
 
     private void Start()
@@ -50,7 +52,14 @@ public class ButtonInputManager : MonoBehaviour
     public void CurrentTurnButtonSwitch()
     {
         if (PhotonNetwork.OfflineMode)
+        {
+            endTurnButton.GetComponent<Button>().interactable = false;
+            startBattleButton.GetComponent<Button>().interactable = false;
+            StartCoroutine(ShouldActivateButton(endTurnButton.GetComponent<Button>()));
+            StartCoroutine(ShouldActivateButton(startBattleButton.GetComponent<Button>()));
             return;
+        }
+        
 
         if (!NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
         {
@@ -60,8 +69,29 @@ public class ButtonInputManager : MonoBehaviour
         else
         {
             startBattleButton.SetActive(true);
+            startBattleButton.GetComponent<Button>().interactable = false;
             endTurnButton.SetActive(true);
+            endTurnButton.GetComponent<Button>().interactable = false;
+            StartCoroutine(ShouldActivateButton(endTurnButton.GetComponent<Button>()));
+            StartCoroutine(ShouldActivateButton(startBattleButton.GetComponent<Button>()));
         }
+    }
+
+    public void StartedBattle()
+    {
+        startBattleButton.GetComponent<Button>().interactable = false;
+    }
+
+    IEnumerator ShouldActivateButton(Button button)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        while (AnimationManager.SharedInstance.CardAnimActive || AnimationManager.SharedInstance.ShopAnimActive)
+        {
+            yield return null;
+        }
+
+        button.interactable = true;
     }
 
 

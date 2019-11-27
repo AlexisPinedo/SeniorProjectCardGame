@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37640471917819a4fa04a00bcc91dbcb, type: 3}
   m_Name: Bomb Goal
   m_EditorClassIdentifier: 
-  goalDescriptionText: 
+  goalDescriptionText: Add 5 bomb cards to the deck. If 5 bomb cards are revealed
+    you lose!
   bombGoal: {fileID: 11400000, guid: b8185a2a943103e4a9d3ef0646567680, type: 2}
   requiredCountOfCards: 5
   bombCardsRevealed: 0

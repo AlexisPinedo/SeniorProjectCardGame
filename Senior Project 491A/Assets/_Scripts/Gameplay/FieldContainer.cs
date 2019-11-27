@@ -81,6 +81,7 @@ public class FieldContainer : Container
     public void CreateInstanceOfCard(Vector2 freeLocation)
     {
         MinionCard cardDrawn = null;
+        enemyDeck.cardsInDeck = ShuffleDeck.Shuffle(enemyDeck);
         cardDrawn = enemyDeck.cardsInDeck.Pop();
 
         minionDisplay.card = cardDrawn;

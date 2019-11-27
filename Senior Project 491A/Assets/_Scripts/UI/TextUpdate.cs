@@ -48,7 +48,7 @@ public class TextUpdate : MonoBehaviourPunCallbacks
 
     public void UpdatePower()
     {
-        playerPower.text = "Power: " + TurnPlayerManager.Instance.TurnPlayer.Power;
+        playerPower.text = TurnPlayerManager.Instance.TurnPlayer.Power.ToString();
 
         if (PhotonNetwork.OfflineMode)
         {
@@ -64,7 +64,7 @@ public class TextUpdate : MonoBehaviourPunCallbacks
 
     public void UpdateCurrency()
     {
-        playerCurrency.text = "Currency: " + TurnPlayerManager.Instance.TurnPlayer.Currency;
+        playerCurrency.text = TurnPlayerManager.Instance.TurnPlayer.Currency.ToString();
         
         if (PhotonNetwork.OfflineMode)
         {

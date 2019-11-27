@@ -53,7 +53,7 @@ public class HandContainer : PlayerCardContainer
 
         if (playerDeck.cardsInDeck.Count > 0)
         {
-            cardDrawn = (PlayerCard)playerDeck.cardsInDeck.Pop();
+            cardDrawn = playerDeck.cardsInDeck.Pop();
         }
         else
         {
@@ -67,7 +67,7 @@ public class HandContainer : PlayerCardContainer
 
                playerDeck.cardsInDeck = ShuffleDeck.Shuffle(playerDeck);
                
-               cardDrawn = (PlayerCard)playerDeck.cardsInDeck.Pop();
+               cardDrawn = playerDeck.cardsInDeck.Pop();
             }
             else
             {
