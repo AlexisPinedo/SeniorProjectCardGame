@@ -6,6 +6,14 @@ using UnityEngine;
 
 public class TurnPlayerManager : MonoBehaviourPunCallbacks
 {
+    // Heroes!
+    [SerializeField] private Valor valor;
+    [SerializeField] private Vann van;
+    [SerializeField] private Vaughn vaughn;
+    [SerializeField] private Veda veda;
+    [SerializeField] private Vicky vicky;
+    [SerializeField] private Vito vito;
+
     // Player References
     [SerializeField]
     private Player player1, player2,turnPlayer;
@@ -130,22 +138,22 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
         switch(heroPicked)
         {
             case Heroes.Valor:
-                selectedHero = new Valor();
+                selectedHero = valor;
                 break;
             case Heroes.Vann:
-                selectedHero = new Vann();
+                selectedHero = van;
                 break;
             case Heroes.Vaughn:
-                selectedHero = new Vaughn();
+                selectedHero = vaughn;
                 break;
             case Heroes.Veda:
-                selectedHero = new Veda();
+                selectedHero = veda;
                 break;
             case Heroes.Vicky:
-                selectedHero = new Vicky();
+                selectedHero = vicky;
                 break;
             case Heroes.Vito:
-                selectedHero = new Vito();
+                selectedHero = vito;
                 break;
             default:
                 selectedHero = null;
