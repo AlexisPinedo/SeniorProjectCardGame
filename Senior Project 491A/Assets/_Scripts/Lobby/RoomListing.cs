@@ -20,6 +20,7 @@ public class RoomListing : MonoBehaviour
 
     public void OnClick_Button()
     {
+        PhotonManager.roomToJoin = RoomInfo.Name;   // Set for the Player who is clicking the Room to join
         PhotonNetwork.JoinRoom(RoomInfo.Name);
     }
 
