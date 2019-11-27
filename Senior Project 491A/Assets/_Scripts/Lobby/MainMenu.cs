@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    private GameObject mainMenuScreen, singlePlayerScreen, photonManager;
+    private GameObject mainMenuScreen, singlePlayerScreen, photonManager, nameScreenCanvas;
 
     [SerializeField]
     private GameObject singlePlayerBtn, multiplayerBtn, optionsBtn;
@@ -14,18 +14,14 @@ public class MainMenu : MonoBehaviour
     #region OnClick Methods
     public void OnClick_SinglePlayer()
     {
-        Debug.Log("Go to Single Player Canvas");
         mainMenuScreen.SetActive(false);
         singlePlayerScreen.SetActive(true);
     }
 
     public void OnClick_Multiplayer()
     {
-        Debug.Log("Go to Multiplayer Canvas");
         mainMenuScreen.SetActive(false);
-        photonManager.SetActive(true);  // This is the multiplayer screen essentially
-        // TODO: delete?
-        //multiplayerScreen.SetActive(true);
+        nameScreenCanvas.SetActive(true);
     }
 
     public void OnClick_Options()

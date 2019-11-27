@@ -16,7 +16,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
     [SerializeField]
     private Text buttonStatus;
 
-[SerializeField]
+    [SerializeField]
     private Button startMatchButton;
 
     private void Update()
@@ -24,7 +24,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             startMatchButton.gameObject.SetActive(true);
-            if(PhotonNetwork.CurrentRoom.PlayerCount != 2)
+            if (PhotonNetwork.CurrentRoom.PlayerCount != 2)
             {
                 startMatchButton.interactable = false;
             }
@@ -45,7 +45,6 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsOpen = false;
         PhotonNetwork.CurrentRoom.IsVisible = false;
         PhotonNetwork.LoadLevel(1);
-        //PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
     }
 
     public void OnClick_LeaveRoom()
