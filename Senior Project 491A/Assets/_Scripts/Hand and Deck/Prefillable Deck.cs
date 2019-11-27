@@ -40,5 +40,6 @@ public abstract class PrefillableDeck<T> : Deck<T> where T : Card
         {
             cardsInDeck.Push(card);
         }
+
     }
  }

@@ -26,6 +26,7 @@ public class NetworkUIEventRaiser : MonoBehaviour
         {
             Destroy(_instance.gameObject);
         }
+
     }
 
 
@@ -50,7 +51,10 @@ public class NetworkUIEventRaiser : MonoBehaviour
     public void SendBattleButtonClickEvent()
     {
         if (!PhotonNetwork.OfflineMode)
+        {
             PhotonNetwork.RaiseEvent(NetworkOwnershipTransferManger.startBattleEvent, null, raiseEventOptions, sendOptions);
+            UIHandler.StartBattleClicked -= SendBattleButtonClickEvent;
+        }
     }
 
     private void OnEvent(EventData photonEvent)
