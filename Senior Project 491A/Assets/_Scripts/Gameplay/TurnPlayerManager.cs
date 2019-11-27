@@ -108,6 +108,7 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
             player2GameObject.SetActive(true);
             turnPlayer = player2;
             NetworkOwnershipTransferManger.currentPhotonPlayer = NetworkOwnershipTransferManger.photonPlayer2;
+            NetworkOwnershipTransferManger.pendingPhotonPlayer = NetworkOwnershipTransferManger.photonPlayer1;
             turnPlayerGameObject = player2GameObject;
         }
         // Switch to Player One
@@ -117,6 +118,7 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
             player1GameObject.SetActive(true);
             turnPlayer = player1;
             NetworkOwnershipTransferManger.currentPhotonPlayer = NetworkOwnershipTransferManger.photonPlayer1;
+            NetworkOwnershipTransferManger.pendingPhotonPlayer = NetworkOwnershipTransferManger.photonPlayer2;
             turnPlayerGameObject = player1GameObject;
         }
     }
