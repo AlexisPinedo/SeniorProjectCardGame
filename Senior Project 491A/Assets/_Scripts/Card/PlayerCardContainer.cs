@@ -13,28 +13,5 @@ public abstract class PlayerCardContainer : Container
     public PlayerCardDisplay display;
     public GameObject spawnPostion;
 
-    protected IEnumerator TransformCardPosition(PlayerCardDisplay cardDisplay, Vector3 cardDestination)
-    {
-        float currentLerpTime = 0;
-        float lerpTime = 0.5f;
 
-        Vector3 startPos = cardDisplay.transform.position;
-
-        while (cardDisplay.transform.position != cardDestination)
-        {
-            currentLerpTime += Time.deltaTime;
-            if (currentLerpTime >= lerpTime)
-            {
-                currentLerpTime = lerpTime;
-            }
-
-            float Perc = currentLerpTime / lerpTime;
-
-            cardDisplay.transform.position = Vector3.Lerp(startPos, cardDestination, Perc);
-
-            yield return new WaitForEndOfFrame();
-        }
-        cardDisplay.GetComponent<CardZoomer>().OriginalPosition = cardDestination;
-        cardDisplay.GetComponent<DragCard>().OriginalPosition = cardDestination;
-    }
 }

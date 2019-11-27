@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Alex and Abby's\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Alex and Abby's\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.501270672.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Alex and Abby's\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
+    <e p="C:\Users\pined\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\pined\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.-1760692213.00" t="ExcludeRecursive" />
+    <e p="C:\Users\pined\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Scripts" t="Include">
+          <e p="Animation" t="Include">
+            <e p="AnimationManager.cs" t="Include" />
+          </e>
+          <e p="Audio" t="Include">
+            <e p="AudioClipContainer.cs" t="Include" />
+            <e p="AudioHandler.cs" t="Include" />
+          </e>
           <e p="Card" t="Include">
             <e p="Card Effects" t="Include">
               <e p="CardEffect.cs" t="Include" />
@@ -119,6 +126,7 @@
               <e p="Vicky.cs" t="Include" />
               <e p="Vito.cs" t="Include" />
             </e>
+            <e p="Heroes.cs" t="Include" />
             <e p="HeroIconViewed.cs" t="Include" />
             <e p="HeroPortraitUpdate.cs" t="Include" />
             <e p="InteractableHero.cs" t="Include" />
@@ -126,6 +134,8 @@
             <e p="TurnStartEffectHero.cs" t="Include" />
           </e>
           <e p="Lobby" t="Include">
+            <e p="MainMenu.cs" t="Include" />
+            <e p="MultiplayerLobby.cs" t="Include" />
             <e p="NameScreen.cs" t="Include" />
             <e p="PhotonManager.cs" t="Include" />
             <e p="PhotonQuickManager.cs" t="Include" />
@@ -135,6 +145,7 @@
             <e p="RoomListingsView.cs" t="Include" />
             <e p="RoomLobby.cs" t="Include" />
             <e p="RoomQuickLobby.cs" t="Include" />
+            <e p="SinglePlayerMenu.cs" t="Include" />
           </e>
           <e p="Networking" t="Include">
             <e p="CustomTypes.cs" t="Include" />
@@ -160,7 +171,6 @@
             <e p="SummonerHandler.cs" t="Include" />
             <e p="TextUpdate.cs" t="Include" />
             <e p="UIHandler.cs" t="Include" />
-            <e p="UIViewHandler.cs" t="Include" />
           </e>
           <e p="Utility" t="Include">
             <e p="InputToEvent.cs" t="Include" />

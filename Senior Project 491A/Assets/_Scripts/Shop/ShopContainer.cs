@@ -103,7 +103,8 @@ public class ShopContainer : PlayerCardContainer
         Vector3 finalCardDestination = containerCardGrid.freeLocations.Pop();
 
         // Trasnforms the card position to the grid position
-        StartCoroutine(TransformCardPosition(cardDisplay, finalCardDestination));
+        //StartCoroutine(TransformCardPosition(cardDisplay, finalCardDestination));
+        AnimationManager.SharedInstance.PlayAnimation(cardDisplay, finalCardDestination, 0.3f, storeOriginalPosition: true);
 
         Vector3 freeSpot = finalCardDestination;
         
@@ -124,4 +125,6 @@ public class ShopContainer : PlayerCardContainer
         containerCardGrid.freeLocations.Push(freeSpot);
         HandleDisplayOfACard();
     }
+
+
 }
