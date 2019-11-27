@@ -1712,6 +1712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopCards: {fileID: 301505297}
+  notficationWindow: {fileID: 0}
   minionCards: {fileID: 607427542}
   bossCard: {fileID: 589770440}
 --- !u!1 &659640897
@@ -2308,7 +2309,7 @@ RectTransform:
   m_Children:
   - {fileID: 1051523447}
   m_Father: {fileID: 1455907483}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2815,7 +2816,7 @@ RectTransform:
   m_Children:
   - {fileID: 1453633248}
   m_Father: {fileID: 1455907483}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4043,7 +4044,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1455907483}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -4225,7 +4226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 149.1, y: -52.4}
+  m_AnchoredPosition: {x: 111, y: -52.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1453633249
@@ -4339,11 +4340,11 @@ RectTransform:
   - {fileID: 1793028593}
   - {fileID: 1120834520}
   - {fileID: 1194804836}
+  - {fileID: 1526216802}
   - {fileID: 916451457}
   - {fileID: 783672345}
   - {fileID: 1825280830}
   - {fileID: 1385409947}
-  - {fileID: 1526216802}
   - {fileID: 935879721}
   - {fileID: 171170637}
   m_Father: {fileID: 0}
@@ -4886,7 +4887,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1455907483}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -5448,7 +5449,7 @@ RectTransform:
   - {fileID: 928849048}
   - {fileID: 1476875878}
   m_Father: {fileID: 1455907483}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5470,6 +5471,11 @@ MonoBehaviour:
   transparentCover: {fileID: 1476875879}
   notificationText: {fileID: 695206413}
   NotificationView: {fileID: 928849050}
+  startBattleButton: {fileID: 0}
+  endTurnButton: {fileID: 0}
+  okButton: {fileID: 0}
+  currency: {fileID: 0}
+  power: {fileID: 0}
 --- !u!1 &1835007938
 GameObject:
   m_ObjectHideFlags: 0
