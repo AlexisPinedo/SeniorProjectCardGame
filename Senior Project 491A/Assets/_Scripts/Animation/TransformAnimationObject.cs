@@ -12,7 +12,7 @@ public class TransformAnimationObject : AnimationObjectBase
     
     public TransformAnimationObject(PlayerCardDisplay cardDisplay, Vector3 destination, 
         float lerpTime, bool canScale = false, bool storeOriginalPosition = false, 
-        bool shouldDestroy = false, bool stallOtherAnimations = false)
+        bool shouldDestroy = false, bool stallOtherAnimations = true)
     {
         this.cardDisplay = cardDisplay;
         this.destination = destination;

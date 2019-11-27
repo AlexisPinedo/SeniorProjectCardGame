@@ -105,7 +105,8 @@ public class HandContainer : PlayerCardContainer
 
         // Trasnforms the card position to the grid position
         //StartCoroutine(TransformCardPosition(cardDisplay, tempCardDestination));
-        AnimationManager.SharedInstance.PlayAnimation(cardDisplay, tempCardDestination, 0.3f, storeOriginalPosition: true);
+        //AnimationManager.SharedInstance.PlayAnimation(cardDisplay, tempCardDestination, 0.3f, storeOriginalPosition: true);
+        PlayerAnimationManager.SharedInstance.PlayAnimation(cardDisplay, tempCardDestination, 0.3f, storeOriginalPosition: true);
 
         if (!containerCardGrid.cardLocationReference.ContainsKey(tempCardDestination))
             containerCardGrid.cardLocationReference.Add(tempCardDestination, cardDisplay);

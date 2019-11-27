@@ -67,7 +67,11 @@ public class PlayZone : MonoBehaviourPunCallbacks
         
         if (cardInPlayZone)
         {
-            if (!Input.GetMouseButton(0) && !AnimationManager.SharedInstance.CardAnimActive)
+            //if (!Input.GetMouseButton(0))
+            //{
+            //    HandleCardPlayed();
+            //}
+            if (Input.GetMouseButtonUp(0))
             {
                 HandleCardPlayed();
             }
@@ -122,8 +126,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
             cardDisplay.photonView.RPC("DestroyCard", RpcTarget.Others);
 
         //StartCoroutine(TransformCard(cardInZone, enlargementZone.position));
-        //Destroy(cardInZone.gameObject);
-        AnimationManager.SharedInstance.PlayAnimation(cardInZone, enlargementZone.position, 0.25f, true, true,true);
+        //AnimationManager.SharedInstance.PlayAnimation(cardInZone, enlargementZone.position, 0.25f, true, true,true);
+        PlayerAnimationManager.SharedInstance.PlayAnimation(cardInZone, enlargementZone.position, 0.25f, true, true, true);
         
         TurnPlayerManager.Instance.TurnPlayer.Power += cardPlayed.CardAttack;
         TurnPlayerManager.Instance.TurnPlayer.Currency += cardPlayed.CardCurrency;
