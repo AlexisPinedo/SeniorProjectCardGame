@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -19,7 +20,11 @@ public class NotificationWindowEvent : Event_Base
     [SerializeField]
     private TextMeshProUGUI notificationText;
     [SerializeField] 
-    private Image NotificationView; 
+    private Image NotificationView;
+    [SerializeField]
+    private Button startBattleButton, endTurnButton, okButton;
+    [SerializeField]
+    private Text currency, power;
 
     private string messageText = "";
     
@@ -58,13 +63,63 @@ public class NotificationWindowEvent : Event_Base
     public override void EventState()
     {
         EnableComponents();
-        Debug.Log("In display notification window event");
         ButtonInputManager.Instance.DisableButtonsInList();
         notificationText.text = messageQueue.Dequeue();
+
+        if (notificationText.text.Contains("may"))
+            okButton.gameObject.SetActive(true);
+        else if (notificationText.text.Contains("selecting"))
+            okButton.gameObject.SetActive(false);
+
+        if (!PhotonNetwork.OfflineMode)
+            photonView.RPC("RemoteEventStateNotficationWindow", RpcTarget.Others, notificationText.text);
+    }
+
+    [PunRPC]
+    private void RemoteEventStateNotficationWindow(string text)
+    {
+        EnableComponents();
+        TriggerGameStatePauseEvent();
+        ButtonInputManager.Instance.DisableButtonsInList();
+
+        if (text.Contains("may"))
+        {
+            notificationText.text = (NetworkOwnershipTransferManger.currentPhotonPlayer.NickName + " is selecting 1 card");
+            okButton.gameObject.SetActive(false);
+        }
+        else if (text.Contains("selecting"))
+        {
+            notificationText.text = ("You may select 1 card");
+            okButton.gameObject.SetActive(true);
+        }
+        else
+            notificationText.text = text;
+
     }
 
     public void CloseNotificationWindow()
     {
+        if (NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
+        {
+            DisableComponents();
+            messageText = "";
+            EndGameStatePauseEvent();
+            DisableMinionCardContainters();
+            ButtonInputManager.Instance.EnableButtonsInList();
+            GameEventManager.Instance.EndEvent();
+            if (!PhotonNetwork.OfflineMode)
+                photonView.RPC("RemoteCloseNotfication", RpcTarget.Others);
+        }
+        else
+        {
+
+        }
+    }
+
+    [PunRPC]
+    private void RemoteCloseNotfication()
+    {
+        CloseNotificationWindow();
         DisableComponents();
         messageText = "";
         EndGameStatePauseEvent();
@@ -77,12 +132,22 @@ public class NotificationWindowEvent : Event_Base
     {
         transparentCover.gameObject.SetActive(true);
         NotificationView.gameObject.SetActive(true);
+
+        startBattleButton.gameObject.SetActive(false);
+        endTurnButton.gameObject.SetActive(false);
+        currency.gameObject.SetActive(false);
+        power.gameObject.SetActive(false);
     }
     
     private void DisableComponents()
     {
         transparentCover.gameObject.SetActive(false);
         NotificationView.gameObject.SetActive(false);
+
+        startBattleButton.gameObject.SetActive(true);
+        endTurnButton.gameObject.SetActive(true);
+        currency.gameObject.SetActive(true);
+        power.gameObject.SetActive(true);
     }
     
 }

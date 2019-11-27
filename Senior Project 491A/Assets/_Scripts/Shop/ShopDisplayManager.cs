@@ -11,10 +11,14 @@ public class ShopDisplayManager : MonoBehaviour
     private PurchaseHandler shop;
     [SerializeField]
     private  RectTransform shopBackground;
-    
+
+    [SerializeField] private RectTransform playZoneBackground;
+
     private Vector2 shopBackgroundOriginalPosition;
     
-    private Vector2 backgroundDestinationPosition = new Vector2(0, 400);
+    private Vector2 shopBackgroundDestinationPosition = new Vector2(0, 400);
+    
+    private Vector2 playZoneBackgroundDestinationPosition = new Vector2(0, 800);
 
     private static ShopDisplayManager _instance;
 
@@ -34,14 +38,18 @@ public class ShopDisplayManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        shopBackgroundOriginalPosition = shopBackground.anchoredPosition;
     }
 
     public void MoveShopDown()
     {
-        shopBackground.anchoredPosition -= backgroundDestinationPosition;
+        shopBackground.anchoredPosition -= shopBackgroundDestinationPosition;
         shop.transform.position += new Vector3(0, -40, 0);
+        MoveTableUp();
+    }
 
+    public void MoveTableDown()
+    {
+        playZoneBackground.anchoredPosition -= playZoneBackgroundDestinationPosition;
     }
 
     public void ResetShopPosition()
@@ -52,7 +60,13 @@ public class ShopDisplayManager : MonoBehaviour
 
     public void MoveShopUp()
     {
-        shopBackground.anchoredPosition += backgroundDestinationPosition;
+        shopBackground.anchoredPosition += shopBackgroundDestinationPosition;
         shop.transform.position += new Vector3(0, 40, 0);
+        MoveTableDown();
     }
+    public void MoveTableUp()
+    {
+        playZoneBackground.anchoredPosition += playZoneBackgroundDestinationPosition;
+    }
+
 }

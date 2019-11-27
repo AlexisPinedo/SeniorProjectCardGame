@@ -1,8 +1,8 @@
 ﻿using System;
-
+using Photon.Pun;
 using UnityEngine;
 
-public abstract class Event_Base : MonoBehaviour
+public abstract class Event_Base : MonoBehaviourPunCallbacks
 {
     public static event Action GameStatePausingEventTriggered;
     public static event Action GameStatePausingEventEnded;
