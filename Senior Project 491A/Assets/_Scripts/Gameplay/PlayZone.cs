@@ -128,8 +128,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
         TurnPlayerManager.Instance.TurnPlayer.Power += cardPlayed.CardAttack;
         TurnPlayerManager.Instance.TurnPlayer.Currency += cardPlayed.CardCurrency;
 
-        photonView.RPC("SendPlayerValues", RpcTarget.Others,
-    TurnPlayerManager.Instance.TurnPlayer.Power, TurnPlayerManager.Instance.TurnPlayer.Currency);
+        if (!PhotonNetwork.OfflineMode)
+            photonView.RPC("SendPlayerValues", RpcTarget.Others,TurnPlayerManager.Instance.TurnPlayer.Power, TurnPlayerManager.Instance.TurnPlayer.Currency);
 
         if (!cardPlayed.CardName.Equals("Phantom"))
         {

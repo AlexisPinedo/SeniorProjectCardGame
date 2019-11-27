@@ -35,11 +35,13 @@ public class ButtonInputManager : MonoBehaviour
     private void OnEnable()
     {
         TurnPhaseManager.PlayerTurnStarted += CurrentTurnButtonSwitch;
+        TurnPhaseManager.BattlePhaseStarted += StartedBattle;
     }
 
     private void OnDisable()
     {
         TurnPhaseManager.PlayerTurnStarted -= CurrentTurnButtonSwitch;
+        TurnPhaseManager.BattlePhaseStarted -= StartedBattle;
     }
 
     private void Start()
@@ -75,6 +77,11 @@ public class ButtonInputManager : MonoBehaviour
         }
     }
 
+    public void StartedBattle()
+    {
+        startBattleButton.GetComponent<Button>().interactable = false;
+    }
+
     IEnumerator ShouldActivateButton(Button button)
     {
         yield return new WaitForSeconds(0.2f);
@@ -88,7 +95,6 @@ public class ButtonInputManager : MonoBehaviour
         }
 
         button.interactable = true;
-
     }
 
 
