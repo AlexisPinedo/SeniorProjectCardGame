@@ -50,18 +50,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             nameInp.text = "Debugging Offline";
         }
-        PhotonNetwork.NickName = nameInp.text + randNum.Next(0, 50).ToString();
+        PhotonNetwork.NickName = nameInp.text;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
 
         // Settings defined via PhotonServerSettings
         PhotonNetwork.ConnectUsingSettings();
-    }
-
-    public override void OnDisable()
-    {
-        base.OnDisable();
-        PhotonNetwork.Disconnect();
     }
 
     /// <summary>
