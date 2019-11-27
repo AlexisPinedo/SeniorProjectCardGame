@@ -23,11 +23,13 @@ public class MinionCardDisplay : EnemyCardDisplay<MinionCard>
     public Action MinionCardSummoned;
 
     public Action MinionCardDestroyed; 
+    
+    public Vector2 OriginalPosition;
 
     void Awake()
     {
-        
         base.Awake();
+        OriginalPosition = this.transform.position;
     }
 
     protected override void OnEnable()
@@ -55,12 +57,27 @@ public class MinionCardDisplay : EnemyCardDisplay<MinionCard>
         CardDestroyed?.Invoke(this);
     }
 
+    private void OnMouseEnter()
+    {
+        //Debug.Log("enter");
+        transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
+        Vector2 newPosition = new Vector2(0, -1);
+        transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
+    }
+    
     //This method will invoke the MinionCardClicked event
     protected override void OnMouseDown()
     {
         MinionCardClicked?.Invoke(this);
         if(!PhotonNetwork.OfflineMode)
             photonView.RPC("RPCAttackMinion", RpcTarget.Others, this.photonView.ViewID);
+    }
+
+    private void OnMouseExit()
+    {
+        transform.localScale = new Vector2(1, 1);  //returns the object to its original state
+        if (!DragCard.cardHeld)
+            transform.position = OriginalPosition;
     }
 
     [PunRPC]

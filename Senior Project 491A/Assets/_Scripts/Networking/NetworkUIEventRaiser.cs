@@ -26,7 +26,6 @@ public class NetworkUIEventRaiser : MonoBehaviour
         {
             Destroy(_instance.gameObject);
         }
-        
     }
 
 
@@ -34,24 +33,24 @@ public class NetworkUIEventRaiser : MonoBehaviour
     {
         PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
         UIHandler.StartBattleClicked += SendBattleButtonClickEvent;
-        UIHandler.EndTurnClicked += SendEndTurnClickEvent;
     }
 
     public void OnDisable()
     {
         PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
         UIHandler.StartBattleClicked -= SendBattleButtonClickEvent;
-        UIHandler.EndTurnClicked -= SendEndTurnClickEvent;
     }
 
     public void SendEndTurnClickEvent()
     {
-        PhotonNetwork.RaiseEvent(NetworkOwnershipTransferManger.endTurnEvent, null, raiseEventOptions, sendOptions);
+        if(!PhotonNetwork.OfflineMode)
+            PhotonNetwork.RaiseEvent(NetworkOwnershipTransferManger.endTurnEvent, null, raiseEventOptions, sendOptions);
     }
 
     public void SendBattleButtonClickEvent()
     {
-        PhotonNetwork.RaiseEvent(NetworkOwnershipTransferManger.startBattleEvent, null, raiseEventOptions, sendOptions);
+        if (!PhotonNetwork.OfflineMode)
+            PhotonNetwork.RaiseEvent(NetworkOwnershipTransferManger.startBattleEvent, null, raiseEventOptions, sendOptions);
     }
 
     private void OnEvent(EventData photonEvent)
@@ -59,15 +58,9 @@ public class NetworkUIEventRaiser : MonoBehaviour
         byte recievedCode = photonEvent.Code;
 
         if (recievedCode == NetworkOwnershipTransferManger.endTurnEvent)
-        {
-            Debug.Log($"End Event received {recievedCode}");
-            UIHandler.Instance.EndTurnButtonOnClick();
-        }
+            UIHandler.Instance.RasieEventEndTurnButtonOnClick();
 
         if (recievedCode == NetworkOwnershipTransferManger.startBattleEvent)
-        {
-            Debug.Log($"Start Event received {recievedCode}");
-            UIHandler.Instance.StartBattleButtonOnClick();
-        }
+            UIHandler.Instance.RaiseEventStartBattleButtonOnClick();
     }
 }

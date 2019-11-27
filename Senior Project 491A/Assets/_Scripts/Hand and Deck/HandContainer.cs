@@ -94,19 +94,18 @@ public class HandContainer : PlayerCardContainer
         // Place it on the grid!
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerCardGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
-        
+
         PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
-        if (cardDisplayPhotonView.ViewID == 0)
-            cardDisplayPhotonView.ViewID = CardDisplay.photonIdCounter++;
-        else
-            Debug.Log("Already has an assigned ID");
+
+        NetworkIDAssigner.AssignID(cardDisplayPhotonView);
 
         cardDisplayPhotonView.TransferOwnership(NetworkOwnershipTransferManger.currentPhotonPlayer);
 
         Vector3 tempCardDestination = containerCardGrid.freeLocations.Pop();
 
         // Trasnforms the card position to the grid position
-        StartCoroutine(TransformCardPosition(cardDisplay, tempCardDestination));
+        //StartCoroutine(TransformCardPosition(cardDisplay, tempCardDestination));
+        AnimationManager.SharedInstance.PlayAnimation(cardDisplay, tempCardDestination, 0.3f, storeOriginalPosition: true);
 
         if (!containerCardGrid.cardLocationReference.ContainsKey(tempCardDestination))
             containerCardGrid.cardLocationReference.Add(tempCardDestination, cardDisplay);

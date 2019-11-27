@@ -19,8 +19,6 @@ using System;
 public class PlayerCardDisplay : CardDisplay
 {
     public PlayerCard card;
-    private byte currentCardIdenrifier = (byte)'C';
-
     [SerializeField] private TextMeshPro attackText;
     [SerializeField] private TextMeshPro costText;
     [SerializeField] private TextMeshPro currencyText;
@@ -53,17 +51,35 @@ public class PlayerCardDisplay : CardDisplay
     //THis method will load the display based on the information stored within the card
     protected override void LoadCardIntoDisplay()
     {
-        cardArtDisplay.sprite = card.CardArtwork;
-        typeIcon.sprite = card.CardTypeArt;
-        cardBorder.sprite = card.BorderArt;
-        cardEffectTextBox.sprite = card.CardEffectBoxArt;
-        cardNameTextBox.sprite = card.NameBoxArt;
-        nameText.text = card.CardName;
-        cardEffectText.text = card.CardEffectDisplay;
-        attackText.text = card.CardAttack.ToString();
-        costText.text = card.CardCost.ToString();
-        currencyText.text = card.CardCurrency.ToString();
-        LoadCostEffectIcons();
+        if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
+        {
+            cardArtDisplay.sprite = card.CardArtwork;
+            typeIcon.sprite = card.CardTypeArt;
+            cardBorder.sprite = card.BorderArt;
+            cardEffectTextBox.sprite = card.CardEffectBoxArt;
+            cardNameTextBox.sprite = card.NameBoxArt;
+            nameText.text = card.CardName;
+            cardEffectText.text = card.CardEffectDisplay;
+            attackText.text = card.CardAttack.ToString();
+            costText.text = card.CardCost.ToString();
+            currencyText.text = card.CardCurrency.ToString();
+            LoadCostEffectIcons();
+        }
+
+        else
+        {
+            cardArtDisplay.sprite = card.CardArtwork;
+            typeIcon.sprite = card.CardTypeArt;
+            cardBorder.sprite = card.BorderArt;
+            cardEffectTextBox.sprite = card.CardEffectBoxArt;
+            cardNameTextBox.sprite = card.NameBoxArt;
+            nameText.text = card.CardName;
+            cardEffectText.text = card.CardEffectDisplay;
+            attackText.text = card.CardAttack.ToString();
+            costIcon.enabled = false;
+            currencyText.text = card.CardCurrency.ToString();
+            LoadCostEffectIcons();
+        }
     }
 
     /// <summary>
@@ -191,53 +207,106 @@ public class PlayerCardDisplay : CardDisplay
 
     private void SetSelectedCardLayer()
     {
-        cardArtDisplay.sortingLayerName = "Selected Player Card";
-        typeIcon.sortingLayerName = "Selected Player Card";
-        attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
-        powerIcon.sortingLayerName = "Selected Player Card";
-        currencyIcon.sortingLayerName = "Selected Player Card";
-        cardEffectCostsIcons.sortingLayerName = "Selected Player Card";
-        costIcon.sortingLayerName = "Selected Player Card";
-        typeIcon.sortingLayerName = "Selected Player Card";
-        cardBorder.sortingLayerName = "Selected Player Card";
-        cardEffectTextBox.sortingLayerName = "Selected Player Card";
-        foreach (var spriteRenderer in cardEffectTextBox.gameObject.GetComponentsInChildren<SpriteRenderer>())
+        if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
-            spriteRenderer.sortingLayerName = "Selected Player Card";
+            cardArtDisplay.sortingLayerName = "Selected Player Card";
+            typeIcon.sortingLayerName = "Selected Player Card";
+            attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            powerIcon.sortingLayerName = "Selected Player Card";
+            currencyIcon.sortingLayerName = "Selected Player Card";
+            cardEffectCostsIcons.sortingLayerName = "Selected Player Card";
+            costIcon.sortingLayerName = "Selected Player Card";
+            typeIcon.sortingLayerName = "Selected Player Card";
+            cardBorder.sortingLayerName = "Selected Player Card";
+            cardEffectTextBox.sortingLayerName = "Selected Player Card";
+            foreach (var spriteRenderer in cardEffectTextBox.gameObject.GetComponentsInChildren<SpriteRenderer>())
+            {
+                spriteRenderer.sortingLayerName = "Selected Player Card";
+            }
+        
+            cardNameTextBox.sortingLayerName = "Selected Player Card";
+            cardArtDisplay.sortingLayerName = "Selected Player Card";
+            attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            costText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            currencyText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            nameText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
         }
         
-        cardNameTextBox.sortingLayerName = "Selected Player Card";
-        cardArtDisplay.sortingLayerName = "Selected Player Card";
-        attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
-        costText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
-        currencyText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
-        nameText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
-        cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+        //TODO: REMOVE COST ICON AND TEXT
+        else
+        {
+            cardArtDisplay.sortingLayerName = "Selected Player Card";
+            typeIcon.sortingLayerName = "Selected Player Card";
+            attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            powerIcon.sortingLayerName = "Selected Player Card";
+            currencyIcon.sortingLayerName = "Selected Player Card";
+            cardEffectCostsIcons.sortingLayerName = "Selected Player Card";
+            typeIcon.sortingLayerName = "Selected Player Card";
+            cardBorder.sortingLayerName = "Selected Player Card";
+            cardEffectTextBox.sortingLayerName = "Selected Player Card";
+            foreach (var spriteRenderer in cardEffectTextBox.gameObject.GetComponentsInChildren<SpriteRenderer>())
+            {
+                spriteRenderer.sortingLayerName = "Selected Player Card";
+            }
+        
+            cardNameTextBox.sortingLayerName = "Selected Player Card";
+            cardArtDisplay.sortingLayerName = "Selected Player Card";
+            attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            currencyText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            nameText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+        }
     }
 
     private void SetCardLayerBack()
     {
-        cardArtDisplay.sortingLayerName = "Player Card";
-        typeIcon.sortingLayerName = "Player Card";
-        attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
-        powerIcon.sortingLayerName = "Player Card";
-        currencyIcon.sortingLayerName = "Player Card";
-        cardEffectCostsIcons.sortingLayerName = "Player Card";
-        costIcon.sortingLayerName = "Player Card";
-        typeIcon.sortingLayerName = "Player Card";
-        cardBorder.sortingLayerName = "Player Card";
-        cardEffectTextBox.sortingLayerName = "Player Card";
-        foreach (var spriteRenderer in cardEffectTextBox.gameObject.GetComponentsInChildren<SpriteRenderer>())
+        if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
         {
-            spriteRenderer.sortingLayerName = "Player Card";
+            cardArtDisplay.sortingLayerName = "Player Card";
+            typeIcon.sortingLayerName = "Player Card";
+            attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            powerIcon.sortingLayerName = "Player Card";
+            currencyIcon.sortingLayerName = "Player Card";
+            cardEffectCostsIcons.sortingLayerName = "Player Card";
+            costIcon.sortingLayerName = "Player Card";
+            typeIcon.sortingLayerName = "Player Card";
+            cardBorder.sortingLayerName = "Player Card";
+            cardEffectTextBox.sortingLayerName = "Player Card";
+            foreach (var spriteRenderer in cardEffectTextBox.gameObject.GetComponentsInChildren<SpriteRenderer>())
+            {
+                spriteRenderer.sortingLayerName = "Player Card";
+            }
+            cardNameTextBox.sortingLayerName = "Player Card";
+            cardArtDisplay.sortingLayerName = "Player Card";
+            attackText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+            costText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+            nameText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+            cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
         }
-        cardNameTextBox.sortingLayerName = "Player Card";
-        cardArtDisplay.sortingLayerName = "Player Card";
-        attackText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
-        costText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
-        currencyText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
-        nameText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
-        cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+
+        else
+        {
+            cardArtDisplay.sortingLayerName = "Player Card";
+            typeIcon.sortingLayerName = "Player Card";
+            attackText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
+            powerIcon.sortingLayerName = "Player Card";
+            currencyIcon.sortingLayerName = "Player Card";
+            cardEffectCostsIcons.sortingLayerName = "Player Card";
+            typeIcon.sortingLayerName = "Player Card";
+            cardBorder.sortingLayerName = "Player Card";
+            cardEffectTextBox.sortingLayerName = "Player Card";
+            foreach (var spriteRenderer in cardEffectTextBox.gameObject.GetComponentsInChildren<SpriteRenderer>())
+            {
+                spriteRenderer.sortingLayerName = "Player Card";
+            }
+            cardNameTextBox.sortingLayerName = "Player Card";
+            cardArtDisplay.sortingLayerName = "Player Card";
+            attackText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+            nameText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+            cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Player Card";
+        }
+        
     }
     
     [PunRPC]

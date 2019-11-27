@@ -19,14 +19,26 @@ public abstract class PrefillableDeck<T> : Deck<T> where T : Card
     /// to add and then shuffle
     /// </summary>
      protected virtual void OnEnable()
-     {        
-         foreach (T card in cardsToAdd)
-         {
-             for (int i = 0; i < cardCopies; i++)
-             {
-                 cardsInDeck.Push(card);
-             }
-         }
-         //Debug.Log("cards added");
+     {
+         AddCardsToDeck(cardsToAdd, cardCopies);
      }
+
+    public void AddCardsToDeck(List<T> cardsToAdd, int cardCopies)
+    {
+        foreach (T card in cardsToAdd)
+        {
+            for (int i = 0; i < cardCopies; i++)
+            {
+                cardsInDeck.Push(card);
+            }
+        }
+    }
+    
+    public void AddSingleCardToDeck(T card, int cardCopies = 1)
+    {
+        for (int i = 0; i < cardCopies; i++)
+        {
+            cardsInDeck.Push(card);
+        }
+    }
  }

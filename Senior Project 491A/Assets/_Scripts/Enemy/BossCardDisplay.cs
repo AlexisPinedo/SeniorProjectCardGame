@@ -23,7 +23,7 @@ public class BossCardDisplay : EnemyCardDisplay<BossCard>
         card = BossToLoad.SelectedBossCard;
         base.Awake();
         enabled = true;
-        
+        card.EnableGoal();
     }
 
     //this handles the boss card being clicked 

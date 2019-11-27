@@ -1,28 +1,30 @@
-﻿/*
-    Created by: David Taitingfong
-    Date:       2019-04-11
- */
-
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// ALSO OBSOLETE CLASS THAT IS WIP
-/// </summary>
-
-/*
-    This class represents a Boss' goal, i.e., what needs to happen in a match
-    in order for the boss to win.
-
-    ex: Draw 5 bombs
- */
-public abstract class Goal : MonoBehaviour
+public abstract class Goal : ScriptableObject
 {
     public string goalDescriptionText;
+
+    protected BossCard owner;
+
+    public void SetOwner(BossCard ownerToSet)
+    {
+        owner = ownerToSet;
+        OnGoalEnabled();
+    }
+
+    public void RemoveOwner()
+    {
+        owner = null;
+    }
+
+    public virtual void OnGoalEnabled()
+    {
+        
+    }
     
-    protected void OnGoalCompletion()
+    protected virtual void OnGoalCompletion()
     {
         NotificationWindowEvent.Instance.EnableNotificationWindow("Goal has been completed enemy won");
         EndGameHandler.TriggerEndGame();

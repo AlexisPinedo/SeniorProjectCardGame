@@ -25,6 +25,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
     public static event _CardPlayed CardPlayed;
     public static event Action HasPlayed;
 
+    public Transform enlargementZone;
+
     private PhotonView RPCCardSelected;
 
     private BoxCollider2D playZoneCollider;
@@ -65,7 +67,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
         
         if (cardInPlayZone)
         {
-            if (!Input.GetMouseButton(0))
+            if (!Input.GetMouseButton(0) && !AnimationManager.SharedInstance.AnimationActive)
             {
                 HandleCardPlayed();
             }
@@ -118,11 +120,16 @@ public class PlayZone : MonoBehaviourPunCallbacks
         PlayerCard cardPlayed = cardDisplay.card;
         if(!PhotonNetwork.OfflineMode)
             cardDisplay.photonView.RPC("DestroyCard", RpcTarget.Others);
-        
-        Destroy(cardInZone.gameObject);
+
+        //StartCoroutine(TransformCard(cardInZone, enlargementZone.position));
+        //Destroy(cardInZone.gameObject);
+        AnimationManager.SharedInstance.PlayAnimation(cardInZone, enlargementZone.position, 0.25f, true, true,true);
         
         TurnPlayerManager.Instance.TurnPlayer.Power += cardPlayed.CardAttack;
         TurnPlayerManager.Instance.TurnPlayer.Currency += cardPlayed.CardCurrency;
+
+        photonView.RPC("SendPlayerValues", RpcTarget.Others,
+    TurnPlayerManager.Instance.TurnPlayer.Power, TurnPlayerManager.Instance.TurnPlayer.Currency);
 
         if (!cardPlayed.CardName.Equals("Phantom"))
         {
@@ -135,6 +142,14 @@ public class PlayZone : MonoBehaviourPunCallbacks
         cardInPlayZone = false;
         cardInZone = null;
     }
-    
+
+    [PunRPC]
+    private void SendPlayerValues(int powerValue, int currencyValue)
+    {
+        TurnPlayerManager.Instance.TurnPlayer.Power = powerValue;
+        TurnPlayerManager.Instance.TurnPlayer.Currency = currencyValue;
+    }
+
+
 
 }
