@@ -9,7 +9,15 @@
       <e p="Assets" t="Include">
         <e p="_Scripts" t="Include">
           <e p="Animation" t="Include">
+            <e p="AnimationCompletionManager.cs" t="Include" />
+            <e p="AnimationManagementBase.cs" t="Include" />
             <e p="AnimationManager.cs" t="Include" />
+            <e p="AnimationObjectBase.cs" t="Include" />
+            <e p="PlayerAnimationManager.cs" t="Include" />
+            <e p="PlayZoneAnimationManager.cs" t="Include" />
+            <e p="ScaleAnimationObject.cs" t="Include" />
+            <e p="ShopAnimationManager.cs" t="Include" />
+            <e p="TransformAnimationObject.cs" t="Include" />
           </e>
           <e p="Audio" t="Include">
             <e p="AudioClipContainer.cs" t="Include" />

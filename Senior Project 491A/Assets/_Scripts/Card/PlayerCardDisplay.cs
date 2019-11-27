@@ -37,6 +37,7 @@ public class PlayerCardDisplay : CardDisplay
     public void OnEnable()
     {
         base.OnEnable();
+        LoadCardIntoDisplay();
         DragCard.CardDragged += DisableNonSelectedCollider;
         DragCard.CardReleased += EnableBoxCollider;
     }
@@ -44,6 +45,7 @@ public class PlayerCardDisplay : CardDisplay
     public void OnDisable()
     {
         base.OnEnable();
+        ClearCardFromDisplay();
         DragCard.CardDragged -= DisableNonSelectedCollider;
         DragCard.CardReleased -= EnableBoxCollider;
     }
@@ -51,35 +53,18 @@ public class PlayerCardDisplay : CardDisplay
     //THis method will load the display based on the information stored within the card
     protected override void LoadCardIntoDisplay()
     {
-        if (transform.parent.gameObject.GetComponent<HandContainer>() == null)
-        {
-            cardArtDisplay.sprite = card.CardArtwork;
-            typeIcon.sprite = card.CardTypeArt;
-            cardBorder.sprite = card.BorderArt;
-            cardEffectTextBox.sprite = card.CardEffectBoxArt;
-            cardNameTextBox.sprite = card.NameBoxArt;
-            nameText.text = card.CardName;
-            cardEffectText.text = card.CardEffectDisplay;
-            attackText.text = card.CardAttack.ToString();
-            costText.text = card.CardCost.ToString();
-            currencyText.text = card.CardCurrency.ToString();
-            LoadCostEffectIcons();
-        }
-
-        else
-        {
-            cardArtDisplay.sprite = card.CardArtwork;
-            typeIcon.sprite = card.CardTypeArt;
-            cardBorder.sprite = card.BorderArt;
-            cardEffectTextBox.sprite = card.CardEffectBoxArt;
-            cardNameTextBox.sprite = card.NameBoxArt;
-            nameText.text = card.CardName;
-            cardEffectText.text = card.CardEffectDisplay;
-            attackText.text = card.CardAttack.ToString();
-            costIcon.enabled = false;
-            currencyText.text = card.CardCurrency.ToString();
-            LoadCostEffectIcons();
-        }
+        cardArtDisplay.sprite = card.CardArtwork;
+        typeIcon.sprite = card.CardTypeArt;
+        cardBorder.sprite = card.BorderArt;
+        cardEffectTextBox.sprite = card.CardEffectBoxArt;
+        cardNameTextBox.sprite = card.NameBoxArt;
+        nameText.text = card.CardName;
+        cardEffectText.text = card.CardEffectDisplay;
+        attackText.text = card.CardAttack.ToString();
+        costText.text = card.CardCost.ToString();
+        currencyText.text = card.CardCurrency.ToString();
+        LoadCostEffectIcons();
+        
     }
 
     /// <summary>
