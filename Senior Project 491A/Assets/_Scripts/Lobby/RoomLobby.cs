@@ -24,7 +24,11 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             startMatchButton.gameObject.SetActive(true);
-            if (PhotonNetwork.CurrentRoom.PlayerCount != 2)
+
+            Heroes p1Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"];
+            Heroes p2Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"];
+
+            if (PhotonNetwork.CurrentRoom.PlayerCount != 2 || p1Hero.Equals(null) || p2Hero.Equals(null))
             {
                 startMatchButton.interactable = false;
             }
