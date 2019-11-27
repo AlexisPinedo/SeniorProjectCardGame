@@ -13,6 +13,8 @@ public class ButtonInputManager : MonoBehaviour
     [SerializeField]
     private GameObject startBattleButton, endTurnButton;
 
+    [SerializeField] private AnimationCompletionManager completionManager;
+
     private static ButtonInputManager _instance;
 
     public static ButtonInputManager Instance
@@ -36,17 +38,24 @@ public class ButtonInputManager : MonoBehaviour
     {
         TurnPhaseManager.PlayerTurnStarted += CurrentTurnButtonSwitch;
         TurnPhaseManager.BattlePhaseStarted += StartedBattle;
+        AnimationCompletionManager.AllAnimationsCompleted += EnableButtons;
     }
 
     private void OnDisable()
     {
         TurnPhaseManager.PlayerTurnStarted -= CurrentTurnButtonSwitch;
         TurnPhaseManager.BattlePhaseStarted -= StartedBattle;
+        AnimationCompletionManager.AllAnimationsCompleted -= EnableButtons;
     }
 
     private void Start()
     {
         CurrentTurnButtonSwitch();
+    }
+
+    void Update()
+    {
+        completionManager.CheckIfAnimationsCompleted();
     }
 
     public void CurrentTurnButtonSwitch()
@@ -76,6 +85,13 @@ public class ButtonInputManager : MonoBehaviour
             StartCoroutine(ShouldActivateButton(startBattleButton.GetComponent<Button>()));
         }
     }
+
+    public void EnableButtons(bool shouldActivateEndTurn)
+    {
+        endTurnButton.GetComponent<Button>().interactable = shouldActivateEndTurn;
+        startBattleButton.GetComponent<Button>().interactable = shouldActivateEndTurn;
+    }
+
 
     public void StartedBattle()
     {
