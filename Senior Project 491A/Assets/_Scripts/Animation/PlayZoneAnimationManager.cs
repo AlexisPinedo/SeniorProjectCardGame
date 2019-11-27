@@ -11,6 +11,7 @@ public class PlayZoneAnimationManager : AnimationManagementBase<ScaleAnimationOb
     {
         get => _instance;
     }
+   
 
 
     void Awake()
@@ -104,12 +105,15 @@ public class PlayZoneAnimationManager : AnimationManagementBase<ScaleAnimationOb
         }
         else
         {
-            //Destroy(cardDisplay.gameObject);
+            Destroy(cardDisplay.gameObject);
             cardDisplay.gameObject.SetActive(false);
+            
         }
 
         EndAnimEvent();
     }
+
+  
 
 }
 
