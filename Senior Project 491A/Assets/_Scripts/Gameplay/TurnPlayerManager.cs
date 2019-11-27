@@ -65,7 +65,13 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
             
             Destroy(gameObject);
         }
-        
+
+        /// TROUBLE BREWING UP HERE
+        Heroes p1Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"];
+        Heroes p2Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"];
+        player1.SelectedHero = GetHero(p1Hero);
+        player2.SelectedHero = GetHero(p2Hero);
+
         HandleInitialTurn();
     }
 
@@ -113,6 +119,38 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
             NetworkOwnershipTransferManger.currentPhotonPlayer = NetworkOwnershipTransferManger.photonPlayer1;
             turnPlayerGameObject = player1GameObject;
         }
+    }
+
+    private Hero GetHero(Heroes heroPicked)
+    {
+        Hero selectedHero = null;
+
+        switch(heroPicked)
+        {
+            case Heroes.Valor:
+                selectedHero = new Valor();
+                break;
+            case Heroes.Vann:
+                selectedHero = new Vann();
+                break;
+            case Heroes.Vaughn:
+                selectedHero = new Vaughn();
+                break;
+            case Heroes.Veda:
+                selectedHero = new Veda();
+                break;
+            case Heroes.Vicky:
+                selectedHero = new Vicky();
+                break;
+            case Heroes.Vito:
+                selectedHero = new Vito();
+                break;
+            default:
+                selectedHero = null;
+                break;
+        }
+                     
+        return selectedHero;
     }
 
 }

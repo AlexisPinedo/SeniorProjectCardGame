@@ -198,6 +198,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         if (heroSelectedText.text != "")
         {
+            Debug.Log("\tCustom props: " + PhotonNetwork.CurrentRoom.CustomProperties);
+            Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
+
             int heroNum = -1;
 
             switch (heroSelectedText.text)
@@ -228,13 +231,17 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsMasterClient)
             {
                 playerOneHero = (Heroes)heroNum;
+                roomProps.Add("playerOneHero", playerOneHero);
                 Debug.Log("Player 1 selected " + playerOneHero);
             }
             else
             {
                 playerTwoHero = (Heroes)heroNum;
+                roomProps.Add("playerTwoHero", playerTwoHero);
                 Debug.Log("Player 2 selected " + playerTwoHero);
             }
+
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
 
             heroPickerPopup.SetActive(false);
 
