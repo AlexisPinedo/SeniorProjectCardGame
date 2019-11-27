@@ -18,21 +18,22 @@ public class Veda : CostRequirementHero
 
     protected override void HeroPowerEffect()
     {
+;
         //Debug.Log("Showing turn player notification");
-        NotificationWindowEvent.Instance.EnableNotificationWindow(NetworkOwnershipTransferManger.currentPhotonPlayer.NickName + " select 1 card");
-        
+        NotificationWindowEvent.Instance.EnableNotificationWindow("You may select 1 card");
+
         //Debug.Log("Enabling Shop selection state");
         FreeShopSelectionEvent.Instance.EnableShopSelectionState(cardSelectionLimit);
-        
+
         //Debug.Log("Changing Active Player");
         PlayerSwitchEvent.Instance.EnablePlayerSwitchEvent();
         
         //Debug.Log("Showing next Notification");
-        NotificationWindowEvent.Instance.EnableNotificationWindow(NetworkOwnershipTransferManger.currentPhotonPlayer.NickName + " select 1 card");
-        
+        NotificationWindowEvent.Instance.EnableNotificationWindow(NetworkOwnershipTransferManger.pendingPhotonPlayer.NickName + " is selecting 1 card");
+
         //Debug.Log("Swap to next shop");
         FreeShopSelectionEvent.Instance.EnableShopSelectionState(cardSelectionLimit);
-        
+
         PlayerSwitchEvent.Instance.EnablePlayerSwitchEvent();
 
     }

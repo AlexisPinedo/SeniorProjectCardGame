@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class PlayerSwitchEvent : Event_Base
@@ -28,7 +29,15 @@ public class PlayerSwitchEvent : Event_Base
     
     public override void EventState()
     {
-        Debug.Log("In Player swap event");
+        TurnPlayerManager.Instance.ChangeActivePlayer();
+        GameEventManager.Instance.EndEvent();
+        if(!PhotonNetwork.OfflineMode)
+            photonView.RPC("RemoteEventStatePlayerSwitch", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    public void RemoteEventStatePlayerSwitch()
+    {
         TurnPlayerManager.Instance.ChangeActivePlayer();
         GameEventManager.Instance.EndEvent();
     }

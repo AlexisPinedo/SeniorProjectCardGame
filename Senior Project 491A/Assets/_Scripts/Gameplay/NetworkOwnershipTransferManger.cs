@@ -76,6 +76,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
         bossCard.photonView.TransferOwnership(currentPhotonPlayer);
 
         notficationWindow.photonView.TransferOwnership(currentPhotonPlayer);
+        Debug.Log("notfication window transfered");
 
         PhotonView[] minionTransfer = minionCards.GetComponentsInChildren<PhotonView>();
         for (int i = 0; i < minionTransfer.Length; i++)

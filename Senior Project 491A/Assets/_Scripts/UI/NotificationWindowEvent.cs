@@ -20,7 +20,13 @@ public class NotificationWindowEvent : Event_Base
     [SerializeField]
     private TextMeshProUGUI notificationText;
     [SerializeField] 
-    private Image NotificationView; 
+    private Image NotificationView;
+
+    [SerializeField]
+    private Button startBattleButton, endTurnButton;
+
+    [SerializeField]
+    private Text currency, power;
 
     private string messageText = "";
     
@@ -59,72 +65,75 @@ public class NotificationWindowEvent : Event_Base
     public override void EventState()
     {
         EnableComponents();
-        Debug.Log("In display notification window event");
         ButtonInputManager.Instance.DisableButtonsInList();
         notificationText.text = messageQueue.Dequeue();
-        photonView.RPC("RemoteEventState", RpcTarget.Others, notificationText.text);
+        if (!PhotonNetwork.OfflineMode)
+            photonView.RPC("RemoteEventStateNotficationWindow", RpcTarget.Others, notificationText.text);
     }
 
     [PunRPC]
-    private void RemoteEventState(string text)
+    private void RemoteEventStateNotficationWindow(string text)
     {
         EnableComponents();
         TriggerGameStatePauseEvent();
         ButtonInputManager.Instance.DisableButtonsInList();
-        notificationText.text = text;
+
+        if (text.Contains("may"))
+            notificationText.text = (NetworkOwnershipTransferManger.currentPhotonPlayer.NickName + " is selecting 1 card");
+  
+        else if (text.Contains("selecting"))
+            notificationText.text = ("You may select 1 card");
+        else
+            notificationText.text = text;
     }
 
     public void CloseNotificationWindow()
     {
-        Debug.Log("Photon View Owner:" + photonView.Owner.NickName);
-        Debug.Log("Current photon player: " + NetworkOwnershipTransferManger.currentPhotonPlayer.NickName);
-
-
-        DisableComponents();
-        messageText = "";
-        EndGameStatePauseEvent();
-        DisableMinionCardContainters();
-        GameEventManager.Instance.EndEvent();
-
-
-        if (photonView.IsMine)
+        if (NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
         {
+            DisableComponents();
+            messageText = "";
+            EndGameStatePauseEvent();
+            DisableMinionCardContainters();
             ButtonInputManager.Instance.EnableButtonsInList();
-            photonView.RPC("RemoteCloseNotfication", RpcTarget.Others);
+            GameEventManager.Instance.EndEvent();
+            if (!PhotonNetwork.OfflineMode)
+                photonView.RPC("RemoteCloseNotfication", RpcTarget.Others);
         }
-        else
-        {
-            ButtonInputManager.Instance.DisableButtonsInList();
-        }
-
-        //if (NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
-        //{
-        //    DisableComponents();
-        //    messageText = "";
-        //    EndGameStatePauseEvent();
-        //    DisableMinionCardContainters();
-        //    ButtonInputManager.Instance.EnableButtonsInList();
-        //    GameEventManager.Instance.EndEvent();
-        //    photonView.RPC("RemoteCloseNotfication", RpcTarget.Others);
-        //}
     }
 
     [PunRPC]
     private void RemoteCloseNotfication()
     {
         CloseNotificationWindow();
+        DisableComponents();
+        messageText = "";
+        EndGameStatePauseEvent();
+        DisableMinionCardContainters();
+        ButtonInputManager.Instance.EnableButtonsInList();
+        GameEventManager.Instance.EndEvent();
     }
 
     private void EnableComponents()
     {
         transparentCover.gameObject.SetActive(true);
         NotificationView.gameObject.SetActive(true);
+
+        startBattleButton.gameObject.SetActive(false);
+        endTurnButton.gameObject.SetActive(false);
+        currency.gameObject.SetActive(false);
+        power.gameObject.SetActive(false);
     }
     
     private void DisableComponents()
     {
         transparentCover.gameObject.SetActive(false);
         NotificationView.gameObject.SetActive(false);
+
+        startBattleButton.gameObject.SetActive(true);
+        endTurnButton.gameObject.SetActive(true);
+        currency.gameObject.SetActive(true);
+        power.gameObject.SetActive(true);
     }
     
 }
