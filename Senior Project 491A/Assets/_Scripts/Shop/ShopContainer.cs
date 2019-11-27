@@ -104,7 +104,7 @@ public class ShopContainer : PlayerCardContainer
 
         // Trasnforms the card position to the grid position
         //StartCoroutine(TransformCardPosition(cardDisplay, finalCardDestination));
-        AnimationManager.SharedInstance.PlayAnimation(cardDisplay, finalCardDestination, 0.3f, storeOriginalPosition: true);
+        AnimationManager.SharedInstance.PlayAnimation(cardDisplay, finalCardDestination, 0.3f, storeOriginalPosition: true, isShopCard: true);
 
         Vector3 freeSpot = finalCardDestination;
         
