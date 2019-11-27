@@ -15,7 +15,8 @@ public class AnimationManager : MonoBehaviour
     Queue<AnimationObject> cardQueue = new Queue<AnimationObject>();
     Queue<AnimationObject> shopQueue = new Queue<AnimationObject>();
     Queue<ScaledObject> playQueue = new Queue<ScaledObject>();
-
+    
+    //When a card is moving
     private bool cardAnimActive;
 
     public bool CardAnimActive
@@ -71,6 +72,7 @@ public class AnimationManager : MonoBehaviour
         if (cardQueue.Count == 0)
         {
             cardQueue.Enqueue(animObject);
+            Debug.Log("Starting addition of objects");
             StartCoroutine(HandleAnim());
         }
         else
@@ -201,7 +203,11 @@ public class AnimationManager : MonoBehaviour
         if (canScale)
         {
             var renderers = cardDisplay.GetComponentsInChildren<Renderer>();
-            renderers.ToList().ForEach(x => x.enabled = false);
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].enabled = false;
+            }
+            //renderers.ToList().ForEach(x => x.enabled = false);
             cardDisplay.transform.localScale -= new Vector3(cardDisplay.transform.localScale.x, cardDisplay.transform.localScale.y, cardDisplay.transform.localScale.z);
             Debug.Log("Card Display Shrank: " + cardDisplay.transform.localScale);
         }
