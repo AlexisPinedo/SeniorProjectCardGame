@@ -39,9 +39,6 @@ public class ShopDisplayManager : MonoBehaviour
 
     public void MoveShopDown()
     {
-
-        Debug.Log("Moving shop down...");
-
         shopBackground.anchoredPosition -= backgroundDestinationPosition;
         shop.transform.position += new Vector3(0, -40, 0);
 
@@ -55,9 +52,6 @@ public class ShopDisplayManager : MonoBehaviour
 
     public void MoveShopUp()
     {
-
-        Debug.Log("Moving shop up...");
-
         shopBackground.anchoredPosition += backgroundDestinationPosition;
         shop.transform.position += new Vector3(0, 40, 0);
     }

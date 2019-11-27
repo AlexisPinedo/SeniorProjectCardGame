@@ -86,11 +86,8 @@ public class ButtonInputManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        Debug.Log("In Here 1");
-
         while (AnimationManager.SharedInstance.CardAnimActive || AnimationManager.SharedInstance.ShopAnimActive)
         {
-            Debug.Log("In Here");
             yield return null;
         }
 

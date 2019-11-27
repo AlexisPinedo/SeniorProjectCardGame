@@ -117,16 +117,18 @@ public class BattleManager : MonoBehaviour
             yield return null;
         }
         
+        
         //We are now exiting battle state we need to deactivate the colliders
         foreach (var keyValuePair in enemyCardGrid.cardLocationReference)
         {
             if(keyValuePair.Value != null)
                 keyValuePair.Value.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
-        
+
         //set the components to true again
         PlayZoneText.enabled = true;
         PlayZone.Instance.gameObject.SetActive(true);
+
         ShopDisplayManager.Instance.MoveShopDown();
         
         Debug.Log("Ending battle state");
