@@ -29,8 +29,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     /// </summary>
     Heroes playerOneHero, playerTwoHero;
 
-    public static string roomToJoin = "";
-
     private static System.Random randNum = new System.Random();
 
     private readonly int minRoomNameLen = 4;
@@ -126,7 +124,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         System.Random randomNumber = new System.Random();
         int randomInt = randomNumber.Next();
-        roomToJoin = roomInput.text;
 
         RoomOptions options = new RoomOptions
         {
@@ -136,7 +133,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             CustomRoomProperties = new Hashtable() { { "deckRandomValue", randomInt } }
         };
 
-        PhotonNetwork.JoinOrCreateRoom(roomToJoin, options, null);
+        PhotonNetwork.JoinOrCreateRoom(roomInput.text, options, null);
     }
 
     /// <summary>
@@ -245,10 +242,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
             heroPickerPopup.SetActive(false);
 
-            if (roomToJoin != "")
-            {
-                Debug.Log("\tAnd we're good! " + PhotonNetwork.LocalPlayer.NickName + " is joining room " + roomToJoin);   
-            }
         }
         else
         {
