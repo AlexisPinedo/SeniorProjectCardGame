@@ -21,10 +21,8 @@ public class NotificationWindowEvent : Event_Base
     private TextMeshProUGUI notificationText;
     [SerializeField] 
     private Image NotificationView;
-
     [SerializeField]
-    private Button startBattleButton, endTurnButton;
-
+    private Button startBattleButton, endTurnButton, okButton;
     [SerializeField]
     private Text currency, power;
 
@@ -67,6 +65,12 @@ public class NotificationWindowEvent : Event_Base
         EnableComponents();
         ButtonInputManager.Instance.DisableButtonsInList();
         notificationText.text = messageQueue.Dequeue();
+
+        if (notificationText.text.Contains("may"))
+            okButton.gameObject.SetActive(true);
+        else if (notificationText.text.Contains("selecting"))
+            okButton.gameObject.SetActive(false);
+
         if (!PhotonNetwork.OfflineMode)
             photonView.RPC("RemoteEventStateNotficationWindow", RpcTarget.Others, notificationText.text);
     }
@@ -79,12 +83,18 @@ public class NotificationWindowEvent : Event_Base
         ButtonInputManager.Instance.DisableButtonsInList();
 
         if (text.Contains("may"))
+        {
             notificationText.text = (NetworkOwnershipTransferManger.currentPhotonPlayer.NickName + " is selecting 1 card");
-  
+            okButton.gameObject.SetActive(false);
+        }
         else if (text.Contains("selecting"))
+        {
             notificationText.text = ("You may select 1 card");
+            okButton.gameObject.SetActive(true);
+        }
         else
             notificationText.text = text;
+
     }
 
     public void CloseNotificationWindow()
@@ -99,6 +109,10 @@ public class NotificationWindowEvent : Event_Base
             GameEventManager.Instance.EndEvent();
             if (!PhotonNetwork.OfflineMode)
                 photonView.RPC("RemoteCloseNotfication", RpcTarget.Others);
+        }
+        else
+        {
+
         }
     }
 

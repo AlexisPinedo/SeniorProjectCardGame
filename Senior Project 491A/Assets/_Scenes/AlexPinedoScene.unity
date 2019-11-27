@@ -5461,6 +5461,7 @@ MonoBehaviour:
   NotificationView: {fileID: 928849050}
   startBattleButton: {fileID: 1526216803}
   endTurnButton: {fileID: 1385409948}
+  okButton: {fileID: 464375763}
   currency: {fileID: 1694429697}
   power: {fileID: 1014222953}
 --- !u!114 &1825280832
