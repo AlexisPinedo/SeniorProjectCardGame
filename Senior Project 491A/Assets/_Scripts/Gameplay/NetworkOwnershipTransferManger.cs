@@ -18,6 +18,9 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
     private ShopContainer shopCards;
 
     [SerializeField]
+    private NotificationWindowEvent notficationWindow;
+
+    [SerializeField]
     private FieldContainer minionCards;
 
     [SerializeField]
@@ -44,6 +47,8 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
 
             Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
             Debug.Log("Photon Player 2: " + photonPlayer2.NickName);
+
+            notficationWindow.photonView.TransferOwnership(currentPhotonPlayer);
         }
         else
         {
@@ -69,6 +74,8 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
     public void TransferObjects()
     {
         bossCard.photonView.TransferOwnership(currentPhotonPlayer);
+
+        notficationWindow.photonView.TransferOwnership(currentPhotonPlayer);
 
         PhotonView[] minionTransfer = minionCards.GetComponentsInChildren<PhotonView>();
         for (int i = 0; i < minionTransfer.Length; i++)
