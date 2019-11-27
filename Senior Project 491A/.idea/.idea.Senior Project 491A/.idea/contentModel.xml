@@ -11,6 +11,10 @@
           <e p="Animation" t="Include">
             <e p="AnimationManager.cs" t="Include" />
           </e>
+          <e p="Audio" t="Include">
+            <e p="AudioClipContainer.cs" t="Include" />
+            <e p="AudioHandler.cs" t="Include" />
+          </e>
           <e p="Card" t="Include">
             <e p="Card Effects" t="Include">
               <e p="CardEffect.cs" t="Include" />

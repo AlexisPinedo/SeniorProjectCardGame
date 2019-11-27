@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b25d3e11518055a4c9ed616fce780621, type: 3}
-  m_Name: Minon 7
+  m_Name: Minion 7
   m_EditorClassIdentifier: 
   cardName: Minion 7
   cardDescription: 
