@@ -67,7 +67,7 @@ public class PlayZone : MonoBehaviourPunCallbacks
         
         if (cardInPlayZone)
         {
-            if (!Input.GetMouseButton(0) && !AnimationManager.SharedInstance.AnimationActive)
+            if (!Input.GetMouseButton(0) && !AnimationManager.SharedInstance.CardAnimActive)
             {
                 HandleCardPlayed();
             }

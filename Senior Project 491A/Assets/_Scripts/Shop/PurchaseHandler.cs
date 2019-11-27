@@ -64,7 +64,7 @@ public class PurchaseHandler : MonoBehaviourPunCallbacks
         if (TurnPlayerManager.Instance.TurnPlayer.Currency >= cardSelected.card.CardCost)
         {
             //StartCoroutine(TransformCardPosition(cardSelected, GraveyardPosition.position));
-            AnimationManager.SharedInstance.PlayAnimation(cardSelected, GraveyardPosition.position, 0.5f, storeOriginalPosition: true,shouldDestroy: true);
+            AnimationManager.SharedInstance.PlayAnimation(cardSelected, GraveyardPosition.position, 0.5f, storeOriginalPosition: true,shouldDestroy: true, shouldQueue: false);
 
             TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardSelected.card);
 
