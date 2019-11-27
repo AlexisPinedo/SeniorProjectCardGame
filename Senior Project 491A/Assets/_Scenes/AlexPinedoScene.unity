@@ -245,6 +245,7 @@ MonoBehaviour:
   - {fileID: 1526216803}
   startBattleButton: {fileID: 1526216801}
   endTurnButton: {fileID: 1385409946}
+  completionManager: {fileID: 225020782}
 --- !u!1 &159457802
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +571,7 @@ GameObject:
   - component: {fileID: 225020781}
   - component: {fileID: 225020780}
   - component: {fileID: 225020778}
+  - component: {fileID: 225020782}
   m_Layer: 0
   m_Name: AnimationManager
   m_TagString: Untagged
@@ -625,6 +627,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e23a0925adcf7e84c880752f396ea787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &225020782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225020777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef6d1242f9b607488f9f53a6928f60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &237950411
@@ -1398,11 +1412,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss Card Container
       objectReference: {fileID: 0}
-    - target: {fileID: -3257049812469847756, guid: ca9d4b072acf4164588d35a26d1bddd4,
-        type: 3}
-      propertyPath: viewIdField
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 522489324146028442, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1494,6 +1503,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 120162ca43090664c906d512e75f88b0,
         type: 2}
+    - target: {fileID: -3257049812469847756, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 522489323761172447, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_LocalPosition.y
