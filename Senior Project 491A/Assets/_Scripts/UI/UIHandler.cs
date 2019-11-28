@@ -59,4 +59,13 @@ public class UIHandler : MonoBehaviour
         EndTurnClicked?.Invoke();
         NetworkUIEventRaiser.Instance.SendEndTurnClickEvent();
     }
+    public void RasieEventEndTurnButtonOnClick()
+    {
+        EndTurnClicked?.Invoke();
+    }
+
+    public void RaiseEventStartBattleButtonOnClick()
+    {
+        StartBattleClicked?.Invoke();
+    }
 }
