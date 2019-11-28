@@ -145,19 +145,17 @@
           </e>
           <e p="Lobby" t="Include">
             <e p="MainMenu.cs" t="Include" />
-            <e p="MatchListing.cs" t="Include" />
             <e p="MultiplayerLobby.cs" t="Include" />
             <e p="NameScreen.cs" t="Include" />
             <e p="PhotonManager.cs" t="Include" />
             <e p="PhotonQuickManager.cs" t="Include" />
-            <e p="PlayerListing.cs" t="Include" />
-            <e p="PlayerListingsView.cs" t="Include" />
             <e p="RoomListing.cs" t="Include" />
             <e p="RoomListingsView.cs" t="Include" />
             <e p="RoomLobby.cs" t="Include" />
             <e p="RoomQuickLobby.cs" t="Include" />
             <e p="SinglePlayerMenu.cs" t="Include" />
           </e>
+          <e p="MatchList.cs" t="Include" />
           <e p="Networking" t="Include">
             <e p="CustomTypes.cs" t="Include" />
             <e p="GameBoard.cs" t="Include" />
@@ -235,6 +233,11 @@
                   </e>
                 </e>
               </e>
+            </e>
+          </e>
+          <e p="Plugins" t="Include">
+            <e p="Http" t="Include">
+              <e p="link.xml" t="Include" />
             </e>
           </e>
         </e>
