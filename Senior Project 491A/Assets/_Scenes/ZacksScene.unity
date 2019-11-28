@@ -530,6 +530,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 225020779}
+  - component: {fileID: 225020781}
+  - component: {fileID: 225020780}
   - component: {fileID: 225020778}
   m_Layer: 0
   m_Name: AnimationManager
@@ -547,7 +549,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 225020777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad969cfe6c927fa43bf91703032501fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 0783eed867ad297469a0f18764f70011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &225020779
@@ -564,6 +566,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &225020780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225020777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae53b7eea73f854483902b0e5d74211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &225020781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225020777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23a0925adcf7e84c880752f396ea787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &237950411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,11 +1321,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss Card Container
       objectReference: {fileID: 0}
-    - target: {fileID: -3257049812469847756, guid: ca9d4b072acf4164588d35a26d1bddd4,
-        type: 3}
-      propertyPath: viewIdField
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 522489324146028442, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1391,6 +1412,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 120162ca43090664c906d512e75f88b0,
         type: 2}
+    - target: {fileID: -3257049812469847756, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 522489323761172447, guid: ca9d4b072acf4164588d35a26d1bddd4,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -1678,6 +1704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopCards: {fileID: 301505297}
+  notficationWindow: {fileID: 0}
   minionCards: {fileID: 607427542}
   bossCard: {fileID: 589770440}
 --- !u!1 &659640897
@@ -3869,6 +3896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shop: {fileID: 897945988}
   shopBackground: {fileID: 254706622}
+  playZoneBackground: {fileID: 0}
 --- !u!1 &1376441903
 GameObject:
   m_ObjectHideFlags: 0
@@ -5342,6 +5370,11 @@ MonoBehaviour:
   transparentCover: {fileID: 1476875879}
   notificationText: {fileID: 695206413}
   NotificationView: {fileID: 928849050}
+  startBattleButton: {fileID: 0}
+  endTurnButton: {fileID: 0}
+  okButton: {fileID: 0}
+  currency: {fileID: 0}
+  power: {fileID: 0}
 --- !u!1 &1835007938
 GameObject:
   m_ObjectHideFlags: 0
