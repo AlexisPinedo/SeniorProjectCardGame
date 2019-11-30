@@ -62,7 +62,7 @@ public class NetworkUIEventRaiser : MonoBehaviour
         byte recievedCode = photonEvent.Code;
 
         if (recievedCode == NetworkOwnershipTransferManger.endTurnEvent)
-            UIHandler.Instance.RasieEventEndTurnButtonOnClick();
+            UIHandler.Instance.RaiseEventStartBattleButtonOnClick();
 
         if (recievedCode == NetworkOwnershipTransferManger.startBattleEvent)
             UIHandler.Instance.RaiseEventStartBattleButtonOnClick();

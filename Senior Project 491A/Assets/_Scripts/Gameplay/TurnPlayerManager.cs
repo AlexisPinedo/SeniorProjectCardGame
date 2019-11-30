@@ -75,11 +75,21 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
         }
 
         /// TROUBLE BREWING UP HERE
-        Heroes p1Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"];
-        Heroes p2Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"];
-        player1.SelectedHero = GetHero(p1Hero);
-        player2.SelectedHero = GetHero(p2Hero);
-
+        if (!PhotonNetwork.OfflineMode)
+        {
+            Heroes p1Hero;
+            Heroes p2Hero;
+            if (PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"] != null)
+            {
+                p1Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"];
+                player1.SelectedHero = GetHero(p1Hero);
+            }
+            if (PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"] != null)
+            {
+                p2Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"];
+                player2.SelectedHero = GetHero(p2Hero);
+            }
+        }
         HandleInitialTurn();
     }
 
@@ -88,6 +98,7 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
         turnPlayer = player1;
         player2GameObject.SetActive(false);
         turnPlayerGameObject = player1GameObject;
+        Debug.Log("Set turn player values");
         GameStarted?.Invoke();
     }
 

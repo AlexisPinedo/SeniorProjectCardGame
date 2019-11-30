@@ -18,4 +18,4 @@ MonoBehaviour:
   power: 0
   playerGraveyard: {fileID: 11400000, guid: c2895703f1ef9034382bd9c7ca2f8103, type: 2}
   rewardPile: []
-  _selectedHero: {fileID: 0}
+  _selectedHero: {fileID: 11400000, guid: 8560a61c11d6e124baf7b862814b7b9e, type: 2}
