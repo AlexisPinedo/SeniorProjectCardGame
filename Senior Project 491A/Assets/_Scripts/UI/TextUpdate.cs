@@ -80,12 +80,12 @@ public class TextUpdate : MonoBehaviourPunCallbacks
     [PunRPC]
     private void RPCUpdatePower(int power)
     {
-        playerPower.text = "Power: " + power;
+        playerPower.text = power.ToString();
     }
 
     [PunRPC]
     private void RPCUpdateCurrency(int currency)
     {
-        playerCurrency.text = "Currency " + currency;
+        playerCurrency.text = currency.ToString();
     }
 }

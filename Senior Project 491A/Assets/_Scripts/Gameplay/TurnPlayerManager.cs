@@ -6,6 +6,14 @@ using UnityEngine;
 
 public class TurnPlayerManager : MonoBehaviourPunCallbacks
 {
+    // Heroes!
+    [SerializeField] private Valor valor;
+    [SerializeField] private Vann van;
+    [SerializeField] private Vaughn vaughn;
+    [SerializeField] private Veda veda;
+    [SerializeField] private Vicky vicky;
+    [SerializeField] private Vito vito;
+
     // Player References
     [SerializeField]
     private Player player1, player2,turnPlayer;
@@ -65,7 +73,23 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
             
             Destroy(gameObject);
         }
-        
+
+        /// TROUBLE BREWING UP HERE
+        if (!PhotonNetwork.OfflineMode)
+        {
+            Heroes p1Hero;
+            Heroes p2Hero;
+            if (PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"] != null)
+            {
+                p1Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"];
+                player1.SelectedHero = GetHero(p1Hero);
+            }
+            if (PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"] != null)
+            {
+                p2Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"];
+                player2.SelectedHero = GetHero(p2Hero);
+            }
+        }
         HandleInitialTurn();
     }
 
@@ -74,11 +98,14 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
         turnPlayer = player1;
         player2GameObject.SetActive(false);
         turnPlayerGameObject = player1GameObject;
+        Debug.Log("Set turn player values");
         GameStarted?.Invoke();
     }
 
     public void ChangeActivePlayer()
     {
+        Debug.Log("Players changed..");
+
         if (player1GameObject != null && player2GameObject != null)
         {
             SwapPlayers();
@@ -115,6 +142,38 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
             NetworkOwnershipTransferManger.pendingPhotonPlayer = NetworkOwnershipTransferManger.photonPlayer2;
             turnPlayerGameObject = player1GameObject;
         }
+    }
+
+    private Hero GetHero(Heroes heroPicked)
+    {
+        Hero selectedHero = null;
+
+        switch(heroPicked)
+        {
+            case Heroes.Valor:
+                selectedHero = valor;
+                break;
+            case Heroes.Vann:
+                selectedHero = van;
+                break;
+            case Heroes.Vaughn:
+                selectedHero = vaughn;
+                break;
+            case Heroes.Veda:
+                selectedHero = veda;
+                break;
+            case Heroes.Vicky:
+                selectedHero = vicky;
+                break;
+            case Heroes.Vito:
+                selectedHero = vito;
+                break;
+            default:
+                selectedHero = null;
+                break;
+        }
+                     
+        return selectedHero;
     }
 
 }

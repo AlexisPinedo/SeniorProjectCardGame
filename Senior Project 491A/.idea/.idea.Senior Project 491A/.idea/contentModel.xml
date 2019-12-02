@@ -70,6 +70,7 @@
             <e p="Reward.cs" t="Include" />
             <e p="SelectedBoss.cs" t="Include" />
           </e>
+          <e p="EnemyDisplayManager.cs" t="Include" />
           <e p="Events" t="Include">
             <e p="Event_Base.cs" t="Include" />
             <e p="FreeShopSelectionEvent.cs" t="Include" />
@@ -148,14 +149,13 @@
             <e p="NameScreen.cs" t="Include" />
             <e p="PhotonManager.cs" t="Include" />
             <e p="PhotonQuickManager.cs" t="Include" />
-            <e p="PlayerListing.cs" t="Include" />
-            <e p="PlayerListingsView.cs" t="Include" />
             <e p="RoomListing.cs" t="Include" />
             <e p="RoomListingsView.cs" t="Include" />
             <e p="RoomLobby.cs" t="Include" />
             <e p="RoomQuickLobby.cs" t="Include" />
             <e p="SinglePlayerMenu.cs" t="Include" />
           </e>
+          <e p="MatchList.cs" t="Include" />
           <e p="Networking" t="Include">
             <e p="CustomTypes.cs" t="Include" />
             <e p="GameBoard.cs" t="Include" />

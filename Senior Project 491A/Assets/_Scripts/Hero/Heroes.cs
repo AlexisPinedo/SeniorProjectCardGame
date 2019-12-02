@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Holds a reference for which number the Hero selected is.
 /// </summary>
-public enum Heroes
+public enum Heroes : int
 {
     Valor = 0,
     Vann = 1,
