@@ -97,7 +97,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         SelectHero();
 
-
         Debug.Log("Keys: " + PhotonNetwork.CurrentRoom.CustomProperties.Count);
     }
 
@@ -184,77 +183,5 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void OnClick_HeroClicked(string heroName)
     {
         heroSelectedText.text = heroName;
-    }
-
-    /// <summary>
-    /// Confirms the Hero selection for each player.
-    /// </summary>
-    public void OnClick_ConfirmHeroSelection()
-    {
-        if (!PhotonNetwork.LocalPlayer.IsMasterClient)
-            if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerTwoHero"))
-                PhotonNetwork.CurrentRoom.CustomProperties.Remove("playerTwoHero");
-
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
-            if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerOneHero"))
-                PhotonNetwork.CurrentRoom.CustomProperties.Remove("playerOneHero");
-
-        if (heroSelectedText.text != "")
-        {
-            Debug.Log("\tCustom props: " + PhotonNetwork.CurrentRoom.CustomProperties);
-            Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
-
-            int heroNum = -1;
-
-
-            switch (heroSelectedText.text)
-            {
-                case "Valor":
-                    heroNum = 0;
-                    break;
-                case "Vann":
-                    heroNum = 1;
-                    break;
-                case "Vaughn":
-                    heroNum = 2;
-                    break;
-                case "Veda":
-                    heroNum = 3;
-                    break;
-                case "Vicky":
-                    heroNum = 4;
-                    break;
-                case "Vito":
-                    heroNum = 5;
-                    break;
-                default:
-                    heroNum = -1;
-                    break;
-            }
-
-            if (PhotonNetwork.IsMasterClient)
-            {
-                playerOneHero = (Heroes)heroNum;
-                roomProps.Add("playerOneHero", playerOneHero);
-                Debug.Log("Player 1 selected " + playerOneHero);
-            }
-            else
-            {
-                playerTwoHero = (Heroes)heroNum;
-                roomProps.Add("playerTwoHero", playerTwoHero);
-                Debug.Log("Player 2 selected " + playerTwoHero);
-            }
-
-            PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
-
-            heroPickerPopup.SetActive(false);
-
-        }
-        else
-        {
-            heroSelectedText.text = "Hero Selected: Pick A Hero";
-        }
-
-        roomLobbyCanvas.SetActive(true);
     }
 }
