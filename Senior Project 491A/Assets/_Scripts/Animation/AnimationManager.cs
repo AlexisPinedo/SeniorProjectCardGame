@@ -14,8 +14,9 @@ public class AnimationManager : MonoBehaviour
     
     Queue<AnimationObject> cardQueue = new Queue<AnimationObject>();
     Queue<AnimationObject> shopQueue = new Queue<AnimationObject>();
-    Queue<PlayerCardDisplay> playQueue = new Queue<PlayerCardDisplay>();
-
+    Queue<ScaledObject> playQueue = new Queue<ScaledObject>();
+    
+    //When a card is moving
     private bool cardAnimActive;
 
     public bool CardAnimActive
@@ -29,6 +30,8 @@ public class AnimationManager : MonoBehaviour
     {
         get => shopAnimActive;
     }
+
+    private bool scaleActive = false;
 
     void Awake()
     {
@@ -69,6 +72,7 @@ public class AnimationManager : MonoBehaviour
         if (cardQueue.Count == 0)
         {
             cardQueue.Enqueue(animObject);
+            Debug.Log("Starting addition of objects");
             StartCoroutine(HandleAnim());
         }
         else
@@ -98,6 +102,11 @@ public class AnimationManager : MonoBehaviour
     void EndShopEvent()
     {
         shopAnimActive = false;
+    }
+
+    void EndScaleEvent()
+    {
+        scaleActive = false;
     }
 
 
@@ -149,9 +158,42 @@ public class AnimationManager : MonoBehaviour
 
     }
 
+    void AddScaleObjectToQueue(ScaledObject scaledObject)
+    {
+        if (playQueue.Count == 0)
+        {
+            Debug.Log("Queued Here");
+            playQueue.Enqueue(scaledObject);
+            StartCoroutine(HandleScale());
+        }
+        else
+        {
+            Debug.Log("Queued");
+            playQueue.Enqueue(scaledObject);
+        }
+    }
+
     IEnumerator HandleScale()
     {
-        yield return null;
+        ScaledObject scaledObject = playQueue.Peek();
+
+        Debug.Log("Run again");
+
+        scaleActive = true;
+
+        StartCoroutine(ScaleCardSize(scaledObject.cardDisplay, scaledObject.shouldDestroy, scaledObject.cardTouch));
+
+        while (scaleActive)
+        {
+            yield return null;
+        }
+
+        playQueue.Dequeue();
+
+        if (playQueue.Count > 0)
+        {
+            StartCoroutine(HandleScale());
+        }
     }
 
     #endregion
@@ -161,7 +203,11 @@ public class AnimationManager : MonoBehaviour
         if (canScale)
         {
             var renderers = cardDisplay.GetComponentsInChildren<Renderer>();
-            renderers.ToList().ForEach(x => x.enabled = false);
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].enabled = false;
+            }
+            //renderers.ToList().ForEach(x => x.enabled = false);
             cardDisplay.transform.localScale -= new Vector3(cardDisplay.transform.localScale.x, cardDisplay.transform.localScale.y, cardDisplay.transform.localScale.z);
             Debug.Log("Card Display Shrank: " + cardDisplay.transform.localScale);
         }
@@ -201,12 +247,17 @@ public class AnimationManager : MonoBehaviour
         {
             if (canScale && shouldDestroy)
             {
-                StartCoroutine(ScaleCardSize(cardDisplay, true));
-                //ScaledObject scaledObject = new ScaledObject(cardDisplay, shouldDestroy: true);
+                //StartCoroutine(ScaleCardSize(cardDisplay, true));
+                ScaledObject scaledObject = new ScaledObject(cardDisplay, shouldDestroy: true);
+                AddScaleObjectToQueue(scaledObject);
+                EndCardEvent();
             }
             else if (canScale && !shouldDestroy)
             {
-                StartCoroutine(ScaleCardSize(cardDisplay, cardTouch: touch));
+                //StartCoroutine(ScaleCardSize(cardDisplay, cardTouch: touch));
+                ScaledObject scaledObject = new ScaledObject(cardDisplay, cardTouch: touch);
+                AddScaleObjectToQueue(scaledObject);
+                EndCardEvent();
             }
             else if (!canScale && shouldDestroy)
             {
@@ -229,15 +280,12 @@ public class AnimationManager : MonoBehaviour
         {
             Destroy(cardDisplay.gameObject);
         }
-        
-
 
     }
 
     // This is called through a boolean 
-    IEnumerator ScaleCardSize(PlayerCardDisplay cardDisplay, bool shouldDestroy = false, Collider2D cardTouch = null)
+    IEnumerator ScaleCardSize(PlayerCardDisplay cardDisplay, bool shouldDestroy, Collider2D cardTouch)
     {
-        playQueue.Enqueue(cardDisplay);
         
         var renderers = cardDisplay.GetComponentsInChildren<Renderer>();
         renderers.ToList().ForEach(x => x.enabled = true);
@@ -275,7 +323,7 @@ public class AnimationManager : MonoBehaviour
             Destroy(cardDisplay.gameObject);
         }
 
-        EndCardEvent();
+        EndScaleEvent();
     }
 
 }
@@ -298,14 +346,15 @@ class AnimationObject
         this.canScale = canScale;
         this.storeOriginalPosition = storeOriginalPosition;
         this.shouldDestroy = shouldDestroy;
+        this.shouldQueue = shouldQueue;
     }
 }
 
 class ScaledObject
 {
-    private PlayerCardDisplay cardDisplay;
-    private bool shouldDestroy;
-    private Collider2D cardTouch;
+    public PlayerCardDisplay cardDisplay;
+    public bool shouldDestroy;
+    public Collider2D cardTouch;
 
     public ScaledObject(PlayerCardDisplay cardDisplay, bool shouldDestroy = false, Collider2D cardTouch = null)
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,8 +25,7 @@ public class NameScreen : MonoBehaviour
         if (nameInp.text.Length >= minNameLen)
         {
             nameScreen.SetActive(false);
-            //photonManager.SetActive(true);
-            mainMenuScreen.SetActive(true);
+            photonManager.SetActive(true);
         }
     }
 

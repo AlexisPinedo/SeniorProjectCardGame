@@ -14,7 +14,6 @@ public class MultiplayerLobby : MonoBehaviour
     #region OnClick Methods
     public void OnClick_Back()
     {
-        Debug.Log("Going back to main screen");
         multiplayerLobby.SetActive(false);
         photonManager.SetActive(false);
         mainMenuScreen.SetActive(true);

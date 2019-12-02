@@ -16,22 +16,33 @@ public class RoomLobby : MonoBehaviourPunCallbacks
     [SerializeField]
     private Text buttonStatus;
 
-[SerializeField]
+    [SerializeField]
     private Button startMatchButton;
 
     private void Update()
     {
+        string playerOne = "";
+        string playerTwo = "";
+
         if (PhotonNetwork.IsMasterClient)
         {
             startMatchButton.gameObject.SetActive(true);
-            if(PhotonNetwork.CurrentRoom.PlayerCount != 2)
+
+            if (PhotonNetwork.CurrentRoom.PlayerCount != 2)
             {
                 startMatchButton.interactable = false;
             }
             else
             {
-                buttonStatus.text = "Start Match";
-                startMatchButton.interactable = true;
+                playerOne = PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"].ToString();
+                playerTwo = PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"].ToString();
+
+                if (playerOne != "" && playerTwo != "")
+                {
+                    buttonStatus.text = "Start Match";
+                    startMatchButton.interactable = true;
+                }
+
             }
         }
         else
@@ -45,7 +56,6 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsOpen = false;
         PhotonNetwork.CurrentRoom.IsVisible = false;
         PhotonNetwork.LoadLevel(1);
-        //PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
     }
 
     public void OnClick_LeaveRoom()

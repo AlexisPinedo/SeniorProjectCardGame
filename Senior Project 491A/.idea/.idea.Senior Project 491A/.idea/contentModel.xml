@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\pined\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\pined\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Senior Project 491A.-1760692213.00" t="ExcludeRecursive" />
-    <e p="C:\Users\pined\Documents\GitHub\SeniorProjectCardGame\Senior Project 491A" t="IncludeRecursive">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Scripts" t="Include">
           <e p="Animation" t="Include">
+            <e p="AnimationCompletionManager.cs" t="Include" />
+            <e p="AnimationManagementBase.cs" t="Include" />
             <e p="AnimationManager.cs" t="Include" />
+            <e p="AnimationObjectBase.cs" t="Include" />
+            <e p="PlayerAnimationManager.cs" t="Include" />
+            <e p="PlayZoneAnimationManager.cs" t="Include" />
+            <e p="ScaleAnimationObject.cs" t="Include" />
+            <e p="ShopAnimationManager.cs" t="Include" />
+            <e p="TransformAnimationObject.cs" t="Include" />
           </e>
           <e p="Audio" t="Include">
             <e p="AudioClipContainer.cs" t="Include" />
@@ -62,6 +68,7 @@
             <e p="Reward.cs" t="Include" />
             <e p="SelectedBoss.cs" t="Include" />
           </e>
+          <e p="EnemyDisplayManager.cs" t="Include" />
           <e p="Events" t="Include">
             <e p="Event_Base.cs" t="Include" />
             <e p="FreeShopSelectionEvent.cs" t="Include" />
@@ -140,14 +147,13 @@
             <e p="NameScreen.cs" t="Include" />
             <e p="PhotonManager.cs" t="Include" />
             <e p="PhotonQuickManager.cs" t="Include" />
-            <e p="PlayerListing.cs" t="Include" />
-            <e p="PlayerListingsView.cs" t="Include" />
             <e p="RoomListing.cs" t="Include" />
             <e p="RoomListingsView.cs" t="Include" />
             <e p="RoomLobby.cs" t="Include" />
             <e p="RoomQuickLobby.cs" t="Include" />
             <e p="SinglePlayerMenu.cs" t="Include" />
           </e>
+          <e p="MatchList.cs" t="Include" />
           <e p="Networking" t="Include">
             <e p="CustomTypes.cs" t="Include" />
             <e p="GameBoard.cs" t="Include" />
@@ -492,7 +498,9 @@
       <e p="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj" t="IncludeRecursive" />
       <e p="PhotonWebSocket.csproj" t="IncludeRecursive" />
       <e p="Senior Project 491A.sln" t="IncludeFlat" />
-      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Temp/bin" t="ExcludeRecursive" />
     </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_Senior Project 491A.30232847.00" t="ExcludeRecursive" />
   </component>
 </project>
