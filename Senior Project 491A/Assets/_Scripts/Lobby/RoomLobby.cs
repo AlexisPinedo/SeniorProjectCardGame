@@ -41,18 +41,14 @@ public class RoomLobby : MonoBehaviourPunCallbacks
             if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerTwoHero"))
             {
                 playerTwo = (int)PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"];
-                AssignPlayerTwo();
+                AssignPlayerTwo(true);
 
                 buttonStatusText.text = "Start Match";
                 startMatchButton.interactable = true;
             }
-            else
-            {
-                Debug.Log("Pending hero 2 key");
-            }
 
             playerOne = (int)PhotonManager.playerOneHero;
-            AssignPlayerOne();
+            AssignPlayerOne(true);
             startMatchButton.gameObject.SetActive(true);
 
         }
@@ -61,119 +57,109 @@ public class RoomLobby : MonoBehaviourPunCallbacks
             if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerOneHero"))
             {
                 playerOne = (int)PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"];
-                AssignPlayerOne();
-            }
-            else
-            {
-                Debug.Log("Pending hero 1 key");
+                AssignPlayerOne(true);
             }
 
             playerTwo = (int)PhotonManager.playerTwoHero;
-            AssignPlayerTwo();
+            AssignPlayerTwo(true);
 
             startMatchButton.interactable = false;
         }
-
-        Debug.Log("Keys: " + PhotonNetwork.CurrentRoom.CustomProperties.Count);
     }
 
    
-    private void AssignPlayerOne()
+    private void AssignPlayerOne(bool Switch)
     {
-        if(playerOne < 0 || assignedOne)
-            return;
+        //if(playerOne < 0 || assignedOne)
+        //    return;
 
-        Debug.Log("Assigned P1");
-
-        unknownIconP1.gameObject.SetActive(false);
+        unknownIconP1.gameObject.SetActive(!Switch);
 
         if (playerOne == 0)
         {
             //Valor
-            valorIconP1.gameObject.SetActive(true);
+            valorIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Valor";
         }
         else if (playerOne == 1)
         {
             //Vann
-            vannIconP1.gameObject.SetActive(true);
+            vannIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Vann";
         }
         else if (playerOne == 2)
         {
             //Vaughn
-            vaughnIconP1.gameObject.SetActive(true);
+            vaughnIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Vaughn";
         }
         else if (playerOne == 3)
         {
             //Veda
-            vedaIconP1.gameObject.SetActive(true);
+            vedaIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Veda";
         }
         else if (playerOne == 4)
         {
             //Vicky
-            vickyIconP1.gameObject.SetActive(true);
+            vickyIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Vicky";
         }
         else if (playerOne == 5)
         {
             //Vito
-            vitoIconP1.gameObject.SetActive(true);
+            vitoIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Vito";
         }
 
-		assignedOne = true;
+		assignedOne = Switch;
     }
 
-    private void AssignPlayerTwo()
+    private void AssignPlayerTwo(bool Switch)
     {
-        if (playerTwo < 0  || assignedTwo)
-            return;
+        //if (playerTwo < 0  || assignedTwo)
+        //    return;
 
-        Debug.Log("Assigned P2");
-
-        unknownIconP2.gameObject.SetActive(false);
+        unknownIconP2.gameObject.SetActive(!Switch);
 
         if (playerTwo == 0)
         {
             //Valor
-            valorIconP2.gameObject.SetActive(true);
+            valorIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Valor";
         }
         else if (playerTwo == 1)
         {
             //Vann
-            vannIconP2.gameObject.SetActive(true);
+            vannIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Vann";
         }
         else if (playerTwo == 2)
         {
             //Vaughn
-            vaughnIconP2.gameObject.SetActive(true);
+            vaughnIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Vaughn";
         }
         else if (playerTwo == 3)
         {
             //Veda
-            vedaIconP2.gameObject.SetActive(true);
+            vedaIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Veda";
         }
         else if (playerTwo == 4)
         {
             //Vicky
-            vickyIconP2.gameObject.SetActive(true);
+            vickyIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Vicky";
         }
         else if (playerTwo == 5)
         {
             //Vito
-            vitoIconP2.gameObject.SetActive(true);
+            vitoIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Vito";
         }
 
-		assignedTwo = true;
+		assignedTwo = Switch;
     }
 
 
@@ -219,59 +205,31 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         Debug.Log("Adding player...");
     }
 
-    public override void OnPlayerLeftRoom(Photon.Realtime.Player leftPlayer)
+    public void OkClick_ForceEnterLobby()
     {
-        mainLobbyCanvas.SetActive(true);
-        roomLobbyCanvas.SetActive(false);
         PhotonNetwork.LeaveRoom();
-        //string roomName = PhotonNetwork.CurrentRoom.Name;
+        mainLobbyCanvas.SetActive(true);
+        NotificationWindowEvent.Instance.NotificationView.gameObject.SetActive(false);
+        NotificationWindowEvent.Instance.transparentCover.gameObject.SetActive(false);
+    }
 
-        //PhotonNetwork.LeaveRoom();
+    private void ResetRoom()
+    {
+        AssignPlayerOne(false);
+        AssignPlayerTwo(false);
+        playerOne = -1;
+        playerTwo = -1;
+        heroP1Text.text = "?";
+        heroP2Text.text = "?";
+        nickNameP1Text.text = "";
+        nickNameP2Text.text = "";
+    }
 
-        //System.Random randomNumber = new System.Random();
-        //int randomInt = randomNumber.Next();
-
-        //RoomOptions options = new RoomOptions
-        //{
-        //    IsOpen = true,
-        //    IsVisible = true,
-        //    MaxPlayers = 2,
-        //    CustomRoomProperties = new Hashtable() { { "deckRandomValue", randomInt } }
-        //};
-
-        //PhotonNetwork.JoinOrCreateRoom(roomName, options, null);
-
-        //Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
-
-        //Heroes heroSelection;
-
-        //if (leftPlayer.IsMasterClient)
-        //{
-        //    heroSelection = (Heroes)playerOne;
-        //}
-        //else
-        //{
-        //    heroSelection = (Heroes)playerTwo;
-        //}
-
-        //roomProps.Add("playerOneHero", heroSelection);
-        //if (leftPlayer.IsMasterClient)
-        //{
-        //    unknownIconP1.gameObject.SetActive(true);
-        //    nickNameP1Text.text = "";
-        //    heroP1Text.text = "?";
-        //    playerOne = -1;
-        //    PhotonNetwork.CurrentRoom.CustomProperties.Remove("playerOneHero");
-
-        //}
-        //else
-        //{
-        //    unknownIconP2.gameObject.SetActive(true);
-        //    nickNameP2Text.text = "";
-        //    heroP2Text.text = "?";
-        //    playerTwo = -1;
-        //    PhotonNetwork.CurrentRoom.CustomProperties.Remove("playerTwoHero");
-        //}
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+    {
+        roomLobbyCanvas.SetActive(false);
+        ResetRoom();
+        NotificationWindowEvent.Instance.EnableNotificationWindow("A player has left matchmaking. \n Returning to Lobby.");
     }
 
     public void OnClick_StartMatch()
@@ -284,14 +242,9 @@ public class RoomLobby : MonoBehaviourPunCallbacks
     public void OnClick_LeaveRoom()
     {
         buttonStatusText.text = "Waiting...";
-        mainLobbyCanvas.SetActive(true);
+        ResetRoom();
         roomLobbyCanvas.SetActive(false);
+        mainLobbyCanvas.SetActive(true);
         PhotonNetwork.LeaveRoom(true);
-
-        //if(PhotonNetwork.LocalPlayer.IsMasterClient)
-        //    PhotonNetwork.CurrentRoom.CustomProperties.Remove("playerOneHero");
-        //else
-        //    PhotonNetwork.CurrentRoom.CustomProperties.Remove("playerTwoHero");
-
     }
 }

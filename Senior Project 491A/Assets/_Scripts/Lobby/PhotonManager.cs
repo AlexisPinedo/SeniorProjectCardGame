@@ -69,7 +69,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         photonStatus.text = "Connected to master.";
-
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         photonStatus.text = "";
     }
@@ -92,12 +91,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         roomName.text = PhotonNetwork.CurrentRoom.Name;
         mainLobbyCanvas.SetActive(false);
-
         Debug.Log("\t" + PhotonNetwork.LocalPlayer.NickName + " has joined the room.\n\tSelecting a hero now!");
-
         SelectHero();
-
-
         Debug.Log("Keys: " + PhotonNetwork.CurrentRoom.CustomProperties.Count);
     }
 
