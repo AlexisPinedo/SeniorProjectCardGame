@@ -16,11 +16,11 @@ public class NotificationWindowEvent : Event_Base
     }
 
     [SerializeField]
-    private Image transparentCover;
+    public Image transparentCover;
     [SerializeField]
     private TextMeshProUGUI notificationText;
     [SerializeField] 
-    private Image NotificationView;
+    public Image NotificationView;
     [SerializeField]
     private Button startBattleButton, endTurnButton, okButton;
     //[SerializeField]
@@ -63,7 +63,8 @@ public class NotificationWindowEvent : Event_Base
     public override void EventState()
     {
         EnableComponents();
-        ButtonInputManager.Instance.DisableButtonsInList();
+        if (!PhotonNetwork.CurrentRoom.IsOpen)
+            ButtonInputManager.Instance.DisableButtonsInList();
         notificationText.text = messageQueue.Dequeue();
 
         if (notificationText.text.Contains("may"))
@@ -133,6 +134,9 @@ public class NotificationWindowEvent : Event_Base
         transparentCover.gameObject.SetActive(true);
         NotificationView.gameObject.SetActive(true);
 
+
+        if (startBattleButton == null)
+            return;
         startBattleButton.gameObject.SetActive(false);
         endTurnButton.gameObject.SetActive(false);
     }
@@ -141,6 +145,9 @@ public class NotificationWindowEvent : Event_Base
     {
         transparentCover.gameObject.SetActive(false);
         NotificationView.gameObject.SetActive(false);
+
+        if (startBattleButton == null)
+            return;
 
         startBattleButton.gameObject.SetActive(true);
         endTurnButton.gameObject.SetActive(true);
