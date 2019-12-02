@@ -28,6 +28,7 @@ public class AuthManager : MonoBehaviour
     private DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavailableOther;
 
     private bool signUp;
+    private bool authenticationFlow = false;
 
     //private GoogleSignInConfiguration googleConfiguration;
 
@@ -125,6 +126,7 @@ public class AuthManager : MonoBehaviour
             if (!signedIn && user != null)
             {
                 Debug.Log("Signed out " + user.UserId);
+                SceneManager.LoadScene("SignIn");
             }
 
             user = auth.CurrentUser;
@@ -132,7 +134,8 @@ public class AuthManager : MonoBehaviour
             {
                 // Do something if the user returns 
                 // Load Home Screen
-                SceneManager.LoadScene("Lobby");
+                if(!authenticationFlow)
+                    SceneManager.LoadScene("Lobby");
             }
         }
     }
@@ -347,6 +350,7 @@ public class AuthManager : MonoBehaviour
 
     public void Logout()
     {
+        authenticationFlow = false;
         auth.SignOut();
 
         // if current user is a google user

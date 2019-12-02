@@ -37,6 +37,7 @@ public abstract class Forms : MonoBehaviour
                 DateTime createdAt = DateTime.Now;
                 AuthPlayer player = new AuthPlayer(newPlayer.Email, createdAt);
 
+                Debug.Log("Creating new player");
                 DatabaseManager.sharedInstance.CreateNewPlayer(player, newPlayer.UserId);
 
                 SceneManager.LoadSceneAsync("Lobby");
