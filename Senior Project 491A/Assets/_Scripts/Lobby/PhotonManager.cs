@@ -82,6 +82,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("\t" + PhotonNetwork.LocalPlayer.NickName + " has joined the lobby");
         welcomeUser.text = "Welcome, " + PhotonNetwork.LocalPlayer.NickName;
         mainLobbyCanvas.SetActive(true);
+        createRoomButton.SetActive(true);
     }
 
     /// <summary>
