@@ -8,7 +8,6 @@ public class TurnPlayerHeroManager : MonoBehaviour
 {
     [SerializeField]
     private Hero activeTurnHero;
-
     public Hero ActiveTurnHero
     {
         get => activeTurnHero;
