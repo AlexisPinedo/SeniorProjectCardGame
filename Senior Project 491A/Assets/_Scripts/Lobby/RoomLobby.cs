@@ -27,7 +27,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
     private Button startMatchButton;
 
     int playerOne, playerTwo = -1;
-	bool assignedOne, assignedTwo = false;
+    bool assignedOne, assignedTwo = false;
 
     private void Update()
     {
@@ -56,7 +56,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
             startMatchButton.gameObject.SetActive(true);
 
         }
-        else if(!PhotonNetwork.LocalPlayer.IsMasterClient)
+        else if (!PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerOneHero"))
             {
@@ -77,10 +77,10 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         Debug.Log("Keys: " + PhotonNetwork.CurrentRoom.CustomProperties.Count);
     }
 
-   
+
     private void AssignPlayerOne()
     {
-        if(playerOne < 0 || assignedOne)
+        if (playerOne < 0 || assignedOne)
             return;
 
         Debug.Log("Assigned P1");
@@ -124,12 +124,12 @@ public class RoomLobby : MonoBehaviourPunCallbacks
             heroP1Text.text = "Vito";
         }
 
-		assignedOne = true;
+        assignedOne = true;
     }
 
     private void AssignPlayerTwo()
     {
-        if (playerTwo < 0  || assignedTwo)
+        if (playerTwo < 0 || assignedTwo)
             return;
 
         Debug.Log("Assigned P2");
@@ -173,7 +173,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
             heroP2Text.text = "Vito";
         }
 
-		assignedTwo = true;
+        assignedTwo = true;
     }
 
 

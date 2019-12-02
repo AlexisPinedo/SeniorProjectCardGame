@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SinglePlayerMenu : MonoBehaviour
 {
     [SerializeField]
-    private GameObject mainMenuScreen, singlePlayerScreen;
+    private GameObject mainMenuScreen, singlePlayerScreen, heroPickerCanvas;
 
     [SerializeField]
     private GameObject backBtn;
@@ -15,9 +15,10 @@ public class SinglePlayerMenu : MonoBehaviour
     public void OnClick_Back()
     {
         Debug.Log("Going back to main menu");
+
         singlePlayerScreen.SetActive(false);
+        heroPickerCanvas.SetActive(false);
         mainMenuScreen.SetActive(true);
     }
     #endregion
-
 }
