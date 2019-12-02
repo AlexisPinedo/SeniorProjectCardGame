@@ -121,7 +121,7 @@ public class ShopContainer : PlayerCardContainer
 
     private void DisplayNewCard(PlayerCardDisplay cardBought)
     {
-        Vector3 freeSpot = cardBought.gameObject.transform.position;
+        Vector3 freeSpot = cardBought.GetComponent<CardZoomer>().OriginalPosition;
 
         containerCardGrid.freeLocations.Push(freeSpot);
         HandleDisplayOfACard();
