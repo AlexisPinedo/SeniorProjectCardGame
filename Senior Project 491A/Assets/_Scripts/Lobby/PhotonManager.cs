@@ -46,11 +46,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         photonStatus.text = "Establishing conenction with server";
 
-        if (nameInp.text == null || nameInp.text == "")
-        {
-            nameInp.text = "Debugging Offline";
-        }
-        PhotonNetwork.NickName = nameInp.text;
+        //if (nameInp.text == null || nameInp.text == "")
+        //{
+        //    nameInp.text = "Debugging Offline";
+        //}
+        PhotonNetwork.NickName = AuthManager.sharedInstance.GetCurrentUser().UserId;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
 

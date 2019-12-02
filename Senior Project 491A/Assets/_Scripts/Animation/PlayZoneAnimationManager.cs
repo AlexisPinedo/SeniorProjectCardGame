@@ -11,8 +11,8 @@ public class PlayZoneAnimationManager : AnimationManagementBase<ScaleAnimationOb
     {
         get => _instance;
     }
-   
 
+    private List<GameObject> cardsToDestroy = new List<GameObject>();
 
     void Awake()
     {
@@ -105,12 +105,18 @@ public class PlayZoneAnimationManager : AnimationManagementBase<ScaleAnimationOb
         }
         else
         {
-            Destroy(cardDisplay.gameObject);
+            //Destroy(cardDisplay.gameObject);
+            cardsToDestroy.Add(cardDisplay.gameObject);
             cardDisplay.gameObject.SetActive(false);
-            
         }
 
         EndAnimEvent();
+    }
+
+    public void DestroyCards()
+    {
+        cardsToDestroy.ForEach(x => Destroy(x));
+        cardsToDestroy.Clear();
     }
 
   

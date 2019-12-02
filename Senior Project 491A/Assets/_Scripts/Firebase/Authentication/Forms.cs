@@ -30,23 +30,24 @@ public abstract class Forms : MonoBehaviour
         }
         else if (task.IsCompleted)
         {
-            if (operation == "email_sign_up" || operation == "fb_sign_up" || operation == "google_sign_up" || operation == "anon_login")
+            if (operation == "sign_up")
             {
                 Firebase.Auth.FirebaseUser newPlayer = task.Result;
 
-                AuthPlayer player = new AuthPlayer(newPlayer.Email);
+                DateTime createdAt = DateTime.Now;
+                AuthPlayer player = new AuthPlayer(newPlayer.Email, createdAt);
 
                 DatabaseManager.sharedInstance.CreateNewPlayer(player, newPlayer.UserId);
 
-                SceneManager.LoadSceneAsync("WinLoss");
+                SceneManager.LoadSceneAsync("Lobby");
             }
-            else if (operation == "email_login" || operation == "fb_login" || operation == "google_login")
+            else if (operation == "login")
             {
                 FirebaseUser user = task.Result;
 
                 yield return new WaitForSeconds(1.0f);
 
-                SceneManager.LoadSceneAsync("WinLoss");
+                SceneManager.LoadSceneAsync("Lobby");
             }
         }
     }

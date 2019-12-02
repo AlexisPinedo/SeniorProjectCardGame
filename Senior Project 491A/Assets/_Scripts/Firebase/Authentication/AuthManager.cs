@@ -132,6 +132,7 @@ public class AuthManager : MonoBehaviour
             {
                 // Do something if the user returns 
                 // Load Home Screen
+                SceneManager.LoadScene("Lobby");
             }
         }
     }
@@ -146,7 +147,7 @@ public class AuthManager : MonoBehaviour
         // pass user info to Firebase Project 
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
         {
-            StartCoroutine(authCallback(task, "email_sign_up"));
+            StartCoroutine(authCallback(task, "sign_up"));
         });
     }
 
@@ -156,7 +157,7 @@ public class AuthManager : MonoBehaviour
         // pass user info to Firebase project to look up
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
         {
-            StartCoroutine(authCallback(task, "email_login"));
+            StartCoroutine(authCallback(task, "login"));
         });
     }
 
