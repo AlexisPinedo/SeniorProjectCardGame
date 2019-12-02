@@ -29,7 +29,7 @@ public class AuthManager : MonoBehaviour
 
     private bool signUp;
 
-    private GoogleSignInConfiguration googleConfiguration;
+    //private GoogleSignInConfiguration googleConfiguration;
 
     void Awake()
     {
@@ -62,22 +62,22 @@ public class AuthManager : MonoBehaviour
             }
         });
 
-        // FACEBOOK Initialization
-        if (!FB.IsInitialized)
-        {
-            FB.Init(InitCallBack, OnHideUnity);
-        }
-        else
-        {
-            FB.ActivateApp();
-        }
+        //// FACEBOOK Initialization
+        //if (!FB.IsInitialized)
+        //{
+        //    FB.Init(InitCallBack, OnHideUnity);
+        //}
+        //else
+        //{
+        //    FB.ActivateApp();
+        //}
 
-        // GOOGLE Configuration
-        googleConfiguration = new GoogleSignInConfiguration()
-        {
-            RequestIdToken = true,
-            WebClientId = "831562947652-s4r2v05kav6nde54nf02amchu3udcsaf.apps.googleusercontent.com"
-        };
+        //// GOOGLE Configuration
+        //googleConfiguration = new GoogleSignInConfiguration()
+        //{
+        //    RequestIdToken = true,
+        //    WebClientId = "831562947652-s4r2v05kav6nde54nf02amchu3udcsaf.apps.googleusercontent.com"
+        //};
     }
 
 
@@ -131,7 +131,7 @@ public class AuthManager : MonoBehaviour
             if (signedIn)
             {
                 // Do something if the user returns 
-                SceneManager.LoadScene("WinLoss");
+                // Load Home Screen
             }
         }
     }
@@ -165,65 +165,65 @@ public class AuthManager : MonoBehaviour
     #region FACEBOOK AUTHENTICATION
 
 
-    public void FBLogin(string operation)
-    {
-        if (operation == "fb_sign_up")
-            signUp = true;
+    //public void FBLogin(string operation)
+    //{
+    //    if (operation == "fb_sign_up")
+    //        signUp = true;
 
-        List<string> permissions = new List<string>
-        {
-            "public_profile",
-            "email"
-        };
+    //    List<string> permissions = new List<string>
+    //    {
+    //        "public_profile",
+    //        "email"
+    //    };
 
-        FB.LogInWithReadPermissions(permissions, FBAuthCallback);
-    }
+    //    FB.LogInWithReadPermissions(permissions, FBAuthCallback);
+    //}
 
-    void FBAuthCallback(ILoginResult result)
-    {
-        if (FB.IsLoggedIn)
-        {
-            // Creates Access Token
-            var aToken = Facebook.Unity.AccessToken.CurrentAccessToken;
+    //void FBAuthCallback(ILoginResult result)
+    //{
+    //    if (FB.IsLoggedIn)
+    //    {
+    //        // Creates Access Token
+    //        var aToken = Facebook.Unity.AccessToken.CurrentAccessToken;
 
-            // print current Access Token's User ID
-            Debug.Log("FB USER ID: " + aToken.UserId);
+    //        // print current Access Token's User ID
+    //        Debug.Log("FB USER ID: " + aToken.UserId);
 
-            // Print the granted permissions for the access token
-            foreach (string perm in aToken.Permissions)
-            {
-                Debug.Log(perm);
-            }
+    //        // Print the granted permissions for the access token
+    //        foreach (string perm in aToken.Permissions)
+    //        {
+    //            Debug.Log(perm);
+    //        }
 
-            SignInUserWithFB(aToken);
-        }
-        else
-        {
-            Debug.Log("User cancelled login");
-        }
-    }
+    //        SignInUserWithFB(aToken);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("User cancelled login");
+    //    }
+    //}
 
-    // Generate Firebase Credentials with the created access token
-    void SignInUserWithFB(AccessToken aToken)
-    {
-        Credential credential =
-            FacebookAuthProvider.GetCredential(aToken.TokenString);
+    //// Generate Firebase Credentials with the created access token
+    //void SignInUserWithFB(AccessToken aToken)
+    //{
+    //    Credential credential =
+    //        FacebookAuthProvider.GetCredential(aToken.TokenString);
 
-        auth.SignInWithCredentialAsync(credential).ContinueWith(task =>
-        {
-            if (task.IsFaulted || task.IsCanceled)
-            {
-                auth.SignOut();
-            }
-            else
-            {
-                FirebaseUser newUser = task.Result;
+    //    auth.SignInWithCredentialAsync(credential).ContinueWith(task =>
+    //    {
+    //        if (task.IsFaulted || task.IsCanceled)
+    //        {
+    //            auth.SignOut();
+    //        }
+    //        else
+    //        {
+    //            FirebaseUser newUser = task.Result;
 
-                //StartCoroutine(ContinueFBAuth(task));
-                StartCoroutine(signUp ? authCallback(task, "facebook_sign_up") : authCallback(task, "facebook_login"));
-            }
-        });
-    }
+    //            //StartCoroutine(ContinueFBAuth(task));
+    //            StartCoroutine(signUp ? authCallback(task, "facebook_sign_up") : authCallback(task, "facebook_login"));
+    //        }
+    //    });
+    //}
 
     /*
     // Lookup Database for whether or not the user already exists
@@ -243,64 +243,64 @@ public class AuthManager : MonoBehaviour
 
     #region GOOGLE AUTHENTICATION
 
-    //GOOGLE Login 
-    public void GoogleLogin(string operation)
-    {
-        GoogleSignIn.Configuration = googleConfiguration;
+    ////GOOGLE Login 
+    //public void GoogleLogin(string operation)
+    //{
+    //    GoogleSignIn.Configuration = googleConfiguration;
 
-        Task<GoogleSignInUser> signIn = GoogleSignIn.DefaultInstance.SignIn();
+    //    Task<GoogleSignInUser> signIn = GoogleSignIn.DefaultInstance.SignIn();
 
-        TaskCompletionSource<FirebaseUser> signInCompleted = new TaskCompletionSource<FirebaseUser>();
+    //    TaskCompletionSource<FirebaseUser> signInCompleted = new TaskCompletionSource<FirebaseUser>();
 
-        // Handles the users sign in and generates credentials
-        signIn.ContinueWith(task =>
-        {
-            if (task.IsCanceled)
-            {
-                signInCompleted.SetCanceled();
-            }
-            else if (task.IsFaulted)
-            {
-                signInCompleted.SetException(task.Exception);
-            }
-            else if (task.IsCompleted)
-            {
-                Credential credential =
-                    GoogleAuthProvider.GetCredential(((Task<GoogleSignInUser>)task).Result.IdToken, null);
+    //    // Handles the users sign in and generates credentials
+    //    signIn.ContinueWith(task =>
+    //    {
+    //        if (task.IsCanceled)
+    //        {
+    //            signInCompleted.SetCanceled();
+    //        }
+    //        else if (task.IsFaulted)
+    //        {
+    //            signInCompleted.SetException(task.Exception);
+    //        }
+    //        else if (task.IsCompleted)
+    //        {
+    //            Credential credential =
+    //                GoogleAuthProvider.GetCredential(((Task<GoogleSignInUser>)task).Result.IdToken, null);
 
-                auth.SignInWithCredentialAsync(credential).ContinueWith(authTask =>
-                {
-                    if (authTask.IsCanceled)
-                    {
-                        signInCompleted.SetCanceled();
-                    }
-                    else if (authTask.IsFaulted)
-                    {
-                        signInCompleted.SetException(authTask.Exception);
-                    }
-                    else
-                    {
-                        signInCompleted.SetResult(((Task<FirebaseUser>)authTask).Result);
-                        FirebaseUser newUser = authTask.Result;
+    //            auth.SignInWithCredentialAsync(credential).ContinueWith(authTask =>
+    //            {
+    //                if (authTask.IsCanceled)
+    //                {
+    //                    signInCompleted.SetCanceled();
+    //                }
+    //                else if (authTask.IsFaulted)
+    //                {
+    //                    signInCompleted.SetException(authTask.Exception);
+    //                }
+    //                else
+    //                {
+    //                    signInCompleted.SetResult(((Task<FirebaseUser>)authTask).Result);
+    //                    FirebaseUser newUser = authTask.Result;
 
-                        // TODO: Check Realtime Database for whether or not the player exists
+    //                    // TODO: Check Realtime Database for whether or not the player exists
 
-                        StartCoroutine(ContinueGoogleAuth(authTask));
-                    }
-                });
-            }
-        });
-    }
+    //                    StartCoroutine(ContinueGoogleAuth(authTask));
+    //                }
+    //            });
+    //        }
+    //    });
+    //}
 
-    IEnumerator ContinueGoogleAuth(Task<FirebaseUser> task)
-    {
-        bool exists = false;
-        yield return new WaitForSeconds(0.5f);
+    //IEnumerator ContinueGoogleAuth(Task<FirebaseUser> task)
+    //{
+    //    bool exists = false;
+    //    yield return new WaitForSeconds(0.5f);
 
-        // TODO: Set Exists based on value retrieved from the database
+    //    // TODO: Set Exists based on value retrieved from the database
 
-        StartCoroutine(exists ? authCallback(task, "google_login") : authCallback(task, "google_sign_up"));
-    }
+    //    StartCoroutine(exists ? authCallback(task, "google_login") : authCallback(task, "google_sign_up"));
+    //}
 
     #endregion
 

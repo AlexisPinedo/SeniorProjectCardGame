@@ -7,11 +7,12 @@ using Firebase.Auth;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public abstract class Forms : MonoBehaviour
 {
-    [SerializeField] protected InputField emailInput;
-    [SerializeField] protected InputField passwordInput;
+    [SerializeField] protected TMP_InputField emailInput;
+    [SerializeField] protected TMP_InputField passwordInput;
 
     protected bool emailAuthorized;
     protected bool isFilled;
