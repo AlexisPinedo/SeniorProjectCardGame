@@ -15,16 +15,15 @@ MonoBehaviour:
   cardName: Mermaid
   cardDescription: 
   cardEffect: {fileID: 0}
-  cardEffectDisplay: Both players trade 1 card in their hand with the shop.
-  cardArtwork: {fileID: 21300000, guid: b78a7c1fe7354fd408239c8db51d66dd, type: 3}
+  cardEffectDisplay: 
+  cardArtwork: {fileID: 21300000, guid: 971be168ee948487584deef38122b626, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 6387363e07041074abe6c4d48fa060bd, type: 3}
   cardType: 0
   nameBoxArt: {fileID: 21300000, guid: a1094f3d2553809458cac0db029350d9, type: 3}
   cardEffectBoxArt: {fileID: 21300000, guid: 12838dea9b74a584e84426d95d9fdc95, type: 3}
   borderArt: {fileID: 21300000, guid: dce398384f898d447b6c70244523c5a5, type: 3}
-  _cardCost: 4
-  _cardAttack: 3
-  _cardCurrency: 3
-  CardEffectRequirement: 00000000
-  cardCostsIcons:
-  - {fileID: 21300000, guid: 6387363e07041074abe6c4d48fa060bd, type: 3}
+  _cardCost: 6
+  _cardAttack: 6
+  _cardCurrency: 5
+  CardEffectRequirement: 
+  cardCostsIcons: []

@@ -115,7 +115,7 @@ public class PlayerAnimationManager : AnimationManagementBase<TransformAnimation
 
         if (storeOriginalPosition)
         {
-            cardDisplay.GetComponent<CardZoomer>().OriginalPosition = destination;
+            cardDisplay.GetComponent<CardZoomer>().originalPosition = destination;
             cardDisplay.GetComponent<DragCard>().OriginalPosition = destination;
         }
 
@@ -144,7 +144,5 @@ public class PlayerAnimationManager : AnimationManagementBase<TransformAnimation
             touch.enabled = true;
             EndAnimEvent();
         }
-
     }
-
 }
