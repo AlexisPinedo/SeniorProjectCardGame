@@ -27,7 +27,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     /// <summary>
     /// Reference for the Player's Hero
     /// </summary>
-    Heroes playerOneHero, playerTwoHero;
+    public static Heroes playerOneHero, playerTwoHero;
 
     private static System.Random randNum = new System.Random();
 
@@ -96,6 +96,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("\t" + PhotonNetwork.LocalPlayer.NickName + " has joined the room.\n\tSelecting a hero now!");
 
         SelectHero();
+
+
+        Debug.Log("Keys: " + PhotonNetwork.CurrentRoom.CustomProperties.Count);
     }
 
     /// <summary>
@@ -188,12 +191,21 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnClick_ConfirmHeroSelection()
     {
+        if (!PhotonNetwork.LocalPlayer.IsMasterClient)
+            if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerTwoHero"))
+                PhotonNetwork.CurrentRoom.CustomProperties.Remove("playerTwoHero");
+
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+            if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerOneHero"))
+                PhotonNetwork.CurrentRoom.CustomProperties.Remove("playerOneHero");
+
         if (heroSelectedText.text != "")
         {
             Debug.Log("\tCustom props: " + PhotonNetwork.CurrentRoom.CustomProperties);
             Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
 
             int heroNum = -1;
+
 
             switch (heroSelectedText.text)
             {
