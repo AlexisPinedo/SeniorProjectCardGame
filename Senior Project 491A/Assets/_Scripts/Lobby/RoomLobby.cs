@@ -34,6 +34,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
             }
             else
             {
+
                 playerOne = PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"].ToString();
                 playerTwo = PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"].ToString();
 
