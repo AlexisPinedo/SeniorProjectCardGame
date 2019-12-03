@@ -133,13 +133,13 @@ public class HandContainer : PlayerCardContainer
 
                 if (cardDisplay.card == null)
                 {
-                    Debug.Log("No card in Hand Display game object");
+                    //Debug.Log("No card in Hand Display game object");
                     return;
                 }
                 
                 if(cardDisplay.card.CardType != CardTypes.None)
                 {                    
-                    Debug.Log("Add card to grave");
+                    //Debug.Log("Add card to grave");
                     playerGraveyard.graveyard.Add(cardDisplay.card);
                 }
 

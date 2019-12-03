@@ -129,7 +129,7 @@ public class BattleManager : MonoBehaviour
 
         ShopDisplayManager.Instance.MoveShopDown();
         
-        Debug.Log("Ending battle state");
+        //Debug.Log("Ending battle state");
         EnemyBattlePhaseEnded?.Invoke();
     }
 }

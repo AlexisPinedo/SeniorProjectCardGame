@@ -100,7 +100,7 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
 
     public void ChangeActivePlayer()
     {
-        Debug.Log("Players changed..");
+        //Debug.Log("Players changed..");
 
         if (player1GameObject != null && player2GameObject != null)
         {

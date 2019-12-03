@@ -26,9 +26,9 @@ public class PlayZoneAnimationManager : AnimationManagementBase<ScaleAnimationOb
 
     public void PlayAnimation(ScaleAnimationObject animObject)
     {
-        Debug.Log("Object Added To Queue");
+        //Debug.Log("Object Added To Queue");
         AddObjectToQueue(animObject);
-        Debug.Log("ANIM QUEUE COUNT: " + animQueue.Count);
+        //Debug.Log("ANIM QUEUE COUNT: " + animQueue.Count);
     }
 
     //void AddObjectToQueue(ScaleAnimationObject animObject)
@@ -79,7 +79,7 @@ public class PlayZoneAnimationManager : AnimationManagementBase<ScaleAnimationOb
         float lerpTime = 0.2f;
 
         Vector3 startSize = cardDisplay.transform.localScale;
-        Debug.Log("START SIZE: " + startSize);
+        //Debug.Log("START SIZE: " + startSize);
         Vector3 targetSize = new Vector3(1.5f, 1.5f, 1.5f);
 
         while (cardDisplay.transform.localScale != targetSize)

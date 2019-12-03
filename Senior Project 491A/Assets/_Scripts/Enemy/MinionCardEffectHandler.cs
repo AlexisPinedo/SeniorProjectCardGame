@@ -19,7 +19,7 @@ public class MinionCardEffectHandler : MonoBehaviour
 //        Debug.Log("minion created validating onplay effect");
         if (minionCard.CardEffect is OnPlayEffects || minionCard.CardEffect is PassiveEffect)
         {
-            Debug.Log("is an immediate effect to launch");
+            //Debug.Log("is an immediate effect to launch");
 
             minionCard.CardEffect.LaunchCardEffect();
         }

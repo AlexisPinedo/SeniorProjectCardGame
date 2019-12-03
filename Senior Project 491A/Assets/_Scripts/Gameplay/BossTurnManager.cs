@@ -26,7 +26,7 @@ public class BossTurnManager : MonoBehaviour
 
     IEnumerator BossPhase()
     {
-        Debug.Log("in boss phase");
+        //Debug.Log("in boss phase");
         inBossPhase = true;
 
         FieldContainer.Instance.DisplayACard();
@@ -37,7 +37,7 @@ public class BossTurnManager : MonoBehaviour
 
         ShopDisplayManager.Instance.MoveShopDown();
         
-        Debug.Log("boss phase ended");
+        //Debug.Log("boss phase ended");
         BossTurnEnded?.Invoke();
     }
 }
