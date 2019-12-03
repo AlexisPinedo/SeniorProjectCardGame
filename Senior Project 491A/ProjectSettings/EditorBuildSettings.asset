@@ -6,6 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/_Scenes/Firebase/SignIn.unity
     guid: ef61d39726ca35f40bf433188da5387c
   - enabled: 1
@@ -15,14 +16,16 @@ EditorBuildSettings:
     path: Assets/_Scenes/QuickLobby.unity
     guid: ceca5627e09194902bf3940329ea70fc
   - enabled: 1
+=======
+>>>>>>> DavidsBranch
     path: Assets/_Scenes/Lobby.unity
     guid: 28663871e8c27634e998170fe951ddb5
   - enabled: 0
     path: Assets/_Scenes/AlexPinedoScene.unity
     guid: e7c2cf53079353241812ae5e98fbcf7b
-  - enabled: 0
-    path: Assets/_Scenes/EdScenePhoton.unity
-    guid: 200f4b5d6ee7c4eb9a104d305c266294
+  - enabled: 1
+    path: Assets/_Scenes/SinglePlayer.unity
+    guid: 740adb09a621ccc4cb84d12b16a4c516
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: a184d7c0cd16e4549abb87e65e46713e,
       type: 2}

@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manager game object for deciding which Player has the active turn.
+/// </summary>
 public class TurnPlayerManager : MonoBehaviourPunCallbacks
 {
     // Heroes!
@@ -16,37 +19,27 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
 
     // Player References
     [SerializeField]
-    private Player player1, player2,turnPlayer;
+    private Player player1, player2, turnPlayer;
+    public Player Player1 { get { return player1; } }
+    public Player Player2 { get { return player2; } }
+    /// <summary>
+    /// The Player who is actively taking their turn.
+    /// </summary>
+    public Player TurnPlayer { get { return turnPlayer; } }
 
-    public Player Player1
-    {
-        get { return player1; }
-    }
-
-    public Player Player2
-    {
-        get { return player2; }
-    }
-    
-    public Player TurnPlayer
-    {
-        get { return turnPlayer; }
-    }
     [SerializeField]
     private GameObject turnPlayerGameObject;
-
     public GameObject TurnPlayerGameObject
     {
         get { return turnPlayerGameObject; }
     }
-    
+
     [SerializeField]
     private GameObject player1GameObject, player2GameObject;
     public static event Action PlayerSwitched;
     public static event Action GameStarted;
-    
-    private static TurnPlayerManager _instance;
 
+    private static TurnPlayerManager _instance;
     public static TurnPlayerManager Instance
     {
         get { return _instance; }
@@ -70,7 +63,6 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            
             Destroy(gameObject);
         }
 
@@ -79,6 +71,7 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
         {
             Heroes p1Hero;
             Heroes p2Hero;
+
             if (PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"] != null)
             {
                 p1Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"];
@@ -90,15 +83,18 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
                 player2.SelectedHero = GetHero(p2Hero);
             }
         }
+
         HandleInitialTurn();
     }
 
     private void HandleInitialTurn()
     {
         turnPlayer = player1;
-        player2GameObject.SetActive(false);
+
+        if (player2GameObject != null)
+            player2GameObject.SetActive(false);
+
         turnPlayerGameObject = player1GameObject;
-        Debug.Log("Set turn player values");
         GameStarted?.Invoke();
     }
 
@@ -148,7 +144,7 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
     {
         Hero selectedHero = null;
 
-        switch(heroPicked)
+        switch (heroPicked)
         {
             case Heroes.Valor:
                 selectedHero = valor;
@@ -172,7 +168,7 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
                 selectedHero = null;
                 break;
         }
-                     
+
         return selectedHero;
     }
 
