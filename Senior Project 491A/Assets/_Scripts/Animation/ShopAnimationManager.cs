@@ -11,8 +11,7 @@ public class ShopAnimationManager : AnimationManagementBase<TransformAnimationOb
     {
         get => _instance;
     }
-
-
+    
     void Awake()
     {
         if (_instance == null && _instance != this)
@@ -113,7 +112,7 @@ public class ShopAnimationManager : AnimationManagementBase<TransformAnimationOb
 
         if (storeOriginalPosition)
         {
-            cardDisplay.GetComponent<CardZoomer>().OriginalPosition = destination;
+            cardDisplay.GetComponent<CardZoomer>().originalPosition = destination;
             cardDisplay.GetComponent<DragCard>().OriginalPosition = destination;
         }
 

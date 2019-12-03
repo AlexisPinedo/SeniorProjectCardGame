@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    private GameObject mainMenuScreen, singlePlayerScreen, photonManager, nameScreenCanvas;
+    private GameObject mainMenuScreen, singlePlayerScreen, photonManager, nameScreenCanvas, heroPickerCanvas;
 
     [SerializeField]
     private GameObject singlePlayerBtn, multiplayerBtn, optionsBtn;
@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
     {
         mainMenuScreen.SetActive(false);
         singlePlayerScreen.SetActive(true);
+        heroPickerCanvas.SetActive(true);
     }
 
     public void OnClick_Multiplayer()

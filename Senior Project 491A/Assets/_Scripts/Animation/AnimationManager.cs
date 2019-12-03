@@ -239,7 +239,7 @@ public class AnimationManager : MonoBehaviour
 
         if (storeOriginalPosition)
         {
-            cardDisplay.GetComponent<CardZoomer>().OriginalPosition = destination;
+            cardDisplay.GetComponent<CardZoomer>().originalPosition = destination;
             cardDisplay.GetComponent<DragCard>().OriginalPosition = destination;
         }
 

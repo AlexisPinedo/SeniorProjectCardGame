@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1ab4ade3d1e8e4397ddd87f04e6bd2, type: 3}
+  m_Name: Ventriloquist
+  m_EditorClassIdentifier: 
+  cardName: Ventriloquist
+  cardDescription: 
+  cardEffect: {fileID: 0}
+  cardEffectDisplay: Each player gains +3 currency on their turn.
+  cardArtwork: {fileID: 21300000, guid: 9202f4ec2c698421aa26c6bca165d822, type: 3}
+  cardTypeArt: {fileID: 21300000, guid: 857794b94e1566d4d97be253d90d350f, type: 3}
+  cardType: 1
+  nameBoxArt: {fileID: 21300000, guid: f24d6a3477ae4084fa1ea289f0ba25fd, type: 3}
+  cardEffectBoxArt: {fileID: 21300000, guid: e160baf4e6569554e8837eb6fb61536c, type: 3}
+  borderArt: {fileID: 21300000, guid: 843cde25790916841a714e64b7b88af8, type: 3}
+  _cardCost: 1
+  _cardAttack: 0
+  _cardCurrency: 1
+  CardEffectRequirement: 0100000001000000
+  cardCostsIcons:
+  - {fileID: 21300000, guid: 857794b94e1566d4d97be253d90d350f, type: 3}
+  - {fileID: 21300000, guid: 857794b94e1566d4d97be253d90d350f, type: 3}

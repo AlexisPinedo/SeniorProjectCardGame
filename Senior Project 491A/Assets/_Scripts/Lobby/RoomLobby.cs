@@ -27,37 +27,49 @@ public class RoomLobby : MonoBehaviourPunCallbacks
     private Button startMatchButton;
 
     int playerOne, playerTwo = -1;
-	bool assignedOne, assignedTwo = false;
+    bool assignedOne, assignedTwo = false;
 
-    private void Update()
+
+    private void Awake()
     {
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+        startMatchButton.interactable = false;
+        startMatchButton.gameObject.SetActive(true);
+        GetCurrentRoomPlayers();
+    }
+
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        if (propertiesThatChanged.ContainsKey("playerOneHero"))
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount != 2)
-            {
-                startMatchButton.interactable = false;
-            }
+            Debug.Log("Properties updated with playerOneHero ");
+            playerOne = (int)PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"];
+            AssignPlayerOne(true);
 
-            if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerTwoHero"))
-            {
-                playerTwo = (int)PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"];
-                AssignPlayerTwo(true);
+        }
 
+        if (propertiesThatChanged.ContainsKey("playerTwoHero"))
+        {
+            Debug.Log("Properties updated with playerTwoHero ");
+            playerTwo = (int)PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"];
+            AssignPlayerTwo(true);
+
+            if(PhotonNetwork.IsMasterClient)
+            {
                 buttonStatusText.text = "Start Match";
                 startMatchButton.interactable = true;
             }
-
-            playerOne = (int)PhotonManager.playerOneHero;
-            AssignPlayerOne(true);
-            startMatchButton.gameObject.SetActive(true);
-
         }
-        else if(!PhotonNetwork.LocalPlayer.IsMasterClient)
+    
+        else if (!PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerOneHero"))
             {
                 playerOne = (int)PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"];
-                AssignPlayerOne(true);
+                AssignPlayerOne();
+            }
+            else
+            {
+                Debug.Log("Pending hero 1 key");
             }
 
             playerTwo = (int)PhotonManager.playerTwoHero;
@@ -65,9 +77,17 @@ public class RoomLobby : MonoBehaviourPunCallbacks
 
             startMatchButton.interactable = false;
         }
+
+        Debug.Log("Keys: " + PhotonNetwork.CurrentRoom.CustomProperties.Count);
     }
 
-   
+
+    private void AssignPlayerOne()
+    {
+        if (playerOne < 0 || assignedOne)
+            return;
+    }
+
     private void AssignPlayerOne(bool Switch)
     {
         //if(playerOne < 0 || assignedOne)
@@ -113,12 +133,16 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         }
 
 		assignedOne = Switch;
+        assignedOne = true;
     }
 
     private void AssignPlayerTwo(bool Switch)
     {
-        //if (playerTwo < 0  || assignedTwo)
-        //    return;
+
+        if (playerTwo < 0 || assignedTwo)
+            return;
+
+        Debug.Log("Assigned P2");
 
         unknownIconP2.gameObject.SetActive(!Switch);
 
@@ -160,14 +184,8 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         }
 
 		assignedTwo = Switch;
+        assignedTwo = true;
     }
-
-
-    private void Awake()
-    {
-        GetCurrentRoomPlayers();
-    }
-
     private void GetCurrentRoomPlayers()
     {
 
