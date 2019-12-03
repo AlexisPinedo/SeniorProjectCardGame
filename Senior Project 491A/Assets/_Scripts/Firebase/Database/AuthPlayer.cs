@@ -6,11 +6,11 @@ using UnityEngine;
 public class AuthPlayer
 {
     private string email;
-    private DateTime createdAt;
+    //private DateTime createdAt;
 
-    public AuthPlayer(string email, DateTime createdAt)
+    public AuthPlayer(string email)
     {
-        this.createdAt = createdAt;
+        //this.createdAt = createdAt;
         this.email = email;
     }
 }

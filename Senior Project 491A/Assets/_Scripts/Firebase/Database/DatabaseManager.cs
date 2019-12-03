@@ -28,8 +28,10 @@ public class DatabaseManager : MonoBehaviour
 
     public void CreateNewPlayer(AuthPlayer player, string uid)
     {
+        Debug.Log("Pushed new player");
         string jsonString = JsonUtility.ToJson(player);
         Router.PlayerWithUID(uid).SetRawJsonValueAsync(jsonString);
+        Debug.Log("New Player Created");
     }
 
     public void CheckIfPlayerExists(string uid)

@@ -34,8 +34,8 @@ public abstract class Forms : MonoBehaviour
             {
                 Firebase.Auth.FirebaseUser newPlayer = task.Result;
 
-                DateTime createdAt = DateTime.Now;
-                AuthPlayer player = new AuthPlayer(newPlayer.Email, createdAt);
+                //DateTime createdAt = DateTime.Now;
+                AuthPlayer player = new AuthPlayer(newPlayer.Email);
 
                 Debug.Log("Creating new player");
                 DatabaseManager.sharedInstance.CreateNewPlayer(player, newPlayer.UserId);

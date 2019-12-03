@@ -9,7 +9,7 @@ using Firebase.Auth;
 using System;
 using System.Threading.Tasks;
 using Google;
-using Facebook.Unity;
+//using Facebook.Unity;
 using UnityEngine.SceneManagement;
 
 public class AuthManager : MonoBehaviour
@@ -134,7 +134,7 @@ public class AuthManager : MonoBehaviour
             {
                 // Do something if the user returns 
                 // Load Home Screen
-                if(!authenticationFlow)
+                if (!authenticationFlow)
                     SceneManager.LoadScene("Lobby");
             }
         }
