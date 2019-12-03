@@ -107,7 +107,8 @@ public class PlayZoneAnimationManager : AnimationManagementBase<ScaleAnimationOb
         {
             //Destroy(cardDisplay.gameObject);
             cardsToDestroy.Add(cardDisplay.gameObject);
-            cardDisplay.gameObject.SetActive(false);
+            cardDisplay.transform.position = new Vector2(-300, 0);
+            //cardDisplay.gameObject.SetActive(false);
         }
 
         EndAnimEvent();

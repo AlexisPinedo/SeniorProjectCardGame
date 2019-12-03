@@ -16,7 +16,7 @@ public class Hand : ScriptableObject
     //private int cardsInHand = 0;
     //[SerializeField] private CardContainer cardContainter;
 
-    private void Awake()
+    private void OnEnable()
     {
         hand.Clear();
     }

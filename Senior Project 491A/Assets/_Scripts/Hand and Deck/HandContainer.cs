@@ -125,10 +125,14 @@ public class HandContainer : PlayerCardContainer
 
     private void DestroyHand()
     {
+        Debug.Log("Destroying hand");
+
         foreach (var locationReferenceKeyValuePair in containerCardGrid.cardLocationReference)
         {
             if (locationReferenceKeyValuePair.Value != null)
             {
+                Debug.Log("card display found");
+
                 PlayerCardDisplay cardDisplay = (PlayerCardDisplay)locationReferenceKeyValuePair.Value;
 
                 if (cardDisplay.card == null)
@@ -136,17 +140,19 @@ public class HandContainer : PlayerCardContainer
                     //Debug.Log("No card in Hand Display game object");
                     return;
                 }
-                
+                Debug.Log("card display card not null");
+
                 if(cardDisplay.card.CardType != CardTypes.None)
                 {                    
                     //Debug.Log("Add card to grave");
                     playerGraveyard.graveyard.Add(cardDisplay.card);
                 }
+                Debug.Log("Removing card from hand");
 
+                hand.hand.Remove(cardDisplay.card);
                 Destroy(locationReferenceKeyValuePair.Value.gameObject);
             }
             containerCardGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
-            
         }
     }
 
