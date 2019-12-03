@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Scenes/Firebase/SignIn.unity
+    guid: ef61d39726ca35f40bf433188da5387c
+  - enabled: 1
+    path: Assets/_Scenes/Firebase/SignUp.unity
+    guid: 74377c75d31b54f4787dc1bb3cf09412
+  - enabled: 0
     path: Assets/_Scenes/QuickLobby.unity
     guid: ceca5627e09194902bf3940329ea70fc
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Lobby.unity
     guid: 28663871e8c27634e998170fe951ddb5
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/AlexPinedoScene.unity
     guid: e7c2cf53079353241812ae5e98fbcf7b
   - enabled: 0

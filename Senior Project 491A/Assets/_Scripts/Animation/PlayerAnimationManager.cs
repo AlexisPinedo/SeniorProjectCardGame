@@ -13,6 +13,7 @@ public class PlayerAnimationManager : AnimationManagementBase<TransformAnimation
         get => _instance;
     }
 
+    
 
     void Awake()
     {

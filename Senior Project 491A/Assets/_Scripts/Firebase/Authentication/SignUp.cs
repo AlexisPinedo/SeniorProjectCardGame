@@ -4,12 +4,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class SignUp : Forms
 {
-    [SerializeField] private InputField passwordRetype;
+    [SerializeField] private TMP_InputField passwordRetype;
 
-    [SerializeField] private GameObject emailPopUp;
+    
 
     private bool passAuthorized;
 
@@ -58,30 +59,30 @@ public class SignUp : Forms
 
 
 
-    public void EmailRegistrationBtn(bool shouldOpen)
-    {
-        if(shouldOpen)
-            emailPopUp.SetActive(true);
-        else 
-            emailPopUp.SetActive(false);
-    }
+    //public void EmailRegistrationBtn(bool shouldOpen)
+    //{
+    //    if(shouldOpen)
+    //        emailPopUp.SetActive(true);
+    //    else 
+    //        emailPopUp.SetActive(false);
+    //}
 
     private void EmailSignUp()
     {
         AuthManager.sharedInstance.SignUpNewUserWithEmail(emailInput.text, passwordInput.text);
     }
 
-    public void FacebookSignUp()
-    {
-        AuthManager.sharedInstance.FBLogin("facebook_sign_up");
-    }
+    //public void FacebookSignUp()
+    //{
+    //    AuthManager.sharedInstance.FBLogin("facebook_sign_up");
+    //}
 
-    public void GoogleSignUp()
-    {
-        AuthManager.sharedInstance.GoogleLogin("google_sign_up");
-    }
+    //public void GoogleSignUp()
+    //{
+    //    AuthManager.sharedInstance.GoogleLogin("google_sign_up");
+    //}
 
-    public void AlreadyHaveAccount()
+    public void BackToSignIn()
     {
         SceneManager.LoadScene("SignIn");
     }
