@@ -59,10 +59,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
                 startMatchButton.interactable = true;
             }
         }
-<<<<<<< HEAD
-    }
-
-=======
+    
         else if (!PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerOneHero"))
@@ -76,7 +73,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
             }
 
             playerTwo = (int)PhotonManager.playerTwoHero;
-            AssignPlayerTwo();
+            AssignPlayerTwo(true);
 
             startMatchButton.interactable = false;
         }
@@ -89,7 +86,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
     {
         if (playerOne < 0 || assignedOne)
             return;
->>>>>>> DavidsBranch
+    }
 
     private void AssignPlayerOne(bool Switch)
     {
@@ -135,24 +132,17 @@ public class RoomLobby : MonoBehaviourPunCallbacks
             heroP1Text.text = "Vito";
         }
 
-<<<<<<< HEAD
 		assignedOne = Switch;
-=======
         assignedOne = true;
->>>>>>> DavidsBranch
     }
 
     private void AssignPlayerTwo(bool Switch)
     {
-<<<<<<< HEAD
-        //if (playerTwo < 0  || assignedTwo)
-        //    return;
-=======
+
         if (playerTwo < 0 || assignedTwo)
             return;
 
         Debug.Log("Assigned P2");
->>>>>>> DavidsBranch
 
         unknownIconP2.gameObject.SetActive(!Switch);
 
@@ -193,19 +183,9 @@ public class RoomLobby : MonoBehaviourPunCallbacks
             heroP2Text.text = "Vito";
         }
 
-<<<<<<< HEAD
 		assignedTwo = Switch;
-=======
         assignedTwo = true;
     }
-
-
-    private void Awake()
-    {
-        GetCurrentRoomPlayers();
->>>>>>> DavidsBranch
-    }
-
     private void GetCurrentRoomPlayers()
     {
 
