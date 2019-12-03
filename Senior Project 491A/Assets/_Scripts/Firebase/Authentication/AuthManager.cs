@@ -126,7 +126,7 @@ public class AuthManager : MonoBehaviour
             if (!signedIn && user != null)
             {
                 Debug.Log("Signed out " + user.UserId);
-                SceneManager.LoadScene("SignIn");
+                
             }
 
             user = auth.CurrentUser;
@@ -147,6 +147,8 @@ public class AuthManager : MonoBehaviour
     // Signs the user up and creates a Firebase Account via Email / Password
     public void SignUpNewUserWithEmail(string email, string password)
     {
+        authenticationFlow = true;
+        
         // pass user info to Firebase Project 
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
         {
@@ -351,6 +353,7 @@ public class AuthManager : MonoBehaviour
     public void Logout()
     {
         authenticationFlow = false;
+        SceneManager.LoadScene("SignIn");
         auth.SignOut();
 
         // if current user is a google user
