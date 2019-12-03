@@ -50,7 +50,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         //{
         //    nameInp.text = "Debugging Offline";
         //}
-        PhotonNetwork.NickName = AuthManager.sharedInstance.GetCurrentUser().UserId;
+
+        //Disable while firebase is not implemented on screen 
+        //PhotonNetwork.NickName = AuthManager.sharedInstance.GetCurrentUser().UserId;
+        PhotonNetwork.NickName = nameInp.text;
+
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
 
