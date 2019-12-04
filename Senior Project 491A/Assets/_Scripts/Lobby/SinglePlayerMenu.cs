@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Single player menu handler with references to other relevant canvases.
+/// </summary>
 public class SinglePlayerMenu : MonoBehaviour
 {
     [SerializeField]

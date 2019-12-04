@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Photon.Pun;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Name screen canvas handler with references to other relevant canvases and the Photon manager.
+/// </summary>
 public class NameScreen : MonoBehaviour
 {
     #region UI references

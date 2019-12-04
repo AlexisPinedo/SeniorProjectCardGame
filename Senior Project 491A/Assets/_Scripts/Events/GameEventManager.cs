@@ -8,14 +8,12 @@ public class GameEventManager : MonoBehaviour
     private Queue<Event_Base> stateQueue = new Queue<Event_Base>();
 
     private bool eventActive = false;
-    
-    private static GameEventManager _instance;
 
+    private static GameEventManager _instance;
     public static GameEventManager Instance
     {
         get => _instance;
     }
-    
 
     private void Awake()
     {
@@ -31,33 +29,28 @@ public class GameEventManager : MonoBehaviour
     {
         if (stateQueue.Count == 0)
         {
-            //Debug.Log("Adding to empty queue");
-
             stateQueue.Enqueue(eventState);
             StartCoroutine(HandleState());
         }
         else
         {
-            //Debug.Log("Adding to nonempty queue");
             stateQueue.Enqueue(eventState);
         }
     }
 
     public void EndEvent()
     {
-        //Debug.Log("event ended");
-
         eventActive = false;
     }
 
     IEnumerator HandleState()
     {
         Event_Base nextEventToRun = stateQueue.Peek();
-        
+
         eventActive = true;
 
         nextEventToRun.EventState();
-        
+
         while (eventActive)
         {
             yield return null;
@@ -70,6 +63,4 @@ public class GameEventManager : MonoBehaviour
             StartCoroutine(HandleState());
         }
     }
-
-
 }

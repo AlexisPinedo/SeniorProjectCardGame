@@ -39,7 +39,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         photonStatus.text = "Attempting conenction ...";
 
         //Disable while firebase is not implemented on screen 
-        //PhotonNetwork.NickName = AuthManager.sharedInstance.GetCurrentUser().UserId;
         PhotonNetwork.NickName = nameInp.text;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;

@@ -48,7 +48,6 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
         else
         {
             // Enabling offline mode allows all photon code to be ignored
-            // Debug.Log("Photon is offline...");
             PhotonNetwork.OfflineMode = true;
             currentPhotonPlayer = photonPlayer1 = photonPlayer2 = PhotonNetwork.LocalPlayer;
             PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
