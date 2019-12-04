@@ -26,6 +26,16 @@ public class HeroPicker : MonoBehaviour
     [SerializeField]
     Text heroSelected;
 
+    [SerializeField]
+    private Player SinglePlayerHero;
+
+    [SerializeField] private Valor valor;
+    [SerializeField] private Vann van;
+    [SerializeField] private Vaughn vaughn;
+    [SerializeField] private Veda veda;
+    [SerializeField] private Vicky vicky;
+    [SerializeField] private Vito vito;
+
     public void OnEnable()
     {
         if (!PhotonNetwork.IsConnected)
@@ -47,7 +57,31 @@ public class HeroPicker : MonoBehaviour
             int heroNum = GetHeroNumber(heroSelected.text);
 
             // Single Player
-            Debug.Log("Hero: " + heroNum);
+            switch ((Heroes)heroNum)
+            {
+                case Heroes.Valor:
+                    SinglePlayerHero.SelectedHero = valor;
+                    break;
+                case Heroes.Vann:
+                    SinglePlayerHero.SelectedHero = van;
+                    break;
+                case Heroes.Vaughn:
+                    SinglePlayerHero.SelectedHero = vaughn;
+                    break;
+                case Heroes.Veda:
+                    SinglePlayerHero.SelectedHero = veda;
+                    break;
+                case Heroes.Vicky:
+                    SinglePlayerHero.SelectedHero = vicky;
+                    break;
+                case Heroes.Vito:
+                    SinglePlayerHero.SelectedHero = vito;
+                    break;
+                default:
+                    SinglePlayerHero.SelectedHero = null;
+                    break;
+            }
+
             SceneManager.LoadScene(2);
         }
         else
