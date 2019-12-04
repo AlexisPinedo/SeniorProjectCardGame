@@ -80,7 +80,7 @@ public class HandContainer : PlayerCardContainer
 
         if (cardDrawn == null)
         {
-            Debug.Log("null card");
+            //Debug.Log("null card");
             return;
         }
 
@@ -89,7 +89,7 @@ public class HandContainer : PlayerCardContainer
 
         if (containerCardGrid.freeLocations.Count == 0)
         {
-            Debug.Log("Stack is empty ");
+            //Debug.Log("Stack is empty ");
             return;
         }
 
@@ -129,7 +129,7 @@ public class HandContainer : PlayerCardContainer
 
     private void DestroyHand()
     {
-        Debug.Log("Destroying hand");
+        //Debug.Log("Destroying hand");
 
         foreach (var locationReferenceKeyValuePair in containerCardGrid.cardLocationReference)
         {

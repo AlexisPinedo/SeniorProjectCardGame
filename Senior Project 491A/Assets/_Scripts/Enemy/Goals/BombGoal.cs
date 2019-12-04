@@ -9,7 +9,7 @@ public class BombGoal : Goal
 {
     [SerializeField] private MinionCard bombGoal;
     [SerializeField] private int requiredCountOfCards = 5;
-    public int bombCardsRevealed = 0;
+    public static int bombCardsRevealed = 0;
     public override void OnGoalEnabled()
     {
         owner.AddCardToBossDeck(bombGoal, 5);
