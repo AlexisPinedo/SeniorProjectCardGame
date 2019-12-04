@@ -71,7 +71,7 @@ public class NotificationWindowEvent : Event_Base
             okButton.gameObject.SetActive(true);
         else if (notificationText.text.Contains("selecting"))
             okButton.gameObject.SetActive(false);
-        if (!PhotonNetwork.OfflineMode)
+        if (!PhotonNetwork.OfflineMode || !PhotonNetwork.CurrentRoom.IsOpen)
             photonView.RPC("RemoteEventStateNotficationWindow", RpcTarget.Others, notificationText.text);
     }
 

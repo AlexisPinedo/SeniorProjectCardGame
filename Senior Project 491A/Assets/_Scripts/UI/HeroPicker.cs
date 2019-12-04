@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class HeroPicker : MonoBehaviour
+public class HeroPicker : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     GameObject heroPickerCanvas, roomLobbyCanvas;
@@ -48,15 +48,8 @@ public class HeroPicker : MonoBehaviour
 
     public void OnClick_StartMatch()
     {
-        if (heroSelected.text != "")
-        {
-            offlineSelectedHero = GetHeroNumber(heroSelected.text);
-            SceneManager.LoadScene(1);
-        }
-        else
-        {
-            heroSelected.text = "Pick a hero";
-        }
+        offlineSelectedHero = GetHeroNumber(heroSelected.text);
+        SceneManager.LoadScene(1);
     }
 
     public void OnClick_ConfirmHeroSelection()
@@ -94,10 +87,6 @@ public class HeroPicker : MonoBehaviour
             heroPickerCanvas.SetActive(false);
             roomLobbyCanvas.SetActive(true);
         }
-        else
-        {
-            heroSelected.text = "Pick a hero";
-        }
     }
 
     /// <summary>
@@ -109,6 +98,11 @@ public class HeroPicker : MonoBehaviour
         AssignPlayerOne(heroSelected.text, false);
         heroSelected.text = heroName;
         AssignPlayerOne(heroName, true);
+
+        if (!PhotonNetwork.IsConnected)
+            startButton.GetComponent<Button>().interactable = true;
+        else
+            confirmButton.GetComponent<Button>().interactable = true;
     }
 
     private void AssignPlayerOne(string heroName, bool Switch)

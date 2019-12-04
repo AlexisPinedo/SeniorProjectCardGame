@@ -59,12 +59,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         StartCoroutine(AttemptingConnection());
     }
 
-    public override void OnDisconnected(DisconnectCause cause)
-    {
-        base.OnDisconnected(cause);
-        nameInp.text = "";
-    }
-
     public override void OnConnectedToMaster()
     {
         Connected = true;
@@ -81,8 +75,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         welcomeUser.text = "Welcome, " + PhotonNetwork.LocalPlayer.NickName;
-        createRoomButton.SetActive(true);
-        mainLobbyCanvas.SetActive(true);
+
+        if (!NotificationWindowEvent.Instance.NotificationView.gameObject.activeSelf)
+        {
+            createRoomButton.SetActive(true);
+            mainLobbyCanvas.SetActive(true);
+        }
     }
 
     /// <summary>

@@ -38,8 +38,6 @@ public class MultiplayerLobby : MonoBehaviour
     /// </summary>
     public void OnClick_GeneratePhotonRoom()
     {
-        createRoomButton.SetActive(false);
-        createRoomPanel.SetActive(false);
         System.Random randomNumber = new System.Random();
         int randomInt = randomNumber.Next();
 
@@ -53,6 +51,8 @@ public class MultiplayerLobby : MonoBehaviour
 
         PhotonNetwork.JoinOrCreateRoom(roomInput.text, options, null);
         roomInput.text = "";
+        createRoomButton.SetActive(true);
+        createRoomPanel.SetActive(false);
     }
 
     public void OnClick_Back()

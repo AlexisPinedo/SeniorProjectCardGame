@@ -1569,7 +1569,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1047104020}
+      - m_Target: {fileID: 828290316}
         m_MethodName: OnRoomNameField_Changed
         m_Mode: 1
         m_Arguments:
@@ -2238,7 +2238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &519918622
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2412,8 +2412,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.4509804, g: 1, b: 0.4509804, a: 1}
-    m_HighlightedColor: {r: 0.27450982, g: 0.5882353, b: 0.27450982, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2435,8 +2435,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1047104020}
-        m_MethodName: GeneratePhotonRoom
+      - m_Target: {fileID: 828290316}
+        m_MethodName: OnClick_GeneratePhotonRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2461,7 +2461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.24705882, g: 0.35686275, b: 0.28235295, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3098,8 +3098,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.4509804, g: 1, b: 0.4509804, a: 1}
-    m_HighlightedColor: {r: 0.27450982, g: 0.5882353, b: 0.27450982, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -3147,7 +3147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.24705882, g: 0.35686275, b: 0.28235295, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3474,7 +3474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &685617302
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3533,7 +3533,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 685617304}
   m_OnClick:
     m_PersistentCalls:
@@ -4270,7 +4270,10 @@ MonoBehaviour:
   multiplayerLobby: {fileID: 828290311}
   mainMenuScreen: {fileID: 1193032261}
   photonManager: {fileID: 1047104019}
-  backBtn: {fileID: 0}
+  createRoomPanel: {fileID: 1965920192}
+  createRoomButton: {fileID: 1224291633}
+  photonGenerateRoomButton: {fileID: 541041402}
+  roomInput: {fileID: 367165748}
 --- !u!1 &828964778
 GameObject:
   m_ObjectHideFlags: 0
@@ -5731,19 +5734,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameInp: {fileID: 1908904233}
-  roomInput: {fileID: 367165748}
   photonStatus: {fileID: 186526589}
   welcomeUser: {fileID: 2142271161}
   roomName: {fileID: 1892417168}
   mainLobbyCanvas: {fileID: 828290311}
-  roomLobbyCanvas: {fileID: 158016492}
   heroPickerPopup: {fileID: 974146139}
-  createRoomPanel: {fileID: 1965920192}
-  backButton: {fileID: 1981750663}
   createRoomButton: {fileID: 1224291633}
-  gameLogo: {fileID: 313924685}
   tryAgainButton: {fileID: 157498104}
-  photonGenerateRoomButton: {fileID: 541041402}
 --- !u!114 &1047104021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6322,7 +6319,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1047104020}
+      - m_Target: {fileID: 828290316}
         m_MethodName: OnClick_CreateRoom
         m_Mode: 1
         m_Arguments:
@@ -7282,7 +7279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7536,7 +7533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8427,7 +8424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1599943159
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8486,7 +8483,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1599943161}
   m_OnClick:
     m_PersistentCalls:
@@ -9720,8 +9717,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1047104020}
-        m_MethodName: OnClick_CreateRoom
+      - m_Target: {fileID: 828290316}
+        m_MethodName: OnClick_Back
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11249,7 +11246,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1047104020}
+      - m_Target: {fileID: 828290316}
         m_MethodName: OnClick_CreateRoomBack
         m_Mode: 1
         m_Arguments:

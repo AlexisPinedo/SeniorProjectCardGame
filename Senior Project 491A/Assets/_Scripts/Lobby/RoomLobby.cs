@@ -185,6 +185,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         mainLobbyCanvas.SetActive(true);
         NotificationWindowEvent.Instance.NotificationView.gameObject.SetActive(false);
         NotificationWindowEvent.Instance.transparentCover.gameObject.SetActive(false);
+        PhotonNetwork.LeaveRoom();
     }
 
     private void ResetRoom()
@@ -203,7 +204,6 @@ public class RoomLobby : MonoBehaviourPunCallbacks
     {
         roomLobbyCanvas.SetActive(false);
         ResetRoom();
-        PhotonNetwork.LeaveRoom();
         NotificationWindowEvent.Instance.EnableNotificationWindow("A player has left matchmaking. \n Returning to Lobby.");
     }
 
