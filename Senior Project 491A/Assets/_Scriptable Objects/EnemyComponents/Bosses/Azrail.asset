@@ -22,7 +22,7 @@ MonoBehaviour:
   nameBoxArt: {fileID: 21300000, guid: e06e763889254ad46aed6ec53b49ee63, type: 3}
   cardEffectBoxArt: {fileID: 21300000, guid: e619800810d49324d8c541701e2fadeb, type: 3}
   borderArt: {fileID: 0}
-  _rewardValue: 5
+  _rewardValue: 10
   _healthValue: 20
   goal: {fileID: 11400000, guid: 8686798cdc5326846954f5c77c87504a, type: 2}
   bossDeck: {fileID: 11400000, guid: 3011dc8c8f7e58f4eb9c00577c9c4b8c, type: 2}

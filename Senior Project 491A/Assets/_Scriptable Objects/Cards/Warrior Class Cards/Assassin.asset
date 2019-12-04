@@ -23,7 +23,7 @@ MonoBehaviour:
   cardEffectBoxArt: {fileID: 21300000, guid: af1c529d8b1df9c4c865cc9c87118070, type: 3}
   borderArt: {fileID: 21300000, guid: 2e2640acafaa23f4bb31b4779f5a044c, type: 3}
   _cardCost: 3
-  _cardAttack: 2
+  _cardAttack: 3
   _cardCurrency: 0
   CardEffectRequirement: 0400000004000000
   cardCostsIcons:
