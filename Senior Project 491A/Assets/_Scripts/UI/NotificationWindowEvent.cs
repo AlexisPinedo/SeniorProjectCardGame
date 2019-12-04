@@ -63,15 +63,14 @@ public class NotificationWindowEvent : Event_Base
     public override void EventState()
     {
         EnableComponents();
-        if (!PhotonNetwork.CurrentRoom.IsOpen)
-            ButtonInputManager.Instance.DisableButtonsInList();
+        if(!PhotonNetwork.OfflineMode)
+            if (!PhotonNetwork.CurrentRoom.IsOpen)
+                ButtonInputManager.Instance.DisableButtonsInList();
         notificationText.text = messageQueue.Dequeue();
-
         if (notificationText.text.Contains("may"))
             okButton.gameObject.SetActive(true);
         else if (notificationText.text.Contains("selecting"))
             okButton.gameObject.SetActive(false);
-
         if (!PhotonNetwork.OfflineMode)
             photonView.RPC("RemoteEventStateNotficationWindow", RpcTarget.Others, notificationText.text);
     }

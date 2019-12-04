@@ -24,7 +24,12 @@ public class HeroPicker : MonoBehaviour
     GameObject startButton;
 
     [SerializeField]
-    Text heroSelected;
+    Text heroSelected, playerNickName;
+
+    [SerializeField]
+    private GameObject valorIconP1, vannIconP1, vaughnIconP1, vedaIconP1, vickyIconP1, vitoIconP1, unknownIconP1;
+
+    public static int offlineSelectedHero;
 
     public void OnEnable()
     {
@@ -37,6 +42,7 @@ public class HeroPicker : MonoBehaviour
         {
             confirmButton.SetActive(true);
             startButton.SetActive(false);
+            playerNickName.text = PhotonNetwork.LocalPlayer.NickName;
         }
     }
 
@@ -44,11 +50,8 @@ public class HeroPicker : MonoBehaviour
     {
         if (heroSelected.text != "")
         {
-            int heroNum = GetHeroNumber(heroSelected.text);
-
-            // Single Player
-            Debug.Log("Hero: " + heroNum);
-            SceneManager.LoadScene(2);
+            offlineSelectedHero = GetHeroNumber(heroSelected.text);
+            SceneManager.LoadScene(1);
         }
         else
         {
@@ -86,7 +89,8 @@ public class HeroPicker : MonoBehaviour
             }
 
             PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
-
+            AssignPlayerOne(heroSelected.text, false);
+            heroSelected.text = "?";
             heroPickerCanvas.SetActive(false);
             roomLobbyCanvas.SetActive(true);
         }
@@ -94,6 +98,34 @@ public class HeroPicker : MonoBehaviour
         {
             heroSelected.text = "Pick a hero";
         }
+    }
+
+    /// <summary>
+    /// Sets the text for the hero based upon which icon was clicked.
+    /// </summary>
+    /// <param name="heroName"></param>
+    public void OnClick_HeroClicked(string heroName)
+    {
+        AssignPlayerOne(heroSelected.text, false);
+        heroSelected.text = heroName;
+        AssignPlayerOne(heroName, true);
+    }
+
+    private void AssignPlayerOne(string heroName, bool Switch)
+    {
+        unknownIconP1.gameObject.SetActive(!Switch);
+        if (heroName.Equals("Valor"))
+            valorIconP1.gameObject.SetActive(Switch);
+        else if (heroName.Equals("Vann"))
+            vannIconP1.gameObject.SetActive(Switch);
+        else if (heroName.Equals("Vaughn"))
+            vaughnIconP1.gameObject.SetActive(Switch);
+        else if (heroName.Equals("Veda"))
+            vedaIconP1.gameObject.SetActive(Switch);
+        else if (heroName.Equals("Vicky"))
+            vickyIconP1.gameObject.SetActive(Switch);
+        else if (heroName.Equals("Vito"))
+            vitoIconP1.gameObject.SetActive(Switch);
     }
 
     private int GetHeroNumber(string heroName)

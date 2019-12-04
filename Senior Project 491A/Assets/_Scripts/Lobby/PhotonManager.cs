@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
+using System.Collections;
 
 /// <summary>
 /// This class defines all characteristics and functions of the lobby menu.
@@ -13,13 +14,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private InputField nameInp, roomInput;
 
     [SerializeField]
-    private Text photonStatus, welcomeUser, roomName, heroSelectedText;
+    private Text photonStatus, welcomeUser, roomName;
 
     [SerializeField]
     private GameObject mainLobbyCanvas, roomLobbyCanvas, heroPickerPopup;
 
     [SerializeField]
-    private GameObject createRoomPanel, backButton, createRoomButton, gameLogo;
+    private GameObject createRoomPanel, backButton, createRoomButton, gameLogo, tryAgainButton;
 
     [SerializeField]
     private Button photonGenerateRoomButton;
@@ -33,48 +34,43 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     private readonly int minRoomNameLen = 4;
 
-    /// <summary>
-    /// Currently empty.
-    /// </summary>
-    private void Awake()
-    {
-    }
+    private bool Connected = false;
 
     public override void OnEnable()
     {
         base.OnEnable();
+        StartCoroutine(AttemptingConnection());
+    }
 
-        photonStatus.text = "Establishing conenction with server";
-
-        //if (nameInp.text == null || nameInp.text == "")
-        //{
-        //    nameInp.text = "Debugging Offline";
-        //}
+    IEnumerator AttemptingConnection()
+    {
+        photonStatus.text = "Attempting conenction ...";
 
         //Disable while firebase is not implemented on screen 
         //PhotonNetwork.NickName = AuthManager.sharedInstance.GetCurrentUser().UserId;
         PhotonNetwork.NickName = nameInp.text;
-
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
-
-        // Settings defined via PhotonServerSettings
         PhotonNetwork.ConnectUsingSettings();
-    }
 
-    /// <summary>
-    /// Currently empty
-    /// </summary>
-    void Update()
-    {
+        yield return new WaitForSeconds(4);
+
+        if (!Connected)
+        {
+            photonStatus.text = "Failed to connect ...";
+            tryAgainButton.SetActive(true);
+        }
+
     }
 
     #region PUN Networking
     public override void OnConnectedToMaster()
     {
-        photonStatus.text = "Connected to master.";
+        Connected = true;
+        photonStatus.text = "Connected ...";
+        Destroy(photonStatus.gameObject);
+        Destroy(tryAgainButton.gameObject);
         PhotonNetwork.JoinLobby(TypedLobby.Default);
-        photonStatus.text = "";
     }
 
     /// <summary>
@@ -82,7 +78,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnJoinedLobby()
     {
-        Debug.Log("\t" + PhotonNetwork.LocalPlayer.NickName + " has joined the lobby");
         welcomeUser.text = "Welcome, " + PhotonNetwork.LocalPlayer.NickName;
         mainLobbyCanvas.SetActive(true);
         createRoomButton.SetActive(true);
@@ -95,10 +90,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         roomName.text = PhotonNetwork.CurrentRoom.Name;
         mainLobbyCanvas.SetActive(false);
-        Debug.Log("\t" + PhotonNetwork.LocalPlayer.NickName + " has joined the room.\n\tSelecting a hero now!");
         SelectHero();
-
-        Debug.Log("Keys: " + PhotonNetwork.CurrentRoom.CustomProperties.Count);
     }
 
     /// <summary>
@@ -128,7 +120,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             IsOpen = true,
             IsVisible = true,
             MaxPlayers = 2,
-            CustomRoomProperties = new Hashtable() { { "deckRandomValue", randomInt } }
+            CustomRoomProperties = new ExitGames.Client.Photon.Hashtable() { { "deckRandomValue", randomInt } }
         };
 
         PhotonNetwork.JoinOrCreateRoom(roomInput.text, options, null);
@@ -140,13 +132,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void OnRoomNameField_Changed()
     {
         if (roomInput.text.Length >= minRoomNameLen)
-        {
             photonGenerateRoomButton.interactable = true;
-        }
         else
-        {
             photonGenerateRoomButton.interactable = false;
-        }
     }
 
     /// <summary>
@@ -172,17 +160,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     /// </summary>
     public void SelectHero()
     {
-        gameLogo.SetActive(false);
         mainLobbyCanvas.SetActive(false);
         heroPickerPopup.SetActive(true);
     }
 
-    /// <summary>
-    /// Sets the text for the hero based upon which icon was clicked.
-    /// </summary>
-    /// <param name="heroName"></param>
-    public void OnClick_HeroClicked(string heroName)
+    public void OnClick_TryConnectionAgain()
     {
-        heroSelectedText.text = heroName;
+        StartCoroutine(AttemptingConnection());
     }
 }

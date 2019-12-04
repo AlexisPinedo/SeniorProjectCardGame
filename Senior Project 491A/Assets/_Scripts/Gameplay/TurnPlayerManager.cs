@@ -66,10 +66,10 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
             Destroy(gameObject);
         }
 
+        Heroes p1Hero;
         /// TROUBLE BREWING UP HERE
         if (!PhotonNetwork.OfflineMode)
         {
-            Heroes p1Hero;
             Heroes p2Hero;
 
             if (PhotonNetwork.CurrentRoom.CustomProperties["playerOneHero"] != null)
@@ -82,6 +82,11 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
                 p2Hero = (Heroes)PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"];
                 player2.SelectedHero = GetHero(p2Hero);
             }
+        }
+        else
+        {
+            p1Hero = (Heroes)HeroPicker.offlineSelectedHero;
+            player1.SelectedHero = GetHero(p1Hero);
         }
 
         HandleInitialTurn();

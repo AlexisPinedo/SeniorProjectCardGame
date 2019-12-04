@@ -21,7 +21,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
     private GameObject valorIconP2, vannIconP2, vaughnIconP2, vedaIconP2, vickyIconP2, vitoIconP2, unknownIconP2;
 
     [SerializeField]
-    private Text buttonStatusText, heroP1Text, heroP2Text, nickNameP1Text, nickNameP2Text;
+    private Text buttonStatusText, heroP1Text, heroP2Text, nickNameP1Text, nickNameP2Text, roomStatus;
 
     [SerializeField]
     private Button startMatchButton;
@@ -30,20 +30,18 @@ public class RoomLobby : MonoBehaviourPunCallbacks
 
     bool assignedOne, assignedTwo = false;
 
-
-    //This needs to run everytime the room opens 
-    //private void Awake()
-    //{
-    //    startMatchButton.interactable = false;
-    //    startMatchButton.gameObject.SetActive(true);
-    //    GetCurrentRoomPlayers();
-    //}
-
     public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
     {
-        startMatchButton.interactable = false;
-        startMatchButton.gameObject.SetActive(true);
-        GetCurrentRoomPlayers();
+        if (roomLobbyCanvas.activeSelf == false)
+        {
+            Debug.Log("Canvas is active");
+            startMatchButton.interactable = false;
+            startMatchButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            GetCurrentRoomPlayers();
+        }
 
         if (propertiesThatChanged.ContainsKey("playerOneHero"))
         {
@@ -60,8 +58,16 @@ public class RoomLobby : MonoBehaviourPunCallbacks
 
             if(PhotonNetwork.IsMasterClient)
             {
+                roomStatus.text = "Match is ready to begin!";
                 buttonStatusText.text = "Start Match";
                 startMatchButton.interactable = true;
+            }
+            else
+            {
+                if (!PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("playerOneHero"))
+                    roomStatus.text = nickNameP1Text.text + " is selecting a hero...";
+                else
+                    roomStatus.text = nickNameP1Text.text + " is preparing to start the match!";
             }
         }
     }
@@ -72,41 +78,34 @@ public class RoomLobby : MonoBehaviourPunCallbacks
 
         if (playerOne == 0)
         {
-            //Valor
             valorIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Valor";
         }
         else if (playerOne == 1)
         {
-            //Vann
             vannIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Vann";
         }
         else if (playerOne == 2)
         {
-            //Vaughn
             vaughnIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Vaughn";
         }
         else if (playerOne == 3)
         {
-            //Veda
             vedaIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Veda";
         }
         else if (playerOne == 4)
         {
-            //Vicky
             vickyIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Vicky";
         }
         else if (playerOne == 5)
         {
-            //Vito
             vitoIconP1.gameObject.SetActive(Switch);
             heroP1Text.text = "Vito";
         }
-		assignedOne = Switch;
     }
 
     private void AssignPlayerTwo(bool Switch)
@@ -114,43 +113,35 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         unknownIconP2.gameObject.SetActive(!Switch);
 
         if (playerTwo == 0)
-        {
-            //Valor
+        { 
             valorIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Valor";
         }
         else if (playerTwo == 1)
         {
-            //Vann
             vannIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Vann";
         }
         else if (playerTwo == 2)
         {
-            //Vaughn
             vaughnIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Vaughn";
         }
         else if (playerTwo == 3)
         {
-            //Veda
             vedaIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Veda";
         }
         else if (playerTwo == 4)
         {
-            //Vicky
             vickyIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Vicky";
         }
         else if (playerTwo == 5)
         {
-            //Vito
             vitoIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Vito";
         }
-
-		assignedTwo = Switch;
     }
 
     private void GetCurrentRoomPlayers()
@@ -183,14 +174,12 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         if (newPlayer.IsMasterClient)
         {
             nickNameP1Text.text = newPlayer.NickName;
-            Debug.Log("Assigned player 1 nickname...");
         }
         else
         {
             nickNameP2Text.text = newPlayer.NickName;
-            Debug.Log("Assigned player 2 nickname...");
+            roomStatus.text = newPlayer.NickName + " is selecting a hero...";
         }
-
     }
 
     public void OkClick_ForceEnterLobby()
