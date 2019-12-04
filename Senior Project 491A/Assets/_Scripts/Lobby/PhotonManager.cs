@@ -67,9 +67,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Connected = true;
-        photonStatus.text = "Connected ...";
-        Destroy(photonStatus.gameObject);
-        Destroy(tryAgainButton.gameObject);
+        if(photonStatus != null)
+            Destroy(photonStatus.gameObject);
+        if(tryAgainButton != null)
+            Destroy(tryAgainButton.gameObject);
         PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
 
