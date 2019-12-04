@@ -45,6 +45,7 @@ public class HandContainer : PlayerCardContainer
         {
             DrawCard();
         }
+        
     }
 
     public void DrawCard()
@@ -87,7 +88,7 @@ public class HandContainer : PlayerCardContainer
 
         if (containerCardGrid.freeLocations.Count == 0)
         {
-            //Debug.Log("Stack is empty ");
+            Debug.Log("Stack is empty ");
             return;
         }
 
@@ -95,6 +96,8 @@ public class HandContainer : PlayerCardContainer
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerCardGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
 
+        Debug.Log("Created card " + cardDisplay.card.name);
+        
         PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
 
         NetworkIDAssigner.AssignID(cardDisplayPhotonView);
@@ -125,13 +128,13 @@ public class HandContainer : PlayerCardContainer
 
     private void DestroyHand()
     {
-        Debug.Log("Destroying hand");
+        //Debug.Log("Destroying hand");
 
         foreach (var locationReferenceKeyValuePair in containerCardGrid.cardLocationReference)
         {
             if (locationReferenceKeyValuePair.Value != null)
             {
-                Debug.Log("card display found");
+                //Debug.Log("card display found");
 
                 PlayerCardDisplay cardDisplay = (PlayerCardDisplay)locationReferenceKeyValuePair.Value;
 
@@ -140,19 +143,21 @@ public class HandContainer : PlayerCardContainer
                     //Debug.Log("No card in Hand Display game object");
                     return;
                 }
-                Debug.Log("card display card not null");
+                //Debug.Log("card display card not null");
 
                 if(cardDisplay.card.CardType != CardTypes.None)
                 {                    
                     //Debug.Log("Add card to grave");
                     playerGraveyard.graveyard.Add(cardDisplay.card);
                 }
-                Debug.Log("Removing card from hand");
+                //Debug.Log("Removing card from hand");
 
                 hand.hand.Remove(cardDisplay.card);
                 Destroy(locationReferenceKeyValuePair.Value.gameObject);
             }
+            Debug.Log("pushing onto free locations" + locationReferenceKeyValuePair.Key);
             containerCardGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
+
         }
     }
 
