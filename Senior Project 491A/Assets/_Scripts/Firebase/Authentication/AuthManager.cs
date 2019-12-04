@@ -91,17 +91,17 @@ public class AuthManager : MonoBehaviour
     }
 
     // Facebook call back for initialization
-    void InitCallBack()
-    {
-        if (FB.IsInitialized)
-        {
-            FB.ActivateApp();
-        }
-        else
-        {
-            Debug.LogError("FAILED to initialize the FB SDK");
-        }
-    }
+    //void InitCallBack()
+    //{
+    //    if (FB.IsInitialized)
+    //    {
+    //        FB.ActivateApp();
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("FAILED to initialize the FB SDK");
+    //    }
+    //}
 
     void OnHideUnity(bool isGameShown)
     {
