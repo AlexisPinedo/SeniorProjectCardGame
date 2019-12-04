@@ -18,14 +18,15 @@ public class HandContainer : PlayerCardContainer
     
     [SerializeField] private int DefaultHandSize = 5;
     
-    private void Awake()
+    private void Start()
     {
-        DrawStartingHand();
+        if(History.Instance.TurnCount == 0)
+            DrawStartingHand();
     }
 
     private void OnEnable()
     {
-        TurnPhaseManager.PlayerTurnEnded += DestroyHand;
+        TurnPhaseManager.EndingPlayerTurn += DestroyHand;
         TurnPhaseManager.PlayerTurnStarted += DrawStartingHand;
         containerCardGrid.onGridResize += ChangeCardPositions;
     }
@@ -33,7 +34,7 @@ public class HandContainer : PlayerCardContainer
     private void OnDisable()
     {
         //Debug.Log("Hand container has been disabled");
-        TurnPhaseManager.PlayerTurnEnded -= DestroyHand;
+        TurnPhaseManager.EndingPlayerTurn -= DestroyHand;
         TurnPhaseManager.PlayerTurnStarted -= DrawStartingHand;
         containerCardGrid.onGridResize -= ChangeCardPositions;
     }
@@ -128,7 +129,7 @@ public class HandContainer : PlayerCardContainer
 
     private void DestroyHand()
     {
-        //Debug.Log("Destroying hand");
+        Debug.Log("Destroying hand");
 
         foreach (var locationReferenceKeyValuePair in containerCardGrid.cardLocationReference)
         {
@@ -141,7 +142,8 @@ public class HandContainer : PlayerCardContainer
                 if (cardDisplay.card == null)
                 {
                     //Debug.Log("No card in Hand Display game object");
-                    return;
+                    containerCardGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
+                    continue;
                 }
                 //Debug.Log("card display card not null");
 
