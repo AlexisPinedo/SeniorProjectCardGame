@@ -137,10 +137,11 @@ public class PlayZone : MonoBehaviourPunCallbacks
 
         if (!cardPlayed.CardName.Equals("Phantom"))
         {
-            tpHand.hand.Remove(cardPlayed);
             TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardPlayed);
         }
-
+        
+        tpHand.hand.Remove(cardPlayed);
+        
         CardPlayed?.Invoke(cardPlayed);
         HasPlayed?.Invoke();
         cardInPlayZone = false;
