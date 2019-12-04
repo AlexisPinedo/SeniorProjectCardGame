@@ -44,8 +44,10 @@ public class NetworkUIEventRaiser : MonoBehaviour
 
     public void SendEndTurnClickEvent()
     {
+
         if(!PhotonNetwork.OfflineMode)
             PhotonNetwork.RaiseEvent(NetworkOwnershipTransferManger.endTurnEvent, null, raiseEventOptions, sendOptions);
+        Debug.Log("sent end turn event");
     }
 
     public void SendBattleButtonClickEvent()
@@ -62,7 +64,10 @@ public class NetworkUIEventRaiser : MonoBehaviour
         byte recievedCode = photonEvent.Code;
 
         if (recievedCode == NetworkOwnershipTransferManger.endTurnEvent)
-            UIHandler.Instance.RaiseEventStartBattleButtonOnClick();
+        {
+            UIHandler.Instance.RasieEventEndTurnButtonOnClick();
+            Debug.Log("recieved end turn event");
+        }
 
         if (recievedCode == NetworkOwnershipTransferManger.startBattleEvent)
             UIHandler.Instance.RaiseEventStartBattleButtonOnClick();
