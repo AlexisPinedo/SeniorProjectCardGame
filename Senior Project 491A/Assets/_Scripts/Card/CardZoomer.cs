@@ -11,12 +11,12 @@ using UnityEngine;
 /// </summary>
 public class CardZoomer : MonoBehaviourPunCallbacks
 {
-    public Vector2 OriginalPosition;
+    public Vector2 originalPosition;
     
 
     private void Awake()
     {
-        OriginalPosition = this.transform.position;
+        originalPosition = this.transform.position;
     }
 
     public void OnMouseEnter()
@@ -73,7 +73,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
             //Debug.Log("enter");
             transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
             Vector2 newPosition = new Vector2(0, -1);
-            transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
+            transform.position = new Vector2(newPosition.x + originalPosition.x, newPosition.y + originalPosition.y);
         }
         //player card
         else
@@ -81,7 +81,7 @@ public class CardZoomer : MonoBehaviourPunCallbacks
             //Debug.Log("enter");
             transform.localScale = new Vector2(1.5F, 1.5F); //zooms in the object
             Vector2 newPosition = new Vector2(0, 1);
-            transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
+            transform.position = new Vector2(newPosition.x + originalPosition.x, newPosition.y + originalPosition.y);
 
         }
     }
@@ -91,6 +91,6 @@ public class CardZoomer : MonoBehaviourPunCallbacks
         //Debug.Log("zoom out " +photonView.ViewID);
         transform.localScale = new Vector2(1, 1);  //returns the object to its original state
         if (!DragCard.cardHeld)
-            transform.position = OriginalPosition;
+            transform.position = originalPosition;
     }
 }

@@ -11,9 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/AlexPinedoScene.unity
     guid: e7c2cf53079353241812ae5e98fbcf7b
-  - enabled: 1
-    path: Assets/_Scenes/SinglePlayer.unity
-    guid: 740adb09a621ccc4cb84d12b16a4c516
-  m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: a184d7c0cd16e4549abb87e65e46713e,
-      type: 2}
+  m_configObjects: {}

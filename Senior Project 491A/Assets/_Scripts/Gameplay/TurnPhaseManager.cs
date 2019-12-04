@@ -115,10 +115,10 @@ public class TurnPhaseManager : MonoBehaviour
 
     IEnumerator HandlePlayerTurnState()
     {
-        Debug.Log("Starting Turn");
+        //Debug.Log("Starting Turn");
         PlayerTurnStarted?.Invoke();
         
-        Debug.Log("Beginning Shop Play phase");
+        //Debug.Log("Beginning Shop Play phase");
         StartPlayPhase();
         PlayPhaseStarted?.Invoke();
         while (playPhaseOccuring)
@@ -128,7 +128,7 @@ public class TurnPhaseManager : MonoBehaviour
         EndPlayPhase();
         PlayPhaseEnded?.Invoke();
         
-        Debug.Log("Beginning Battle Phase");
+        //Debug.Log("Beginning Battle Phase");
         StartBattlePhase();
         BattlePhaseStarted?.Invoke();
         while (battePhaseOccuring)
@@ -138,7 +138,7 @@ public class TurnPhaseManager : MonoBehaviour
         EndBattlePhase();
         BattlePhaseEnded?.Invoke();
         
-        Debug.Log("Ending Turn");
+        //Debug.Log("Ending Turn");
         EndPlayPhase();
         PlayerTurnEnded?.Invoke();
     }

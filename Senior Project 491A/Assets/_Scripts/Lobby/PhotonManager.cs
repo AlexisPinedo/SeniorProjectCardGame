@@ -46,11 +46,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         photonStatus.text = "Establishing conenction with server";
 
-        if (nameInp.text == null || nameInp.text == "")
-        {
-            nameInp.text = "Debugging Offline";
-        }
+        //if (nameInp.text == null || nameInp.text == "")
+        //{
+        //    nameInp.text = "Debugging Offline";
+        //}
+
+        //Disable while firebase is not implemented on screen 
+        //PhotonNetwork.NickName = AuthManager.sharedInstance.GetCurrentUser().UserId;
         PhotonNetwork.NickName = nameInp.text;
+
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
 
@@ -69,7 +73,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         photonStatus.text = "Connected to master.";
-
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         photonStatus.text = "";
     }
@@ -92,9 +95,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         roomName.text = PhotonNetwork.CurrentRoom.Name;
         mainLobbyCanvas.SetActive(false);
-
         Debug.Log("\t" + PhotonNetwork.LocalPlayer.NickName + " has joined the room.\n\tSelecting a hero now!");
-
         SelectHero();
 
         Debug.Log("Keys: " + PhotonNetwork.CurrentRoom.CustomProperties.Count);
