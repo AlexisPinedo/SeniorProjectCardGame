@@ -12,9 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9437f05b764824c4b8cf7be7229bab7f, type: 3}
   m_Name: Hand Player 1
   m_EditorClassIdentifier: 
-  hand:
-  - {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
-  - {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
-  - {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
-  - {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
-  - {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
+  hand: []

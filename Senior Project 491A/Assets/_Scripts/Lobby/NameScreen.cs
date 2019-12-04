@@ -19,6 +19,11 @@ public class NameScreen : MonoBehaviour
 
     private readonly int minNameLen = 5;
 
+    private void OnEnable()
+    {
+        nameInp.text = "";
+    }
+
     #region UI Methods
     public void OnClick_CreateNameBtn()
     {

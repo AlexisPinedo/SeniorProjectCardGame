@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
-using ExitGames.Client.Photon;
+using System.Collections;
 
 /// <summary>
 /// This class defines all characteristics and functions of the lobby menu.
@@ -10,71 +10,63 @@ using ExitGames.Client.Photon;
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    private InputField nameInp, roomInput;
+    private InputField nameInp;
 
     [SerializeField]
-    private Text photonStatus, welcomeUser, roomName, heroSelectedText;
+    private Text photonStatus, welcomeUser, roomName;
 
     [SerializeField]
-    private GameObject mainLobbyCanvas, roomLobbyCanvas, heroPickerPopup;
+    private GameObject mainLobbyCanvas, heroPickerPopup;
 
     [SerializeField]
-    private GameObject createRoomPanel, backButton, createRoomButton, gameLogo;
+    private GameObject createRoomButton, tryAgainButton;
 
-    [SerializeField]
-    private Button photonGenerateRoomButton;
-
-    /// <summary>
-    /// Reference for the Player's Hero
-    /// </summary>
     public static Heroes playerOneHero, playerTwoHero;
 
-    private static System.Random randNum = new System.Random();
-
-    private readonly int minRoomNameLen = 4;
-
-    /// <summary>
-    /// Currently empty.
-    /// </summary>
-    private void Awake()
-    {
-    }
+    private bool Connected;
 
     public override void OnEnable()
     {
         base.OnEnable();
+        StartCoroutine(AttemptingConnection());
+        photonStatus.gameObject.SetActive(true);
+        photonStatus.gameObject.SetActive(true);
+    }
 
-        photonStatus.text = "Establishing conenction with server";
-
-        //if (nameInp.text == null || nameInp.text == "")
-        //{
-        //    nameInp.text = "Debugging Offline";
-        //}
+    #region PUN Networking
+    IEnumerator AttemptingConnection()
+    {
+        photonStatus.text = "Attempting conenction ...";
 
         //Disable while firebase is not implemented on screen 
         //PhotonNetwork.NickName = AuthManager.sharedInstance.GetCurrentUser().UserId;
         PhotonNetwork.NickName = nameInp.text;
-
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NetworkingClient.EnableLobbyStatistics = true;
-
-        // Settings defined via PhotonServerSettings
         PhotonNetwork.ConnectUsingSettings();
+
+        yield return new WaitForSeconds(4);
+
+        if (!Connected)
+        {
+            photonStatus.text = "Failed to connect ...";
+            tryAgainButton.SetActive(true);
+        }
     }
 
-    /// <summary>
-    /// Currently empty
-    /// </summary>
-    void Update()
+    public void OnClick_TryConnectionAgain()
     {
+        StartCoroutine(AttemptingConnection());
     }
 
-    #region PUN Networking
     public override void OnConnectedToMaster()
     {
-        photonStatus.text = "Connected to master.";
+        Connected = true;
+        if (photonStatus.gameObject.activeSelf)
+            photonStatus.gameObject.SetActive(false);
+        if (tryAgainButton.activeSelf)
+            tryAgainButton.gameObject.SetActive(false);
         PhotonNetwork.JoinLobby(TypedLobby.Default);
-        photonStatus.text = "";
     }
 
     /// <summary>
@@ -82,10 +74,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnJoinedLobby()
     {
-        Debug.Log("\t" + PhotonNetwork.LocalPlayer.NickName + " has joined the lobby");
         welcomeUser.text = "Welcome, " + PhotonNetwork.LocalPlayer.NickName;
-        mainLobbyCanvas.SetActive(true);
-        createRoomButton.SetActive(true);
+
+        if (!NotificationWindowEvent.Instance.NotificationView.gameObject.activeSelf)
+        {
+            createRoomButton.SetActive(true);
+            mainLobbyCanvas.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -95,10 +90,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         roomName.text = PhotonNetwork.CurrentRoom.Name;
         mainLobbyCanvas.SetActive(false);
-        Debug.Log("\t" + PhotonNetwork.LocalPlayer.NickName + " has joined the room.\n\tSelecting a hero now!");
-        SelectHero();
-
-        Debug.Log("Keys: " + PhotonNetwork.CurrentRoom.CustomProperties.Count);
+        heroPickerPopup.SetActive(true);
     }
 
     /// <summary>
@@ -111,78 +103,4 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.LogError("<Color=Red><a>Join Room Failed</a></Color>", this);
     }
     #endregion
-
-    /// <summary>
-    /// Generates a new Photon Room and sends the user to the Hero selection screen.
-    /// </summary>
-    public void GeneratePhotonRoom()
-    {
-        createRoomButton.SetActive(false);
-        createRoomPanel.SetActive(false);
-
-        System.Random randomNumber = new System.Random();
-        int randomInt = randomNumber.Next();
-
-        RoomOptions options = new RoomOptions
-        {
-            IsOpen = true,
-            IsVisible = true,
-            MaxPlayers = 2,
-            CustomRoomProperties = new Hashtable() { { "deckRandomValue", randomInt } }
-        };
-
-        PhotonNetwork.JoinOrCreateRoom(roomInput.text, options, null);
-    }
-
-    /// <summary>
-    /// Detects if the room attempting to be created has the sufficient number of characters.
-    /// </summary>
-    public void OnRoomNameField_Changed()
-    {
-        if (roomInput.text.Length >= minRoomNameLen)
-        {
-            photonGenerateRoomButton.interactable = true;
-        }
-        else
-        {
-            photonGenerateRoomButton.interactable = false;
-        }
-    }
-
-    /// <summary>
-    /// Hides the button and displays three objects: a back button, an input field (the room to be created), and the accept button.
-    /// </summary>
-    public void OnClick_CreateRoom()
-    {
-        createRoomButton.SetActive(false);
-        createRoomPanel.SetActive(true);
-    }
-
-    /// <summary>
-    /// Hides the create room panel and shows the create room button.
-    /// </summary>
-    public void OnClick_CreateRoomBack()
-    {
-        createRoomButton.SetActive(true);
-        createRoomPanel.SetActive(false);
-    }
-
-    /// <summary>
-    /// Brings the player to the canvas to select a Hero.
-    /// </summary>
-    public void SelectHero()
-    {
-        gameLogo.SetActive(false);
-        mainLobbyCanvas.SetActive(false);
-        heroPickerPopup.SetActive(true);
-    }
-
-    /// <summary>
-    /// Sets the text for the hero based upon which icon was clicked.
-    /// </summary>
-    /// <param name="heroName"></param>
-    public void OnClick_HeroClicked(string heroName)
-    {
-        heroSelectedText.text = heroName;
-    }
 }

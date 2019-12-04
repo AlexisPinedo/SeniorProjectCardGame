@@ -20,7 +20,8 @@ public class TurnPhaseManager : MonoBehaviour
         get => currentPhase;
     }
 
-    public static event Action PlayerTurnStarted; 
+    public static event Action PlayerTurnStarted;
+    public static event Action EndingPlayerTurn; 
     public static event Action PlayerTurnEnded;
     public static event Action PlayPhaseStarted;
     public static event Action PlayPhaseEnded;
@@ -70,17 +71,7 @@ public class TurnPhaseManager : MonoBehaviour
         battePhaseOccuring = false;
         endPhaseTriggered = true;
     }
-
-    //IEnumerator EndTurn()
-    //{
-    //    while (!AnimationManager.SharedInstance.CardAnimActive && !AnimationManager.SharedInstance.ShopAnimActive)
-    //    {
-    //        yield return null;
-    //    }
-
-       
-    //}
-
+    
     private void StartBattlePhase()
     {
         if (endPhaseTriggered != true)
@@ -138,8 +129,11 @@ public class TurnPhaseManager : MonoBehaviour
         EndBattlePhase();
         BattlePhaseEnded?.Invoke();
         
+        Debug.Log("Sending Ending Player Turn Event");
+        EndingPlayerTurn?.Invoke();
         //Debug.Log("Ending Turn");
         EndPlayPhase();
+        Debug.Log("Sending end turn event");
         PlayerTurnEnded?.Invoke();
     }
 }

@@ -18,14 +18,15 @@ public class HandContainer : PlayerCardContainer
     
     [SerializeField] private int DefaultHandSize = 5;
     
-    private void Awake()
+    private void Start()
     {
-        DrawStartingHand();
+        if(History.Instance.TurnCount == 0)
+            DrawStartingHand();
     }
 
     private void OnEnable()
     {
-        TurnPhaseManager.PlayerTurnEnded += DestroyHand;
+        TurnPhaseManager.EndingPlayerTurn += DestroyHand;
         TurnPhaseManager.PlayerTurnStarted += DrawStartingHand;
         containerCardGrid.onGridResize += ChangeCardPositions;
     }
@@ -33,7 +34,7 @@ public class HandContainer : PlayerCardContainer
     private void OnDisable()
     {
         //Debug.Log("Hand container has been disabled");
-        TurnPhaseManager.PlayerTurnEnded -= DestroyHand;
+        TurnPhaseManager.EndingPlayerTurn -= DestroyHand;
         TurnPhaseManager.PlayerTurnStarted -= DrawStartingHand;
         containerCardGrid.onGridResize -= ChangeCardPositions;
     }
@@ -45,6 +46,7 @@ public class HandContainer : PlayerCardContainer
         {
             DrawCard();
         }
+        
     }
 
     public void DrawCard()
@@ -87,7 +89,7 @@ public class HandContainer : PlayerCardContainer
 
         if (containerCardGrid.freeLocations.Count == 0)
         {
-            //Debug.Log("Stack is empty ");
+            Debug.Log("Stack is empty ");
             return;
         }
 
@@ -95,6 +97,8 @@ public class HandContainer : PlayerCardContainer
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerCardGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
 
+        Debug.Log("Created card " + cardDisplay.card.name);
+        
         PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
 
         NetworkIDAssigner.AssignID(cardDisplayPhotonView);
@@ -131,28 +135,31 @@ public class HandContainer : PlayerCardContainer
         {
             if (locationReferenceKeyValuePair.Value != null)
             {
-                Debug.Log("card display found");
+                //Debug.Log("card display found");
 
                 PlayerCardDisplay cardDisplay = (PlayerCardDisplay)locationReferenceKeyValuePair.Value;
 
                 if (cardDisplay.card == null)
                 {
                     //Debug.Log("No card in Hand Display game object");
-                    return;
+                    containerCardGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
+                    continue;
                 }
-                Debug.Log("card display card not null");
+                //Debug.Log("card display card not null");
 
                 if(cardDisplay.card.CardType != CardTypes.None)
                 {                    
                     //Debug.Log("Add card to grave");
                     playerGraveyard.graveyard.Add(cardDisplay.card);
                 }
-                Debug.Log("Removing card from hand");
+                //Debug.Log("Removing card from hand");
 
                 hand.hand.Remove(cardDisplay.card);
                 Destroy(locationReferenceKeyValuePair.Value.gameObject);
             }
+            Debug.Log("pushing onto free locations" + locationReferenceKeyValuePair.Key);
             containerCardGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
+
         }
     }
 
