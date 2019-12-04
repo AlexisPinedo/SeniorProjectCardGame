@@ -24,7 +24,7 @@ MonoBehaviour:
   borderArt: {fileID: 21300000, guid: ab066be8ed0b6fc488c1fa0afe2de328, type: 3}
   _cardCost: 3
   _cardAttack: 2
-  _cardCurrency: 0
+  _cardCurrency: 1
   CardEffectRequirement: 02000000
   cardCostsIcons:
   - {fileID: 21300000, guid: 4ccb6c05577c54545b0ff360882023f5, type: 3}
