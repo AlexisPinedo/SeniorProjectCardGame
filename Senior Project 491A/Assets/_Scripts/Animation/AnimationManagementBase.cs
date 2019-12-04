@@ -24,7 +24,7 @@ public class AnimationManagementBase<T> : MonoBehaviour where T : AnimationObjec
         if (animQueue.Count == 0)
         {
             animQueue.Enqueue(animObject);
-            Debug.Log("Starting addition of objects");
+            //Debug.Log("Starting addition of objects");
             StartCoroutine(HandleAnim());
         }
         else

@@ -13,4 +13,3 @@ MonoBehaviour:
   m_Name: Hand Player 1
   m_EditorClassIdentifier: 
   hand: []
-  cardContainter: {fileID: 0}

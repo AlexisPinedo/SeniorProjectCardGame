@@ -30,14 +30,14 @@ public class DragCard : MonoBehaviourPun
     /// </summary>
     public void OnMouseDown()
     {
-        Debug.Log("card has been clicked");
+        //Debug.Log("card has been clicked");
         //photon view of our current card
         if (photonView.IsMine)
         {
             //Here we add the offset from the card and the mouse
             offset = transform.position - Camera.main.ScreenToWorldPoint(
                          new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-            Debug.Log("Running Handling card clicked method");
+            //Debug.Log("Running Handling card clicked method");
 
             HandleCardClicked(offset);
             if(!PhotonNetwork.OfflineMode) 
@@ -147,7 +147,7 @@ public class DragCard : MonoBehaviourPun
         {
             CardDragged?.Invoke(cardClicked);
 
-            Debug.Log("particle effect call...");
+            //Debug.Log("particle effect call...");
         }
     }
 }

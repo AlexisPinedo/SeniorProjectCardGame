@@ -164,6 +164,7 @@
             <e p="NetworkIDAssigner.cs" t="Include" />
             <e p="NetworkUIEventRaiser.cs" t="Include" />
           </e>
+          <e p="OptionsManager.cs" t="Include" />
           <e p="Shop" t="Include">
             <e p="PurchaseHandler.cs" t="Include" />
             <e p="ShopContainer.cs" t="Include" />
@@ -173,6 +174,7 @@
           <e p="UI" t="Include">
             <e p="AvatarSwitch.cs" t="Include" />
             <e p="ButtonInputManager.cs" t="Include" />
+            <e p="HeroPicker.cs" t="Include" />
             <e p="MoveBottonPartTest.cs" t="Include" />
             <e p="NotificationWindowEvent.cs" t="Include" />
             <e p="ParticlePlay.cs" t="Include" />

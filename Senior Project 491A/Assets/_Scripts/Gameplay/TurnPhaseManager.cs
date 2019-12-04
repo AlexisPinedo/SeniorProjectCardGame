@@ -20,7 +20,8 @@ public class TurnPhaseManager : MonoBehaviour
         get => currentPhase;
     }
 
-    public static event Action PlayerTurnStarted; 
+    public static event Action PlayerTurnStarted;
+    public static event Action EndingPlayerTurn; 
     public static event Action PlayerTurnEnded;
     public static event Action PlayPhaseStarted;
     public static event Action PlayPhaseEnded;
@@ -70,17 +71,7 @@ public class TurnPhaseManager : MonoBehaviour
         battePhaseOccuring = false;
         endPhaseTriggered = true;
     }
-
-    //IEnumerator EndTurn()
-    //{
-    //    while (!AnimationManager.SharedInstance.CardAnimActive && !AnimationManager.SharedInstance.ShopAnimActive)
-    //    {
-    //        yield return null;
-    //    }
-
-       
-    //}
-
+    
     private void StartBattlePhase()
     {
         if (endPhaseTriggered != true)
@@ -115,10 +106,10 @@ public class TurnPhaseManager : MonoBehaviour
 
     IEnumerator HandlePlayerTurnState()
     {
-        Debug.Log("Starting Turn");
+        //Debug.Log("Starting Turn");
         PlayerTurnStarted?.Invoke();
         
-        Debug.Log("Beginning Shop Play phase");
+        //Debug.Log("Beginning Shop Play phase");
         StartPlayPhase();
         PlayPhaseStarted?.Invoke();
         while (playPhaseOccuring)
@@ -128,7 +119,7 @@ public class TurnPhaseManager : MonoBehaviour
         EndPlayPhase();
         PlayPhaseEnded?.Invoke();
         
-        Debug.Log("Beginning Battle Phase");
+        //Debug.Log("Beginning Battle Phase");
         StartBattlePhase();
         BattlePhaseStarted?.Invoke();
         while (battePhaseOccuring)
@@ -138,8 +129,11 @@ public class TurnPhaseManager : MonoBehaviour
         EndBattlePhase();
         BattlePhaseEnded?.Invoke();
         
-        Debug.Log("Ending Turn");
+        Debug.Log("Sending Ending Player Turn Event");
+        EndingPlayerTurn?.Invoke();
+        //Debug.Log("Ending Turn");
         EndPlayPhase();
+        Debug.Log("Sending end turn event");
         PlayerTurnEnded?.Invoke();
     }
 }

@@ -13,13 +13,6 @@ public class RoomListingsView : MonoBehaviourPunCallbacks
 
     private List<RoomListing> _listings = new List<RoomListing>();
 
-    //public override void OnJoinedRoom()
-    //{
-    //    //_roomsCanvases.CurrentRoomCanvas.Show();
-    //    //_content.DestroyChildren();
-    //    _listings.Clear();
-    //}
-
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         foreach (RoomInfo info in roomList)

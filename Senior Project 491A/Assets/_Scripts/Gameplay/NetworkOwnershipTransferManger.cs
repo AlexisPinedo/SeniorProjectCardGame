@@ -34,7 +34,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
-            Debug.Log("Photon is online...");
+            //Debug.Log("Photon is online...");
 
             //assign player 1 and player 2 for referencee
             foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
@@ -45,17 +45,19 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
                     photonPlayer2 = pendingPhotonPlayer = player;
             }
 
-            Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
-            Debug.Log("Photon Player 2: " + photonPlayer2.NickName);
+            //Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
+           // Debug.Log("Photon Player 2: " + photonPlayer2.NickName);
 
             notficationWindow.photonView.TransferOwnership(currentPhotonPlayer);
         }
         else
         {
             // Enabling offline mode allows all photon code to be ignored
-            Debug.Log("Photon is offline...");
+           // Debug.Log("Photon is offline...");
             PhotonNetwork.OfflineMode = true;
             currentPhotonPlayer = photonPlayer1 = photonPlayer2 = PhotonNetwork.LocalPlayer;
+            PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+            Debug.Log("Assigned master client to local player 1");
         }
     }
 
