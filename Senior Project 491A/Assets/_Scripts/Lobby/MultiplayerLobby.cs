@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Photon.Pun;
 using UnityEngine.UI;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 public class MultiplayerLobby : MonoBehaviour
 {
@@ -9,15 +10,77 @@ public class MultiplayerLobby : MonoBehaviour
     private GameObject multiplayerLobby, mainMenuScreen, photonManager;
 
     [SerializeField]
-    private GameObject backBtn;
+    private GameObject createRoomPanel, createRoomButton;
+
+    [SerializeField]
+    private Button photonGenerateRoomButton;
+
+    [SerializeField]
+    private InputField roomInput;
+
+    private readonly int minRoomNameLen = 4;
+
+    /// <summary>
+    /// Detects if the room attempting to be created has the sufficient number of characters.
+    /// </summary>
+    public void OnRoomNameField_Changed()
+    {
+        if (roomInput.text.Length >= minRoomNameLen)
+            photonGenerateRoomButton.interactable = true;
+        else
+            photonGenerateRoomButton.interactable = false;
+    }
 
     #region OnClick Methods
+
+    /// <summary>
+    /// Generates a new Photon Room and sends the user to the Hero selection screen.
+    /// </summary>
+    public void OnClick_GeneratePhotonRoom()
+    {
+        createRoomButton.SetActive(false);
+        createRoomPanel.SetActive(false);
+        System.Random randomNumber = new System.Random();
+        int randomInt = randomNumber.Next();
+
+        RoomOptions options = new RoomOptions
+        {
+            IsOpen = true,
+            IsVisible = true,
+            MaxPlayers = 2,
+            CustomRoomProperties = new Hashtable() { { "deckRandomValue", randomInt } }
+        };
+
+        PhotonNetwork.JoinOrCreateRoom(roomInput.text, options, null);
+        roomInput.text = "";
+    }
+
     public void OnClick_Back()
     {
         multiplayerLobby.SetActive(false);
         photonManager.SetActive(false);
         mainMenuScreen.SetActive(true);
+        OnClick_CreateRoomBack();
+        PhotonNetwork.Disconnect();
+    }
+
+    /// <summary>
+    /// Hides the button and displays three objects: a back button, an input field (the room to be created), and the accept button.
+    /// </summary>
+    public void OnClick_CreateRoom()
+    {
+        createRoomButton.SetActive(false);
+        createRoomPanel.SetActive(true);
+    }
+
+    /// <summary>
+    /// Hides the create room panel and shows the create room button.
+    /// </summary>
+    public void OnClick_CreateRoomBack()
+    {
+        roomInput.text = "";
+        createRoomButton.SetActive(true);
+        createRoomPanel.SetActive(false);
     }
     #endregion
-
 }

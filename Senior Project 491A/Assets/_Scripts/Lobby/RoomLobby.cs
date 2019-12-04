@@ -28,8 +28,6 @@ public class RoomLobby : MonoBehaviourPunCallbacks
 
     int playerOne, playerTwo = -1;
 
-    bool assignedOne, assignedTwo = false;
-
     public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
     {
         if (roomLobbyCanvas.activeSelf == false)
@@ -184,7 +182,6 @@ public class RoomLobby : MonoBehaviourPunCallbacks
 
     public void OkClick_ForceEnterLobby()
     {
-        PhotonNetwork.LeaveRoom();
         mainLobbyCanvas.SetActive(true);
         NotificationWindowEvent.Instance.NotificationView.gameObject.SetActive(false);
         NotificationWindowEvent.Instance.transparentCover.gameObject.SetActive(false);
@@ -206,6 +203,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
     {
         roomLobbyCanvas.SetActive(false);
         ResetRoom();
+        PhotonNetwork.LeaveRoom();
         NotificationWindowEvent.Instance.EnableNotificationWindow("A player has left matchmaking. \n Returning to Lobby.");
     }
 

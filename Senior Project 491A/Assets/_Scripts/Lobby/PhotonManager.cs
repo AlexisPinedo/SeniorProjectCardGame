@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
-using ExitGames.Client.Photon;
 using System.Collections;
 
 /// <summary>
@@ -11,37 +10,30 @@ using System.Collections;
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    private InputField nameInp, roomInput;
+    private InputField nameInp;
 
     [SerializeField]
     private Text photonStatus, welcomeUser, roomName;
 
     [SerializeField]
-    private GameObject mainLobbyCanvas, roomLobbyCanvas, heroPickerPopup;
+    private GameObject mainLobbyCanvas, heroPickerPopup;
 
     [SerializeField]
-    private GameObject createRoomPanel, backButton, createRoomButton, gameLogo, tryAgainButton;
+    private GameObject createRoomButton, tryAgainButton;
 
-    [SerializeField]
-    private Button photonGenerateRoomButton;
-
-    /// <summary>
-    /// Reference for the Player's Hero
-    /// </summary>
     public static Heroes playerOneHero, playerTwoHero;
 
-    private static System.Random randNum = new System.Random();
-
-    private readonly int minRoomNameLen = 4;
-
-    private bool Connected = false;
+    private bool Connected;
 
     public override void OnEnable()
     {
         base.OnEnable();
         StartCoroutine(AttemptingConnection());
+        photonStatus.gameObject.SetActive(true);
+        photonStatus.gameObject.SetActive(true);
     }
 
+    #region PUN Networking
     IEnumerator AttemptingConnection()
     {
         photonStatus.text = "Attempting conenction ...";
@@ -60,17 +52,26 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             photonStatus.text = "Failed to connect ...";
             tryAgainButton.SetActive(true);
         }
-
     }
 
-    #region PUN Networking
+    public void OnClick_TryConnectionAgain()
+    {
+        StartCoroutine(AttemptingConnection());
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        base.OnDisconnected(cause);
+        nameInp.text = "";
+    }
+
     public override void OnConnectedToMaster()
     {
         Connected = true;
-        if(photonStatus != null)
-            Destroy(photonStatus.gameObject);
-        if(tryAgainButton != null)
-            Destroy(tryAgainButton.gameObject);
+        if (photonStatus.gameObject.activeSelf)
+            photonStatus.gameObject.SetActive(false);
+        if (tryAgainButton.activeSelf)
+            tryAgainButton.gameObject.SetActive(false);
         PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
 
@@ -80,8 +81,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         welcomeUser.text = "Welcome, " + PhotonNetwork.LocalPlayer.NickName;
-        mainLobbyCanvas.SetActive(true);
         createRoomButton.SetActive(true);
+        mainLobbyCanvas.SetActive(true);
     }
 
     /// <summary>
@@ -91,7 +92,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         roomName.text = PhotonNetwork.CurrentRoom.Name;
         mainLobbyCanvas.SetActive(false);
-        SelectHero();
+        heroPickerPopup.SetActive(true);
     }
 
     /// <summary>
@@ -104,69 +105,4 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.LogError("<Color=Red><a>Join Room Failed</a></Color>", this);
     }
     #endregion
-
-    /// <summary>
-    /// Generates a new Photon Room and sends the user to the Hero selection screen.
-    /// </summary>
-    public void GeneratePhotonRoom()
-    {
-        createRoomButton.SetActive(false);
-        createRoomPanel.SetActive(false);
-
-        System.Random randomNumber = new System.Random();
-        int randomInt = randomNumber.Next();
-
-        RoomOptions options = new RoomOptions
-        {
-            IsOpen = true,
-            IsVisible = true,
-            MaxPlayers = 2,
-            CustomRoomProperties = new ExitGames.Client.Photon.Hashtable() { { "deckRandomValue", randomInt } }
-        };
-
-        PhotonNetwork.JoinOrCreateRoom(roomInput.text, options, null);
-    }
-
-    /// <summary>
-    /// Detects if the room attempting to be created has the sufficient number of characters.
-    /// </summary>
-    public void OnRoomNameField_Changed()
-    {
-        if (roomInput.text.Length >= minRoomNameLen)
-            photonGenerateRoomButton.interactable = true;
-        else
-            photonGenerateRoomButton.interactable = false;
-    }
-
-    /// <summary>
-    /// Hides the button and displays three objects: a back button, an input field (the room to be created), and the accept button.
-    /// </summary>
-    public void OnClick_CreateRoom()
-    {
-        createRoomButton.SetActive(false);
-        createRoomPanel.SetActive(true);
-    }
-
-    /// <summary>
-    /// Hides the create room panel and shows the create room button.
-    /// </summary>
-    public void OnClick_CreateRoomBack()
-    {
-        createRoomButton.SetActive(true);
-        createRoomPanel.SetActive(false);
-    }
-
-    /// <summary>
-    /// Brings the player to the canvas to select a Hero.
-    /// </summary>
-    public void SelectHero()
-    {
-        mainLobbyCanvas.SetActive(false);
-        heroPickerPopup.SetActive(true);
-    }
-
-    public void OnClick_TryConnectionAgain()
-    {
-        StartCoroutine(AttemptingConnection());
-    }
 }
