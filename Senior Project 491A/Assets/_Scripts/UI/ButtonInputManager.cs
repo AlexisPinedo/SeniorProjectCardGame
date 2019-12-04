@@ -64,8 +64,6 @@ public class ButtonInputManager : MonoBehaviour
         {
             endTurnButton.GetComponent<Button>().interactable = false;
             startBattleButton.GetComponent<Button>().interactable = false;
-            StartCoroutine(ShouldActivateButton(endTurnButton.GetComponent<Button>()));
-            StartCoroutine(ShouldActivateButton(startBattleButton.GetComponent<Button>()));
             return;
         }
         
@@ -81,8 +79,7 @@ public class ButtonInputManager : MonoBehaviour
             startBattleButton.GetComponent<Button>().interactable = false;
             endTurnButton.SetActive(true);
             endTurnButton.GetComponent<Button>().interactable = false;
-            StartCoroutine(ShouldActivateButton(endTurnButton.GetComponent<Button>()));
-            StartCoroutine(ShouldActivateButton(startBattleButton.GetComponent<Button>()));
+
         }
     }
 
@@ -98,17 +95,7 @@ public class ButtonInputManager : MonoBehaviour
         startBattleButton.GetComponent<Button>().interactable = false;
     }
 
-    IEnumerator ShouldActivateButton(Button button)
-    {
-        yield return new WaitForSeconds(0.2f);
-
-        while (AnimationManager.SharedInstance.CardAnimActive || AnimationManager.SharedInstance.ShopAnimActive)
-        {
-            yield return null;
-        }
-
-        button.interactable = true;
-    }
+    
 
 
     public void DisableButtonsInList()
