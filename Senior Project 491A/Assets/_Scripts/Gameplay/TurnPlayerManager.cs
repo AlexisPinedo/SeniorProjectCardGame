@@ -67,7 +67,6 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
         }
 
         Heroes p1Hero;
-        /// TROUBLE BREWING UP HERE
         if (!PhotonNetwork.OfflineMode)
         {
             Heroes p2Hero;
@@ -105,12 +104,20 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
 
     public void ChangeActivePlayer()
     {
-        //Debug.Log("Players changed..");
-
         if (player1GameObject != null && player2GameObject != null)
         {
             SwapPlayers();
             PlayerSwitched?.Invoke();
+            if (TurnPhaseManager.CurrentPhase == Phases.StartPhase)
+            {
+                turnPlayer.Currency = 0;
+                turnPlayer.Power = 0;
+                TextUpdate.Instance.UpdateCurrency();
+                TextUpdate.Instance.UpdatePower();
+            }
+        }
+        else if (player1GameObject != null)
+        {
             if (TurnPhaseManager.CurrentPhase == Phases.StartPhase)
             {
                 turnPlayer.Currency = 0;
@@ -176,5 +183,4 @@ public class TurnPlayerManager : MonoBehaviourPunCallbacks
 
         return selectedHero;
     }
-
 }

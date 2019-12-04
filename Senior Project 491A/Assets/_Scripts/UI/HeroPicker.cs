@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
+/// <summary>
+/// 
+/// </summary>
 public class HeroPicker : MonoBehaviourPunCallbacks
 {
     [SerializeField]
@@ -26,6 +29,9 @@ public class HeroPicker : MonoBehaviourPunCallbacks
     [SerializeField]
     Text heroSelected, playerNickName;
 
+    /// <summary>
+    /// Hero icon.
+    /// </summary>
     [SerializeField]
     private GameObject valorIconP1, vannIconP1, vaughnIconP1, vedaIconP1, vickyIconP1, vitoIconP1, unknownIconP1;
 
@@ -46,10 +52,11 @@ public class HeroPicker : MonoBehaviourPunCallbacks
         }
     }
 
+    #region OnClick methods
     public void OnClick_StartMatch()
     {
         offlineSelectedHero = GetHeroNumber(heroSelected.text);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void OnClick_ConfirmHeroSelection()
@@ -104,7 +111,13 @@ public class HeroPicker : MonoBehaviourPunCallbacks
         else
             confirmButton.GetComponent<Button>().interactable = true;
     }
+    #endregion
 
+    /// <summary>
+    /// Sets the Hero icon active if the player has selected to play as said Hero.
+    /// </summary>
+    /// <param name="heroName">Name of the Hero selected</param>
+    /// <param name="Switch">Boolean for determining whether to activate or deactivate the Hero icon.</param>
     private void AssignPlayerOne(string heroName, bool Switch)
     {
         unknownIconP1.gameObject.SetActive(!Switch);
@@ -122,6 +135,11 @@ public class HeroPicker : MonoBehaviourPunCallbacks
             vitoIconP1.gameObject.SetActive(Switch);
     }
 
+    /// <summary>
+    /// Given a Hero name, gets the Heroes enum associated number.
+    /// </summary>
+    /// <param name="heroName">Name of the Hero.</param>
+    /// <returns>Hero number as defined in Heroes enum.</returns>
     private int GetHeroNumber(string heroName)
     {
         int heroNum = -1;

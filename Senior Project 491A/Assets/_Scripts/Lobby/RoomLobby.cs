@@ -54,7 +54,7 @@ public class RoomLobby : MonoBehaviourPunCallbacks
             playerTwo = (int)PhotonNetwork.CurrentRoom.CustomProperties["playerTwoHero"];
             AssignPlayerTwo(true);
 
-            if(PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient)
             {
                 roomStatus.text = "Match is ready to begin!";
                 buttonStatusText.text = "Start Match";
@@ -70,6 +70,10 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         }
     }
 
+    /// <summary>
+    /// Assigns the Hero to Player One that they selected.
+    /// </summary>
+    /// <param name="Switch"></param>
     private void AssignPlayerOne(bool Switch)
     {
         unknownIconP1.gameObject.SetActive(!Switch);
@@ -106,12 +110,16 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         }
     }
 
+    /// <summary>
+    /// Assigns the Hero to Player Two that they selected.
+    /// </summary>
+    /// <param name="Switch"></param>
     private void AssignPlayerTwo(bool Switch)
     {
         unknownIconP2.gameObject.SetActive(!Switch);
 
         if (playerTwo == 0)
-        { 
+        {
             valorIconP2.gameObject.SetActive(Switch);
             heroP2Text.text = "Valor";
         }
@@ -142,6 +150,9 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         }
     }
 
+    /// <summary>
+    /// Gets (???) the Players active in the current Photon Room.
+    /// </summary>
     private void GetCurrentRoomPlayers()
     {
         if (!PhotonNetwork.IsConnected)
@@ -166,7 +177,10 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         }
     }
 
-
+    /// <summary>
+    /// Handles actions taken when a Player has entered a Room.
+    /// </summary>
+    /// <param name="newPlayer"></param>
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         if (newPlayer.IsMasterClient)
@@ -188,6 +202,9 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
+    /// <summary>
+    /// Resets the Room's attributes.
+    /// </summary>
     private void ResetRoom()
     {
         AssignPlayerOne(false);
@@ -200,6 +217,10 @@ public class RoomLobby : MonoBehaviourPunCallbacks
         nickNameP2Text.text = "";
     }
 
+    /// <summary>
+    /// Handles actions taken when a Player has left a Room.
+    /// </summary>
+    /// <param name="otherPlayer"></param>
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         roomLobbyCanvas.SetActive(false);

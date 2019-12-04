@@ -25,7 +25,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private BossCardDisplay bossCard;
-    
+
     public static byte endTurnEvent = (byte)'0';
     public static byte startBattleEvent = (byte)'1';
 
@@ -34,8 +34,6 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
-            //Debug.Log("Photon is online...");
-
             //assign player 1 and player 2 for referencee
             foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
             {
@@ -45,15 +43,11 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
                     photonPlayer2 = pendingPhotonPlayer = player;
             }
 
-            //Debug.Log("Photon Player 1: " + photonPlayer1.NickName);
-           // Debug.Log("Photon Player 2: " + photonPlayer2.NickName);
-
             notficationWindow.photonView.TransferOwnership(currentPhotonPlayer);
         }
         else
         {
             // Enabling offline mode allows all photon code to be ignored
-           // Debug.Log("Photon is offline...");
             PhotonNetwork.OfflineMode = true;
             currentPhotonPlayer = photonPlayer1 = photonPlayer2 = PhotonNetwork.LocalPlayer;
             PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
@@ -72,7 +66,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.OfflineMode)
             TurnPlayerManager.PlayerSwitched -= TransferObjects;
     }
-    
+
     public void TransferObjects()
     {
         bossCard.photonView.TransferOwnership(currentPhotonPlayer);
@@ -90,6 +84,6 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
 
         Debug.Log("All items transfered.");
     }
-    
-    
+
+
 }

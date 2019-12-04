@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
+/// <summary>
+/// Main Menu handler with references to other relevant canvases and the Photon manager.
+/// </summary>
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
