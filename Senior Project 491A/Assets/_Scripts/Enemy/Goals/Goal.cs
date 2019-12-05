@@ -26,7 +26,7 @@ public abstract class Goal : ScriptableObject
     
     protected virtual void OnGoalCompletion()
     {
-        NotificationWindowEvent.Instance.EnableNotificationWindow("Goal has been completed enemy won");
+       //NotificationWindowEvent.Instance.EnableNotificationWindow("Goal has been completed enemy won");
         EndGameHandler.TriggerEndGame();
     }
 }

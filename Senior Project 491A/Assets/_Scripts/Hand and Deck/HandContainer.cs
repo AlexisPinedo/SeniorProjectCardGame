@@ -97,7 +97,7 @@ public class HandContainer : PlayerCardContainer
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerCardGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
 
-        Debug.Log("Created card " + cardDisplay.card.name);
+        //Debug.Log("Created card " + cardDisplay.card.name);
         
         PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
 
@@ -157,7 +157,7 @@ public class HandContainer : PlayerCardContainer
                 hand.hand.Remove(cardDisplay.card);
                 Destroy(locationReferenceKeyValuePair.Value.gameObject);
             }
-            Debug.Log("pushing onto free locations" + locationReferenceKeyValuePair.Key);
+            //Debug.Log("pushing onto free locations" + locationReferenceKeyValuePair.Key);
             containerCardGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
 
         }

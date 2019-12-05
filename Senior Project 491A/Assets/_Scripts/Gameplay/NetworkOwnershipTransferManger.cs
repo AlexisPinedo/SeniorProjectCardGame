@@ -51,7 +51,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
             PhotonNetwork.OfflineMode = true;
             currentPhotonPlayer = photonPlayer1 = photonPlayer2 = PhotonNetwork.LocalPlayer;
             PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
-            Debug.Log("Assigned master client to local player 1");
+            //Debug.Log("Assigned master client to local player 1");
         }
     }
 

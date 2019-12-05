@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b72be6824bb294fe4a4ad14a6ff28bf6, type: 3}
-  m_Name: Bomb Card Effect 1
+  m_Script: {fileID: 11500000, guid: 62b2307e010ae094ea8e8697ac01726d, type: 3}
+  m_Name: Bomb Card Effect
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   summonCount: 1

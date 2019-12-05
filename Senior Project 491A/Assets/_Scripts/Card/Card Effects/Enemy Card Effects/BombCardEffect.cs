@@ -8,6 +8,7 @@ public class BombCardEffect : PlayMinionCardEffect
     public override void LaunchCardEffect()
     {
         base.LaunchCardEffect();
-        BombGoal.bombCardsRevealed++;
+        BombGoal.BombCardsRevealed++;
+        Debug.Log("Bomb card revealed current bombs out is " + BombGoal.BombCardsRevealed);
     }
 }
