@@ -12,5 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20101d8deb0f403469b734a1c5dd6fb8, type: 3}
   m_Name: Boss Deck
   m_EditorClassIdentifier: 
-  cardsToAdd: []
+  cardsToAdd:
+  - {fileID: 11400000, guid: 9f35edd82663d4bbe814b0b05263fb8a, type: 2}
+  - {fileID: 11400000, guid: 1d64ce5e9c48d4309972ed37b60cc7a5, type: 2}
+  - {fileID: 11400000, guid: b025374ff12f04cdcb4346a214e671c9, type: 2}
+  - {fileID: 11400000, guid: 31b8803aa778c4857bfbedd9e561b2be, type: 2}
+  - {fileID: 11400000, guid: c32bb1ee28c37484a9b472e0a297c26d, type: 2}
+  - {fileID: 11400000, guid: 978a4fcfbe74ce54ca6eacf88524dfd8, type: 2}
+  - {fileID: 11400000, guid: 12df97e7f340b4ae1aa08e2592d32c8d, type: 2}
+  - {fileID: 11400000, guid: d7ffebd2e27854d83b329d219aa06be9, type: 2}
+  - {fileID: 11400000, guid: 7d4e4a56a2ec04c6e910882049083ef6, type: 2}
+  - {fileID: 11400000, guid: 41016ff1537624731969d878f35a3126, type: 2}
+  - {fileID: 11400000, guid: 6b5dc36a50e103848b88230131a6a8d3, type: 2}
+  - {fileID: 11400000, guid: 9110d74ccf39b4a6591c2d1e09a37c44, type: 2}
   cardCopies: 4

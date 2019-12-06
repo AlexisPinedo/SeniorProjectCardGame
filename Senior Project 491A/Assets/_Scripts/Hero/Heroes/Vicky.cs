@@ -13,12 +13,12 @@ public class Vicky : InteractableHero
 
     protected override void HeroPowerEffect()
     {
-        if (isInteractable)
+        if (isInteractable && NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
         {
             isInteractable = false;
-            
-            NotificationWindowEvent.Instance.EnableNotificationWindow("Swapping currency and power");
-            
+
+            NotificationWindowEvent.Instance.EnableNotificationWindow("Swapped currency and power");
+
             Player currentPlayer = TurnPlayerManager.Instance.TurnPlayer;
             
             int temp = currentPlayer.Currency;
@@ -26,6 +26,10 @@ public class Vicky : InteractableHero
             currentPlayer.Currency = currentPlayer.Power;
 
             currentPlayer.Power = temp;
+        }
+        else
+        {
+            Debug.Log("unable to interact...");
         }
         
     }

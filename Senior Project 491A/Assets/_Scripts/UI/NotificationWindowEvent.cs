@@ -139,8 +139,12 @@ public class NotificationWindowEvent : Event_Base
 
         if (startBattleButton == null)
             return;
-        startBattleButton.gameObject.SetActive(false);
-        endTurnButton.gameObject.SetActive(false);
+
+        if (NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
+        {
+            startBattleButton.gameObject.SetActive(false);
+            endTurnButton.gameObject.SetActive(false);
+        }
     }
     
     private void DisableComponents()
@@ -151,8 +155,11 @@ public class NotificationWindowEvent : Event_Base
         if (startBattleButton == null)
             return;
 
-        startBattleButton.gameObject.SetActive(true);
-        endTurnButton.gameObject.SetActive(true);
+        if (NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
+        {
+            startBattleButton.gameObject.SetActive(true);
+            endTurnButton.gameObject.SetActive(true);
+        }
     }
     
 }
