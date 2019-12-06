@@ -28,15 +28,31 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnEnable()
     {
         base.OnEnable();
-        StartCoroutine(AttemptingConnection());
-        photonStatus.gameObject.SetActive(true);
-        photonStatus.gameObject.SetActive(true);
+
+        if (PhotonNetwork.IsConnected)
+        {
+            /**
+             * Connected from previous game.
+             * Grab player nickname and disconnect them.
+             * Attempt to rejoin the lobby with nickname from previous connection.
+             */
+
+            nameInp.text = PhotonNetwork.LocalPlayer.NickName;
+            PhotonNetwork.Disconnect();
+            StartCoroutine(AttemptingConnection());
+            photonStatus.gameObject.SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(AttemptingConnection());
+            photonStatus.gameObject.SetActive(true);
+        }
     }
 
     #region PUN Networking
     IEnumerator AttemptingConnection()
     {
-        photonStatus.text = "Attempting conenction ...";
+        photonStatus.text = "Joining the lobby ...";
 
         //Disable while firebase is not implemented on screen 
         PhotonNetwork.NickName = nameInp.text;

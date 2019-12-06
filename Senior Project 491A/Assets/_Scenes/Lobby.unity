@@ -6135,6 +6135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuScreen: {fileID: 1193032261}
   singlePlayerScreen: {fileID: 1477543073}
+  multiPlayerScreen: {fileID: 828290311}
   photonManager: {fileID: 1047104019}
   nameScreenCanvas: {fileID: 1985485627}
   heroPickerCanvas: {fileID: 974146139}

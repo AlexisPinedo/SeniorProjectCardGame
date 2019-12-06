@@ -29,7 +29,6 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
     public static byte endTurnEvent = (byte)'0';
     public static byte startBattleEvent = (byte)'1';
 
-
     private void Awake()
     {
         if (PhotonNetwork.IsConnected)
