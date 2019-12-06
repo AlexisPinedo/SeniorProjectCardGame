@@ -6,14 +6,17 @@ public class TurnStartEffectHero : Hero
 {
     protected virtual void OnEnable()
     {
-        //Debug.Log("Turn starting history enabled");
-        History.CardHistoryComponentsUpdated += TriggerHeroPowerEffect;
+        TurnPhaseManager.PlayerTurnStarted += TriggerHeroPowerEffect;
+
+        //Swap to player turn started...
+        //Vito was gaining power only during enemy phase and would revert to 0 on player turn start
+        //History.CardHistoryComponentsUpdated += TriggerHeroPowerEffect;
     }
 
     protected void OnDisable()
     {
-        //Debug.Log("Turn starting history disabled");
-        History.CardHistoryComponentsUpdated -= TriggerHeroPowerEffect;
+        TurnPhaseManager.PlayerTurnStarted -= TriggerHeroPowerEffect;
+        //History.CardHistoryComponentsUpdated -= TriggerHeroPowerEffect;
     }
     
 
