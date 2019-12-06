@@ -70,6 +70,7 @@ public class BattleManager : MonoBehaviour
         {
             TurnPlayerManager.Instance.TurnPlayer.Power -= cardClicked.card.HealthValue;
             Destroy(cardClicked.gameObject);
+            EndGameHandler.TriggerEndGame();
             Debug.Log("Boss Has been defeated!");
         }
     }
