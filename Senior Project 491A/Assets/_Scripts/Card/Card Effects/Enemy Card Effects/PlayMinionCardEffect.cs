@@ -18,7 +18,6 @@ public class PlayMinionCardEffect : OnPlayEffects
     IEnumerator DestroyBomb()
     {
         yield return new WaitForSeconds(1);
-        
     }
 }
 

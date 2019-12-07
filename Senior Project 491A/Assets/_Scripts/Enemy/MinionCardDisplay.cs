@@ -68,6 +68,7 @@ public class MinionCardDisplay : EnemyCardDisplay<MinionCard>
     //This method will invoke the MinionCardClicked event
     protected override void OnMouseDown()
     {
+        Debug.Log("Minion card clicked");
         MinionCardClicked?.Invoke(this);
         if(!PhotonNetwork.OfflineMode)
             photonView.RPC("RPCAttackMinion", RpcTarget.Others, this.photonView.ViewID);

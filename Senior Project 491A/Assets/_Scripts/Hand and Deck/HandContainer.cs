@@ -80,7 +80,7 @@ public class HandContainer : PlayerCardContainer
 
         if (cardDrawn == null)
         {
-            Debug.Log("null card");
+            //Debug.Log("null card");
             return;
         }
 
@@ -89,7 +89,7 @@ public class HandContainer : PlayerCardContainer
 
         if (containerCardGrid.freeLocations.Count == 0)
         {
-            Debug.Log("Stack is empty ");
+            //Debug.Log("Stack is empty ");
             return;
         }
 
@@ -97,7 +97,7 @@ public class HandContainer : PlayerCardContainer
         //PlayerCardDisplay cardDisplay = Instantiate(display, containerCardGrid.freeLocations.Pop(), Quaternion.identity, this.transform);
         PlayerCardDisplay cardDisplay = Instantiate(display, spawnPostion.transform.position, Quaternion.identity, this.transform);
 
-        Debug.Log("Created card " + cardDisplay.card.name);
+        //Debug.Log("Created card " + cardDisplay.card.name);
         
         PhotonView cardDisplayPhotonView = cardDisplay.gameObject.GetPhotonView();
 
@@ -129,7 +129,7 @@ public class HandContainer : PlayerCardContainer
 
     private void DestroyHand()
     {
-        Debug.Log("Destroying hand");
+        //Debug.Log("Destroying hand");
 
         foreach (var locationReferenceKeyValuePair in containerCardGrid.cardLocationReference)
         {
@@ -157,7 +157,7 @@ public class HandContainer : PlayerCardContainer
                 hand.hand.Remove(cardDisplay.card);
                 Destroy(locationReferenceKeyValuePair.Value.gameObject);
             }
-            Debug.Log("pushing onto free locations" + locationReferenceKeyValuePair.Key);
+            //Debug.Log("pushing onto free locations" + locationReferenceKeyValuePair.Key);
             containerCardGrid.freeLocations.Push(locationReferenceKeyValuePair.Key);
 
         }

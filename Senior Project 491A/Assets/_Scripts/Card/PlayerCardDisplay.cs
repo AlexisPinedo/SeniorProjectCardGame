@@ -61,8 +61,15 @@ public class PlayerCardDisplay : CardDisplay
         nameText.text = card.CardName;
         cardEffectText.text = card.CardEffectDisplay;
         attackText.text = card.CardAttack.ToString();
-        costText.text = card.CardCost.ToString();
+        
         currencyText.text = card.CardCurrency.ToString();
+
+        if (gameObject.GetComponentInParent<HandContainer>() == null)
+        {
+            costIcon.enabled = true;
+            costText.text = card.CardCost.ToString();
+        }
+        
         LoadCostEffectIcons();
         
     }
@@ -86,10 +93,10 @@ public class PlayerCardDisplay : CardDisplay
 
         RemoveCardEffectCostIcons();
 
-        if (this.transform.parent.gameObject.GetComponent<HandContainer>() != null)
-        {
-            costIcon.gameObject.SetActive(false);
-        }
+
+        costIcon.enabled = false;
+        costText.enabled = false;
+
     }
 
     private void OnMouseEnter()
@@ -218,7 +225,6 @@ public class PlayerCardDisplay : CardDisplay
             cardEffectText.GetComponent<MeshRenderer>().sortingLayerName = "Selected Player Card";
         }
         
-        //TODO: REMOVE COST ICON AND TEXT
         else
         {
             cardArtDisplay.sortingLayerName = "Selected Player Card";

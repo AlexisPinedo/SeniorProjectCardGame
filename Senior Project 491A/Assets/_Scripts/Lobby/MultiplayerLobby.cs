@@ -4,6 +4,9 @@ using UnityEngine.UI;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 
+/// <summary>
+/// Multiplayer lobby handler with references to other relevant canvases.
+/// </summary>
 public class MultiplayerLobby : MonoBehaviour
 {
     [SerializeField]
