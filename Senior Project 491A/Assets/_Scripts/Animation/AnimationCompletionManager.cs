@@ -19,7 +19,8 @@ public class AnimationCompletionManager : MonoBehaviour
     {
         if (PlayerAnimationManager.SharedInstance.AnimationsCompleted &&
             ShopAnimationManager.SharedInstance.AnimationsCompleted &&
-            PlayZoneAnimationManager.SharedInstance.AnimationsCompleted)
+            PlayZoneAnimationManager.SharedInstance.AnimationsCompleted &&
+            HideShopAnimation.IsCompleted)
             AllAnimationsCompleted(true);
         else
             AllAnimationsCompleted(false);
