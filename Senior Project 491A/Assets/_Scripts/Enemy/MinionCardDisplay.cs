@@ -64,7 +64,7 @@ public class MinionCardDisplay : EnemyCardDisplay<MinionCard>
         Vector2 newPosition = new Vector2(0, -1);
         transform.position = new Vector2(newPosition.x + OriginalPosition.x, newPosition.y + OriginalPosition.y);
     }
-    
+
     //This method will invoke the MinionCardClicked event
     protected override void OnMouseDown()
     {
@@ -78,6 +78,11 @@ public class MinionCardDisplay : EnemyCardDisplay<MinionCard>
         transform.localScale = new Vector2(1, 1);  //returns the object to its original state
         if (!DragCard.cardHeld)
             transform.position = OriginalPosition;
+    }
+
+    private void SetSelectedLayer()
+    {
+        
     }
 
     [PunRPC]

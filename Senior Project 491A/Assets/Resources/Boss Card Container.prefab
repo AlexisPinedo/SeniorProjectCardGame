@@ -261,7 +261,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.13464832, y: -0.08160043, z: -0.13872051, w: -0.07344031}
   m_textInfo:
     textComponent: {fileID: 522489323609107175}
     characterCount: 0
@@ -715,7 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebea8fab9720b496f8d1b17db4a788ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalPosition: {x: 0, y: 0}
+  originalPosition: {x: 0, y: 0}
 --- !u!1 &522489324211365295
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,7 +977,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.040800095, y: -0.06528044, z: -0.03264022, w: -0.07344031}
   m_textInfo:
     textComponent: {fileID: 522489324534388793}
     characterCount: 0

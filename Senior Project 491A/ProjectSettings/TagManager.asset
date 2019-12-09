@@ -52,8 +52,14 @@ TagManager:
   - name: Player Card
     uniqueID: 247937407
     locked: 0
+  - name: Enemy Card
+    uniqueID: 3660568017
+    locked: 0
   - name: Selected Player Card
     uniqueID: 2879226951
+    locked: 0
+  - name: Selected Enemy Card
+    uniqueID: 159367367
     locked: 0
   - name: Play Zone Particle Effect
     uniqueID: 4134231679

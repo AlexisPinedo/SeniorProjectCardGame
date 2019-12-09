@@ -1467,6 +1467,21 @@ PrefabInstance:
       propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 522489323609107174, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 522489323609107174, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 522489323609107174, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.005
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca9d4b072acf4164588d35a26d1bddd4, type: 3}
 --- !u!114 &589770440 stripped
@@ -5554,8 +5569,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0.27000046, y: 0.27000046}
+  m_SizeDelta: {x: 139.36, y: 122.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1694429697
 MonoBehaviour:
@@ -6083,8 +6098,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -0.27000046, y: 0.8100014}
+  m_SizeDelta: {x: 133.98, y: 129.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1949381349
 MonoBehaviour:
