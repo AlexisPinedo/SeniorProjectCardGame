@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Yami
   cardDescription: 
-  cardEffect: {fileID: 0}
-  cardEffectDisplay: Each player gains +3 currency on their turn.
+  cardEffect: {fileID: 11400000, guid: 39eae5f3b6fcc3845b5396fcb7d759ea, type: 2}
+  cardEffectDisplay: Gain 5 power and currency
   cardArtwork: {fileID: 21300000, guid: ed3bcddc51d874f8083cfa68a3cc4b1e, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 857794b94e1566d4d97be253d90d350f, type: 3}
   cardType: 1

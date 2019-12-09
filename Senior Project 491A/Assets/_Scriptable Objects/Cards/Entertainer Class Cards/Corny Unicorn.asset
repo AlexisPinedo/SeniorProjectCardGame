@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Corny Unicorn
   cardDescription: 
   cardEffect: {fileID: 0}
-  cardEffectDisplay: Skip the boss's turn.
+  cardEffectDisplay: Gain 7 power and currency
   cardArtwork: {fileID: 21300000, guid: f175f3029a835d649b53f3b3cf494a12, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 857794b94e1566d4d97be253d90d350f, type: 3}
   cardType: 1
@@ -25,8 +25,7 @@ MonoBehaviour:
   _cardCost: 9
   _cardAttack: 4
   _cardCurrency: 5
-  CardEffectRequirement: 010000000100000005000000
+  CardEffectRequirement: 0100000001000000
   cardCostsIcons:
   - {fileID: 21300000, guid: 857794b94e1566d4d97be253d90d350f, type: 3}
   - {fileID: 21300000, guid: 857794b94e1566d4d97be253d90d350f, type: 3}
-  - {fileID: 21300000, guid: 6a2dc59f410912b4897f591db7977cbb, type: 3}

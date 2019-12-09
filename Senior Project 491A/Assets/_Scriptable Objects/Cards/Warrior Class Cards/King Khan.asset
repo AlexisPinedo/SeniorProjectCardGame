@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: King Khan
   cardDescription: 
-  cardEffect: {fileID: 0}
-  cardEffectDisplay: Gain 1 power for each warrior card played
+  cardEffect: {fileID: 11400000, guid: 44b2c6db7f3a0844e9dc4a15c3e90fd9, type: 2}
+  cardEffectDisplay: Gain 3 Power
   cardArtwork: {fileID: 21300000, guid: e1e13a01eb6e9f84cbfaace34ceaeaf6, type: 3}
   cardTypeArt: {fileID: 21300000, guid: f27d54add9d3f5346b11c73a7135eb98, type: 3}
   cardType: 4

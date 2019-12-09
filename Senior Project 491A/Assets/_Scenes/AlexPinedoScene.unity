@@ -1916,7 +1916,7 @@ GameObject:
   - component: {fileID: 636189106}
   - component: {fileID: 636189105}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: Background Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3617,7 +3617,7 @@ GameObject:
   - component: {fileID: 971352179}
   - component: {fileID: 971352178}
   m_Layer: 0
-  m_Name: AudioHandler
+  m_Name: Sound Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

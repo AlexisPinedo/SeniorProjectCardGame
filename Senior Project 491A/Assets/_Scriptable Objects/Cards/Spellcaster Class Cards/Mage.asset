@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Chris Angel
   cardDescription: 
-  cardEffect: {fileID: 0}
-  cardEffectDisplay: 'If you have a deck: Draw 1 card.'
+  cardEffect: {fileID: 11400000, guid: 0eaf1eb673ca9dd45b8bfc4d47a2a65d, type: 2}
+  cardEffectDisplay: Gain 3 power and currency
   cardArtwork: {fileID: 21300000, guid: 6a4ae71877aa5434c86a9663f9641772, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 4ccb6c05577c54545b0ff360882023f5, type: 3}
   cardType: 2
@@ -23,7 +23,7 @@ MonoBehaviour:
   cardEffectBoxArt: {fileID: 21300000, guid: e7523f346039fe04bb490d0dbd04252e, type: 3}
   borderArt: {fileID: 21300000, guid: ab066be8ed0b6fc488c1fa0afe2de328, type: 3}
   _cardCost: 3
-  _cardAttack: 2
+  _cardAttack: 1
   _cardCurrency: 1
   CardEffectRequirement: 02000000
   cardCostsIcons:
