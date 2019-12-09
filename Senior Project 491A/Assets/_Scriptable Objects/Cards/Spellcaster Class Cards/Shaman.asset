@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Shaman
   cardDescription: 
-  cardEffect: {fileID: 0}
-  cardEffectDisplay: Add a random non-blue card from your deck.
+  cardEffect: {fileID: 11400000, guid: 815f1fad08a0f414597e3d9362436934, type: 2}
+  cardEffectDisplay: Gain 1 Power and Currency.
   cardArtwork: {fileID: 21300000, guid: b78a7c1fe7354fd408239c8db51d66dd, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 4ccb6c05577c54545b0ff360882023f5, type: 3}
   cardType: 2
@@ -23,7 +23,7 @@ MonoBehaviour:
   cardEffectBoxArt: {fileID: 21300000, guid: e7523f346039fe04bb490d0dbd04252e, type: 3}
   borderArt: {fileID: 21300000, guid: ab066be8ed0b6fc488c1fa0afe2de328, type: 3}
   _cardCost: 3
-  _cardAttack: 1
+  _cardAttack: 3
   _cardCurrency: 2
   CardEffectRequirement: 02000000
   cardCostsIcons:

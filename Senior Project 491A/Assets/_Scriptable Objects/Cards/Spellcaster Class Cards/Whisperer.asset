@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Whisperer
   cardDescription: 
   cardEffect: {fileID: 0}
-  cardEffectDisplay: Draw a card from the shop
+  cardEffectDisplay: Gain 2 Power and Currency
   cardArtwork: {fileID: 21300000, guid: 1151537206507654f92f4955c355c960, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 4ccb6c05577c54545b0ff360882023f5, type: 3}
   cardType: 2
@@ -23,7 +23,7 @@ MonoBehaviour:
   cardEffectBoxArt: {fileID: 21300000, guid: e7523f346039fe04bb490d0dbd04252e, type: 3}
   borderArt: {fileID: 21300000, guid: ab066be8ed0b6fc488c1fa0afe2de328, type: 3}
   _cardCost: 4
-  _cardAttack: 1
+  _cardAttack: 4
   _cardCurrency: 3
   CardEffectRequirement: 02000000
   cardCostsIcons:

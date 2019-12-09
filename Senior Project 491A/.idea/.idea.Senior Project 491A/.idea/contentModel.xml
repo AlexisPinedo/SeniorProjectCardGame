@@ -41,6 +41,7 @@
               <e p="Player Card Effects" t="Include">
                 <e p="AddCurrency.cs" t="Include" />
                 <e p="AddPower.cs" t="Include" />
+                <e p="AddPowerCurrency.cs" t="Include" />
                 <e p="DestroyMinion.cs" t="Include" />
               </e>
             </e>
