@@ -15,8 +15,7 @@ MonoBehaviour:
   cardName: MashingPumpkins
   cardDescription: 
   cardEffect: {fileID: 0}
-  cardEffectDisplay: 'Passive: Minions have + 2 Health. Cannot be Attacked if there
-    are other minons on the field.'
+  cardEffectDisplay: 
   cardArtwork: {fileID: 21300000, guid: a3ac4d4e9f88c2142a845fbc1ebf07a4, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 7a09aa9da641d4a4bab2974a4bc78874, type: 3}
   cardType: 6
@@ -24,4 +23,4 @@ MonoBehaviour:
   cardEffectBoxArt: {fileID: 21300000, guid: 147df2d7cfc917c4fbc1aca85aed8b56, type: 3}
   borderArt: {fileID: 21300000, guid: 4a795863df57edd45815b9405fb20466, type: 3}
   _rewardValue: 2
-  _healthValue: 3
+  _healthValue: 9

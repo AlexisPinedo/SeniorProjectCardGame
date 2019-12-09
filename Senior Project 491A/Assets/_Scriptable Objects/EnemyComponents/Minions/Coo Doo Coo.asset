@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Coo Doo Coo
   cardDescription: 
-  cardEffect: {fileID: 11400000, guid: 7c80775e08b47c940b4ffaf971443bd3, type: 2}
-  cardEffectDisplay: 'On Death: Play the top card of the deck: Gain that attack.'
+  cardEffect: {fileID: 0}
+  cardEffectDisplay: 
   cardArtwork: {fileID: 21300000, guid: 8ba2d3c9d7d32a349baacd7a1c250c29, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 7a09aa9da641d4a4bab2974a4bc78874, type: 3}
   cardType: 6
   nameBoxArt: {fileID: 21300000, guid: a8cc807b531bb8e49b625e58bf248853, type: 3}
   cardEffectBoxArt: {fileID: 21300000, guid: 147df2d7cfc917c4fbc1aca85aed8b56, type: 3}
   borderArt: {fileID: 21300000, guid: 4a795863df57edd45815b9405fb20466, type: 3}
-  _rewardValue: 10
-  _healthValue: 2
+  _rewardValue: 2
+  _healthValue: 10

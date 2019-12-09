@@ -22,5 +22,5 @@ MonoBehaviour:
   nameBoxArt: {fileID: 21300000, guid: a8cc807b531bb8e49b625e58bf248853, type: 3}
   cardEffectBoxArt: {fileID: 21300000, guid: 147df2d7cfc917c4fbc1aca85aed8b56, type: 3}
   borderArt: {fileID: 21300000, guid: 4a795863df57edd45815b9405fb20466, type: 3}
-  _rewardValue: 4
+  _rewardValue: 2
   _healthValue: 8
