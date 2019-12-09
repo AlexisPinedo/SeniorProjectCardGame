@@ -13,5 +13,7 @@ public class PlayerDeckContainer : MonoBehaviour
     private void Awake()
     {
         deck.cardsInDeck.Clear();
+        TurnPlayerManager.Instance.TurnPlayer.Currency = 0;
+        TurnPlayerManager.Instance.TurnPlayer.Power = 0;
     }
 }
