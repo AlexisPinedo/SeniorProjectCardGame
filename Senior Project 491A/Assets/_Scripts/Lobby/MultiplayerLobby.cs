@@ -66,7 +66,7 @@ public class MultiplayerLobby : MonoBehaviourPunCallbacks
         photonManager.SetActive(false);
         multiplayerLobby.SetActive(false);
         PhotonNetwork.Disconnect();
-        //MainMenu.loggedIn = false;
+        MainMenu.multiplayerMode = false;
         mainMenuScreen.SetActive(true);
 
 

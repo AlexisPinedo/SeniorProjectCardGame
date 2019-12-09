@@ -31,7 +31,8 @@ public class BossCardDisplay : EnemyCardDisplay<BossCard>
     {
         Debug.Log("boss has been clicked");
         BossCardClicked?.Invoke(this);
-        this.photonView.RPC("RPCAttackBoss", RpcTarget.Others, this.photonView.ViewID);
+        if(!PhotonNetwork.OfflineMode)
+            photonView.RPC("RPCAttackBoss", RpcTarget.Others, this.photonView.ViewID);
     }
 
     [PunRPC]

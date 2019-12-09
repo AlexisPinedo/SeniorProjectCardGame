@@ -28,6 +28,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
 
     public static byte endTurnEvent = (byte)'0';
     public static byte startBattleEvent = (byte)'1';
+    public static byte endGameEvent = (byte)'2';
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
             }
 
             notficationWindow.photonView.TransferOwnership(currentPhotonPlayer);
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
         else
         {
