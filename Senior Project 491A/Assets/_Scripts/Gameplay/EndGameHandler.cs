@@ -46,6 +46,7 @@ public class EndGameHandler : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        MainMenu.loggedIn = false;
         SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
     }
 }
