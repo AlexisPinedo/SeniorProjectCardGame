@@ -9,6 +9,9 @@ public class Vicky : InteractableHero
     private void OnEnable()
     {
         _heroPowerMessageDisplay = "Once per turn you can switch your currency and power";
+
+        if (!NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
+            isInteractable = false;
     }
 
     protected override void HeroPowerEffect()
@@ -27,8 +30,10 @@ public class Vicky : InteractableHero
 
             currentPlayer.Power = temp;
         }
-        else if (!NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
+
+        if (!NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
         {
+
             Player currentPlayer = TurnPlayerManager.Instance.TurnPlayer;
 
             int temp = currentPlayer.Currency;
@@ -36,10 +41,6 @@ public class Vicky : InteractableHero
             currentPlayer.Currency = currentPlayer.Power;
 
             currentPlayer.Power = temp;
-        }
-        else
-        {
-            Debug.Log("unable to interact...");
         }
         
     }
