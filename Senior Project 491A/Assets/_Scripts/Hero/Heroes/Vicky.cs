@@ -9,9 +9,6 @@ public class Vicky : InteractableHero
     private void OnEnable()
     {
         _heroPowerMessageDisplay = "Once per turn you can switch your currency and power";
-
-        if (!NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
-            isInteractable = false;
     }
 
     protected override void HeroPowerEffect()
