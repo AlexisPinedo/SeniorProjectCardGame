@@ -130,8 +130,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
         TurnPlayerManager.Instance.TurnPlayer.Power += cardPlayed.CardAttack;
         TurnPlayerManager.Instance.TurnPlayer.Currency += cardPlayed.CardCurrency;
 
-        //if (!PhotonNetwork.OfflineMode)
-        //    photonView.RPC("SendPlayerValues", RpcTarget.Others,TurnPlayerManager.Instance.TurnPlayer.Power, TurnPlayerManager.Instance.TurnPlayer.Currency);
+        if (!PhotonNetwork.OfflineMode)
+            photonView.RPC("SendPlayerValues", RpcTarget.Others, TurnPlayerManager.Instance.TurnPlayer.Power, TurnPlayerManager.Instance.TurnPlayer.Currency);
 
         if (!cardPlayed.CardName.Equals("Phantom"))
             TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardPlayed);
@@ -149,12 +149,12 @@ public class PlayZone : MonoBehaviourPunCallbacks
         }
     }
 
-    //[PunRPC]
-    //private void SendPlayerValues(int powerValue, int currencyValue)
-    //{
-    //    TurnPlayerManager.Instance.TurnPlayer.Power = powerValue;
-    //    TurnPlayerManager.Instance.TurnPlayer.Currency = currencyValue;
-    //}
+    [PunRPC]
+    private void SendPlayerValues(int powerValue, int currencyValue)
+    {
+        TurnPlayerManager.Instance.TurnPlayer.Power = powerValue;
+        TurnPlayerManager.Instance.TurnPlayer.Currency = currencyValue;
+    }
 
     [PunRPC]
     private void RemoteHandleCard(int cardID)
@@ -164,8 +164,8 @@ public class PlayZone : MonoBehaviourPunCallbacks
         {
             PlayerCardDisplay playedCard = foundCard.GetComponent<PlayerCardDisplay>();
             PlayerCard cardPlayed = playedCard.card;
-            TurnPlayerManager.Instance.TurnPlayer.Power += cardPlayed.CardAttack;
-            TurnPlayerManager.Instance.TurnPlayer.Currency += cardPlayed.CardCurrency;
+            //TurnPlayerManager.Instance.TurnPlayer.Power += cardPlayed.CardAttack;
+            //TurnPlayerManager.Instance.TurnPlayer.Currency += cardPlayed.CardCurrency;
 
             if (!cardPlayed.CardName.Equals("Phantom"))
                 TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardPlayed);
