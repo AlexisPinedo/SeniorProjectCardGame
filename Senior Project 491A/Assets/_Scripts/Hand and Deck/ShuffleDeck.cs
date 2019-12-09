@@ -43,19 +43,19 @@ public class ShuffleDeck : MonoBehaviourPunCallbacks
 
         var deckList = deckToShuffle.cardsInDeck.ToArray();
         int n = deckList.Length;
+        int k = 0;
         while (n > 1)
         {
             n--;
-            int k = random.Next(n + 1);
+            k = random.Next(n + 1);
             T value = deckList[k];
             deckList[k] = deckList[n];
             deckList[n] = value;
         }
-        
+        Debug.Log(deckToShuffle.GetType() + " has has been shuffled with " + k);
         deckToShuffle.cardsInDeck = new Stack<T>(deckList);
-
-        randomNumber = random.Next();
-
+        //randomNumber = random.Next();
+        Debug.Log(deckToShuffle.GetType() + " has has been shuffled with " + randomNumber);
         return deckToShuffle.cardsInDeck;
     }
 }

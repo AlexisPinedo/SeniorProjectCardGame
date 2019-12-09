@@ -87,8 +87,8 @@ public class MinionCardDisplay : EnemyCardDisplay<MinionCard>
         PhotonView foundCard = PhotonView.Find(cardID);
         if (foundCard)
         {
-            MinionCardDisplay purchasedCard = foundCard.GetComponent<MinionCardDisplay>();
-            MinionCardClicked?.Invoke(this);
+            MinionCardDisplay attackedMinion = foundCard.GetComponent<MinionCardDisplay>();
+            MinionCardClicked?.Invoke(attackedMinion);
             Debug.Log("Minion Attacked");
         }
         else
