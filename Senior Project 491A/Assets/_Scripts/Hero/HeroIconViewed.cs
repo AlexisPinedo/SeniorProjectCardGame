@@ -75,7 +75,8 @@ public class HeroIconViewed : MonoBehaviourPun
         if (turnPlayerHero is InteractableHero)
         {
             InteractableHero hero = (InteractableHero) turnPlayerHero;
-            hero.SetIsInteractableTrue();
+            if (NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
+                hero.SetIsInteractableTrue();
         }
     }
 }
