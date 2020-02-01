@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Ken and Miller
   cardDescription: 
-  cardEffect: {fileID: 0}
-  cardEffectDisplay: Exchange cards in your hand with cards in the shop.
+  cardEffect: {fileID: 11400000, guid: 6d726cb2137a69a468b0d851c09a9c1e, type: 2}
+  cardEffectDisplay: Gain 4 power and currency
   cardArtwork: {fileID: 21300000, guid: 1e7ca39adab5e8f4faeb1ccf43d64236, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 4ccb6c05577c54545b0ff360882023f5, type: 3}
   cardType: 2

@@ -9,7 +9,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 /// <summary>
 /// 
 /// </summary>
-public class HeroPicker : MonoBehaviourPunCallbacks
+public class HeroPicker : MonoBehaviour
 {
     [SerializeField]
     GameObject heroPickerCanvas, roomLobbyCanvas;
@@ -41,11 +41,14 @@ public class HeroPicker : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsConnected)
         {
+            playerNickName.text = heroSelected.text;
+            heroSelected.gameObject.SetActive(false);
             confirmButton.SetActive(false);
             startButton.SetActive(true);
         }
         else
         {
+            heroSelected.gameObject.SetActive(true);
             confirmButton.SetActive(true);
             startButton.SetActive(false);
             playerNickName.text = PhotonNetwork.LocalPlayer.NickName;
@@ -103,7 +106,7 @@ public class HeroPicker : MonoBehaviourPunCallbacks
     public void OnClick_HeroClicked(string heroName)
     {
         AssignPlayerOne(heroSelected.text, false);
-        heroSelected.text = heroName;
+        playerNickName.text = heroSelected.text = heroName;
         AssignPlayerOne(heroName, true);
 
         if (!PhotonNetwork.IsConnected)

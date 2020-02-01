@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Magical Gurl
   cardDescription: 
-  cardEffect: {fileID: 0}
-  cardEffectDisplay: 'If you have a deck: Draw 1 card.'
+  cardEffect: {fileID: 11400000, guid: 4ecb92938b61d234b8ca2d639a0e2a48, type: 2}
+  cardEffectDisplay: Gain 2 Power and Currency
   cardArtwork: {fileID: 21300000, guid: 1fe84bb18819f4a2ab6df00715c6cee8, type: 3}
   cardTypeArt: {fileID: 21300000, guid: 4ccb6c05577c54545b0ff360882023f5, type: 3}
   cardType: 2
@@ -24,7 +24,7 @@ MonoBehaviour:
   borderArt: {fileID: 21300000, guid: ab066be8ed0b6fc488c1fa0afe2de328, type: 3}
   _cardCost: 4
   _cardAttack: 3
-  _cardCurrency: 1
+  _cardCurrency: 3
   CardEffectRequirement: 02000000
   cardCostsIcons:
   - {fileID: 21300000, guid: 4ccb6c05577c54545b0ff360882023f5, type: 3}

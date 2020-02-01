@@ -27,9 +27,17 @@ public class Vicky : InteractableHero
 
             currentPlayer.Power = temp;
         }
-        else
+
+        if (!NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
         {
-            Debug.Log("unable to interact...");
+
+            Player currentPlayer = TurnPlayerManager.Instance.TurnPlayer;
+
+            int temp = currentPlayer.Currency;
+
+            currentPlayer.Currency = currentPlayer.Power;
+
+            currentPlayer.Power = temp;
         }
         
     }

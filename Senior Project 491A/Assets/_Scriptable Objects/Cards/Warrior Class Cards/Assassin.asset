@@ -15,16 +15,16 @@ MonoBehaviour:
   cardName: Grace The Knight
   cardDescription: 
   cardEffect: {fileID: 0}
-  cardEffectDisplay: Destroy a minion
+  cardEffectDisplay: Gain 5 Power
   cardArtwork: {fileID: 21300000, guid: e5c4a5170fd320046b8f4c68e5a69f67, type: 3}
   cardTypeArt: {fileID: 21300000, guid: f27d54add9d3f5346b11c73a7135eb98, type: 3}
   cardType: 4
   nameBoxArt: {fileID: 21300000, guid: 75d7637b2af77e14da020fc0514a0ae4, type: 3}
   cardEffectBoxArt: {fileID: 21300000, guid: af1c529d8b1df9c4c865cc9c87118070, type: 3}
   borderArt: {fileID: 21300000, guid: 2e2640acafaa23f4bb31b4779f5a044c, type: 3}
-  _cardCost: 3
-  _cardAttack: 3
-  _cardCurrency: 0
+  _cardCost: 8
+  _cardAttack: 5
+  _cardCurrency: 2
   CardEffectRequirement: 0400000004000000
   cardCostsIcons:
   - {fileID: 21300000, guid: f27d54add9d3f5346b11c73a7135eb98, type: 3}

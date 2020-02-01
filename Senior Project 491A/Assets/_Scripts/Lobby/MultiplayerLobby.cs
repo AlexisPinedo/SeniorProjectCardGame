@@ -3,11 +3,12 @@ using Photon.Pun;
 using UnityEngine.UI;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Multiplayer lobby handler with references to other relevant canvases.
 /// </summary>
-public class MultiplayerLobby : MonoBehaviour
+public class MultiplayerLobby : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private GameObject multiplayerLobby, mainMenuScreen, photonManager;
@@ -58,14 +59,22 @@ public class MultiplayerLobby : MonoBehaviour
         createRoomPanel.SetActive(false);
     }
 
-    public void OnClick_Back()
+    public void OnClick_SignOut()
     {
-        multiplayerLobby.SetActive(false);
+
+        //PhotonNetwork.LeaveLobby();
         photonManager.SetActive(false);
-        mainMenuScreen.SetActive(true);
-        OnClick_CreateRoomBack();
+        multiplayerLobby.SetActive(false);
         PhotonNetwork.Disconnect();
+        MainMenu.multiplayerMode = false;
+        mainMenuScreen.SetActive(true);
+
+
+        //PhotonNetwork.OfflineMode = true;
+
+        OnClick_CreateRoomBack();
     }
+
 
     /// <summary>
     /// Hides the button and displays three objects: a back button, an input field (the room to be created), and the accept button.

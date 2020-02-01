@@ -149,7 +149,7 @@ public class HandContainer : PlayerCardContainer
 
                 if(cardDisplay.card.CardType != CardTypes.None)
                 {                    
-                    //Debug.Log("Add card to grave");
+                    Debug.Log("Add card to grave");
                     playerGraveyard.graveyard.Add(cardDisplay.card);
                 }
                 //Debug.Log("Removing card from hand");

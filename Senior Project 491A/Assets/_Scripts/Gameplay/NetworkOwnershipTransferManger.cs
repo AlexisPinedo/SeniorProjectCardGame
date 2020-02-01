@@ -28,6 +28,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
 
     public static byte endTurnEvent = (byte)'0';
     public static byte startBattleEvent = (byte)'1';
+    public static byte endGameEvent = (byte)'2';
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
             }
 
             notficationWindow.photonView.TransferOwnership(currentPhotonPlayer);
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
         else
         {
@@ -51,6 +53,7 @@ public class NetworkOwnershipTransferManger : MonoBehaviourPunCallbacks
             currentPhotonPlayer = photonPlayer1 = photonPlayer2 = PhotonNetwork.LocalPlayer;
             PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
             //Debug.Log("Assigned master client to local player 1");
+            bossCard.photonView.TransferOwnership(currentPhotonPlayer);
         }
     }
 

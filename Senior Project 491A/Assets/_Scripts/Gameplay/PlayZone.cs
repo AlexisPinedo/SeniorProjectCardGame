@@ -122,8 +122,6 @@ public class PlayZone : MonoBehaviourPunCallbacks
         Hand tpHand = TurnPlayerManager.Instance.TurnPlayer.hand;
         PlayerCardDisplay cardDisplay = cardInZone;
         PlayerCard cardPlayed = cardDisplay.card;
-        if(!PhotonNetwork.OfflineMode)
-            cardDisplay.photonView.RPC("DestroyCard", RpcTarget.Others);
 
         //StartCoroutine(TransformCard(cardInZone, enlargementZone.position));
         //AnimationManager.SharedInstance.PlayAnimation(cardInZone, enlargementZone.position, 0.25f, true, true,true);
@@ -133,19 +131,22 @@ public class PlayZone : MonoBehaviourPunCallbacks
         TurnPlayerManager.Instance.TurnPlayer.Currency += cardPlayed.CardCurrency;
 
         if (!PhotonNetwork.OfflineMode)
-            photonView.RPC("SendPlayerValues", RpcTarget.Others,TurnPlayerManager.Instance.TurnPlayer.Power, TurnPlayerManager.Instance.TurnPlayer.Currency);
+            photonView.RPC("SendPlayerValues", RpcTarget.Others, TurnPlayerManager.Instance.TurnPlayer.Power, TurnPlayerManager.Instance.TurnPlayer.Currency);
 
         if (!cardPlayed.CardName.Equals("Phantom"))
-        {
             TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardPlayed);
-        }
         
         tpHand.hand.Remove(cardPlayed);
-        
         CardPlayed?.Invoke(cardPlayed);
         HasPlayed?.Invoke();
         cardInPlayZone = false;
         cardInZone = null;
+
+        if (!PhotonNetwork.OfflineMode)
+        {
+            photonView.RPC("RemoteHandleCard", RpcTarget.Others, cardDisplay.photonView.ViewID);
+            cardDisplay.photonView.RPC("DestroyCard", RpcTarget.Others);
+        }
     }
 
     [PunRPC]
@@ -153,6 +154,31 @@ public class PlayZone : MonoBehaviourPunCallbacks
     {
         TurnPlayerManager.Instance.TurnPlayer.Power = powerValue;
         TurnPlayerManager.Instance.TurnPlayer.Currency = currencyValue;
+    }
+
+    [PunRPC]
+    private void RemoteHandleCard(int cardID)
+    {
+        PhotonView foundCard = PhotonView.Find(cardID);
+        if (foundCard)
+        {
+            PlayerCardDisplay playedCard = foundCard.GetComponent<PlayerCardDisplay>();
+            PlayerCard cardPlayed = playedCard.card;
+            //TurnPlayerManager.Instance.TurnPlayer.Power += cardPlayed.CardAttack;
+            //TurnPlayerManager.Instance.TurnPlayer.Currency += cardPlayed.CardCurrency;
+
+            if (!cardPlayed.CardName.Equals("Phantom"))
+                TurnPlayerManager.Instance.TurnPlayer.playerGraveyard.graveyard.Add(cardPlayed);
+
+            Hand tpHand = TurnPlayerManager.Instance.TurnPlayer.hand;
+            tpHand.hand.Remove(cardPlayed);
+            CardPlayed?.Invoke(cardPlayed);
+            HasPlayed?.Invoke();
+        }
+        else
+        {
+            Debug.Log("Card with Photon ViewID " + cardID + " not found");
+        }
     }
 
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,4 +9,11 @@ using UnityEngine;
 public class PlayerDeckContainer : MonoBehaviour
 {
     public PlayerDeck deck;
+
+    private void Awake()
+    {
+        deck.cardsInDeck.Clear();
+        TurnPlayerManager.Instance.TurnPlayer.Currency = 0;
+        TurnPlayerManager.Instance.TurnPlayer.Power = 0;
+    }
 }

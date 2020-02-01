@@ -29,5 +29,6 @@ public class NetworkIDAssigner : MonoBehaviour
     {
         if (currentObject.ViewID == 0)
             currentObject.ViewID = photonIDCounter++;
+        currentObject.TransferOwnership(NetworkOwnershipTransferManger.currentPhotonPlayer);
     }
 }

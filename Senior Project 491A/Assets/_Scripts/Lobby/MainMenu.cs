@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameObject singlePlayerBtn, multiplayerBtn, optionsBtn;
 
+    public static bool loggedIn, singleMode, multiplayerMode; 
+
     private void OnEnable()
     {
         /**
@@ -19,16 +21,19 @@ public class MainMenu : MonoBehaviour
          * Should be connected.
          * Skips mode selection and attempts to rejoin the lobby.
          */
-        if (PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected && multiplayerMode && !singleMode)
         {
             mainMenuScreen.SetActive(false);
             photonManager.SetActive(true);
         }
+
     }
 
     #region OnClick Methods
     public void OnClick_SinglePlayer()
     {
+        singleMode = true;
+        multiplayerMode = false;
         mainMenuScreen.SetActive(false);
         singlePlayerScreen.SetActive(true);
         heroPickerCanvas.SetActive(true);
@@ -36,6 +41,8 @@ public class MainMenu : MonoBehaviour
 
     public void OnClick_Multiplayer()
     {
+        multiplayerMode = true;
+        singleMode = false;
         mainMenuScreen.SetActive(false);
         nameScreenCanvas.SetActive(true);
     }

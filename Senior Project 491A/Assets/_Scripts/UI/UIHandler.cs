@@ -56,7 +56,12 @@ public class UIHandler : MonoBehaviour
 
     public void HeroPowerButtonOnClick()
     {
-        HeroPowerClicked?.Invoke();
+        if (NetworkOwnershipTransferManger.currentPhotonPlayer.IsLocal)
+            HeroPowerClicked?.Invoke();
+        else
+        {
+            Debug.Log("Unable to click hero not ur turn");
+        }
     }
 
     public void EndTurnButtonOnClick()
