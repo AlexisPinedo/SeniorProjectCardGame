@@ -346,8 +346,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73b5c2b034af4f40b22facab4d4f9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerGrid: {fileID: 1981492783}
-  holder: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
+  containerCardGrid: {fileID: 0}
+  display: {fileID: 0}
+  spawnPostion: {fileID: 0}
   shopDeck: {fileID: 11400000, guid: 4ff002b0bee054542a589b4945221746, type: 2}
 --- !u!1 &381133601
 GameObject:
@@ -381,11 +382,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7e90af0b3811eac8cec531e4b94592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnPlayer: {fileID: 0}
-  p1HandSpacePanel: {fileID: 101520841}
-  p2HandSpacePanel: {fileID: 2025430591}
+  valor: {fileID: 0}
+  van: {fileID: 0}
+  vaughn: {fileID: 0}
+  veda: {fileID: 0}
+  vicky: {fileID: 0}
+  vito: {fileID: 0}
   player1: {fileID: 11400000, guid: 2bad366e9670cd14a9faf71668b90e87, type: 2}
   player2: {fileID: 11400000, guid: c2b6a7b03b2eca24ebc7b74dc0c3c8a2, type: 2}
+  turnPlayer: {fileID: 0}
+  turnPlayerGameObject: {fileID: 0}
+  player1GameObject: {fileID: 0}
+  player2GameObject: {fileID: 0}
 --- !u!114 &381133603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874c01647e2e79743b76497be2eb1eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyGrid: {fileID: 837790465}
+  enemyCardGrid: {fileID: 0}
   PlayZoneText: {fileID: 2090628134}
 --- !u!4 &381133604
 Transform:
@@ -494,6 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9cf00c622ea147b720ca9f7d06361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enlargementZone: {fileID: 0}
 --- !u!4 &393574268
 Transform:
   m_ObjectHideFlags: 0
@@ -1026,6 +1035,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3257049812469847756, guid: ca9d4b072acf4164588d35a26d1bddd4,
+        type: 3}
+      propertyPath: viewIdField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca9d4b072acf4164588d35a26d1bddd4, type: 3}
 --- !u!1 &607427540
@@ -1071,8 +1085,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4781520af986125429a086e3dda86418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerGrid: {fileID: 837790465}
-  holder: {fileID: 7737181224830327970, guid: 3a52656890895c8488c3d5d03033505b, type: 3}
+  containerCardGrid: {fileID: 0}
+  minionDisplay: {fileID: 0}
   enemyDeck: {fileID: 11400000, guid: 3011dc8c8f7e58f4eb9c00577c9c4b8c, type: 2}
 --- !u!1 &635150313
 GameObject:
@@ -1117,7 +1131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8d6b3ba5b2d6d4eb8d7a91ab9038a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grave: {fileID: 11400000, guid: 3a630b2f752ea964c894ac5173f0aa73, type: 2}
+  grave: {fileID: 0}
 --- !u!1 &695779579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,7 +1413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af781ee50955bd946a20f75062f8919a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deck: {fileID: 11400000, guid: 9a5eec11a96d3f44e88cd3bd254f306a, type: 2}
+  deck: {fileID: 0}
 --- !u!1 &783672344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,6 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d42a31713ed45a4d94dc764e6da1b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  windowReference: {fileID: 0}
 --- !u!114 &815000617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,6 +1829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485150907d4a0bf408d7f85669cce239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GraveyardPosition: {fileID: 0}
 --- !u!1 &916451456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,7 +2297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8d6b3ba5b2d6d4eb8d7a91ab9038a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grave: {fileID: 11400000, guid: b7077001044931a40b33d83873f50253, type: 2}
+  grave: {fileID: 0}
 --- !u!1 &1190731604
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,12 +2341,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf31c4c298cea24a8065133a62762ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerGrid: {fileID: 696043139}
-  holder: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
+  containerCardGrid: {fileID: 0}
+  display: {fileID: 0}
+  spawnPostion: {fileID: 0}
   hand: {fileID: 11400000, guid: 7473ef4c36860c2479a050f88a746ac7, type: 2}
-  playerDeck: {fileID: 11400000, guid: 9a5eec11a96d3f44e88cd3bd254f306a, type: 2}
-  playerGrave: {fileID: 11400000, guid: b7077001044931a40b33d83873f50253, type: 2}
+  playerDeck: {fileID: 0}
+  playerGraveyard: {fileID: 0}
   phantomCard: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
+  cardDrawn: {fileID: 0}
   DefaultHandSize: 5
 --- !u!1 &1194804835
 GameObject:
@@ -3602,7 +3620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af781ee50955bd946a20f75062f8919a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deck: {fileID: 11400000, guid: 129d1d2bb41d2444b8d6adeae81ba26a, type: 2}
+  deck: {fileID: 0}
 --- !u!1 &1981492781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3727,7 +3745,7 @@ SpriteRenderer:
   m_Size: {x: 9.744, y: 1.5843517}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2025430591
@@ -3807,12 +3825,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf31c4c298cea24a8065133a62762ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerGrid: {fileID: 566032829}
-  holder: {fileID: 522489324146028421, guid: 8bd2661df0c7e334293b6bb200388c37, type: 3}
+  containerCardGrid: {fileID: 0}
+  display: {fileID: 0}
+  spawnPostion: {fileID: 0}
   hand: {fileID: 11400000, guid: faffe65425888364c90c44179becc897, type: 2}
-  playerDeck: {fileID: 11400000, guid: 129d1d2bb41d2444b8d6adeae81ba26a, type: 2}
-  playerGrave: {fileID: 11400000, guid: 3a630b2f752ea964c894ac5173f0aa73, type: 2}
+  playerDeck: {fileID: 0}
+  playerGraveyard: {fileID: 0}
   phantomCard: {fileID: 11400000, guid: aa50052db63a91e49b55342253252321, type: 2}
+  cardDrawn: {fileID: 0}
   DefaultHandSize: 5
 --- !u!1 &2090628132
 GameObject:
